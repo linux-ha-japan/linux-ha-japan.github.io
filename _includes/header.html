@@ -1,9 +1,16 @@
 <header class="site-header" role="banner">
 
   <div class="wrapper">
+    <table id="logoarea" cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+	<td rowspan="2" valign="middle" class="logoarea-logo"><a href="https://linux-ha-japan.github.io/"><img class="logo" src="/assets/images/linux-ha-logo.png" alt="Linux-HA Japan" /></a></td>
+	<td rowspan="2" valign="middle" class="logoarea-title"><h2 class="blogtitle"><a href="https://linux-ha-japan.github.io/">Linux-HA Japan</a></h2>
+	  <p class="tagline">High-Availability Clustering on Linux</p></td>
+      </tr>
+    </table>
+
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
-    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
 
     {%- if page_paths -%}
       <nav class="site-nav">

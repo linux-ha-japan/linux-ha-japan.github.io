@@ -1,0 +1,24 @@
+// Placeholder to allow defining custom styles that override everything else.
+
+  table#logoarea{width:100%;border-spacing:0px;border:0px;margin-bottom:0px;padding:0}
+  img.logo{display:block;margin:0 10px 0 0;max-width:none}
+  td.logoarea-logo{width:1%;padding:0;border:0px}
+  td.logoarea-title{padding:0;border:0px}
+  h2.blogtitle{ display:block;margin:0;padding:0;letter-spacing:-1px;line-height:1.0em;font-size:300%;text-transform:uppercase;font-smooth:always}
+  h2.blogtitle a:link,h2.blogtitle a:visited,h2.blogtitle a:active{ text-decoration:none;color:#000000;font-weight:bold;font-smooth:always}
+  h2.blogtitle a:hover{ text-decoration:none;color:#AC161B;font-weight:bold}
+  p.tagline{margin:0;padding:0;font-size:1.3em;font-weight:normal;color:#444;line-height:normal}
+  td#footer{width:auto;background-repeat:no-repeat;background-color:#f7f7f7;border-top:solid 4px #eee;padding:10px;text-align:center;color:#888;font-size:11px}
+  td#footer a:link,td#footer a:visited,td#footer a:active{text-decoration:none;color:#777777;font-weight:normal}
+  td#footer a:hover{text-decoration:none;color:#777777;font-weight:normal}
+
+  div.footer-col-wrapper{background-image:url("/assets/images/footer.jpg");height:118px }
+
+.social-media-list {
+    li {
+	a {
+	    padding: 2px 2px;
+	    border: 0px
+	}
+    }
+}
