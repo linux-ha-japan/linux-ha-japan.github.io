@@ -28,6 +28,7 @@ twitter_hashtag: "#linux_ha_jp"
 github_username:  linux-ha-japan
 repository: linux-ha-japan/linux-ha-japan.github.io
 timezone: Asia/Tokyo
+permalink: /posts/:year-:month-:day-:title:output_ext
 header_pages:
  - index.md
  - download.md
