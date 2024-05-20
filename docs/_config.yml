@@ -35,8 +35,8 @@ header_pages:
  - download.md
  - mailinglist.md
  - documents.md
+ - contents.md
  - posts.md
- - links.md
 
 # Build settings
 theme: minima
