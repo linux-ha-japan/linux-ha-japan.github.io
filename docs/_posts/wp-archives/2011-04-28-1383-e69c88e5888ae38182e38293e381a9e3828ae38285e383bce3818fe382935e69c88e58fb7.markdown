@@ -1,0 +1,587 @@
+---
+author: ikedaj
+comments: false
+date: 2011-04-28 05:23:40+00:00
+layout: post
+permalink: /wp/archives/1383
+slug: '%e6%9c%88%e5%88%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%935%e6%9c%88%e5%8f%b7'
+title: 月刊あんどりゅーくん(5月号)
+wordpress_id: 1383
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+先月のあんどりゅーくんからはや一ヶ月。[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+第二回にしてすでにいっぱいいっぱいですが
+今回は、4月のメーリングリストから下記の情報を抜粋してご紹介します。
+
+
+
+	
+  1. リリース情報
+
+	
+  2. 知恵袋
+
+
+ 
+
+1. リリース情報
+
+4月は下記のリリースが行われました。
+
+
+
+	
+  * [Hawk 0.4.0 ](http://www.gossamer-threads.com/lists/linuxha/users/71728)のリリース（2011年4月19日）
+
+	
+  * [Corosync 1.3.1](http://marc.info/?l=openais&m=130370337709886&w=2) のリリース（2011年4月25日）
+
+	
+  * [Pacemaker 1.2](http://www.clusterlabs.org/wiki/Get_Pacemaker) のリリース予定発表（2012月8月22日）
+
+
+ 
+
+
+## 1-1. Hawk 0.4.0
+
+
+Hawk (HA Web Konsole) は Tim Serong@Novell が開発を担当しているGUIです。
+てぃむが頑張って [Wiki](http://www.clusterlabs.org/wiki/Hawk) に書き込んでくれているので、このページを見ると大体どんなもんかわかります。
+
+そもそも、Pacemakerで構築されたクラスタを管理するためのツールは、Hawk以外にも
+
+
+
+	
+  * コマンドラインツール
+
+	
+  * Python GUI
+
+	
+  * DRBD MC
+
+
+などがあります。
+
+コマンドラインツールの代表的なものとして、crm_standby, crm_resource, cibadmin などがあるわけですが
+如何せんこの方々はオプションの指定が複雑で、かなり一見さんお断りな雰囲気を醸し出しておるわけですな。
+で、もう少しなんとかしましょうというわけで Dejan Muhamedagic@Novell がもりもりつくっている
+crm というコマンドラインツールもあるんですが、こちらはタブキー補完が使えるので、オプション名を忘れがちなお年寄りにも
+優しい仕様となっております。
+crm はかなりいい。お勧めです。
+とは言っても、やっぱりGUIのほうがいいんだよねーというか、他の商用製品と比較したとき「GUIないの？」って
+聞かれちゃうことも多いんですよね。
+そこで、Python GUI、DRBD MC、Hawkの出番です。
+
+**・Python GUI**
+Pythonでできてます。
+クラスタとクライアントの両方にPython GUIをインストールする必要があります。
+Hawk視点でいうと「インストールが難しい！（by てぃむ）」というのが欠点なわけですが
+最近インストールしてないからなあ、どうなんだろう。
+結構昔からあるツールなので機能的にはそこそこてんこ盛りです。
+日本語対応しています。
+
+**・DRBD MC**
+Javaでできてます。
+クラスタに ssh サーバ、クライアントに DRBD MC をインストールする必要があります。
+クラスタとクライアントは ssh で通信します。
+どんなツールかっていうとこれはもう、「[DRBD-MCを使って10分でクラスタを組もう(動画デモ)](/wp/archives/869)」を見ていただくしかないかと。
+[日本語対応](/wp/archives/930)しています。
+
+**・Hawk**
+Rubyでできてます。
+クラスタにHawkをインストールし、クライアントはWebブラウザからクラスタに接続します。
+クラスタとクライアントは http で通信します。
+0.3系ではクラスタの状態表示やノードのスタンバイ/オンライン化、リソースの移動など
+設定済みのクラスタに対する操作を実行することができていましたが
+先日リリースされた0.4系ではクラスタの設定変更も可能となりました。
+今後は、実際のクラスタには影響を与えずに擬似故障を再現する機能（シャドーCIB）も追加されるらしいです。
+この機能って運用フェーズでは必要ないだろうけど、故障試験とか障害解析とかやってる人にとってはありがたいっすねー。
+てぃむ曰く「インストール簡単！」とのことですが、rubygemsの依存関係がいっぱいあって結構うざいと思うけど。。。
+SUSE用にはRPMが用意されていますが、他のディストリビューションはソースからビルドする必要があります。
+Hawkはまだまだ発展途上なので、機能的には Python GUI、DRBD MCに負けていますが、
+今後の開発で徐々に追いついていくと思われます。
+
+どれがお勧めかというと、今の時点ではやはり DRBD MC がお勧め。
+クライアントに余計なソフトウェアをインストールしたくないんだよねえ、とか
+ssh 禁止されててさ、とかいう場合であれば、Hawk ですね。
+ただし、Hawk はまだユーザ数が少ないので人柱的な香りがします。
+
+
+
+## 1.2 Corosync 1.3.1[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+
+
+メンテナンスリリースなのでバグフィックスがメインです。
+機能追加などはありませんが、PPCとARMへの対応が取り込まれました。
+最新版は[こちら](ftp://ftp.corosync.org)からダウンロードすることができます。
+
+えーとまあ失礼な話ではあるんですけど、Corosyncってやっぱまだ不安定だよねー
+急にノード停止とかするよねーというイメージがあるので、今回のリリースノートでは
+「crash」「assert」という単語をピックアップしてみました。
+
+**・Provide better checking of the message type**
+メッセージタイプのチェックを強化
+
+例えば、2ノードでクラスタを構成していて、かたっぽのノードには暗号化の設定をしていました、
+で、もうかたっぽには暗号化の設定をしていませんでした、とかいう場合。
+リリースノートからはどっちのノードか（もしかしたらどっちも？）っていうのが読み取れなかったんですが
+上記の設定は「would cause a crash」だったそうです。今回の修正でそれはなおったということですね。
+
+**・Don't assert when ring id file is less then 8 bytes**
+リングIDファイルのサイズが8バイト以下だった場合の処理を修正
+
+フェンス実行時やファイルシステムが破損している場合、リングIDファイルが8バイト以下になってしまうことがあるらしいんですが
+この場合「totemsrp would assert」します。
+今回の修正で、リングIDファイルが8バイトより小さい場合、リングIDを再読み込みして正しいファイルを再作成するようになったようです。
+
+**・Handle delayed multicast packets that occur with switches**
+マルチキャストパケットの遅延を抑止
+
+これは「crash」も「assert」もしてないですが、「improves performance」ということなので抜粋してみました。
+ある特定のスイッチを使用した環境では、マルチキャストパケットの遅延が発生するという事象があるようなのですが
+miss_count_const というパラメータを新規に追加することによって、この問題に対応しました。
+Corosync は送受信失敗回数をカウントし、失敗回数が miss_count_const に到達した段階ではじめて
+対象メッセージを再送信リストに登録します。
+この修正によって、パフォーマンスの改善とともに不要なログメッセージの出力を抑止することが可能となりました。
+
+リリースノートの全文は[こちら](http://marc.info/?l=openais&m=130370337709886&w=2)を確認してください。
+
+
+
+## 1.3 Pacemaker 1.2[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+
+
+2012年8月22日に Pacemaker 1.2 のリリースが予定されています。
+Linux-HA Japan がメンテナンスしている 1.0系も
+2012年の第二四半期までは本家でも正式サポートです。
+
+以下[公式サイト](http://www.clusterlabs.org/wiki/Get_Pacemaker)からコピペ
+<table style="width: 737px; height: 140px;" border="0" align="center" >
+<tbody >
+<tr >
+
+<td >Version
+</td>
+
+<td >Current Release
+</td>
+
+<td >Tested w/ Glue
+</td>
+
+<td >Tested w/ Corosync
+</td>
+
+<td >Tested w/ Heartbeat
+</td>
+
+<td >First Released
+</td>
+
+<td >This Release
+</td>
+
+<td >Supported Until
+</td>
+</tr>
+<tr >
+
+<td >1.2
+</td>
+
+<td >NA
+</td>
+
+<td >TBA
+</td>
+
+<td >TBA
+</td>
+
+<td >TBA
+</td>
+
+<td >August 22, 2012
+</td>
+
+<td >TBA
+</td>
+
+<td >TBA
+</td>
+</tr>
+<tr >
+
+<td >1.1
+</td>
+
+<td >1.1.5
+</td>
+
+<td >1.0.6
+</td>
+
+<td >1.3.0
+</td>
+
+<td >-
+</td>
+
+<td >Jan 15, 2010
+</td>
+
+<td >Feb 11, 2011
+</td>
+
+<td >August 2012
+</td>
+</tr>
+<tr >
+
+<td >1.0
+</td>
+
+<td >1.0.10
+</td>
+
+<td >1.0.3
+</td>
+
+<td >1.2.1
+</td>
+
+<td >3.0.3
+</td>
+
+<td >Oct 9, 2008
+</td>
+
+<td >Nov 12, 2010
+</td>
+
+<td >Q2 2012 (at least)
+</td>
+</tr>
+</tbody>
+</table>
+リリース情報は異常。。。ぅ。。。以上です。
+
+ではお次は知恵袋。
+
+
+
+
+# 2. 知恵袋[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+
+
+**質問**
+気づいたら /var/lib/pengine の下に怪しげなファイルがいっぱいできちゃって大変なことに！
+どうすればいいの？
+
+**回答**
+「series-max」を設定しましょう。
+
+[元ネタ](http://www.gossamer-threads.com/lists/linuxha/pacemaker/71583)
+
+ちなみに、手元の環境を確認したらこんな感じでした。
+
+
+**# ls /var/lib/pengine | wc -l**
+585
+
+
+
+
+**# ls /var/lib/pengine**
+pe-input-0.bz2   pe-warn-171.bz2  pe-warn-247.bz2  pe-warn-322.bz2  pe-warn-399.bz2  pe-warn-474.bz2  pe-warn-55.bz2
+pe-input-1.bz2   pe-warn-172.bz2  pe-warn-248.bz2  pe-warn-323.bz2  pe-warn-4.bz2    pe-warn-475.bz2  pe-warn-550.bz2
+pe-input.last    pe-warn-173.bz2  pe-warn-249.bz2  pe-warn-324.bz2  pe-warn-40.bz2   pe-warn-476.bz2  pe-warn-551.bz2
+pe-warn-0.bz2    pe-warn-174.bz2  pe-warn-25.bz2   pe-warn-325.bz2  pe-warn-400.bz2  pe-warn-477.bz2  pe-warn-552.bz2
+pe-warn-1.bz2    pe-warn-175.bz2  pe-warn-250.bz2  pe-warn-326.bz2  pe-warn-401.bz2  pe-warn-478.bz2  pe-warn-553.bz2
+.
+.
+.
+pe-warn-167.bz2  pe-warn-242.bz2  pe-warn-318.bz2  pe-warn-394.bz2  pe-warn-47.bz2   pe-warn-545.bz2  pe-warn-99.bz2
+pe-warn-168.bz2  pe-warn-243.bz2  pe-warn-319.bz2  pe-warn-395.bz2  pe-warn-470.bz2  pe-warn-546.bz2  pe-warn.last
+pe-warn-169.bz2  pe-warn-244.bz2  pe-warn-32.bz2   pe-warn-396.bz2  pe-warn-471.bz2  pe-warn-547.bz2
+pe-warn-17.bz2   pe-warn-245.bz2  pe-warn-320.bz2  pe-warn-397.bz2  pe-warn-472.bz2  pe-warn-548.bz2
+pe-warn-170.bz2  pe-warn-246.bz2  pe-warn-321.bz2  pe-warn-398.bz2  pe-warn-473.bz2  pe-warn-549.bz2
+
+
+あーあ。。。
+放置しすぎると、/var が大変なことになるので、たまに削除してるんですけどね。。。
+/var/lib/pengine の下にもりもりできているファイルは、Pacemaker の pengine（Policy Engine）プロセスが出力する
+「遷移グラフ」です。
+Pacemaker はなにかしらの異常を検知した場合に「今現在のやばい状況をなんとかしなくては！」といろいろ頑張ってくれるわけですが、遷移グラフにはその頑張りっぷりが記録されております。
+まあね、たまーに、もちょっとがんばってくれよう。。。という記録が残っていたりとかもしますが、それなりに頑張ってはいる。
+異常が発生した場合に限らず、ノードがスタンバイ化/オンライン化したとき、クラスタにノードが追加されたとき
+などなど、クラスタの状態が変化すると「遷移グラフ」は作成されるので
+まったりと正常運転中のときは、そんなにファイル数が増えたりしないんですが
+計画停止の多いシステムやしょっちゅうコケてるシステムとかは気づいたら大変なことになってるわけですね。
+
+出力されるファイルは三種類あります。
+・pe-input    正常系の遷移グラフ（初期起動時やノードのスタンバイ化など）
+・pe-warn    異常系の遷移グラフ（WARNレベル）
+・pe-error    異常系の遷移グラフ（ERRORレベル）
+
+pengine の man でそれぞれのデフォルト値を確認できます。
+
+
+**pe-error-series-max = integer [-1] **
+The number of PE inputs resulting in ERRORs to save 
+Zero to disable, -1 to store unlimited. 
+**pe-warn-series-max = integer [-1] **
+The number of PE inputs resulting in WARNINGs to save 
+Zero to disable, -1 to store unlimited. 
+**pe-input-series-max = integer [-1] **
+The number of other PE inputs to save 
+Zero to disable, -1 to store unlimited.
+
+
+man がインストールされていないときは、pengine の metadata から確認することもできます。
+こちらは64bit環境での実行例です。
+
+
+**# /usr/lib64/heartbeat/pengine metadata **
+<parameter name="pe-error-series-max" unique="0">
+<shortdesc lang="en">The number of PE inputs resulting in ERRORs to save</shortdesc>
+<content type="integer" default="-1"/>
+<longdesc lang="en">Zero to disable, -1 to store unlimited.</longdesc>
+</parameter>
+<parameter name="pe-warn-series-max" unique="0">
+<shortdesc lang="en">The number of PE inputs resulting in WARNINGs to save</shortdesc>
+<content type="integer" default="-1"/>
+<longdesc lang="en">Zero to disable, -1 to store unlimited.</longdesc>
+</parameter>
+<parameter name="pe-input-series-max" unique="0">
+<shortdesc lang="en">The number of other PE inputs to save</shortdesc>
+<content type="integer" default="-1"/>
+<longdesc lang="en">Zero to disable, -1 to store unlimited.</longdesc>
+</parameter>
+
+
+デフォルトは -1 なので、無制限にファイルがぼこぼこできちゃいます。
+
+ファイル数の制限値を設定したい場合は、「クラスタオプション」として
+
+
+
+	
+  * pe-error-series-max
+
+	
+  * pe-warn-series-max
+
+	
+  * pe-input-series-max
+
+
+を設定してください。
+pe-xxxx のどれかひとつだけ設定する、というのアリですし、それぞれ別の設定値を指定する、というのもアリです。
+次の例では、それぞれファイル数の上限を「2」と設定してみました。
+リソースは代わり映えしませんが、いつもの仮想IP（IPaddr2）さんにご登場いただきました。
+クラスタはPacemaker/Heartbeatの2ノード構成です。
+
+
+**# cat cib-ipaddr2.crm**
+### Cluster Option ###
+property no-quorum-policy="ignore" \
+stonith-enabled="false" \
+startup-fencing="false" \
+**pe-error-series-max=2 \**
+**pe-warn-series-max=2 \**
+**pe-input-series-max=2**
+### Resource Defaults ###
+rsc_defaults resource-stickiness="INFINITY" \
+migration-threshold="1"
+### Operation Defaults ###
+op_defaults record-pending=true
+### Primitive Configuration ###
+primitive ip ocf:heartbeat:IPaddr2 \
+params \
+ip="192.168.101.121" \
+nic="bond0" \
+cidr_netmask="24" \
+op start interval="0s" timeout="60s" on-fail="restart" \
+op monitor interval="10s" timeout="60s" on-fail="restart" \
+op stop interval="0s" timeout="60s" on-fail="block"
+** **
+
+
+
+
+では、実際にクラスタを起動して動作を確認してみましょう。
+まず、両ノードとも遷移グラフを削除しておいてください。[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+
+**# rm -f /var/lib/pengine/***
+
+クラスタを起動します。
+
+**# service heartbeat start**
+
+crm_mon コマンドでクラスタを構成する両ノードが「online」となったことを確認した後、
+仮想IPの設定をクラスタに反映します。
+
+**# crm configure load update cib-ipaddr2.crm**
+
+クラスタの状態を確認します。
+
+
+**# crm_mon -1**
+============
+Last updated: Tue Apr 26 11:50:41 2011
+Stack: Heartbeat
+**Current DC: dl380g5d** () - partition with quorum
+Version: 1.0.11-e6f5769f5de2 stable-1.0 tip
+2 Nodes configured, unknown expected votes
+1 Resources configured.
+============
+Online: [ dl380g5c dl380g5d ]
+ip      (ocf::heartbeat:IPaddr2):       Started dl380g5c
+
+
+ここで注意していただきたいのは、DCノード。
+遷移グラフはDCノードでのみ出力されます。この例では、DCノードはホスト名「**dl380g5d**」ですね。
+というわけで、dl380g5d で遷移グラフの出力っぷりを確認してみましょう。
+
+
+**# ls -ltr /var/lib/pengine**
+合計 12
+-rw------- 1 hacluster haclient  600  4月 26 11:39 2011 pe-input-0.bz2
+-rw------- 1 hacluster haclient 1117  4月 26 11:49 2011 pe-input-1.bz2
+-rw-r--r-- 1 hacluster haclient    1  4月 26 11:49 2011 pe-input.last
+
+
+おお。なんかでてる。
+pe-input-0.bz2 は、クラスタ起動時の遷移グラフです。
+pe-input-1.bz2 は、仮想IP起動時の遷移グラフです。
+
+クラスタの状態を変化させるために、仮想IPが起動しているノードをスタンバイ化してみましょう。
+
+**# crm node standby dl380g5c**
+
+ノードがスタンバイ化して、仮想IPがフェイルオーバしました。
+
+
+**# crm_mon -1**
+============
+Last updated: Tue Apr 26 11:51:31 2011
+Stack: Heartbeat
+Current DC: dl380g5d () - partition with quorum
+Version: 1.0.11-e6f5769f5de2 stable-1.0 tip
+2 Nodes configured, unknown expected votes
+1 Resources configured.
+============
+Node dl380g5c (): **standby** ★ スタンバイ化
+Online: [ dl380g5d ]
+ip      (ocf::heartbeat:IPaddr2):       Started **dl380g5d **★ さっきまで **dl380g5c **だった
+
+
+
+
+遷移グラフの出力先を確認してみると。。。
+
+
+
+
+**# ls -ltr /var/lib/pengine**
+合計 16
+-rw------- 1 hacluster haclient  600  4月 26 11:39 2011 pe-input-0.bz2
+-rw------- 1 hacluster haclient 1117  4月 26 11:49 2011 pe-input-1.bz2
+-rw------- 1 hacluster haclient 1553  4月 26 11:51 2011 pe-input-2.bz2
+-rw-r--r-- 1 hacluster haclient    1  4月 26 11:51 2011 pe-input.last
+
+
+お！pe-input-2.bz2が増えてる！これは、仮想IPがフェイルオーバしたときの遷移グラフです。
+
+では、ノードをオンラインに戻しましょう。
+
+**# crm node online dl380g5c**
+
+ここでもう一度遷移グラフの出力先を確認してみると。。。
+
+
+**# ls -ltr /var/lib/pengine**
+合計 16
+-rw------- 1 hacluster haclient  600  4月 26 11:39 2011 pe-input-0.bz2
+-rw------- 1 hacluster haclient 1553  4月 26 11:51 2011 pe-input-2.bz2
+-rw------- 1 hacluster haclient 1637  4月 26 11:52 2011 pe-input-1.bz2
+-rw-r--r-- 1 hacluster haclient    1  4月 26 11:52 2011 pe-input.last
+
+
+おおお！pe-input-3.bz2 じゃなくて pe-input-1.bz2 にローテーションしてますね！！
+（うまくいってよかった。。。ちょっとどきどきしましたですよ。。。）
+
+
+今回の例では、series-max=2 と設定しましたが、ローテーションによって遷移グラフが頻繁に[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+入れ替わってしまうと、故障が発生した時点の状態がわからりづらくなってしまうので
+実際の運用環境では、この値は小さすぎです。
+遷移グラフが残ってたとしても、わかんないときはわかんないですけど
+再現率が低い故障の場合、故障状態の証拠となりますので、
+できれば残しておいてほしいファイルです。
+一個一個のファイルサイズはそれほど大きくないので、せめて100ぐらいには
+設定しておいたほうがいいと思います。
+ファイルシステムのサイズを監視して、定期的にファイルを削除するような運用環境では
+series-max を設定する必要はありません。
+もし、ファイルの数がいやになるほど増えちゃった場合は、古いファイルから削除しちゃってください。
+クラスタは出力済のファイルを再利用することはないので、全部削除しちゃっても大丈夫です。
+ただし、繰り返しになりますが、なにか障害が発生した場合には
+故障時の記録としてファイルを保存しておくことをお勧めします。
+/var/log/ha-log には、出力されたファイル名が記録されていますので
+なんかエラーメッセージっぽいのがわらわらでてる時間帯に出力された pe-error-xxx.bz2 あたりをとっておいてください。
+
+ 
+
+**★★★ オマケ ★★★**
+メーリングリストでは、次のようなやりとりが続いていました。
+
+
+**どみにく**
+cluster-recheck-interval ってもしかして関係ある？
+今、cluster-recheck-interval=5に設定してるから、5分ごとにクラスタの状態をチェックしにいくんだけど
+そのたんびに遷移グラフでちゃってるっぽいんだよね。
+
+
+
+
+**あんどりゅー**
+まじか。
+cluster-recheck-intervalを設定してるときは、状態遷移に差分がないなら遷移グラフつくんないようにしてるつもりだったんだけどなー。
+ちょっとバグジラいれといて。
+
+
+
+
+**どみにく**
+[おっけー](http://developerbugs.linux-foundation.org/show_bug.cgi?id=2582)
+
+
+
+
+**あんどりゅー**
+[な　お　し　た！](http://hg.clusterlabs.org/pacemaker/devel/rev/7225f68ae6e9)
+
+
+たぶん、Pacemaker 1.1に取り込まれるはず。よかったよかった。
+
+※ どみにく
+Dominik Klein@in-telegence.net
+常連さん。RAもばしばしつくっている。
+
+※ cluster-recheck-interval
+これも series-max と同様、クラスタオプションに設定するパラメータです。
+Pacemaker のちょっと高度な設定方法として、「特定の時刻に自動フェイルオーバ」とかいうのも実はできちゃったりするわけなんですが、そういう場合はこの cluster-recheck-interval を設定してクラスタの状態を一定間隔で更新する必要があります。
+
+ 
+
+**では、今月はこれにてどろん！εεεεεヾ(*´ー`)ﾉ**
+
+ゴールデンウイーーーーーク！**
+**

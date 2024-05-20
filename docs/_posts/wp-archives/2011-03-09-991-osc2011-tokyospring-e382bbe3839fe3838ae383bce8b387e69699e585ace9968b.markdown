@@ -1,0 +1,39 @@
+---
+author: takayukitanaka
+comments: false
+date: 2011-03-09 05:57:54+00:00
+layout: post
+permalink: /wp/archives/991
+slug: osc2011-tokyospring-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2011 Tokyo/Spring セミナー資料公開
+wordpress_id: 991
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+#### オープンソースカンファレンスもとうとう2千人規模に！？
+
+
+3月4日(金)・5日(土) と2日間にわたり早稲田大学で [オープンソースカンファレンス2011 Tokyo/Spring](http://www.ospn.jp/osc2011-spring/) が開催され、2千名以上という来場者で大変な賑わいを見せていました。
+
+Linux-HA Japan では、いつもの如く展示ブースの開設と [「](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17)[実演！Pacemakerで楽々クラスタリング](http://www.ospn.jp/osc2011-spring/modules/eguide/event.php?eid=24)[」](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17) という題目で実演セミナーをおこないました。
+
+セミナー会場がほぼ満席の中、仮想化環境上でPacemakerのインストールから設定、擬似故障による切り替えなどをデモさせていただきました。分量が多くて聞くのも大変だったかもしれませんが、興味を持って聞いてくださった方ありがとうございました。
+
+プレゼンテーション資料を公開しますので、参考にしていただければと思います。
+
+この資料と同じ仮想環境を作成し、デモサンプルのリソース設定を行えば簡単にHAクラスタが体験できますよ！
+
+
+
+	
+  * セミナー資料：  [実演！Pacemakerで楽々クラスタリング](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2011TokyoSpring_20110305/ja/1/Pacemaker_OSC2011TokyoSpring_20110305.pdf)
+
+	
+  * 設定例：  [pm_crmgen環境定義書デモサンプル]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo.xls)
+
+

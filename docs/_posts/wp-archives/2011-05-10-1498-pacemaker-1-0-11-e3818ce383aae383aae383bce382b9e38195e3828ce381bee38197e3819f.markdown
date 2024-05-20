@@ -1,0 +1,71 @@
+---
+author: ksk
+comments: false
+date: 2011-05-10 12:40:38+00:00
+layout: post
+permalink: /wp/archives/1498
+slug: pacemaker-1-0-11-%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%be%e3%81%97%e3%81%9f
+title: Pacemaker-1.0.11 がリリースされました
+wordpress_id: 1498
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2010年4月29日に Pacemaker-1.0.11 がリリースされました！
+
+開発者AndrewからのPacemaker-1.0.11リリースアナウンスはこちらです。
+
+
+
+	
+  * [http://theclusterguy.clusterlabs.org/](http://theclusterguy.clusterlabs.org/)
+
+	
+  * [http://theclusterguy.clusterlabs.org/post/5129499003/pacemaker-1-0-11-released](http://theclusterguy.clusterlabs.org/post/5129499003/pacemaker-1-0-11-released) (←このリンクから飛べない場合は上のトップページからアクセスしてみてください)
+
+
+これはバグ修正リリースです。主なバグ修正点として以下のような修正がされています(私の主観で抜粋・並べ替えさせてもらいました)。
+
+	
+  * **crmd: Bug lf#2528 - Introduce a slight delay when creating a transition to allow attrd time to perform its updates**
+属性値更新時の待ち時間を設定するための設定パラメタ(crmd-transition-delay)が追加されました。このパラメタを適切に設定することにより、以下のような不具合を回避することができるようになります。 
+
+	
+    * pingd/ping RAなどを利用している場合、クラスタ起動直後にリソースが設定意図と異なるノードで起動してしまうことがある。[(bugzilla lf#2528)](http://developerbugs.linux-foundation.org/show_bug.cgi?id=2528)
+
+	
+    * migration-threshold で設定した値よりも余分な回数リソースの再起動が実行されてしまうことがある。[(bugzilla lf#2520)](http://developerbugs.linux-foundation.org/show_bug.cgi?id=2520)
+
+
+
+
+	
+  * **Tools: Prevent crm_resource commands from being lost due to the use of cib_scope_local**
+crm_resource コマンドを連続で実行すると、リソース移動などの処理が実行されないことがある。
+
+	
+  * **crmd: Update failcount for failed promote and demote operations**
+MasterSlave リソースにおいて、promote 処理に失敗したときにフェイルオーバできず、同じノードで stop → start → promote 失敗の処理が繰り返されてしまう。
+
+	
+  * **crmd: All pending operations should be recorded, even recurring ones with high start delays**
+monitorのstart-delayを5分以上に設定すると、リソースが停止してもmonitor処理が停止しない。
+
+	
+  * **crmd: Bug lf#2559 - Fail actions that were scheduled for a failed/fenced node**
+リソースのstart処理途中で対向ノードとの通信が途絶した場合、不要なタイムアウト待ちが発生しフェイルオーバに余分な時間がかかることがある。
+
+
+これ以外の完全な修正点のリストは[Pacemaker-1.0.11リリースアナウンス](http://theclusterguy.clusterlabs.org/post/5129499003/pacemaker-1-0-11-released)を参照してください。
+
+リリースアナウンスの本文にもあるように、今回のリリースにおいてもLinux-HA Japan コミュニティからもリリースに協力しています。
+
+    
+    Thanks once again to the efforts of Keisuke MORI and NTT,
+    the latest bug fixes have been back-ported from 1.1
+
+
+なお、Linux-HA Japanコミュニティで提供するリポジトリパッケージもこれに追随してバージョンアップする予定です。
+6月一杯くらいを目処にしていますので、どうぞお楽しみに！

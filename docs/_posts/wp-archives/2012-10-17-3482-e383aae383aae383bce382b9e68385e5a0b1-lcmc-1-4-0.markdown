@@ -1,0 +1,102 @@
+---
+author: ikedaj
+comments: false
+date: 2012-10-17 07:14:35+00:00
+layout: post
+permalink: /wp/archives/3482
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-lcmc-1-4-0'
+title: リリース情報 (LCMC 1.4.0)
+wordpress_id: 3482
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年10月7日に LCMC 1.4.0 が[リリース](http://lists.linux-ha.org/pipermail/linux-ha/2012-October/045706.html)されました。
+
+
+<blockquote>
+Hi,
+LCMC (Linux Cluster Management Console) 1.4.0 is out now.
+Lately we get two of everything around Pacemaker, but there's still only one Java client GUI and this is what people actually need, I think.
+</blockquote>
+
+
+
+
+<blockquote>
+LCMC (Linux Cluster Management Console) 1.4.0 がリリースされました。
+Pacemakerの設定管理ツールは他にもいくつか開発が進められていますが、LCMCは唯一のJavaクライアントGUIであり、きっとこれを必要としている人達がいるはず、と私は信じています。
+</blockquote>
+
+
+
+
+<blockquote>
+You are going to need this update if you're using/going to use Pacemaker 1.1.8.
+</blockquote>
+
+
+
+
+<blockquote>
+Pacemaker 1.1.8を使用している場合、もしくは1.1.8にアップデートしようとしている場合は、LCMCも最新版にアップデートしてください。
+</blockquote>
+
+
+
+
+<blockquote>
+One nice new feature is that now you can copy and paste configured services with ctrl-c and ctrl-v, which makes it easier to configure many similar services. You can even copy configurations between clusters, (without constraints at the moment).
+There are some noticeable performance improvements as well.
+</blockquote>
+
+
+
+
+<blockquote>
+今回のリリースには、「ctrl-c」「ctrl-v」によって、設定をコピー＆ペーストする新機能が追加されました。似たような設定項目がたくさんある環境ではとても便利です。クラスタ間で設定をコピーすることもできます。(ただし制約関連の設定はコピーできません)
+また、パフォーマンスも大きく改善されました。
+</blockquote>
+
+
+
+
+<blockquote>
+LCMC web page:http://lcmc.sf.net
+What is LCMC:
+The Linux Cluster Management Console allows you to configure and manage HA clusters with Pacemaker and popular cluster software like DRBD or libvirt and their interconnectivity from your computer using SSH.
+</blockquote>
+
+
+
+
+<blockquote>
+LCMC(Linux Cluster Management Console)とは      ([ウェブサイト](http://lcmc.sf.net))
+
+LCMCはPacemakerによって構築されたクラスタ環境へsshで接続し、クラスタの設定や管理を行うためのGUIです。PacemakerだけではなくDRBDやlibvirtなど、関連するソフトウェアの設定や管理を行う事もできます。
+</blockquote>
+
+
+参考情報リンク一覧
+
+
+
+     
+	
+    * [スクリーンショット](http://sourceforge.net/apps/gallery/lcmc/)
+	
+
+	
+    * [ソースコード](https://github.com/rasto/lcmc)
+	
+
+	
+    * [変更履歴](http://lcmc.sourceforge.net/changelog)
+	
+
+     
+
+
+あらぶった[ユーザガイド](http://lcmc.sourceforge.net/lcmc-user-guide/lcmc-guide.html)も健在でござる。

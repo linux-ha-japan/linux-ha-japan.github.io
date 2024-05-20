@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/preface.png
+author: ikedaj
+comments: false
+date: 2011-12-02 07:10:48+00:00
+layout: post
+permalink: /wp/archives/2528/preface
+slug: preface
+title: preface
+wordpress_id: 2529
+---
+
+### [preface](/assets/images/wp-content/preface.png)

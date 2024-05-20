@@ -1,0 +1,497 @@
+---
+author: bellche
+comments: false
+date: 2011-04-14 09:53:02+00:00
+layout: post
+permalink: /wp/archives/1338
+slug: '%e7%ac%ac2%e5%9b%9e%e3%82%84%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86linux-ha%e3%80%8cha%e3%81%ae%e5%9f%ba%e6%9c%ac%e6%a7%8b%e6%88%90%e3%80%8d'
+title: 第2回やってみようLinux-HA「HAの基本構成」
+wordpress_id: 1338
+categories:
+- 読み物
+tags:
+- コラム
+---
+
+みなさんおはようございます。こんにちは。こんばんは。前回からまさに半年かかってますが遅ればせながら第２回です。前回はHAクラスタを組む上で必要な知識として、HA環境について考えてみましたが、今回はこれから初めてLinux-HA環境の構築に挑戦しようとしている読者の方に向けて、具体的に最も基本的なHA環境の構築方法を紹介したいと思います。
+
+基本的なHA環境
+
+Linux-HAを学習する上で基本となる構成は、サービスを提供する「アクティブサーバ」と、いざという時のために予備機として待機している「スタンバイサーバ」の２台で構成される「アクティブ／スタンバイ」型のHA環境です。基本的なサーバといっても考えることはたくさんあるので、ちょっとここに列挙してみます。
+
+
+
+	
+  * ハードウェア障害を何処まで想定するか
+
+	
+  * 制御するソフトウェアは何が必要か（適用範囲）
+
+	
+  * 監視するソフトウェアの監視項目
+
+	
+  * データの共有はどうするか
+
+	
+  * 障害発生から、サービス切り替えまでの所要時間（希望時間）
+
+	
+  * 予期せぬ障害により系が切り替わらなかったときの対処
+
+
+最低でも以上の事は考慮した上で、HA環境を設計しなくてはなりません。上の項目について考慮した上で基本的なHA環境を設計するとなんとなく次のような感じになります。
+
+	
+  * 電源落ちたらフェイルオーバーしよう
+
+	
+  * カーネルパニックとかマシンがおかしくなったらフェイルオーバーしよう
+
+	
+  * ソフトウェアはとりあえずPIDのチェックだけにしてPIDが認識できなかったら再起動しよう
+
+	
+  * ソフトウェアの再起動が不可能な状態だったらフェイルオーバーしよう
+
+	
+  * データの共有はDRBDを使ってネットワークミラーリングでやろう
+
+	
+  * 障害発生からサービス切り替え実行までの時間は、5分くらいがいいな
+
+	
+  * とりあえず今回はサービスが切り替わらない程の問題が発生したら手動で対応しなくちゃいけないな
+
+
+構成図としては…
+
+
+[![](/assets/images/wp-content/tb_ss05.png)](/assets/images/wp-content/tb_ss05.png)
+
+
+こんな感じが基本的な所でしょうか。深く追求していくと、結構きりがないので、有る程度の所で落としどころを見つけて設計しないと…
+
+**障害に対して敏感すぎる構成**
+
+や
+
+**監視することがサーバに負荷をかけて障害を起こす**
+
+という、「健康のためなら死んでも良い」的な構成になってしまいます。よくあるのが、サーバ障害発生時のダウン時間を短くしようとしすぎて、少しでも負荷がかかるとそれに反応してフェイルオーバーしてしまう環境です。くれぐれも、Linux-HA自体が「障害点」になってしまわないように考慮して設計するようにしましょう。
+
+
+## とりあえず設定してみよう
+
+
+前置きが長くなりましたが、具体的な設定をしてみましょう。今回の環境は前回の予告にも有るとおり以下の環境で構成します。リソースはUnboundだとデータを持たないのでApacheに変更します。
+<table border="0" >
+<tbody >
+<tr >
+
+<td >OS
+</td>
+
+<td >CentOS5.5 x86_84
+</td>
+</tr>
+<tr >
+
+<td >クラスタソフト
+</td>
+
+<td >Heartbeat 3.0.4 / Pacemaker 1.0.10
+</td>
+</tr>
+<tr >
+
+<td >データ同期
+</td>
+
+<td >DRBD8.3.10
+</td>
+</tr>
+<tr >
+
+<td >制御対象
+</td>
+
+<td >仮想IP / Apache
+</td>
+</tr>
+<tr >
+
+<td >監視用インターフェース
+</td>
+
+<td >eth1 / eth2 (eth0はサービス用ポート）
+</td>
+</tr>
+</tbody>
+</table>
+OSのインストールは、みなさん何度もやったことがあると思いますのでここでは省略します。あと基本的な動きを確かめて頂くための基本的な構成ですので、Firewallと、みんな大好きSELinuxは、**今回は**無効にしてください。
+
+
+### クラスタ関連のソフトウェアのインストール
+
+
+CentOS5.5のリポジトリにはHeartbeatが含まれていますが、バージョン２系列とかなり古いものがインストールされてしまいますので、今回は本サイトで公開しているリポジトリパッケージからのインストールを行います。
+drbdについては、比較的新しいバージョンがextrasのリポジトリに入っているため、今回はこのdrbd8.3.8-1を使用します。
+
+■ダウンロード → [pacemaker-1.0.10-1.4.1.el5.x86_64.repo.tar.gz](http://sourceforge.jp/projects/linux-ha/downloads/49890/pacemaker-1.0.10-1.4.1.el5.x86_64.repo.tar.gz/)
+
+▼インストール手順
+
+
+
+	
+  1. ダウンロードしたパッケージを/tmp に解凍する
+
+	
+  2. 解凍してできたディレクトリ内のpacemaker.repo を /etc/yum.repo.d/にコピーする
+
+	
+  3. 一応yumのパッケージを再読込をする
+
+	
+  4. パッケージのインストール
+
+
+▼コマンドライン
+
+
+<blockquote>#cd /tmp
+#tar xzf pacemaker-1.0.10-1.4.1.el5.x86_64.repo.tar.gz
+# cp pacemaker-1.0.10-1.4.1.el5.x86_64.repo/pacemaker.repo /etc/yum.repo.d/
+# yum clean all
+# yum install pacemaker heartbeat kmod-drbd83 drbd83</blockquote>
+
+
+
+
+### Heartbeatの設定（ha.cf、authkeysの編集）
+
+
+パッケージのインストールができたら、クラスタに参加するノードを設定するためにHeartbeatの設定を行います。最新のHeartbeatでは、Apache等のサービスをリソースとして制御するクラスタリソース管理ツール(CRM) 「Pacemaker」を使用するため、Heartbeatの設定では以下の項目のみ設定します。
+
+
+
+	
+  * クラスタに参加するサーバ（ノード）の名前の登録
+
+	
+  * 相互監視に使うインターフェースの指定
+
+	
+  * 相互監視に使うポートの設定
+
+	
+  * 監視パケットを送信する間隔
+
+	
+  * クラスタリソース管理ツールの使用の設定
+
+	
+  * 相互監視通信で使用する認証キーの設定
+
+
+ha.cf は、インストール直後は所定の場所にインストールされていないので、設定値のドキュメントの一部としてインストールされているものから/etc/ha.d/へコピーします。
+authkeysファイルについては、パーミッションが600でないとエラーになるため、chmodを使用してパーミッションの変更を行います。
+
+
+<blockquote># cp /usr/share/doc/heartbeat-3.0.4/ha.cf /etc/ha.d/
+# cp /usr/share/doc/heartbeat-3.0.4/authkeys /etc/ha.d/
+# chmod 600 /etc/ha.d/authkeys</blockquote>
+
+
+▼authkeysの中身
+
+authkeysは、今回直結回線なので、最も簡易的なcrcを使用します。authパターンに1を設定し、「1 crc」のコメントアウトを外して終了
+
+
+<blockquote>auth 1
+1 crc
+#2 sha1 HI!
+#3 md5 Hello!</blockquote>
+
+
+▼ha.cf の中身
+
+
+<blockquote>crm yes
+logfile /var/log/ha-log
+logfacility local0
+keepalive 2
+udpport 694
+bcast eth1 eth2
+node srv1
+node srv2</blockquote>
+
+
+上の２つのファイルは、各ノードで全て同じものを使用しなくてはならないので、１つのサーバ上で編集して各ノードにSCPなりでコピーしてください。
+今回の設定内容では、Pacemaker（CRM）を使用し、ノードsrv1とsrv2の間でeth1,eth2の直結回線からudpポート694で相互監視をするという設定になります。
+
+
+### DRBDの設定
+
+
+DRBDの設定は、/etc/drbd.d/の配下にインストールされます。
+共通設定は、global_common.conf で設定を行い、実際に使用するDRBDデバイス（リソース）の設定は、別途リソースファイル（*.res ファイル)を作成します。今回はr0.resというファイル名で作成します。
+あと、何故か設定ファイルの本体が旧バージョンのものが入っているため、インストールされたパッケージのディレクトリから設定ファイルをコピーします。
+DRBDの設定も予めポリシーを決める必要があります。今回は以下のようなポリシーを決めて設定値を作成します。
+ここで、fdisk等で、DRBDでレプリケーションするブロックデバイスを作成しておきましょう。両ノード同じ要領のブロックデバイスを用意します。
+
+
+
+	
+  * DRBDのユーザカウントの報告はしないようにしよう。
+
+	
+  * 同期モードは安全性が一番高いProtocol Cにしよう
+
+	
+  * 物理デバイスの方でI/Oエラーが出たらシャットダウンしよう
+
+	
+  * 初期同期や差分同期は1Gbps回線フルスピードの要求で200MB/sにしよう。
+
+	
+  * スプリットブレインを検出してもとりあえずは何もせず手動で対応しよう。
+
+
+以上です。この場合のglobal_common.confの中身は以下のようになります。
+
+▼global_common.conf の中身
+
+
+<blockquote>global {
+usage-count no;
+}
+
+common {
+protocol C;
+
+handlers {
+local-io-error "/usr/lib/drbd/notify-io-error.sh; /usr/lib/drbd/notify-emergency-shutdown.sh; echo o > /proc/sysrq-trigger ; halt -f";
+}
+syncer {
+rate 200M;
+}
+}</blockquote>
+
+
+global_common.confだけでは、DRBDは動作しないので、リソース設定ファイルを作ります。リソース設定ファイルの詳しい作り方はWebで公開されているドキュメントや、「# man drbd.conf」をると載っています。
+特にテンプレート的なものは用意されていないので、viエディタで作ります。
+
+▼r0.res の中身
+
+
+<blockquote>resource r0 {
+protocol C;
+device /dev/drbd0;
+disk /dev/sdb1;
+meta-disk internal;
+
+on srv1 {
+address 10.1.0.1:7801;
+}
+on srv2 {
+address 10.1.0.2:7801;
+}
+
+}</blockquote>
+
+
+この設定では、srv1、srv2に搭載されている/dev/sdb1というパーティションをレプリケーションするデバイスとして指定し、/dev/drbd0 というデバイス名で使用するように記述されています。
+レプリケーションで使うネットワークは「10.2.0.1:7801」になります。
+設定ファイルを作成したら、メタデータの作成と初期同期を行います。
+
+▼初期同期までの流れ
+
+
+<blockquote># drbdadm create-md r0 # 両ノードで
+# /etc/init.d/drbd start # 両ノードで
+# drbdadm -- --o primary r0
+# cat /proc/drbd
+version: 8.3.8 (api:88/proto:86-94)
+GIT-hash: d78846e52224fd00562f7c225bcc25b2d422321d build by ***@***.org, 2010-06-04 08:04:16
+0: cs:SyncSource ro:Primary/Secondary ds:UpToDate/Inconsistent C r----
+ns:400544 nr:0 dw:0 dr:400544 al:0 bm:24 lo:0 pe:0 ua:0 ap:0 ep:1 wo:b oos:2539220
+[=>..................] sync'ed: 13.8% (2539220/2939764)K delay_probe: 48
+finish: 0:04:04 speed: 10,080 (19,072) K/sec</blockquote>
+
+
+初期同期が終わるとDRBDデバイスが使用できるようになります。今回はマウントして使用するのでext3なりでファイルシステムを作成してマウントできる状態にします。
+また、今回はWebサーバ「Apache」を冗長化するHA環境を構築してみるので、Apacheのインストールをしましょう。
+
+
+<blockquote># mkfs.ext3 /dev/drbd0
+# yum install httpd</blockquote>
+
+
+
+
+### HA構成を考える
+
+
+ソフトウェアの準備ができたので、HA構成の詳しい所を考えます。考える今回のApacheの冗長化において考えなければならないことは以下の通りです。
+
+
+
+	
+  * 仮想IPアドレス
+
+	
+  * Apacheのドキュメントルートはどこか
+
+	
+  * DRBDをどこにマウントしたら良いか
+
+
+以上の事を考えると、以下のような構成にしたいと思います。
+
+	
+  * IPアドレスは「192.168.0.200」にしよう
+
+	
+  * Apacheのドキュメントルートはデフォルトの/var/www/htmlにしよう
+
+	
+  * DRBDデバイスは/var/www/htmlに直接マウントしてしまおう。
+
+
+まずは、この構成が正しく動作をするか手動で動作する環境を作ってみましょう。
+index.htmlは適当な内容で作ってください。
+
+
+<blockquote># mount /dev/drbd0 /var/www/html
+# ifconfig eth0:0 192.168.0.200
+# vi /var/www/html/index.html
+# /etc/init.d/httpd start</blockquote>
+
+
+192.168.0.200という仮想IPアドレスをつけたので、ブラウザからアクセスしてみましょう。作成したindex.htmlの内容が表示されたら成功です。確認ができたら、手動でやった作業をすべて解除して元の状態に戻します。
+
+
+<blockquote># /etc/init.d/httpd stop
+# umount /var/www/html
+# ifconfig eth0:0 down
+# /etc/init.d/drbd stop # 両ノードで実行</blockquote>
+
+
+
+
+### Pacemakerの設定
+
+
+Pacemakerの設定はcrmコマンドラインインターフェースの上で行います。まずは、Pacemaker全体の設定を行います。
+※Heartbeatが起動していない場合は両ノードでHeartbeatを起動してください。
+
+
+<blockquote># crm
+crm(live)# configure
+crm(live)configure# property stonith-enabled="false"
+crm(live)configure# property no-quorum-policy="Ignore"
+crm(live)configure# property default-action-timeout="240"
+crm(live)configure# property default-resource-stickiness="200"</blockquote>
+
+
+設定内容についてはここで説明をするとかなり長くなってしまうため、今はこの設定値を入れるということだけ認識していただければ結構です。
+
+ここまでくれば、あとは手動でやった内容をリソースマネージャに設定して自動化させるだけです。
+設定の順番は、やはり手動でやった順番に行うのがわかりやすいので、DRBD、IPアドレス、マウント、HTTPの順番で設定しましょう。
+
+▼DRBDの設定
+
+DRBDリソースは、DRBDのリソースをさらにマスター／スレーブというリソースで制御します。
+
+
+<blockquote>crm(live)configure# primitive res_drbd0 ocf:linbit:drbd params drbd_resource="r0" drbdconf="/etc/drbd.conf" op monitor interval="20s"
+crm(live)configure# ms ms_drbd0 res_drbd0 meta master-max="1" master-node-max="1" clone-max="2" clone-node-max="1" notify="true"</blockquote>
+
+
+▼IPアドレスの設定
+
+
+<blockquote>crm(live)configure# primitive res_ip ocf:heartbeat:IPaddr2 params nic="eth0" ip="192.168.0.200" cidr_netmask="24" op monitor interval="20s"</blockquote>
+
+
+▼マウントの設定
+
+
+<blockquote>crm(live)configure# primitive res_fs_drbd0 ocf:heartbeat:Filesystem params device="/dev/drbd0" fstype="ext3" directory="/var/www/html" op monitor interval="20s"</blockquote>
+
+
+▼Apacheの設定
+
+Apacheだけ、リソース監視にserver-statusというApacheの仕組みを使用するため、httpd.confにかかれているserver-statusの部分のコメントアウトを解除します。
+
+
+<blockquote>ServerName web.example.com:80
+<Location /server-status>
+SetHandler server-status
+Order deny,allow
+Deny from all
+Allow from 127.0.0.1
+</Location></blockquote>
+
+
+
+
+<blockquote>crm(live)configure# primitive res_httpd ocf:heartbeat:apache params configfile="/etc/httpd/conf/httpd.conf" port="80" op monitor interval="20s"</blockquote>
+
+
+▼起動順序の設定
+
+Pacemakerは、リソースの起動順序や関連性について指定されなければ同時に起動しようとしてしまいます。ですので、リソースグループへの登録や、colocation（関連性）の設定によって起動順序や起動するノードを設定します。
+
+
+<blockquote>crm(live)configure# group rg_httpd res_ip res_fs_drbd0 res_httpd
+crm(live)configure# colocation c_rg_httpd_on_drbd0 inf: rg_httpd ms_drbd0:Master
+crm(live)configure# order o_drbd0_befor_rg_httpd inf: ms_drbd0:promote rg_httpd:start
+crm(live)configure# commit
+crm(live)configure# exit</blockquote>
+
+
+
+
+### クラスタ環境の確認
+
+
+設定をコミットするとクラスタ環境が起動します。「crm_mon」コマンドを見て確認してください。
+リソースが動作しているノードを切り替えるときはリソースグループ「rg_httpd」をマイグレートします。
+マイグレートが終わったら、必ずunmigrateコマンドを実行してください。
+
+▼クラスタ環境の確認
+
+
+<blockquote># crm_mon -1
+Connection to the CIB terminated
+Reconnecting...[root@iw-ha-test2 ~]# crm_mon -1
+============
+Last updated: Thu Apr 14 18:44:32 2011
+Stack: Heartbeat
+Current DC: srv2 (fd18b1e7-7892-408a-977e-ff5f60eb382f) - partition with quorum
+Version: 1.0.10-da7075976b5ff0bee71074385f8fd02f296ec8a3
+2 Nodes configured, unknown expected votes
+2 Resources configured.
+============
+
+Online: [ srv1 srv2 ]
+
+Master/Slave Set: ms_drbd0
+Masters: [ srv2 ]
+Slaves: [ srv1 ]
+Resource Group: rg_httpd
+res_ip (ocf::heartbeat:IPaddr2): Started srv2
+res_fs_drbd0 (ocf::heartbeat:Filesystem): Started srv2
+res_httpd (ocf::heartbeat:apache): Started srv2</blockquote>
+
+
+▼マイグレート方法
+
+
+<blockquote># crm
+crm(live)# resource
+crm(live)resource# migrate rg_httpd
+crm(live)resource# unmigrate rg_httpd</blockquote>

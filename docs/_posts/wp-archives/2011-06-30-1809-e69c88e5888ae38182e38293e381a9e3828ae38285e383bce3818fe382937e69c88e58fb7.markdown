@@ -1,0 +1,1352 @@
+---
+author: ikedaj
+comments: false
+date: 2011-06-30 02:20:36+00:00
+layout: post
+permalink: /wp/archives/1809
+slug: '%e6%9c%88%e5%88%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%937%e6%9c%88%e5%8f%b7'
+title: 月刊あんどりゅーくん(7月号)
+wordpress_id: 1809
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+今月も、先月にひきつづきリリースてんこもり月間でした。[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)  
+
+というわけで、まずは各製品のリリース情報を簡単にご紹介します。  
+
+知恵袋では、crm シェルを使ってリソースの故障情報を削除する手順を解説します。
+
+
+
+
+
+
+  1. リリース情報
+
+
+  2. 知恵袋
+
+
+
+
+ 
+
+
+
+
+**1. リリース情報**
+
+
+
+
+** **
+
+
+
+
+** ****1.1 Linux-HA Japan Pacemakerリポジトリパッケージ 1.0.10-1.4.2 のリリース(2011/06/06)**
+
+
+
+
+以下の拡張パッケージが更新されています。
+
+
+
+
+
+
+  * crmファイル編集ツール(pm_crmgen)
+
+
+  * 拡張リソースエージェント・プラグイン(pm_extras)
+
+
+  * ログメッセージ制御機能(pm_logconv-hb)
+
+
+
+
+詳細は[こちら](/wp/archives/1738)を参照してください。
+
+
+
+
+**1.2 rerource agents 3.9.1 のリリース(2011/06/16)**
+
+
+
+
+今回のリリースの特徴は、Linux-HAで開発してきたRAと  
+
+Red Hat Cluster Suiteに含まれるrgmanager用のRAが統合された点です。  
+
+Linux-HAのRAは前回のリリースが 1.0.4 だったのですが  
+
+rgmanager側が 3.1系のブランチを持っていたため  
+
+数字の大きなrgmanagerにあわせて、3.9.1 からのリリースとなりました。
+
+
+
+
+rgmanagerは使わないから、Linux-HA用のRAだけインストールしたいなあ  
+
+という場合は、ビルド時に --with-ras-set オプションを指定する必要があります。  
+
+（with の前のハイフンは2個です）  
+
+デフォルトは --with-ras-set=all なので  
+
+Linux-HA も rgmanager もインストールされちゃいますが  
+
+--with-ras-set=linux-ha　　  とすると、Linux-HAだけ  
+
+--with-ras-set=rgmanager　とすると、rgmanagerだけインストールすることができます。  
+
+
+
+
+
+
+RHEL6.1での操作例
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td ># git clone http://github.com/ClusterLabs/resource-agents/  
+
+# cd resource-agents/  
+
+# git checkout v3.9.1  
+
+# ./autogen.sh  
+
+# ./configure --with-ras-set=linux-ha  
+
+# make  
+
+
+
+
+# make install  
+
+または  
+
+# make rpm
+</td>
+</tr>
+</tbody>
+</table>
+
+
+  
+
+Linux-HA用のRAには次の修正が取り込まれています。
+
+
+
+
+Highlights for the LHA resource agents set:
+
+
+
+
+- lxc, symlink: new resource agents  
+
+- db2: major rewrite and support for master/slave mode of operation  
+
+- exportfs: backup/restore of rmtab is back  
+
+- mysql: multiple improvements for master/slave and replication  
+
+- ocft: new tests for pgsql, postfix, and iscsi  
+
+- CTDB: minor bug fixes  
+
+- pgsql: improve configuration check and probe handling
+
+
+
+
+目新しいところでは、Linux Containers用のRA(lxc)とsymlink用のRA(symlink)が新しく追加されています。  
+
+リリースノートの全文は[こちら](https://lists.linux-foundation.org/pipermail/ha-wg-technical/2011-June/000083.html)を参照してください。
+
+
+
+
+で。  
+
+3.9.1 がリリースされてはみたんですが、  
+
+iscsi RA と pgsql RA に問題発生！と若干祭りになりまして  
+
+（まあこのRA使ってるユーザが局所的に盛り上がってしまっただけですが）  
+
+でやんくんが「[ちょっともう3.9.2にしちゃおっか](http://lists.linux-ha.org/pipermail/linux-ha-dev/2011-June/018702.html)」と決心しました。
+
+
+
+
+Linux-HA Japan も6月末にパッケージ群の更新を予定していたので  
+
+どうせなら 3.9.2 を待とうということになったのですが、3.9.2、実はまだでていない。  
+
+「6月24日にだしたいねー」とでやんくんが言っていたのですが  
+
+その後、どみにくさんが「VirtualDomain RA もちょっと修正したい」と  
+
+いろいろ揉めてまして、そんなこんなで本日(6月30日)に至っております。  
+
+つーか、たぶんあとはタグをふるだけだと思うんですよねー。  
+
+今日中にでそうな気がするんだけどなー。
+
+
+
+
+
+
+
+2011年6月30日19時追記  
+
+[3.9.2](https://lists.linux-foundation.org/pipermail/ha-wg-technical/2011-June/000116.html) でました！日本時間16時45分にアナウンスがありました。
+
+
+
+
+
+
+
+**1.3 Heartbeat 3.0.5 のリリース(2011/06/16)**
+
+
+
+
+約半年ぶりに Heartbaet 3系の[リリース](http://lists.linux-ha.org/pipermail/linux-ha-dev/2011-June/018686.html)が行われました。
+
+
+
+
+Changelog:  
+
+- do not request retransmission of lost messages from dead members  
+
+- fix segfault due to recursion in api_remove_client_pid  
+
+- properly cleanup pending delayed rexmit requests before reset of seqtrack  
+
+- create HA_RSCTMP on start, if necessary  
+
+- improve detection of pacemaker clusters in init script
+
+
+
+
+最初の3つは、発生条件が限られているので、よっぽどのことがない限り  
+
+この修正の恩恵にはあずからないかもしれません。  
+
+残り2つは、一時ディレクトリの作成や起動スクリプトの改善なので  
+
+実行時の動作に大きな影響を与える修正ではありません。
+
+
+
+
+で。  
+
+こちらもリリースの翌日に[こんな](http://hg.linux-ha.org/heartbeat-STABLE_3_0/rev/7e3a82377fa8)修正がとりこまれています。
+
+
+
+
+コメントをぱっと見た感じ、32ビットだとなにか恐ろしげなことがおこるとか？  
+
+実は64ビットのほうがやばいんじゃね？という噂もありますが  
+
+どっちにしろ気になる修正です。
+
+
+
+
+Linux-HA Japan のパッケージに含まれる Heartbeat 3.0.5 は  
+
+上記の修正も取り込んだ状態でビルドしています。
+
+
+
+
+今回はリリースの直後にばたばた修正が入るパターンが多くて、やれやれでしたわ…。  
+
+**1.4 DRBD関連**
+
+
+
+
+いよいよ、DRBD 8.3.11 が[正式リリース](http://lists.linbit.com/pipermail/drbd-user/2011-June/016371.html)されました。  
+
+
+
+
+
+
+8.3系のバグフィックスがメインです。  
+
+長距離間の同期処理に関する修正が5点取り込まれています。  
+
+その他の修正も、関連する異常動作が発生する確率は比較的低いようですが  
+
+ふぃりっぷくんは「we recommend upgrading to 8.3.11」と言っているので  
+
+新規に環境構築する場合は8.3系の最新版を採用するのが無難です。
+
+
+
+
+ちなみに、DRBDのメーリングリストには[こんな投稿も](http://lists.linbit.com/pipermail/drbd-user/2011-June/016321.html)ありました。
+
+
+
+
+There was an error in 8.3.10, 8.3.11rc2 and 8.4.0: after compiling and   
+
+installing, I was not able to write to a mounted disk (on RHEL 6.1).   
+
+However, this problem seems to be fixed in 8.3.11rc3.
+
+
+
+
+8.3.11rc3 は RHEL6.1 で動いたっぽいですなあ。  
+
+ということは、正式リリース版も大丈夫なはず。  
+
+……　人柱絶賛募集中です。
+
+
+
+
+そして、問題の 8.4.0 も rc3 がリリースされています。
+
+
+
+
+
+
+  * drbd-8.4.0rc3 の[リリース](http://lists.linbit.com/pipermail/drbd-user/2011-June/016342.html)(2011/6/24)
+
+
+
+
+さらに、ふぃりっぷくんの衝撃的なお言葉が。  
+
+Since 8.4 is in freeze mode, developers start to tink about drbd-9.
+
+
+
+
+ちょ！次って 9.0 ？  
+
+8系から9系だとローリングアップデートとかどうなるんだろう。
+
+
+
+
+カーネルのバージョンもいよいよ 2.6.18 とはお別れの予感。  
+
+Code cleanups ; Removal of compatibility code for kernels older than 2.6.18
+
+
+
+
+これは…。  
+
+8.4 の人柱臭がさらにいっそう強くなってきた感じですね…。  
+
+夏の納涼人柱大会でもやりますか。   
+
+**2. 知恵袋[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**
+
+
+
+
+先月は Dummy RA を使用して、[migration-threshold の設定方法](/wp/archives/1657)を紹介しました。
+
+
+
+
+今月は、故障回数が migration-threshold に達して  
+
+フェイルオーバが発生した後の復旧手順を紹介します。  
+
+リソースは先月と同じく Dummy RA を使用します。
+
+
+
+
+**dummy.crm**
+
+
+<table style="height: 369px; width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f5f5f5;" >
+
+    
+    <span style="font-family: verdana,geneva; font-size: small;">### Cluster Option ###
+    property \
+            no-quorum-policy="ignore" \
+            stonith-enabled="false" \
+            startup-fencing="false"
+    
+    ### Resource Defaults ###
+    rsc_defaults \
+            resource-stickiness="INFINITY" \
+            migration-threshold="1"
+    
+    ### Primitive Configuration ###
+    primitive prmDummy ocf:pacemaker:Dummy \
+            op start interval="0s" timeout="100s" on-fail="restart" \
+            op monitor interval="10s" timeout="100s" on-fail="restart" \
+            op stop interval="0s" timeout="100s" on-fail="block"
+    
+    location location-01 prmDummy \
+            rule 200: #uname eq xen01 \
+            rule 100: #uname eq xen02</span>
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+(1) リソースの起動  
+
+早速、リソースを起動させてみましょう。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm configure load update dummy.crm **  
+
+
+
+
+crm_verify[2854]: 2011/06/27_19:51:32 WARN: unpack_nodes: Blind faith: not fencing unseen nodes
+</td>
+</tr>
+</tbody>
+</table>
+
+
+STONITHを設定していない場合(stonith-enabled="false")、上記のエラーが出力されますが今回は無視してください。  
+
+ホントはちゃんとSTONITHを設定したほうがよいです。
+
+
+
+
+crm_mon に -f オプションをつけて、リソースの状態を確認してみます。  
+
+起動したばかりなので、「Migration summary」にはノード名しか表示されていません。  
+
+故障が発生すると、ここになんやかんやと表示されます。  
+
+
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f **  
+
+
+
+
+============  
+
+Last updated: Mon Jun 27 19:51:54 2011  
+
+Stack: Heartbeat  
+
+Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
+
+Version: 1.0.11-db98485d06ed stable-1.0 tip  
+
+2 Nodes configured, unknown expected votes  
+
+1 Resources configured.  
+
+============ 
+
+
+
+
+Online: [ xen01 xen02 ]
+
+
+
+
+prmDummy        (ocf::pacemaker:Dummy): Started xen01
+
+
+
+
+Migration summary:  
+
+* Node xen02:  
+
+* Node xen01:
+</td>
+</tr>
+</tbody>
+</table>
+
+
+  
+
+(2) リソースの故障  
+
+prmDummy は xen01 で起動しています。  
+
+migration-threshold="1"　なので、xen01 で一回故障すると  
+
+すぐに xen02 にフェイルオーバするはずです。
+
+
+
+
+では、ノード xen01 で Dummy RA のステータスファイルを削除して故障を発生させてみます。
+
+
+<table style="width: 700px; background-color: #f5f5f5;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# rm -f /var/run/Dummy-prmDummy.state**
+</td>
+</tr>
+</tbody>
+</table>
+
+
+リソースの状態を確認すると…
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f **  
+
+
+
+
+============  
+
+Last updated: Mon Jun 27 19:52:31 2011  
+
+Stack: Heartbeat  
+
+Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
+
+Version: 1.0.11-db98485d06ed stable-1.0 tip  
+
+2 Nodes configured, unknown expected votes  
+
+1 Resources configured.  
+
+============ 
+
+
+
+
+Online: [ xen01 xen02 ] 
+
+
+
+
+**prmDummy ** (ocf::pacemaker:Dummy): Started **xen02**
+
+
+
+
+Migration summary:  
+
+* Node xen02:  
+
+* Node xen01:  
+
+** prmDummy: migration-threshold=1 fail-count=1**
+
+
+
+
+**Failed actions:**  
+
+** prmDummy_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running**
+</td>
+</tr>
+</tbody>
+</table>
+
+
+prmDummy は xen02 へフェイルオーバしました！  
+
+「Migration summary」を見ると、xen01 で prmDummy の fail-count が 1 となったことがわかります。
+
+
+
+
+(3) failcount のクリア  
+
+では、failcount をクリアしてみましょう。  
+
+まず、次のようにコマンドラインから crm シェルを実行してみてください。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource failcount**  
+
+
+
+
+usage:  
+
+failcount <rsc> set <node> <value>  
+
+failcount <rsc> delete <node>  
+
+failcount <rsc> show <node>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+crm_mon の表示はハイフンつきの「fail-count」で  
+
+crm シェルはハイフンなしの「failcount」なんですね…。  
+
+普段、気にしてないけどこういうとき妙に気になる…。  
+
+どっちかに統一しようよ、あんどりゅーくん。  
+
+（crm シェルつくってるのは、でやんくんだけど）
+
+
+
+
+さて、気をとりなおしまして  
+
+failcount を削除するには、リソース名とノード名を指定する必要があります。  
+
+故障したノードは xen01 ですよね。  
+
+リソース名はえーっと…と思ったときは、次のコマンドを実行してください。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource show ** ** **** **  
+
+
+
+
+**prmDummy **(ocf::pacemaker:Dummy) Started
+</td>
+</tr>
+</tbody>
+</table>
+
+
+そうそう、リソース名は「prmDummy」でした。  
+
+というわけで、いよいよ failcount をクリア！  
+
+の前に、今のカウント数をちょっと確認しておきましょう。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource failcount prmDummy show xen01 **  
+
+
+
+
+** ** scope=status  name=fail-count-prmDummy value=1
+</td>
+</tr>
+</tbody>
+</table>
+
+
+failcount は 1 ですね。あたりまえですが crm_mon -f の表示と同じです。  
+
+今度こそは failcount をクリア！
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource failcount prmDummy delete xen01**
+</td>
+</tr>
+</tbody>
+</table>
+
+
+ちゃんと消えたかなー…。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource failcount prmDummy show xen01**  
+
+
+
+
+scope=status  name=fail-count-prmDummy value=0
+</td>
+</tr>
+</tbody>
+</table>
+
+
+failcount は 0 になりました！成功です。  
+
+crm_mon -f でも確認してみましょう。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f **  
+
+
+
+
+============  
+
+Last updated: Mon Jun 27 19:53:05 2011  
+
+Stack: Heartbeat  
+
+Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
+
+Version: 1.0.11-db98485d06ed stable-1.0 tip  
+
+2 Nodes configured, unknown expected votes  
+
+1 Resources configured.  
+
+============
+
+
+
+
+Online: [ xen01 xen02 ]
+
+
+
+
+prmDummy        (ocf::pacemaker:Dummy): Started xen02
+
+
+
+
+Migration summary:  
+
+* Node xen02:  
+
+* Node xen01:
+
+
+
+
+**Failed actions:**  
+
+** prmDummy_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running**
+</td>
+</tr>
+</tbody>
+</table>
+
+
+「Migration summary」に表示されていた fail-count は消えています。  
+
+でも、「Failed actions」っていうのが残っちゃってますね。  
+
+これは、fail-count とは別にオペレーションの「故障履歴」が保存されているためです。  
+
+故障履歴も削除しておきましょう。
+
+
+
+
+(4) 故障履歴のクリア  
+
+故障履歴を削除するためには cleanup コマンドを使用します。  
+
+コマンドラインから次のように crm シェルを起動してみましょう。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource cleanup **** **** ** ** **  
+
+
+
+
+usage: cleanup <rsc> [<node>]
+</td>
+</tr>
+</tbody>
+</table>
+
+
+今回もリソース名とノード名を指定する必要があるようです。  
+
+ノード名には故障が発生したほうのノードを指定してください。今回の例では xen01 です。  
+
+ノード名はあくまでオプションですが、指定しておいたほうがよいです。  
+
+今回は2ノード構成なので、そんなに大変なことにはなりませんが  
+
+例えば、10ノード構成の場合、10ノードすべてに cleanup コマンドが  
+
+実行されることになるので、思いがけず実行時間がかかってしまう可能性もあります。
+
+
+
+
+では、cleanup コマンドを実行してみましょう。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource cleanup prmDummy xen01**  
+
+
+
+
+Cleaning up prmDummy on xen01  
+
+Waiting for 2 replies from the CRMd..
+</td>
+</tr>
+</tbody>
+</table>
+
+
+crm_mon -f で確認してみると…
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f**  
+
+
+
+
+============  
+
+Last updated: Mon Jun 27 19:55:17 2011  
+
+Stack: Heartbeat  
+
+Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
+
+Version: 1.0.11-db98485d06ed stable-1.0 tip  
+
+2 Nodes configured, unknown expected votes  
+
+1 Resources configured.  
+
+============
+
+
+
+
+Online: [ xen01 xen02 ]
+
+
+
+
+prmDummy        (ocf::pacemaker:Dummy): Started xen02
+
+
+
+
+Migration summary:  
+
+* Node xen02:  
+
+* Node xen01:
+</td>
+</tr>
+</tbody>
+</table>
+
+
+「Failed actions」も消えています。よかったよかった。
+
+
+
+
+(5) リソースの移動  
+
+fail-cout も Failed actions もうまく消えてくれたところで、フェイルオーバしたリソースを元のノードに戻してみましょう。  
+
+リソースの移動には move コマンドを使用します。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource move**  
+
+
+
+
+usage: migrate <rsc> [<node>] [<lifetime>] [force]
+</td>
+</tr>
+</tbody>
+</table>
+
+
+このコマンドもリソース名とノード名が必要ですね。  
+
+なにがなんでも移動させたい場合は、force オプションもつけてください。
+
+
+
+
+で、move コマンドを実行する前に、ちょっと現在の configure を表示させてみましょう。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f5f5f5;" >
+
+
+**# crm configure show**
+
+
+
+
+node $id="11111111-1111-1111-1111-111111111111" xen01  
+
+node $id="22222222-2222-2222-2222-222222222222" xen02  
+
+
+
+
+
+
+primitive prmDummy ocf:pacemaker:Dummy \  
+
+op start interval="0s" timeout="100s" on-fail="restart" \  
+
+op monitor interval="10s" timeout="100s" on-fail="restart" \  
+
+op stop interval="0s" timeout="100s" on-fail="block"
+
+
+
+
+location location-01 prmDummy \  
+
+rule $id="location-01-rule" 200: #uname eq xen01 \  
+
+rule $id="location-01-rule-0" 100: #uname eq xen02
+
+
+
+
+property **$id="cib-bootstrap-options" \**  
+
+** dc-version="1.0.11-db98485d06ed stable-1.0 tip" \**  
+
+**cluster-infrastructure="Heartbeat" \**  
+
+no-quorum-policy="ignore" \  
+
+stonith-enabled="false" \  
+
+startup-fencing="false" \  
+
+**last-lrm-refresh="1309172113"**
+
+
+
+
+rsc_defaults $id="rsc-options" \  
+
+resource-stickiness="INFINITY" \  
+
+migration-threshold="1"
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+
+
+「dc-version」とか「cluster-infrastructure」とか「last-lrm-refresh」とか  
+
+なんか見慣れない設定もありますが、このへんは Pacemaker が追加で挿入してくれた設定です。  
+
+それ以外は、dummy.crm とほとんど同じですね。
+
+
+
+
+では、prmDummy　を xen02 から xen01 へ移動させてみましょう。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource move prmDummy xen01 force**  
+
+
+
+
+WARNING: Creating rsc_location constraint 'cli-standby-prmDummy' with a score of -INFINITY for resource prmDummy on xen02.  
+
+This will prevent prmDummy from running on xen02 until the constraint is removed using the 'crm_resource -U' command or manually with cibadmin  
+
+This will be the case even if xen02 is the last node in the cluster  
+
+This message can be disabled with -Q
+</td>
+</tr>
+</tbody>
+</table>
+
+
+ごりっとエラーみたいなのがでたけど…。  
+
+まあ、ここはちょっと無視して crm_mon -f を確認してみると  
+
+prmDummy は xen02 から xen01 へちゃんと移動しています。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f **  
+
+
+
+
+============  
+
+Last updated: Mon Jun 27 19:59:36 2011  
+
+Stack: Heartbeat  
+
+Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
+
+Version: 1.0.11-db98485d06ed stable-1.0 tip  
+
+2 Nodes configured, unknown expected votes  
+
+1 Resources configured.  
+
+============
+
+
+
+
+Online: [ xen01 xen02 ]
+
+
+
+
+**prmDummy **(ocf::pacemaker:Dummy): Started** xen01**
+
+
+
+
+Migration summary:  
+
+* Node xen02:  
+
+* Node xen01:
+</td>
+</tr>
+</tbody>
+</table>
+
+
+ちなみに、move コマンドを実行したときに表示されたメッセージは  
+
+「xen02 で起動している prmDummy を xen01 に移動させるために  
+
+xen02 のスコア値を -INFINITY に変更しますよ」と言っていたのです。  
+
+移動後に configure を表示させてみると  
+
+xen01 の prmDummy は  INFINITY  
+
+xen02 の prmDummy は -INFINITY  
+
+という location が追加されていることがわかります。  
+
+location の設定を変更することによって、リソースを移動させているわけですね。  
+
+
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f5f5f5;" >**# crm configure show**  
+
+
+
+
+** **node $id="11111111-1111-1111-1111-111111111111" xen01  
+
+node $id="22222222-2222-2222-2222-222222222222" xen02
+
+
+
+
+primitive prmDummy ocf:pacemaker:Dummy \  
+
+op start interval="0s" timeout="100s" on-fail="restart" \  
+
+op monitor interval="10s" timeout="100s" on-fail="restart" \  
+
+op stop interval="0s" timeout="100s" on-fail="block"  
+
+** **
+
+
+
+
+**location cli-prefer-prmDummy prmDummy \**  
+
+** rule $id="cli-prefer-rule-prmDummy" inf: #uname eq xen01**  
+
+**location cli-standby-prmDummy prmDummy \**  
+
+** rule $id="cli-standby-rule-prmDummy" -inf: #uname eq xen02**  
+
+
+
+
+
+
+location location-01 prmDummy \  
+
+rule $id="location-01-rule" 200: #uname eq xen01 \  
+
+rule $id="location-01-rule-0" 100: #uname eq xen02
+
+
+
+
+property $id="cib-bootstrap-options" \  
+
+dc-version="1.0.11-db98485d06ed stable-1.0 tip" \  
+
+cluster-infrastructure="Heartbeat" \  
+
+no-quorum-policy="ignore" \  
+
+stonith-enabled="false" \  
+
+startup-fencing="false" \  
+
+last-lrm-refresh="1309172113"
+
+
+
+
+rsc_defaults $id="rsc-options" \  
+
+resource-stickiness="INFINITY" \  
+
+migration-threshold="1"
+</td>
+</tr>
+</tbody>
+</table>
+
+
+もしこの状態で xen01 の prmDummy が壊れてしまうと、-INFINITY のxen02 ではリソースが起動できないので  
+
+フェイルオーバ先がなくなってしまいます。
+
+
+
+
+ということで、move コマンドを実行した後は、セットで unmove コマンドも実行して、-INFINITY を削除しておきましょう。  
+
+unmove コマンドはノード名を指定する必要はありません。
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource unmove prmDummy**
+</td>
+</tr>
+</tbody>
+</table>
+
+
+ここで、configure を確認してみると…
+
+
+<table style="width: 700px;" border="0" >
+<tbody >
+<tr >
+
+<td style="text-align: justify; background-color: #f5f5f5;" >**# crm configure show**  
+
+
+
+
+node $id="11111111-1111-1111-1111-111111111111" xen01  
+
+node $id="22222222-2222-2222-2222-222222222222" xen02
+
+
+
+
+primitive prmDummy ocf:pacemaker:Dummy \  
+
+op start interval="0s" timeout="100s" on-fail="restart" \  
+
+op monitor interval="10s" timeout="100s" on-fail="restart" \  
+
+op stop interval="0s" timeout="100s" on-fail="block"
+
+
+
+
+location location-01 prmDummy \  
+
+rule $id="location-01-rule" 200: #uname eq xen01 \  
+
+rule $id="location-01-rule-0" 100: #uname eq xen02
+
+
+
+
+property $id="cib-bootstrap-options" \  
+
+dc-version="1.0.11-db98485d06ed stable-1.0 tip" \  
+
+cluster-infrastructure="Heartbeat" \  
+
+no-quorum-policy="ignore" \  
+
+stonith-enabled="false" \  
+
+startup-fencing="false" \  
+
+last-lrm-refresh="1309172113"
+
+
+
+
+rsc_defaults $id="rsc-options" \  
+
+resource-stickiness="INFINITY" \  
+
+migration-threshold="1"
+</td>
+</tr>
+</tbody>
+</table>
+
+
+move コマンドで追加されていた location は削除されています。  
+
+これでやっと初期起動時の状態に戻りました。
+
+
+
+
+failcount と cleanup はセットで
+
+
+
+
+
+
+  * crm resource failcount
+
+
+  * crm resource cleanup
+
+
+
+
+move と unmove もセットで
+
+
+
+
+
+
+  * crm resource move
+
+
+  * crm resource unmove
+
+
+
+
+と、覚えてあげてください。
+
+
+
+
+**では、今月はこれにてどろん！εεεεεヾ(*´ー`)ﾉ**

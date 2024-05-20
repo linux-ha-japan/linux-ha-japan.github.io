@@ -1,0 +1,651 @@
+---
+author: ikedaj
+comments: false
+date: 2011-03-31 01:52:51+00:00
+layout: post
+permalink: /wp/archives/1097
+slug: '%e6%9c%88%e5%88%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%934%e6%9c%88%e5%8f%b7'
+title: 月刊あんどりゅーくん(4月号)
+wordpress_id: 1097
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+
+
+
+
+暖かくなってきたので「**月刊あんどりゅーくん**」はじめました。
+
+
+
+
+  
+
+
+
+
+
+Linux-HA 関連のメーリングリスト、リポジトリの更新情報を日々ストーキングしつつ  
+
+ これは！というおもしろネタをご紹介いたします。  
+
+ まずは、ほぼ月一更新を目指します。  
+
+ 寒くなったら冬眠します。  
+
+ ちなみに中の人は絶賛募集中です。  
+
+ 現在、ボットが某情報収集コードに従って作戦実行中であります。
+
+
+
+
+  
+
+
+
+
+
+で、そもそも、「あんどりゅーくん」とはなんぞや？  
+
+ 「あんどりゅーくん」とは、Pacemaker の開発者 Andrew Beekhof(Red Hat) のことです。  
+
+ Heartbeat から Pacemaker が飛び出しちゃったよわっしょい！の火の元だったりとか  
+
+ メーリングリストの回答があまりにもそっけないとかで  
+
+ ちょっと付き合いづらい人なのかなあと思っていましたが  
+
+ 実際お会いしてみると意外にお茶目な方でした（右斜め上参照）。
+
+
+
+
+  
+
+
+
+
+
+なお、PacemakerでHA環境を構築するためには、他にも必要なコンポーネントがいくつかありますが  
+
+ それぞれの主要メンバはこちら。
+
+
+
+
+
+
+  * Clueter Resource Agents/Reusable Cluster Components
+
+
+
+
+Dejan Muhamedagic(Novell) ... メーリングリストの回答が超やさしい。唯一の癒し系。  
+
+ Florian Haas(Linbit) ... たまに日本に来てる。すごい親切なんやけどマシンガントークは勘弁な。  
+
+ Lars Ellenberg(Linbit)
+
+
+
+
+
+
+  * Heartbeat
+
+
+
+
+上に同じ。一応、Linbitメインな感じ。
+
+
+
+
+
+
+  * Corosync
+
+
+
+
+
+
+Steven Dake(Red Hat) ... 声ちっさい。
+
+
+
+
+
+
+  * Python GUI
+
+
+
+
+Yan Gao(Novell)
+
+
+
+
+
+
+  * Hawk(HA Web Konsole)
+
+
+
+
+Tim Serong(Novell) ... 会ったことはあるというか見たことある。けどどんな人かよく覚えていない。。。
+
+
+
+
+
+
+  * DRBD MC
+
+
+
+
+Philipp Reisner(Linbit)
+
+
+
+
+
+
+  * 上記の荒ぶるメンバをたばねつつ、HAの未来を占う人。
+
+
+
+
+Lars Marowsky-Bree(Novell) ... LMB。キホン黒づくめ。
+
+
+
+
+  
+
+
+
+
+
+LMBとFlorianの議論が熱くなりすぎて周りがドン引き、そこにAndrewが「もういいじゃーん」てな感じで  
+
+ 仲介に入るイメージで大体あってます。
+
+
+
+
+Lars,Yan,Philippはお会いしたことないのでノーコメント。  
+
+ あれ？Dejanも会ったことないけど。。。まあよかたい。
+
+
+
+
+  
+
+
+
+
+
+以上がいわゆる本家な方々です。  
+
+ 日本サイドでは、[ksk_ha](http://twitter.com/#!/ksk_ha/status/52316967666855936)さんがPacemakerのバックポートなどを担当しています。
+
+
+
+
+あとですね、セミナーや勉強会でたまにご質問をいただくのですが  
+
+ Pacemakerの応援キャラクター、かなちゃん、かよちゃん、ぺーちゃん、ころちゃんは本家公認です！  
+
+ 2010年11月にボストンで開催された「Linux Plumber Conference」で  
+
+ [minky0](http://twitter.com/#!/minky0/status/422100716224512)さんから上記主要メンバにクリアファイルをお渡ししていただいています。
+
+
+
+
+最近、デビューしたドロシーちゃんとビアンカちゃんはDRBDの応援キャラですが  
+
+ こちらはLinbit公認なのかどうかボットにはよくわかりません。
+
+
+
+
+DRBDのおもしろネタについては、[ttkzw](http://twitter.com/#!/ttkzw/status/29583591117692929)さんが「月刊ふろーりあんくんはやりたいなぁといつも思いつつ。」  
+
+ とつぶやいていらっしゃるので、もう少し暖かくなったら「月刊ふろーりあんくん」もはじまるのではないかと思われます。
+
+
+
+
+  
+
+
+
+
+
+**では、いよいよ本題です。**
+
+
+
+
+  
+
+
+
+
+
+今回は下記2項目をご紹介します。  
+
+ (1) リリース/アナウンス関連  
+
+ (2) バージョン互換情報
+
+
+
+
+  
+
+
+
+
+
+****
+
+
+
+
+(1) リリース/アナウンス関連[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+
+
+
+
+**■ Announcement: Linux Foundation HA working group mailing lists**  
+
+ 新しい[メーリングリスト](http://www.gossamer-threads.com/lists/linuxha/users/70607)が開設されました。
+
+
+
+
+HA環境を構築するために必要なコンポーネントは、それぞれのメーリングリストで  
+
+ 情報共有や議論を行っています。新規に開設されたメーリングリストは、既存の  
+
+ メーリングリストを置き換えるものではなく、それぞれのコンポーネントが相互に関係する  
+
+ メンテナンスや機能追加、リリースの調整などを議論する場となっています
+
+
+
+
+メーリングリストへの登録、アーカイブの閲覧はこちらから。
+
+
+
+
+
+
+  * [ha-wg](https://lists.linux-foundation.org/mailman/listinfo/ha-wg)
+
+
+  * [ha-wg-technical](https://lists.linux-foundation.org/mailman/listinfo/ha-wg-technical)
+
+
+
+
+現在、Resource Agentsのprovider名について[投票](http://www.surveymonkey.com/s/3P6MFVT)が行われています。  
+
+ 候補名(core, opencf, clusterlabs, ocf, linux-ha, planet-ha)
+
+
+
+
+あんどりゅーくんは「[biker-mice-from-mars](http://www.google.com/search?q=biker-mice-from-mars&hl=ja&client=opera&hs=VcT&rls=ja&prmd=ivns&tbm=isch&tbo=u&source=univ&sa=X&ei=OIGRTcj4MJS4sQPp5oCgDg&ved=0CCYQsAQ) がよくね？」と言っていましたがさっくり[却下](https://lists.linux-foundation.org/pipermail/ha-wg-technical/2011-March/000003.html)されました。
+
+
+
+
+なお、今年のクラスタ祭りは[10月にプラハ](http://events.linuxfoundation.org/events/linuxcon-europe)で開催されるようです。（LINUXCONに間借り？）  
+
+ クラスタ野郎はぜひご参加ください。Dobrý den!
+
+
+
+
+  
+
+
+
+
+
+**■ announcing the Pacemaker Cloud Policy Engine subproject**  
+
+ Corosync の開発者である Steve が新しい[プロジェクト](http://www.gossamer-threads.com/lists/linuxha/pacemaker/70568)を立ち上げました。  
+
+ キーワードはこんな感じです。
+
+
+
+
+
+
+  * QPID/QMF (provides a management bus for communication of the various components) 
+
+
+  * Upstart (provides a mechanism to launch our internal processes) 
+
+
+  * Pacemaker Policy Engine library (provides a mechanism for us to make policy decisions) 
+
+
+  * Matahari (provides a mechanism to monitor VM images)
+
+
+
+
+クラウドとか仮想化とかそのへん。。。ですかね。  
+
+ ちょっとまだ曖昧模糊としているのでなんともいえませんが継続してストーキングします。
+
+
+
+
+  
+
+
+
+
+
+**■ リポジトリの変更**
+
+
+
+
+リソースの起動停止および監視処理を制御する Resource Agent (RA) は Clueter Resource Agents "agents" という  
+
+ コンポーネントに含まれていますが、こちらのコンポーネントが Red Hat Cluster Suiteで使用する  
+
+ Red Hat Resource Group Manager(rgmanager RA) と統合されました。  
+
+ agentsのリポジトリは hg(Mercurial) で管理されていましたが、統合に伴い、git へ変更されました。
+
+
+
+
+  
+
+
+
+
+
+Pacemakerで使用する場合は、configureのオプションに「[--with-ras-set=linux-ha](http://www.gossamer-threads.com/lists/linuxha/dev/70440)」を追加する必要があるようです。
+
+
+
+
+# ./autogen.sh  
+
+ # ./configure --prefix=/usr --with-ras-set=linux-ha  
+
+ # make install
+
+
+
+
+  
+
+
+
+
+
+ついでなので、リポジトリ一覧( version は2011年3月30日時点での最新版 )
+
+
+
+
+
+
+  * Pacemaker 1.1系(version 1.1.5) [http://hg.clusterlabs.org/pacemaker/1.1/](http://hg.clusterlabs.org/pacemaker/1.1/)
+
+
+  * Pacemaker 1.0系(version 1.0.10) [http://hg.clusterlabs.org/pacemaker/1.0/](http://hg.clusterlabs.org/pacemaker/1.0/)
+
+
+  * Clueter Resource Agents "agents"(version 1.0.4) [https://github.com/ClusterLabs/resource-agents](https://github.com/ClusterLabs/resource-agents)
+
+
+  * Reusable Cluster Components "glue" (version 1.0.7) [http://hg.linux-ha.org/glue/](http://hg.linux-ha.org/glue/)
+
+
+  * Heartbeat 3.0系(version 3.0.4) [http://hg.linux-ha.org/dev/](http://hg.linux-ha.org/dev/)
+
+
+  * Corosync(version 1.2.8) [http://svn.fedorahosted.org/svn/corosync/branches/flatiron/](http://svn.fedorahosted.org/svn/corosync/branches/flatiron/)
+
+
+  * Python GUI(version 2.0.0) [http://hg.clusterlabs.org/pacemaker/pygui/](http://hg.clusterlabs.org/pacemaker/pygui/)
+
+
+  * Hawk(vesrion 0.3.6) [http://hg.clusterlabs.org/pacemaker/hawk](http://hg.clusterlabs.org/pacemaker/hawk)
+
+
+  * DRBD MC(version 0.9.0) [http://oss.linbit.com/drbd-mc/](http://oss.linbit.com/drbd-mc/)
+
+
+
+
+
+
+
+  
+
+
+
+
+
+ここまで書いてきて、そういやPacemaker 1.0系とPacemaker 1.1系の違いって  
+
+ わかりづらいよな。。。という気がしてきました。  
+
+ ざっくり言うとこんな感じです。
+
+
+
+
+
+
+  * Pacemaker 1.1系
+
+
+
+
+あんどりゅーくんが荒ぶるエネルギーでごりごり開発しているホントの最新版。
+
+
+
+
+
+
+  * Pacemaker 1.0系　※近日中に1.0.11をリリース予定
+
+
+
+
+あんどりゅーくんが荒ぶりすぎて、デグレったり下位互換がふっとんだりするので  
+
+ Linux-HA Japan Project が独自のテストを実施しながらメンテナンスしている安定板。
+
+
+
+
+ 
+
+
+
+
+Linux-HA Japan Projectでは [ksk_ha](http://twitter.com/#!/ksk_ha/status/52316967666855936) さんがPacemaker 1.1から1.0へのバックポート作業を担当していますが  
+
+ あんどりゅーくんの荒ぶり具合があまりにも激しく、バックポートできないパッチも存在します。  
+
+ 特にMaster/Slave機能とclone機能はバックポートが難しいです。
+
+
+
+
+  
+
+
+
+
+
+(2) バージョン互換情報
+
+
+
+
+**■ GUI**  
+
+ 質問）Python GUIを使いたいんだけど、Pacemaker 1.0 とPacemaker 1.1 のどちらでも使えるの？  
+
+ 回答）使えます。
+
+
+
+
+ただし、[最新版](http://hg.clusterlabs.org/pacemaker/pygui/)は Pacemaker 1.1 にしか対応していません。  
+
+ Pacemaker 1.0系でPython GUIを使用するためには、[pacemaker-mgmt-2.0.0](http://hg.clusterlabs.org/pacemaker/pygui/rev/18332eae086e) を使ってください。  
+
+ pacemaker-mgmt-2.0.0 は hg より wget で tar ball をがつんと持ってきちゃったほうがいいかもです。
+
+
+
+
+# wget http://hg.clusterlabs.org/pacemaker/pygui/archive/18332eae086e.tar.bz2
+
+
+
+
+[元ネタ](http://www.gossamer-threads.com/lists/linuxha/users/70691)
+
+
+
+
+  
+
+
+
+
+
+ちなみに、Pacemaker と仲のよいGUIは Python GUI だけではなく、DRBD MC と Hawk、  
+
+ というのがいるわけですが、DRBD MC と Hawkの最新版は Pacemaker 1.0 と 1.1 の  
+
+ 両方に対応しています。
+
+
+
+
+どのGUIが一番いいの？という質問に関しては、そうですねー、派手さは DRBD MC がダントツですね。  
+
+ なんかすんごいオレンジだし、ドロシーちゃんとビアンカちゃんもいるしね。あ、オレンジは色、変えれるらしいですけどね。  
+
+ GUIのそれぞれの特徴については、また別の機会にまとめてみたいと思います。  
+
+ Python GUI と Hawk も擬人化するのかどうなのか。
+
+
+
+
+  
+
+
+
+
+
+**■ STONITH プラグイン  
+
+ **
+
+
+
+
+STONITHするためのハードウェア制御装置としては、HPのiLO、IBMのRSAなどが有名ドコロですが  
+
+ Pacemakerで用意しているiLO用のSTONITHプラグイン(riloe)はiLO3に未対応です。  
+
+ ところがどっこい iLO3 は IPMI に対応しているので、ipmi というSTONITHプラグインが使えます。  
+
+ ということで、iLO2 は riloe、iLO3 は ipmi という使い分けが必要なのでご注意ください。  
+
+ HP ProLiant DLシリーズだとG5, G6はiLO2、G7からiLO3のようです。  
+
+ RSAのほうはSTONITHプラグインとして ibmrsa-telnet を使いますが、  
+
+ 最近の IBM System x は IMM を搭載しているのでこの場合は ipmi を使います。
+
+
+
+
+  
+
+
+
+
+
+参考情報
+
+
+
+
+
+
+  * iLO2/3(Integrated Lights-Out2/3)
+
+
+  * RSA(Remote Supervisor Adapter)
+
+
+  * IMM(Integrated Management Module)
+
+
+  * IPMI(Intelligent Platform Management Interface)
+
+
+
+
+[元ネタ](http://www.gossamer-threads.com/lists/linuxha/users/70883)
+
+
+
+
+  
+
+
+
+
+
+今月は Linux-HA コミュニティの簡単な紹介と、3月のメーリングリストからリリース情報関連を抜粋してご紹介しました。  
+
+ 3月分のメーリングリストで気になったバグ情報、知恵袋情報については  
+
+ 4月第一週頃に別冊あんどりゅーくんとして更新する予定です。
+
+
+
+
+  
+
+
+
+
+
+**では、今月はこれにてどろん！εεεεεヾ(*´ー`)ﾉ**

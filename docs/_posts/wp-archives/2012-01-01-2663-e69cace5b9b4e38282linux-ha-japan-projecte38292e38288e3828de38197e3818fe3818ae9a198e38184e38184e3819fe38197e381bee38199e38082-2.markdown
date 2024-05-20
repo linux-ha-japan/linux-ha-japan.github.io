@@ -1,0 +1,46 @@
+---
+author: minky
+comments: false
+date: 2012-01-01 11:20:37+00:00
+layout: post
+permalink: /wp/archives/2663
+slug: '%e6%9c%ac%e5%b9%b4%e3%82%82linux-ha-japan-project%e3%82%92%e3%82%88%e3%82%8d%e3%81%97%e3%81%8f%e3%81%8a%e9%a1%98%e3%81%84%e3%81%84%e3%81%9f%e3%81%97%e3%81%be%e3%81%99%e3%80%82-2'
+title: 本年もLinux-HA Japan Projectをよろしくお願いいたします。
+wordpress_id: 2663
+categories:
+- その他
+---
+
+みなさま。　新年あけましておめでとうございます。
+本年もLinux-HA Japan Projectをよろしくお願いいたします。
+
+さて、本来は昨年出るはずだと思われていた、Corosync-2.0もまだ出ず。
+1,4,2のリリースからすでに半年経過OTL
+Pacemakerも、今年は1.2のリリース予定が・・・・・。　さてどうなるでしょうか？
+
+Pacemaker 1.1の現在のコミュニティによるサポート期限は2012年8月。
+Pacemaker 1.0はもう少し長い予定というか、1.2が出ないとどうなることやらw
+[http://www.clusterlabs.org/wiki/FAQ](http://www.clusterlabs.org/wiki/FAQ)
+
+Linux-HA Japan的には、月刊あんどりゅー君でも書いている通り、
+Pacemaker1.0系+Heartbeat3.0系がまだお勧めなんですが・・・・。
+
+周辺でいろいろと新しいプロジェクトも動き始めている模様です。
+引き続き、WorldWideのMLをウォッチしながら、日本のインフラに合った情報を中心に
+共有などしていければと考えております。
+
+なにか、不明な点、バグっぽいよ、みたいな話は、英語で書くのはちょっとと言うあなたも
+是非、Linux-HA JapanのMLに投稿してみてはいかがでしょうか？
+
+DRBD界隈もいろいろと気になる話がいっぱいあるのですが、その辺はオフレコでw
+
+とりあえず、お年玉？と言うことで、Twitterでは直接リンクで公開しちゃいましたが、
+「かよ」ちゃんの声をいくつか置いておきます。
+個人の趣味の範囲でのご利用に限定させてくださいまし。
+
+[女子力アップ？]({{ site.lhajp_resources_url }}/wp-content/1d6c587d2f3d9e76d6cac24a11e824fe.mp3)
+[自宅警備員？]({{ site.lhajp_resources_url }}/wp-content/jitaku.mp3)
+[満点エンジニア？]({{ site.lhajp_resources_url }}/wp-content/Manten.mp3)
+[インフラエンジニア？]({{ site.lhajp_resources_url }}/wp-content/Engineer.mp3)
+
+[5分間LT用Timer かよちゃんVer.]({{ site.lhajp_resources_url }}/wp-content/time2.mp3)

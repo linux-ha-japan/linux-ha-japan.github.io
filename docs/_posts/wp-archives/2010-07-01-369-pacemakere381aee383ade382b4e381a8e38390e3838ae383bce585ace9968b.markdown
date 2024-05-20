@@ -1,0 +1,88 @@
+---
+author: t-matsuo
+comments: false
+date: 2010-07-01 05:26:37+00:00
+layout: post
+permalink: /wp/archives/369
+slug: pacemaker%e3%81%ae%e3%83%ad%e3%82%b4%e3%81%a8%e3%83%90%e3%83%8a%e3%83%bc%e5%85%ac%e9%96%8b
+title: Pacemakerのロゴとバナー公開
+wordpress_id: 369
+categories:
+- その他
+---
+
+Pacemaker のロゴおよびバナーを公開します。  
+
+下記のロゴ、バナーはウェブ上での利用を前提に、手を加えずこのままご利用いただく限りご自由にお使い頂けます。  
+
+著作権は当プロジェクトにあります。
+
+
+
+
+
+### Pacemaker ロゴ
+
+
+
+
+
+[![](/assets/images/wp-content/logo_pacemaker_200x100.png)](/wp/archives/369/logo_pacemaker_200x100)  
+
+ サイズ  :  [200x100](//wp/?attachment_id=371) [300x150](//wp/?attachment_id=372)
+
+
+
+
+
+### Pacemaker バナー その1
+
+
+
+
+
+[![](/assets/images/wp-content/banner_pecemaker_468x60_01.jpg)](/wp/archives/369/banner_pecemaker_468x60_01)   
+
+ サイズ : [88x31](//wp/?attachment_id=388) [236x60](//wp/?attachment_id=389) [728x90](//wp/?attachment_id=390) [1024x128](//wp/?attachment_id=391)
+
+
+
+
+
+### Pacemaker バナーその2
+
+
+
+
+
+[![](/assets/images/wp-content/banner_pecemaker_468x60_02.jpg)](/wp/archives/369/banner_pecemaker_468x60_02)  
+
+ サイズ : [88x31](//wp/?attachment_id=392) [236x60](//wp/?attachment_id=393) [ 728x90](//wp/?attachment_id=394) [ 1024x128](//wp/?attachment_id=395)
+
+
+
+
+
+### Pacemaker バナーその3
+
+
+
+
+
+[![](/assets/images/wp-content/banner_pecemaker_468x60_03.jpg)](/wp/archives/369/banner_pecemaker_468x60_03)  
+
+ サイズ : [88x31](//wp/?attachment_id=396) [236x60](//wp/?attachment_id=397) [728x90](//wp/?attachment_id=398) [1024x128](//wp/?attachment_id=399)
+
+
+
+
+
+### Pacemaker バナーその4
+
+
+
+
+
+[![](/assets/images/wp-content/banner_pecemaker_468x60_04.jpg)](/wp/archives/369/banner_pecemaker_468x60_04)  
+
+ サイズ : [88x31](//wp/?attachment_id=400) [236x60](//wp/?attachment_id=401) [728x90](//wp/?attachment_id=402) [1024x128](//wp/?attachment_id=403)

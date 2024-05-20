@@ -1,0 +1,40 @@
+---
+author: higashik
+comments: false
+date: 2014-04-01 01:40:59+00:00
+layout: post
+permalink: /wp/archives/3973
+slug: '%e8%a3%bd%e5%93%81%e5%91%bc%e7%a7%b0%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e6%b3%a8%e6%84%8f%e5%96%9a%e8%b5%b7'
+title: 製品呼称に関する注意喚起
+wordpress_id: 3973
+categories:
+- ニュース
+tags:
+- April Fool
+---
+
+Linux-HA Japanでは、ここ数年間Pacemakerの普及に努めてまいりましたが、未だにPacemaker(ペースメーカー)をPeacemaker(ピースメーカー)と呼ばれることが多々有ることを昨年、報告・注意喚起しました。
+
+実は、他にも間違い方にはバリエーションがあるようです。
+よくある間違いをランキング形式でご紹介します。
+
+**1位　Paacemaker(パースメーカー)**
+![paacemaker](/assets/images/wp-content/paacemaker.jpg)
+・・・aを2回打つタイポがそのまま広まってしまったようです。語呂もいいですね。
+
+**2位　Peacemaker(ピースメーカー)**
+![peacemaker-log](/assets/images/wp-content/peacemaker-log.png)
+・・・昨年注意したやつ。相変わらず多いです。平和を愛する心は、世界共通です。国内外共に安定してミスってます。
+
+**3位　Coursemaker(コースメーカー)**
+![cource](/assets/images/wp-content/cource.jpg)
+・・・もはや原型をとどめていませんね。カーレース愛好家がよくこういう間違いをするようです。
+
+
+・・・あれ、頭文字がパとピとコ・・なんかおいしそう・・
+そうか！だからあのアイスは冗長化構成になっているのか！
+
+片方を落としてもまだもう一つある安心感・・HAクラスタに通ずるものがありますね。
+
+
+というわけで、本年度もPacemaker(ペースメーカー)によるHAクラスタをご愛顧ください。

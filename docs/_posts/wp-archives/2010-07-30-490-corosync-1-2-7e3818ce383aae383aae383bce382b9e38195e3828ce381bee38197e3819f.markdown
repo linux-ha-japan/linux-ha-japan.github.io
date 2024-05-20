@@ -1,0 +1,30 @@
+---
+author: t-matsuo
+comments: false
+date: 2010-07-30 00:33:25+00:00
+layout: post
+permalink: /wp/archives/490
+slug: corosync-1-2-7%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%be%e3%81%97%e3%81%9f
+title: corosync 1.2.7がリリースされました
+wordpress_id: 490
+categories:
+- ニュース
+- リリース情報
+tags:
+- corosync
+- リリース情報
+---
+
+2010-07-28に、本家にてcorosync 1.2.7がリリースされました。
+
+
+
+
+
+以下よりソースコードのダウンロードができます。
+
+
+
+
+
+[Corosync.org  [releases]](http://www.corosync.org/doku.php?id=releases)

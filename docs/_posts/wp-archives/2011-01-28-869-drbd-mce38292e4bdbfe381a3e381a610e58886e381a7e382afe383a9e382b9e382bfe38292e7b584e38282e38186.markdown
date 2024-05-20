@@ -1,0 +1,137 @@
+---
+author: minky
+comments: false
+date: 2011-01-28 01:24:52+00:00
+layout: post
+permalink: /wp/archives/869
+slug: drbd-mc%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a610%e5%88%86%e3%81%a7%e3%82%af%e3%83%a9%e3%82%b9%e3%82%bf%e3%82%92%e7%b5%84%e3%82%82%e3%81%86
+title: DRBD-MCを使って10分でクラスタを組もう(動画デモ)
+wordpress_id: 869
+categories:
+- 読み物
+tags:
+- DRBD
+- DRBD-MC
+- pacemaker
+---
+
+ＤＲＢＤ－ＭＣと言うＧＵＩツールがあります。
+
+
+
+
+
+※参考：
+
+
+
+
+
+# [Linux-HAをGUIで管理「DRBD Management Console」](Linux-HAをGUIで管理「DRBD Management Console」)
+
+
+
+
+
+これを使って、サーバー２台でDRBD+Pacemaker クラスタを実際に１０分と少しで、構築してみました。
+
+
+
+
+
+動画は、ころちゃんが案内してくれますよ。
+
+
+
+
+
+
+
+
+
+
+
+
+
+画像が小さいと思われる場合、こちらで：HDなので、文字もきちんとみれます。
+
+
+
+
+
+[http://www.youtube.com/watch?v=FXgTBjkR9vA](http://www.youtube.com/watch?v=FXgTBjkR9vA)
+
+
+
+
+
+  
+
+
+
+
+
+
+デモは、仮想環境上で実施していますが、だいたい、こんな構成です。
+
+
+
+
+
+OS:CentOS5.5　最新版
+
+
+
+
+
+DISK：40GB 　事前に、20GBのroot、4GBのSWAPと、16GBの空白ボリューム
+
+
+
+
+
+（FDISKを忘れずに）
+
+
+
+
+
+NIC：3ポート　（うち2ポートはインターコネクト用）
+
+
+
+
+
+DRBD-MC  0.8.12 　（[http://oss.linbit.com/drbd-mc/](http://oss.linbit.com/drbd-mc/) よりダウンロードしてください）
+
+
+
+
+
+Oracle Java およびそれの動作する環境（本デモでは、Windows7上で実施しています）
+
+
+
+
+
+  
+
+
+
+
+
+
+本家Linbitの構築デモ（英語）　[Using DRBDMC to create a DRBD/Pacemaker cluster](http://www.youtube.com/watch?v=d0jXgrtkVJ4)
+
+
+
+
+
+  
+
+
+
+
+
+
+翻訳協力　：　伊藤 正宏　（スタジオブックマーク）

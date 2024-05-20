@@ -1,0 +1,57 @@
+---
+author: t-matsuo
+comments: false
+date: 2010-09-14 00:35:16+00:00
+layout: post
+permalink: /wp/archives/604
+slug: osc2010tokyofall-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2010 Tokyo/Fall セミナー資料公開
+wordpress_id: 604
+categories:
+- イベント情報
+- 読み物
+tags:
+- OSC
+- pacemaker
+---
+
+無事OSC 2010 Tokyo/Fall を終えました。ご来場ありがとうございました。
+
+
+
+
+
+今回は多くの人にPacemakerをより知ってもらおうと、HAクラスタという地味な分野にもかかわらずPacemakerネタだけで2セッションも講演させていただきました。興味持って聞いてくださった方ありがとうございました。
+
+
+
+
+
+早速ですが、[オープンソースカンファレンス2010 Tokyo/Fall](http://www.ospn.jp/osc2010-fall/) で行ったセミナーのスライドを公開いたします。
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+  * 2010/09/10  [Pacemakerを使いこなそう！～HAクラスタで止まらないサービスを～ (松尾 隆利) ](//wp/?attachment_id=605)
+
+	
+    * スプリットブレイン・クォーラム・STONITH 等
+
+
+
+
+	
+  * 2010/09/11  [挑戦！Pacemakerで自由自在にHAクラスタリング(田中 崇幸)](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2010TokyoFall_20100911/ja/1/Pacemaker_OSC2010TokyoFall_20100911.pdf)
+
+
+

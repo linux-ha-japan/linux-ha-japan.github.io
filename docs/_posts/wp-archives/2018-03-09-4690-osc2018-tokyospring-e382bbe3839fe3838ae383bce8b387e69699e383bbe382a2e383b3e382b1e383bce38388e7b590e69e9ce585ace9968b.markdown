@@ -1,0 +1,43 @@
+---
+author: takeshita
+comments: false
+date: 2018-03-09 08:26:49+00:00
+layout: post
+permalink: /wp/archives/4690
+slug: osc2018-tokyospring-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2018 Tokyo/Spring セミナー資料・アンケート結果公開
+wordpress_id: 4690
+categories:
+- イベント情報
+- 読み物
+---
+
+2018年2月23日(金)、24日(土)に明星大学にて開催された[オープンソースカンファレンス2018 Tokyo/Spring](https://www.ospn.jp/osc2018-spring/)へ、ブース展示及びセミナーで参加させていただきました。
+
+当日のセミナー資料を以下で公開いたします。
+
+セミナープログラム:
+
+
+
+	
+  * 2018-02-24 (土) 14時00分 [PG-REX(Pacemaker + PostgreSQLによるシェアードナッシングHA構成)発展編 〜マルチシンクレプリケーションで3重化〜 ](https://www.ospn.jp/osc2018-spring/modules/eguide/event.php?eid=13)
+
+
+**セミナー資料:**
+
+
+
+	
+  * [PG-REX 発展編 〜マルチシンクレプリケーションで3重化〜(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2018_Tokyo_Spring.pdf)
+
+
+また、展示ブースにもたくさんの方にお立ち寄りいただきありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします(回答者計31名)。
+[![OSC2018_Tokyo_Spring_Q1](/assets/images/wp-content/tokyo_spring1.png)](/assets/images/wp-content/tokyo_spring1.png)
+[![OSC2018_Tokyo_Spring_Q2](/assets/images/wp-content/tokyo_spring2.png)](/assets/images/wp-content/tokyo_spring2.png)
+[![OSC2018_Tokyo_Spring_Q3](/assets/images/wp-content/tokyo_spring3.png)](/assets/images/wp-content/tokyo_spring3.png)
+[![OSC2018_Tokyo_Spring_Q4](/assets/images/wp-content/tokyo_spring4.png)](/assets/images/wp-content/tokyo_spring4.png)
+[![OSC2018_Tokyo_Spring_Q5](/assets/images/wp-content/tokyo_spring5.png)](/assets/images/wp-content/tokyo_spring5.png)
+[![OSC2018_Tokyo_Spring_Q6](/assets/images/wp-content/tokyo_spring6.png)](/assets/images/wp-content/tokyo_spring6.png)
+[![OSC2018_Tokyo_Spring_Q7](/assets/images/wp-content/tokyo_spring7.png)](/assets/images/wp-content/tokyo_spring7.png)
+[![OSC2018_Tokyo_Spring_Q8](/assets/images/wp-content/tokyo_spring8.png)](/assets/images/wp-content/tokyo_spring8.png)

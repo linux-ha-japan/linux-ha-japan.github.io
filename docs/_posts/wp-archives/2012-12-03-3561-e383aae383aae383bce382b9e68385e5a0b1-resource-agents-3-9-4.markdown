@@ -1,0 +1,423 @@
+---
+author: ikedaj
+comments: false
+date: 2012-12-03 01:47:28+00:00
+layout: post
+permalink: /wp/archives/3561
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-resource-agents-3-9-4'
+title: リリース情報 (resource-agents 3.9.4)
+wordpress_id: 3561
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年11月22日に resource-agents 3.9.4 が[リリース](http://lists.linuxfoundation.org/pipermail/ha-wg-technical/2012-November/000289.html)されました！
+
+今回リリースされたバージョンの注目点、以前のバージョンからの変更点などをご紹介します。
+
+
+<blockquote>
+
+> 
+> 
+
+>   * ocf-rarun: support for resource agents, reduces code complexity and number of software errors
+> 
+
+>   * zabbixserver: new resource agent
+> 
+
+>   * IPaddr2: partial rewrite and support for IPv6
+> 
+
+>   * iscsi: support for auto recovery and performance improvements
+> 
+
+>   * mysql-proxy: numerous improvements, features, and fixes
+> 
+
+>   * Raid1: support for multiple arrays (configured in parameters)
+> 
+
+>   * tools: replace the findif binary by findif.sh
+> 
+
+>   * Raid1 ocft test case
+> 
+
+</blockquote>
+
+
+
+
+<blockquote>
+
+> 
+> 
+
+>   * ocf-rarun: ocf-rarunという新しいスクリプトが追加されました。
+> 
+
+>   * zabbixserver: zabbixserver用のRAが新規に追加されました。
+> 
+
+>   * IPaddr2: LVSによる負荷分散構成でのIPv6に対応しました。
+> 
+
+>   * iscsi: オートリカバリのサポートとパフォーマンスの改善が取り込まれました。
+> 
+
+>   * mysql-proxy: 機能追加およびバグ修正が数多く取り込まれています。
+> 
+
+>   * Raid1: 複数のアレイで構成された環境に対応しました(構成情報をパラメータとして設定することができます)。
+> 
+
+>   * tools: findif.sh(スクリプト)から呼び出されている findif(バイナリ)を変更しました。
+> 
+
+>   * Raid1 関連のテストケース(ocft)が追加されました。
+> 
+
+</blockquote>
+
+
+
+ocf-rarunについては次のページで使い方をご紹介します。
+
+リリースノートに記載されていた変更点以外にもちょっと気になったのが、こちらのチェンジセット。
+
+
+
+
+  * [Medium: oracle: connect as a regular user in monitor](https://github.com/ClusterLabs/resource-agents/commit/989430c43753aa592248fdb997af406d14f6339f)
+
+
+
+<blockquote>
+very connection as sysdba is logged in an audit log. This can result in a large number of new files created. A new user named OCFMON is created (if it doesn't exist) in the start action and subsequently used in monitor. It has very limited rights.
+</blockquote>
+
+
+
+
+
+  
+  * 3.9.3までの動作
+
+    
+    * sysユーザを使用し sysdba権限で接続および監視処理を実行します。
+
+
+
+
+  
+  * 3.9.4以降の動作
+
+    
+    * 監視処理専用のOCFMONユーザで接続および監視処理を実行します。
+    
+    * OCFMONユーザが存在しない場合は、RAのstart処理実行時に自動的に作成されます。ただしstop処理時に削除はされません。
+
+
+
+動作に変更はありませんが、監視処理を実行するユーザが変更となっています。OCFMONというユーザが勝手に作成されちゃいますがびっくりしないでください。oracle RAを実行中にOCFMONユーザを削除してしまうと、監視処理がエラーとなるので注意が必要です。
+
+
+
+<blockquote>
+The full list of changes for the linux-ha RA set is available in ChangeLog
+(https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog)
+</blockquote>
+
+
+
+
+<blockquote>
+今回のリリースに含まれるすべてのチェンジログはこちらを[参照](https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog)してください。
+</blockquote>
+
+
+
+
+<blockquote>
+The rgmanager resource agents set received mainly bug fixes.
+Please upgrade at the earliest opportunity.
+</blockquote>
+
+
+
+
+<blockquote>
+resource-agentsのパッケージには、Pacemaker/Heartbeat用のリソースエージェント(Resource Agent:RA)だけではなく、Red Hat Cluster Suiteに含まれるrgmanager用のRAも含まれています。
+rgmanager RAにも[いくつか修正](https://github.com/ClusterLabs/resource-agents/commits/master/rgmanager/src/resources)が取り込まれていますので、できるだけ早くアップグレードすることをおすすめします。
+</blockquote>
+
+
+  
+
+では次のページでocf-rarunスクリプトの使い方をご紹介します。
+
+
+
+
+**ocf-rarunスクリプトの使い方**
+
+
+
+とりあえずパッケージをインストールしちゃいます。
+
+    
+    
+    <code>
+    # git clone http://github.com/ClusterLabs/resource-agents.git
+    # cd resource-agents/
+    # ./autogen.sh
+    # ./configure --prefix=/usr --libdir=/usr/lib64 --sysconfdir=/etc --localstatedir=/var
+    # make install</code>
+
+
+
+そして、いよいよocf-rarunの出番。今回は、sample RAという動作確認用のRAを作成してみます。
+
+    
+    
+    <code>
+    # cd /usr/lib/ocf/resource.d/pacemaker/
+    # vim sample</code>
+
+
+
+    
+    
+    <code>
+    #!/bin/sh
+    #
+    #
+    #   sample OCF RA
+    
+    #######################################################################
+    # Initialization:
+    
+    : ${OCF_FUNCTIONS_DIR=${OCF_ROOT}/lib/heartbeat}
+    . ${OCF_FUNCTIONS_DIR}/ocf-shellfuncs
+    
+    #######################################################################
+    
+    sample_start() {
+            ocf_log debug start
+            echo `date` > ${OCF_RESKEY_state}
+            return $OCF_SUCCESS
+    }
+    
+    sample_stop() {
+            ocf_log debug stop
+            rm -f ${OCF_RESKEY_state}
+            return $OCF_SUCCESS
+    }
+    
+    sample_monitor() {
+            msg=`cat ${OCF_RESKEY_state}`
+            ocf_log debug $msg
+            return $OCF_SUCCESS
+    }
+    
+    sample_validate_all() {
+            ocf_log debug validate_all
+            return $OCF_SUCCESS
+    }
+    
+    
+    #######################################################################
+    # main
+    
+    : ${OCF_RESKEY_state=${HA_VARRUN}/sample-${OCF_RESOURCE_INSTANCE}.state}
+    
+    <p style="text-align: left;"><strong><span style="color: #008000;">ocf_rarun $*</span></strong></p></code>
+
+
+
+ocf_rarunは一番最後の行にご登場。
+sample RAがなにやってるかっていうと、実はなにもやってません＼(^o^)／
+
+
+
+
+  * start
+
+  
+    * ステータスファイルを作成します。
+
+  
+    * ステータスファイルに処理が実行された日時を書き込みます。
+
+  
+    * $OCF_SUCCESSを返します。
+
+  
+    * ホントはリソースの開始処理を実行する関数です(リソースの開始処理に失敗したら$OCF_ERR_GENERICを返さなくてはいけません)。
+
+
+
+  * stop
+
+  
+    * ステータスファイルを削除します。
+
+  
+    * $OCF_SUCCESSを返します。
+
+  
+    * ホントはリソースの停止処理を実行する関数です(リソースの停止処理に失敗したら$OCF_ERR_GENERICを返さなくてはいけません)。
+
+
+
+  * monitor
+
+  
+    * ステータスファイルの内容をログに出力します。
+
+  
+    * $OCF_SUCCESSを返します
+
+  
+    * ホントはリソースの実行状況を確認する関数です(リソースが停止していたら$OCF_ERR_GENERICを返さなくてはいけません)。
+
+
+
+  * validate_all
+
+  
+    * $OCF_SUCCESSを返します。
+
+  
+    * ホントは環境変数がちゃんと設定されているかどうかなどを確認する関数です。
+
+
+
+
+まあ他にもイロイロありまして、「startが呼び出されたとき、すでにリソースが実行中だった場合はなにもしない」とかそのへんもちゃんと作りこんであげる必要がありますが、今回はそのへんすっとばかしてます。実際にRAを作成する場合は既存のRAにどのような処理が実装されているのかを調べてみてください。
+では、いよいよsample RAに実行権限をば！
+
+    
+    
+    <code>
+    # chmod +x sample</code>
+
+
+よし！実行！
+
+    
+    
+    <code>
+    # ./sample
+    ./sample: line 10: /lib/heartbeat/ocf-shellfuncs: No such file or directory</code>
+
+
+おこられた。。。
+Pacemakerから実行するときはちゃんと環境変数が設定されてるんですけどね、手動実行だとココよくおこられます。
+というわけで、環境変数も設定してあげましょう。
+
+    
+    
+    <code>
+    # export OCF_ROOT=/usr/lib/ocf</code>
+
+
+よっしゃーやるでー
+
+    
+    
+    <code>
+    # ./sample
+    ERROR: : action not supported</code>
+
+
+またおこられた。。。と思ったけど、これはocf-rarunが吐いてるログ！キタコレ！
+ocf-rarunの御神託に従って、ちゃんと action(処理名というか関数名というか) を引数に与えてみます！
+
+    
+    
+    <code>
+    # ./sample start
+    DEBUG: validate_all
+    DEBUG: start</code>
+
+
+やったー。
+sample RAのstart処理が実行されました！
+validate_all処理も実行されてますけど、これはいつも呼び出されるやつ(環境変数とかチェックしてるとこだから)なので、問題なし、というか期待通りの動作です。
+ステータスファイルもちゃんと作成されてますね。
+
+    
+    
+    <code>
+    # ls -l /var/run/sample-default.state
+    -rw-r--r-- 1 root root 28 Dec  3 10:33 /var/run/sample-default.state
+    
+    # cat /tmp/sample.state
+    Mon Dec 3 10:33:20 JST 2012</code>
+
+
+今度はmonitor処理を実行してみましょう。
+
+    
+    
+    <code>
+    # ./sample monitor
+    DEBUG: validate_all
+    DEBUG: Mon Dec 3 10:33:20 JST 2012</code>
+
+
+ふむふむ。ステータスファイルの中身が出力されましたね。
+では、最後にstop処理を実行します。
+
+    
+    
+    <code>
+    # ./sample stop
+    DEBUG: validate_all
+    DEBUG: stop
+    
+    # !ls
+    ls -l /var/run/sample-default.state
+    ls: cannot access /var/run/sample-default.state: No such file or directory</code>
+
+
+ステータスファイルは削除されています。っていうかそうなるようにRAつくったから、そうなって当然なんだけどね。
+
+今回、かなりの簡易版でしたが、ocf-rarunの使い方はなんとなく雰囲気わかっていただけたでしょうか。
+例えば、既存のDummy RAを見てみると、スクリプトのお尻のほう、こんな感じですよね。
+
+    
+    
+    <code>
+    case $__OCF_ACTION in
+    meta-data)      meta_data
+                    exit $OCF_SUCCESS
+                    ;;
+    start)          dummy_start;;
+    stop)           dummy_stop;;
+    monitor)        dummy_monitor;;
+    migrate_to)     ocf_log info "Migrating ${OCF_RESOURCE_INSTANCE} to ${OCF_RESKEY_CRM_meta_migrate_to}."
+                    dummy_stop
+                    ;;
+    migrate_from)   ocf_log info "Migrating ${OCF_RESOURCE_INSTANCE} to ${OCF_RESKEY_CRM_meta_migrated_from}."
+                    dummy_start
+                    ;;
+    reload)         ocf_log err "Reloading..."
+                    dummy_start
+                    ;;
+    validate-all)   dummy_validate;;
+    usage|help)     dummy_usage
+                    exit $OCF_SUCCESS
+                    ;;
+    *)              dummy_usage
+                    exit $OCF_ERR_UNIMPLEMENTED
+                    ;;</code>
+
+
+いや、なんかさ、そんな大したことしてるわけじゃないんだけどさ、なんかこう、うざいじゃないですか。
+このへん、ocf-rarunでガツンとまとめてくれてるので、新しくRA作るときは便利だと思います。

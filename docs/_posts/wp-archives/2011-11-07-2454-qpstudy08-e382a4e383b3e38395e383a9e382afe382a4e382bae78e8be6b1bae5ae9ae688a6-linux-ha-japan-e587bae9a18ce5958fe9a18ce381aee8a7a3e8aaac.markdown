@@ -1,0 +1,336 @@
+---
+author: ikedaj
+comments: false
+date: 2011-11-07 09:41:34+00:00
+layout: post
+permalink: /wp/archives/2454
+slug: qpstudy08-%e3%82%a4%e3%83%b3%e3%83%95%e3%83%a9%e3%82%af%e3%82%a4%e3%82%ba%e7%8e%8b%e6%b1%ba%e5%ae%9a%e6%88%a6-linux-ha-japan-%e5%87%ba%e9%a1%8c%e5%95%8f%e9%a1%8c%e3%81%ae%e8%a7%a3%e8%aa%ac
+title: qpstudy08 インフラクイズ王決定戦 Linux-HA Japan 出題問題の解説
+wordpress_id: 2454
+categories:
+- その他
+---
+
+10月22日(土)に開催された[qpstudy08](https://sites.google.com/site/qpstudy/qpstudy08)に参加された皆様、大変お疲れ様でございました。
+開始早々に試験問題を配布されるというその恐怖、心中お察しいたします。
+
+試験問題および解答の公開から間が空いてしまったためかなりイマサラ感が漂ってますが
+Linux-HA Japanから出題させていただいた問題の解説を掲載いたします。
+問題と解答は[こちら](http://twitter.com/#!/qpstudy/status/128295347616358400)。
+togetterは[こちら](http://togetter.com/li/203931)。
+
+では、早速…
+
+ 
+
+**(24) Pacemakerクラスタの説明で誤っているものはどれか**
+
+(あ) 複数リソースの起動停止順序を制御する場合はgroupを使用する。
+(い) リソース間の依存関係を設定する場合はcolocationを使用する。
+(う) cloneに設定されたリソースが起動停止するタイミングは故障発生時も全ノードで常に同時である。
+(え) 初期起動時のリソースの配置先はlocationで指定する。
+(お) リソースの起動順序を指定する場合はorderを使用する。
+
+正解(う)
+
+えーっと、しょっぱなからアレですが、これはなんともいえないイジワル問題で、まじすまんかった。
+Pacemakerうんぬんよりも国語の問題でした。
+
+というわけで、cloneの動作を簡単な例で確認してみましょう。
+次の設定は2ノード構成のクラスタにcloneを配置しています。
+各ノードで1つずつcloneが起動します。
+
+clone.crm
+
+    
+    <span style="font-family: verdana,geneva;">property \
+     no-quorum-policy="ignore" \
+     stonith-enabled="false" \
+     startup-fencing="false" \
+     crmd-transition-delay="2s"
+    
+    rsc_defaults \
+     resource-stickiness="INFINITY" \
+     migration-threshold="1"
+    
+    clone clone01 \
+     dummy01 \
+     meta \
+     clone-max="2" \
+     clone-node-max="1"
+    
+    primitive dummy01 ocf:pacemaker:Dummy \
+     op start interval="0s" timeout="120s" on-fail="restart" \
+     op monitor interval="10s" timeout="120s" on-fail="restart" \
+     op stop interval="0s" timeout="120s" on-fail="block"</span>
+
+
+crm_monコマンドでリソースの起動状態を確認してみましょう。
+
+    
+    <span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1</strong></span>
+    ============
+    Last updated: Mon Nov  7 15:32:19 2011
+    Stack: Heartbeat
+    Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+    Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+    2 Nodes configured, unknown expected votes
+    1 Resources configured.
+    ============
+    
+    Online: [ node01 node02 ]
+    
+     Clone Set: clone01
+     Started: [ node01 node02 ]</span>
+
+
+crm_monコマンドに-nオプションをつけてみます。
+node01でdummy01:0、node02でdummy01:1が起動していることがわかりますね。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n</span></strong>
+    ============
+    Last updated: Mon Nov  7 15:32:37 2011
+    Stack: Heartbeat
+    Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+    Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+    2 Nodes configured, unknown expected votes
+    1 Resources configured.
+    ============
+    
+    Node node01 (11111111-1111-1111-1111-111111111111): online
+     dummy01:0       (ocf::pacemaker:Dummy) Started
+    Node node02 (22222222-2222-2222-2222-222222222222): online
+     dummy01:1       (ocf::pacemaker:Dummy) Started</span>
+
+
+cloneは<リソース名>:(コロン)<インスタンス番号>で区別されます。
+インスタンス番号はPacemakerが自動的に割り振ります。ユーザが指定することはできません。
+インスタンス番号によって、動作が異なるようなことはありません。
+
+DCノードでha-logを検索すると、次の順序でdummy01:1、dummy01:0が起動したことがわかります。
+※ match_graph_event関数のログはDCノードにしか出力されません。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># grep -R match_graph_event /var/log/ha-log</span></strong>
+    Nov  7 15:32:15 node02 crmd: [15471]: info: match_graph_event: Action dummy01:1_monitor_0 (6) confirmed on node02 (rc=0)
+    Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action dummy01:0_monitor_0 (4) confirmed on node01 (rc=0)
+    Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:1_start_0</span></strong> (9) confirmed on <strong><span style="color: #ff00ff;">node02</span></strong> (rc=0)
+    Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action dummy01:1_monitor_10000 (10) confirmed on node02 (rc=0)
+    Nov  7 15:32:17 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:0_start_0</span></strong> (7) confirmed on <strong><span style="color: #ff00ff;">node01 </span></strong>(rc=0)
+    Nov  7 15:32:18 node02 crmd: [15471]: info: match_graph_event: Action dummy01:0_monitor_10000 (8) confirmed on node01 (rc=0)</span>
+
+
+node01のclone(dummy01:0)を故障させます。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01:0 set node01 1</span></strong></span>
+
+
+node01のclone(dummy01:0)が停止したことを確認します。
+
+    
+    <span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1 -n -f</strong></span>
+    ============
+    Last updated: Mon Nov  7 15:36:38 2011
+    Stack: Heartbeat
+    Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+    Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+    2 Nodes configured, unknown expected votes
+    1 Resources configured.
+    ============
+    
+    Node node01 (11111111-1111-1111-1111-111111111111): online
+    Node node02 (22222222-2222-2222-2222-222222222222): online
+     dummy01:1       (ocf::pacemaker:Dummy) Started
+    
+    Migration summary:
+    * Node node02:
+    * Node node01:
+     <strong><span style="color: #ff00ff;">dummy01:0: migration-threshold=1 fail-count=1</span></strong></span>
+
+
+DCノードでha-logを検索すると、dummy01:0が停止したことがわかります。
+
+    
+    <span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># grep -R match_graph_event /var/log/ha-log</strong></span>
+    Nov  7 15:36:19 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:0_stop_0</span></strong> (7) confirmed on <strong><span style="color: #ff00ff;">node01 </span></strong>(rc=0)</span>
+
+
+ここで、node02で起動していたdummy01:1は停止しません。
+
+「(う) cloneに設定されたリソースが起動停止するタイミングは故障発生時も全ノードで常に同時である。」
+という文章は、node01でdummy01:0が故障したら、node02でdummy01:1も停止するよね！？
+という内容(のつもり)なので「誤り」。
+「誤っているものはどれか」という質問なので、正解は「う」です。
+ちょっと問題の意味がわかりづらかったかもしれませんが、他の4項目が「正しい」とわかれば、消去法で(う)が選べます。
+**(28) Pacemakerクラスタにおける、メッセージングレイヤーとクラスタマネージャの組み合わせで正しいものはどれか**
+
+(あ) メッセージングレイヤ：Heartbeat クラスタマネージャ：DRBD
+(い) メッセージングレイヤ：Corosync クラスタマネージャ：Heartbeat
+(う) メッセージングレイヤ：Pacemaker クラスタマネージャ：Heartbeat
+(え) メッセージングレイヤ：Corosync クラスタマネージャ：DRBD
+(お) メッセージングレイヤ：Heartbeat クラスタマネージャ：Pacemaker
+
+正解(お) 
+
+Heartbeat, Corosyncはメッセージングレイヤです。
+Pacemakerはクラスタマネージャです。
+DRBDはレプリケーションソフトウェアです。
+
+正しい組み合わせは「お」です。
+
+**
+(37) OCF(Open Cluster Framework)に順序したリソースエージェント(RA)の説明で誤っているものはどれか**
+
+(あ) Master/Slaveリソースには、promote/demote/remoteオペレーションを実装する必要がある。
+(い) シェルスクリプト以外にもPerl、PythonなどでRAを作成することができる。
+(う) OCFでは回復処理としてsoft/hard/fatalが定義されている。
+(え) start/stop/monitorオペレーションを実装する必要がある。
+(お) パラメータの有効性を検証するためにvalidate-allを実装する。
+
+正解(あ)
+
+Master/Slaveリソースには、promote/demote/**notify**オペレーションを実装する必要があります。
+これはかなり重箱のスミッコ問題なので、上級者向けの問題でした。
+
+
+**
+(39) HeartbeatとPacemakerを組み合わせた構成では複数のプロセスが起動するが、次のうち該当しないものはどれか**
+
+(あ) crmd
+(い) attrd
+(う) lrmd
+(え) ccm
+(お) pacemakerd
+
+正解(お) 
+
+pacemakerdというプロセスは存在しません。
+
+HeartbeatとPacemakerを組み合わせた構成でpgrepコマンドを実行してみます。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># pgrep -lf heartbeat</span></strong>
+    15458 heartbeat: master control process    ← Heartbeatの親プロセス(通称MCP)
+    15461 heartbeat: FIFO reader        ← FIFOプロセス
+    15462 heartbeat: write: bcast eth1    ← ハートビート通信用のプロセス
+    15463 heartbeat: read: bcast eth1    ← ハートビート通信用のプロセス
+    15466 /usr/lib64/heartbeat/ccm        ← Consensus Cluster Membership(クラスタのメンバシップを管理する)
+    15467 /usr/lib64/heartbeat/cib        ← Cluster Information Base(クラスタの状態を保管する)
+    15468 /usr/lib64/heartbeat/lrmd -r    ← Local Resource Management Daemon(リソースを制御する)
+    15469 /usr/lib64/heartbeat/stonithd    ← フェンシングを実行するデーモン
+    15470 /usr/lib64/heartbeat/attrd    ← 属性値の更新/削除を実行するデーモン
+    15471 /usr/lib64/heartbeat/crmd        ← Cluster Resource Management Daemon(クラスタの状態遷移を管理する)
+    15472 /usr/lib64/heartbeat/ifcheckd    ← インターコネクトLAN状態確認デーモン
+    15476 /usr/lib64/heartbeat/pengine    ← Policy Engine(クラスタの状態遷移図を作成する)</span>
+
+
+※ pengineプロセスはDCノードでのみ起動します。
+※ ifcheckdはLinux-HA Japanプロジェクトから提供されている**pm_extras(拡張リソースエージェント・プラグイン)**に含まれています。
+[/wp/dl/packages](/wp/dl/packages)
+[http://sourceforge.jp/projects/linux-ha/releases/52219](http://sourceforge.jp/projects/linux-ha/releases/52219)
+
+参考資料(Clustrelabs Architecture)
+[http://www.clusterlabs.org/wiki/Architecture#Supported_Cluster_Stacks](http://www.clusterlabs.org/wiki/Architecture#Supported_Cluster_Stacks)
+
+**
+(42) 次の信頼性に関する用語の説明で誤っているものはどれか**
+
+(あ) 稼働率は平均故障間隔/平均修復時間で求めることができる。
+(い) 平均故障間隔とは故障から次の故障までの平均的な間隔である。
+(う) 平均修復時間とはあるシステムに障害が発生してから修復が完了するまでの時間の平均値である。
+(え) 故障率は平均故障間隔の逆数で求めることができる。
+(お) 平均故障間隔はシステムの稼動時間/故障回数で求めることができる。
+
+正解(あ)
+
+稼働率は平均故障間隔/(**平均故障間隔**+平均修復時間)で求めることができます。
+めっさ[IPA](http://www.jitec.ipa.go.jp/)っぽい問題でした。
+
+**
+(48) Pacemakerの設定で誤っているものはどれか**
+
+(あ) failure-timeoutには、リソースが故障した後、自動的に故障回数を削除するまでの秒数を設定する。
+(い) target-roleに設定可能な値は、Started/Stopped/Masterのいずれかである。
+(う) resource-stickinessは、rsc_defaultsでデフォルト値を設定することができる。
+(え) migration-thresholdで、ノードの故障回数を設定することができる。
+(お) multiple-activeで、リソースが二重起動した場合の動作を定義することができる。
+
+正解(え)
+
+これもかなり国語問題です。
+migration-thresholdで、**リソース**の故障回数を設定することができます。
+
+問(48)は、プリミティブリソースの設定に関連する問題ですが、[こちら](http://www.clusterlabs.org/doc/en-US/Pacemaker/1.1/html/Pacemaker_Explained/s-resource-options.html)を参考に問題を作成しました。
+
+で、
+(い) target-roleに設定可能な値は、Started/Stopped/Masterのいずれかである。
+なんですが、target-role="Slave"も動作可能でした！
+なので、「target-roleに設定可能な値は、Started/Stopped/Master/Slaveのはずだから、
+"いずれか"っていうのはおかしいよなあ」と思って(い)を選んだ人も正解！
+**(50) Pacemakerクラスタにおいて、STONITHプラグインが含まれるコンポーネントはどれか**
+
+(あ) heartbeat
+(い) corosync
+(う) resource-agents
+(え) pacemaker
+(お) cluster-glue
+
+正解(お) 
+
+cluster-glueには、STONITH関連のモジュールやプラグイン、lrmd、その他ライブラリが含まれています。
+STONITHは可能な限り設定したほうがよいですがあくまでオプションなので、消去法で(あ)(い)(え)を削除します。
+(う) resource-agents か (お) cluster-glue で迷うところですが
+サービスを提供する**リソース**を管理するためのリソースエージェント(RA)が含まれるのが(う)というところにたどりつければ
+STONITH関連は(お)、と選べるかも？
+
+
+
+
+
+
+
+ちょっと裏話をさせていただくと、qpstudyさんから「今度クイズ大会するので問題のご提供お願いします！」と
+ご連絡いただいたのが9月の最終週、つまりqpstudy08の一ヶ月くらい前ですね。
+「難易度は初級8-10問、中級6-8問、上級5問、選択肢5択の択一問題を全部で20問程度作成していただけないでしょうか」と
+いうことだったので、@tsukishima_ha がマジメ問題15問、@minky0 さんがネタ問題5問くらいを作成して
+返信させていただいています。
+っていうかね、まずこの段階で難易度がスルーされてるからね、スタッフさん、すまんね！まじで！
+勝手にマジメ問題、ネタ問題でカテゴライズすんなっつー話ですよね。
+(もしかしたら、@minky0 さんが難易度も追加して返信してくれたかもしんない。そのへん未確認)
+あとですねー、こちらが空気読めてなかったせいで、[IPA](http://www.jitec.ipa.go.jp/)の試験に出題されるような
+長文の選択問題を多めにつくっちゃったんですよ…。
+でも、試験用紙にはそんな長文用のスペースないよね…。
+あと、長文読み込むほど試験時間に余裕ないよね…。
+というわけで、20問返信してみたものの使える問題がかなり限定されていたと思います。
+スタッフの皆様、ご苦労をおかけいたしましてホント申し訳ありませんでした。
+
+当日参加された方のブログなどを読ませていただくと、「出題が偏っている」という意見がほとんどでしたが
+確かにLinux-HA Japanからの出題問題は偏りっぷりが半端ありませんでした。
+「こんなのしるか！」と不快に思われた方がいらっしゃいましたら、大変申し訳ありませんでした。
+
+ちなみに、私も問題を解いてみました。
+ちょっとずるいですが、自分で出した問題(7問)も含めて17問正解でした。
+50問中、半分もわからんのか…。ちょっとショック。
+以前、IBMの関連会社(しかもPOWER専門)にいたので、AIX関連の問題はまあわかるかなあ。
+AIX 4.3時代にシステム管理ナントカの資格、とったもんね！当時CD-ROMのセットが10枚近くあったよね！
+5Lから、ペンギンのついたCD-ROMがまざってきたのが懐かしい。
+今はもうv7なんだねえ。
+で、話はかわってZabbixですが、これもネタ問題は勘でなんとか。
+そういや、Linux-HA Japanのネタ問題がなかったけど？
+うち、ネタには困ってないと思うんだけど？？
+出題の仕方がちょっと特殊すぎたとかそんなでナントカ禁止用語にひっかかったんですかね。
+すいませんねー、ほんとにー。
+あー、で、Amazon Web Servicesの問題は全滅でした。
+Solaris関連もハズレ率高し。
+HPのDLシリーズはしょっちゅうアレイ組みなおしてるから、青く光ったりするのもう見飽きてるんだぜ！ちくしょー。
+Alaxalaには変な愛着があるんだが、すまん、わからんやった。
+
+まあ、そんなこんなで「インフラ」と一言でいっても人によってイメージはいろいろですね。
+今回の試験問題は確かに偏っているかもしれませんが
+ほー、こんな製品があるんだねえ、とかこんな設定があるんだねえ、とかいうのを体験しただけでも儲けもんだと思います。
+「試験」という緊張状態で体験した「記憶」はきっと忘れにくいはず。
+異常な緊張状態の中で二回戦に出場された方々、そして見事に優勝された方、おめでとうございます！
+今回は空気読めてませんでしたが、次回(あるのか？)は @minky0 さんが全力でネタ問題を
+ぶっぱなしてくれるはずなので乞うご期待！

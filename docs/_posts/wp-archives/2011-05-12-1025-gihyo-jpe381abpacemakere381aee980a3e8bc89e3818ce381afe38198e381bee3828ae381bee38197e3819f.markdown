@@ -1,0 +1,92 @@
+---
+author: takayukitanaka
+comments: false
+date: 2011-05-12 04:30:05+00:00
+layout: post
+permalink: /wp/archives/1025
+slug: gihyo-jp%e3%81%abpacemaker%e3%81%ae%e9%80%a3%e8%bc%89%e3%81%8c%e3%81%af%e3%81%98%e3%81%be%e3%82%8a%e3%81%be%e3%81%97%e3%81%9f
+title: gihyo.jpにPacemaker記事連載しました！（全5回で公開中）
+wordpress_id: 1025
+categories:
+- ニュース
+---
+
+[gihyo.jp](http://gihyo.jp/) に[「Pacemakerでかんたんクラスタリング体験しみよう！」](http://gihyo.jp/admin/serial/01/pacemaker)というタイトルの記事を連載しました。
+
+合計5回で、Pacemakerの概要説明から構築方法、保守運用にいたるまで紹介しています。
+
+[![](/assets/images/wp-content/pm003.png)](http://gihyo.jp/admin/serial/01/pacemaker)
+
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+	
+  * 第1回 「Pacemakerの歴史を見てみよう！」 （概要編） 3/18公開
+
+
+
+
+[http://gihyo.jp/admin/serial/01/pacemaker/0001](http://gihyo.jp/admin/serial/01/pacemaker/0001)
+
+
+
+
+
+
+	
+  * 第2回 「Pacemakerをインストールしてみよう！」 （基本構築編） 3/31公開 ** **
+
+
+
+
+[http://gihyo.jp/admin/serial/01/pacemaker/0002](http://gihyo.jp/admin/serial/01/pacemaker/0002)
+
+
+
+
+
+
+	
+  * 第3回 「Pacemakerでいろいろ設定してみよう！」 （構築応用編） 4/14公開** **
+
+
+
+
+[http://gihyo.jp/admin/serial/01/pacemaker/0003](http://gihyo.jp/admin/serial/01/pacemaker/0003)
+
+
+
+
+
+
+	
+  * 第4回 「Pacemakerを運用してみよう！」 （保守運用編[1]） 4/28公開 ** **
+
+
+
+
+[http://gihyo.jp/admin/serial/01/pacemaker/0004](http://gihyo.jp/admin/serial/01/pacemaker/0004)
+
+
+
+
+
+
+	
+  * 第5回 「Pacemakerを運用してみよう！」 （保守運用編[2]） 5/12公開****
+
+
+
+
+[http://gihyo.jp/admin/serial/01/pacemaker/0005](http://gihyo.jp/admin/serial/01/pacemaker/0005)

@@ -1,0 +1,74 @@
+---
+author: ttakafuji
+comments: false
+date: 2021-11-04 06:45:03+00:00
+layout: post
+permalink: /wp/archives/5019
+slug: osc2021-online-fall-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2021 Online/Fall セミナー資料公開
+wordpress_id: 5019
+categories:
+- イベント情報
+- 読み物
+---
+
+
+
+
+2021年10月22日(金)、23日(土)にオンラインで開催されたオープンソースカンファレンス2021 Online/Fallにおいてセミナーで参加させていただきました。
+
+
+
+
+
+
+
+たくさんの方にお越しいただき、ありがとうございました。
+
+
+
+
+
+
+
+当日のセミナー資料を以下で公開いたします。 
+
+
+
+
+
+
+
+**セミナープログラム**
+
+
+
+
+
+
+
+  * 2021年10月22日(金) 15:00 〜 15:45  
+[Pacemaker と HAProxy で始める高可用ロードバランサ入門](https://event.ospn.jp/osc2021-online-fall/session/447794)
+
+
+
+
+
+
+**セミナー資料**
+
+
+
+
+
+
+
+  * [PacemakerとHAProxyではじめる高可用ロードバランサ入門 (PDF)]({{ site.lhajp_resources_url }}/wp-content/LinuxHAJapan-OSC2021OnlineFall-20211022.pdf)
+
+
+
+
+
+
+
+

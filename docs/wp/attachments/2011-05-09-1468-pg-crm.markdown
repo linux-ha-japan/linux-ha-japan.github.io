@@ -1,0 +1,16 @@
+---
+attachment_url: /wp/wp-content/uploads/pg.crm_.txt
+author: kmii
+comments: false
+date: 2011-05-09 12:09:49+00:00
+excerpt: crmコマンド用リソース定義ファイル
+layout: post
+permalink: /wp/archives/1465/pg-crm
+slug: pg-crm
+title: pg.crm
+wordpress_id: 1468
+---
+
+### [pg.crm]({{ site.lhajp_resources_url }}/wp-content/pg.crm_.txt)
+
+crmコマンド用リソース定義ファイル

@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/linux-ha.png
+author: bellche
+comments: false
+date: 2010-07-01 02:40:06+00:00
+layout: post
+permalink: /wp/archives/347/linux-ha
+slug: linux-ha
+title: 缶バッヂ_かよ
+wordpress_id: 365
+---
+
+### [缶バッヂ_かよ](/assets/images/wp-content/linux-ha.png)

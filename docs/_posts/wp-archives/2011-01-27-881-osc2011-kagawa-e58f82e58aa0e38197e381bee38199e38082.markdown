@@ -1,0 +1,151 @@
+---
+author: minky
+comments: false
+date: 2011-01-27 12:03:19+00:00
+layout: post
+permalink: /wp/archives/881
+slug: osc2011-kagawa-%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%be%e3%81%99%e3%80%82
+title: OSC2011 Kagawa 参加します。
+wordpress_id: 881
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+Linux-HA Japan Projectでは、２月５日（土）に香川県高松市で開催されます、
+
+
+
+
+
+オープンソースカンファレンス香川に参加いたします。
+
+
+
+
+
+  
+
+
+
+
+
+
+10:00～10:45　[Pacemakerって何？　～あなたもできる、簡単高信頼システムの構築～](http://www.ospn.jp/osc2011-kagawa/modules/eguide/event.php?eid=13)
+
+
+
+
+
+と言うタイトルで講演いたします。
+
+
+
+
+
+お近くの方で、Pacemakerクラスタにご興味のある方、是非お越しください。
+
+
+
+
+
+また、Ustreamの中継もあるようですので、お越し頂けない方は、ご覧頂ければと存じます。
+
+
+
+
+
+[http://www.ustream.tv/channel/osc11kg3](http://www.ustream.tv/channel/osc11kg3)
+
+
+
+
+
+Twitter ハッシュタグ #osc11kg3
+
+
+
+
+
+  
+
+
+
+
+
+
+詳しくは、オープンソースカンファレンス香川のページをごらんください。
+
+
+
+
+
+[http://www.ospn.jp/osc2011-kagawa/](http://www.ospn.jp/osc2011-kagawa/)
+
+
+
+
+
+  
+
+
+
+
+
+
+----
+
+
+
+
+
+**日程**：2011年2月5日(土)10:00-18:00  (9:45受付開始)
+
+
+
+
+
+**会場**：サンポートホール高松 ホール棟１F  市民ギャラリー（受付・セミナー）  
+
+ タワー棟 4F/5F  e-とぴあ・かがわ（展示・セミナー）  
+
+ [香川県高松市・JR高松駅前 徒歩3分][ [アクセスマップ]](http://www.sunport-hall.jp/shisetu/access.htm)[[フロアガイド]](http://www.symboltower.com/floor/floor.asp)
+
+
+
+
+
+**費用：無料**
+
+
+
+
+
+**内容**：オープンソースに関する最新情報の提供  
+
+ ・展示  - オープンソースコミュニティ、企業・団体による展示  
+
+ ・セミナー -  オープンソースの最新情報を提供
+
+
+
+
+
+**主催**：オープンソースカンファレンス実行委員会
+
+
+
+
+
+**共催**：[e-とぴあ・かがわ](http://www.e-topia-kagawa.jp/)  
+
+ 情報処理学会四国支部（第2回四国オープンソースセミナー）
+
+
+
+
+
+**後援**：[JGN2plus](http://www.jgn.nict.go.jp/)

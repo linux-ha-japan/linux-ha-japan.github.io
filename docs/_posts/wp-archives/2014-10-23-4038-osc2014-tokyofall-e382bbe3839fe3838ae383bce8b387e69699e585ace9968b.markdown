@@ -1,0 +1,46 @@
+---
+author: iidayuus
+comments: false
+date: 2014-10-23 03:00:34+00:00
+layout: post
+permalink: /wp/archives/4038
+slug: osc2014-tokyofall-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2014 Tokyo/Fall セミナー資料・アンケート結果公開
+wordpress_id: 4038
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+10月18日(土),19日(日) に明星大学 日野キャンパスにて開催された[オープンソース カンファレンス2014 Tokyo/Fall](https://www.ospn.jp/osc2014-fall/) にLinux-HA Japanも参加し、ブース展示および講演(15:15～)を行いました。当日は天気も良く、2日間の合計で1550人の来場がありました。
+
+講演は「[すぐに始められる！最新のPacemakerで始める高可用クラスタ入門](https://www.ospn.jp/osc2014-fall/modules/eguide/event.php?eid=71)」というタイトルで、今後公開される最新のPacemaker-1.1.12の特徴や、その構築方法についてデモを交えて紹介させていただきました。
+
+以下にセミナーの資料を公開しますので、参考にしていただければと思います。
+
+
+
+	
+  * セミナー資料：[すぐに始められる！最新のPacemakerで始める高可用クラスタ入門]({{ site.lhajp_resources_url }}/wp-content/OSC-Tokyo2014Fall.pdf)[
+]({{ site.lhajp_resources_url }}/wp-content/OSC-Tokyo2014Fall.pdf)
+
+	
+  * リソース定義：[osc2014.crm]({{ site.lhajp_resources_url }}/wp-content/osc2014_crm.txt)
+
+
+
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。 
+(回答者計49名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![OSC2014TokyoFall_Q1](/assets/images/wp-content/OSC2014TokyoFall_Q1.png)](/assets/images/wp-content/OSC2014TokyoFall_Q1.png)
+[![OSC2014TokyoFall_Q2](/assets/images/wp-content/OSC2014TokyoFall_Q2.png)](/assets/images/wp-content/OSC2014TokyoFall_Q2.png)
+[![OSC2014TokyoFall_Q3](/assets/images/wp-content/OSC2014TokyoFall_Q3.png)](/assets/images/wp-content/OSC2014TokyoFall_Q3.png)
+[![OSC2014TokyoFall_Q4](/assets/images/wp-content/OSC2014TokyoFall_Q4.png)](/assets/images/wp-content/OSC2014TokyoFall_Q4.png)
+[![OSC2014TokyoFall_Q5](/assets/images/wp-content/OSC2014TokyoFall_Q5.png)](/assets/images/wp-content/OSC2014TokyoFall_Q5.png)
+[![OSC2014TokyoFall_Q6](/assets/images/wp-content/OSC2014TokyoFall_Q6.png)](/assets/images/wp-content/OSC2014TokyoFall_Q6.png)
+[![OSC2014TokyoFall_Q7](/assets/images/wp-content/OSC2014TokyoFall_Q7.png)](/assets/images/wp-content/OSC2014TokyoFall_Q7.png)

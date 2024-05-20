@@ -1,0 +1,43 @@
+---
+author: kmii
+comments: false
+date: 2011-05-09 12:30:32+00:00
+layout: post
+permalink: /wp/archives/1465
+slug: lpi-japan-%e6%a7%98%e4%b8%bb%e5%82%ac%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e3%80%8c%e4%bb%8a%e3%81%a0%e3%81%8b%e3%82%89%e3%81%93%e3%81%9d%e7%9f%a5%e3%82%8a%e3%81%9f%e3%81%84%ef%bc%81%e9%ab%98%e4%bf%a1
+title: LPI-Japan 様主催セミナー「今だからこそ知りたい！高信頼システム構築セミナー！」の講演資料を公開します
+wordpress_id: 1465
+categories:
+- イベント情報
+---
+
+4/28 に開催された[LPI-Japan様主催セミナー](http://www.lpi.or.jp/seminar20110428_01/)で、Pacemakerについて講演いたしました。[LPIC304](http://www.lpi.or.jp/app/lpic304.shtml)でPacemakerが試験範囲に含まれていることもあり、LPICの資格保有者を中心に130名もの参加をいただきました。
+
+本当にありがとうございました。
+
+講演資料と設定ファイルを公開いたします。ぜひ一度Pacemakerを使ってみてください。
+
+
+
+	
+  * 講演資料: [OSS HAクラスタPacemakerを活用したHAシステム構築の勘所](/wp/archives/1465/lpi-seminor20110428)
+
+	
+  * デモビデオ1: [01configuration](/wp/archives/1465/01configuration)
+
+	
+  * デモビデオ2: [02resource_monitor_error](/wp/archives/1465/02resource_monitor_error)
+
+	
+  * デモビデオ3: [03network_connectivity](/wp/archives/1465/03network_connectivity)
+
+	
+  * デモビデオ4: [04split_brain_stonith](/wp/archives/1465/04split_brain_stonith)
+
+	
+  * pm_crmgen用テンプレートファイル([pm_crmgen_lpiseminor.xls](/wp/archives/1465/pm_crmgen_lpiseminor)、[pm_crmgen_lpiseminor.ods](/wp/archives/1465/pm_crmgen_lpiseminor-2))
+
+	
+  * crmコマンド用入力ファイル: [pg.crm](/wp/archives/1465/pg-crm)
+
+

@@ -1,0 +1,42 @@
+---
+author: takayukitanaka
+comments: false
+date: 2011-06-16 12:39:43+00:00
+layout: post
+permalink: /wp/archives/1764
+slug: osc2011-hokkaido-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2011 Hokkaido セミナー資料公開
+wordpress_id: 1764
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+#### Linux-HA Japan の全国行脚は2年目に突入！
+
+
+6月11日(土) に札幌市産業振興センターにて [オープンソースカンファレンス2011 Hokkaido](http://www.ospn.jp/osc2011-do/) が開催されました。YOSAKOIソーラン祭りと日程がかぶっていたにもかかわらず、昨年を大きく上回る来場者600名という賑わいを見せていました。
+
+Linux-HA Japan は、Pacemakerによる全国での講演が2年目（2順目）に入りました！
+
+[「](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17)[Pacemakerでかんたんクラスタリング体験してみよう～仮想環境で構築デモしますよ編～](https://www.ospn.jp/osc2011-do/modules/eguide/event.php?eid=11)[」](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17) という題目で実演セミナーをおこない、セミナー参加人数は残念ながら去年よりも少なかったのですが、沢山質問もしていただき充実した時間となりました。興味を持って聞いてくださった方ありがとうございました。
+
+プレゼンテーション資料を公開しますので、HAクラスタ構築の参考にしていただければと思います。（ちなみに、タイトルは変えていますが、OSC2011Kansai@Kobeと発表内容はほとんど変わりません。今までに私のセミナーを聞いたことある方、ご了承ください。）
+
+
+
+	
+  * セミナー資料：  [Pacemakerでかんたんクラスタリング体験してみよう～仮想環境で構築デモしますよ編～](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2011Hokkaido_20110611/ja/1/Pacemaker_OSC2011Hokkaido_20110611.pdf)
+
+	
+  * 設定例：  [pm_crmgen環境定義書デモサンプル]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo.xls)
+
+
+ 
+
+なお、ライトニングトークもオープンソースカンファレンスでは初挑戦しましたが、もう少し他でこのネタを使うので、公開は控えたいと思います。
+
+次は、[オープンソースカンファレンス2011 Kansai@Kyoto](http://www.ospn.jp/osc2011-kyoto/) に参加予定で、これまでの「構築」を主としたデモではなく、**「保守運用」を主としたデモ** を行う予定です！

@@ -1,0 +1,262 @@
+---
+author: ikedaj
+comments: false
+date: 2012-08-10 08:06:31+00:00
+layout: post
+permalink: /wp/archives/3357
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-heat-api-v5'
+title: リリース情報 (Heat API v5)
+wordpress_id: 3357
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年7月31日にHeat API v5がリリースされました！
+
+ということで、[リリースノート](http://lists.heat-api.org/pipermail/discuss/2012-July/000189.html)を意訳してみました。
+ちょっとね、勉強不足でクラウド用語っつーかAWS用語がアレですまんね(´・ω・`)
+  
+
+
+
+<blockquote>
+The heat developers are happy to announce the release of new version of Heat.
+Heat is a project designed for OpenStack that implements AWS CloudFormation. 
+CloudFormation is a programmable interface and tempalting system for orchestrating multiple cloud applications.
+</blockquote>
+
+
+
+
+<blockquote>
+Heatの新しいバージョンをリリースすることができてうれしく思います。
+HeatはOpenStack版のAWS CloudFormationを開発するプロジェクトです。
+CloudFormationはクラウドアプリケーションを制御するためのプログラマブルなインターフェースとテンプレートを提供します。
+</blockquote>
+
+
+
+
+<blockquote>
+Try it out on Fedora 17:
+https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme
+
+Or Ubuntu 12.04:
+https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu
+</blockquote>
+
+
+
+
+<blockquote>
+[Fedora 17](https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme)または[Ubuntu 12.04](https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu)でHeat v5を試してみてください。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+What's new in version 5:
+</blockquote>
+
+
+
+
+<blockquote>
+Heat v5の新機能
+</blockquote>
+
+
+
+
+<blockquote>
+* Load balancing and Autoscaling
+
+Heat can now use CloudWatch to monitor instances and cause stacks to scale up and down.
+</blockquote>
+
+
+
+
+<blockquote>
+* ロードバランスとオートスケール
+
+HeatはCloudWatchを使用してインスタンスの監視を行い、スタックのスケールアップ、スケールダウンを実行します。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+* Per-tenant stacks
+
+Stacks are now accessed per-tenant rather than per-user. 
+If two users belong to the same tenant, they can see and modify the same stacks.
+</blockquote>
+
+
+
+
+<blockquote>
+* テナント単位のスタック操作
+
+スタックはユーザ単位ではなくテナント単位でアクセスされます。
+2ユーザが同じテナントに所属している場合は、それぞれのユーザが同じスタックを操作することができます。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+* Update stack
+
+A running stack can now be updated by sending a new template via the `UpdateStack` API call.
+</blockquote>
+
+
+
+
+<blockquote>
+* スタックの更新
+
+実行中のスタックに対してもテンプレートによる更新処理が可能となりました。
+更新にはUpdateStackのAPIコールを使用します。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+* Remote Database Storage
+
+Heat now supports RDS::DBInstance which is: a preconfigured MySQL instance that other resources can use. 
+Support for multiple availability zones and database snapshots is not yet implemented.
+</blockquote>
+
+
+
+
+<blockquote>
+* リモートデータベースストレージ
+
+HeatはAWSが提供しているMySQLのインスタンスをサポートしています。
+複数のアベイラビリティゾーンのサポートとデータベースのスナップショット作成はまだ実装されていません。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+* Improved API compatibility
+
+Heat API is now fully aligned with AWS CloudFormation API spec.  
+Heat developers have produced a port of the heat CLI tool which uses the Boto AWS client library.
+</blockquote>
+
+
+
+
+<blockquote>
+* 互換性の改善
+
+Heat APIはAWS CloudFormation APIに完全に準拠しています。
+また、BotoのAWSクライアントライブラリを使用したheat用の[コマンドラインツール](https://github.com/heat-api/heat/wiki/Heat-CLI-Boto-migration-&-API-rework)が開発されました。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+* Integration tests
+
+Heat now has scripts for running integration tests using Beaker:
+</blockquote>
+
+
+
+
+<blockquote>
+* 統合テストツール
+
+Heatには統合テストを実行するためのスクリプトを同梱されています。
+[テストツール](https://github.com/heat-api/heat-integration-tests#heat-integration-tests)は[Beaker](http://beaker-project.org)を使用して開発されています。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+* Usability improvements for heat-jeos
+
+The command line tool for generating OS images is now more flexible and easier to use.
+Note that single-instance EBS templates are not functional at the moment:
+</blockquote>
+
+
+
+
+<blockquote>
+* hear-jeosの改善
+
+OSイメージを生成するためのコマンドラインツールが改良されて使いやすくなりました。
+シングルインスタンスのEBSテンプレートは現時点では[未対応](https://github.com/heat-api/heat/issues/185)です。
+</blockquote>
+
+
+
+
+* * *
+
+
+  
+
+参考情報
+
+
+
+
+  * [Heat website](http://heat-api.org/)
+
+
+
+  * [Download Heat API](https://github.com/heat-api/heat/downloads)
+
+
+

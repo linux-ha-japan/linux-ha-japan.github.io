@@ -1,0 +1,78 @@
+---
+author: minky
+comments: false
+date: 2010-06-23 11:48:02+00:00
+layout: post
+permalink: /wp/archives/128
+slug: '%e3%80%90pacemaker%e3%80%91%e3%82%92%e6%8e%a8%e9%80%b2%e3%81%97%e3%81%be%e3%81%99%ef%bc%81'
+title: OpenSource Conrference 2010 出展
+wordpress_id: 128
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+Linux-HA Japan Projectでは、これまでのHeartbeatの後継となるクラスタ製品としてPacemakerを推進して参ります。
+
+
+
+
+
+Pacemakerは、Heartbeartの開発者たちが作った新しいクラスタソフトです。
+
+
+
+
+
+また、Linux-HA Japan Projectでは、Pacemakerを推進して行くにあたり、Pacemaker応援キャラクターを選出いたしました。
+
+
+
+
+
+高良家のかなちゃん（CV：[田中理恵さん](http://ameblo.jp/rie-tanaka/)）、かよちゃん（CV:[丹下桜さん](http://www.sakura-alamode.com/)）それと、
+
+
+
+
+
+電脳世界のマスコットのぺーちゃん（CV:[橋本まいさん](http://blog.goo.ne.jp/hashimoto0103/)）、ころちゃんです。
+
+
+
+
+
+6月26日に[札幌](http://www.ospn.jp/osc2010-do/)で、7月9日、10日に[京都](http://www.ospn.jp/osc2010-kyoto/)で開催されるOpenSource Conrferenceに出展し、
+
+
+
+
+
+デモ、講演、およびクリアファイルの配布を実施いたします。
+
+
+
+
+
+また、本サイトで、ペースメーカー応援の壁紙とシステムボイスの配布を行います。
+
+
+
+
+
+是非、この機会にPacemakerにご興味をお持ちいただければ幸いです。
+
+
+
+
+
+また、Linux-HA Japan Projectでは、MLの参加者も募集しております。
+
+
+
+
+
+[こちら](http://lists.sourceforge.jp/mailman/listinfo/linux-ha-japan)より申し込みをお願いいたします。

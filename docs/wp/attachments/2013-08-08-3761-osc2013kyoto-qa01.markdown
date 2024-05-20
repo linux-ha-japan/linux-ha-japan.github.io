@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/osc2013kyoto-qa01.png
+author: higashik
+comments: false
+date: 2013-08-08 00:27:54+00:00
+layout: post
+permalink: /wp/archives/3729/osc2013kyoto-qa01
+slug: osc2013kyoto-qa01
+title: osc2013kyoto-qa01
+wordpress_id: 3761
+---
+
+### [osc2013kyoto-qa01](/assets/images/wp-content/osc2013kyoto-qa01.png)

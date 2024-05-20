@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/osc2012tokyo-fall-qa3.png
+author: t-matsuo
+comments: false
+date: 2012-09-10 05:24:34+00:00
+layout: post
+permalink: /wp/archives/3384/osc2012tokyo-fall-qa3
+slug: osc2012tokyo-fall-qa3
+title: osc2012tokyo-fall-qa3
+wordpress_id: 3394
+---
+
+### [osc2012tokyo-fall-qa3](/assets/images/wp-content/osc2012tokyo-fall-qa3.png)

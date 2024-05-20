@@ -1,0 +1,57 @@
+---
+author: bellche
+comments: false
+date: 2010-07-12 08:12:12+00:00
+layout: post
+permalink: /wp/archives/456
+slug: osc2010kansaikyoto-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2010/Kansai@Kyoto セミナー資料公開
+wordpress_id: 456
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+[オープンソースカンファレンス２０１０/Kansai@Kyoto](http://www.ospn.jp/osc2010-kyoto/) で行われたセミナー「DRBDアドバンスド・チュートリアル」（久保元治）のスライドと、「Pacemakerで簡単・手軽にクラスタリングしてみよう！」（田中崇幸）のスライドを公開します。
+
+
+
+
+
+「DRBDアドバンスド・チュートリアル」には、DRBDの動作原理や、スプリットブレイン傷害、多ノード構成（３ノード、４ノード）の紹介が含まれています。
+
+
+
+
+
+「Pacemakerで簡単・手軽にクラスタリングしてみよう！」には、Pacemakerの最新の状況と導入・設定方法について解説しています。
+
+
+
+
+
+  
+
+
+
+
+
+
+##### 資料ダウンロード
+
+
+
+
+
+	
+  * [「DRBDアドバンスド・チュートリアル」（久保元治）]({{ site.lhajp_resources_url }}/wp-content/297249828379edfdf8963d9e8ef4c1c3.pdf)
+
+
+
+	
+  * [「Pacemakerで簡単・手軽にクラスタリングしてみよう！」（田中崇幸）](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2010Kyoto_20100710/ja/2/Pacemaker_OSC2010Kyoto_20100710.pdf)
+
+

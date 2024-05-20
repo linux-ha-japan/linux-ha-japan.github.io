@@ -1,0 +1,100 @@
+---
+author: ksk
+comments: false
+date: 2018-12-07 04:00:44+00:00
+layout: post
+permalink: /wp/archives/4798
+slug: centos-7-%e3%81%a7-pacemaker-%e3%82%92%e5%88%a9%e7%94%a8%e3%81%99%e3%82%8b%e5%a0%b4%e5%90%88%e3%81%ae%e6%b3%a8%e6%84%8f%e7%82%b9
+title: CentOS 7 で Pacemaker を利用する場合の注意点
+wordpress_id: 4798
+categories:
+- 読み物
+tags:
+- corosync
+---
+
+* * *
+
+## 1. CentOS 7 で Pacemaker を利用する場合の注意点
+
+注意点 
+     **CentOS 7 上で Pacemaker リポジトリパッケージを利用する場合は、必ず NetworkManager-config-server パッケージをインストールしてください。インストール後は一旦 NetworkManager を再起動してください。**
+手順例 
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # yum install -y NetworkManager-config-server
+    # systemctl restart NetworkManager
+
+
+ 
+</td></tr> </table>
+
+補足 
+     RHEL 7 では NetworkManager-config-server パッケージは標準で必ずインストールされるため特別な手順は不要です。 
+
+* * *
+
+## 2. NetworkManager-config-server パッケージが必要な理由
+
+NetworkManager-config-server パッケージは、RHEL 7 では必ずインストールされますが、CentOS 7 では通常の手順ではインストールされない、という違いがあります。
+
+この違いの影響で NetworkManager の動作が RHEL7 と CentOS 7 の間で差分があり、CentOS 7 上の Corosync が想定外の動作となってしまう可能性があるためです。
+
+具体的な動作の違いとして、インターコネクトLAN接続の切断故障が発生した場合、以下の違いが発生します。
+
+NetworkManager-config-server あり(RHEL 7 標準の動作) 
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    (ネットワーク接続断が発生してもIPアドレス設定は保持されたまま)
+    # ip addr show dev eth1
+    3: eth1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast
+     state DOWN group default qlen 1000
+        link/ether 08:00:27:67:bb:18 brd ff:ff:ff:ff:ff:ff
+        inet 192.168.33.101/24 brd 192.168.33.255 scope global noprefixroute eth1
+           valid_lft forever preferred_lft forever
+    #
+
+
+ 
+</td></tr> </table>
+
+NetworkManager-config-server なし(CentOS 7 標準の動作) 
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    (ネットワーク接続断が発生するとIPアドレス設定が削除される)
+    # ip addr show dev eth1
+    3: eth1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast
+     state DOWN group default qlen 1000
+        link/ether 08:00:27:67:bb:18 brd ff:ff:ff:ff:ff:ff
+    #
+
+
+ 
+</td></tr> </table>
+
+インターコネクトLAN通信で利用しているIPアドレスが運用中に削除されると、 Corosync プロセスは異常状態としてクラッシュする可能性があります。 この場合 Linux-HA Japan の推奨設定では watchdog 機能によってノードの再起動が発生します。
+
+結果としてノードの再起動によるフェイルオーバが発生してサービス継続は行われますが、想定外のノード再起動が発生することになるため、故障原因の解析時に注意が必要となります。
+
+また、ノード間のインターコネクトLAN通信を(L2SW等を通さず)直接接続している構成では、両ノードとも接続断を検知して再起動してしまい、サービス停止につながる可能性があるため十分注意が必要です。
+
+* * *
+
+## 3. Corosync の動作について
+
+IPアドレスが削除された場合に Corosync プロセスがクラッシュするという動作は、 現在のバージョンの Corosync-2.* では仕様です。 同じ理由で、ifdown コマンドを実行した場合も Corosync プロセスはクラッシュします。
+
+  * 公式サイトのドキュメントより 
+    * [Corosync and ifdown on active network interface](https://github.com/corosync/corosync/wiki/Corosync-and-ifdown-on-active-network-interface)
+  * 開発者のコメントより 
+    * [一部動作を改善するPR。それでもやはりifdownは使えない、とのコメントあり](https://github.com/corosync/corosync/pull/262#issuecomment-404521267)
+
+この動作の改善については、Corosync-3.*以降(Kronosnet)で対応することが検討されているようです。
+
+以上です。

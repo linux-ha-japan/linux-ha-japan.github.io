@@ -1,0 +1,289 @@
+---
+author: ikedaj
+comments: false
+date: 2012-10-15 06:53:54+00:00
+layout: post
+permalink: /wp/archives/3419
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-crm-shell-v1-2-0'
+title: リリース情報 (CRM shell v1.2.0)
+wordpress_id: 3419
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+しばらくさぼっていましたが9月分のリリース情報をまとめて投稿します！
+
+2012年9月19日に CRM shell v1.2.0 が[リリース](http://www.gossamer-threads.com/lists/linuxha/users/81818)されました。
+
+
+
+<blockquote>
+Hello, 
+The CRM shell v1.2.0 is released. 
+The most important new features compared to Pacemaker v1.1.6 (and v1.1.7): 
+</blockquote>
+
+
+
+
+<blockquote>
+
+CRM shell v1.2.0 をリリースしました。
+Pacemaker 1.1.6(および 1.1.7)に同梱されてている CRM shell からの変更点は次の通りです(注1)。
+</blockquote>
+
+
+
+
+
+
+     注1：
+     
+     Pacemaker 1.1.8以降、CRM shell は別パッケージとなります。パッケージのインストール方法やダウンロード先については後ほど紹介します。
+     
+
+
+  
+
+
+
+<blockquote>
+
+> 
+> 
+
+>   * history: support for troubleshooting and reporting, log browsing, examining transitions, etc 
+
+> 
+
+>   * resource testing: test if the resources can be started, stopped, and monitored on all nodes 
+
+> 
+
+>   * support for the latest Pacemaker features, including fencing-topology 
+
+> 
+
+>   * geo-cluster configuration and management 
+
+> 
+
+>   * support for LRM secrets at resource level 
+
+> 
+
+</blockquote>
+
+
+
+
+<blockquote>
+
+> 
+> 
+
+>   * トラブルシューティングやログの収集、閲覧および状態遷移を解析するための機能が追加されました。
+
+> 
+
+>   * リソースの起動、停止、監視処理をテスト(= シミュレート)することができます。
+
+> 
+
+>   * fencing-topologyを含むPacemakerの最新機能に対応しています。[(参考)](/wp/archives/2994)
+
+> 
+
+>   * geo-cluster(注2)の設定および管理に対応しています。
+
+> 
+
+>   * secretパラメータが追加されました(注3)。
+
+> 
+
+</blockquote>
+
+
+
+
+
+
+     注2：
+     
+     通常のクラスタ、例えばActive/Standby構成の二台のノードを含むクラスタが遠隔地(サイト)に複数設置されている環境を geo-cluster と呼びます。
+     
+     クラスタ内のノードはPacemakerで管理することができますが、遠隔地に設置されたサイト間は、クラスタチケットマネージャ [booth](https://github.com/ClusterLabs/booth) が管理します。
+     
+     boothで遠隔地を管理するためには「チケット」と呼ばれる属性が必要となりますが、CRM shell からもチケット属性を処理できるようになりました。
+     
+
+
+
+     注3：
+     
+     [チェンジセット](http://hg.savannah.gnu.org/hgweb/crmsh/rev/b50ed6cfd778)はこちら。
+     
+     ドキュメントも追加されています。
+     
+
+
+
+
+<blockquote>
+doc/crm.8.txt
+
+   872 [[cmdhelp_resource_secret,manage sensitive parameters]]
+   873 ==== `secret`
+   874 
+   875 Sensitive parameters can be kept in local files rather than CIB
+   876 in order to prevent accidental data exposure. Use the `secret`
+   877 command to manage such parameters. `stash` and `unstash` move the
+   878 value from the CIB and back to the CIB respectively. The `set`
+   879 subcommand sets the parameter to the provided value. `delete`
+   880 removes the parameter completely. `show` displays the value of
+   881 the parameter from the local file. Use `check` to verify if the
+   882 local file content is valid.
+   883 
+   884 Usage:
+   885 ...............
+   886         secret  set  
+   887         secret  stash 
+   888         secret  unstash 
+   889         secret  delete 
+   890         secret  show 
+   891         secret  check 
+   892 ...............
+   893 Example:
+   894 ...............
+   895         secret fence_1 show password
+   896         secret fence_1 stash password
+   897         secret fence_1 set password secret_value
+   898 ...............
+</blockquote>
+
+
+STONITHを実行するためにipmiの設定を行うと、ipmiのユーザ名やパスワードが必要となりますよね。
+クラスタの実行中、これらの値はCIBに保持されているのですが、CIBの情報ってクラスタ内でやりとりされるので通信の途中に見られちゃう可能性もあるといえばありますな。
+そこで、こういう値はCIBではなくローカルのファイルに保持しましょう、というのが secret パラメータです。
+SOTNITH用の遷移グラフをつくるときに、パスワードをファイルからとってくるのか？
+ちとこのへんは実際に動作を確認してからまたご報告したいと思います。
+  
+  
+
+
+
+<blockquote>
+There are also numerous bug fixes and enhancements. For the full set of changes, take a look at the changelog: 
+</blockquote>
+
+
+
+
+<blockquote>
+その他にも多くのバグフィックスや機能追加が取り込まれています。
+全ての変更履歴については[チェンジログ](http://hg.savannah.gnu.org/hgweb/crmsh/file/df0b30262868/ChangeLog)を参照してください。
+</blockquote>
+
+
+
+
+
+<blockquote>
+== Note about Pacemaker versions == 
+
+CRM shell 1.2.0 supports all Pacemaker 1.1 versions <= v1.1.7. 
+The latter versions should work for the most part, but due to the number of changes post 1.1.7 there are no guarantees. 
+</blockquote>
+
+
+
+
+<blockquote>
+== 互換性 == 
+CRM shell 1.2.0 は Pacemaker 1.1.7以前のバージョンで使用可能です。
+最新版(Pacemaker 1.1.8)でも動作するとは思いますが、Pacemaker 1.1.7のリリースより後に追加された新機能には対応していません。
+</blockquote>
+
+
+
+
+
+<blockquote>
+== Installing == 
+
+Installing the CRM shell along with Pacemaker 1.1 versions <= v1.1.7 is possible, but it will result in file conflicts. 
+You need to enforce file overwriting when installing packages. 
+</blockquote>
+
+
+
+
+<blockquote>
+== インストール ==
+Pacemaker 1.1.7以前のバージョンには、CRM shellの旧バージョンが同梱されています。
+旧バージョンとの競合を避けるために、インストール時に既存のファイルが上書きされていることを確認してください。
+</blockquote>
+
+
+
+
+
+<blockquote>
+== Resources == 
+
+The CRM shell project web page at GNU savannah:
+https://savannah.nongnu.org/projects/crmsh/
+
+The sources repository is available at:
+http://hg.savannah.gnu.org/hgweb/crmsh
+
+Packages for several popular Linux distributions:
+http://download.opensuse.org/repositories/network:/ha-clustering/
+
+The man page:
+http://crmsh.nongnu.org/crm.8.html
+
+Support and bug reporting:
+http://lists.linux-ha.org/mailman/listinfo/linux-ha
+https://savannah.nongnu.org/bugs/?group=crmsh
+</blockquote>
+
+
+
+
+<blockquote>
+参考情報リンク一覧
+
+> 
+> 
+     
+	
+>     * [プロジェクトページ](https://savannah.nongnu.org/projects/crmsh/)
+	
+> 
+	
+>     * [リポジトリ(ソースコード)](http://hg.savannah.gnu.org/hgweb/crmsh)
+	
+> 
+	
+>     * [リポジトリ(パッケージ)](http://download.opensuse.org/repositories/network:/ha-clustering/)
+	
+> 
+	
+>     * [man page](http://crmsh.nongnu.org/crm.8.html)
+	
+> 
+	
+>     * [メーリングリスト](http://lists.linux-ha.org/mailman/listinfo/linux-ha)
+	
+> 
+	
+>     * [バグレポート](https://savannah.nongnu.org/bugs/?group=crmsh)
+	
+> 
+     
+
+</blockquote>

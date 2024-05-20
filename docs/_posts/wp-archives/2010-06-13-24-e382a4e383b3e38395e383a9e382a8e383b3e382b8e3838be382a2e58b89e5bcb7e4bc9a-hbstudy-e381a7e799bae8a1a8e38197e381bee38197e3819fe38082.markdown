@@ -1,0 +1,50 @@
+---
+author: bellche
+comments: false
+date: 2010-06-13 03:42:51+00:00
+layout: post
+permalink: /wp/archives/24
+slug: '%e3%82%a4%e3%83%b3%e3%83%95%e3%83%a9%e3%82%a8%e3%83%b3%e3%82%b8%e3%83%8b%e3%82%a2%e5%8b%89%e5%bc%b7%e4%bc%9a-hbstudy-%e3%81%a7%e7%99%ba%e8%a1%a8%e3%81%97%e3%81%be%e3%81%97%e3%81%9f%e3%80%82'
+title: インフラエンジニア勉強会 hbstudy で発表しました。
+wordpress_id: 24
+categories:
+- イベント情報
+tags:
+- セミナー
+---
+
+#### [![インフラエンジニア勉強会hbstudy | 株式会社ハートビーツ](/assets/images/wp-content/2b2926190e09a3799201e2f62c352973-150x150.png)](/assets/images/wp-content/2b2926190e09a3799201e2f62c352973.png)ご静聴ありがとうございました。
+
+
+
+
+
+6月12日（土）に、新宿で行われた株式会社ハートビーツ様主催の「インフラエンジニア勉強会」でLinux-HAについて中上級者向けの講演をしてきました。講演内容は「DRBDとPacemakerによるLinux-HA環境」ということで、構築時の注意点と障害発生を未然に防ぐ考え方、致命的な障害に繋がる「スプリットブレイン」についてご説明しました。
+
+
+
+
+
+プレゼンテーション資料については、Pacemaker部分の「設定」にある設定値が若干古いものを入れ込んでいた為、修正を加えております。また、講演時のみ公開としたものにつきましては掩蔽してありますがご了承ください。
+
+
+
+
+
+
+	
+  * インフラエンジニア勉強会「hbstudy」 [http://heartbeats.jp/hbstudy/](http://heartbeats.jp/hbstudy/)
+
+
+
+
+##### プレゼンテーション資料
+
+
+
+
+
+	
+  * [第12回インフラエンジニア勉強会「DRBDとPacemakerによるLinux-HA環境」]({{ site.lhajp_resources_url }}/wp-content/2010-06-12_hbstudy.pdf)
+
+

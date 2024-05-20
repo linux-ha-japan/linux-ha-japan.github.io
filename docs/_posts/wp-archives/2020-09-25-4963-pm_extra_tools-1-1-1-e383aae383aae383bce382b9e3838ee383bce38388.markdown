@@ -1,0 +1,69 @@
+---
+author: ksk
+comments: false
+date: 2020-09-25 04:00:23+00:00
+layout: post
+permalink: /wp/archives/4963
+slug: pm_extra_tools-1-1-1-%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%83%8e%e3%83%bc%e3%83%88
+title: pm_extra_tools-1.1-1 リリースノート
+wordpress_id: 4963
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+pm_extra_tools パッケージは Pacemaker-2.0系用の追加ツールをパッケージしたものです。 RHEL 8 High Availability Add-On(以下 HA Add-On) / CentOS 8 に同梱されている Pacemaker-2.0系 と組み合わせて利用します。
+
+* * *
+
+## 1. リリースノート
+
+pm_extra_tools-1.1-1 をリリースしました(2020/09/25)。
+
+本リリースはマイナーアップデートリリースです。具体的な修正内容は 「変更履歴」 を参照してください。
+
+従来 Linux-HA Japan コミュニティでは、Pacemaker-1.1系リポジトリパッケージという形でPacemaker本体も全て含めたパッケージのリリースを行ってきましたが、Pacemaker-2.0系以降では追加ツール類のみをパッケージしリリースを行っています。詳細は 「参考情報」 の [OSC2020 Tokyo/Spring セミナー資料 Linux-HA Japan プロジェクトのこれまでとこれから](/wp/archives/4942) を参照してください。
+
+* * *
+
+## 2. ダウンロード
+
+pm_extra_tools パッケージは以下のページよりダウンロードできます。
+
+  * ダウンロードURL 
+    * [pm_extra_tools-1.1-1 リリース](https://osdn.net/projects/linux-ha/releases/73590)
+  * 動作条件 
+    * RHEL 8.2 HA Add-On / CentOS 8.2004 
+
+* * *
+
+## 3. 使い方
+
+pm_extra_tools を利用するには、あらかじめ Pacemaker をインストールする必要があります。Pacemaker のインストール方法は「参考情報」の項などを参照してください。
+
+pm_extra_tools に含まれるツールとその使い方については以下のリンク先を参照してください。
+
+  * [pm_extra_tools README.md](https://github.com/linux-ha-japan/pm_extra_tools/blob/master/README.md)
+
+* * *
+
+## 4. 変更履歴
+
+  * pm_extra_tools-1.1-1 
+    * pgsql（PostgreSQL管理用のリソースエージェント）: 
+      * 開発コミュニティの最新の修正に追随し、Pacemakerとのバージョン互換性が改善されました。 
+      * これにより RHEL 8.2 HA Add-On との組み合わせでレプリケーション機能(PG-REX構成)が正しく動作しない事象が解消されます。 
+  * pm_extra_tools-1.0-1 
+    * 初版リリース 
+
+* * *
+
+## 5. 参考情報
+
+  * [OSC2020 Tokyo/Spring セミナー資料 Linux-HA Japan プロジェクトのこれまでとこれから](/wp/archives/4942)
+    * Pacemaker-1.1系リポジトリパッケージとの違い、Pacemaker-2.0系の簡単な構築手順例など 
+  * [Pacemaker 開発コミュニティドキュメント](https://clusterlabs.org/pacemaker/doc/)
+  * [RHEL 8 High Availability Add-On ドキュメント(Red Hat社)](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/configuring_and_managing_high_availability_clusters/index)
+
+以上。

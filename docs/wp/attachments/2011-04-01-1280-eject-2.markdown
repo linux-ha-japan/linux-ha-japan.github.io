@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/eject.jpg
+author: t-matsuo
+comments: false
+date: 2011-04-01 05:47:33+00:00
+layout: post
+permalink: /wp/archives/1272/eject-2
+slug: eject-2
+title: eject STONITH Plugin
+wordpress_id: 1280
+---
+
+### [eject STONITH Plugin](/assets/images/wp-content/eject.jpg)

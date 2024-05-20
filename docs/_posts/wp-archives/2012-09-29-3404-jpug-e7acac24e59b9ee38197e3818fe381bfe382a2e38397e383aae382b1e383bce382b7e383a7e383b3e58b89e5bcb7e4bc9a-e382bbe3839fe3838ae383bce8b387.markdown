@@ -1,0 +1,32 @@
+---
+author: t-matsuo
+comments: false
+date: 2012-09-29 07:30:12+00:00
+layout: post
+permalink: /wp/archives/3404
+slug: jpug-%e7%ac%ac24%e5%9b%9e%e3%81%97%e3%81%8f%e3%81%bf%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e5%8b%89%e5%bc%b7%e4%bc%9a-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87
+title: JPUG 第24回しくみ+アプリケーション勉強会 セミナー資料公開
+wordpress_id: 3404
+categories:
+- イベント情報
+- 読み物
+tags:
+- 勉強会
+- セミナー
+---
+
+2012/9/29 開催の[第24回PostgreSQLのしくみ分科会、アプリケーション分科会](http://www.postgresql.jp/wg/shikumi/shikumi24)への参加ありがとうございました。
+当日の発表資料、”HAクラスタでPostgreSQLを高可用化(後編) 〜レプリケーション編〜”を公開します。
+
+
+[PostgreSQLを高可用化(後編) 〜レプリケーション編〜(PDF)]({{ site.lhajp_resources_url }}/wp-content/b754c737d835c2546415009387407b7b.pdf)
+
+
+発表内容転記 : 『オープンソースのHAクラスタソフトPacemakerに、PostgreSQLのストリーミングレプリケーション構成をクラスタリングする機能がマージされました。この新機能の概要、および動作について解説いたします。』
+
+前編の資料は[こちら](/wp/archives/3244)です。
+
+ 
+
+
+[English version is here : PG-study]({{ site.lhajp_resources_url }}/wp-content/PG-study.pdf)

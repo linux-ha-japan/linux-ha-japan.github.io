@@ -1,0 +1,52 @@
+---
+author: ikedaj
+comments: false
+date: 2011-06-10 03:51:17+00:00
+layout: post
+permalink: /wp/archives/1718
+slug: '%e7%ac%ac2%e5%9b%9elinux-ha%e5%8b%89%e5%bc%b7%e4%bc%9a%e3%80%80%e3%81%94%e5%8f%82%e5%8a%a0%e3%81%82%e3%82%8a%e3%81%8c%e3%81%a8%e3%81%86%e3%81%94%e3%81%96%e3%81%84%e3%81%be%e3%81%97%e3%81%9f%e3%80%82'
+title: 第2回 Linux-HA Japan 勉強会　ご参加ありがとうございました。
+wordpress_id: 1718
+categories:
+- イベント情報
+tags:
+- 勉強会
+- セミナー
+---
+
+先日は、第2回 Linux-HA Japan 勉強会にご参加いただきまして、ありがとうございました。
+定員の都合上、参加をお断りさせていただいた方や、お仕事の都合などで急遽キャンセルされた方も
+次回の勉強会には、ぜひご参加ください。
+
+第3回勉強会は、7月1日（金）開催予定です。
+詳細は、[こちら](/wp/archives/1747)をご確認ください。
+
+第2回勉強会の資料はこちらからご利用いただけます。
+
+
+
+	
+  * [crmシェルの歩き方]({{ site.lhajp_resources_url }}/wp-content/20110603-linux-ha-japan-crm.pdf)
+
+	
+    * [サンプルファイル]({{ site.lhajp_resources_url }}/wp-content/sample-crm.zip)
+
+	
+    * [日本語マニュアル]({{ site.lhajp_resources_url }}/wp-content/crm_cli-pm10-e6f5769f5de2-ja-JP.html)(crm for Pacemaker 1.0)
+
+
+
+
+	
+  * [オープンソースで実現するDR環境の構築]({{ site.lhajp_resources_url }}/wp-content/20110603_hastudy_02_bellche.pdf)
+
+
+当日の勉強会内容（Ustream)
+
+	
+  * crmシェルの歩き方　　　　　　　　　　　　　　　[http://www.ustream.tv/recorded/15131376](http://www.ustream.tv/recorded/15131376)
+
+	
+  * オープンソースで実現するDR環境の構築　[http://www.ustream.tv/recorded/15131992](http://www.ustream.tv/recorded/15131992)
+
+

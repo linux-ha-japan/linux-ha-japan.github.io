@@ -1,0 +1,31 @@
+---
+author: bellche
+comments: false
+date: 2010-08-17 06:31:07+00:00
+layout: post
+permalink: /wp/archives/523
+slug: drbd-management-console-0-7-9-%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%be%e3%81%97%e3%81%9f%e3%80%82
+title: DRBD Management Console 0.7.9 がリリースされました。
+wordpress_id: 523
+categories:
+- ニュース
+- リリース情報
+tags:
+- DRBD
+- DRBD-MC
+- リリース情報
+---
+
+2010年8月12日にDRBD Management Console 0.7.9がリリースされました。
+
+
+
+
+
+以下よりソースコードとJarファイルがダウンロードできます。
+
+
+
+
+
+[http://oss.linbit.com/drbd-mc/](http://oss.linbit.com/drbd-mc/)

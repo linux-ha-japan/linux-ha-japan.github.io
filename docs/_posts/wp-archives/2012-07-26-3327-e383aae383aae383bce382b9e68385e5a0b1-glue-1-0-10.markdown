@@ -1,0 +1,193 @@
+---
+author: ikedaj
+comments: false
+date: 2012-07-26 09:37:53+00:00
+layout: post
+permalink: /wp/archives/3327
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-glue-1-0-10'
+title: リリース情報 (glue 1.0.10)
+wordpress_id: 3327
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年7月20日にglue 1.0.10がリリースされました！
+
+[メーリングリスト](http://lists.linux-ha.org/pipermail/linux-ha-dev/2012-July/019549.html)に投稿されたリリースノートはこちら。
+
+
+
+<blockquote>
+Hello,
+
+The current glue repository has been tagged as 1.0.10.
+Please upgrade at the earliest possible opportunity.
+
+The highlights:
+
+- compression modules included and compression handling improved in clplumbing
+- one memory leak fixed in clplumbing
+- support for asynchronous I/O in sbd
+- hb_report performance improvement
+
+You can get the 1.0.10 tarball here:
+
+	http://hg.linux-ha.org/glue/archive/glue-1.0.10.tar.bz2
+
+Many thanks to all contributors.
+
+Enjoy!
+
+Lars Ellenberg
+Dejan Muhamedagic
+</blockquote>
+
+
+大きな変更は4点ですが、その他の修正は[チェンジログ](http://hg.linux-ha.org/glue/file/18489f275f75/ChangeLog)から参照できます。
+では、それぞれの変更点についてもう少し詳しくみてみます。
+  
+
+
+* * *
+
+  
+
+(1) 通信パケットの圧縮処理が改善されました。
+
+
+<blockquote>
+- compression modules included and compression handling improved in clplumbing
+</blockquote>
+
+
+チェンジログからの抜粋
+
+
+<blockquote>
+clplumbing: ipc: fix message size checks (bnc#752231)
+clplumbing: load bz2 compression module by default
+clplumbing: cl_msg: try compressing message before rejecting it
+clplumbing: cl_msg: don't use traditional compression by default
+clplumbing: cl_msg: increase compression threshold
+</blockquote>
+
+
+Heartbeatは、ノードの生死やリソースの状態を確認するために、ノード間でパケットをやりとりしていますが、このパケットを圧縮することができます。
+今回のリリースでは圧縮処理に関する修正が取り込まれました。
+圧縮関連のパラメータはha.cfに設定しますが、詳細は[こちら](http://linux-ha.org/wiki/Ha.cf#traditional_compression_-_controls_compression_mode)を参照してください。
+このパラメータ、普通はデフォルトでも問題ないはずなんですが、いざというときのチューニングパラメータとして頭の片隅においとくと役にたつこともあるかも、です。
+  
+
+
+* * *
+
+  
+
+(2) メモリリークが解消されました
+
+
+<blockquote>
+- one memory leak fixed in clplumbing
+</blockquote>
+
+
+チェンジセットの[コメント](http://hg.linux-ha.org/glue/rev/de4bc9818ca2)をみてみると、"Which was done only sporadically." らしいので、発生の頻度は低かったようですが、とにかくメモリリークはなおった。よかったよかった。
+  
+
+
+* * *
+
+  
+
+(3) sbdに非同期I/Oのサポートが追加されました。
+
+
+<blockquote>
+- support for asynchronous I/O in sbd
+</blockquote>
+
+
+そもそもsbdとはなんぞや。
+「[SBD Fencing](http://www.linux-ha.org/wiki/SBD_Fencing)」にいろいろ書いてありますが、共有ストレージ環境での排他制御を実現する機能です。
+共有ストレージ使ってるときに怖いのは、スプリットブレインが発生した際の二重マウントですよね。
+sbdは、共有ストレージを監視するデーモンと、STONITHを実行するプラグインを組み合わせて設定し、共有ストレージへのアクセスが途切れたとき、または他のノードからフェンシング要求を受信したとき（つまり二重マウントの可能性が発生したとき）、自分自身に対してSTONITHを実行して、二重マウントを抑止します。
+今までは同期I/Oでディスクの監視をしていたので、I/Oがハングしたときにあっぷあっぷしていたようなんですが、非同期I/Oもサポートされたのでハングからの復旧動作が改善されました。
+
+チェンジログからの抜粋
+
+
+<blockquote>
+sbd: Use async IO for disk reads to increase resilience against
+sbd: Handle IO errors during slot allocation properly (bnc#753559)
+sbd: Debug mode added (bnc#753559, bnc#738295)
+</blockquote>
+
+
+sbdはSUSEの中の人が開発しているのですが、glueとはべつのリポジトリにわかれちゃう[みたい](http://www.gossamer-threads.com/lists/linuxha/dev/79956)です。
+なんかもうhgの[リポジトリ](http://hg.linux-ha.org/sbd)もできちゃってるし。
+パッケージがどんどん増えるのは勘弁してほしいなあ(´・ω・｀)
+  
+
+
+* * *
+
+  
+
+(4) hb_reportのパフォーマンスが改善されました。
+
+
+<blockquote>
+- hb_report performance improvement
+</blockquote>
+
+
+チェンジログからの抜粋
+
+
+<blockquote>
+hb_report: improve performance
+hb_report: get corosync blackbox records if available
+hb_report: add node time information
+</blockquote>
+
+
+hb_reportを使うと、ha-logやha.cf、実行中のクラスタ情報などを収集することができます。
+使い方は[こちら](/wp/archives/2368)を参考にしてください。
+引数なしで実行するとヘルプがどばーっとでるので、それを見るだけでもなんとなく使い方はわかります。
+
+Pacemakerでクラスタを構築してみたけど、なんかうまくいかないなあ、コミュニティに聞いてみようかな、とそういう時！
+今現在の困りっぷりを文章だけで他の人に説明するのって結構大変です。
+日本語でも大変なのに英語なんてむーりーということで諦めちゃう人も多いかもしれません。
+諦めるまではいかなくてもなんかお腹痛くなってきた…とかそういうのはよくわかります。
+ログファイルや設定ファイルをメールに添付して、「添付をみてください。 See attached.」でもいいんですが、実はha-logだけとかha.cfだけとかじゃわからないことって多いんですよね。
+hb_reportを使うと、とりあえずそのへんにあるログやら設定ファイルやらさらにはOS情報やらがっつ集めてくれるのでラクチンですよ！
+次回からは「hb_reportみてください！ See attached hb_report!」を試してみてください。
+  
+
+
+* * *
+
+  
+
+その他、チェンジセットみて気になったところでいうと、stonith関連でちょいちょい修正が入ってます。
+
+
+<blockquote>
+stonith: add CRM stonith resource name to log messages (bnc#728579)
+stonith: adjust timeouts in the meta-data template (bnc#733337)
+stonith: external/vcenter: return list of configured hosts on
+stonith: external/libvirt: add more search strings for domain
+stonith: rhcs: pass the action via stdin too
+stonith: rhcs: avoid false error if parameter isn't set
+</blockquote>
+
+
+それと、lrmdがリソースを起動するときのプロセス数を環境変数で変更できるようになりました。
+デフォルトは4なので、リソース数の多い構成の場合、エラーがでちゃったりしてたんですが、環境変数で調整すればちょっとよくなるかもしれません。
+
+
+<blockquote>
+LRM: lrmd: if set, get max-children from the LRMD_MAX_CHILDREN
+</blockquote>

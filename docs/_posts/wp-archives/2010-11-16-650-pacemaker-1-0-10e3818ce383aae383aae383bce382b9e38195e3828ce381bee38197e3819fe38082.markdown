@@ -1,0 +1,29 @@
+---
+author: minky
+comments: false
+date: 2010-11-16 00:44:28+00:00
+layout: post
+permalink: /wp/archives/650
+slug: pacemaker-1-0-10%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%be%e3%81%97%e3%81%9f%e3%80%82
+title: Pacemaker 1.0.10がリリースされました。
+wordpress_id: 650
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+１１月１２日付けで、Pacemaker 1.0.10がリリースされました。
+
+
+
+
+
+Fedora、OpenSUSE、RHEL、CentOS用のRPM、及びソースコード等は以下のページからダウンロード出来ます。
+
+
+
+
+
+[http://www.clusterlabs.org/rpm/](http://www.clusterlabs.org/rpm/)

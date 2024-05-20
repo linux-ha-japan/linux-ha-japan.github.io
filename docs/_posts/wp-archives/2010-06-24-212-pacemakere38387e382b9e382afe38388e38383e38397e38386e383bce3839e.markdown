@@ -1,0 +1,185 @@
+---
+author: minky
+comments: false
+date: 2010-06-24 16:54:36+00:00
+layout: post
+permalink: /wp/archives/212
+slug: pacemaker%e3%83%87%e3%82%b9%e3%82%af%e3%83%88%e3%83%83%e3%83%97%e3%83%86%e3%83%bc%e3%83%9e
+title: Pacemaker応援キャラクター紹介
+wordpress_id: 212
+categories:
+- その他
+---
+
+
+
+
+[![Kana]({{ site.lhajp_resources_url }}/wp-content/f57b1d7a81ae9623495c8c444dbc69e9.png)](/assets/images/wp-content/serviceservice02.wav)
+
+
+高良家の長女　かなちゃんは、工学部に通う大学２年生。
+将来はＩＣＴ企業に勤めたいなぁとぼんやり考えています。
+とはいえパソコンはそんなに得意でなく、スポーツ大好き。
+コンピューター関連はただいま勉強中。
+[Ｗｉｎｄｏｗｓデスクトップテーマはこちら。](http://www.oss-ch.jp/data/pm_kana.zip)
+(CV:田中理恵)
+
+
+
+ 
+
+ 
+
+
+
+
+
+[![Kayo]({{ site.lhajp_resources_url }}/wp-content/ccdc4ad4e560e3cddcf707196efe8f95.png)](/assets/images/wp-content/pochi3.wav)
+
+
+高良家の次女　かよちゃんは、高陽学園高校の２年生。
+オタク少女、萌えが好き。BLも好き。
+パソコンとかも好きな彼女。 でも、難しいことはわかりません。
+[Windowsデスクトップテーマはこちらから。](http://www.oss-ch.jp/data/pm_kayo.zip)
+[ NEW!(2014.05.19)新作！Windows7デスクトップテーマはこちらから](http://www.oss-ch.jp/data/pm_kayo7.zip)
+[ NEW!(2014.05.19)新作！Windows8デスクトップテーマはこちらから](http://www.oss-ch.jp/data/pm_kayo8.zip)
+[新作！Ubuntu用サウンドテーマ（試験中）はこちらから](http://www.oss-ch.jp/data/kayo-thema.tar.gz)
+[新作！Cinnamon用サウンドテーマ（試験中）はこちらから](http://www.oss-ch.jp/data/kayo-cinnamon.tar.gz)
+(CV:丹下桜)
+
+
+
+ 
+
+ 
+
+
+
+
+
+[![pe]({{ site.lhajp_resources_url }}/wp-content/3430d1abff78493e86b9555da476f198.png)](/assets/images/wp-content/3f92ba6d01ab8270a1b991f1ddef8cc0.wav)
+
+
+ぺーちゃんは電脳世界から出て来たブログペット
+ちょっとドジでのろまで毒舌。
+最近は、妙な怪光線とか・・・・、あ、それはWebラジオでですね。
+いつもみんなとドタバタ楽しくしています。
+[Windowsデスクトップテーマはこちらから。](http://www.oss-ch.jp/data/pm_pee.zip)
+(CV:橋本まい)
+
+
+
+ 
+
+ 
+
+
+
+
+
+[![ha]({{ site.lhajp_resources_url }}/wp-content/Hea2.png)](/assets/images/wp-content/barusamiko.mp3)
+
+
+はーちゃんは電脳世界から出て来たブログペット
+本当はずっと前からいたことは知っていたんですが、最近来たみたいですよ。
+不思議ちゃんなんですって。　ほにょほにょ〜。
+いろいろと不思議な力で世の中を・・・・・え(゜○゜)!
+[Windowsデスクトップテーマはこちらから。](http://www.oss-ch.jp/data/pm_ha.zip)
+（CV:福原香織）
+
+
+
+ 
+
+ 
+
+
+
+
+
+[![]({{ site.lhajp_resources_url }}/wp-content/0ecf21970d7d3c222918c6ad1a852d671-150x150.jpg)](/assets/images/wp-content/IYH_rina.mp3)
+
+
+ 
+
+ドイツからの留学生、ドロシーとビアンカ
+双子だけど、性格も声も正反対。
+かなちゃんの学校への留学生なんだけど、
+なぜか、オタク仲間でかよちゃんとも仲良し。
+変な技を使うらしいですよ？
+[Windowsデスクトップテーマはこちらから。](http://www.oss-ch.jp/data/pm_drbd.zip)
+システムボイスは[こちら]( {{ site.lhajp_resources_url }}/wp-content/pm_drbd_voice.zip)からどうぞ。
+(CV:日高里菜)
+
+
+
+ 
+
+ 
+
+
+
+
+
+[![rin](/assets/images/wp-content/rin-150x150.jpg)](http://www.oss-ch.jp/data/kounorin.mp3)
+
+
+
+ 
+
+かよちゃんの同級生、河野凜ちゃんです。
+生真面目で、何事も数値化しないと気が済まない彼女。
+部活はアマチュア無線部ですって。
+そうそう、かくれオタクなのは内緒です。
+[Windows7以降用デスクトップテーマはこちらから。](http://www.oss-ch.jp/data/pm_rin.zip)
+（CV:津田美波）
+
+
+
+ 
+
+ 
+
+
+
+
+
+[![tsubasa](/assets/images/wp-content/tsubasa-150x150.jpg)](http://www.oss-ch.jp/data/kurata_yoshi.mp3)
+
+
+ 
+
+かよちゃんの同級生、倉田つばさちゃんです。
+ボクっ娘らしいんですが、まぁ脳みそが筋肉で出来ている系のようですね。
+あちこちの運動部にスケット参上してるみたいですよ。
+[Windows7以降用デスクトップテーマはこちらから。](http://www.oss-ch.jp/data/pm-tsubasa.zip)
+（ＣＶ：小松未可子）
+
+
+
+ 
+
+ 
+
+ 
+
+
+
+
+
+[![sakura](/assets/images/wp-content/sakura-150x150.jpg)](http://www.oss-ch.jp/data/aisu-kyunn.mp3)
+
+ 
+
+本邦初公開！な、かよちゃんのクラス担任の若井さくら先生
+そんじょそこらの高校生よりは背も小さいし、子供っぽいし・・・。
+いや、やるときはやるんですよ！
+ちなみに、ウルトラモンキーの四葉ちゃんとは高校の同級生で
+良く呑みにいくらしいですよ。
+[Windows7以降用デスクトップテーマはこちらから。](http://www.oss-ch.jp/data/pm-sakura.zip)
+[Ubuntu用サウンドテーマ（試験中）はこちらから](http://www.oss-ch.jp/data/sakura-thema.tar.gz)
+（ＣＶ：村川梨衣）
+
+
+
+ 

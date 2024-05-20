@@ -1,0 +1,27 @@
+---
+author: t-matsuo
+comments: false
+date: 2013-04-11 06:01:10+00:00
+layout: post
+permalink: /wp/archives/3626
+slug: pacemaker%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b81-0-13-1-1%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9
+title: Pacemakerリポジトリパッケージ1.0.13-1.1リリース
+wordpress_id: 3626
+categories:
+- ニュース
+tags:
+- pacemaker
+- リリース情報
+---
+
+本日、Pacemakerリポジトリパッケージ1.0.13-1.1をリリースしました。
+
+Pacemaker本体が約1年ぶりにバージョンアップし、さらに多くの同梱パッケージのバージョンもアップしております。是非ご活用ください。
+
+リリースノート、変更履歴の確認、およびパッケージのダウンロードは 以下のURLをご参考ください。
+
+RHEL6用
+[http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469](http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469)
+
+RHEL5用
+[http://sourceforge.jp/projects/linux-ha/releases/?package_id=11413](http://sourceforge.jp/projects/linux-ha/releases/?package_id=11413)

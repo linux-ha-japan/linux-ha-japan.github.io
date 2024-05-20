@@ -1,0 +1,510 @@
+---
+author: ikedaj
+comments: false
+date: 2011-08-09 14:59:19+00:00
+layout: post
+permalink: /wp/archives/2209
+slug: '%e6%9c%88%e5%88%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%938%e6%9c%88%e5%8f%b7'
+title: 月刊あんどりゅーくん(8月号)
+wordpress_id: 2209
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+10月にプラハで開催予定の[LinuxCon](http://events.linuxfoundation.org/events/linuxcon-europe)/[Kernel Summit](http://events.linuxfoundation.org/events/linux-kernel-summit)ですが[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)  
+HAな人々もこれにあわせて[25日に大集合](https://lists.linux-foundation.org/pipermail/ha-wg/2011-July/000026.html)ということになりました。  
+と思ったら、あんどりゅーくん、[不参加](https://lists.linux-foundation.org/pipermail/ha-wg/2011-July/000029.html)やけどな。 
+あんどりゅーくんはいないけれども、興味のある方はぜひぜひご参加ください。
+
+というわけで今月も
+  
+(1) リリース情報
+(2) 知恵袋  
+
+です。   
+
+(1) リリース情報  
+
+・Corosync 1.4.1と1.3.3の[リリース
+](http://marc.info/?l=openais&m=131167190724546&w=2)今回のリリースでは、クラスタ再構成時の検知、例えば
+冗長構成で死活監視をしているインターコネクトLANのかたっぽが切れちゃった後
+ちゃんとネットワークがつなぎなおしたはずなのに
+「まだつながってなくね？」と誤検知しちゃう問題が修正されています。
+
+リリースノートらしきものが見つけられなかったので、TODOの比較してみたのですが
+v1.3.3とv1.4.1ではSNMP関連で差分がありました。
+v1.4系からははSNMPがサポートされています。
+どんなトラップが飛んでくるかとかそのへんはまだよくわからないので
+なにかわかったらまた別冊でご紹介しようと思います。
+
+[
+v1.3.3のTODO](http://corosync.org/git/?p=corosync.git;a=blob_plain;f=TODO;hb=b620cd7d562643ec794113f948d6904c29791e21)
+------------------------------------------------------------------------------
+topic-snmp
+------------------------------------------------------------------------------
+Main Developer: Steven Dake
+Started: Not Started
+Finished: 0%
+target: needle
+Description:
+This topic involves investigation of adding SNMP support into Corosync.  
+
+[v1.4.1のTODO](http://corosync.org/git/?p=corosync.git;a=blob_plain;f=TODO;hb=bfddaef2e4aed60173a03cc6df2f43096c5d35fe)
+------------------------------------------------------------------------------
+topic-snmp
+------------------------------------------------------------------------------
+Main Developer: Angus Salkeld
+Started: Not Started ← あれ？未着手なのに
+Finished: 100% ← 進捗が100%になってる！
+target: needle
+Description:
+This topic involves investigation of adding SNMP support into Corosync.  
+
+ちなみにリリースのアナウンスは7月26日だったのですが、
+その前の週(7月18日)に1.4.0のリリースがアナウンスされてるんですよね。
+またしても週刊コロシンクがはじまっちゃうか！？
+と某所では戦々恐々となったらしいですが、そうでもなかった。やれやれ。  
+  
+
+・DRBD 8.4.0の[リリース](http://www.gossamer-threads.com/lists/drbd/announce/21847)
+いよいよ、8.4の正式版がリリースされました！
+RHEL6.1にも対応しています。  
+
+8.4系では複数リソースの同期処理に大きな変更が入りました。
+8.3系までは、複数リソースを同期する場合は同期LANを複数準備する、
+または同期ポートを複数準備する必要がありました。
+例えば、同期LANが1本の構成でリソースAとリソースBを同期したい場合は
+それぞれの同期ポートを別の番号で設定することになります。
+この場合、なんらかの不具合でリソースAの同期処理は停止してしまったけれど
+リソースBは正常に同期処理を続行中という状態もあり得るわけです。
+で、このタイミングでプライマリノードが故障してしまうと
+セカンダリノードのリソースAとリソースBは同期状態がびみょーに違う可能性も
+「あるかもしれない」。
+fence-peerハンドラを設定していれば、リソースAが「Outdated」状態になっているはずなので
+そもそも起動できないんですが、タイミングによっては起動しちゃう場合もあるかもしれない。
+そのへんは保証されないわけです。
+リソースAとリソースBが依存関係のないデータであれば問題ないのですが
+データベースのテーブル領域とログ領域みたいになんらかの依存関係がある場合は
+同期状態がずれると危険なので、複数リソースの設定は推奨されていません。
+
+ただし、既存の環境にDRBDを追加する場合だと、
+パーティションをがっつり切られてたりすることもあるでしょうし
+バックアップの関係でパーティションわけときたいんだわとか
+そういうのもあるかもしれない。
+こういう場合は複数リソース構成をとるしかない。
+8.4系では同一の同期LANで複数リソースを同期することができるので
+同期がとまるときは全リソースが一斉にとまりますし
+再同期がかかるときは全リソースが一斉に再同期しにいきます。
+なので、依存関係のあるデータを複数リソースとして設定しても
+同期状態は常に保証されます。  
+
+複数リソースにはvolumesパラメータを使用しますが
+8.4向けに変更が反映されたユーザガイドをみてみると、volumesの[設定方法](http://www.drbd.org/users-guide/re-drbdconf.html#id449873)はこんな感じです。
+onセクションの中でvolume{}をもりもり増やしていけばよいわけですな。  
+
+ちなみに、deviceに設定するminor番号、これって8.3系では最大255までだったのですが
+8.4系では最大1048576(2の20乗)まで[設定可能](http://www.drbd.org/users-guide/s-recent-changes-defaults.html#s-recent-changes-defaults-minor-count)となりました。
+つまり1048576リソースまで同期可能ということですね。
+いやー、255個でもいいんじゃね？ってちょっとだけ思ったけど、まあ、ね…。  
+(2) 知恵袋[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)  
+
+今回は、DRBD 8.4のリリースを記念して、DRBDのアップデート関連の
+知恵袋をご紹介します。
+
+・DRBDのアップデート方法
+8.3系から8.4系へのアップデートについて
+アナウンスでは「drbdadm apply-al <resource>」でうまくいくはず、
+とのことでしたが、とりあえず、私は失敗しました。
+で、今のところ、うまくいっている方法をご紹介します。
+この方法は、2ノード構成でどちらか片方のノードをプライマリに維持する
+「ローリングアップデート」です。  
+
+前提条件
+プライマリ 8.3.11
+セカンダリ 8.3.11  
+
+(1) セカンダリのDRBDを停止  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm down all
+# service drbd stop
+</td>
+</tr>
+</tbody>
+</table>
+PacemakerからDRBDを起動させている場合は、Pacemakerを停止します。  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># service heartbeat stop
+</td>
+</tr>
+</tbody>
+</table>
+
+(2) セカンダリのDRBDをアンインストール  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># rpm -e drbd-pacemaker drbd-utils drbd-km-2.6.18_238.el5-8.3.11.1-1
+</td>
+</tr>
+</tbody>
+</table>
+ここで、/etc/drbd.confが/etc/drbd.conf.rpmsaveとして保存されるはずです。  
+
+(3) セカンダリのDRBDをアップデート  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># rpm -ihv drbd-utils-8.4.0-1.x86_64.rpm
+# rpm –ihv drbd-km-2.6.18_238.el5-8.4.0-1.x86_64.rpm
+# rpm –ihv drbd-pacemaker-8.4.0-1.x86_64.rpm
+</td>
+</tr>
+</tbody>
+</table>
+PacemakerからDRBDを起動させる場合は、DRBDが自動起動しないように設定します。  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># chkconfig drbd off
+</td>
+</tr>
+</tbody>
+</table>
+設定ファイルを復元します。  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># cp -p /etc/drbd.conf.rpmsave /etc/drbd.conf
+</td>
+</tr>
+</tbody>
+</table>
+
+(4) メタデータの削除と再作成  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm wipe-md all
+# drbdadm create-md all
+</td>
+</tr>
+</tbody>
+</table>
+途中、対話式でいろいろ聞いてくるけど、全部「yes」で抜けちゃってOK。  
+
+(5) DRBDの起動  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># service drbd start
+</td>
+</tr>
+</tbody>
+</table>
+PacemakerからDRBDを起動させる場合は、Pacemakerを起動します。  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># service heartbeat start
+</td>
+</tr>
+</tbody>
+</table>
+ここで、DRBDの状態を確認してみると、プライマリからセカンダリに再同期が実行されているはず。
+同期領域のサイズがでかいと、この処理がネックですねえ。
+apply-alだとココ省略できるんかなあ。  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># cat /proc/drbd
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellspacing="2" cellpadding="2" width="100%" >
+<tbody >
+<tr >
+
+<td >version: 8.4.0
+(api:1/proto:86-100)
+GIT-hash: 28753f559ab51b549d16bcf487fe625d5919c49c build by root@srv01,2011-07-25 13:46:08
+0: cs:SyncTarget ro:Secondary/Primary ds:Inconsistent/UpToDate C r-----
+ns:0 nr:0 dw:0 dr:263296 al:0 bm:15 lo:22 pe:46 ua:0 ap:0 ep:1 wo:b oos:9513840
+[>....................] sync'ed: 2.7% (9288/9540)M
+finish: 0:03:41 speed: 42,900(42,900) want: 40,960 K/sec
+</td>
+</tr>
+</tbody>
+</table>
+再同期が終了したら、今度はプライマリをアップデートします。  
+
+(6) プライマリとセカンダリを入れ替え
+DRBDのサービスを停止させたくないので、プライマリとセカンダリを入れ替えます。  
+
+プライマリをセカンダリに降格  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># umount <dir>
+# drbdadm secondary all
+# drbdadm down all
+# service drbd stop
+</td>
+</tr>
+</tbody>
+</table>
+セカンダリをプライマリに昇格  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm primary all
+</td>
+</tr>
+</tbody>
+</table>
+PacemakerからDRBDを起動させている場合は、プライマリのPacemakerを停止させてください。
+サービスはPacemakerによってセカンダリへフェイルオーバするはずです。  
+
+あとは、プライマリで手順(1)から(5)を繰り返します。  
+
+8.3系でのアップデート(例：8.3.7から8.3.11)の場合、wipe-md/create-mdは必要ありません。
+RPMを入れ替えた後、drbd.confを元に戻してDRBDを起動すればOKです。
+プライマリとの差分が発生していない場合は再同期処理も発生しません。  
+
+・drbd.confの変換
+8.3系で使ってたdrbd.confでも8.4系は動きます。
+でも、ちょこちょこ[変更が入っている](http://www.drbd.org/users-guide/s-recent-changes-config.html)ので、8.4系用に変換してあげたほうがよいです。  
+
+8.3から8.4にアップデートした後、次の手順でdrbd.confを変換します。  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm dump all
+</td>
+</tr>
+</tbody>
+</table>
+
+dumpオプションをつけてdrbdadmコマンドを実行すると、なんと！
+8.3用のdrbd.confが8.4用にパースされて表示されるとか！
+すばらしー。
+
+なので、これを適当に/tmpとかに出力してあげて、ちょこっと編集します。  
+
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm dump all > /tmp/drbd.conf
+</td>
+</tr>
+</tbody>
+</table>
+先頭にglobalセクションをちょろっと追加。
+追加しなくても動作に問題はないんですけどね、
+次のadjustオプションでいろいろ聞かれてめんどくさいので。  
+
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># vi /tmp/drbd.conf
+</td>
+</tr>
+</tbody>
+</table>
+<table style="background-color: #ffffcc; width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: white;" >global {
+usage-count no;
+}  
+
+
+</td>
+</tr>
+</tbody>
+</table>
+元のやつを一応保存しとく。  
+
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># cp -p /etc/drbd.conf /etc/drbd.conf.org
+</td>
+</tr>
+</tbody>
+</table>
+新しいやつをコピー。  
+
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># mv /tmp/drbd.conf /etc/drbd.conf
+</td>
+</tr>
+</tbody>
+</table>
+対向ノードにもコピー。  
+
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># scp -p /etc/drbd.conf <対向ノード>:/etc/drbd.conf
+</td>
+</tr>
+</tbody>
+</table>
+両方のノードでdrbdadmコマンドを実行し、設定を反映させます。  
+
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm adjust all
+</td>
+</tr>
+</tbody>
+</table>
+drbd.confの変更はDRBDが動いたままでも実行できます。  
+
+  
+・コマンドオプションの変更  
+
+[drbdadmコマンドのオプション](http://www.drbd.org/users-guide/s-recent-changes-drbdadm.html)もちょこっと変更されています。  
+
+- スプリットブレイン回復時に、特定ノードのデータを破棄する方法
+8.3系  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm secondary <resource>
+# drbdadm -- --discard-my-data connect <resource>
+</td>
+</tr>
+</tbody>
+</table>
+8.4系  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm secondary <resource>
+# drbdadm connect --discard-my-data <resource>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+- 初期同期の方法
+
+8.3系
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm -- --overwrite-data-of-peer primary <resource>
+</td>
+</tr>
+</tbody>
+</table>
+8.4系  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm primary --force <resource>
+</td>
+</tr>
+</tbody>
+</table>
+
+・オンラインでプロトコルを変更する方法  
+
+8.4からの新機能です。
+プロトコルCで同期中のリソースを一時的にプロトコルAに変更する場合
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm net-options --protocol=A <resource>
+</td>
+</tr>
+</tbody>
+</table>
+元に戻すときは同じコマンドで、--protocol=Cってするか  
+
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm adjust <resource>
+</td>
+</tr>
+</tbody>
+</table>
+で、drbd.confの設定を反映させればいいはず。  
+
+
+・一時的にデュアルプライマリを許可する方法
+
+8.4からの新機能です。
+一時的にデュアルプライマリ(両ノードがプライマリに昇格可能)を許可します。
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" ># drbdadm net-options --protocol=C --allow-two-primaries <resource>
+</td>
+</tr>
+</tbody>
+</table>
+うっはー、これ、オンラインで変更できるんですね。超危険ｗｗｗ
+よい子は真似してはいけません。
+  
+
+**では、今月はこれにてどろん！εεεεεヾ(*´ー`)ﾉ**
+
+** **今週は節電のため、強制的に夏休みです。

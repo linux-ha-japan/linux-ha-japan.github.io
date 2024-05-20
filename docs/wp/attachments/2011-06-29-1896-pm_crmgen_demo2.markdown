@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/pm_crmgen_demo2.xls
+author: takayukitanaka
+comments: false
+date: 2011-06-29 05:50:57+00:00
+layout: post
+permalink: /wp/archives/1747/pm_crmgen_demo2
+slug: pm_crmgen_demo2
+title: pm_crmgen デモサンプル2
+wordpress_id: 1896
+---
+
+### [pm_crmgen デモサンプル2]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo2.xls)

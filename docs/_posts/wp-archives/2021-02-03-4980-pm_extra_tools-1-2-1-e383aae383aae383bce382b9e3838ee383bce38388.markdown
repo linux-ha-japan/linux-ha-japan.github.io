@@ -1,0 +1,81 @@
+---
+author: ksk
+comments: false
+date: 2021-02-03 04:00:49+00:00
+layout: post
+permalink: /wp/archives/4980
+slug: pm_extra_tools-1-2-1-%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%83%8e%e3%83%bc%e3%83%88
+title: pm_extra_tools-1.2-1 リリースノート
+wordpress_id: 4980
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+pm_extra_tools パッケージは Pacemaker-2系用の追加ツールをパッケージしたものです。 RHEL 8 High Availability Add-On(以下 HA Add-On) / CentOS 8 に同梱されている Pacemaker-2.0系 と組み合わせて利用します。
+
+* * *
+
+## 1. リリースノート
+
+pm_extra_tools-1.2-1 をリリースしました(2021/02/03)。
+
+本リリースはマイナーアップデートリリースです。具体的な修正内容は 「変更履歴」 を参照してください。
+
+従来 Linux-HA Japan コミュニティでは、Pacemaker-1.1系リポジトリパッケージという形でPacemaker本体も全て含めたパッケージのリリースを行ってきましたが、Pacemaker-2.0系以降では追加ツール類のみをパッケージしリリースを行っています。詳細は 「参考情報」 の [OSC2020 Tokyo/Spring セミナー資料 Linux-HA Japan プロジェクトのこれまでとこれから](/wp/archives/4942) を参照してください。
+
+* * *
+
+## 2. ダウンロード
+
+pm_extra_tools パッケージは以下のページよりダウンロードできます。
+
+  * ダウンロードURL 
+    * [pm_extra_tools-1.2-1 リリース](https://osdn.net/projects/linux-ha/releases/74514)
+  * 動作条件 
+    * RHEL 8.3 HA Add-On / CentOS 8.3.2011 
+
+* * *
+
+## 3. 使い方
+
+pm_extra_tools を利用するには、あらかじめ Pacemaker をインストールする必要があります。Pacemaker のインストール方法は 「参考情報」 の項などを参照してください。
+
+pm_extra_tools に含まれるツールとその使い方については以下のリンク先を参照してください。
+
+  * [pm_extra_tools README.md](https://github.com/linux-ha-japan/pm_extra_tools/blob/master/README.md)
+
+* * *
+
+## 4. 変更履歴
+
+  * pm_extra_tools-1.2-1 
+    * pm_pcsgen: 
+      * pm_pcsgenが出力する pcs コマンドの一部が将来廃止予定となったため、推奨コマンドに置き換えました。 
+        * 変更前: `pcs resource defaults` , `pcs resource op defaults`
+        * 変更後: `pcs resource defaults update` , `pcs resource op defaults update`
+      * サンプル・パラメータシートのインターコネクトLAN故障時の相撃ち防止設定例を、新しい Pacemaker のオプション `priority-fencing-delay` を利用する方式に変更しました。 
+        * 変更前: STONITHリソースの `delay`  属性による設定 
+        * 変更後: `priority-fencing-delay`  オプションおよびサービスリソースの `priority`  属性設定 
+        * `priority-fencing-delay` の利用により、常にサービスリソースが稼働しているノードを優先してサービス継続を行うことが可能になります。 
+        * `priority-fencing-delay` オプションは RHEL 8.3 HA Add-On 以降の Pacemaker で利用可能です。 
+  * pm_extra_tools-1.1-1 
+    * pgsql（PostgreSQL管理用のリソースエージェント）: 
+      * 開発コミュニティの最新の修正に追随し、Pacemakerとのバージョン互換性が改善されました。 
+      * これにより RHEL 8.2 HA Add-On との組み合わせでレプリケーション機能(PG-REX構成)が正しく動作しない事象が解消されます。 
+  * pm_extra_tools-1.0-1 
+    * 初版リリース 
+
+* * *
+
+## 5. 参考情報
+
+  * [OSC2020 Online/Fall セミナー資料 試して覚えるPacemaker-2.0入門『構築・リソース設定』](/wp/archives/4970) ★オススメ！ 
+    * Pacemaker-2.0系 (RHEL 8 HA Add-On)の構築・リソース設定手順の紹介 
+  * [OSC2020 Tokyo/Spring セミナー資料 Linux-HA Japan プロジェクトのこれまでとこれから](/wp/archives/4942)
+    * Pacemaker-1.1系リポジトリパッケージとの違い、Pacemaker-2.0系の簡単な構築手順例など 
+  * [Pacemaker 開発コミュニティドキュメント](https://clusterlabs.org/pacemaker/doc/)
+  * [RHEL 8 High Availability Add-On ドキュメント(Red Hat社)](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/configuring_and_managing_high_availability_clusters/index)
+
+以上。

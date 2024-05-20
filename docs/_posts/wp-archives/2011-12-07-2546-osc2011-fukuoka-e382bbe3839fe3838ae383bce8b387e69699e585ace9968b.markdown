@@ -1,0 +1,37 @@
+---
+author: takayukitanaka
+comments: false
+date: 2011-12-07 04:51:12+00:00
+layout: post
+permalink: /wp/archives/2546
+slug: osc2011-fukuoka-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2011 Fukuoka セミナー資料公開
+wordpress_id: 2546
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+#### 初の女子大開催！
+
+
+12月3日(土) 、福岡県太宰府市の筑紫女学園大学にて [オープンソースカンファレンス2011 Fukuoka](http://www.ospn.jp/osc2011-fukuoka/) が開催され、去年に引き続きLinux-HA Japanとして参加してきました。初の女子大開催です！[![](/assets/images/wp-content/2011fukuoka.jpg)](/wp/archives/2546/2011fukuoka)
+
+2010年の福岡での初セミナーでは、既にPacemakerを知っている人が多かったため、今回はOSC京都で行ったセミナーと同様、構築方法は省略し、運用を主とした[「](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17)[Pacemakerでかんたんクラスタリング体験してみよう～HAクラスタ運用デモしますよ編～](http://www.ospn.jp/osc2011-fukuoka/modules/eguide/event.php?eid=4)[」](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17) という題目で実演セミナーをおこないました。
+
+「構築方法がわかってもただの箱なので、今回のデモで運用方法がよくわかりためになりました」という感想までいただき、講演者としては嬉しい限りです。福岡はPacemakerに対して熱心な方が多かったですね。
+
+プレゼンテーション資料を公開しますので、参考にしていただければと思います。
+
+
+
+	
+  * セミナー資料：  [Pacemakerでかんたんクラスタリング体験してみよう～HAクラスタ運用デモしますよ編～](http://sourceforge.jp/projects/linux-ha/document/Pacemaker_OSC2011Fukuoka_20111203/ja/1/Pacemaker_OSC2011Fukuoka_20111203.pdf)
+
+	
+  * 設定例：  [デモ用サンプルファイル一式（pm_crmgen環境定義書Excelテンプレート、demo4.crm、ha.cf）]({{ site.lhajp_resources_url }}/wp-content/osc2011fukuoka.zip)
+
+

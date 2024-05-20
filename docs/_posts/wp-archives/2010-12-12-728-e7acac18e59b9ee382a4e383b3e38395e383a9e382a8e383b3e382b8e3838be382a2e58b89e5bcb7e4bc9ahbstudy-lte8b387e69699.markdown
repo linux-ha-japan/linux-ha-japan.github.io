@@ -1,0 +1,34 @@
+---
+author: minky
+comments: false
+date: 2010-12-12 13:57:56+00:00
+layout: post
+permalink: /wp/archives/728
+slug: '%e7%ac%ac18%e5%9b%9e%e3%82%a4%e3%83%b3%e3%83%95%e3%83%a9%e3%82%a8%e3%83%b3%e3%82%b8%e3%83%8b%e3%82%a2%e5%8b%89%e5%bc%b7%e4%bc%9ahbstudy-lt%e8%b3%87%e6%96%99'
+title: 第18回インフラエンジニア勉強会hbstudy LT資料
+wordpress_id: 728
+categories:
+- ニュース
+- イベント情報
+---
+
+１２月１１日に、新宿で行われました第18回インフラエンジニア勉強会hbstudyの
+
+
+
+
+
+ライトニングトークで使用した資料（一部修正済み）を[こちらにUPしました]({{ site.lhajp_resources_url }}/wp-content/PacemakerLT.mov)。
+
+
+
+
+
+  
+
+
+
+
+
+
+Quicktime形式なため、再生できない場合があるかも知れませんが、ご容赦ください。

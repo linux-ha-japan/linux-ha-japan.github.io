@@ -1,0 +1,55 @@
+---
+author: higashik
+comments: false
+date: 2015-10-09 01:01:21+00:00
+layout: post
+permalink: /wp/archives/4137
+slug: osc2015-fukuoka-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2015 Fukuoka セミナー資料・アンケート結果公開
+wordpress_id: 4137
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+10月3日(土) に九州産業大学にて開催された[オープンソース カンファレンス2015 Fukuoka](https://www.ospn.jp/osc2015-fukuoka/) にLinux-HA Japanも参加し、ブース展示および講演を行いました。当日は天気も良く、会場全体で約400名の来場がありました。
+
+講演は「[PG-REXで学ぶPacemaker運用の実例](https://www.ospn.jp/osc2015-fukuoka/modules/eguide/event.php?eid=9)」というタイトルで、PacemakerとPostgreSQLのレプリケーション機能を組み合わせた「PG-REX」を題材に、実際の故障が発生した際の故障内容によるPacemakerの挙動の違い、および各種故障事例を挙げながら原因解析方法、復旧方法について紹介させていただきました。
+
+以下にセミナーの資料およびセミナーで例示したPG-REX構成のCRM設定を公開しますので、参考にしていただければと思います。
+
+
+
+  
+  * セミナー資料(Slideshare)：[PG-REXで学ぶPacemaker運用の実例](http://www.slideshare.net/kazuhcurry/pgrexpacemaker)
+
+  
+  * PG-REX構成のCRM設定：[OSC2015Fukuoka_LectureExample.crm]({{ site.lhajp_resources_url }}/wp-content/OSC2015Fukuoka_LectureExample.crm_.txt)
+
+
+
+
+また、デモブースで、デモ構成のCRM設定を公開してほしい、というリクエストをいただいたので、以下に公開します。
+セミナーで例示の構成に加え、DRBD, Filesystem, Apacheリソースが加わっており、より複雑な制約が設定されています。参考にしてください。
+
+
+
+  
+  * デモ構成のCRM設定：[PG-REX9.4_CentOS7_pm_crmgen_env_OSC.crm]({{ site.lhajp_resources_url }}/wp-content/PG-REX9.4_CentOS7_pm_crmgen_env_OSC.crm_.txt)
+
+
+
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。
+(回答者計19名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+[![OSC2015Fukuoka_enquete01](/assets/images/wp-content/OSC2015Fukuoka_enquete01.jpg)](/assets/images/wp-content/OSC2015Fukuoka_enquete01.jpg)
+[![OSC2015Fukuoka_enquete02](/assets/images/wp-content/OSC2015Fukuoka_enquete02.jpg)](/assets/images/wp-content/OSC2015Fukuoka_enquete02.jpg)
+[![OSC2015Fukuoka_enquete03](/assets/images/wp-content/OSC2015Fukuoka_enquete03.jpg)](/assets/images/wp-content/OSC2015Fukuoka_enquete03.jpg)
+[![OSC2015Fukuoka_enquete04](/assets/images/wp-content/OSC2015Fukuoka_enquete04.jpg)](/assets/images/wp-content/OSC2015Fukuoka_enquete04.jpg)
+[![OSC2015Fukuoka_enquete05](/assets/images/wp-content/OSC2015Fukuoka_enquete05.jpg)](/assets/images/wp-content/OSC2015Fukuoka_enquete05.jpg)
+[![OSC2015Fukuoka_enquete06](/assets/images/wp-content/OSC2015Fukuoka_enquete06.jpg)](/assets/images/wp-content/OSC2015Fukuoka_enquete06.jpg)
+[![OSC2015Fukuoka_enquete07](/assets/images/wp-content/OSC2015Fukuoka_enquete07.jpg)](/assets/images/wp-content/OSC2015Fukuoka_enquete07.jpg)

@@ -1,0 +1,41 @@
+---
+author: t-matsuo
+comments: false
+date: 2012-04-27 01:41:44+00:00
+layout: post
+permalink: /wp/archives/3158
+slug: pacemaker%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8-1-0-12-1-1-%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9
+title: Pacemakerリポジトリパッケージ 1.0.12-1.1 リリース
+wordpress_id: 3158
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+Pacemakerリポジトリパッケージ 1.0.12-1.1 をリリースしました。
+
+Linux-HA Japan からダウンロードが可能です。
+
+RHEL6用
+[http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469](http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469)
+
+RHEL5用
+[http://sourceforge.jp/projects/linux-ha/releases/?package_id=11413](http://sourceforge.jp/projects/linux-ha/releases/?package_id=11413)
+
+ 
+
+なお、本バージョンに含まれるパッケージでは、以前 Linux-HA Japan のメーリングリストや
+月刊あんどりゅーくん等で話題となった以下の不具合も改善されています。
+
+・diskdの起動でエラーが発生する問題
+[http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2012-March/001086.html](http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2012-March/001086.html)
+
+・groupリソースに含まれるリソース故障を契機にしたMaster/Slaveリソースの
+フェイルオーバが失敗する問題
+[/wp/archives/2468](/wp/archives/2468)
+[http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2012-January/001053.html](http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2012-January/001053.html)
+
+他にも、多数の不具合改善が入っていますので、
+是非ご活用ください。

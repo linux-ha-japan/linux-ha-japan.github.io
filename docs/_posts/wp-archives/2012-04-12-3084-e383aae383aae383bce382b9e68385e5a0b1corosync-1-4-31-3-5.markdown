@@ -1,0 +1,131 @@
+---
+author: ikedaj
+comments: false
+date: 2012-04-12 07:28:16+00:00
+layout: post
+permalink: /wp/archives/3084
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1corosync-1-4-31-3-5'
+title: リリース情報 (Corosync 1.4.3/1.3.5)
+wordpress_id: 3084
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年4月10日にCorosync 1.4.3 と 1.3.5 がリリースされました！
+
+ということで、メーリングリストに投稿された[リリースノート](http://lists.corosync.org/pipermail/discuss/2012-April/001455.html)を意訳してみました。
+  
+
+
+
+
+<blockquote>
+[corosync] Corosync 1.4.3 and 1.3.5 available at ftp.corosync.org!
+
+I am pleased to announce the latest maintenance release of Corosync
+1.4.3 and 1.3.5 available immediately from our website at
+http://www.corosync.org.
+</blockquote>
+
+
+
+
+<blockquote>
+Corosync 1.4.3 および 1.3.5 がリリースされました。
+ソースコードは　Corosync のサイトからダウンロードすることができます。
+[http://www.corosync.org](http://www.corosync.org)
+</blockquote>
+
+
+
+
+
+<blockquote>
+This releases fixes many critical bugs and 1.4.3 enhances support for 
+BSD systems. Corosync 1.3.5 is last release of 1.3 branch. If you are 
+still using this version, please consider upgrade to 1.4.3.
+</blockquote>
+
+
+
+
+<blockquote>
+今回のリリースはバグフィックスがメインですが、深刻なバグもいくつか含まれています。
+1.4.3は、サポートするプラットフォームにBSDも追加されました。
+1.3.5は、1.3系の最後のリリースとなります。
+1.3系、1.4系のいずれのユーザも最新版(1.4.3)にアップグレードすることをおすすめします。
+</blockquote>
+
+
+
+1.4.3 と 1.3.5 のそれぞれでちょっと気になった変更点をピックアップしました。
+
+
+
+
+
+  * Short changelog for 1.4.3:
+
+
+
+
+    * Add calls to missing object_find_destroy() to fix mem leaks
+
+
+    * Free mem allocated by getaddrinfo
+
+
+    * Fix memory leaks when nss fails
+
+
+    * Don't unlock mutex in different threads
+
+
+
+
+えーっと、1.4系、なんかメモリリークしてたみたいなんですけど(((( ；ﾟДﾟ))))ｶﾞｸｶﾞｸﾌﾞﾙﾌﾞﾙ 
+これはすぐさまアップグレードするべきですね。
+そして、ふろーりあんくんがcorosync.confの設定サンプル([corosync.conf.example](https://github.com/corosync/corosync/blob/flatiron-1.4/conf/corosync.conf.example))を追加してくれてます。
+ありがたい。
+
+
+
+
+
+  * and for 1.3.5:
+
+
+
+
+    * Add calls to missing object_find_destroy() to fix mem leaks
+
+
+    * Free mem allocated by getaddrinfo
+
+
+
+
+
+えーっと、1.4系のメモリリークは1.3系から引き継がれていた部分みたいなんですけど(((( ；ﾟДﾟ))))ｶﾞｸｶﾞｸﾌﾞﾙﾌﾞﾙ 
+1.3系は今回が最後のリリースなので、1.4.3にアップグレードしたほうがよいですね。
+
+  
+
+
+
+<blockquote>
+Upgrade is (as usually) highly recommended.
+
+Thanks/congratulations to all people that contributed to achieve this
+great milestone.
+</blockquote>
+
+
+
+
+<blockquote>
+(いつもと同じく)古いバージョンを使っているユーザにはアップグレードをおすすめします。
+リリースにご協力いただいた皆さん、ありがとうございました。
+</blockquote>

@@ -1,0 +1,63 @@
+---
+author: takayukitanaka
+comments: false
+date: 2010-12-14 10:34:39+00:00
+layout: post
+permalink: /wp/archives/741
+slug: osc2010-fukuoka-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2010 Fukuoka セミナー資料公開
+wordpress_id: 741
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+#### Linux-HA Japan がとうとう九州に上陸！
+
+
+
+
+
+12月11日(土) 福岡市で [オープンソースカンファレンス2010 Fukuoka](http://www.ospn.jp/osc2010-fukuoka/) が開催され、この日は前年を大きく上回る多数の来場者で賑わいました。
+
+
+
+
+
+Linux-HA Japan では、いつもの如く展示ブースの開設と [「](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17)[痛い目にあってわかるHAクラスタのありがたさ～Pacemakerで心に安らぎを～](http://www.ospn.jp/osc2010-fukuoka/modules/eguide/event.php?eid=39)[」](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17) という題目でセミナーを行ってきました。
+
+
+
+
+
+セミナー参加者は、HeartbeatまたはPacemakerのどちらかを知っている人がほとんどだったので、次回からは初心者向けではなくよりテクニカルな内容でセミナーをするべきだと感じましたね。興味を持って聞いてくださった方ありがとうございました。
+
+
+
+
+
+この時のプレゼンテーション資料を公開しますので、参考にしていただければと思います。
+
+
+
+
+
+  
+
+
+
+
+
+
+##### プレゼンテーション資料
+
+
+
+
+
+
+
+

@@ -1,0 +1,498 @@
+---
+author: ksk
+comments: false
+date: 2016-07-22 04:00:07+00:00
+layout: post
+permalink: /wp/archives/4490
+slug: pacemaker-1-1-14-1-1-%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8
+title: Pacemaker-1.1.14-1.1 リポジトリパッケージ
+wordpress_id: 4490
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+Pacemaker-1.1.14-1.1 リポジトリパッケージをリリースしました。
+
+このページでは Pacemaker-1.1.14-1.1 リポジトリパッケージの簡単な使い方を説明します。
+
+このページの変更履歴
+
+  * 2016.07.22 Pacemaker-1.1.14-1.1(RHEL6/RHEL7用)リポジトリパッケージリリース 
+
+* * *
+
+## 1. Pacemaker-1.1.14-1.1 の概要
+
+Pacemaker-1.1.14-1.1 リポジトリパッケージは、前回のリリース版 [Pacemaker-1.1.13-1.1リポジトリパッケージ](/wp/archives/4154) からバグ修正等が行われたマイナーバージョンアップ版です。
+
+利用方法は従来の 1.1.13-1.1 までとほぼ同じ使い方が可能ですが、一点だけ、Corosync のネットワークインタフェース冗長化設定において従来の設定がそのまま使えない箇所があります(「corosync設定ファイルの設定」の項参照)。
+
+その他の差分・改善点・既知の不具合については「1.1.13-1.1 からの主な差分」、「既知の不具合」の項を参照してください。
+
+より具体的な構成例・利用手順については、以下のOSCのセミナー資料が非常に参考になります。 これらのセミナー資料は Pacemaker-1.1.12-1.1を使った例ですが、「corosync設定ファイルの設定」、「クラスタ起動スクリプトの設定」の差分に注意してもらえればそのまま適用可能です。
+
+  * [OSC2014 Tokyo/Fall セミナー資料・アンケート結果公開](/wp/archives/4038)
+  * [OSC2015 Nagoya セミナー資料・アンケート結果公開](/wp/archives/4098)
+
+* * *
+
+## 2. ダウンロード
+
+Pacemaker-1.1.14-1.1リポジトリパッケージのリリース版は以下のページよりダウンロードできます。
+
+  * [Pacemakerリポジトリパッケージ (RHEL 7) 1.1.14-1.1](https://osdn.jp/projects/linux-ha/releases/66140)
+  * [Pacemakerリポジトリパッケージ (RHEL 6) 1.1.14-1.1](https://osdn.jp/projects/linux-ha/releases/66141)
+  * 対応環境: RHEL 6 / RHEL 7 および互換OS、x86_64環境 
+  * _※ RHEL 6.5以前の環境では、以下の Errata 適用が必須です。_
+    * [RHBA-2014:1538-1 glib2 bug fix and enhancement update](https://rhn.redhat.com/errata/RHBA-2014-1538.html)
+
+* * *
+
+## 3. インストール前の準備
+
+Pacemaker インストール時に必要な依存パッケージも自動的にインストールできるようにするため、 あらかじめ OS のインストールメディア等が参照できるようにしておきます。
+
+CentOS上にインストールする場合、CentOS 同梱版の Pacemaker と混在してしまわないように 以下の exclude 設定を追加します。
+
+**/etc/yum.repos.d/CentOS-Base.repo 設定例**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    [base]
+    (...)
+    exclude=pacemaker* corosync* resource-agents* crmsh* cluster-glue* libqb* fence-agents* pcs*
+    
+    [updates]
+    (...)
+    exclude=pacemaker* corosync* resource-agents* crmsh* cluster-glue* libqb* fence-agents* pcs*
+
+
+ 
+</td></tr> </table>
+
+* * *
+
+## 4. インストール
+
+以下の手順で Pacemakerをインストールします。 yum コマンドにより必要な依存パッケージも自動的にインストールされます。
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # rpm -ivh pacemaker-repo-1.1.14-1.1.el7.x86_64.rpm
+    # yum install pacemaker-all
+
+
+ 
+</td></tr> </table>
+
+* * *
+
+## 5. 設定例
+
+### 5.1. corosync設定ファイルの設定
+
+corosyncの動作に必要な設定を行います。 以下は最低限必要な設定例です。
+
+**/etc/corosync/corosync.conf 設定例**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    totem {
+            version: 2
+            token: 1000
+            rrp_mode: active
+            interface {
+                    ringnumber: 0
+                    bindnetaddr: 192.168.101.0
+                    mcastaddr: 239.255.1.1
+                    mcastport: 5405
+            }
+            interface {
+                    ringnumber: 1
+                    bindnetaddr: 192.168.102.0
+                    mcastaddr: 239.255.1.2
+                    mcastport: 5405
+            }
+    }
+    
+    logging {
+            syslog_facility: daemon
+            debug: off
+    }
+    
+    quorum {
+            provider: corosync_votequorum
+            expected_votes: 2
+    }
+
+
+ 
+</td></tr> </table>
+
+ここで以下の設定項目は環境に合わせて設定してください。
+
+  * bindnetaddr, mcastaddr, mcastport: ネットワークに合わせて設定します。 
+    * **1.1.14-1.1 以降では、複数の interface を設定する場合は mcastaddr もしくは mcastport のいずれかを異なる値に設定することが必須となります。**
+    * 上記設定例では、 [Pacemaker-1.1.13-1.1リポジトリパッケージ](/wp/archives/4154)で記載した設定例から ringnumber: 1 のマルチキャストアドレスを mcastaddr: 239.255.1.2 に変更しています。1.1.13-1.1の設定例のままではバージョンアップできないのでご注意ください。 
+  * syslog_facility : ログの出力先を変更したい場合は適宜変更します。 
+  * expected_votes : クラスタを構成するノードの数を設定します。 
+
+詳細は corysync.conf(5) マニュアルページ等を参照してください。
+
+### 5.2. corosync認証鍵ファイルの設定
+
+corosyncの認証を行うための認証鍵ファイルを作成します。
+
+どれか一つのノード上で corosync-keygen コマンドを実行し、生成された authkey ファイルをクラスタを構成する全てのノードにコピーします。 以下の手順例は node2 へコピーしている例です。
+
+**/etc/corosync/authkey 設定手順例**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # corosync-keygen -l
+    # scp -p /etc/corosync/authkey root@node2:/etc/corosync/authkey
+
+
+ 
+</td></tr> </table>
+
+### 5.3. pacemaker設定ファイルの設定
+
+Pacemakerの内部プロセスが故障した場合もノード故障として取り扱う ようにするため、以下の設定を追加します。
+
+記述内容は RHEL 6(Upstart 利用)と RHEL 7(systemd 利用)で異なります。
+
+#### 5.3.1. pacemaker設定ファイルの設定(RHEL 6用)
+
+**/etc/sysconfig/pacemaker (追加設定行)**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    export PCMK_fail_fast=yes
+
+
+ 
+</td></tr> </table>
+
+#### 5.3.2. pacemaker設定ファイルの設定(RHEL 7用)
+
+**/etc/sysconfig/pacemaker (追加設定行)**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    PCMK_fail_fast=yes
+
+
+ 
+</td></tr> </table>
+
+### 5.4. クラスタ起動スクリプトの設定
+
+故障時の動作等のカスタマイズのためクラスタ起動スクリプトを一部修正します。
+
+修正する内容は RHEL 6(Upstart 利用)と RHEL 7(systemd 利用)で異なります。
+
+#### 5.4.1. クラスタ起動スクリプトの設定(RHEL 6用)
+
+RHEL 6では、以下の設定を行うためクラスタ起動スクリプトの一部を修正します。
+
+  * corosyncプロセス故障時に watchdog 機能を有効にするため 
+  * corosyncプロセス故障検知を迅速(6秒以内)に行うため 
+
+以下に修正箇所を示します。
+
+**/etc/init/pacemaker.combined.conf (修正箇所抜粋)**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
+<td >
+    
+    <tt><font color="#FF6600">--- pacemaker.combined.conf.1.1.14.org  2015-07-10 17:11:22.000000000 +0900</font>
+    <font color="#009900">+++ pacemaker.combined.conf     2015-08-13 16:16:27.447000431 +0900</font>
+    <font color="#0000FF">@@ -24,7 +24,7 @@</font>
+     pre-start script
+         # setup the software watchdog which corosync uses.
+         # rewrite according to environment.
+    <font color="#FF6600">-    [ -c /dev/watchdog ] || modprobe softdog soft_margin=60</font>
+    <font color="#009900">+    [ -c /dev/watchdog ] || modprobe softdog soft_margin=6</font>
+         pidof corosync || start corosync
+    
+         # if you use corosync-notifyd, uncomment the line below.
+    <font color="#0000FF">@@ -56,7 +56,7 @@</font>
+         rm -f /var/run/$prog.pid
+    
+         # if you use watchdog of corosync, uncomment the line below.
+    <font color="#FF6600">-    #pidof corosync || false</font>
+    <font color="#009900">+    pidof corosync || false</font>
+    
+         pidof crmd || stop corosync
+    </tt>
+
+</td></tr></table>
+ 
+
+#### 5.4.2. クラスタ起動スクリプトの設定(RHEL 7用)
+
+RHEL 7では、以下の設定を行うためクラスタ起動スクリプト(systemd の Unitファイル)の一部を修正します。
+
+  * pacemakerサービス停止時に corosyncサービスも同時に停止させるため 
+  * corosyncプロセス故障時に watchdog 機能を有効にするため 
+  * corosyncプロセス故障検知を迅速(6秒以内)に行うため 
+
+修正は、Unitファイルをパッケージ標準ディレクトリ(/usr/lib/systemd/system/)からローカル設定用ディレクトリ(/etc/systemd/system/)にコピーして修正します。
+
+以下に修正箇所を示します。
+
+**/etc/systemd/system/corosync.service (修正箇所抜粋)**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
+<td >
+    
+    <tt># cp -p /usr/lib/systemd/system/corosync.service /etc/systemd/system
+    # vi /etc/systemd/system/corosync.service
+    
+    <font color="#FF6600">--- /usr/lib/systemd/system/corosync.service    2015-05-28 15:32:09.000000000 +0900</font>
+    <font color="#009900">+++ /etc/systemd/system/corosync.service        2015-06-08 15:36:15.664000000 +0900</font>
+    <font color="#0000FF">@@ -15,11 +15,11 @@</font>
+     #  pacemaker.service, and if you want to exert the watchdog when a
+     #  corosync process is terminated abnormally,
+     #  uncomment the line of the following Restart= and RestartSec=.
+    <font color="#FF6600">-#Restart=on-failure</font>
+    <font color="#009900">+Restart=on-failure</font>
+     #  Specify a period longer than soft_margin as RestartSec.
+    <font color="#FF6600">-#RestartSec=70</font>
+    <font color="#009900">+RestartSec=70</font>
+     #  rewrite according to environment.
+    <font color="#FF6600">-#ExecStartPre=/sbin/modprobe softdog soft_margin=60</font>
+    <font color="#009900">+ExecStartPre=/sbin/modprobe softdog soft_margin=6</font>
+    
+     [Install]
+     WantedBy=multi-user.target</tt>
+
+</td></tr></table>
+ 
+
+**/etc/systemd/system/pacemaker.service (修正箇所抜粋)**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
+<td >
+    
+    <tt># cp -p /usr/lib/systemd/system/pacemaker.service /etc/systemd/system
+    # vi /etc/systemd/system/pacemaker.service
+    
+    <font color="#FF6600">--- /usr/lib/systemd/system/pacemaker.service   2015-05-29 17:30:30.000000000 +0900</font>
+    <font color="#009900">+++ /etc/systemd/system/pacemaker.service       2015-06-08 15:35:12.594000000 +0900</font>
+    <font color="#0000FF">@@ -43,7 +43,7 @@</font>
+     # If you want Corosync to stop whenever Pacemaker is stopped,
+     # uncomment the next line too:
+     #
+    <font color="#FF6600">-# ExecStopPost=/bin/sh -c 'pidof crmd || killall -TERM corosync'</font>
+    <font color="#009900">+ExecStopPost=/bin/sh -c 'pidof crmd || killall -TERM corosync'</font>
+    
+     # Uncomment this for older versions of systemd that didn't support
+     # TimeoutStopSec</tt>
+
+</td></tr></table>
+ 
+
+* * *
+
+## 6. 起動・終了
+
+起動コマンドは Pacemaker-1.0系とは異なり、Upstart経由(RHEL 6の場合) または systemd経由(RHEL 7の場合)で起動する手順が推奨です。
+
+このため、RHEL 6とRHEL 7で Pacemaker の起動・終了コマンドが異なります。
+
+### 6.1. 起動コマンド
+
+Pacemakerを起動するには以下のコマンドを実行します。クラスタを構成する全てのノードで実行してください。
+
+#### 6.1.1. 起動コマンド(RHEL 6用)
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # initctl start pacemaker.combined
+
+
+ 
+</td></tr> </table>
+
+#### 6.1.2. 起動コマンド(RHEL 7用)
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # systemctl start pacemaker
+
+
+ 
+</td></tr> </table>
+
+### 6.2. 起動確認コマンド
+
+正常に起動すると、crm_mon コマンドの表示でノードが Online 状態となります。
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # crm_mon -D1
+    Online: [ node1 node2 ]
+
+
+ 
+</td></tr> </table>
+
+### 6.3. 終了コマンド
+
+Pacemakerを停止するには以下のコマンドを実行します。クラスタを構成する全てのノードで実行してください。
+
+#### 6.3.1. 終了コマンド (RHEL 6用)
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # initctl stop pacemaker.combined
+
+
+ 
+</td></tr> </table>
+
+#### 6.3.2. 終了コマンド (RHEL 7用)
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # systemctl stop pacemaker
+
+
+ 
+</td></tr> </table>
+
+* * *
+
+## 7. アンインストール
+
+以下の手順で Pacemaker リポジトリパッケージを 全てアンインストールできます。
+
+  * Pacemaker本体のアンインストール 
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # yum erase pacemaker corocync libqb cluster-glue cluster-glue-libs resource-agents \
+    pm_crmgen pm_logconv-cs pm_diskd pm_extras crmsh pssh
+
+
+ 
+</td></tr> </table>
+
+  * Pacemakerリポジトリパッケージのアンインストール 
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # rpm -e pacemaker-repo
+    # rpm -qa | grep pacemaker-repo
+    #
+
+
+ 
+</td></tr> </table>
+
+* * *
+
+## 8. リリースノート
+
+### 8.1. リポジトリパッケージ内容
+
+1.1.14-1.1リポジトリパッケージには、以下のバージョンのコンポーネントが含まれています。
+
+本ページのインストール手順では★印のついたパッケージがインストールされます。 太字は 1.1.13-1.1 から変更されたパッケージです。
+
+  * バージョン一覧 
+    * リポジトリパッケージ 
+      * **pacemaker-repo-1.1.14-1.1** ★ 
+    * 主要コンポーネント 
+      * **pacemaker-1.1.14-1**  ★ 
+      * **corosync-2.3.5-1** ★ 
+      * **cluster-glue-1.0.12-2** ★ 
+      * **libqb-1.0-1** ★ 
+      * **resource-agents-3.9.7-1** ★ 
+      * **ldirectord-3.9.7-1**
+      * **crmsh-2.1.5-1**  ★ 
+      * pssh-2.3.1-5  ★ 
+    * Linux-HA Japan拡張コンポーネント 
+      * pm_crmgen-2.1-1 ★ 
+      * **pm_diskd-2.2-1**  ★ 
+      * **pm_extras-2.2-1**  ★ 
+      * **pm_logconv-cs-2.2-1**  ★ 
+      * pm_ctl-2.0-1 
+    * 追加コンポーネント 
+      * **pcs-0.9.149-1**
+      * **fence-agents-4.0.22-1**
+  * 補足 
+    * Heartbeatは今後非推奨とするためパッケージには含みません。 
+    * ユーザインタフェースとして crmsh, pcs の2種類のコンポーネントを同梱していますが、1.0系と同様 crmsh の利用を推奨します。 
+    * crmsh の機能のうち、pssh を利用する一部の機能(crm resource secret, crm cluster 等)は利用できません(コミュニティ版psshの制約による)。将来のバージョンアップ(crmsh-2.2系以降)で改善を検討します。 
+    * pcs は本パッケージでは「テクノロジープレビュー」(お試し版)の位置付けで添付しており、実用目的の利用は推奨しません。また利用する場合はさらに依存パッケージの追加インストールが必要です。 
+    * STONITHプラグインとして cluster-glue, fence-agents の2種類のコンポーネントを同梱していますが、1.0系と同様 cluster-glue に含まれるSTONITHプラグインの利用を推奨します。 
+    * 1.0.13リポジトリパッケージに含まれていた pm_kvm_tools, vm-ctl コンポーネントは本バージョンには対応していないためパッケージには含みません。 
+
+### 8.2. 1.1.13-1.1 からの主な差分
+
+Pacemaker-1.1.13-1.1からの主な差分について記載します。
+
+  * pacemaker-1.1.14-1 
+    * glib2 バージョン 2.28 以降を必須としました。RHEL6.5以前では適切なErrataが適用されていないとインストール時にエラーが表示されます。 
+    * ごく稀な状況で STONITH 完了前にリソース起動が開始される不具合が修正されました。 
+    * crm_mon 表示において Failed actions が表示されない場合がある不具合が修正されました。 
+    * ifcheckd の interface 表示などの属性値が残存する場合がある不具合が修正されました。 
+    * pacemaker_remote 関係のさまざまな不具合が修正されました。 
+    * syslog に出力するログメッセージがより簡略化されました。 
+    * RHEL6版パッケージの pacemaker-doc には publican ドキュメントは含まれなくなりました。 
+    * また、Pacemaker-1.1.14コミュニティリリース後に発見された下記のレグレッションについて、バックポートによる修正が含まれています。 
+      * [http://clusterlabs.org/pipermail/users/2016-March/002597.html](http://clusterlabs.org/pipermail/users/2016-March/002597.html)
+  * corosync-2.3.5-1 
+    * **複数のネットワークインタフェース(ring)を使用する場合、マルチキャストアドレスもしくはポート番号のいずれかを異なる値に設定することが必須となりました。**
+      * **この点のみ従来のバージョン(1.1.13-1.1以前)の設定と互換性がありませんのでご注意願います。**
+    * ring の片系故障から復旧した時に、ring回復のログが複数回出力される不具合が修正されました。 
+    * corosync 稼働中に OS を shutdown した場合、ごく稀に通信故障のログが出力される不具合が修正されました。 
+  * cluster-glue-1.0.12-2 
+    * libvirt: ホスト名に大文字が使用されている場合に動作しない不具合が修正されました。 
+    * fence_ec2: AWS EC2用STONITHプラグインが追加されました。 
+  * resource-agents-3.9.7-1 
+    * mysql: プロセス故障発生直後に Pacemaker 停止を行うと不要な STONITH が発生する不具合が修正されました。 
+    * pgsql: 一部のパラメタについて、軽微なログ表示上の誤りやエラーチェックなどが改善されました(xlog_check_count, stop_escalate_in_slave, replication_slot_name 等)。 
+    * nfsserver: nfsd プロセス故障が検知できない不具合が修正されました。 
+  * pm_diskd-2.2-1 
+    * I/O高負荷の状況下における故障の誤検知発生を抑制するため監視処理のキャッシュクリア処理を見直しました。 
+  * pm_extras-2.2-1 
+    * hulft: huluser パラメタが追加されました。HULFT8 以降において一般ユーザ権限による起動が利用可能となります。 
+  * pm_logconv-cs-2.2-1 
+    * Pacemaker-1.1.14でのログメッセージの変更に追随しました。 
+  * pcs-0.9.149-1 
+    * 最新版に追随しました。 
+  * fence-agents-4.0.22-1 
+    * vbox 用、docker 用などのエージェントが追加されました。 
+
+### 8.3. 既知の不具合
+
+Pacemaker-1.1.14-1.1 には以下の既知の不具合があります。 これらの事象は Pacemaker-1.1.14-1.1 でのみ発生する不具合です。 1.1.13-1.1 以前では発生せず、また将来のバージョン(1.1.15-1.1 以降)で解消される見込みです。
+
+  * pacemaker-1.1.14-1 
+    * pacemakerd プロセス故障発生時に、ノード再起動およびフェイルオーバが発生する。 
+      * 本来期待される動作では、 pacemakerd プロセスのみの再起動が実行されフェイルオーバは発生しません。 
+      * なお、pacemakerd 以外の内部プロセス(corosync, crmd等)故障時には、ノード再起動およびフェイルオーバが発生します。これは仕様通りです。 
+    * 故障ノードの Pacemaker を停止した後に crm_mon に Failed Actions が残る。 
+      * 本来期待される動作では、Pacemaker停止時に Failed Actions の表示が消えます。 
+      * crm_mon の表示上の問題のみであり動作に影響はありません。 
+      * 残存した表示は、故障ノードを復旧させ再度 Pacemaker を起動した後に消去されます。 
+
+以上です。

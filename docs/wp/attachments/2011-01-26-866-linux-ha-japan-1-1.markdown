@@ -1,0 +1,18 @@
+---
+attachment_url: /wp/wp-content/uploads/Linux-HA-Japan-1-1.zip
+author: takayukitanaka
+comments: false
+date: 2011-01-26 07:08:46+00:00
+layout: post
+permalink: /wp/archives/851/linux-ha-japan-1-1
+slug: linux-ha-japan-1-1
+title: まずは、Pacemakerを使ってみよう！
+wordpress_id: 866
+---
+
+### [まずは、Pacemakerを使ってみよう！]({{ site.lhajp_resources_url }}/wp-content/Linux-HA-Japan-1-1.zip)
+
+第1回Linux-HA Japan勉強会「まずは、Pacemakerを使ってみよう！」で講演した時の資料です。
+
+PDFの資料と、デモで実際に使用した pm_crmgen環境定義書をzipファイルにまとめています。
+PDFの資料を参考にして、このpm_crmgenサンプルのリソース設定を行えば、簡単にHAクラスタが組めますよ。

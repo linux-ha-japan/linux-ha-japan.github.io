@@ -1,0 +1,612 @@
+---
+author: ikedaj
+comments: false
+date: 2012-02-01 06:52:34+00:00
+layout: post
+permalink: /wp/archives/2692
+slug: '%e6%9c%88%e5%88%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%932%e6%9c%88%e5%8f%b7'
+title: 月刊あんどりゅーくん(2月号)
+wordpress_id: 2692
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)「一月は往ぬる、二月は逃げる、三月は去る」というわけで一月はいぬってしまいました。
+いぬるってなんとなく意味わかるけどなんでしたっけこれ。
+
+【往ぬる/去ぬる（いぬる）】
+（元のいたところへ）帰る、（本来の場所へ）戻っていく、過ぎ去る、去る
+【いぬ】のナ行変格活用連体形
+
+ナ変！
+
+【ナ行変格活用】
+未然形-な
+連用形-に
+終止形-ぬ
+連体形-ぬる
+已然形-ぬれ
+命令形-ね
+
+この活用をするのは「死ぬ」「往ぬ（去ぬ）」の二語のみだそうです。
+ナ変、積極的に活用していきましょう！
+というわけで、今月もリリース情報と知恵袋です。
+
+
+**リリース情報**
+
+
+
+	
+  * 1. LCMC 1.1.2
+
+	
+  * 2. Pacemaker Cloud 0.6.0
+
+	
+  * 3. libqb 0.9.0
+
+	
+  * 4. Corosync 2.0.0(リリース予定)
+
+	
+  * 5. DRBDのバージョンについて
+
+	
+  * 6. LCA 2012のレポート
+
+
+
+**1. Announce: LCMC 1.1.2 / Pacemaker, DRBD, KVM GUI**
+
+LCMCのversion 1.1.2が1月4日に[リリース](http://www.gossamer-threads.com/lists/linuxha/pacemaker/77358)されました。
+
+LCMCは、クラスタの状態を表示するためにPacemakerのptestコマンドを使用していたのですが
+Pacemaker 1.1系ではptestコマンドが廃止され、crm_siumulateコマンドが導入されました。
+crm_simulateコマンドは開発途中であるため、glibのバージョンによっては
+コマンドの実行中に突然クラッシュしてしまうこともあるようです。
+ただし、ptestとcrm_simulateが共存しない環境
+つまりPacemaker 1.0系もしくはPacemaker 1.1系の単一環境においては
+crm_simulateのクラッシュは報告されていないようです。
+ptestの機能はcrm_simulateに引き継がれているので
+機能的なデグレードは発生していません。
+
+また、現段階ではあくまで「実験的な実装」なのですが、リモートホストに対してcrm shellを実行できるようになったようです。
+実際に試したわけではないので、たんなる想像なのですが、
+ホストのアイコンをクリックするとcrm shellのポップアップが表示されたり
+ペインが切り替わったりするとかそういう感じなんですかね？
+Rastoさん曰く、「機能が安定するまでは、デフォルトでdisabled(使用不可)にしようと思ってたけど
+experimental(実験的)って但し書きをつけとけばびびって誰も使わないかなと思って、デフォルトで使えるようにしてみた」
+ということなので、勇気のあるかたはクリッククリック！
+
+ 
+
+**2. [ANNOUNCE] Release of Pacemaker Cloud 0.6.0**
+
+Pacemaker Cloudのversion 0.6.0が1月25日に[リリース](http://oss-us-1.clusterlabs.org/pipermail/pcmk-cloud/2012-January/000489.html)されました。
+
+追加された機能の一覧
+
+
+
+	
+  * OpenStackとの連携機能を追加しました。
+
+	
+  * パッケージを分割しました（詳細は後述）。
+
+	
+  * assemblyにUbuntuのサポートを追加しました
+
+
+
+
+現在サポートされているOSはFedora 14, 15, 16, RHEL 6.1, Ubuntu 10.03です。
+現在サポートされているアーキテクチャはx86_64のみです。
+
+
+
+
+
+
+	
+  * WordpressとMySQLのデモンストレーションを追加しました。
+
+	
+  * イベント実行時に出力されるメッセージを改善しました。
+
+	
+  * assemblyの生成時にsshのキーを追加しました。
+
+	
+  * 故障回復からのエスカレーション機能を実装しました。
+
+	
+  * いくつかのバグを修正しました。
+
+	
+  * パフォーマンスの改善をおこないました。
+
+
+**パッケージの分割について**
+メーリングリストにこのような提案が[ポスト](http://oss-us-1.clusterlabs.org/pipermail/pcmk-cloud/2011-November/000405.html)されたことがありました。
+Pacemaker Cloudはaeolus, libvirt, openstack, ovirtとの連携を目指しているのですが
+ぞれぞれのパッケージに依存するコンポーネントは別々にインストールできるようにしたいというのが提案の主旨です。
+上記の提案がいよいよv0.6.0に取り込まれたようなので、Fedora 16でRPMをつくってみました。
+
+    
+    <span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong><span style="font-size: small;"># cat /etc/fedora-release</span></strong></span>
+    <span style="font-size: small;">Fedora release 16 (Verne)</span></span>
+
+
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># uname -a</span></strong>
+    <span style="font-size: small;">Linux fedora16 3.1.9-1.fc16.x86_64 #1 SMP Fri Jan 13 16:37:42 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux</span></span>
+
+
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># yum-builddep pacemaker-cloud</span>
+    <span style="font-size: small;"># git clone http://github.com/pacemaker-cloud/pacemaker-cloud</span>
+    <span style="font-size: small;"># git checkout v0.6.0</span>
+    <span style="font-size: small;"># ./autogen.sh</span>
+    <span style="font-size: small;"># ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc</span>
+    <span style="font-size: small;"># make rpm</span>
+    </span></strong>
+    <span style="font-size: small;">Wrote: /home/ikedaj/pacemaker-cloud/pacemaker-cloud-0.6.0-1.fc16.src.rpm</span>
+    <span style="font-size: small;">Wrote: /home/ikedaj/pacemaker-cloud/x86_64/<strong><span style="color: #ff00ff;">pacemaker-cloud-0.6.0-1</span></strong>.fc16.x86_64.rpm</span>
+    <span style="font-size: small;">Wrote: /home/ikedaj/pacemaker-cloud/x86_64/<strong><span style="color: #ff00ff;">pacemaker-cloud-debuginfo-0.6.0-1</span></strong>.fc16.x86_64.rpm</span>
+    <span style="font-size: small;">Wrote: /home/ikedaj/pacemaker-cloud/x86_64/<strong><span style="color: #ff00ff;">pacemaker-cloud-core-0.6.0-1</span></strong>.fc16.x86_64.rpm</span>
+    <span style="font-size: small;">Wrote: /home/ikedaj/pacemaker-cloud/x86_64/<strong><span style="color: #ff00ff;">pacemaker-cloud-libvirt-0.6.0-1</span></strong>.fc16.x86_64.rpm</span>
+    <span style="font-size: small;">Wrote: /home/ikedaj/pacemaker-cloud/x86_64/<span style="color: #ff00ff;"><strong>pacemaker-cloud-openstack-0.6.0-1</strong></span>.fc16.x86_64.rpm</span></span>
+
+
+あ、ほんとだ。なんか増えてる。
+ちなみにv0.5.0はこんな感じです。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># git checkout v0.5.0</span>
+    <span style="font-size: small;"># ./autogen.sh</span>
+    <span style="font-size: small;"># ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc</span>
+    <span style="font-size: small;"># make rpm</span>
+    </span></strong>
+    <span style="font-size: small;">Wrote: /home/ikedaj/pacemaker-cloud/pacemaker-cloud-0.5.0-1.fc16.src.rpm</span>
+    <span style="font-size: small;">Wrote: /home/ikedaj/pacemaker-cloud/x86_64/<strong><span style="color: #ff00ff;">pacemaker-cloud-0.5.0-1</span></strong>.fc16.x86_64.rpm</span>
+    <span style="font-size: small;">Wrote: /home/ikedaj/pacemaker-cloud/x86_64/<strong><span style="color: #ff00ff;">pacemaker-cloud-debuginfo-0.5.0-1</span></strong>.fc16.x86_64.rpm</span></span>
+
+
+せっかくRPMをつくったのでv0.6.0をインストールしてみました。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># cd /home/ikedaj/pacemaker-cloud/x86_64</span>
+    <span style="font-size: small;"># rpm -ihv pacemaker-cloud-0.6.0-1.fc16.x86_64.rpm</span></span></strong>
+    <span style="font-size: small;">error: Failed dependencies:</span>
+    <span style="font-size: small;"> pacemaker-cloud-core = 0.6.0-1.fc16 is needed by pacemaker-cloud-0.6.0-1.fc16.x86_64</span>
+    <span style="font-size: small;"> pacemaker-cloud-libvirt = 0.6.0-1.fc16 is needed by pacemaker-cloud-0.6.0-1.fc16.x86_64</span>
+    <span style="font-size: small;"> pacemaker-cloud-openstack = 0.6.0-1.fc16 is needed by pacemaker-cloud-0.6.0-1.fc16.x86_64</span></span>
+
+
+おい。結局、openstackとの依存関係はあるんかい。
+そういやaeolusとかovirtはどこいったんだ。
+依存関係、えらいっこちゃです。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># grep Requires pacemaker-cloud-0.6.0/pacemaker-cloud.spec.in</span></strong>
+    <span style="font-size: small;">Requires: %{name}-core = %{version}-%{release}</span>
+    <span style="font-size: small;">Requires: %{name}-libvirt = %{version}-%{release}</span>
+    <span style="font-size: small;">Requires: %{name}-openstack = %{version}-%{release}</span>
+    <span style="font-size: small;">BuildRequires: autoconf</span>
+    <span style="font-size: small;">BuildRequires: automake</span>
+    <span style="font-size: small;">BuildRequires: glib2-devel</span>
+    <span style="font-size: small;">BuildRequires: dbus-glib-devel</span>
+    <span style="font-size: small;">BuildRequires: libxml2-devel</span>
+    <span style="font-size: small;">BuildRequires: libqb-devel</span>
+    <span style="font-size: small;">BuildRequires: pacemaker-libs-devel</span>
+    <span style="font-size: small;">BuildRequires: libtool-ltdl-devel</span>
+    <span style="font-size: small;">BuildRequires: qmf-devel</span>
+    <span style="font-size: small;">BuildRequires: libxslt-devel</span>
+    <span style="font-size: small;">BuildRequires: libmicrohttpd-devel</span>
+    <span style="font-size: small;">BuildRequires: systemd-units</span>
+    <span style="font-size: small;">BuildRequires: libcurl-devel</span>
+    <span style="font-size: small;">BuildRequires: python-nova</span>
+    <span style="font-size: small;">BuildRequires: python-glance</span>
+    <span style="font-size: small;">Requires: python-daemon</span>
+    <span style="font-size: small;">Requires: python-qmf</span>
+    <span style="font-size: small;">Requires: qpid-cpp-server</span>
+    <span style="font-size: small;">Requires: oz > 0.5.0-1</span>
+    <span style="font-size: small;">Requires: %{name}-core = %{version}-%{release}</span>
+    <span style="font-size: small;">Requires: %{name}-core = %{version}-%{release}</span>
+    <span style="font-size: small;">Requires: openstack-nova</span>
+    <span style="font-size: small;">Requires: python-nova</span>
+    <span style="font-size: small;">Requires: openstack-glance</span>
+    <span style="font-size: small;">Requires: python-glance</span></span>
+
+
+しょうがないのでopenstackナントカたちもインストールしました。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># yum install openstack-glance</span>
+    <span style="font-size: small;"># yum install openstack-nova</span></span></strong></span>
+
+
+めんどくさくなってきたので、とりあえず全部インストールしました。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># rpm -ihv pacemaker-cloud-*</span></strong>
+    <span style="font-size: small;">Preparing...                ########################################### [100%]</span>
+    <span style="font-size: small;"> 1:pacemaker-cloud-core   ########################################### [ 20%]</span>
+    <span style="font-size: small;"> 2:pacemaker-cloud-libvirt########################################### [ 40%]</span>
+    <span style="font-size: small;"> 3:pacemaker-cloud-opensta########################################### [ 60%]</span>
+    <span style="font-size: small;"> 4:pacemaker-cloud        ########################################### [ 80%]</span>
+    <span style="font-size: small;"> 5:pacemaker-cloud-debugin########################################### [100%]</span></span>
+
+
+ブローカーを起動させます。
+
+    
+    <span style="font-family: verdana,geneva; color: #008000;"><strong><span style="font-size: small;"># systemctl start pcloud-cped.service</span></strong></span>
+
+
+v0.5.0でつくったデモが動くかなー。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># pcloudsh deployable_start dep01</span></strong></span>
+
+
+ゲストの起動は成功しましたが、ゲストに定義したリソースが起動しませんでした。
+ノード故障を発生させても無反応でした。
+(´･ω･`)
+まだ設定が甘いんだな…。
+
+v0.5.0のデモは「別冊あんどりゅーくん」でご紹介する予定です。
+試してみたことは、この[リンク](http://www.pixelbeat.org/docs/pacemaker-cloud/)とほとんど同じことなのでこちらも参考にしてください。
+「クラウド」とか偉そうなこといってるけど、まだv0.5.0だからたいしたことはできませんよーだ。
+
+ところで、Pacemaker Cloudの環境構築を行う際は
+ホストに pacemaker-cloud、ゲストに matahari, resource-agentsをインストールします。
+ホストの pcloud-qpidd.service をブローカ、
+ゲストの matahari-host.service, matahari-service.service をエージェントとして
+Qpid Management Framework(QMF)に準拠したメッセージが
+Advanced Message Queuing Protocol (AMQP) を使用してやり取りされます。
+そして！我らがStevenくん曰く！
+「MQじゃなくて！sshでノードとかリソースとかの状態を監視するっていうのもアリじゃね！」
+というわけで、こちら。
+[Adding second monitoring method to Pacemaker Cloud – sshd](http://sdake.wordpress.com/2012/01/23/adding-second-monitoring-method-to-pacemaker-cloud-sshd/)
+
+ノードの生死確認はuptimeを使ったりしています。
+v0.7.0から利用可能な機能です。
+[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**3. ANNOUNCE Release of libqb 0.9.0**
+
+libqbのversion 0.9.0が1月26日に[リリース](https://fedorahosted.org/pipermail/quarterback-devel/2012-January/000601.html)されました。
+[libqb](https://github.com/asalkeld/libqb/wiki#wiki-What_is_libqb)とは、ロギングやトレース、プロセス間通信、ポーリングなどの機能を
+提供するライブラリです。
+corosyncやpacemaker 1.1系, pacemaker-cloudもlibqbを採用しています。
+
+ 
+
+**4. Upcoming schedule for Needle 2.0.0 release**
+
+リリース情報ではありませんが、Corosync 2.0.0に向けたスケジュールが[公開](http://lists.corosync.org/pipermail/discuss/2012-January/000622.html)されています。
+
+    
+    <span style="font-family: verdana,geneva;"><span style="font-size: small;">Alpha        　　　　 January 17, 2012    　  version 1.99.0</span>
+    <span style="font-size: small;">Beta        　　　　　 January 31, 2012    　  version 1.99.1</span>
+    <span style="font-size: small;">RC1        　　　　　  February 7, 2012    　  version 1.99.2</span>
+    <span style="font-size: small;">RC2        　　　　　  February 14, 2012      version 1.99.3</span>
+    <span style="font-size: small;">RC3        　　　　　  February 20, 2012      version 1.99.4</span>
+    <span style="font-size: small;">RC4        　　　　　  February 27, 2012      version 1.99.5</span>
+    <span style="font-size: small;">RC5        　　　　 　 March 6, 2012        　  version 1.99.6</span>
+    <strong><span style="font-size: small; color: #ff00ff;">Release 2.0.0    March 13, 2012        version 2.0.0</span></strong></span>
+
+
+ころちゃん v2、三月にでるのか！まじですか…。
+
+ 
+
+**5. DRBDのバージョンについて**
+
+こちらもリリース情報ではありませんが、DRBDのバージョン情報です。
+Linux-HA Japanのメーリングリストで「DRBD 8.3.8を使用しています」という環境での
+不具合について何点かお問い合わせをいただいているのですが
+最新版は、8.3.12です。
+8.3.8でもまあ動きますけど、できれば最新版にアップデートしてください。
+
+DRBDのソースコードはこちらからダウンロードできます。
+[http://oss.linbit.com/drbd/](http://oss.linbit.com/drbd/)
+
+8.4.xは開発版なので、現状ではおすすめしません。
+新規機能も追加されているので、8.4系でなければ実現できないこともありますが
+個別の機能についてはメーリングリストに問い合わせていただければ、できるだけ回答いたします。
+
+8.4系の主な新規機能は下記三点です。
+(1) 複数リソース(最大65536)の同期処理に対応([8.4.0](http://www.gossamer-threads.com/lists/drbd/announce/21847))
+(2) read-balancingパラメータの追加([8.4.1](http://www.gossamer-threads.com/lists/drbd/announce/22786))
+(3) Linux 3.2 kernelへ対応([8.4.1](http://www.gossamer-threads.com/lists/drbd/announce/22786))
+
+開発中のソースコードはこちらからダウンロードできます。
+[drbd 8.3 git](http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=summary)
+[drbd 8.4 git](http://git.drbd.org/gitweb.cgi?p=drbd-8.4.git;a=summary)
+
+DRBDの開発元であるLinbitは2012年12月までDRBD 8.3をサポートする
+(We will support DRBD-8.3 until December 2012.)と[発表](http://www.gossamer-threads.com/lists/drbd/announce/21847)しています。
+
+ 
+
+
+
+**6. Report: High Availability and Distributed Storage miniconf at LCA 2012**
+
+オーストラリアで行われた[LCA 2012](http://linux.conf.au/)の[レポート](http://lists.linuxfoundation.org/pipermail/ha-wg/2012-January/000041.html)です。
+参加された方のお話によると、「[OSC](http://www.ospn.jp/)のオーストラリア版みたいな感じ」らしいです。
+会場までの移動が結構大変だったということですが
+多摩モノレー、いえ、なんでもありません。
+興味のある方はリンク先の動画で雰囲気をあじわってみてください。
+[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**知恵袋**
+
+Pacemakerのメーリングリストに
+「[IP Range Failover with IPaddr2 and clone / globally-unique="true"](http://www.gossamer-threads.com/lists/linuxha/pacemaker/77773)」
+という投稿があって、ちょっと楽しそうだったので試してみました。
+
+IPaddr2 RAのunique_clone_addressパラメータの使い方です。
+複数のIPアドレスを自動的に割り振れちゃうっぽいです。
+
+作成したcrmの設定ファイルはこちら。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># cat unique_clone_address.crm</span></strong>
+    <span style="font-size: small;">
+    property \</span>
+    <span style="font-size: small;">    no-quorum-policy="ignore" \</span>
+    <span style="font-size: small;">    stonith-enabled="false" \</span>
+    <span style="font-size: small;">    startup-fencing="false" \</span>
+    <span style="font-size: small;">    crmd-transition-delay="2s"</span>
+    
+    <span style="font-size: small;">rsc_defaults \</span>
+    <span style="font-size: small;">    resource-stickiness="INFINITY" \</span>
+    <span style="font-size: small;">    migration-threshold="1"</span>
+    
+    <span style="font-size: small;">primitive ClusterIP ocf:heartbeat:IPaddr2 \</span>
+    <span style="font-size: small;">    params \</span>
+    <span style="font-size: small;">    ip="192.168.200.10" \</span>
+    <span style="font-size: small;">    nic="bond0" \</span>
+    <span style="font-size: small;">    cidr_netmask="24" \</span>
+    <strong><span style="font-size: small; color: #ff00ff;">    unique_clone_address="true" </span></strong><span style="font-size: small;">\</span>
+    <span style="font-size: small;">    op start interval="0s" timeout="60s" on-fail="restart" \</span>
+    <span style="font-size: small;">    op monitor interval="10s" timeout="60s" on-fail="restart" \</span>
+    <span style="font-size: small;">    op stop interval="0s" timeout="60s" on-fail="block"</span>
+    
+    <span style="font-size: small;">clone CloneIP ClusterIP \</span>
+    <span style="font-size: small;">    meta <strong><span style="color: #ff00ff;">globally-unique="true"</span></strong> \</span>
+    <span style="font-size: small;">    clone-node-max="33" \</span>
+    <span style="font-size: small;">    clone-max="33"</span></span>
+
+
+clone-node-maxとclone-maxの「33」という数字には深い意味はないです。
+2ノード構成だったので、奇数だとどうなるかなと思っただけです。
+ここで素数がどうこういいだすほど、数字に対するこだわりはないです。
+IPaddr2の**unique_clone_address**パラメータ、cloneの**globally-unique**パラメータが今回のポイントです。
+
+では、設定ファイルをクラスタに反映します。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm configure load update unique_clone_address.crm</span></strong></span>
+
+
+どれどれ…。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm_mon -1</span></strong></span>
+    <span style="font-family: verdana,geneva;">
+    <span style="font-size: small;">============</span>
+    <span style="font-size: small;">Last updated: Mon Jan 30 18:11:48 2012</span>
+    <span style="font-size: small;">Stack: Heartbeat</span>
+    <span style="font-size: small;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+    <span style="font-size: small;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+    <span style="font-size: small;">2 Nodes configured, unknown expected votes</span>
+    <span style="font-size: small;">1 Resources configured.</span>
+    <span style="font-size: small;">============</span>
+    
+    <span style="font-size: small;">Online: [ node01 node02 ]</span>
+    
+    <span style="font-size: small;"> Clone Set: CloneIP (unique)</span>
+    <span style="font-size: small;"> ClusterIP:0        (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:1        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:2        (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:3        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:4        (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:5        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:6        (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:7        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:8        (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:9        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:10       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:11       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:12       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:13       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:14       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:15       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:16       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:17       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:18       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:19       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:20       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:21       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:22       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:23       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:24       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:25       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:26       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:27       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:28       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:29       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:30       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:31       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:32       (ocf::heartbeat:IPaddr2):       Started node01</span></span>
+
+
+だっはっは！なんぞこれｗｗｗうけるｗｗｗ
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># ip addr show | grep bond0</span></strong></span>
+    <span style="font-family: verdana,geneva;">
+    <span style="font-size: small;">2: eth2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 qlen 1000</span>
+    <span style="font-size: small;">3: eth3: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 qlen 1000</span>
+    <span style="font-size: small;">8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue</span>
+    <span style="font-size: small;"> inet 192.168.200.43/24 brd 192.168.200.255 scope global bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.22/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.20/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.10/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.24/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.12/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.26/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.30/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.28/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.32/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.38/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.34/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.36/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.40/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.42/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.14/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.16/24 brd 192.168.200.255 scope global secondary bond0</span>
+    <span style="font-size: small;"> inet 192.168.200.18/24 brd 192.168.200.255 scope global secondary bond0</span></span>
+
+
+ipパラメータに設定した「192.168.200.10」の第四オクテットに
+cloneのID(コロンのあとの数字)が加算されたIPアドレスが割り当てられていますね！
+
+じゃあ、ちょっと一個ぶっこわしてみましょう。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># ip addr del 192.168.200.18 dev bond0</span></strong></span>
+
+
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm_mon -1</span></strong></span>
+    <span style="font-family: verdana,geneva;">
+    <span style="font-size: small;">============</span>
+    <span style="font-size: small;">Last updated: Mon Jan 30 18:13:01 2012</span>
+    <span style="font-size: small;">Stack: Heartbeat</span>
+    <span style="font-size: small;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+    <span style="font-size: small;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+    <span style="font-size: small;">2 Nodes configured, unknown expected votes</span>
+    <span style="font-size: small;">1 Resources configured.</span>
+    <span style="font-size: small;">============</span>
+    
+    <span style="font-size: small;">Online: [ node01 node02 ]</span>
+    
+    <span style="font-size: small;"> Clone Set: CloneIP (unique)</span>
+    <span style="font-size: small;"> ClusterIP:0        (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:1        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:2        (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:3        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:4        (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:5        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:6        (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:7        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <strong><span style="font-size: small; color: #ff00ff;"> ClusterIP:8        (ocf::heartbeat:IPaddr2):       Started node02</span></strong>
+    <span style="font-size: small;"> ClusterIP:9        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:10       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:11       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:12       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:13       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:14       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:15       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:16       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:17       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:18       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:19       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:20       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:21       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:22       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:23       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:24       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:25       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:26       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:27       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:28       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:29       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:30       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    <span style="font-size: small;"> ClusterIP:31       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:32       (ocf::heartbeat:IPaddr2):       Started node01</span>
+    
+    <span style="font-size: small;">Failed actions:</span>
+    <span style="font-size: small;"> ClusterIP:8_monitor_10000 (node=node01, call=68, rc=7, status=complete): not running</span></span>
+
+
+お。ClusterIP:8さん、ちゃんとフェイルオーバした。
+
+では、node01のクラスタを停止します。
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># service heartbeat stop</span></strong></span>
+
+
+
+    
+    <span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm_mon -1</span></strong></span>
+    <span style="font-family: verdana,geneva;">
+    <span style="font-size: small;">============</span>
+    <span style="font-size: small;">Last updated: Mon Jan 30 18:14:17 2012</span>
+    <span style="font-size: small;">Stack: Heartbeat</span>
+    <span style="font-size: small;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+    <span style="font-size: small;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+    <span style="font-size: small;">2 Nodes configured, unknown expected votes</span>
+    <span style="font-size: small;">1 Resources configured.</span>
+    <span style="font-size: small;">============</span>
+    
+    <span style="font-size: small;">Online: [ node02 ]</span>
+    <span style="font-size: small;">OFFLINE: [ node01 ]</span>
+    
+    <span style="font-size: small;"> Clone Set: CloneIP (unique)</span>
+    <span style="font-size: small;"> ClusterIP:0        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:1        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:2        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:3        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:4        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:5        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:6        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:7        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:8        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:9        (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:10       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:11       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:12       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:13       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:14       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:15       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:16       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:17       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:18       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:19       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:20       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:21       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:22       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:23       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:24       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:25       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:26       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:27       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:28       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:29       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:30       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:31       (ocf::heartbeat:IPaddr2):       Started node02</span>
+    <span style="font-size: small;"> ClusterIP:32       (ocf::heartbeat:IPaddr2):       Started node02</span></span>
+
+
+全部、node02に移動しました。
+こういうの、試しにちょっとやってみる分には楽しいですね。
+実環境でこんなcrm_monみるのはなんかちょっとやだな…。
+ちなみに、複数のIPアドレスを設定する場合はネットマスク(**cidr_netmask**パラメータ)にも注意してください。
+
+ 
+
+
+
+では、今月はこれにてどろん！εεεεεヾ(*´ー`)ﾉ
+
+なにぬぬるぬれね

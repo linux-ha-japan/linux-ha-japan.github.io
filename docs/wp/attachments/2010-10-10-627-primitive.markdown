@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/primitive.jpg
+author: t-matsuo
+comments: false
+date: 2010-10-10 07:36:21+00:00
+layout: post
+permalink: /wp/archives/576/primitive
+slug: primitive
+title: primitive
+wordpress_id: 627
+---
+
+### [primitive](/assets/images/wp-content/primitive.jpg)

@@ -1,0 +1,44 @@
+---
+author: t-matsuo
+comments: false
+date: 2013-06-20 01:13:16+00:00
+layout: post
+permalink: /wp/archives/3647
+slug: linux-ha-japan%e3%81%ae%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%82%92github%e3%81%ab%e7%a7%bb%e8%a1%8c%e3%81%97%e3%81%be%e3%81%97%e3%81%9f
+title: Linux-HA Japanのリポジトリをgithubに移行しました
+wordpress_id: 3647
+categories:
+- ニュース
+---
+
+Linux-HA Japan では、現在も開発やメンテナンスが続いているリポジトリを[sourceforge.jp](http://sourceforge.jp/projects/linux-ha/scm/)から、[github](https://github.com/linux-ha-japan)に移行いたしました。
+
+移行したリポジトリ一覧は以下になります。
+
+
+
+	
+  * pm_diskd
+
+	
+  * pm_logconv-hb
+
+	
+  * pm_extras
+
+	
+  * doc
+
+	
+  * pm_crmgen
+
+	
+  * pm_kvm_tools
+
+
+上記リポジトリは、Pacemaker 1.0向けの機能であったため、移行先のリポジトリ名には、XXXXX-1.0 という名前をつけています。
+
+同時に"-1.0"の付いていないリポジトリも作成しています。これらのリポジトリは、最新のPacemaker 1.1への対応を予定しているものになります。
+※ 空リポジトリのものは1.1未対応です。
+
+なお、リリースは今後も[sourceforge.jp](http://sourceforge.jp/projects/linux-ha/releases/)上で行う予定です。

@@ -1,0 +1,170 @@
+---
+author: ikedaj
+comments: false
+date: 2012-08-28 05:29:10+00:00
+layout: post
+permalink: /wp/archives/3371
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-corosync-1-4-4'
+title: リリース情報 (Corosync 1.4.4)
+wordpress_id: 3371
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年8月14日にCorosync 1.4.4がリリースされました！
+ということでいつものごとく、メーリングリストに投稿された[リリースノート](http://lists.corosync.org/pipermail/discuss/2012-August/001857.html)の意訳です。
+
+
+
+<blockquote>
+I am pleased to announce the latest maintenance release of Corosync 1.4.4 available immediately from our website at http://www.corosync.org.
+This releases fixes many critical bugs especially in confdb.
+
+Complete changelog for 1.4.4:
+</blockquote>
+
+
+
+
+<blockquote>
+Corosync 1.4系の最新版、1.4.4をリリースしました。
+こちらのサイトからダウンロードしてください。 [http://www.corosync.org](http://www.corosync.org)
+今回のリリースではconfdb関連の重要なバグ修正が取り込まれています。
+
+1.4.4の変更点
+</blockquote>
+
+
+
+
+<blockquote>
+Christine Caulfield (2):
+
+       confdb: Fix crash with long values and add API calls to get them
+       confdb: Fix crash with long values
+</blockquote>
+
+
+
+
+<blockquote>
+Corosyncのconfdb APIは返り値が256バイト以内という制限があり、この値を超えるとクラスタがクラッシュしてたらしいのですが修正されました。この修正によって返り値のサイズ制限はなくなりました。
+</blockquote>
+
+
+
+
+<blockquote>
+Fabio M. Di Nitto (1):
+       objctl: add missing calls to dispatch notifications and fix memory corruption
+</blockquote>
+
+
+
+
+<blockquote>
+objctlコマンドを使用してobjdbを操作する際、文字化けしたような表示結果が得られる場合がありましたが修正されました。
+</blockquote>
+
+
+
+
+<blockquote>
+Jan Friesse (10):
+
+       Correctly handle point-to-point IP
+       totemip: Support bind to exact address
+       Add man page with Confdb keys created by corosync
+       Register reload callback only once
+       cpg: Be more verbose for procjoin message
+       confdb_keys: Document few more runtime statistics
+       totemudpu: Bind sending sockets to bindto address
+       cpg: Check input param name_t length
+       example conf: Remove Duplicate "debug" statement
+       example conf: Remove unused amf sectio
+</blockquote>
+
+
+
+
+<blockquote>
+
+
+> 
+> 
+
+>   * ポイント・ツー・ポイント通信時にローカルアドレスを正しく処理するため、IFA_ADDRESSではなくIFA_LOCALを使用するよう変更しました。
+
+> 
+
+>   * totemip: 同一ネットワーク上に二つのIPアドレスが設定されている場合も正しい値を取得できるよう修正しました。
+
+> 
+
+>   * corosyncからconfdbのキーを作成する手順についてman pageを追加しました。
+
+> 
+
+>   * confdbが変更されるたびにvotequorumを登録するのではなく、votequorumの更新時にのみ登録するよう変更しました。
+
+> 
+
+>   * cpg: プロセスが参加する際のログメッセージを詳細化しました。
+
+> 
+
+>   * confdb_keys: 実行環境の統計情報を取得するパラメータ(mtt_rx_token,avg_token_workload,avg_backlog_calc)の説明をman pageに追加しました。
+
+> 
+
+>   * totemudpu: Corosync 2.0からのバックポートです。ソケットにアドレスをバインドします。
+
+> 
+
+>   * cpg: name_tパラメータに含まれる文字列のチェックを追加しました。
+
+> 
+
+>   * corosync.confのサンプル :重複していたdebugステートメントを削除しました。
+
+> 
+
+>   * corosync.confのサンプル :未使用のamfセクションを削除しました。
+
+> 
+
+</blockquote>
+
+
+
+
+<blockquote>
+Jerome FLESCH (1):
+
+       When flushing, discard only memb_join messages
+</blockquote>
+
+
+
+
+<blockquote>
+Corosyn 1.3.4/1.4.2のリリースで、CPGメッセージの受信時にリングが切断と再接続を繰り返す動作に対する修正がとりこまれています。以前のリリースでは、何種類かのパケットを破棄する動作となっていますが、今回のリリースでは、memb_joinメッセージのみを破棄するよう変更されました。
+</blockquote>
+
+
+
+
+<blockquote>
+Upgrade is (as usually) highly recommended.
+Thanks/congratulations to all people that contributed to achieve this great milestone.
+</blockquote>
+
+
+
+
+<blockquote>
+1.4系のユーザは最新版にアップデートすることをおすすめします。
+リリースにご協力いただいたみなさん、本当にありがとうございました。
+</blockquote>

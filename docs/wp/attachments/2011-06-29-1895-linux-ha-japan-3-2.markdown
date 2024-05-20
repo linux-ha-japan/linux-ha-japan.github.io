@@ -1,0 +1,15 @@
+---
+attachment_url: /wp/wp-content/uploads/Linux-HA-Japan-3-2.pdf
+author: takayukitanaka
+comments: false
+date: 2011-06-29 03:47:58+00:00
+layout: post
+permalink: /wp/archives/1747/linux-ha-japan-3-2
+slug: linux-ha-japan-3-2
+title: Linux-HA-Japan-3-2
+wordpress_id: 1895
+---
+
+### [Linux-HA-Japan-3-2]({{ site.lhajp_resources_url }}/wp-content/Linux-HA-Japan-3-2.pdf)
+
+第3回Linux-HA Japan勉強会「まずはPacemakerを使ってみよう！」

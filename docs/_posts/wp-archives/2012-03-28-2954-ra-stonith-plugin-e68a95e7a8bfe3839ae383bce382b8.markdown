@@ -1,0 +1,21 @@
+---
+author: t-matsuo
+comments: false
+date: 2012-03-28 01:14:36+00:00
+layout: post
+permalink: /wp/archives/2954
+slug: ra-stonith-plugin-%e6%8a%95%e7%a8%bf%e3%83%9a%e3%83%bc%e3%82%b8
+title: RA, STONITH Plugin 投稿ページ
+wordpress_id: 2954
+categories:
+- ニュース
+---
+
+自作のリソースエージェントや STONITH プラグイン 投稿ページを作りました。
+
+個人でせっかく作ってみたので公開したいが本家コミュニティに投稿するのは敷居が高い、
+とか、とりあえず公開してみたいけどメンテまでは・・・ とかいったものを、皆さんで共有できれば
+よいなと思っています。
+
+
+# [掘り出し物 (RA, STONITH Plugin共有)](/wp/dl/find)

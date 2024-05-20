@@ -1,0 +1,35 @@
+---
+author: ksk
+comments: false
+date: 2023-09-20 04:00:40+00:00
+layout: post
+permalink: /wp/archives/5057
+slug: pm_extra_tools-1-5-1-%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9
+title: pm_extra_tools-1.5-1 リリース
+wordpress_id: 5057
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+pm_extra_tools-1.5-1 をリリースしました(2023/09/20)。
+
+pm_extra_tools パッケージは Pacemaker-2系用の追加ツールをパッケージしたものです。
+RHEL 8/9 High Availability Add-On およびその互換OSに同梱されている Pacemaker-2 系と組み合わせて利用します。
+
+
+## リリースノート・ダウンロード
+
+
+本リリースより、リリースノートの記載およびRPMパッケージダウンロードを github 上にて提供するように変更します。
+
+リリースの詳細およびダウンロードは以下の github 上のリリースノートを参照してください。
+
+
+
+ 	
+  * [https://github.com/linux-ha-japan/pm_extra_tools/releases/tag/pm_extra_tools-1.5](https://github.com/linux-ha-japan/pm_extra_tools/releases/tag/pm_extra_tools-1.5)
+
+
+以上

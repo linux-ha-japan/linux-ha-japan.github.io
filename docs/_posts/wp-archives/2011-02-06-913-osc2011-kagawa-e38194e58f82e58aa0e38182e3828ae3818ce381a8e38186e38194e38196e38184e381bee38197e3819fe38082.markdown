@@ -1,0 +1,47 @@
+---
+author: minky
+comments: false
+date: 2011-02-06 14:38:07+00:00
+layout: post
+permalink: /wp/archives/913
+slug: osc2011-kagawa-%e3%81%94%e5%8f%82%e5%8a%a0%e3%81%82%e3%82%8a%e3%81%8c%e3%81%a8%e3%81%86%e3%81%94%e3%81%96%e3%81%84%e3%81%be%e3%81%97%e3%81%9f%e3%80%82
+title: OSC2011 Kagawa ご参加ありがとうございました。
+wordpress_id: 913
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+OSC2011Kagawaお越しいただいた皆様、USTREAMでご参加いただいた皆様
+
+ありがとうございました。
+
+  
+
+
+当日の資料は、以下にアップロードされますので、よろしければごらんください。
+
+何か不明点等ありましたら、遠慮なくML等でお願いいたします。
+
+  
+
+
+セミナー資料：[Pacemakerって何？～あなたもできる、簡単高信頼システムの構築～](/wp/archives/913/osc2011kagawa20110205)
+
+  
+
+
+ライトニングトーク資料：姉妹構成でサーバーを組もう。
+
+[stream provider=video flv=x:/linux-ha.sourceforge.jp{{ site.lhajp_resources_url }}/wp-content/OSC2011-Kagawa-LT.mp4 embed=false share=false width=640 height=480 dock=true controlbar=over bandwidth=high autostart=false /]
+
+  
+
+
+  
+
+
+では、次回、OSC2011東京でお会いいたしましょうw

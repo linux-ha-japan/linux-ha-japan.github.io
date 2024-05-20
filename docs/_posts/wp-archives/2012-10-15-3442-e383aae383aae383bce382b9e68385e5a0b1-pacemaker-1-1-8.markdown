@@ -1,0 +1,99 @@
+---
+author: ikedaj
+comments: false
+date: 2012-10-15 07:29:10+00:00
+layout: post
+permalink: /wp/archives/3442
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-pacemaker-1-1-8'
+title: リリース情報 (Pacemaker 1.1.8)
+wordpress_id: 3442
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+しばらくさぼっていましたが9月分のリリース情報をまとめて投稿します！
+
+2012年9月20日に Pacemaker 1.1.8 が[リリース](http://www.gossamer-threads.com/lists/linuxha/pacemaker/81828)されました。
+
+
+
+<blockquote>
+Pacemaker 1.1.8 is out now
+This has been coming for a while now, 
+the final hold-up was some stonith interactions in the presence of multiple clients that while strictly correct, wasn't really good enough. 
+</blockquote>
+
+
+
+
+<blockquote>
+今回リリースするバージョンは Pacemaker 1.1.8 です。
+前回のリリースからしばらく間が空いてしまいましたが、これはSTONITH関連の修正に時間がかかってしまったためです。
+</blockquote>
+
+
+
+
+
+<blockquote>
+A big thankyou to all those that tested the pre-release versions and helped to work out the kinks. 
+Fedora and EPEL packages will follow, as will a proper write-up. 
+For now, check out the Changelog: 
+https://github.com/ClusterLabs/pacemaker/blob/master/ChangeLog
+
+-- Andrew
+</blockquote>
+
+
+
+
+<blockquote>
+リリースに際し、動作確認にご協力いただいたみなさん、本当にありがとうございます。
+FedoraとEPELのパッケージもまもなく公開されるはずです。
+詳細なチェンジログは[はこちら](https://github.com/ClusterLabs/pacemaker/blob/master/ChangeLog)を確認してください。
+</blockquote>
+
+
+
+
+
+<blockquote>
+- Update source tarball to revision: 1a5341f
+- Statistics:
+  Changesets: 1019
+  Diff:       2107 files changed, 117258 insertions(+), 73606 deletions(-)
+
+- All APIs have been cleaned up and reduced to essentials
+- Pacemaker now includes a replacement lrmd that supports systemd and upstart agents
+- Config and state files (cib.xml, PE inputs and core files) have moved to new locations
+- The crm shell has become a separate project and no longer included with Pacemaker
+- All daemons/tools now have a unified set of error codes based on errno.h (see crm_error)
+</blockquote>
+
+
+
+
+<blockquote>
+- tarballのバージョン：1a5341f
+- 変更履歴の統計情報
+
+> 
+> 
+	2107のファイルが変更されました。
+	117258行が追加されました。
+	73606行が削除されました。
+  
+
+
+- APIの見直しを行いました。
+- lrmdを再実装しました。Pacemaker 1.1.8に同梱されるlrmdはsystemdおよびupstart用のRAをサポートしています。
+- cib.xmlや遷移グラフの出力先を変更しました。
+
+	例)${localstatedir}=/var でビルドした場合
+	     /var/lib/pengine/　→　/var/lib/pacemaker/pengine/
+
+- CRM shellは[別プロジェクト](https://savannah.nongnu.org/projects/crmsh/)として開発が進められることになりました。
+- デーモンやツール類から出力されるエラーコードを統一しました。
+</blockquote>

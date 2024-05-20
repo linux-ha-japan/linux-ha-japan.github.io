@@ -1,0 +1,44 @@
+---
+author: takeshita
+comments: false
+date: 2016-03-14 00:13:54+00:00
+layout: post
+permalink: /wp/archives/4421
+slug: osc2016-tokyospring-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2016 Tokyo/Spring セミナー資料・アンケート結果公開
+wordpress_id: 4421
+categories:
+- イベント情報
+- その他
+tags:
+- OSC
+- pacemaker
+---
+
+2月26日(金),27日(土) に明星大学 日野キャンパスにて開催された[オープンソース カンファレンス2016 Tokyo/Spring](http://www.ospn.jp/osc2016-spring/) にLinux-HA Japanも参加し、ブース展示および講演を行いました。
+
+講演は「[Pacemaker + PostgreSQL レプリケーション構成(PG-REX)の運用性向上　～スロットの覚醒～](https://www.ospn.jp/osc2016-spring/modules/eguide/event.php?eid=47)」というタイトルで、PostgreSQLの非共有ディスク型クラスタ構成であるPG-REXと最新機能のレプリケーションスロットについてお話しさせていただきました。
+今回も多くの方（30名程度）に聴講しに来ていただいて、誠にありがとうございました。
+
+以下にセミナーの資料を公開しますので、参考にしていただければと思います。
+
+
+
+	
+  * セミナー資料：[Pacemaker + PostgreSQL レプリケーション構成(PG-REX)の運用性向上　～スロットの覚醒～]({{ site.lhajp_resources_url }}/wp-content/OSC2016_Tokyo_Spring.pdf)
+
+
+ 
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。
+(回答者計40名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![OSC2016TokyoSpring_Q0](/assets/images/wp-content/osc_tokyo2016_spring_0.png)](/assets/images/wp-content/osc_tokyo2016_spring_0.png)
+[![OSC2016TokyoSpring_Q1](/assets/images/wp-content/osc_tokyo2016_spring_1.png)](/assets/images/wp-content/osc_tokyo2016_spring_1.png)
+[![OSC2015TokyoSpring_Q2](/assets/images/wp-content/osc_tokyo2016_spring_2.png)](/assets/images/wp-content/osc_tokyo2016_spring_02.png)
+[![OSC2015TokyoSpring_Q3](/assets/images/wp-content/osc_tokyo2016_spring_3.png)](/assets/images/wp-content/osc_tokyo2016_spring_3.png)
+[![OSC2015TokyoSpring_Q4](/assets/images/wp-content/osc_tokyo2016_spring_4.png)](/assets/images/wp-content/osc_tokyo2016_spring_4.png)
+[![OSC2015TokyoSpring_Q5](/assets/images/wp-content/osc_tokyo2016_spring_5.png)](/assets/images/wp-content/osc_tokyo2016_spring_5.png)
+[![OSC2015TokyoSpring_Q6](/assets/images/wp-content/osc_tokyo2016_spring_6.png)](/assets/images/wp-content/osc_tokyo2016_spring_6.png)
+[![OSC2015TokyoSpring_Q7](/assets/images/wp-content/osc_tokyo2016_spring_7.png)](/assets/images/wp-content/osc_tokyo2016_spring_7.png)

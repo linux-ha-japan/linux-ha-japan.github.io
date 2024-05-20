@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/2011kyoto.jpg
+author: takayukitanaka
+comments: false
+date: 2011-07-22 09:03:15+00:00
+layout: post
+permalink: /wp/archives/2086/2011kyoto
+slug: 2011kyoto
+title: 2011kyoto
+wordpress_id: 2098
+---
+
+### [2011kyoto](/assets/images/wp-content/2011kyoto.jpg)

@@ -1,0 +1,107 @@
+---
+author: ikedaj
+comments: false
+date: 2012-10-17 07:15:14+00:00
+layout: post
+permalink: /wp/archives/3487
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-pcs-0-9-26'
+title: リリース情報 (pcs 0.9.26)
+wordpress_id: 3487
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年10月9日に pcs 0.9.26 が[リリース](http://oss.clusterlabs.org/pipermail/pacemaker/2012-October/015603.html)されました。
+
+
+<blockquote>
+We've been making improvements to the pcs (pacemaker/corosync configuration system) command line tool over the past few months.
+</blockquote>
+
+
+
+
+<blockquote>
+ここ数か月ほど、pcs (pacemaker/corosync configuration system)の改良を続けてきましたが、いよいよ v0.9.26 をリリースすることができました。
+</blockquote>
+
+
+
+
+<blockquote>
+Currently you can setup a basic cluster (including configuring corosync 2.0 udpu).
+</blockquote>
+
+
+
+
+<blockquote>
+pcsは、クラスタを設定するためのコマンドラインツールです(corosync 2.0系の設定も可能です)。
+</blockquote>
+
+
+
+
+<blockquote>
+David Vossel has also created a version of the "Clusters from Scratch" document 
+that illustrates setting up a cluster using pcs.  This should be showing up shortly.
+</blockquote>
+
+
+
+
+<blockquote>
+David Vosselさんにpcs版の「Clusters from Scratch」(Pacemakerを使用してクラスタを構築するためのドキュメント)を作成していただいているところです。こちらも、間もなくみなさんにご紹介できると思います。
+
+注：pcs版のドキュメントですが、[それっぽい](http://www.clusterlabs.org/doc/)のを発見しました。
+</blockquote>
+
+
+
+
+<blockquote>
+You can view the source here: https://github.com/feist/pcs/
+Or download the latest tarball:
+https://github.com/downloads/feist/pcs/pcs-0.9.26.tar.gz
+
+There is also a Fedora 18 package that will be included with the next release. You should be able to find that package in the following locations...
+RPM:http://people.redhat.com/cfeist/pcs/pcs-0.9.26-1.fc18.noarch.rpm
+SRPM:http://people.redhat.com/cfeist/pcs/pcs-0.9.26-1.fc18.src.rpm
+
+In the near future we are planning on having builds for SUSE & Ubuntu/Debian.
+</blockquote>
+
+
+
+
+<blockquote>
+pcs のリポジトリは[こちら](https://github.com/feist/pcs/)。
+最新版のソースコードは[こちら](https://github.com/downloads/feist/pcs/pcs-0.9.26.tar.gz)からダウンロードすることもできます。
+
+Fedora 18に同梱される予定のrpmパッケージをダウンロードすることもできます。
+- [RPM](http://people.redhat.com/cfeist/pcs/pcs-0.9.26-1.fc18.noarch.rpm)
+- [SRPM](http://people.redhat.com/cfeist/pcs/pcs-0.9.26-1.fc18.src.rpm)
+
+SUSE, Ubuntu/Debian用のパッケージも提供できるようにしたいと思っています。
+</blockquote>
+
+
+
+
+<blockquote>
+We're also actively working on a GUI/Daemon that will allow control of your entire cluster from one node and/or a web browser.
+Please feel free to email me (cfeist at redhat.com) or open issues on the pcs project at github (https://github.com/feist/pcs/issues) if you have any questions or problems.
+
+Thanks!
+Chris
+</blockquote>
+
+
+
+
+<blockquote>
+pcs はコマンドラインツールですが、GUIやデーモンのようなツールでクラスタを制御する方法についても検討中です。ユーザのみなさんからのフィードバックや問い合わせを募集しています！
+私宛にメール(cfeist at redhat.com)を送っていただくか、githubのプロジェクトに参加してご意見をお寄せください。
+</blockquote>

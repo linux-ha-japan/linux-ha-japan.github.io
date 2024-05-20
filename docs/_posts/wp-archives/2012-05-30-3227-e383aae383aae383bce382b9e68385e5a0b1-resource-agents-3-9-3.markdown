@@ -1,0 +1,359 @@
+---
+author: ikedaj
+comments: false
+date: 2012-05-30 12:31:55+00:00
+layout: post
+permalink: /wp/archives/3227
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-resource-agents-3-9-3'
+title: リリース情報 (resource-agents 3.9.3)
+wordpress_id: 3227
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年5月25日にresource-agents 3.9.3がリリースされました！
+ということでいつものごとく、メーリングリストに投稿された[リリースノート](http://www.gossamer-threads.com/lists/linuxha/dev/79988)の意訳です。
+
+
+<blockquote>
+We've tagged on May 25th a new stable resource-agents release (3.9.3) in the upstream repository. 
+Big thanks go to all contributors! Needless to say, without you this release would not be possible. 
+</blockquote>
+
+
+
+
+<blockquote>
+5月25日にresource-agents 3.9.3をリリースしました。
+バグの報告やパッチの作成などにご協力いただいたみなさん、本当にありがとうございました！
+</blockquote>
+
+
+
+
+<blockquote>
+Some highlights: 
+</blockquote>
+
+
+
+
+<blockquote>
+今回のリリースで注目すべき大きな変更点は下記のとおりです。
+</blockquote>
+
+
+
+
+<blockquote>
+- rgmanager/vm.sh: Added support for doing tunneled migrations 
+</blockquote>
+
+
+
+
+<blockquote>
+rgmanagerにvm.shスクリプトが追加されました。libvirtの「トンネルマイグレーション」をサポートしています。
+</blockquote>
+
+
+vm.shで「--tunnelled」オプションも使えるようになったみたいですね。
+virshコマンドのヘルプはこんな感じでした。これみてもよくわかんないな…。
+
+    
+    <code>
+    # virsh help migrate
+      名前
+        migrate - 他のホストにドメインを移動させる
+    
+      形式
+        migrate [--live] [--p2p] [--direct] [--tunnelled] [--persistent] [--undefinesource] [--suspend] [--copy-storage-all] [--copy-storage-inc] [--change-protection] [--verbose] <domain> <desturi> [<migrateuri>] [<dname>] [--timeout <number>] [--xml <string>]
+    
+      詳細
+        ドメインを他のホストに移動させる。活性移動では --live を付加する。
+    
+      オプション
+        --live           活性移動
+        --p2p            peer-2-peer migration
+        --direct         direct migration
+    <span style="color: #ff00ff;">    --tunnelled      tunnelled migration</span>
+        --persistent     persist VM on destination
+        --undefinesource  undefine VM on source
+        --suspend        do not restart the domain on the destination host
+        --copy-storage-all  migration with non-shared storage with full disk copy
+        --copy-storage-inc  migration with non-shared storage with incremental copy (same base image shared between source and destination)
+        --change-protection  prevent any configuration changes to domain until migration ends)
+        --verbose        display the progress of migration
+        [--domain] <string>  ドメイン名、id または uuid
+        [--desturi] <string>  connection URI of the destination host as seen from the client(normal migration) or source(p2p migration)
+        [--migrateuri] <string>  移動 URI。通常は省略可
+        [--dname] <string>  移行中に新しい名前に改名（サポートがある場合）
+        --timeout <number>  force guest to suspend if live migration exceeds timeout (in seconds)
+        --xml <string>   filename containing updated XML for the target
+    </code>
+
+
+
+
+
+<blockquote>
+- new resource agents: 
+ asterisk, dhcpd, named, pound, rsyslog, slapd, varnish 
+</blockquote>
+
+
+
+
+<blockquote>
+新しいRAがいくつか追加されました。
+</blockquote>
+
+
+RAの名前は、そのRAが起動/監視/停止処理を担当するサービスやデーモンなどの名前そのままなので解説は省略します。新規RAは asterisk, dhcpd, named, pound, rsyslog, slapd, varnish です。
+
+
+
+<blockquote>
+- mysql: improve replication support 
+</blockquote>
+
+
+
+
+<blockquote>
+mysql RAの修正です。
+レプリケーション機能のサポートが一部改良されています。
+</blockquote>
+
+
+
+
+<blockquote>
+- pgsql: support for replication 
+</blockquote>
+
+
+
+
+<blockquote>
+pgsql RAの修正です、
+レプリケーション機能のサポートが追加されました。
+</blockquote>
+
+
+
+
+<blockquote>
+- Raid1: support for multiple MD arrays 
+</blockquote>
+
+
+
+
+<blockquote>
+Raid1 RAの修正です。
+複数のmdデバイスで構成されたアレイに対するサポートが追加されました。
+</blockquote>
+
+
+
+
+<blockquote>
+- SAPInstance/SAPDatabase: use saphostagent and support for more databases 
+</blockquote>
+
+
+
+
+<blockquote>
+SAPInstance RAおよびSAPDatabase RAの修正です。
+すいません、SAP、みたことすらないのでアレなんですが、saphostagentというツール？コマンド？を使って複数のデータベースを操作することができるようになったような感じです。
+</blockquote>
+
+
+
+
+<blockquote>
+- several new ocft test cases 
+</blockquote>
+
+
+
+
+<blockquote>
+ocftのテストケースを追加しました。
+</blockquote>
+
+
+ocf-testerというツールがあるのですが、これを使うとRAの単体試験ができます。
+[The OCF Resource Agent Developer’s Guide](http://www.linux-ha.org/doc/dev-guides/_testing_resource_agents.html)に使い方が紹介されているので、興味のある方は試してみてください。
+
+
+
+<blockquote>
+The full list of changes for the linux-ha RA set is available in ChangeLog. 
+Please upgrade at the earliest opportunity. 
+
+Best,
+</blockquote>
+
+
+
+
+<blockquote>
+チェンジログは[GitHub](https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog)で参照することができます。
+可能であれば、早い時期にバージョンアップすることをお勧めします。
+</blockquote>
+
+
+
+では、バージョンアップの方法をご紹介します。
+試した環境はRHEL6.2です。
+
+    
+    <code>
+    $ uname -a
+    Linux dl380g5c 2.6.32-220.el6.x86_64 #1 SMP Wed Nov 9 08:03:13 EST 2011 x86_64 x86_64 x86_64 GNU/Linux
+    
+    $ cat /etc/redhat-release
+    Red Hat Enterprise Linux Server release 6.2 (Santiago)
+    </code>
+
+
+まず、GitHubからソースコードをダウンロードします。
+
+    
+    <code>
+    $ git clone http://github.com/ClusterLabs/resource-agents.git
+    </code>
+
+
+タグを確認して…
+
+    
+    <code>
+    $ cd resource-agents
+    $ git describe --tags
+    <span style="color: #ff00ff;">v3.9.3</span>
+    </code>
+
+
+ビルドの準備をにょろにょろと実行して…
+
+    
+    <code>
+    $ ./autogen.sh
+    $ ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc
+    </code>
+
+
+依存関係を確認します。
+
+    
+    <code>
+    $ grep BuildRequires resource-agents.spec
+    BuildRequires: automake autoconf pkgconfig
+    BuildRequires: perl python-devel
+    BuildRequires: libxslt glib2-devel
+    BuildRequires: which
+    BuildRequires: cluster-glue-libs-devel
+    BuildRequires: docbook-style-xsl docbook-dtds
+    BuildRequires: libnet-devel
+    BuildRequires:  libnet1
+    BuildRequires:  libnet
+    BuildRequires:  libglue-devel
+    BuildRequires:  libxslt docbook_4 docbook-xsl-stylesheets
+    </code>
+
+
+cluster-glue-libs-develあたりが罠です。
+Linux-HA Japanの[ダウンロードサイト](/wp/dl/packages)からPacemakerリポジトリパッケージをダウンロードしてcluster-glue-libs-develもインストールしてください。
+では、RPMを作成してみましょう。
+
+    
+    <code>
+    # su - root
+    # make rpm
+    
+    Processing files: resource-agents-debuginfo-3.9.3-1.el6.x86_64
+    伸張ファイルの検査中: /usr/lib/rpm/check-files /root/rpmbuild/BUILDROOT/resource-agents-3.9.3-1.el6.x86_64
+    書き込み完了: /home/resource-agents/resource-agents-3.9.3-1.el6.src.rpm
+    書き込み完了: /home/resource-agents/x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
+    書き込み完了: /home/resource-agents/x86_64/ldirectord-3.9.3-1.el6.x86_64.rpm
+    書き込み完了: /home/resource-agents/x86_64/resource-agents-debuginfo-3.9.3-1.el6.x86_64.rpm
+    </code>
+
+
+出来上がったRPMをインストールしてください。
+
+    
+    <code>
+    # rpm -ihv x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
+    </code>
+
+
+または
+
+    
+    <code>
+    # rpm -Uhv x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
+    </code>
+
+
+RPMが必要ない場合は、make installでインストールしてください。
+この場合も当然、cluster-glue-libs-develとかそのへんの依存関係には注意してください。
+
+    
+    <code>
+    # make install
+    </code>
+
+
+gitとかmakeとかめんどくさいなあ、特定のRAだけアップデートしたいんだけどなあ
+という場合は、コピペでも大丈夫！
+[GitHub](https://github.com/ClusterLabs/resource-agents)の「ZIP」というアイコンをぽちっとしてソースコードをダウンロードしましょう。
+zipファイルをunzipコマンドで解凍してあげると、RAはheartbeatという名前のディレクトリの下にもりっといます。
+
+    
+    <code>
+    # ls heartbeat
+    AoEtarget     LVM          SendArp             apache            ids                 ocf-shellfuncs     sapdb.sh
+    AudibleAlarm  LinuxSCSI    ServeRAID           apache-conf.sh    iscsi               ocf-shellfuncs.in  scsi2reservation
+    CTDB          MailTo       SphinxSearchDaemon  asterisk          jboss               oracle             sfex
+    ClusterMon    Makefile     Squid               conntrackd        lxc                 oralsnr            shellfuncs
+    Delay         Makefile.am  Stateful            db2               mysql               pgsql              shellfuncs.in
+    Dummy         Makefile.in  SysInfo             dhcpd             mysql-proxy         pingd              slapd
+    EvmsSCC       ManageRAID   VIPArip             drbd              named               portblock          symlink
+    Evmsd         ManageVE     VirtualDomain       eDir88            nfsserver           postfix            syslog-ng
+    Filesystem    Pure-FTPd    WAS                 ethmonitor        nginx               pound              tomcat
+    ICP           README       WAS6                exportfs          ocf-binaries        proftpd            varnish
+    IPaddr        Raid1        WinPopup            fio               ocf-binaries.in     ra-api-1.dtd       vmware
+    IPaddr2       Route        Xen                 http-mon.sh       ocf-directories     rsyncd
+    IPsrcaddr     SAPDatabase  Xinetd              iSCSILogicalUnit  ocf-directories.in  rsyslog
+    IPv6addr.c    SAPInstance  anything            iSCSITarget       ocf-returncodes     sapdb-nosha.sh
+    </code>
+
+
+では、使いたいRAを所定のディレクトリにコピー！
+この例ではpgsql RAをアップデートしています。
+コピーする前に一応バックアップもとっておいてくださいね。
+
+    
+    <code>
+    # cp -p heartbeat/pgsql /usr/lib/ocf/resource.d/heartbeat/pgsql
+    </code>
+
+
+configureのオプションによって配布先は異なるかもしれませんが、前のバージョンのresrouce-agentsをインストールしているのであれば、ocfとかresource.dとかで検索してそれっぽいディレクトリを探してください。
+
+実行権限もちゃんとついてると思いますが、一応確認してください。
+
+    
+    <code>
+    # ls -l /usr/lib/ocf/resource.d/heartbeat/pgsql
+    </code>
+
+
+RAのバグかな？と思ったら、まずは最新版のRAを試してみることをおすすめします。

@@ -1,0 +1,90 @@
+---
+author: minky
+comments: false
+date: 2011-01-21 16:48:49+00:00
+layout: post
+permalink: /wp/archives/851
+slug: '%e7%ac%ac%e4%b8%80%e5%9b%9elinux-ha%e5%8b%89%e5%bc%b7%e4%bc%9a%e3%80%80%e3%81%94%e5%8f%82%e5%8a%a0%e3%81%82%e3%82%8a%e3%81%8c%e3%81%a8%e3%81%86%e3%81%94%e3%81%96%e3%81%84%e3%81%be%e3%81%97%e3%81%9f'
+title: 第一回Linux-HA勉強会　ご参加ありがとうございました。
+wordpress_id: 851
+categories:
+- イベント情報
+tags:
+- 勉強会
+- セミナー
+---
+
+無事、第一回Linux-HA勉強会を開催することができました。
+
+ご出席いただいた皆様、誠にありがとうございました。
+
+お申し込みいただきましたが定員で入れなかった皆様、仕事等で急遽キャンセルされた皆様
+
+次回、またよろしくお願いいたします。
+
+  
+
+
+運営側が慣れない中でいろいろとご不便をおかけしたかと存じますが、ご容赦いただければと
+
+存じます。
+
+  
+
+
+次回の参考等にさせていただきたいと存じますので、忌憚ないご意見をLinux-HA ML、もしくは
+
+WEBラジオの宛先　pacemaker あっと pickup.bz　宛でお送りいただければ幸いです。
+
+  
+
+
+なお、[勉強会の模様の一部はこちら](http://www.ustream.tv/recorded/12147956)にあります。（最初が撮れてなくてごめんなさい）
+
+Twitterのまとめ、[Togetter](http://togetter.com/li/91606)もご活用ください。
+
+  
+
+
+当日使用した音声関係
+
+Webラジオペースメーカー　出張版　勉強会編
+
+[stream provider=sound flv=x:/linux-ha.sourceforge.jp{{ site.lhajp_resources_url }}/wp-content/BENKYOUKAI_OP.mp3 embed=false share=false width=320 height=25 dock=true controlbar=over bandwidth=med autostart=false /]
+
+Webラジオペースメーカー　出張版　懇親会編
+
+[stream provider=sound  flv=x:/linux-ha.sourceforge.jp{{ site.lhajp_resources_url }}/wp-content/KONSHINKAI_OP.mp3  embed=false share=false width=320 height=25 dock=true controlbar=over  bandwidth=med autostart=false /]
+
+ライトニングトーク用 5分間タイマー
+
+[stream provider=sound flv=x:/linux-ha.sourceforge.jp{{ site.lhajp_resources_url }}/wp-content/for-LT.mp3 embed=false share=false width=320 height=25 dock=true controlbar=over bandwidth=high autostart=false /]
+
+  
+
+
+勉強会資料
+
+[まずは、Pacemakerを使ってみよう！](/wp/archives/851/linux-ha-japan-1-1)
+
+  
+
+
+とあるクラスタの障害通知-俺のzabbixがこんなに可愛いわけがないスピンアウト
+
+[http://www.slideshare.net/sechiro/linux-hazabbix](http://www.slideshare.net/sechiro/linux-hazabbix)
+
+  
+
+
+キムラデービーブログ
+
+[http://blog.kimuradb.com/?eid=877167](http://blog.kimuradb.com/?eid=877167)
+
+いだっちさんのブログ
+
+[http://idacchi.blogspot.com/2011/01/linux-ha.html](http://idacchi.blogspot.com/2011/01/linux-ha.html )
+
+Jokerさんの勉強会レポ
+
+[http://d.hatena.ne.jp/joker1007/20110124/1295854969](http://d.hatena.ne.jp/joker1007/20110124/1295854969)

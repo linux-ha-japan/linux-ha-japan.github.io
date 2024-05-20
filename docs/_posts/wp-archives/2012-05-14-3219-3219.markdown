@@ -1,0 +1,20 @@
+---
+author: minky
+comments: false
+date: 2012-05-14 14:24:16+00:00
+layout: post
+permalink: /wp/archives/3219
+slug: '3219'
+title: オープンソースチャンネル開設しました。
+wordpress_id: 3219
+categories:
+- ニュース
+---
+
+PacemakerやDRBDだけでなく、他の情報も入り混ぜて[オープンソースチャンネル](http://ch.nicovideo.jp/channel/oss)が
+
+ニコニコチャンネルに登場！
+
+すでに公開済みですが、かんたんペースメーカー入門その一の動画とかもありますよ。
+
+これからもLinux-HA Japanともどもよろしくお願いいたします。

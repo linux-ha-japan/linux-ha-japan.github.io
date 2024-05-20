@@ -1,0 +1,30 @@
+---
+author: t-matsuo
+comments: false
+date: 2010-06-25 00:35:14+00:00
+layout: post
+permalink: /wp/archives/226
+slug: '%e6%9c%ac%e5%ae%b6-corosync-1-2-5-%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%be%e3%81%97%e3%81%9f'
+title: corosync 1.2.5 がリリースされました
+wordpress_id: 226
+categories:
+- ニュース
+- リリース情報
+tags:
+- corosync
+- リリース情報
+---
+
+2010-06-21に、本家にてcorosync 1.2.5がリリースされました。
+
+
+
+
+
+以下よりソースコードのダウンロードができます。
+
+
+
+
+
+[Corosync.org [releases]](http://www.corosync.org/doku.php?id=releases)

@@ -1,0 +1,281 @@
+---
+author: ikedaj
+comments: false
+date: 2012-04-18 12:36:46+00:00
+layout: post
+permalink: /wp/archives/3109
+slug: '%e5%88%a5%e5%86%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%93%e7%ac%ac4%e5%8f%b7'
+title: 別冊あんどりゅーくん(第4号)
+wordpress_id: 3109
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+
+先日、Pacemaker 1.1.7の[リリースノート](/wp/archives/2994)を紹介させていただきましたが
+そのなかで気になっていた項目を調べてみました。
+  
+
+
+
+
+
+  * 順序制約の新機能について
+
+
+
+  * 複数STONITHの設定について
+
+
+
+  * 故障時にフェイルカウントがインクリメントされない
+
+
+
+  * on-failの設定が反映されない
+
+
+
+  
+
+順序制約の新機能について
+順序制約にrequire-allを設定すると、次のような動作が可能となります。
+例) リソースAもしくはリソースBのいずれかが起動していればリソースCは起動することができる。
+
+今回は、A,Bという2個のリソースに対してrequire-allを設定しましたが、3個以上のリソースに対しても同様の条件を設定することができます。
+  
+
+設定例)
+
+    
+    
+    <resources>
+     <primitive class="ocf" id="A" provider="pacemaker" type="Dummy"/>
+     <primitive class="ocf" id="B" provider="pacemaker" type="Dummy">
+     <primitive class="ocf" id="C" provider="pacemaker" type="Dummy"/>
+    </resources>
+    
+    <constraints>
+     <rsc_order id="order01">
+       <resource_set id="require-all-set-1" sequential="false" require-all="false">
+         <resource_ref id="A"/>
+         <resource_ref id="B"/>
+       </resource_set>
+       <resource_set id="require-all-set-2">
+         <resource_ref id="C"/>
+       </resource_set>
+      </rsc_order>
+    </constraints>
+    
+
+
+えーっと、いつもの便利なcrm shellさんは、まだrequire-allに対応していません！
+というわけで久しぶりにXMLでごりごり設定してみましたが、require-allはまだちょっと微妙だなーということがわかりました。
+上記の設定を使用して、1ノードで動作を確認してみると確かに期待通りに動いています。
+でも、2ノードで試してみると、colocationとかlocationを設定していないのでAとBが別のノードで起動しちゃうんですよね。
+AとBとCは同じノードで起動させたい場合が多いんじゃないかなと思うんですがcolocationを設定するとrequire-allが効いてませんでした。
+これはまだちょっとお披露目程度の機能だと思っていたほうがよいですね。
+
+複数STONITHの設定について
+STONITHの設定にfencing-topologyというパラメータが追加されました。
+  
+
+設定例）
+
+    
+    
+    <resources>
+     <primitive class="stonith" id="ssh01" type="external/ssh">
+      <instance_attributes id="attr01">
+       <nvpair id="hostlist01" name="hostlist" value="node-a"/>
+      </instance_attributes>
+      <operations>
+       <op id="ssh01-start-0s" interval="0s" name="start" timeout="60s"/>
+       <op id="ssh01-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/>
+       <op id="ssh01-stop-0s" interval="0s" name="stop" timeout="60s"/>
+      </operations>
+     </primitive>
+    
+     <primitive class="stonith" id="ssh02" type="external/ssh">
+      <instance_attributes id="attr02">
+       <nvpair id="hostlist02" name="hostlist" value="node-b"/>
+      </instance_attributes>
+      <operations>
+       <op id="ssh02-start-0s" interval="0s" name="start" timeout="60s"/>
+       <op id="ssh02-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/>
+       <op id="ssh02-stop-0s" interval="0s" name="stop" timeout="60s"/>
+      </operations>
+     </primitive>
+    
+    </resources>
+    
+    <constraints>
+     <rsc_location id="loc01" rsc="ssh01">
+      <rule id="loc01-rule" score="-INFINITY">
+       <expression attribute="#uname" id="loc01-expression" operation="eq" value="node-a"/>
+      </rule>
+     </rsc_location>
+    
+     <rsc_location id="loc02" rsc="ssh02">
+      <rule id="loc02-rule" score="-INFINITY">
+       <expression attribute="#uname" id="loc02-expression" operation="eq" value="node-b"/>
+      </rule>
+     </rsc_location>
+    </constraints>
+    
+    <fencing-topology>
+     <fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/>
+     <fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/>
+    </fencing-topology>
+    
+
+
+上記の設定は、sshでSTONITHする例なんですが、fencing-topologyもまだcrm shellが対応していません！むきー！
+しょうがないので、頑張ってXMLで設定してみましたが、この例ではnode-aでssh02、node-bでssh01を起動します。
+いざというときには、ssh01がnode-aをSTONITH、ssh02がnode-bをSTONITHします。
+fencing-topologyタグには、さらにfencing-levelタグを追加して、idやtargetなどを指定します。
+
+
+
+
+  * id : 一意の値
+
+
+
+  * target : STONITH対象のノード名
+
+
+
+  * index : STONITHプラグインの実行順序
+
+
+
+  * devices : STONITHプラグインのid
+
+
+
+  
+
+今回はsshプラグインしか設定しませんでしたが、sshとipmiを設定する場合はこんな感じになります。
+
+    
+    
+    <fencing-topology>
+     <fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/>
+     <fencing-level id="stonith01-2" target="node-a" index="2" devices="ipmi01"/>
+     <fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/>
+     <fencing-level id="stonith02-2" target="node-b" index="2" devices="ipmi02"/>
+    </fencing-topology>
+    
+
+
+この場合、sshの次にipmiが呼び出されます。
+ただし、sshがうまいことSTONITHを成功させるとノードは再起動するはずなので結果的にipmiの出番はなくなります。
+注) sshはあくまでテスト用のプラグインなので、実際にはipmiやibmrsa-telnet、riloeなどを設定してください。
+  
+
+使用可能なプラグインを表示する方法
+
+    
+    
+    <span style="color: #ff00ff;"># crm ra list stonith</span>
+    
+    ** INFO: Cannot get rhcs plugin subplugins                     apcmaster
+    apcmastersnmp                                                  apcsmart
+    baytech                                                        bladehpi
+    cyclades                                                       drac3
+    external/drac5                                                 external/dracmc-telnet
+    external/hmchttp                                               external/ibmrsa
+    external/ibmrsa-telnet                                         external/ipmi
+    external/ippower9258                                           external/kdumpcheck
+    external/nut                                                   external/rackpdu
+    external/riloe                                                 external/sbd
+    external/ssh                                                   external/vmware
+    external/xen0                                                  external/xen0-ha
+    ibmhmc                                                         ipmilan
+    meatware                                                       null
+    nw_rpc100s                                                     rcd_serial
+    rps10                                                          ssh
+    suicide                                                        wti_mpc
+    wti_nps
+    
+
+
+Pacemaker 1.0系と1.1系でSTONITHの設定方法ががらっと変わっちゃった理由なんですが、Pacemaker 1.1系はRed Hat Cluster Suite(RHCS)から名前をかえたHigh Availability Add-On(はぁん？)のフェンス機能にも対応できるようにSTONITH周りがごりっと書き直されています。
+このタイミングでPacemaker 1.0で設定していたpriorityパラメータがなくなってしまったので(なんかうっかり忘れられてた感も漂ってますが)新しくfencing-topologyパラメータが導入されました。
+fencing-topologyを設定すれば、複数のSTONITHプラグインを順番に実行することができるので、priorityとほぼ同じ動作が実現できるのですが、どうもまだプラグイン個別のタイムアウト周りが微妙らしい。
+こちらもrequire-allと同じく、もう少し動作確認や修正作業が必要です。
+でも、複数STONITHが設定できるようになってよかったよかった。
+  
+
+Pacemaker 1.0系で複数のSTONITHプラグインを設定する方法は、技術評論社さんのサイトに掲載されていた連載記事を参考にしてください。
+
+
+
+
+  * [第4回　Pacemakerを運用してみよう！［保守運用編(1)］](http://gihyo.jp/admin/serial/01/pacemaker/0004)
+
+
+
+  * [設定ファイルの例](https://gihyo.jp/assets//files/admin/serial/01/pacemaker/0004/apache+stonith.crm)
+
+
+
+
+故障時にフェイルカウントがインクリメントされない
+こちらは、さっそく修正されました。
+
+
+
+
+
+  * [Merge pull request #57 from davidvossel/bug-5053 High: crmd: cl#5053 - Fixes fail-count not being updated properly.](https://github.com/ClusterLabs/pacemaker/commit/4f030a650d5a852e92310c1d3f6736418913f4f0)
+
+
+
+  * [Merge pull request #66 from inouekazu/bugfix heartbeat: Fix a variable name](https://github.com/ClusterLabs/pacemaker/commit/fb0e227f34f5d4b59dd8effb09d32d6a40775959)
+
+
+
+  
+
+
+
+* * *
+
+
+on-failの設定が反映されない
+on-failパラメータにはリソースが故障したときの動作(ignore,block,stop,restart,standby,fence)を指定することができます。
+残念なことに、現状のコードではblockとかstopとかを設定してもrestart(デフォルト)の動作をしちゃってます。
+こちらはまだ改修されていませんが、[バグジラ](http://bugs.clusterlabs.org/show_bug.cgi?id=5058)に登録されています。
+
+2012年4月19日追記
+こちらも修正されました。
+
+
+
+
+  * 
+[Medium: pengine: cl#5058 - Fixes issue with on-fail option on operation being ignored.](https://github.com/davidvossel/pacemaker/commit/54266cb5095c68a3afac0be9be93718435352d47 target=)
+
+
+
+
+  
+
+
+
+* * *
+
+
+  
+
+今回ご紹介した項目以外にも、Master/Slaveとclone周りのコードがかなり変更されています。
+リリース前にリグレッションテストを実行してはいるのですが、Master/Slaveにgroupを設定してさらに配置制約も設定して、といったようなリソース間に依存関係のある構成はまだテストケースが不十分なので、1.1系へ移行する前にしっかりと動作検証したいと思います。
+というわけで、Linux-HA Japanのおすすめバージョンは、もうしばらく1.0系です！
+現在、Linux-HA Japanのリポジトリでも最新版(Pacemaker 1.0.12)のrpmパッケージを準備中です！！
+  
+

@@ -1,0 +1,44 @@
+---
+author: takeshita
+comments: false
+date: 2018-09-03 09:28:45+00:00
+layout: post
+permalink: /wp/archives/4744
+slug: osc2018-kyoto-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2018 Kyoto セミナー資料・アンケート結果公開
+wordpress_id: 4744
+categories:
+- イベント情報
+- 読み物
+- その他
+---
+
+2018年8月3日(金)、4日(土)ににて開催された[オープンソースカンファレンス2018 Kyoto](https://www.ospn.jp/osc2018-kyoto/)へ、ブース展示及びセミナーで参加させていただきました。
+
+当日のセミナー資料を以下で公開いたします。
+
+セミナープログラム:
+
+
+
+	
+  * 2018-02-24 (土) 14時00分 [Pacemakerでお手軽Dockerクラスタリング！](https://www.ospn.jp/osc2018-kyoto/modules/eguide/event.php?eid=24)
+
+
+**セミナー資料:**
+
+
+
+	
+  * [Pacemakerでお手軽Dockerクラスタリング！(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2018_Kyoto.pdf)
+
+
+また、展示ブースにもたくさんの方にお立ち寄りいただきありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします(回答者計19名)。
+[![OSC2018_Kyoto_Q1](/assets/images/wp-content/osc2018kyoto_1.png)](/assets/images/wp-content/osc2018kyoto_1.png)
+[![OSC2018_Kyoto_Q2](/assets/images/wp-content/osc2018kyoto_2.png)](/assets/images/wp-content/osc2018kyoto_2.png)
+[![OSC2018_Kyoto_Q3](/assets/images/wp-content/osc2018kyoto_3.png)](/assets/images/wp-content/osc2018kyoto_3.png)
+[![OSC2018_Kyoto_Q4](/assets/images/wp-content/osc2018kyoto_4.png)](/assets/images/wp-content/osc2018kyoto_4.png)
+[![OSC2018_Kyoto_Q5](/assets/images/wp-content/osc2018kyoto_5.png)](/assets/images/wp-content/osc2018kyoto_5.png)
+[![OSC2018_Kyoto_Q6](/assets/images/wp-content/osc2018kyoto_6.png)](/assets/images/wp-content/osc2018kyoto_6.png)
+[![OSC2018_Kyoto_Q7](/assets/images/wp-content/osc2018kyoto_7.png)](/assets/images/wp-content/osc2018kyoto_7.png)
+[![OSC2018_Kyoto_Q8](/assets/images/wp-content/osc2018kyoto_8.png)](/assets/images/wp-content/osc2018kyoto_8.png)

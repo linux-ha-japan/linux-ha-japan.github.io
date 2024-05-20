@@ -1,0 +1,35 @@
+---
+author: t-matsuo
+comments: false
+date: 2010-12-09 02:51:46+00:00
+layout: post
+permalink: /wp/archives/709
+slug: heartbeat-3-0-4-%e3%81%a8-cluster-gule-1-0-7-%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%be%e3%81%97%e3%81%9f
+title: Heartbeat 3.0.4 と cluster-gule 1.0.7 がリリースされました
+wordpress_id: 709
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+2010/12/6 に Heartbeat 3.0.4 と cluster-gule 1.0.7 が[リリース](http://www.gossamer-threads.com/lists/linuxha/dev/68703)されました。
+
+
+
+
+
+以下よりソースコードのダウンロードができます。
+
+
+
+
+    
+    Heartbeat:
+    <a href="http://hg.linux-ha.org/heartbeat-STABLE_3_0/archive/STABLE-3.0.4.tar.bz2">http://hg.linux-ha.org/heartbeat-STABLE_3_0/archive/STABLE-3.0.4.tar.bz2</a>
+    
+    cluster-glue:
+    <a href="http://hg.linux-ha.org/glue/archive/glue-1.0.7.tar.bz2">http://hg.linux-ha.org/glue/archive/glue-1.0.7.tar.bz2</a>
+    
+    

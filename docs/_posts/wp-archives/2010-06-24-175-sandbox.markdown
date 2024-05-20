@@ -1,0 +1,134 @@
+---
+author: t-matsuo
+comments: false
+date: 2010-06-24 00:35:00+00:00
+layout: post
+permalink: /wp/archives/175
+published: false
+slug: sandbox
+title: 記事の編集方針等 (一般公開しないで)
+wordpress_id: 175
+categories:
+- その他
+---
+
+このページは非公開です。ログインしている人にしか見えません。
+
+
+
+
+
+## ・リンクの設定
+
+
+
+
+
+同じ記事でもリンクの辿り方によってはURLの階層が変わるので、サイト内へのリンクは/" からのパスを設定しましょう。
+
+
+
+
+
+/wp/archives/1 へのリンクの場合  
+
+ →  "[/wp/archives/1](/archives/1)"  を設定
+
+
+
+
+
+投稿編集のときは、パーマリンクは投稿番号になるが、ページの投稿の場合は、タイトル名がそのままURLになってしまうので、編集画面の上にあるパーマリンクの変更で、適当なURL名に変更した方がいいかもしれない。
+
+
+
+
+
+注：下書きの時と公開した時でパーマリンクが変わるようです。　画像等を張る時は注意してね。
+
+
+
+
+
+## ・記事のスタイル
+
+
+
+
+
+コマンドラインやファイルの中身を表示する時は、↓を使おう！！  
+
+ テキスト選択して、フォーマットを段落に変更、スタイルをwp-captionに変更。
+
+
+
+
+    
+    # ls -la /etc
+    合計 3832
+    -rw-r--r--  1 root root    2562  1月 15  2008 a2ps-site.cfg
+    -rw-r--r--  1 root root   15288  1月 15  2008 a2ps.cfg
+    drwxr-xr-x  4 root root    4096  4月  5 14:59 acpi
+    -rw-r--r--  1 root root      47  5月 28 17:49 adjtime
+    drwxr-xr-x  4 root root    4096  4月  5 15:02 alchemist
+    -rw-r--r--  1 root root    1512  4月 26  2005 aliases
+    -rw-r-----  1 root smmsp  12288  5月 31 12:37 aliases.db
+    drwxr-xr-x  4 root root    4096  4月  5 14:58 alsa
+    
+    長い行は今のテーマだと自動で折り返されてしまうので注意。
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    
+
+
+
+
+
+WP-Syntax プラグインを導入しました。ソースコードやxmlなどは色づけ可能です。
+
+
+
+
+    
+    
+    <xml>
+    <foo>
+    <hoge a="aaaa">hoge</hoge>
+    </xml>
+    </foo>
+    
+
+
+
+
+    
+    
+    #include <stdio.h>
+    int main() {
+        return 0
+    }
+    
+
+
+
+
+
+
+## ・カテゴリ等の記事のメタデータ
+
+
+
+
+
+カテゴリはあまり増やすと意味がなくなるので、方針はどうしましょう？
+
+
+
+
+
+## ・画像データ
+
+
+
+
+
+画像は、ほどほどに。

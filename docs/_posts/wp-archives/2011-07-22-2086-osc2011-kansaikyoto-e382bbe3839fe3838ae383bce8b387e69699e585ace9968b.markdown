@@ -1,0 +1,38 @@
+---
+author: takayukitanaka
+comments: false
+date: 2011-07-22 09:06:37+00:00
+layout: post
+permalink: /wp/archives/2086
+slug: osc2011-kansaikyoto-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2011 Kansai@Kyoto セミナー資料公開
+wordpress_id: 2086
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+#### 暑い熱い京都に行ってきました！
+
+
+7月15日（金）・16日(土) の2日間、京都リサーチパーク（KRP)にて [オープンソースカンファレンス2011 Kansai@Kyoto](http://www.ospn.jp/osc2011-kyoto/) が開催され、去年に引き続きLinux-HA Japanとして参加してきました。ちょうど祇園祭が開催されている最中で、京都市内は、お祭りとOSCで暑く熱くなっていました。[![](/assets/images/wp-content/2011kyoto-300x128.jpg)](/wp/archives/2086/2011kyoto)
+
+セミナーは、4月に同じ関西地区であるOSC神戸で構築デモを行ったばかりなので、今回から少しデモの内容を変更し、運用を主とした[「](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17)[Pacemakerでかんたんクラスタリング体験してみよう～仮想環境で運用デモしますよ編～](http://www.ospn.jp/osc2011-kyoto/modules/eguide/event.php?eid=21)[」](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17) という題目で実演セミナーをおこないました。
+
+初ネタを入れていたため一部デモ手順を間違えましたが、それは愛嬌という事でご勘弁ください...。
+
+プレゼンテーション資料を公開しますので、参考にしていただければと思います。
+
+
+
+	
+  * セミナー資料：  [Pacemakerでかんたんクラスタリング体験してみよう～仮想環境で運用デモしますよ編～](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2011Kyoto_20110716/ja/1/Pacemaker_OSC2011Kyoto_20110716.pdf)
+
+	
+  * 設定例：  [リソース設定デモ用 crmテンプレートExcelファイル（pm_crmgen環境定義書サンプル）]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo3.xls)
+
+
+次は、[オープンソースカンファレンス2011 Nagoya](http://www.ospn.jp/osc2011-nagoya/) に初参加します。京都で配布していた団扇は名古屋でも配布予定なので、ぜひぜひ興味のある方は足を運んでください！

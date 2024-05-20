@@ -1,0 +1,55 @@
+---
+author: n_kokubo
+comments: false
+date: 2019-11-28 08:43:02+00:00
+layout: post
+permalink: /wp/archives/4882
+slug: osc2019-tokyofall-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2019 Tokyo/Fall セミナー資料・アンケート結果公開
+wordpress_id: 4882
+categories:
+- イベント情報
+- 読み物
+---
+
+2019年11月23日(土)、24日(日)に明星大学にて開催された[オープンソースカンファレンス2019 Tokyo/Fall](https://www.ospn.jp/osc2019-fall/)においてブース展示及びセミナーで参加させていただきました。
+
+ブース展示・セミナーともにたくさんの方にお越しいただきありがとうございました。
+
+当日のセミナー資料を以下で公開いたします。
+
+**セミナープログラム:**
+
+
+
+	
+  * 2019-11-24(日) 13時00分
+**[増税に立ち向かえ、俺が“コンテナ” を “Pacemaker” と “DRBD” を使って無償で冗長化してやる。](https://www.ospn.jp/osc2019-fall/modules/eguide/event.php?eid=20)**
+
+
+**セミナー資料:**
+
+
+
+	
+  * ** [増税に立ち向かえ、俺が“コンテナ” を “Pacemaker” と “DRBD” を使って無償で冗長化してやる。(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2019_Tokyo-Fall.pdf)
+**
+
+
+また、展示ブースでのアンケートへのご協力ありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします(回答者計23名)。
+
+[![osc2019tokyo-fall_001](/assets/images/wp-content/osc2019tokyo-fall_001.png)](/assets/images/wp-content/osc2019tokyo-fall_001.png)
+
+[![osc2019tokyo-fall_004](/assets/images/wp-content/osc2019tokyo-fall_004.png)](/assets/images/wp-content/osc2019tokyo-fall_004.png)
+
+[![osc2019tokyo-fall_002](/assets/images/wp-content/osc2019tokyo-fall_002.png)](/assets/images/wp-content/osc2019tokyo-fall_002.png)
+
+[![osc2019tokyo-fall_003](/assets/images/wp-content/osc2019tokyo-fall_003.png)](/assets/images/wp-content/osc2019tokyo-fall_003.png)
+
+[![osc2019tokyo-fall_005](/assets/images/wp-content/osc2019tokyo-fall_005.png)](/assets/images/wp-content/osc2019tokyo-fall_005.png)
+
+[![osc2019tokyo-fall_008](/assets/images/wp-content/osc2019tokyo-fall_008.png)](/assets/images/wp-content/osc2019tokyo-fall_008.png)
+
+[![osc2019tokyo-fall_006](/assets/images/wp-content/osc2019tokyo-fall_006.png)](/assets/images/wp-content/osc2019tokyo-fall_006.png)
+
+[![osc2019tokyo-fall_007](/assets/images/wp-content/osc2019tokyo-fall_007.png)](/assets/images/wp-content/osc2019tokyo-fall_007.png)

@@ -1,0 +1,331 @@
+---
+author: t-matsuo
+comments: false
+date: 2013-02-22 13:32:07+00:00
+layout: post
+permalink: /wp/archives/3589
+slug: osc-2013-tokyospring-%e8%ac%9b%e6%bc%94%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC 2013 Tokyo/Spring 講演資料公開
+wordpress_id: 3589
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+[オープンソースカンファレンス 2013 Tokyo/Spring ](https://www.ospn.jp/osc2013-spring/modules/eguide/event.php?eid=94)では多くの方にご来場頂きありがとうございました。
+
+本日の講演資料を以下に公開いたしました。
+
+[http://www.slideshare.net/takmatsuo/osc-tokyospring2013-16694861](http://www.slideshare.net/takmatsuo/osc-tokyospring2013-16694861)
+
+ 
+
+なお、講演中のデモで使用した設定ファイルは以下になります。
+
+
+
+
+
+
+
+
+property \
+
+
+
+
+  no-quorum-policy="ignore" \
+
+
+
+
+  stonith-enabled="false" \
+
+
+
+
+
+
+
+rsc_defaults \
+
+
+
+
+  resource-stickiness="INFINITY" \
+
+
+
+
+  migration-threshold="1"
+
+
+
+
+
+
+
+ms msPostgresql pgsql \
+
+
+
+
+  meta \
+
+
+
+
+    master-max="1" \
+
+
+
+
+    master-node-max="1" \
+
+
+
+
+    clone-max="2" \
+
+
+
+
+    clone-node-max="1" \
+
+
+
+
+    notify="true"
+
+
+
+
+
+
+
+group master-group \
+
+
+
+
+    vip-master vip-rep
+
+
+
+
+
+
+
+primitive vip-master ocf:heartbeat:IPaddr2 \
+
+
+
+
+  params \
+
+
+
+
+    ip="192.168.103.110" \
+
+
+
+
+    nic="eth3" \
+
+
+
+
+    cidr_netmask="24" \
+
+
+
+
+  op start   timeout="60s" interval="0s"  on-fail="restart" \
+
+
+
+
+  op monitor timeout="60s" interval="10s" on-fail="restart" \
+
+
+
+
+  op stop    timeout="60s" interval="0s"  on-fail="block"
+
+
+
+
+
+
+
+primitive vip-rep ocf:heartbeat:IPaddr2 \
+
+
+
+
+  params \
+
+
+
+
+    ip="192.168.104.110" \
+
+
+
+
+    nic="eth4" \
+
+
+
+
+    cidr_netmask="24" \
+
+
+
+
+  op start   timeout="60s" interval="0s"  on-fail="restart" \
+
+
+
+
+  op monitor timeout="60s" interval="10s" on-fail="restart" \
+
+
+
+
+  op stop    timeout="60s" interval="0s"  on-fail="block"
+
+
+
+
+
+
+
+
+
+
+primitive pgsql ocf:heartbeat:pgsql \
+
+
+
+
+  params \
+
+
+
+
+    pgctl="/usr/pgsql-9.1/bin/pg_ctl" \
+
+
+
+
+    psql="/usr/pgsql-9.1/bin/psql" \
+
+
+
+
+    pgdata="/var/lib/pgsql/9.1/data/" \
+
+
+
+
+    rep_mode="sync" \
+
+
+
+
+    xlog_check_count="0" \
+
+
+
+
+    node_list="pm01 pm02" \
+
+
+
+
+    restore_command="cp /var/lib/pgsql/9.1/data/pg_archive/%f %p" \
+
+
+
+
+    primary_conninfo_opt="keepalives_idle=60 keepalives_interval=5 keepalives_count=5" \
+
+
+
+
+    master_ip="192.168.104.110" \
+
+
+
+
+    stop_escalate="0" \
+
+
+
+
+  op start   timeout="30s" interval="0s"  on-fail="restart" \
+
+
+
+
+  op monitor timeout="30s" interval="4s"  on-fail="restart" \
+
+
+
+
+  op monitor timeout="30s" interval="2s"  on-fail="restart" role="Master" \
+
+
+
+
+  op promote timeout="30s" interval="0s"  on-fail="restart" \
+
+
+
+
+  op demote  timeout="30s" interval="0s"  on-fail="stop" \
+
+
+
+
+  op stop    timeout="30s" interval="0s"  on-fail="block" \
+
+
+
+
+  op notify  timeout="60s" interval="0s"
+
+
+
+
+
+
+
+colocation rsc_colocation-2 inf:  master-group        msPostgresql:Master
+
+
+
+
+
+
+
+order rsc_order-2 inf: msPostgresql:promote  master-group:start   symmetrical=false
+
+
+
+
+order rsc_order-3 0:   msPostgresql:demote   master-group:stop    symmetrical=false
+
+
+
+
+
+
+
+
+

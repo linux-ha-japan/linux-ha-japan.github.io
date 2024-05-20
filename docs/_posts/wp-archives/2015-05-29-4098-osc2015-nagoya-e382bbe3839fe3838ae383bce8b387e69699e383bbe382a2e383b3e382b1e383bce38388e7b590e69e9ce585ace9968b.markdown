@@ -1,0 +1,42 @@
+---
+author: takeshita
+comments: false
+date: 2015-05-29 06:39:29+00:00
+layout: post
+permalink: /wp/archives/4098
+slug: osc2015-nagoya-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2015 Nagoya セミナー資料・アンケート結果公開
+wordpress_id: 4098
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+OSC2015 Nagoya セミナー資料・アンケート結果公開
+
+5月22日(金),23日(土) に名古屋国際センターにて開催された[オープンソース カンファレンス2015 Nagoya](http://www.ospn.jp/osc2015-nagoya/) にLinux-HA Japanも参加し、ブース展示および講演を行いました。当日は天気も良く、2日間の合計で約550人の来場がありました。
+
+講演は「[Pacemaker-1.1で始める高可用クラスタ入門 ～私が落ちても代わりはいるもの～](https://www.ospn.jp/osc2015-nagoya/modules/eguide/event.php?eid=35)」というタイトルで、Pacemakerおよび最新版であるPacemaker-1.1.12の概要や、インストール・設定方法、Pacemakerの動作などについてデモを交えて紹介させていただきました。
+
+以下にセミナーの資料を公開しますので、参考にしていただければと思います。
+
+
+
+	
+  * セミナー資料：[Pacemaker-1.1で始める高可用クラスタ入門 ～私が落ちても代わりはいるもの～]({{ site.lhajp_resources_url }}/wp-content/OSC2015_Nagoya.pdf)
+
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。
+(回答者計19名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![OSC2015nagoya_Q0](/assets/images/wp-content/osc_nagoya_0.png)](/assets/images/wp-content/osc_nagoya_0.png)
+[![OSC2015nagoya_Q1](/assets/images/wp-content/osc_nagoya_1.png)](/assets/images/wp-content/osc_nagoya_1.png)
+[![OSC2015nagoya_Q2](/assets/images/wp-content/osc_nagoya_2.png)](/assets/images/wp-content/osc_nagoya_2.png)
+[![OSC2015nagoya_Q3](/assets/images/wp-content/osc_nagoya_3.png)](/assets/images/wp-content/osc_nagoya_3.png)
+[![OSC2015nagoya_Q4](/assets/images/wp-content/osc_nagoya_4.png)](/assets/images/wp-content/osc_nagoya_4.png)
+[![OSC2015nagoya_Q5](/assets/images/wp-content/osc_nagoya_5.png)](/assets/images/wp-content/osc_nagoya_5.png)
+[![OSC2015nagoya_Q6](/assets/images/wp-content/osc_nagoya_6.png)](/assets/images/wp-content/osc_nagoya_6.png)

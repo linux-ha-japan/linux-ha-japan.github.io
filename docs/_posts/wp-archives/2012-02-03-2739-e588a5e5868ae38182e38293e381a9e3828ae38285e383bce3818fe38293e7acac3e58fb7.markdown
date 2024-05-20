@@ -1,0 +1,865 @@
+---
+author: ikedaj
+comments: false
+date: 2012-02-03 09:50:01+00:00
+layout: post
+permalink: /wp/archives/2739
+slug: '%e5%88%a5%e5%86%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%93%e7%ac%ac3%e5%8f%b7'
+title: 別冊あんどりゅーくん(第3号)
+wordpress_id: 2739
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+Pacemaker Cloud v0.5.0の動作確認をしてみた ＼(^o^)／
+
+[Pacemaker Cloud Project](http://pacemaker-cloud.org/)は、クラウド環境におけるHA機能の実装を目的としたプロジェクトです。
+
+Pacemaker Cloudはクラウドを構成する各コンポーネントの故障や孤立を検知して
+コンポーネントの再起動を実行します。
+また、コンポーネントの再起動処理が指定回数以上失敗した場合は
+下位レイヤへ故障をエスカレーションする機能も実装予定です。
+
+ソースコードは[こちら](https://github.com/pacemaker-cloud/pacemaker-cloud)で公開されています。
+
+ちょっと楽しげな雰囲気ですけど、ナンナンデスカコレハ？ということでキーワードをちょっと調べてみました。
+
+
+
+	
+  * Assembly
+
+
+
+
+仮想マシンや監視エージェント、アプリケーションなどの集合体。
+VM(Virtual Machine)と、ほぼ同義です。
+監視エージェントは後述のMatahariを想定しています。
+アプリケーションは、Pacemakerでいうところのリソース(=サービス)ですね。
+DBとかWebサーバとかファイルシステムとかサービスを提供するためのアプリケーションです。
+
+
+
+
+
+
+	
+  * Deployable
+
+
+
+
+Assembliesの集合体です。
+異なる物理マシンで起動するVM(=Assmbly)も同じDeployableに含めることができます。
+
+
+
+
+
+
+	
+  * Deployable Policy Engine(DPE)
+
+
+
+
+Deployableを制御するコンポーネントです。
+
+
+
+
+
+
+	
+  * Cloud Policy Engine(CPE)
+
+
+
+
+クラウド上で実行される仮想環境間の依存関係や可用性を保証するコンポーネントです。
+Deployableの起動 停止処理を実行します。
+
+
+
+
+
+
+	
+  * Matahari
+
+
+
+
+システムを管理・監視するためのAPIの集合です。
+Pacemakerのlrmdに似ています。
+ノードおよびリソースの起動停止、監視処理を実行します。
+これはPacemaker Cloudとは別のプロジェクトです。
+ソースコードは[こちら](https://github.com/matahari/matahari)で公開されています。
+
+
+
+
+
+
+	
+  * Pacemaker Cloudのざっくりしたイメージ
+
+
+
+
+正常起動時 → Assemblyがサービスを提供
+Assemblyが提供しているサービスが故障 → DPEがサービスを再起動
+Assembly(=仮想マシン)故障 → DPEが仮想マシンを再起動
+サービスや仮想マシンの再起動が指定回数以上失敗 → DPEが別のAssemblyを起動
+DPEが故障 → CPEがDPEを再起動(このときAssemblyは再起動しないはず)
+
+
+
+んー、まだちょっとふらふらしたイメージなので、実際に環境構築をして動作を確認してみることにしました。
+
+環境構築の手順は以下のサイトを参考にしました。
+[http://ahsalkeld.wordpress.com/a-mash-up-of-openstack-and-pacemaker-cloud/](http://ahsalkeld.wordpress.com/a-mash-up-of-openstack-and-pacemaker-cloud/ ) [http://ahsalkeld.wordpress.com/better-integration-of-openstack-and-pacemaker-cloud/
+](http://ahsalkeld.wordpress.com/better-integration-of-openstack-and-pacemaker-cloud/)[http://www.pixelbeat.org/docs/pacemaker-cloud/](http://www.pixelbeat.org/docs/pacemaker-cloud/ )
+
+Fedoraにはもう取り込まれているので、今回はFedora 16で動作を確認することにします。
+**1. ホストOSのインストール**
+
+まずは、ホストOSとしてFedora 16をインストールします。
+[こちら](http://fedoraproject.org/ja/get-fedora-options#formats)からFedora 16 DVD 64ビット版をダウンロードして、にょろにょろとインストールしました。
+
+
+
+	
+  1. インストールメディアから起動
+
+	
+  2. 言語/キーボードの設定で「日本語」を選択
+
+	
+  3. 「基本ストレージデバイス」を選択
+
+	
+  4. 「新規インストール」を選択
+
+	
+  5. ホスト名/ネットワーク構成を設定
+
+	
+  6. タイムゾーン「東京」を選択/「System clock uses UTC」のチェックをはずす
+
+	
+  7. rootのパスワードを設定
+
+	
+  8. パーティションを設定 
+
+	
+    * 「カスタムレイアウトを作成する」を選択
+
+	
+    * デフォルトで/varにいろんなファイルが配置されることが多いので/varを大きめにする便利です。
+
+
+
+
+	
+  9. 「/dev/sda上にブートローダーをインストール」を選択
+
+	
+  10. 「ソフトウェア開発」/「Customize now」を選択 
+
+	
+    * 「サーバー」→「サーバ設定ツール」をチェック
+
+	
+    * 「ベースシステム」→「システムツール」「仮想化」「管理ツール」をチェック
+
+
+
+
+	
+  11. ポストインストール 
+
+	
+    * 一般ユーザの作成
+
+	
+    * 日付と時刻
+
+
+
+
+
+インストール終了後にrootユーザで下記の設定を行います。 
+
+
+
+	
+  * セキュリティの設定 
+
+	
+    * SELinuxを無効にする 
+
+	
+      * 「/etc/sysconfig/selinux」で「SELINUX=disabled」を設定
+
+
+
+
+
+
+	
+    * ファイアーウォールを無効にする 
+
+	
+      * 「アクティビティ」→「アプリケーション」→「ファイアーウォール」
+
+	
+      * 「無効」を選択した後、「適用」を選択
+
+
+
+
+
+
+
+
+
+	
+  * ネットワークの設定 
+
+	
+    * NetworkManagerのサービスを停止
+# systemctl disable NetworkManager.service
+# systemctl stop NetworkManager.service
+
+
+	
+    * networkのサービスを開始
+# systemctl enable network.service
+# systemctl start network.service
+
+
+	
+    * ブリッジの作成
+# cd /etc/sysconfig/network-scripts/
+# cp -p ifcfg-em1 ifcfg-br0
+
+# vim ifcfg-em1
+HWADDR="XX:XX:XX:XX:XX:XX"
+IPV6INIT="no"
+UUID="1dad842d-1912-ef5a-a43a-bc238fb267e7"
+** #IPADDR0="192.168.XXX.XXX"         ★ コメントにいれる**
+** #PREFIX0="24" 　　　　　　　　　　　　　　     ★ コメントにいれる**
+DEFROUTE="yes"
+IPV4_FAILURE_FATAL="yes"
+NM_CONTROLLED="yes"
+BOOTPROTO="none"
+** #GATEWAY0="192.168.XXX.XXX"      ★ コメントにいれる**
+DEVICE="em1"
+TYPE="Ethernet"
+ONBOOT="yes"
+NAME="System em1"
+** BRIDGE=br0 ★ 追記**
+
+
+# vim ifcfg-br0
+HWADDR="XX:XX:XX:XX:XX:XX"
+IPV6INIT="no"
+UUID="1dad842d-1912-ef5a-a43a-bc238fb267e7"
+** IPADDR="192.168.XXX.XXX"               ★ IPADDR0 → IPADDR**
+** PREFIX="24"                                     　 ★ PREFIX0 → PREFIX**
+DEFROUTE="yes"
+IPV4_FAILURE_FATAL="yes"
+NM_CONTROLLED="yes"
+BOOTPROTO="none"
+** GATEWAY="192.168.XXX.XXX"           ★ GATEWAY0 → GATEWAY**
+** DEVICE="br0"                                     ★ em1      → br0**
+** TYPE="Bridge"                                     ★ Ethernet → Bridge**
+ONBOOT="yes"
+** NAME="System br0"                             ★ em1      → br0** 
+
+ 
+
+
+
+
+	
+    * ネットワークの再起動
+# systemctl restart network.service
+
+
+
+
+
+
+
+	
+  * rsyslogの設定 
+
+	
+    * 「空白文字(Tab)」が「#011」へ変換されちゃっていたので、「EscapeControlCharactersOnReceive」の設定を追加してください([参考](http://www.rsyslog.com/doc/rsconf1_escapecontrolcharactersonreceive.html))。
+# vim /etc/rsyslog.conf 
+
+$EscapeControlCharactersOnReceive off
+
+ 
+
+
+rsyslogサービスを再起動します。
+# systemctl restart rsyslog.service
+
+
+
+
+
+
+**2. ゲストOSのインストール**
+
+virt-managerを使ってゲストにもFedora 16をにょろにょろとインストールしました。
+
+
+
+	
+  1. ホストでvirt-managerを起動 
+
+	
+  2. localhost(QEMU)で右クリック→「新規」を選択 
+
+	
+  3. 仮想マシンのノード名を設定/インストール方法の選択 
+
+	
+  4. インストールメディアの場所を指定/OSの種類とバージョンを選択 
+
+	
+  5. メモリーとCPUの設定を選択 
+
+	
+  6. ハードディスクの設定 
+
+	
+  7. パーティションの設定 
+
+	
+    * 「すべての領域を使用する」を選択/「Use LVM」のチェックをはずす
+
+
+
+
+	
+  8. ソフトウェアの選択 
+
+	
+    * 「デスクトップを選択」/「Customiz later」を選択 
+
+
+
+
+
+ゲストOSのSELinuxとファイアーウォールも無効化してください。
+
+ 
+
+**3. OSのアップデート**
+
+yumの設定を行います。
+# vim /etc/yum.conf  
+
+proxy=http://プロキシサーバのIPアドレス:8080
+
+ 
+
+
+ホストOSとゲストOSのアップデートを行います。20分くらいかかりました。
+# yum -y install yum-plugin-fastestmirror
+# yum -y update
+**4. Pacemaker Cloudの環境構築**
+
+では！いよいよPacemaker Cloudの環境を構築します！
+
+**4-1. ホストで実行する作業**
+ホストには下記のパッケージをインストールしてください。
+
+
+
+	
+  * pacemaker-cloud
+
+	
+  * qpid-tools
+
+
+# yum -y install pacemaker-cloud 
+
+インストールしています:
+pacemaker-cloud                         x86_64             0.5.0-1.fc16                            updates             123 k
+
+依存性関連でのインストールをします。:
+cluster-glue-libs                       x86_64             1.0.6-8.fc16                            fedora              116 k
+febootstrap-supermin-helper             x86_64             3.10-1.fc16                             fedora              308 k
+gfs2-utils                              x86_64             3.1.3-1.fc16                            updates             210 k
+gvnc-tools                              x86_64             0.4.3-1.fc15                            fedora               61 k
+hfsplus-tools                           x86_64             332.14-12.fc15                          fedora              118 k
+hivex                                   x86_64             1.3.3-1.fc16                            updates              87 k
+jfsutils                                x86_64             1.1.13-8.fc12                           fedora              203 k
+libguestfs                              x86_64             1:1.16.1-1.fc16                         updates             1.3 M
+libmicrohttpd                           x86_64             0.9.7-1.fc16                            fedora               46 k
+libqb                                   x86_64             0.9.0-1.fc16                            updates              61 k
+m2crypto                                x86_64             0.21.1-5.fc16                           fedora              452 k
+nilfs-utils                             x86_64             2.0.23-1.fc16                           fedora               98 k
+numpy                                   x86_64             1:1.6.0-2.1.fc16                        fedora              2.5 M
+oz                                      noarch             0.7.0-3.fc16                            updates             124 k
+pacemaker-libs                          x86_64             1.1.6-4.fc16                            fedora              360 k
+perl-hivex                              x86_64             1.3.3-1.fc16                            updates              37 k
+pyparted                                x86_64             3.8-1.fc16                              fedora              188 k
+python-daemon                           noarch             1.6-1.fc16                              fedora               26 k
+python-libguestfs                       x86_64             1:1.16.1-1.fc16                         updates             160 k
+python-lockfile                         noarch             1:0.9.1-1.fc16                          fedora               27 k
+python-nose                             noarch             1.1.2-1.fc16                            fedora              260 k
+python-qpid-qmf                         x86_64             0.12-4.fc16.2                           fedora              1.2 M
+python-setuptools                       noarch             0.6.24-1.fc16                           updates             325 k
+qpid-cpp-client                         x86_64             0.12-4.fc16.2                           fedora              976 k
+qpid-cpp-server                         x86_64             0.12-4.fc16.2                           fedora              1.0 M
+qpid-qmf                                x86_64             0.12-4.fc16.2                           fedora              438 k
+reiserfs-utils                          x86_64             2:3.6.21-4.fc15                         fedora              232 k
+scrub                                   x86_64             2.4-2.fc15                              fedora               35 k
+zerofree                                x86_64             1.0.1-8.fc15                            fedora               20 k
+zfs-fuse                                x86_64             0.6.9-8.20100709git.fc15                fedora              910 k
+
+ 
+
+ 
+
+
+おう…。これはyum万歳ですね…。
+# yum -y install qpid-tools 
+
+インストールしています:
+qpid-tools                     noarch                    0.12-4.fc16. fedora                     43 k
+
+依存性関連でのインストールをします。:
+python-qpid                    noarch                    0.12-1.fc16                         fedora                    395 k
+
+ 
+
+ 
+
+
+pcloud-cpedを起動します。自動起動の設定をONとします。
+# systemctl start pcloud-cped.service
+# systemctl enable pcloud-cped.service
+qpiddを停止します。自動起動の設定をOFFとします。
+# systemctl stop qpidd.service
+# systemctl disable qpidd.service
+pcloud-cpedがブローカーの役割も兼ねているので、ポートのバッティングなどを防止するために
+デフォルトのブローカー(qpidd)が停止させておきます。
+
+**4-2. ゲストで実行する作業**
+ゲストには下記のパッケージをインストールしてください。
+
+
+
+	
+  * matahari
+
+	
+  * resource-agents
+
+	
+  * httpd
+
+
+# ssh node01
+# yum -y install matahari 
+
+インストールしています:
+matahari                            x86_64               0.6.0-2.fc16                            updates                14 k
+
+依存性関連でのインストールをします。:
+augeas-libs                         x86_64               0.10.0-3.fc16                           updates               345 k
+boost                               x86_64               1.47.0-6.fc16                           updates                22 k
+boost-chrono                        x86_64               1.47.0-6.fc16                           updates                35 k
+boost-date-time                     x86_64               1.47.0-6.fc16                           updates                39 k
+boost-filesystem                    x86_64               1.47.0-6.fc16                           updates                64 k
+boost-graph                         x86_64               1.47.0-6.fc16                           updates                80 k
+boost-iostreams                     x86_64               1.47.0-6.fc16                           updates                48 k
+boost-program-options               x86_64               1.47.0-6.fc16                           updates               133 k
+boost-python                        x86_64               1.47.0-6.fc16                           updates               120 k
+boost-random                        x86_64               1.47.0-6.fc16                           updates                26 k
+boost-regex                         x86_64               1.47.0-6.fc16                           updates               294 k
+boost-serialization                 x86_64               1.47.0-6.fc16                           updates               157 k
+boost-signals                       x86_64               1.47.0-6.fc16                           updates                48 k
+boost-system                        x86_64               1.47.0-6.fc16                           updates                27 k
+boost-test                          x86_64               1.47.0-6.fc16                           updates               211 k
+boost-thread                        x86_64               1.47.0-6.fc16                           updates                48 k
+boost-wave                          x86_64               1.47.0-6.fc16                           updates               219 k
+dmidecode                           x86_64               1:2.11-5.fc16                           updates                71 k
+facter                              noarch               1.6.4-1.fc16                            updates                66 k
+kstart                              x86_64               4.1-1.fc16                              updates                49 k
+libselinux-ruby                     x86_64               2.1.6-5.fc16                            updates               106 k
+matahari-agent-lib                  x86_64               0.6.0-2.fc16                            updates                49 k
+matahari-broker                     x86_64               0.6.0-2.fc16                            updates                21 k
+matahari-consoles                   x86_64               0.6.0-2.fc16                            updates                35 k
+matahari-core                       x86_64               0.6.0-2.fc16                            updates                15 k
+matahari-host                       x86_64               0.6.0-2.fc16                            updates                45 k
+matahari-lib                        x86_64               0.6.0-2.fc16                            updates                48 k
+matahari-network                    x86_64               0.6.0-2.fc16                            updates                36 k
+matahari-python                     x86_64               0.6.0-2.fc16                            updates                25 k
+matahari-rpc                        x86_64               0.6.0-2.fc16                            updates                29 k
+matahari-service                    x86_64               0.6.0-2.fc16                            updates                52 k
+matahari-sysconfig                  x86_64               0.6.0-2.fc16                            updates                37 k
+puppet                              noarch               2.6.13-2.fc16                           updates               795 k
+python-qpid                         noarch               0.12-1.fc16                             fedora                395 k
+python-qpid-qmf                     x86_64               0.12-4.fc16.2                           fedora                1.2 M
+qpid-cpp-client                     x86_64               0.12-4.fc16.2                           fedora                976 k
+qpid-cpp-client-ssl                 x86_64               0.12-4.fc16.2                           fedora                104 k
+qpid-cpp-server                     x86_64               0.12-4.fc16.2                           fedora                1.0 M
+qpid-cpp-server-ssl                 x86_64               0.12-4.fc16.2                           fedora                 50 k
+qpid-qmf                            x86_64               0.12-4.fc16.2                           fedora                438 k
+qpid-tools                          noarch               0.12-4.fc16.2                           fedora                 43 k
+ruby                                x86_64               1.8.7.357-1.fc16                        updates               341 k
+ruby-augeas                         x86_64               0.4.1-1.fc16                            fedora                 21 k
+ruby-shadow                         x86_64               1.4.1-14.fc15                           fedora                 11 k
+sigar                               x86_64               1.6.5-0.5.git58097d9.fc16               updates                67 k
+tuned                               noarch               0.2.21-1.fc16                           fedora                 86 k
+
+ 
+
+ 
+
+
+おう…。matahariもけっこうやるな…。
+# yum -y install resource-agents 
+
+インストールしています:
+resource-agents                     x86_64                   3.9.2-2.fc16                     fedora                   464 k
+
+依存性関連でのインストールをします。:
+cluster-glue-libs                   x86_64                   1.0.6-8.fc16                     fedora                   116 k
+libnet                              x86_64                   1.1.5-2.fc15                     fedora                    54 k
+
+ 
+
+
+今回はサービスとしてhttpdを起動させてみます。
+# yum -y install httpd 
+
+インストールしています:
+httpd                            x86_64                    2.2.21-1.fc16                     fedora                    807 k
+
+依存性関連でのインストールをします。:
+apr                              x86_64                    1.4.5-1.fc16                      fedora                     97 k
+apr-util                         x86_64                    1.3.12-1.fc16                     fedora                     80 k
+apr-util-ldap                    x86_64                    1.3.12-1.fc16                     fedora                     16 k
+httpd-tools                      x86_64                    2.2.21-1.fc16                     fedora                     68 k 
+
+ 
+
+
+matahariの設定ファイルを編集します。
+MATAHARI_BROKERパラメータにホストのIPアドレスを指定してください。
+# vim /etc/sysconfig/matahari 
+
+MATAHARI_BROKER=192.168.XX.XX
+
+ 
+
+ 
+
+
+matahari-hostを起動します。自動起動の設定をONとします。
+# systemctl start matahari-host.service
+# systemctl enable matahari-host.service
+matahari-serviceを起動します。自動起動の設定をONとします。
+# systemctl start matahari-service.service
+# systemctl enable matahari-service.service
+ゲストでの作業はこれで終了です。ゲストは停止させておいてください。
+# virsh destroy node01
+**5. Pacemaker Cloudの動作確認**
+
+ホストで「pcloudsh」を実行します。
+pcloudshは、Pacemaker Cloudのコンポーネントであるcpedとかdpedとかのフロントとなる
+Pythonのスクリプトです。
+# pcloudsh
+Welcome to pcloudsh, the Pacemaker Cloud Interface terminal type "help" for help and quit to exit.  
+
+pcloudsh# **help
+**Documented commands (type help ):
+========================================
+assembly_clone          　　　　　　　　　　　assembly_resource_remove    　　　　　　deployable_start
+assembly_create         　　　　　　　　　　deployable_assembly_add 　　　　    　　　deployable_status
+assembly_delete         　　　　　　　　　　deployable_assembly_remove  　　　　　deployable_stop
+assembly_list 　　　　          　　　　　　　　deployable_create           　　　　　　　　　　　　　　jeos_create
+assembly_resource_add 　　　  deployable_list             　　　　　　　　　              jeos_list
+assembly_resource_list  　　　　 deployable_reload
+
+Undocumented commands:
+======================
+EOF  exit  help  quit
+んー、AngusさんとかPádraigさんとかのHow Toには
+ここで「jeos_create」を実行するって書いてあるんですけど
+これって、oz-installコマンドが呼び出されて
+もりもりOSのインストールがはじまっちゃうんですよね(´・ω・｀)
+ゲストOSはもうつくっちゃったから、それを使いたいのだよ。
+openstackとかozとかの設定ファイルをいろいろ調べるのは
+なんだかちょっとめんどくさいのですよ。
+
+というわけで、pcloudshは一旦終了します。
+pcloudsh# **quit**** **
+
+pcloudshとかpcloudshから呼び出されているlibvirt_assembly.py, libvirt_deployable.pyとかを
+にょろにょろと眺めつつ、「jeos_create」はすっとばかして、たぶん「assembly_create」がつくってる設定ファイルを
+力技でつくってみましたよ！
+
+デフォルトでassemblyの情報を保持しているディレクトリにいってみる。
+# cd /var/lib/pacemaker-cloud/assemblies
+ゲストの設定ファイルをここにコピーします。リンク貼ってもよいかもしれません。
+# cp -p /etc/libvirt/qemu/node01.xml .
+assemblyの設定ファイルを頑張ってつくっちゃうよ！
+# cd /var/lib/pacemaker-cloud
+# vim db_assemblies.xml
+
+<?xml version="1.0"?>
+<assemblspan style=
+
+font-family: verdana,genevaspan style=font-family: verdana,geneva;;span style=font-family: verdana,geneva;ies pcmkc-velispan style=font-family: verdana,geneva;font-family: verdana,geneva;rsion="0.5.0">
+<assembly name="node01" uuid="6431507885019665d69a171b7b2d34a0" infrastructure="libvirt"/>
+</assemblies> 
+uuidはゲストの設定ファイル(node01.xml)のuuidタグに設定された値を使用しました。
+ハイフンは取り除いています。
+たーぶん、このuuidはバッティングしなければなんでもいいんじゃないかなあと思っていましたが
+v0.6.0にアップデートしたとき、uuid違います系のエラーが出力されていたので
+ちょっと保留です。今回の環境ではたぶんなんでもOKです。
+
+infrastructureのデフォルトはlibvirtです。
+設定可能な値：'libvirt','aeolus','openstack','ovirt'
+
+では、ここから正規の手順に戻ります。
+pcloudshを起動します。
+# pcloudsh
+
+deployableを作成します。dep01という名前にしました。
+pcloudsh# **deployable_create   dep01**
+作成したdeployableを表示してみます。
+pcloudsh# **deployable_list** 
+
+Name
+--------------
+dep01
+
+ 
+
+
+assemblyを表示します。さっき力技でつくった設定ファイルの中身がみれます。
+pcloudsh# **assembly_list**  
+
+Name         　　　  UUID
+------------------------------------------------
+node01       　　 6431507885019665d69a171b7b2d34a0
+
+ 
+
+
+deployableにassemblyを登録します。
+pcloudsh# **deployable_assembly_add   dep01   node01**
+assemblyにリソースを追加します。
+「res01」という名前の「httpd」サービスをリソースとして追加しました。
+pcloudsh# **assembly_resource_add    res01    httpd    node01**  
+
+assembly_resource_add ['res01', 'httpd', 'node01']
+
+ 
+
+
+作成したリソースの情報を表示します。
+監視間隔はデフォルトで60秒です。
+pcloudsh# **assembly_resource_list    node01**  
+
+Name            Type       Class    Monitor interval
+----------------------------------------------
+res01           httpd     lsb       60s
+
+ 
+
+
+ちなみに登録できるリソースはテンプレートが用意されています。
+# ls -l /usr/share/pacemaker-cloud/resource_templates
+
+-rw-r--r--. 1 root root  92 11月  9 03:50 aeolus-conductor.xml
+-rw-r--r--. 1 root root  82 11月  9 03:50 condor.xml
+-rw-r--r--. 1 root root  94 11月  9 03:50 conductor-dbomatic.xml
+-rw-r--r--. 1 root root  97 11月  9 03:50 conductor-delayed_job.xml
+-rw-r--r--. 1 root root  91 11月  9 03:50 deltacloud-core.xml
+-rw-r--r--. 1 root root 100 11月  9 03:50 deltacloud-ec2-us-east-1.xml
+-rw-r--r--. 1 root root 100 11月  9 03:50 deltacloud-ec2-us-west-1.xml
+-rw-r--r--. 1 root root  91 11月  9 03:50 deltacloud-mock.xml
+-rw-r--r--. 1 root root 158 11月  9 03:50 dummy.xml
+-rw-r--r--. 1 root root  81 11月  9 03:50 **httpd.xml**
+-rw-r--r--. 1 root root  88 11月  9 03:50 imagefactory.xml
+-rw-r--r--. 1 root root  80 11月  9 03:50 ntpd.xml
+-rw-r--r--. 1 root root  81 11月  9 03:50 postgresql.xml
+-rw-r--r--. 1 root root  81 11月  9 03:50 qpidd.xml
+v0.5.0のpcloudshは、リソースの監視間隔を変更したり
+パラメータを追加する機能が未実装なので、上記のxmlファイルを
+直接編集してリソースをつくりこんでいくことになります。
+が、まあ、まだそこまでしなくていいかなという気が。
+
+はい。
+というわけで、assemblyにリソースを追加するところまでできました。
+ここで、設定ファイルの中身を確認してみましょう。
+deployableとassemblyの設定が追加されていることがわかりますね！
+# cd /var/lib/pacemaker-cloud/
+# ls -l
+
+drwxr-xr-x. 2 root root 4096  2月  3 13:28 assemblies
+-rw-r--r--. 1 root root  312  2月  3 13:43 db_assemblies.xml
+-rw-r--r--. 1 root root  147  2月  3 13:43 db_deployable.xml
+drwxr-xr-x. 2 root root 4096  2月  3 12:06 jeos
+
+# cat db_deployable.xml
+<?xml version="1.0"?>
+<deployables pcmkc-version="0.5.0">
+<deployable name="dep01">
+<assembly name="node01"/>
+</deployable>
+</deployables> 
+
+# cat db_assemblies.xml
+<?xml version="1.0"?>
+<assemblies pcmkc-version="0.5.0">
+<assembly name="node01" uuid="6431507885019665d69a171b7b2d34a0" infrastructure="libvirt" jeos_name="" image="">
+<resources>
+<resource type="httpd" provider="pacemaker" monitor_interval="65s" name="res01"/>
+</resources>
+</assembly>
+</assemblies>
+
+ 
+
+
+では！
+ではでは！
+いよいよdeployableを起動しますよー！！！
+pcloudsh# **deployable_start  dep01**** 
+
+**** **** **** **** **** **** ****Starting Deployable dep01**
+
+ 
+
+
+ちょっと待つ。
+Event: {'reason': 'All good', 'assembly': 'node01', 'state': 'running', 'deployable': 'dep01'}
+Event: {'reason': '**Started OK**', 'assembly': '**node01**', 'state': '**running**', 'service': '**httpd**', 'deployable': 'dep01'}
+おお！
+pcloudshのターミナルになんかログがでました。
+assembly、起動したっぽい！
+httpdも起動したっぽい！
+
+どれどれ。
+# virsh list Id 名前               状態
+----------------------------------
+5 node01               実行中
+ゲスト、起動してますね！
+# ssh node01 pgrep -lf httpd
+
+1063 /usr/sbin/httpd -k start
+1064 /usr/sbin/httpd -k start
+1065 /usr/sbin/httpd -k start
+1066 /usr/sbin/httpd -k start
+1067 /usr/sbin/httpd -k start
+1068 /usr/sbin/httpd -k start
+1069 /usr/sbin/httpd -k start
+1070 /usr/sbin/httpd -k start
+1071 /usr/sbin/httpd -k start
+ゲストの中でhttpdも起動してますね！
+よしよし。
+
+では、早速、httpdを故障させてみます。
+# ssh node01 pkill -KILL httpd
+pcloudshのターミナルをじっと見ていると
+Event: {'reason': '**monitor failed'**, 'assembly': 'node01', 'state': 'failed', 'service': 'httpd', 'deployable': 'dep01'}
+Event: {'reason': '**Started OK**', 'assembly': 'node01', 'state': 'running', 'service': 'httpd', 'deployable': 'dep01'}
+おおおお！
+なんか故障を検知したっぽい！
+そしてhttpdが再起動したっぽい！
+
+どれどれ。
+# ssh node01 pgrep -lf httpd 
+
+1139 /usr/sbin/httpd -k start
+1140 /usr/sbin/httpd -k start
+1141 /usr/sbin/httpd -k start
+1142 /usr/sbin/httpd -k start
+1143 /usr/sbin/httpd -k start
+1144 /usr/sbin/httpd -k start
+1145 /usr/sbin/httpd -k start
+1146 /usr/sbin/httpd -k start
+1147 /usr/sbin/httpd -k start
+
+ 
+
+
+あ。PIDかわってる。
+
+では、お次はゲスト故障です。
+# virsh destroy node01
+ドメイン node01 は強制停止されました
+pcloudshのターミナルをじっと見ていると
+Event: {'reason': '**Not reachable**', 'assembly': 'node01', 'state': 'failed', 'deployable': 'dep01'}
+Event: {'reason': '**All good**', 'assembly': 'node01', 'state': 'running', 'deployable': 'dep01'}
+おおおおおお！
+なんか故障を検知したっぽい！
+そしてゲストが再起動したっぽい！
+# virsh list
+Id 名前               状態
+----------------------------------
+6 node01               実行中
+あ。Idかわってる。
+
+ほほう。
+なんか一応、ゲスト内のリソース故障をホストが検知して再起動、ゲスト故障をホストが検知して再起動
+という動作はできているっぽいですね！
+
+で、ちょっと話はそれますが、QMFつかったMatahariとの接続とかってどうなってるのとかいう情報を
+ホストのqpid-statコマンドで確認することができます。
+ポート番号はデフォルトで「49000」です。
+# qpid-stat -c localhost:49000 Connections
+
+client-addr                               cproc            cpid   auth       connected  idle  msgIn  msgOut
+=========================================================
+192.168.28.83:49000-192.168.28.121:51986  matahari-qmf-se  757    anonymous  2m 1s      0s      96     49
+192.168.28.83:49000-192.168.28.121:51985  matahari-qmf-ho  758    anonymous  2m 1s      0s     160     39
+127.0.0.1:49000-127.0.0.1:54414           cped             27162  anonymous  15m 24s    0s     246     92
+127.0.0.1:49000-127.0.0.1:54438           qpid-stat        28179  anonymous  0s         0s     233    298
+127.0.0.1:49000-127.0.0.1:54425           dped             27515  anonymous  4m 39s     0s     128     42
+127.0.0.1:49000-127.0.0.1:54427           dped             27515  anonymous  4m 39s     0s    1.39k  1.67k
+127.0.0.1:49000-127.0.0.1:54426           python           27514  anonymous  4m 39s     0s     131     58
+127.0.0.1:49000-127.0.0.1:54421           python           27288  anonymous  8m 55s     0s    2.05k  2.69k
+127.0.0.1:49000-127.0.0.1:54422           python           27288  anonymous  8m 55s     0s    2.05k  2.67k
+んー、見方がよくわかりませんが、ホストからゲストのmatahari-qmf-serviceとmatahari-qmf-hostが見えてますね。
+あと、cpedとかdpedもみえてる。
+dpedが二つあるのはよくわかりません。
+pythonはpcloudshなのかなあ？
+
+このへんはあまり深追いせず、deployableを停止します。
+pcloudsh# **deployable_stop   dep01**
+ゲストも停止しました。
+# virsh list
+Id 名前               状態
+----------------------------------
+ふーやれやれ。
+これでv0.5.0の動作確認は終了です。
+現段階では、単一ホスト内でのゲストの起動と監視しかできません。
+故障回数の設定(エスカレーション機能)もまだできません。v0.6.0だとできる…かな？
+本来は、Openstackと楽しくきゃっきゃうふふしないといけないはずなので
+今回の環境はかなり邪道ですが、なんとなーくPacemaker Cloudの雰囲気はわかったような
+気がするようなそうでもないような。
+結論としては、やっぱまだv0.5.0だよね＼(^o^)／
+っていう感じですかね。
+もうちょっとクラウドっぽくなってきたら
+というか、私がOpenstackともう少し仲良くなれたら
+またアップデート情報をご紹介いたします。span style=span style=
+: /span そしてhttpdが再起動したっぽい！/span

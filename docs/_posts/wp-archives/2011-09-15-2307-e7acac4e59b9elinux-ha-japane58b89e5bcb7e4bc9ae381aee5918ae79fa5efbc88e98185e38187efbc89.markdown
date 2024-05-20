@@ -1,0 +1,129 @@
+---
+author: bellche
+comments: false
+date: 2011-09-15 08:50:29+00:00
+layout: post
+permalink: /wp/archives/2307
+slug: '%e7%ac%ac4%e5%9b%9elinux-ha-japan%e5%8b%89%e5%bc%b7%e4%bc%9a%e3%81%ae%e5%91%8a%e7%9f%a5%ef%bc%88%e9%81%85%e3%81%87%ef%bc%89'
+title: 第4回Linux-HA Japan勉強会の告知（遅ぇ）
+wordpress_id: 2307
+categories:
+- イベント情報
+tags:
+- 勉強会
+- セミナー
+---
+
+すみません。書くの忘れてました…orz
+
+
+
+
+もう夏はだめなんです許してください…。
+
+
+
+
+さて、気を取り直して、９月１６日金曜日（明日です！）19時より、第４回Linux-HA Japan勉強会を開催いたします。
+
+
+
+
+今回はZusaarで募集をしており、参加費はクレジットカード決済（PayPal）で行っています。
+
+
+
+
+内容がすごく濃い感じなので、みなさま是非ご参加ください。まだまだ空席はあります。
+
+
+
+
+■募集ページ
+
+
+
+
+→ [http://www.zusaar.com/event/agZ6dXNhYXJyDQsSBUV2ZW50GPfPBQw](http://www.zusaar.com/event/agZ6dXNhYXJyDQsSBUV2ZW50GPfPBQw)
+
+
+
+
+■懇親会ページ
+
+
+
+
+→ [http://www.zusaar.com/event/agZ6dXNhYXJyDQsSBUV2ZW50GIulBgw](http://www.zusaar.com/event/agZ6dXNhYXJyDQsSBUV2ZW50GIulBgw)
+
+
+
+
+ 
+
+
+
+
+## 勉強会の内容
+
+
+
+
+１回〜３回までの内容は、Linux-HAをメインに構築や考え方を学んで来ました。今回は、中〜上級者向けに、Linuxにおける「HAクラスタ」について学べる勉強会にしたいと思い、商用ソリューションも含めて取り上げたます。取り上げる商用ソリューションは…
+
+
+
+
+・RHEL6 High Availability Add-On
+
+
+
+
+・Lifekeeper
+
+
+
+
+の２つを予定しています。（あれ？もう一つは？というツッコミは勘弁してくださいｗ）
+
+
+
+
+なんと、それぞれのメーカーの方々を講師にお招きして、それぞれの製品のアピールポイント、得意分野についてお話をしていただく予定です。もちろん、
+
+
+
+
+また、ディスカッション形式での質疑応答時間を用意しています。
+
+
+
+
+話の内容が濃い方向性に行きそうで楽しみですね！
+
+
+
+
+■司会
+
+
+
+    
+     ・MKTインターナショナル株式会社 赤井 誠 様
+    
+     ■講師
+     ・レッドハット株式会社　中井 悦司様
+     ・サイオステクノロジー株式会社　三井 翔太 様、大野 洋介 様
+     ・Linux-HA Japan NTTデータ先端技術株式会社 森 啓介 様
+    
+     ■タイムライン
+    
+     18時30分　　受付開始
+     18時55分　　前説
+     19時　　　　Red Hat High Availability Add-onの話（中井 様）
+     19時30分　　LifeKeeperの話（三井 様、大野 様）
+     20時　　　　Pacemakerの話（森さん）
+     20時30分　　休憩
+     20時45分　　パネルディスカッション（司会：赤井 様）
+     21時30分　　終了
+     22時　　　　撤収完了

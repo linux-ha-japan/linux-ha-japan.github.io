@@ -1,0 +1,26 @@
+---
+author: minky
+comments: false
+date: 2010-06-23 05:14:05+00:00
+layout: post
+permalink: /wp/archives/121
+slug: pacemaker%e5%bf%9c%e6%8f%b4%e3%82%ad%e3%83%a3%e3%83%a9%e3%81%a7%e3%81%99%e3%80%82%e3%80%80%e3%82%88%e3%82%8d%e3%81%97%e3%81%8f%e3%81%ad%e3%80%82
+title: Pacemaker応援キャラです。　よろしくね。
+wordpress_id: 121
+categories:
+- その他
+---
+
+Linux-HA Japan Projectでは、Heartbeat後継のクラスタソフトとしてPacemakerを推進して行くにあたり、
+
+Pacemaker応援キャラクターを、「[もえたん](http://www.ink-chan.com/index.html)」「[ゆとりちゃん](http://yutori-chan.jp/)」等でおなじみの、イラストレーターの[ＰＯＰさん](http://www.ne.jp/asahi/magneticwave/popcan/)に
+
+お願いして作成していただきました。
+
+Pacemaker共々、よろしくお願いいたします。
+
+
+[![](/assets/images/wp-content/86327ba189747f0c6043a54cada995de-1024x640.jpg)](/wp/archives/121/%e5%85%a8%e5%93%a1)
+
+
+ 

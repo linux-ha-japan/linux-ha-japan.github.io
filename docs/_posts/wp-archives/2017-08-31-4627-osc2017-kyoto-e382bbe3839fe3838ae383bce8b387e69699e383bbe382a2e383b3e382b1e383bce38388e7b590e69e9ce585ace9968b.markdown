@@ -1,0 +1,45 @@
+---
+author: matsuuraknt
+comments: false
+date: 2017-08-31 07:38:46+00:00
+layout: post
+permalink: /wp/archives/4627
+slug: osc2017-kyoto-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2017 Kyoto セミナー資料・アンケート結果公開
+wordpress_id: 4627
+categories:
+- イベント情報
+- 読み物
+---
+
+2017年8月4日(金)、5日(土)に京都にて開催された[オープンソースカンファレンス2017 Kyoto](https://www.ospn.jp/osc2017-kyoto/)においてブース展示及びセミナーで参加させていただきました。
+
+当日のセミナー資料を以下で公開いたします。
+
+セミナープログラム:
+
+
+
+	
+  * 2017-08-05 (土) 13時00分 [試して覚えるPacemaker入門 PG-REX(Pacemaker + PostgreSQLによるシェアードナッシングHA構成)構築](https://www.ospn.jp/osc2017-kyoto/modules/eguide/event.php?eid=39)
+
+
+**セミナー資料:**
+
+
+
+	
+  * [試して覚えるPacemaker入門 PG-REX(Pacemaker + PostgreSQLによるシェアードナッシングHA構成)構築(PDF)]({{ site.lhajp_resources_url }}/wp-content/20170805-OSC-Kyoto-2017.pdf)
+
+
+また、展示ブースにもたくさんの方にお立ち寄りいただきありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします。
+(回答者計17名, 円グラフ中の数値は「回答者数(人),割合(%)」です。)
+
+[![OSC2017_Kyoto_Q1](/assets/images/wp-content/osc_kyoto2017_1v2.png)](/assets/images/wp-content/osc_kyoto2017_1v2.png)
+[![OSC2017_Kyoto_Q2](/assets/images/wp-content/osc_kyoto2017_2v2.png)](/assets/images/wp-content/osc_kyoto2017_2v2.png)
+[![OSC2017_Kyoto_Q3](/assets/images/wp-content/osc_kyoto2017_3v2.png)](/assets/images/wp-content/osc_kyoto2017_3v2.png)
+[![OSC2017_Kyoto_Q4](/assets/images/wp-content/osc_kyoto2017_4v2.png)](/assets/images/wp-content/osc_kyoto2017_4v2.png)
+[![OSC2017_Kyoto_Q5](/assets/images/wp-content/osc_kyoto2017_5.png)](/assets/images/wp-content/osc_kyoto2017_5.png)
+[![OSC2017_Kyoto_Q6](/assets/images/wp-content/osc_kyoto2017_6.png)](/assets/images/wp-content/osc_kyoto2017_6.png)
+[![OSC2017_Kyoto_Q7](/assets/images/wp-content/osc_kyoto2017_7.png)](/assets/images/wp-content/osc_kyoto2017_7.png)
+[![OSC2017_Kyoto_Q8](/assets/images/wp-content/osc_kyoto2017_8.png)](/assets/images/wp-content/osc_kyoto2017_8.png)

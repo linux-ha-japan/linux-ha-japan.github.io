@@ -1,0 +1,249 @@
+---
+author: ikedaj
+comments: false
+date: 2012-10-15 07:23:28+00:00
+layout: post
+permalink: /wp/archives/3429
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-heat-api-v6'
+title: リリース情報 (Heat API v6)
+wordpress_id: 3429
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+しばらくさぼっていましたが9月分のリリース情報をまとめて投稿します！
+
+2012年9月20日に Heat API v6 が[リリース](http://lists.heat-api.org/pipermail/discuss/2012-September/000195.html)されました。
+
+
+
+<blockquote>
+The Heat developers are happy to announce the release of a new version of Heat. 
+The focus of this release has been on quality and testing, in addition to major improvements to CloudWatch.
+
+Heat is a project designed for OpenStack that implements AWS CloudFormation.
+CloudFormation is a programmable interface and templating system for orchestrating multiple cloud applications.
+
+Try it out on Fedora 17:
+https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme
+
+Or Ubuntu 12.04:
+https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu
+</blockquote>
+
+
+
+
+<blockquote>
+Heatの最新版をリリースすることができてうれしく思います。
+今回のリリースでは、品質とテスト項目の強化に注力しました。
+また、AWSのCloudWatchにも対応しています。
+
+HeatはOpenStack版のAWS CloudFormationを開発するプロジェクトです。
+CloudFormationはクラウドアプリケーションを制御するためのプログラマブルなインターフェースとテンプレートを提供します。
+[Fedora 17](https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme) または [Or Ubuntu 12.04](https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu)で動作を確認してみてください。
+</blockquote>
+
+
+
+
+
+<blockquote>
+What's new in version 6:
+* 127 commits containing general bug fixes and template additions
+</blockquote>
+
+
+
+
+<blockquote>
+version 6の新機能について
+* バグフィックス、新規テンプレートなどを含めて127のコミットが取り込まれています。
+</blockquote>
+
+
+
+
+
+<blockquote>
+* New tests
+
+> 
+> 
+	15 new functional tests, 7 new unit tests
+	Many test infrastructure improvements
+
+</blockquote>
+
+
+
+
+<blockquote>
+* 新規テスト項目について
+
+> 
+> 
+	15個の機能テストおよび7個の単体テストを追加しました。
+	そのほかのテストも改良されています。
+
+</blockquote>
+
+
+
+
+
+<blockquote>
+* User facing changes
+
+	Heat describe now shows user parameter values
+	Make physical resource names unique based upon stack name
+	Support lookup of stacks by name or ARN
+	Log startup operations to /var/log/heat-provision.log
+	heat-api has been renamed to heat-api-cfn (CloudFormation-compatible API)
+	Keystone service type has been changed from heat to orchestration
+
+</blockquote>
+
+
+
+
+<blockquote>
+* ユーザインタフェースの変更について
+
+	heatコマンドのdescribeオプションを使用してユーザの設定したパラメータ値を表示できるようになりました。
+	リソース名が重複しないよう修正されました。
+	スタックを参照するIDとして、スタック名だけではなくARN(Amazon Resource Name)も利用可能となりました。
+	コンソールログの出力先は/var/log/heat-provision.logとなります。
+	heat-apiコマンドはheat-api-cfnコマンドに名前が変更されました。
+	keystoneのサービスタイプがorchestrationへ変更されました。
+
+</blockquote>
+
+
+
+
+
+<blockquote>
+* RPC changes
+
+	Implement client side engine RPC API
+	Add identify_stack RPC call
+	Add set_watch_state engine RPC action
+	Add show_watch_metric RPC action
+	Add new show_watch RPC method
+
+</blockquote>
+
+
+
+
+<blockquote>
+* RPCの変更について
+
+	クライアントサイドのRPC APIを実装しました。
+	identify_stack RPC callを追加しました。
+		スタックの名前をIDに変換します。スタックをいったん削除した後に同じ名前でスタックを再作成した場合、別のIDで管理することができます。
+		
+	
+	set_watch_state engine RPC actionを追加しました。
+		後述するCloudWatch関連の変更ですが、watch/alarmの状態が一時的に上書き可能となります。
+		
+	
+	show_watch_metric RPC actionを追加しました。
+		こちらもCloudWatch関連の変更で、watch/alarmの状態を検索します。
+		
+	
+	new show_watch RPC methodを追加しました。
+		またまたCloudWatch関連の変更で、watchの情報を検索します。
+		
+	
+
+
+</blockquote>
+
+
+
+
+
+<blockquote>
+* Implement the AWS::S3::Bucket resource type - (not working yet on Fedora)
+    https://github.com/heat-api/heat/wiki/Roadmap-Feature:-simple-storage-service
+</blockquote>
+
+
+
+
+<blockquote>
+* AWS::S3::Bucket の実装について(Fedoraではまだ動作しません)
+
+注：[リンク先](https://github.com/heat-api/heat/wiki/Roadmap-Feature:-simple-storage-service)もみてみたんですが、まだちゃんとできてなさそうな雰囲気。
+</blockquote>
+
+
+
+
+
+<blockquote>
+* CLI tools
+    Add a tool to register prebuilt JEOS images into glance from github
+</blockquote>
+
+
+
+
+<blockquote>
+コマンドラインツールにglance-jeos-add-from-github.shというスクリプトが追加されました。
+
+注：リポジトリからJEOS imageをダウンロードしてくれるスクリプトなのか…。
+現在ダウンロードできるimageは[こんな感じ](https://github.com/heat-api/prebuilt-jeos-images/downloads)。
+</blockquote>
+
+
+
+
+
+<blockquote>
+* Improved CloudWatch API implementation
+    https://github.com/heat-api/heat/wiki/Using-CloudWatch
+</blockquote>
+
+
+
+
+<blockquote>
+AWSのCloudWatch APIへ対応しました。
+今のところ、Restartアクションのみが実装されています。
+</blockquote>
+
+
+
+
+
+<blockquote>
+Heat website:      http://heat-api.org/
+Download Heat API: https://github.com/heat-api/heat/downloads
+</blockquote>
+
+
+
+
+<blockquote>
+参考情報リンク一覧
+
+     
+	
+>         * [プロジェクトページ](http://heat-api.org/)
+	
+> 
+	
+>         * [リポジトリ](https://github.com/heat-api/heat/downloads)
+	
+> 
+     
+
+</blockquote>
+
+
+いやー、やるやる詐欺でずっとさぼってますけど、そろそろ実機で試してみらんことにはわけわからんごとなってきたばい。

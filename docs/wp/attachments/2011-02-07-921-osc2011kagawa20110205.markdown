@@ -1,0 +1,18 @@
+---
+attachment_url: /wp/wp-content/uploads/OSC2011Kagawa20110205.pdf
+author: kmii
+comments: false
+date: 2011-02-07 05:00:27+00:00
+layout: post
+permalink: /wp/archives/913/osc2011kagawa20110205
+slug: osc2011kagawa20110205
+title: Pacemakerって何？～あなたもできる、簡単高信頼システムの構築～
+wordpress_id: 921
+---
+
+### [Pacemakerって何？～あなたもできる、簡単高信頼システムの構築～]({{ site.lhajp_resources_url }}/wp-content/OSC2011Kagawa20110205.pdf)
+
+OSC2011Kagawaでのセミナー資料です。
+
+せっかく組んだシステムが、ハード障害で止まって、復旧に苦労したことありませんか？
+ここではHAクラスタソフト"Heartbeat"の後継である"Pacemaker"の最新の状況と導入・設定方法などについて紹介いたします。

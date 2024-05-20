@@ -1,0 +1,31 @@
+---
+author: higashik
+comments: false
+date: 2014-06-18 00:52:46+00:00
+layout: post
+permalink: /wp/archives/4006
+slug: osc2014-hokkaido-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2014 Hokkaido セミナー資料公開
+wordpress_id: 4006
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+6月14日(土) に札幌にて開催された[オープンソース カンファレンス2014 Hokkaido](http://www.ospn.jp/osc2014-do/) にLinux-HA Japanも参加し、ブース展示および講演(11:00～)を行いました。前回、前々回に引き続きまたしても悪天候に見舞われたのですが、会場内は熱気にあふれており、約800名もの方が集まりました。
+
+講演は、[Pacemaker + PostgreSQLレプリケーション構成(PG-REX)のフェイルオーバー高速化](https://www.ospn.jp/osc2014-do/modules/eguide/event.php?eid=64)というタイトルで、PostgreSQLのレプリケーション機能とPacemakerを組み合わせたPG-REXというソリューションのご紹介と、その改善のカラクリを中心にお話ししました。
+
+セミナー資料を公開しますので、参考にしていただければと思います。
+
+
+
+
+	
+  * セミナー資料：[Pacemaker + PostgreSQLレプリケーション構成(PG-REX)のフェイルオーバー高速化](http://www.slideshare.net/kazuhcurry/osc2014-kyoto)
+
+
+※OSC2014 Kansai@Kyotoの資料が最新版ですので、そちらへのリンクとしています。

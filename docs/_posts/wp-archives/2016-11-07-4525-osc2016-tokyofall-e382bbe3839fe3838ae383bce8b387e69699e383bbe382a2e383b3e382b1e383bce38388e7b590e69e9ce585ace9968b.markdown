@@ -1,0 +1,49 @@
+---
+author: ksk
+comments: false
+date: 2016-11-07 02:16:51+00:00
+layout: post
+permalink: /wp/archives/4525
+slug: osc2016-tokyofall-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2016 Tokyo/Fall セミナー資料・アンケート結果公開
+wordpress_id: 4525
+categories:
+- ニュース
+- イベント情報
+---
+
+2016年11月5日(土)、6日(日)に明星大学にて開催された[オープンソースカンファレンス2016 Tokyo/Fall](http://www.ospn.jp/osc2016-fall/)においてブース展示及びセミナーで参加させていただきました。
+
+セミナーには約40名もの方々にご参加いただきありがとうございました。当日のセミナー資料を以下で公開いたします。
+
+セミナープログラム:
+
+
+
+ 
+  * 2016-11-05 (土)   11時00分 [OpenStackでも重要な役割を果たすPacemakerを知ろう！](https://www.ospn.jp/osc2016-fall/modules/eguide/event.php?eid=26)
+
+
+**セミナー資料:**  (内容はどちらも同じです)
+
+
+
+	
+  * [slideshare版](http://www.slideshare.net/ksk_ha/openstackpacemaker)
+
+	
+  * [PDF版 (3.83MB)]({{ site.lhajp_resources_url }}/wp-content/Pacemaker-OpenStack-OSC2016TokyoFall-20161105.pdf)
+
+
+
+また、展示ブースにもたくさんの方にお立ち寄りいただきありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします。
+(回答者計49名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![OSC2016TokyoFall_Q1](/assets/images/wp-content/osc_tokyofall2016_1.png)](/assets/images/wp-content/osc_tokyofall2016_1.png)
+[![OSC2016TokyoFall_Q2](/assets/images/wp-content/osc_tokyofall2016_2.png)](/assets/images/wp-content/osc_tokyofall2016_2.png)
+[![OSC2016TokyoFall_Q3](/assets/images/wp-content/osc_tokyofall2016_3.png)](/assets/images/wp-content/osc_tokyofall2016_3.png)
+[![OSC2016TokyoFall_Q4](/assets/images/wp-content/osc_tokyofall2016_4.png)](/assets/images/wp-content/osc_tokyofall2016_4.png)
+[![OSC2016TokyoFall_Q5](/assets/images/wp-content/osc_tokyofall2016_5.png)](/assets/images/wp-content/osc_tokyofall2016_5.png)
+[![OSC2016TokyoFall_Q6](/assets/images/wp-content/osc_tokyofall2016_6.png)](/assets/images/wp-content/osc_tokyofall2016_6.png)
+[![OSC2016TokyoFall_Q7](/assets/images/wp-content/osc_tokyofall2016_7.png)](/assets/images/wp-content/osc_tokyofall2016_7.png)
+[![OSC2016TokyoFall_Q8](/assets/images/wp-content/osc_tokyofall2016_8.png)](/assets/images/wp-content/osc_tokyofall2016_8.png)

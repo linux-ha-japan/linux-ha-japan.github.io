@@ -1,0 +1,42 @@
+---
+author: t-matsuo
+comments: false
+date: 2010-06-25 00:53:47+00:00
+layout: post
+permalink: /wp/archives/276
+slug: pacemaker-1-0-9-1%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%be%e3%81%97%e3%81%9f%e3%80%82
+title: Pacemaker 1.0.9-1がリリースされました。
+wordpress_id: 276
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+2010-06-23に、本家にてPacemaker 1.0.9-1がリリースされました。
+
+
+
+
+
+[開発者からのアナウンス](http://theclusterguy.clusterlabs.org/post/729058739/pacemaker-1-0-9-released)  
+
+
+
+
+
+
+以下よりrpmやソースコードのダウンロードができます。
+
+
+
+
+
+[clusterlabs.org](http://www.clusterlabs.org/rpm/)
+
+
+
+
+
+http://theclusterguy.clusterlabs.org/post/729058739/pacemaker-1-0-9-released

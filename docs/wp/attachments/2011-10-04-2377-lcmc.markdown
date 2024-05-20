@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/LCMC.jpg
+author: ikedaj
+comments: false
+date: 2011-10-04 07:59:43+00:00
+layout: post
+permalink: /wp/archives/2368/lcmc
+slug: lcmc
+title: LCMC
+wordpress_id: 2377
+---
+
+### [LCMC](/assets/images/wp-content/LCMC.jpg)

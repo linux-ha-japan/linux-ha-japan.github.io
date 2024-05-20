@@ -1,0 +1,52 @@
+---
+author: takayukitanaka
+comments: false
+date: 2010-11-26 10:07:22+00:00
+layout: post
+permalink: /wp/archives/681
+slug: pacemaker%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e3%81%ae%e6%9c%80%e6%96%b0%e7%89%88%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c
+title: Pacemakerリポジトリパッケージの最新版がリリースされました
+wordpress_id: 681
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+11月26日付けで、Pacemakerリポジトリパッケージ(pacemaker-1.0.10-1.4.1)がリリースされました。
+
+
+
+
+
+本バージョンから拡張パッケージもリポジトリパッケージに含まれています。(以下拡張パッケージは個別のダウンロードも可能です)
+
+
+
+
+
+
+	
+  * crmファイル編集ツール(pm_crmgen)
+
+	
+  * ディスク監視機能(pm_diskd)
+
+	
+  * 拡張リソースエージェント・プラグイン(pm_extras)
+
+	
+  * ログメッセージ制御機能(pm_logconv-hb)
+
+
+
+
+
+RHEL/CentOS5用のリポジトリパッケージ、及びソースコード等は以下の Linux-HA Japanプロジェクト開発者向けサイトからダウンロードが可能です。
+
+
+
+
+
+[http://sourceforge.jp/projects/linux-ha/releases](http://sourceforge.jp/projects/linux-ha/releases/)

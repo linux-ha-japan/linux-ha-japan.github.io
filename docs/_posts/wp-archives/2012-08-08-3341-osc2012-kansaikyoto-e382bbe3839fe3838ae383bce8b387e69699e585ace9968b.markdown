@@ -1,0 +1,38 @@
+---
+author: admin
+comments: false
+date: 2012-08-08 06:24:19+00:00
+layout: post
+permalink: /wp/archives/3341
+slug: osc2012-kansaikyoto-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2012 Kansai@Kyoto セミナー資料公開
+wordpress_id: 3341
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+今年も天気が良くて暑い京都に行ってまいりました！
+
+8月3日（金）・4日(土) の2日間、京都リサーチパーク（KRP)にて オープンソースカンファレンス2012 Kansai@Kyoto が開催され、一昨年・去年に引き続きLinux-HA Japanとして参加してきました。
+
+Linux-HA Japanでは、2日間に渡りブースでの展示で PostgreSQL-9.1のストリーミングレプリケーションとDRBDを使ったTracサーバの冗長構成のデモを実施しました。
+また、来訪者にはアンケートをご協力頂き、この場を借りてお礼申し上げます。
+
+セミナーは、3月にOSC Tokyo/Spring にて行った内容をより充実して、新たな「HAクラスタサポートの日々 ～Pacemaker導入･運用の勘所～」 という題目でセミナーをおこないました。
+
+当日の参加者は約３５名、更に当セミナーはニコ生にて放送し、その視聴者が１００名以上、皆さん本当にありがとうございました。
+当日のプレゼンテーション内容では一部判りにくい点があった事を反省し、内容を追加した資料を公開します。
+今後の導入・運用の参考にしていただければと思います。
+
+
+
+	
+  * [HAクラスタサポートの日々 ～Pacemaker導入･運用の勘所～](http://sourceforge.jp/projects/linux-ha/docs/OSC2012_kansaiKyoto_20120804/ja/2/OSC2012_kansaiKyoto_20120804.pdf)
+
+
+次は、オープンソースカンファレンス2012 Tokyo/Fall に参加します。
+興味のある方は、ぜひぜひ足を運んでください！

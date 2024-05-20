@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/55b77c273543c6f7fbf9c098d92f8c3f.png
+author: minky
+comments: false
+date: 2011-02-18 06:32:29+00:00
+layout: post
+permalink: /wp/archives/939/%e3%82%af%e3%83%aa%e3%82%a2%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab
+slug: '%e3%82%af%e3%83%aa%e3%82%a2%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab'
+title: クリアファイル
+wordpress_id: 945
+---
+
+### [クリアファイル](/assets/images/wp-content/55b77c273543c6f7fbf9c098d92f8c3f.png)

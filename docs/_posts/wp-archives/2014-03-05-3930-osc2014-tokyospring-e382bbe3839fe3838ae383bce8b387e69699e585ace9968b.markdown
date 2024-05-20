@@ -1,0 +1,42 @@
+---
+author: tatsuyawatanabe
+comments: false
+date: 2014-03-05 04:44:02+00:00
+layout: post
+permalink: /wp/archives/3930
+slug: osc2014-tokyospring-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2014 Tokyo/Spring セミナー資料・アンケート結果公開
+wordpress_id: 3930
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+2月28日(金),3月1日(土) に明星大学 日野キャンパスにて開催された[オープンソース カンファレンス2014 Tokyo/Spring](https://www.ospn.jp/osc2014-spring) にLinux-HA Japanも参加し、ブース展示および講演(1日11:00～)を行いました。前回に引き続きまたしても悪天候に見舞われたのですが、100回目のOSCということもあり、2日間あわせて1,900名もの方が集まりました。
+
+講演は、[PacemakerのMaster/Slave構成の基本と事例紹介(DRBD、PostgreSQLレプリケーション) ](https://www.ospn.jp/osc2014-spring/modules/eguide/event.php?eid=27)というタイトルで、PacemakerのMaster Slave構成の動作を理解する上で妨げとなるスコア計算の解説や、レプリケーション構成に特有の障害事例の紹介などを中心に行いました。
+
+基本的な設定例や、より実環境に近い複雑な構成の例など、話しきれなかった内容についてはセミナー資料に参考として付けていますので参考にして頂ければと思います。
+
+
+
+	
+  * セミナー資料：[PacemakerのMaster/Slave構成の基本と事例紹介(DRBD、PostgreSQLレプリケーション) ](http://www.slideshare.net/tatsuyaw/pacemaker-osc2014tokyo-31882542)
+
+
+
+
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。 (回答者43名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![osc2014tokyospring-qa01](/assets/images/wp-content/osc2014tokyospring-qa01.png)](/assets/images/wp-content/osc2014tokyospring-qa01.png)
+[![osc2014tokyospring-qa02](/assets/images/wp-content/osc2014tokyospring-qa02.png)](/assets/images/wp-content/osc2014tokyospring-qa02.png)
+[![osc2014tokyospring-qa03](/assets/images/wp-content/osc2014tokyospring-qa03.png)](/assets/images/wp-content/osc2014tokyospring-qa03.png)
+[![osc2014tokyospring-qa04](/assets/images/wp-content/osc2014tokyospring-qa04.png)](/assets/images/wp-content/osc2014tokyospring-qa04.png)
+[![osc2014tokyospring-qa05](/assets/images/wp-content/osc2014tokyospring-qa05.png)](/assets/images/wp-content/osc2014tokyospring-qa05.png)
+[![osc2014tokyospring-qa06](/assets/images/wp-content/osc2014tokyospring-qa06.png)](/assets/images/wp-content/osc2014tokyospring-qa06.png)
+[![osc2014tokyospring-qa07](/assets/images/wp-content/osc2014tokyospring-qa07.png)](/assets/images/wp-content/osc2014tokyospring-qa07.png)

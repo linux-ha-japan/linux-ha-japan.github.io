@@ -1,0 +1,145 @@
+---
+author: t-matsuo
+comments: false
+date: 2013-07-26 06:23:38+00:00
+layout: post
+permalink: /wp/archives/3710
+slug: nightly%e3%83%93%e3%83%ab%e3%83%89%e5%85%ac%e9%96%8b%e3%81%97%e3%81%be%e3%81%99
+title: Nightlyビルド公開します
+wordpress_id: 3710
+categories:
+- ニュース
+- 読み物
+tags:
+- corosync
+- pacemaker
+- Heartbeat
+- リリース情報
+---
+
+Pacemaker本家コミュニティにて、開発最新版のPacemaker 1.1.10 がリリースされました。本バージョンに大きな問題がなければ、Pacemakerはメジャーバージョンアップするとの予告が出ており、1.1.10 は重要なバージョンと言えそうです。
+
+これを記念して、Linux-HA Japanでは、いち早く最新のパッケージを使ってみたいという方のために、RHEL6(x86_64)および互換OS向けのNightlyビルドを公開したいと思います。
+
+
+[/nightly/](/nightly/)
+
+
+ビルド対象のパッケージは、Pacemaker 1.0系(安定版)、1.1系(開発版)、および周辺コンポーネントです。
+
+Nightlyビルドには、Pacemaker 1.0系と1.1系両方のコンポーネントが混在しているため、どのコンポーネントを組み合わせればよいかわからない人は以下を組み合わせてみてください。
+
+
+
+	
+  * Pacemaker 1.0系 (安定版)
+
+	
+    * cluster-glue 1.0.x
+
+	
+    * corosync 1.x.x  または heartbeat 3.0.x
+
+	
+    * resource-agents 3.9.x
+
+	
+    * pm_XXXX 1.x.x (必要ならば)
+
+
+
+
+	
+  * Pacemaker 1.1系 (開発版)
+
+	
+    * cluster-glue 1.0.x
+
+	
+    * corosync 2.3.x
+
+	
+    * crmsh 1.2.x (Pacemaker 1.1から、crmコマンドは別パッケージになりました)
+
+	
+    * resoruce-agents 3.9.x
+
+	
+    * libqb 0.14.x
+
+	
+    * pm_XXXX 2.x.x (必要ならば)
+
+
+
+
+
+さらに、もっと簡単にインストールしてみたい人のために、**お試し版**として、本日リリースされたばかりの Pacemaker 1.1.10 および 先日リリースされたばかりのCorosync 2.3.1、7月26日現在のNightlyビルドを組み合わせて、リポジトリパッケージ化してみました。Linux-HA Japanにて、次期Pacemakerバージョン2.0向けに検討しているリポジトリパッケージ形式です。
+※corosync, pacemakerの起動まで確認しています。
+
+
+[pacemaker-repo-1.1.10-1.1.el6.x86_64.rpm]({{ site.lhajp_resources_url }}/wp-content/pacemaker-repo-1.1.10-1.1.el6.x86_64.rpm)
+
+
+
+
+※最終的にこのrpm形式でリリースするかどうか、どのOSを対象にリリースするかは全くの未定です。
+
+
+以下の手順で、RHEL6および互換OSにインストール可能ですので、お試しください。
+※依存関係を解決するために、OSのyumリポジトリも参照できる必要があります。
+
+
+# rpm -ivh pacemaker-repo-1.1.10-1.1.el6.x86_64.rpm          _← /opt/linux-ha にrpmが展開されます_
+# yum install pacemaker-all
+
+
+すでにOS同梱のPacemakerがインストールされていると、上記インストール時に依存関係でエラーになる可能性があるため、エラー発生した場合は、以下のようにclusterlibをアンインストールしてから再度お試しください。
+
+
+# yum remove clusterlib
+
+
+ 
+
+Corosyncをうまく起動できない場合は、設定例として[この辺り](/wp/archives/3680)を参考にしてみてください。
+
+Pacemakerの設定は、Linux-HA Japan 開発中のPacemaker設定支援ツール pm_crmgen もPacemaker 1.1に対応していますので、ご活用ください。
+※ 設定支援用Excelフォーマットは/usr/share/pacemaker/pm_crmgen/pm_crmgen_env.xls にインストールされます。
+
+起動は、Corosync、Pacemaker を順番に起動するか、Pacemaker/Corosync連携用のUpstart設定を呼び出す必要があります。
+
+
+# service corosync start
+# service pacemaker start
+
+
+または
+
+
+# initctl start pacemaker.combined
+
+
+ 
+
+
+## Nightlyビルドについて
+
+
+Nightlyビルドは、コミュニティの開発リポジトリから最新版を取得し、毎晩ビルドしています。よって、最新の機能が盛り込まれていたり、既知のバグが修正されていたりする反面、新たなバグを含んでる可能性もあることにご注意ください。
+
+開発リポジトリのどのリビジョンを対象にビルドしているかは、各ディレクトリ内にある build_status.txt ファイルを参照してください。ビルドに失敗(failureと表示)した場合は、前日までにビルドに成功した最新のRPMを代わりに配置しています。
+
+ 
+
+Nightlyビルドのファイル提供は、本Webページが存在する Sourceforge.jp 様の共用サーバ上で提供しているため、ディスクの圧迫を避けるために、公開するビルドは過去1週間分としています。
+
+Nightlyビルドの実行には、[KDDI様のCLOUD CORE VPSの開発者支援制度](http://www.cloudcore.jp/vps/develop/community/)を使用させて頂いています。
+
+
+
+[![CloudCore](http://www.cloudcore.jp/vps/develop/links/images/150x66_green.gif)](http://www.cloudcore.jp/vps/?utm_source=ad&utm_medium=ad&utm_content=dev&utm_campaign=vps)
+
+
+
+ 

@@ -1,0 +1,42 @@
+---
+author: takeshita
+comments: false
+date: 2015-03-16 06:47:00+00:00
+layout: post
+permalink: /wp/archives/4075
+slug: osc2015-tokyospring-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b-2
+title: OSC2015 Tokyo/Spring セミナー資料・アンケート結果公開
+wordpress_id: 4075
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+OSC2015 Tokyo/Spring セミナー資料・アンケート結果公開
+
+2月27日(金),28日(土) に明星大学 日野キャンパスにて開催された[オープンソース カンファレンス2015 Tokyo/Spring](http://www.ospn.jp/osc2015-spring/) にLinux-HA Japanも参加し、ブース展示および講演(14:00～)を行いました。当日は天気も良く、2日間の合計で約1700人の来場がありました。
+
+講演は「[Pacemaker-1.0とは違うのだよ、1.0とは！～Pacemaker-1.1 新機能のご紹介～](https://www.ospn.jp/osc2015-spring/modules/eguide/event.php?eid=36)」というタイトルで、Pacemaker-1.1.12の特徴や性能、新機能についてPacemaker-1.0との比較やデモを交えて紹介させていただきました。
+
+以下にセミナーの資料を公開しますので、参考にしていただければと思います。
+
+
+
+	
+  * セミナー資料：[Pacemaker-1.0とは違うのだよ、1.0とは！～Pacemaker-1.1 新機能のご紹介～]({{ site.lhajp_resources_url }}/wp-content/OSC2015-tokyo-spring.pdf)
+
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。
+(回答者計48名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![OSC2015TokyoSpring_Q0](/assets/images/wp-content/osc_tokyo_spring_0.png)](/assets/images/wp-content/osc_tokyo_spring_0.png)
+[![OSC2015TokyoSpring_Q1](/assets/images/wp-content/osc_tokyo_spring_1.png)](/assets/images/wp-content/osc_tokyo_spring_1.png)
+[![OSC2015TokyoSpring_Q2](/assets/images/wp-content/osc_tokyo_spring_2.png)](/assets/images/wp-content/osc_tokyo_spring_2.png)
+[![OSC2015TokyoSpring_Q3](/assets/images/wp-content/osc_tokyo_spring_3.png)](/assets/images/wp-content/osc_tokyo_spring_3.png)
+[![OSC2015TokyoSpring_Q4](/assets/images/wp-content/osc_tokyo_spring_4.png)](/assets/images/wp-content/osc_tokyo_spring_4.png)
+[![OSC2015TokyoSpring_Q5](/assets/images/wp-content/osc_tokyo_spring_5.png)](/assets/images/wp-content/osc_tokyo_spring_5.png)
+[![OSC2015TokyoSpring_Q6](/assets/images/wp-content/osc_tokyo_spring_6.png)](/assets/images/wp-content/osc_tokyo_spring_6.png)

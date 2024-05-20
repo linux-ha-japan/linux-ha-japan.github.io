@@ -1,0 +1,1087 @@
+---
+author: higashik
+comments: false
+date: 2014-01-14 02:12:07+00:00
+layout: post
+permalink: /wp/archives/3868
+slug: '%e5%8b%95%e3%81%8b%e3%81%97%e3%81%a6%e7%90%86%e8%a7%a3%e3%81%99%e3%82%8bpacemaker-%ef%bd%9ecrm%e8%a8%ad%e5%ae%9a%e7%b7%a8%ef%bd%9e-%e3%81%9d%e3%81%ae%ef%bc%93'
+title: 動かして理解するPacemaker ～CRM設定編～ その３
+wordpress_id: 3868
+categories:
+- 読み物
+---
+
+変更履歴
+
+
+
+ 
+  * 2013.9.19 初版制定
+
+ 
+  * 2016.3.24 Pacemaker-1.1に対応
+
+
+
+
+
+# ■はじめに
+
+
+Linux-HA Japanをご覧の皆さんこんにちは。Linux-HA Japanの中の人、ひがしと申しますm(_ _)m
+
+「動かして理解するPacemaker ～CRM設定編～ その３」ということで、[前々回](/wp/archives/3786)、[前回](/wp/archives/3855)の続きです。
+
+
+今回で、[例の設定ファイル]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)が制御している以下7項目をすべて読み解くことになります。3回に渡ったCRM設定編は今回で最後となります。
+
+
+
+
+	
+  * 1. STONITHは無効です。([その１](/wp/archives/3786)で読み解き済み)
+
+	
+  * 2. 1回のリソース故障でF/Oします。自動フェイルバックはしません。([その１](/wp/archives/3786)で読み解き済み)
+
+	
+  * 3. resource1, resource2という名前のリソースをgrpという名前のgroup(グループ)にします。([その２](/wp/archives/3855)で読み解き済み)
+
+	
+  * 4. resource3という名前のリソースをclnResourceという名前のclone(クローン)リソースとし、両マシンで起動します。([その２](/wp/archives/3855)で読み解き済み)
+
+	
+  * 5. resource1,2,3のリソースは、_必ずresource3(clnResource)→resource1_→resource2の順で起動します。(一部[その２](/wp/archives/3855)で読み解き済み)
+
+	
+  * 6. _grpはどちらか片方のマシンで起動します。両マシンが稼働可能な状態の場合、pm01を優先します。_
+
+	
+  * 7. _resource3(clnResource)が起動していないノードではresource1およびresource2(grp)は起動しません。_
+
+
+_※前回、前々回の記事でリソース名をCRM設定とは異なる「dummy1」などと記載していましたが、「resource1」の誤りでした。すみません。_
+
+ 
+
+今回注目するのは以下の部分です。
+
+
+    
+    <code>### Resource Location ###
+    location rsc_location-1 grp \
+        rule 200: #uname eq pm01 \
+        rule 100: #uname eq pm02
+    
+    ### Resource Colocation ###
+    colocation rsc_colocation-1 INFINITY: grp clnResource
+    
+    ### Resource Order ###
+    order rsc_order-1 0: clnResource grp symmetrical=false
+    </code>
+
+
+
+この箇所ではlocation, colocation, orderの３つのコマンドを使用しています。
+
+この３つはいずれもリソースに対し「**制約**」を設定するためのコマンドです。
+
+「制約」を使用すると、リソースが起動する際の以下３つの条件を設定することができ、それぞれがコマンドに対応しています。
+
+
+
+
+
+  * location　→場所：どのノードで起動するか？
+
+
+  * colocation→同居：どのリソースと一緒に起動するか？
+
+
+  * order　　 →順序：どのリソースの前/後に起動するか？
+
+
+
+
+早速、この３コマンドの説明を、と言いたいところですが、その前に制約を理解するのに重要な概念があります。
+それは「**スコア値**」です。
+
+詳細は後ほど説明しますが、制約の３コマンドはいずれもあるルールに対しスコア値を設定するものです。
+なので、まずはスコア値の説明からしたいと思います。
+
+
+
+# ■スコア値の大きいノードでリソースは起動する
+
+
+スコア値は、リソースをどのノードで起動するかの優先度を示す値です。
+ノードを起動したり、リソースを追加したり、故障が発生したり、とクラスタの状態に変化があった場合にPacemakerが自動的に(再)計算します。
+
+Pacemakerは算出したスコア値を比較し、最も大きな値のノードでリソースを起動します。
+算出したスコア値が負の値場合、そのノードでそのリソースを起動することはできません。
+
+スコア値は以下の範囲のいずれかになります。
+**-INFINITY < 負の値 < 0 < 正の値 < INFINITY**
+
+「-INFINITY(マイナス無限大)」と「INFINITY(無限大)」は特殊な値で、前者は「禁止」、後者は「強制」を示します。
+それぞれ他の値との演算結果は以下のように[定義されています](http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/ch-constraints.html#s-scores-infinity)。
+
+
+
+
+
+  * 他の値 + INFINITY = INFINITY
+
+
+  * 他の値 - INFINITY = -INFINITY
+
+
+  * INFINITY - INFINITY = -INFINITY
+
+
+
+1,2番目の演算結果はなんとなくわかりますが、3番目の演算結果はちょっと不思議な気がします。
+数学的に言えば∞-∞は不定です。が、クラスタのリソースが起動するかどうかが不定となっては不便です。
+-INIFNITYは典型的には故障が発生したノードに付与されます。もしINIFINITY - INFINITYが不定だと、後述の制約コマンドでINFINITYを付与したノードで故障が発生した場合、リソースが起動するかどうかが不定になってしまいます。
+これを避け、故障したノードでは起動しない、と判断するため-INFINITYを優先しているのです。
+
+
+スコア値は基本的にはPacemakerがクラスタの状況に応じ自動的に算出しますが、後述の「制約」により特定に場合のスコア値をユーザが決める(Pacemakerに与える)ことができます。
+「制約」を上手に活用しスコア値を操作することで、リソースの起動をユーザの意のままに操ることができるのです。
+
+
+
+
+# ■locationで起動するノードを制約
+
+
+locationは起動するノードを制約するコマンドです。
+そのノードの状態を評価し、それにマッチした場合のスコア値を定義することで設定します。
+
+locationの概要と代表的な書式は以下のようになります。
+
+<table border="1" bordercolor="#D3D3D3" >
+<tbody >
+<tr >
+	概要
+	
+<td colspan="2" >論理演算式を満たした場合のスコア値を指定することで、リソースが起動するノードを制約します。
+	論理演算式では主に「ノード名」と「属性値」を評価できます。
+	rule～の行を複数記述することで１リソースに複数の評価式およびスコアを設定することができます。
+</td>
+</tr>
+<tr >
+	書式
+	
+<td colspan="2" >
+	location <制約のID> <リソースID> \
+	  rule <スコア値>: <ノード状態の評価式> [and|or <ノード状態の評価式>...] [\]
+	  [rule ...]
+	
+</td>
+</tr>
+<tr >
+	設定項目
+	
+<td >制約のID
+</td>
+	
+<td >この制約を一意に識別するためのIDを付与します。英数字から成るクラスタ内で一意の任意の文字列を指定します。
+</td>
+</tr>
+<tr >
+	
+<td >リソースID
+</td>
+	
+<td >制約の対象となるリソースをリソースIDで指定します。rule～の行を複数記述することで１リソースに複数のスコア値を設定することができます。
+</td>
+</tr>
+<tr >
+	
+<td >スコア値
+</td>
+	
+<td >右側の論理演算式が真の場合のスコア値を指定します。
+</td>
+</tr>
+<tr >
+	
+<td >ノード状態の評価式
+</td>
+	
+<td >
+	ノード状態の評価式は主に「ノード名の評価」および「属性値の評価」「属性値の有無」の３パターンをよく使用します※。
+	記法はそれぞれ以下のような形です。
+
+	
+
+
+	**#uname <演算子> <値>**
+
+	    ノード名と<値>を、<演算子>で比較・評価します。
+	「#uname」という記述はそのノードのノード名に展開され評価されます。
+	<値>には任意の英数字を比較対象として指定することができます。
+	
+
+	**<属性値名> <演算子> <値>**
+
+	    <属性値名>で指定した属性値と<値>を、<演算子>で比較・評価します。
+	<値>には任意の英数字を比較対象として指定することができます。
+
+	**defined|not_defined <属性値名>**
+
+	    <属性値名>で指定した属性値が定義されているかどうかを評価します。
+	definedは当該属性値が定義されているときに真、not_definedは定義されていないときに真となります。
+
+	
+	※日付も評価することができますが、ここでは説明を省略します。知りたい方は[CRM-CLI公式マニュアル(日本語版)]({{ site.lhajp_resources_url }}/wp-content/crm_cli.html#cmdhelp_configure_location)参照をしてください。
+
+	**<演算子>**には以下を使用することができます。
+	
+
+
+	
+  * lt : 左辺が右辺より小さい場合に真となる
+
+	
+  * gt : 左辺が右辺より大きい場合に真となる
+
+	
+  * lte: 左辺が右辺より小さいか等しい場合に真となる
+
+	
+  * gte: 左辺が右辺より大きいか等しい場合に真となる
+
+	
+  * eq : 左辺と右辺が等しい場合に真となる
+
+	
+  * ne : 左辺と右辺が等しくない場合に真となる
+
+	
+	
+	
+	なお、andおよびorを使用し、複数の論理演算式の結果を統合することができます。
+	
+</td>
+</tr>
+
+</tbody>
+</table>
+
+評価式の中で登場する**属性値**とは、Pacemakerが保持している値で、ノード毎にリソースの状態や、クラスタの状態を表します。
+状況に応じて値が変化することで、そのノードの状態を知ることができます。
+典型的にはリソースエージェントがリソースの状態をリアルタイムに示すために使用します。
+例えばネットワーク疎通を確認するリソース(ocf:pacemaker:pingd)は、ネットワークが疎通している場合、指定した属性値に値を加算し、疎通していないと値を減算します。属性値は監視の度にリアルタイムに変化するため、この属性値を見ることで、今現在ネットワークが疎通しているのかを確認できるようになっています。
+
+なお、crm_monコマンドに-Aオプションをつけると、属性値を表示させることができます。
+
+
+
+以下の部分は、グループgrpに対し、ノードpm01での起動にはスコア200を、ノードpm02での起動にはスコア100を指定しています。
+つまり、grpの起動ノードとしてpm01を優先するよう制約しています。
+
+    
+    <code>location rsc_location-1 grp \
+        rule 200: #uname eq pm01 \
+        rule 100: #uname eq pm02
+    </code>
+
+
+
+これで、以下の項目が読み解けました。
+
+
+
+	
+  * 6. _grpはどちらか片方のマシンで起動します。両マシンが稼働可能な状態の場合、pm01を優先します。_
+
+
+
+
+
+
+# ■colocationで同居するリソースを制約
+
+
+colocationは指定した(複数の)リソースが**同一ノードで起動する**ことに対しスコア値を設定します。
+
+colocationの概要と代表的な書式は以下のようになります。
+
+<table border="1" bordercolor="#D3D3D3" >
+<tbody >
+<tr >
+	概要
+	
+<td colspan="2" >あるリソースと、別のリソースが同一ノードに存在することに対しスコア値を設定します。
+	
+</td>
+</tr>
+<tr >
+	書式
+	
+<td colspan="2" >
+	colocation <制約のID> <スコア値>: <リソースID>[:<ロール>] <リソースID>[:<ロール>] [<リソースID>[:<ロール>]] ...
+	
+</td>
+</tr>
+<tr >
+	設定項目
+	
+<td >制約のID
+</td>
+	
+<td >この制約を一意に識別するためのIDを付与します。英数字から成るクラスタ内で一意の任意の文字列を指定します。
+</td>
+</tr>
+<tr >
+	
+<td >スコア値
+</td>
+	
+<td >右側に記述したリソースを同居させることに対するスコア値を指定します。
+	典型的にはINFINITYを指定し同居を強制、または-INFINITYを指定し別ノードでの起動を強制します。
+</td>
+</tr>
+<tr >
+	
+<td >リソースID
+</td>
+	
+<td >制約の対象となるリソースをリソースIDで指定します。
+	左側のリソース起動時に右側のリソースが同一ノードに存在することに対しスコア値を設定します。
+	リソースIDを記述する順序で意味合いが若干変わることに注意してください。
+	なお、「:<ロール>」とロールを記述することもできます。ロールはmsコマンドでリソースを定義した場合に必要となる概念です。MasterやSlave等のリソース状態を指します。msコマンドについては今回の記事では対象としていないため詳細説明は省略します。
+</td>
+</tr>
+</tbody>
+</table>
+
+
+  
+
+以下の部分は、グループgrpの起動時に、clnResourceが同じノードで起動する(している)ことを強制しています。
+
+    
+    <code>colocation rsc_colocation-1 INFINITY: grp clnResource
+    </code>
+
+
+
+
+これで、以下の項目が読み解けました。
+
+
+
+	
+  * 7. _resource3(clnResource)が起動していないノードではresource1およびresource2(grp)は起動しません。_
+
+
+
+
+
+
+# ■orderで順序を制約
+
+
+orderは指定した(複数の)リソースの**アクションを行う順序**に対しスコア値を設定します。
+
+orderの概要と代表的な書式は以下のようになります。
+
+<table border="1" bordercolor="#D3D3D3" >
+<tbody >
+<tr >
+	概要
+	
+<td colspan="2" >指定した(複数の)リソースのアクションを行う順序に対しスコア値を設定します。
+	アクションには、起動、停止、昇格等が含まれます。
+	
+</td>
+</tr>
+<tr >
+	書式
+	
+<td colspan="2" >
+	order <制約のID> <スコア値>: <リソースID>[:<アクション>] <リソースID>[:<アクション>] ...
+      [symmetrical=true|false]
+	
+</td>
+</tr>
+<tr >
+	設定項目
+	
+<td >制約のID
+</td>
+	
+<td >この制約を一意に識別するためのIDを付与します。英数字から成るクラスタ内で一意の任意の文字列を指定します。
+</td>
+</tr>
+<tr >
+	
+<td >スコア値
+</td>
+	
+<td >この制約に対するスコア値を指定します。
+	0より大きい値を指定すると、左側のリソースが状態変化した場合、右側のリソースにも影響(停止や起動を実行)します([Mandatory Ordering](http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/s-resource-ordering.html))。
+	0を指定すると、左側のリソースのアクション実行時以外の状態変化が右側のリソースに影響しません。([Advisory Ordering](http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/ch06s03s02.html))
+	ちょっと難しい言い回しになりましたが、0とINFINITYを設定した場合、以下のようなイメージになると理解すればよいでしょう。
+	
+
+
+		
+  * 0       :**なるべく**、左→右の順に<アクション>する
+
+		
+  * INFINITY:**絶対に**、左→右の順に<アクション>しなければならない
+
+	
+	
+</td>
+</tr>
+<tr >
+	
+<td >リソースID
+</td>
+	
+<td >制約の対象となるリソースをリソースIDで指定します。
+	左側のリソース起動時に右側のリソースが同一ノードに存在することに対しスコア値を設定します。
+	リソースIDを記述する順序で意味合いが若干変わることに注意してください。
+	
+</td>
+</tr>
+<tr >
+	
+<td >アクション
+</td>
+	
+<td >アクションは対象となるリソースを起動(start)、停止(stop)、昇格(promote)、降格(demote)のうち、どれを実行する場合の制約かを指定します。
+	指定しない場合デフォルトはstartです。
+	※昇格(promote)および降格(demote)はmsコマンドでリソースを定義した場合に必要となる概念です。msコマンドについては今回の記事では対象としていないため詳細説明は省略します。
+	
+</td>
+</tr>
+<tr >
+	
+<td >symmetrical
+</td>
+	
+<td >symmetricalはこの制約の逆順の制約を自動的に設定するかどうかをtrue(=する)またはfalse(=しない)で指定します。
+	例えば、「起動をA→Bの順で行う」という制約に対し、「停止はB→Aの順で行う」という逆の制約を自動的に設定できます。
+	指定しない場合デフォルトはtrueです。
+	
+</td>
+</tr>
+</tbody>
+</table>
+
+  
+
+以下の部分は、clnResource→grpの順に起動することを示しています。
+スコア値は0のため、起動後のclnResourceの状態変化はgrpに影響しません。
+symmetricalをfalseにしているため停止順は不定です。
+
+    
+    <code>### Resource Order ###
+    order rsc_order-1 0: clnResource grp symmetrical=false
+    </code>
+
+
+
+これで以下の項目が読み解けました。
+
+
+
+	
+  * 5. resource1,2,3のリソースは、_必ずresource3(clnResource)→resource1_→resource2の順で起動します。
+
+
+
+
+お気づきの方もいるかもしれませんが、前回ご紹介したgroupコマンドも、同居と順序を指定するものでした。
+例えば、「group grp1 resource1 resource2」は「resource1と2は必ず同居し」、「resource1→resource2の順序で起動」を定義します。
+
+groupは、colocationとorderを組み合わせて再現することができます。
+
+
+次頁で、今回わかったことを応用した実験をしてみましょう。
+
+
+
+
+
+# ■実験1 colocationのスコア値を-INFINITYにしてみる
+
+
+
+まず、[例のCRM設定]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)でPacemakerを起動します。
+以下のように起動するはずです。
+
+
+    
+    <code># crm_mon -rfA
+    ～略～
+    
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+    Resource Group: grp
+        resource1 (ocf::heartbeat:Dummy): Started pm01
+        resource2 (ocf::heartbeat:Dummy): Started pm01
+    Clone Set: clnResource
+        Started: [ pm01 pm02 ]
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1 : up
+        + pm02-eth2 : up
+    * Node pm02:
+        + pm01-eth1 : up
+        + pm01-eth2 : up
+    
+    Migration summary:
+    * Node pm01:
+    * Node pm02:
+    </code>
+
+
+
+次に、クラスタを稼働させたまま、以下コマンドでcolocationのスコア値を-INFINITYに書き換えます。
+どちらのノードで実行してもかまいません。
+
+
+    
+    <code># crm configure edit
+    →vi等のエディタが起動し、現在のCRM設定が編集可能になる。
+    　以下部分の「inf」を「-inf」に書き換える。
+    
+        colocation rsc_colocation-1 inf: grp clnResource
+          ↓書き換え
+        colocation rsc_colocation-1 -inf: grp clnResource
+    
+    　書き換えたらエディタを保存終了する。(viの場合、Esc→:wq)
+    </code>
+
+
+
+変更は即座にPacemakerに反映され、おそらく以下のようになります。
+
+
+    
+    <code># crm_mon -rfA
+    ～略～
+    
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+     Resource Group: grp
+         resource1  (ocf::heartbeat:Dummy): Stopped ★
+         resource2  (ocf::heartbeat:Dummy): Stopped ★
+     Clone Set: clnResource
+         Started: [ pm01 pm02 ]
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1                         : up
+        + pm02-eth2                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+        + pm01-eth2                         : up
+    
+    Migration summary:
+    * Node pm01:
+    * Node pm02:
+    </code>
+
+
+
+★部分でresource1,2が停止したことがわかります。
+
+これは、grp(=resource1,2)とclnResource(=resource3)のcolocationのスコア値を-INFINITYに書き換えたことで、
+制約が「grpとclnResourceは絶対に違うノードで起動する」という意味になったためです。
+clnResourceはクローンのため両ノードで起動しており、そのままではこの制約を守ることはできないためgrpを停止せざるを得なかったのです。
+
+
+この状態のまま、clnResourceを停止するとどうなるでしょう？
+以下コマンドを実行してください。どちらのノードで実行してもかまいません。
+
+
+    
+    <code># crm resource stop resource3
+    </code>
+
+
+
+おそらく以下のようになったと思います。
+
+
+    
+    <code># crm_mon -rfA
+    ～略～
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+     Resource Group: grp
+         resource1  (ocf::heartbeat:Dummy): Started pm01 ★
+         resource2  (ocf::heartbeat:Dummy): Started pm01 ★
+     Clone Set: clnResource
+         Stopped: [ resource3:0 resource3:1 ] ☆
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1                         : up
+        + pm02-eth2                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+        + pm01-eth2                         : up
+    
+    Migration summary:
+    * Node pm01:
+    * Node pm02:
+    </code>
+
+
+
+☆部分でclnResource(resource3)が停止し、★部分で停止していたresource1,2が起動したことがわかります。
+
+clnResourceを手動で停止したことにより、colocation制約で抑止されていたresource1,2が起動可能になったためです。
+
+
+
+
+
+# ■実験2 orderのスコア値をINFINITYにしてみる
+
+
+orderのスコア値に0およびINFINITYを設定し、0とINIFINITYの意味の違いを確認します。
+
+CRM設定は、３つのDummyリソースをorderで順序制約をかけただけのシンプルなものを使用します。
+
+
+    
+    <code>### Cluster Option ###
+    property no-quorum-policy="ignore" \
+        stonith-enabled="false" \
+        crmd-transition-delay="2s"
+    
+    ### Resource Defaults ###
+    rsc_defaults resource-stickiness="INFINITY" \
+        migration-threshold="1"
+    
+    ### Primitive Configuration ###
+    primitive resource1 ocf:heartbeat:Dummy \
+        op start interval="0s" timeout="300s" on-fail="restart" \
+        op monitor interval="10s" timeout="60s" on-fail="restart" \
+        op stop interval="0s" timeout="300s" on-fail="block"
+    
+    primitive resource2 ocf:heartbeat:Dummy \
+        op start interval="0s" timeout="300s" on-fail="restart" \
+        op monitor interval="10s" timeout="60s" on-fail="restart" \
+        op stop interval="0s" timeout="300s" on-fail="block"
+    
+    primitive resource3 ocf:heartbeat:Dummy \
+        op start interval="0s" timeout="300s" on-fail="restart" \
+        op monitor interval="10s" timeout="60s" on-fail="restart" \
+        op stop interval="0s" timeout="300s" on-fail="block"
+    
+    ### Resource Order ###
+    order rsc_order-1 <strong><u>0</u></strong>: resource1 resource2 resource3
+    </code>
+
+
+2016.3.24 修正：以前の記事ではorderに「symmetrical=false」を付与していましたが、この場合Pacemaker-1.1系では、以下実験では0とINFINITYの動作の差が無くなった(いずれも以下0の場合と同じ)ため、「symmetrical=false」を削除しました。
+
+なお、Dummyリソース(/usr/lib/ocf/resource.d/heartbeat/Dummy)が起動したタイミング(前後関係)をわかりやすくするため、start時に1秒sleepするよう改造しています。
+
+また、order制約しかかけていないためpm01とpm02を同時に起動すると各リソースが分散してしまい挙動がわかりにくくなります。そのためまずはpm01を起動、設定を読み込み、全リソースがpm01で起動してからpm02を起動します。
+
+
+    
+    <code># crm_mon -rfA
+    ～略～
+    
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+    resource1       (ocf::heartbeat:Dummy): Started pm01
+    resource2       (ocf::heartbeat:Dummy): Started pm01
+    resource3       (ocf::heartbeat:Dummy): Started pm01
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+    
+    Migration summary:
+    * Node pm01:
+    * Node pm02:
+    </code>
+
+
+
+
+以下コマンドを実行し、resource1を故障させます。
+
+
+    
+    <code># rm -f /var/run/resource-agents/Dummy-resource1.state</code>
+
+
+
+Pacemakerが故障を検知し、F/Oを実行します。
+
+
+    
+    <code># crm_mon -rfA
+    ～略～
+    
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+    resource1       (ocf::heartbeat:Dummy): Started pm02 ★F/Oし、pm02で起動
+    resource2       (ocf::heartbeat:Dummy): Started pm01
+    resource3       (ocf::heartbeat:Dummy): Started pm01
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+    
+    Migration summary:
+    * Node pm01:
+       resource1: migration-threshold=1 fail-count=1
+    * Node pm02:
+    
+    Failed actions:
+        resource1_monitor_10000 (node=pm01, call=52, rc=7, status=complete): not running
+    </code>
+
+
+
+
+故障(ファイル削除)を発生させた時刻以降のログをgrepし、両ノードでリソースがどのような挙動をしたかを確認してみましょう。
+Pacemaker-1.0系と1.1系でログの形式が異なるため、以下それぞれの場合を示します。
+
+**Pacemaker-1.0系の場合**
+○pm01のログ
+
+    
+    <code># egrep "lrmd:.*info: rsc:[A-Za-z0-9]+ (start|stop)" /var/log/ha-log
+    Jan  8 12:57:58 pm01 lrmd: [1518]: info: rsc:resource1 stop[53] (pid 4772)
+    </code>
+
+
+○pm02のログ
+
+    
+    <code># egrep "lrmd:.*info: rsc:[A-Za-z0-9]+ (start|stop)" /var/log/ha-log
+    Jan  8 12:57:58 pm02 lrmd: [1492]: info: rsc:resource1 start[21] (pid 7667)
+    </code>
+
+
+
+**Pacemaker-1.1系の場合**
+○pm01のログ
+
+    
+    <code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
+    Mar 24 10:29:51 pm01 crmd[25011]:  notice: process_lrm_event: Operation resource1_stop_0: ok (node=pm01, call=21, rc=0, cib-update=72, confirmed=true)
+    </code>
+
+
+○pm02のログ
+
+    
+    <code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
+    Mar 24 10:29:51 pm02 crmd[6357]:  notice: process_lrm_event: Operation resource1_start_0: ok (node=pm02, call=14, rc=0, cib-update=14, confirmed=true)
+    </code>
+
+
+
+故障したresource1がpm01で停止後、pm02で起動し、F/Oが成功したことがログでも確認できました。
+
+
+
+次に、orderのスコア値をINFINITYと変更し、さきほどと同じようにresource1を故障させます。
+
+
+    
+    <code>order rsc_order-1 <u>0</u>: resource1 resource2 resource3</code>
+
+
+　　↓書き換え
+
+    
+    <code>order rsc_order-1 <u>INFINITY</u>: resource1 resource2 resource3</code>
+
+
+
+
+故障後、crm_monは以下のようになると思います。
+
+
+    
+    <code># crm_mon -rfA
+    ～略～
+    
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+    resource1       (ocf::heartbeat:Dummy): Started pm02 ★F/Oし、pm02で起動
+    resource2       (ocf::heartbeat:Dummy): Started pm01
+    resource3       (ocf::heartbeat:Dummy): Started pm01
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+    
+    Migration summary:
+    * Node pm01:
+       resource1: migration-threshold=1 fail-count=1
+    * Node pm02:
+    
+    Failed actions:
+        resource1_monitor_10000 (node=pm01, call=60, rc=7, status=complete): not running
+    </code>
+
+
+
+スコア値が0のときと同じようにpm02でresource1が起動(F/O)しました。
+しかし、若干挙動がさきほどとは違ったことに気付いたでしょうか？
+crm_monをよーく見ていた方は気づいたかもしれませんが、実はresource2,3もresource1の故障につられ再起動しました。
+
+ログ(/var/log/ha-log)からresource1～3の挙動を確認してみます。
+
+**Pacemaker-1.0系の場合**
+○pm01のログ
+
+    
+    <code># egrep "lrmd:.*info: rsc:[:A-Za-z0-9]+ (start|stop)" /var/log/ha-log
+    Jan  8 13:19:02 pm01 lrmd: [1518]: info: rsc:resource3 stop[61] (pid 5848) ★
+    Jan  8 13:19:02 pm01 lrmd: [1518]: info: rsc:resource2 stop[62] (pid 5849) ★
+    Jan  8 13:19:02 pm01 lrmd: [1518]: info: rsc:resource1 stop[63] (pid 5850)
+    Jan  8 13:19:04 pm01 lrmd: [1518]: info: rsc:resource2 start[64] (pid 5859) ★
+    Jan  8 13:19:05 pm01 lrmd: [1518]: info: rsc:resource3 start[66] (pid 5869) ★
+    </code>
+
+
+○pm02のログ
+
+    
+    <code># egrep "lrmd:.*info: rsc:[:A-Za-z0-9]+ (start|stop)" /var/log/ha-log
+    Jan  8 13:19:03 pm02 lrmd: [8126]: info: rsc:resource1 start[5] (pid 8154)
+    </code>
+
+
+
+**Pacemaker-1.1系の場合**
+○pm01のログ
+
+    
+    <code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
+    Mar 24 10:33:11 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource3_stop_0: ok ～略～ ★
+    Mar 24 10:33:13 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource2_stop_0: ok ～略～ ★
+    Mar 24 10:33:15 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource1_stop_0: ok ～略～
+    Mar 24 10:33:19 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource2_start_0: ok ～略～ ★
+    Mar 24 10:33:21 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource3_start_0: ok ～略～ ★
+    </code>
+
+
+○pm02のログ
+
+    
+    <code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
+    Mar 24 10:33:15 pm02 crmd[6453]:  notice: process_lrm_event: Operation resource1_start_0: ok (node=pm02, call=14, rc=0, cib-update=11, confirmed=true)
+    </code>
+
+
+
+★部分で、先ほどとは違い、resource2,3も停止→起動をしていることがわかります。
+それぞれがstartした時刻を確認すると、resource1→resource2→resource3の順に起動したことがわかります。
+
+
+これは設定したorder制約が
+「**絶対に(=INFINITY)**resource1→resource2→resource3の順に起動/停止しなければならない」
+というものだったため、故障による状態変化に伴い、resource2およびresource3を一旦停止→起動という挙動になったためです。
+
+一方スコア値が0の場合のorder制約は
+「なるべく(=0)**resource1→resource2→resource3の順に起動/停止する」
+というものであり、故障による状態変化はresource2およびresource3には影響しませんでした。
+
+
+
+
+
+# ■実験3 属性値を評価する
+
+
+location制約で、属性値の評価をしてみます。
+
+CRM設定は、１つのDummyリソースをlocationで配置制約をかけただけのシンプルなものを使用します。
+
+
+    
+    <code>### Cluster Option ###
+    property no-quorum-policy="ignore" \
+        stonith-enabled="false" \
+        crmd-transition-delay="2s"
+    
+    ### Resource Defaults ###
+    rsc_defaults resource-stickiness="INFINITY" \
+        migration-threshold="1"
+    
+    ### Primitive Configuration ###
+    primitive resource1 ocf:heartbeat:Dummy \
+        op start interval="0s" timeout="300s" on-fail="restart" \
+        op monitor interval="10s" timeout="60s" on-fail="restart" \
+        op stop interval="0s" timeout="300s" on-fail="block"
+    
+    ### Resource Location ###
+    location rsc_location-1 resource1 \
+        rule -INFINITY: not_defined my_attribute or my_attribute lt 100
+    </code>
+
+
+
+これをPacemakerへ反映します。
+ですが、以下のようにresource1は停止したままになるはずです(★部分)。
+
+
+    
+    <code># crm_mon -rfA
+    ～略～
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+    resource1       (ocf::heartbeat:Dummy): Stopped ★resource1は停止したまま
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1                         : up
+        + pm02-eth2                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+        + pm01-eth2                         : up
+    
+    Migration summary:
+    * Node pm01:
+    * Node pm02:
+    </code>
+
+
+
+これはCRM設定の中の以下の部分で、「my_attribute」という属性値が存在しない場合または100以下の場合は起動できないと制約しているためです。
+
+    
+    location rsc_location-1 resource1 \
+        rule -INFINITY: not_defined my_attribute or my_attribute lt 100
+    </code>
+
+
+
+resource1を起動させるには、以下のcrm_attributeコマンドで属性値を手動で定義します。
+どちらのノードで実行してもかまいません。
+-Nオプションで属性値を作成するノードを、-nで属性値名を、-vで値を設定します。
+-lはrebootまたはforeverのいずれかで、rebootはその属性値がPacemakerの停止で属性値がクリアされることを示します。foreverはPacemaker停止後も属性値が残存します。
+
+    
+    <code># crm_attribute -N pm01 -n my_attribute -v 100 -l reboot
+    </code>
+
+
+
+属性値が設定されると、resource1が起動します。
+
+
+    
+    <code># crm_mon -rfA
+    ～略～
+    
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+    resource1       (ocf::heartbeat:Dummy): Started pm01 ★resource1が起動
+    
+    Node Attributes:
+    * Node pm01:
+        + my_attribute                      : 100 ★属性値が100で設定された
+        + pm02-eth1                         : up
+        + pm02-eth2                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+        + pm01-eth2                         : up
+    
+    Migration summary:
+    * Node pm01:
+    * Node pm02:
+    </code>
+
+
+
+属性値の値を10に変更してみます。
+
+
+    
+    <code># crm_attribute -N pm01 -n my_attribute -v 10 -l reboot
+    </code>
+
+
+
+resource1が停止すると思います。
+
+
+    
+    <code># crm_mon -rfA
+    ～略～
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+    resource1       (ocf::heartbeat:Dummy): Stopped ★resource1が停止
+    
+    Node Attributes:
+    * Node pm01:
+        + my_attribute                      : 10 ★属性値が10に変更
+        + pm02-eth1                         : up
+        + pm02-eth2                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+        + pm01-eth2                         : up
+    
+    Migration summary:
+    * Node pm01:
+    * Node pm02:
+    </code>
+
+
+
+
+なお、実際には、本実験のように属性値を手動で設定、変更することは滅多になく、NW監視(ocf:pacemaker:pingd)やディスク監視(ocf:pacemaker:diskd)が内部的に使用しています。
+
+
+
+
+
+# ■おわりに
+
+
+3回に渡った「動かして理解するPacemaker ～CRM設定編～」は今回で終わりです。
+
+最後まで読んでいただいた方は、[例の設定ファイル]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)はもちろん、[デモ環境のCRM設定ファイル]({{ site.lhajp_resources_url }}/wp-content/osc2011fukuoka.zip)も読めるようになっていると思います。
+
+まだまだ紹介しきれていない機能やトピックもあるので、今後も皆様のお役に立てるような情報提供を心がけていきます。
+質問、リクエスト等あれば、[Linux-HA Japan ML](/wp/ml)へご連絡ください。
+
+以上です。ありがとうございました。

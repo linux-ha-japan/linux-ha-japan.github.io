@@ -1,0 +1,803 @@
+---
+author: higashik
+comments: false
+date: 2013-09-19 03:44:49+00:00
+layout: post
+permalink: /wp/archives/3786
+slug: '%e5%8b%95%e3%81%8b%e3%81%97%e3%81%a6%e7%90%86%e8%a7%a3%e3%81%99%e3%82%8bpacemaker-%ef%bd%9ecrm%e8%a8%ad%e5%ae%9a%e7%b7%a8%ef%bd%9e-%e3%81%9d%e3%81%ae%ef%bc%91-2'
+title: 動かして理解するPacemaker ～CRM設定編～ その１
+wordpress_id: 3786
+categories:
+- 読み物
+---
+
+変更履歴
+
+
+
+	
+  * 2013.9.19 初版制定
+
+	
+  * 2016.3.23 Pacemaker-1.1に対応
+
+
+
+
+# ■はじめに
+
+
+Linux-HA Japanをご覧の皆さんこんにちは。Linux-HA Japanの中の人、ひがしと申しますm(_ _)m
+
+みなさん、Pacemaker触っていますか？
+
+OSCなどのブースや講演で中の人がPacmakerをデモしているのを見かけると思いますが、ああいう構成って一から自分で作ろうとするとまぁ大変ですよね。
+
+個人的に最初につまづくのが"**CRM設定ファイル**"だと思います。
+
+例えば、[2011年福岡で開催されたOSCで講演](/wp/archives/2546)したデモ環境のCRM設定ファイル（[これ]({{ site.lhajp_resources_url }}/wp-content/osc2011fukuoka.zip)に含まれるdemo4.crmファイル）を見てみてください。
+
+長い・・しかも設定ファイルなのに￥記号たくさんww
+
+やばい・・ゲシュタルト崩壊して￥がVサインに見えてきた(注1)。。だからみんなPacemakerのことピースメーカーって呼んじゃうんだな(注2)・・そのせいで[呼び名が変更されるって記事](/wp/archives/3605)もあったし・・・
+
+_注1:＼に見えてる人はごめんなさい_
+
+_注2：本当はペースメーカーです_
+
+でもしかし！このCRM設定ファイルの攻略なしにPacemakerでHA環境は作れないのです。
+
+というわけで本記事ではこのCRM設定ファイルを読める/書けるようになることを目標に、全３回の連載形式でいろいろ書いていこうと思います。
+  
+
+**動かして理解するPacemaker ～CRM設定編～　連載一覧（全３回）**
+
+
+
+	
+  * [その１](/wp/archives/3786)（本記事）
+
+	
+  * [その２](/wp/archives/3855)
+
+	
+  * [その３](/wp/archives/3868)
+
+
+
+
+# ■CRM設定ファイルとは
+
+
+CRM設定ファイルは、Pacemakerに、「どのようなリソース（※1）をどこで稼働させるか？」「いつフェイルオーバ(※2)するのか？」というようなことを教えるための設定ファイルです。
+
+賢明な読者の中には、「その設定ってコマンドラインからやるんじゃなかったっけ？」とお思いの方もいるかもしれません。
+
+その通り！
+
+[過去に掲載された記事](/wp/archives/1338)の中でも、crmコマンドというPacemaker付属のコマンドラインで行っています。
+
+CRM設定ファイルはこのcrmコマンドに流し込むコマンドを列挙したものです。
+
+小規模な設定であればコマンドを直接打ってもいいですが、大規模になるとファイルに書いておいた方が保存、配布などが楽になります。Windowsでいうバッチファイル、Linuxでいうシェルスクリプトみたいなものですね。
+
+これで、一つ謎が解けました。そうですCRM設定ファイルに「\」が多かったのはその箇所が本来1行で書くコマンドラインだからです。
+
+ちなみにcrmコマンドは、設定のみならず、クラスタの状態確認、操作等、様々な機能を持っています。まさにクラスタのシェルですね。
+
+さぁ以上を踏まえて、早速、CRM設定ファイルを読んでいきましょう。
+
+_※1 リソースって何だっけ、という人は、[この記事](http://gihyo.jp/admin/serial/01/pacemaker/0001)の「リソース制御機能」を参照してください。_
+_※2 以後フェイルオーバを「F/O」と略記します。_
+
+
+# ■CRM設定ファイルの構成
+
+
+前述の[2011年福岡で開催されたOSCで講演](/wp/archives/2546)した[デモ環境のCRM設定ファイル]({{ site.lhajp_resources_url }}/wp-content/osc2011fukuoka.zip)をもう一度見てみてください。
+
+心の眼でよーく見ると、行の始めは以下の８種類のコマンドのどれかであることがわかります。
+
+ちなみに行頭が「#」はコメントアウト、「\」は行が続くことを表します。
+
+
+
+	
+  * property
+
+	
+  * rsc_defaults
+
+	
+  * group
+
+	
+  * clone
+
+	
+  * primitive
+
+	
+  * location
+
+	
+  * colocation
+
+	
+  * order
+
+
+次回以降で紹介しますが、Master-Slave構成を使う場合、
+
+	
+  * ms
+
+
+というコマンドも使用します。
+
+上記９コマンドあれば、たいがいのHA構成は定義できちゃいます。
+
+Pacemaker-1.1系の場合、上記に加え fencing_topology というコマンドも使用します。詳細は[OSCデモ機の設定を公開します](/wp/archives/4377)をご覧ください。
+
+早速、９コマンドの解説を、、と言いたいところですが、ここで１つCRM設定ファイルの例を示します。
+
+    
+    <code>### Cluster Option ###
+    property no-quorum-policy="ignore" \
+        stonith-enabled="false" \
+        crmd-transition-delay="2s"
+    
+    ### Resource Defaults ###
+    rsc_defaults resource-stickiness="INFINITY" \
+        migration-threshold="1"
+    
+    ### Group Configuration ###
+    group grp \
+        resource1 \
+        resource2
+    
+    ### Clone Configuration ###
+    clone clnResource \
+        resource3
+    
+    ### Primitive Configuration ###
+    primitive resource1 ocf:heartbeat:Dummy \
+        op start interval="0s" timeout="300s" on-fail="restart" \
+        op monitor interval="10s" timeout="60s" on-fail="restart" \
+        op stop interval="0s" timeout="300s" on-fail="block"
+    
+    primitive resource2 ocf:heartbeat:Dummy \
+        op start interval="0s" timeout="300s" on-fail="restart" \
+        op monitor interval="10s" timeout="60s" on-fail="restart" \
+        op stop interval="0s" timeout="300s" on-fail="block"
+    
+    primitive resource3 ocf:heartbeat:Dummy \
+        op start interval="0s" timeout="300s" on-fail="restart" \
+        op monitor interval="10s" timeout="60s" on-fail="restart" \
+        op stop interval="0s" timeout="300s" on-fail="block"
+    
+    ### Resource Location ###
+    location rsc_location-1 grp \
+        rule 200: #uname eq pm01 \
+        rule 100: #uname eq pm02
+    
+    ### Resource Colocation ###
+    colocation rsc_colocation-1 INFINITY: grp clnResource
+    
+    ### Resource Order ###
+    order rsc_order-1 0: clnResource grp symmetrical=false
+    </code>
+
+
+この例は比較的単純ですが、msを除く８のコマンドを全て含んでおり、Active-Standby構成の基本がつまっています。しかもDummyという特殊なリソースのみを使用しているため、Pacemaker以外、Apacheや共有ディスク等のリソースは不要です。
+
+なお、Pacemaker-1.1系の場合、「crmd-transition-delay="2s"」の設定は不要です。Pacemaker-1.1系で試す方は当該行を削除してください。
+
+以降、しばらくはこのCRM設定ファイルを題材に解説をしていきます。
+
+次のページで早速このCRM設定でPacemakerを動かしてみましょう。
+
+
+
+
+# ■例のCRM設定を動かす
+
+
+前述のCRM設定ファイルは、Pacemakerがインストールされていて、同一LANに接続されているマシンが2台あればすぐに動作します。仮想マシンでも可です。
+
+手順を紹介するので、ぜひ動作させてみてください。
+
+なお、Pacemakerのバージョン(1.0系 or 1.1系)毎に若干手順が異なる箇所があります。その場合、手順中に「Pacemaker-1.Xの場合」というようにそれぞれの手順を併記しています。
+
+また、ホスト名はpm01, pm02としています。例のCRM設定にもホスト名の記述が２箇所(37,38行目)だけあるので、適宜書き替えてください。
+
+
+## CRM設定ファイル例　動作手順
+
+
+
+
+### 手順1)
+
+
+
+
+**Pacemaker-1.0系の場合**
+[ここ](http://gihyo.jp/admin/serial/01/pacemaker/0002)を参照しPacemaker-1.0をインストールします。
+ページ２の「Pacemakerの起動」の前までできればOKです。(まだ「Pacemakerの起動」はしないでください。)
+なお、手順1は、初回のみ実施すればよいです。
+CRM設定ファイルを編集した場合なども含め、次回以降は、手順2以降を実施すればOKです。
+
+
+
+
+**Pacemaker-1.1系の場合**
+[ここ](/wp/archives/4154)を参照しPacemaker-1.1をインストールします。
+「4. 設定例」までできればOKです。(まだ「Pacemakerの起動」はしないでください。)
+
+
+
+
+
+### 手順2)
+
+
+以下コマンドをrootユーザで実行します。両系サーバで実施します。
+
+
+**Pacemaker-1.0系の場合**
+
+
+
+
+    
+    <code># rm -f /var/lib/heartbeat/crm/*</code>
+
+
+
+
+**Pacemaker-1.1系の場合**
+
+
+
+
+    
+    <code># rm -f /var/lib/pacemaker/cib/*</code>
+
+
+この手順は、以前に設定したCRM設定ファイルの情報をクリアします。
+
+新たなCRM設定ファイルを反映させたい場合には必ず実施してください。
+
+
+### 手順3)
+
+
+以下コマンドをrootユーザで実行し、Pacemakerを起動します。
+
+pm01から順番に両系サーバで実施します。
+
+
+**Pacemaker-1.0系の場合**
+
+
+
+
+    
+    <code># /etc/init.d/heartbeat start</code>
+
+
+
+
+**Pacemaker-1.1系,RHEL6の場合**
+
+
+
+
+    
+    <code># initctl start pacemaker.combined</code>
+
+
+
+
+**Pacemaker-1.1系,RHEL7の場合**
+
+
+
+
+    
+    <code># systemctl start pacemaker</code>
+
+
+crm_mon -rfA コマンドで、正常に起動したことを確認します。
+
+以下のように表示されればOKです。こうなるのに数分ぐらいかかるかもしれません。
+
+    
+    <code># crm_mon -rfA
+     ～略～
+     Online: [ pm01 pm02 ]
+    
+     Full list of resources:
+    
+     Node Attributes:
+     * Node pm01:
+        + pm02-eth1                         : up
+        + pm02-eth2                         : up
+     * Node pm02:
+        + pm01-eth1                         : up
+        + pm01-eth2                         : up
+    
+     Migration summary:
+     * Node pm01:
+     * Node pm02:
+    </code>
+
+
+コンソール画面が小さくて、表示全体が見えないという方は、crm_mon -rfA**1**と「1」を引数に加えてください。自動更新が無効になり1回だけ、topコマンドのバッチモードのようにずらずらと結果を表示してくれます。
+
+
+### 手順4)
+
+
+以下コマンドをrootユーザで実行し、[例のCRM設定ファイル]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)をPacemakerに反映します。どちらのノードで実行してもかまいません。（例のCRM設定ファイルをexample01.crmという名前のファイルにコピペ・保存したと仮定します。）
+
+    
+    <code># crm configure load update example01.crm</code>
+
+
+crm_mon -rfA コマンドで、CRM設定ファイルが正常に反映されたことを確認します。以下のように表示されればOKです。
+
+**Pacemaker-1.0系の場合**
+
+    
+    <code># crm_mon -rfA
+    ============
+    Last updated: Thu May 2 11:01:03 2013
+    Stack: Heartbeat
+    Current DC: pm02 (0841a484-1688-4997-8c14-ae5710ddb791) - partition with quorum
+    Version: 1.0.13-30bb726
+    2 Nodes configured, unknown expected votes
+    2 Resources configured.
+    ============
+    
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+    Resource Group: grp
+        resource1 (ocf::heartbeat:Dummy): Started pm01
+        resource2 (ocf::heartbeat:Dummy): Started pm01
+    Clone Set: clnResource
+        Started: [ pm01 pm02 ]
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1 : up
+        + pm02-eth2 : up
+    * Node pm02:
+        + pm01-eth1 : up
+        + pm01-eth2 : up
+    
+    Migration summary:
+    * Node pm01:
+    * Node pm02:
+    </code>
+
+
+**Pacemaker-1.1系の場合**
+
+    
+    <code># crm_mon -rfA
+    Last updated: Wed Mar 23 13:33:19 2016
+    Last change: Wed Mar 23 13:33:03 2016 by root via cibadmin on pm01
+    Stack: corosync
+    Current DC: pm01 - partition with quorum
+    Version: 1.1.13-6052cd1
+    2 Nodes configured
+    4 Resources configured
+    
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+     Resource Group: grp
+         resource1  (ocf::heartbeat:Dummy): Started pm01
+         resource2  (ocf::heartbeat:Dummy): Started pm01
+     Clone Set: clnResource [resource3]
+         Started: [ pm01 pm02 ]
+    
+    Node Attributes:
+    * Node pm01:
+        + ringnumber_0                      : 192.168.123.71 is UP
+        + ringnumber_1                      : 192.168.124.71 is UP
+    * Node pm02:
+        + ringnumber_0                      : 192.168.123.72 is UP
+        + ringnumber_1                      : 192.168.124.72 is UP
+    
+    Migration summary:
+    * Node pm01:	
+    * Node pm02:
+    </code>
+
+
+
+
+### 手順5)
+
+
+※停止する場合に実施
+
+以下コマンドをrootで実施し、Pacemakerを停止します。
+
+片方ずつコマンドが完了することを確認しながら順番に両系サーバで実施します。
+どちらのサーバから実行してもよいですが、現在リソースが稼働しているサーバを先に停止すると、無駄にF/Oをしてしまうので、リソースが稼働していない方("Started xxx"のxxxでない方)を先に停止すると良いでしょう。上記例の場合pm02から先に停止します。
+
+**Pacemaker-1.0系の場合**
+
+    
+    <code># /etc/init.d/heartbeat stop</code>
+
+
+**Pacemaker-1.1系,RHEL6の場合**
+
+    
+    <code># initctl stop pacemaker.combined</code>
+
+
+**Pacemaker-1.1系,RHEL7の場合**
+
+    
+    <code># systemctl stop pacemaker</code>
+
+
+さぁ、動いたでしょうか？
+
+次のページからCRM設定ファイルの内容を順に追っていきたいと思います。
+
+
+
+
+# ■CRM設定ファイルの内容を読む
+
+
+[例のCRM設定ファイル]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)は以下の制御を行っています。
+
+
+
+	
+  * 1. STONITHは無効です。
+
+	
+  * 2. 1回のリソース故障でF/Oします。自動フェイルバックはしません。
+
+	
+  * 3. resource1, resource2という名前のリソースをgrpという名前のgroup(グループ)にします。
+
+	
+  * 4. resource3という名前のリソースをclnResourceという名前のclone(クローン)リソースとし、両マシンで起動します。
+
+	
+  * 5. resource1,2,3のリソースは、必ずresource3(clnResource)→resource1→resource2の順で起動します。
+
+	
+  * 6. grpはどちらか片方のマシンで起動します。両マシンが稼働可能な状態の場合、pm01を優先します。
+
+	
+  * 7. resource3(clnResource)が起動していないノードではresource1およびresource2(grp)は起動しません。
+
+
+_※2013.1.22 リソース名をCRM設定とは異なる「dummyN」などと記載していましたが、「resourceN」の誤りでした。修正しました。すみません。_
+
+・・・初めての言葉も多く、よくわかりませんね。。
+
+とりあえず、あの短いCRM設定ファイルでもこんなに多くの制御をしていることを理解いただければ結構です。
+
+以降でCRM設定ファイルを上から読みながら、順次種明かしをしていきます。
+
+    
+    <span style="font-size: medium;"><strong>コラム Dummyって？</strong></span>
+    例のCRM設定ファイルにDummyというキーワードが出てきます。怪しいですね。
+    <strong>primitive resource1 ocf:heartbeat:Dummy</strong>
+    
+    でも、ご安心を。DummyはれっきとしたPacemaker付属のリソース管理用スクリプト(リソースエージェント)です。
+    ただし、名前が示唆している通り、あくまでダミーです。
+    Apache等の具体的なリソースを管理するわけではなく、ある一時ファイルを作成し、それが存在することを確認しているだけです。
+    本記事のようなPacemakerの動作を確認したい場合のために用意されています。
+    Apache等のリソースを設定することなく手軽に使用できるので、とても便利ですね。
+
+
+
+
+# ■propertyとrsc_defaultsは全体の設定
+
+
+早速、例のCRM設定を上から順に読んでいきます。まず冒頭は以下のようになっています。
+
+    
+    <code>### Cluster Option ###
+    property no-quorum-policy="ignore" \
+            stonith-enabled="false" \
+            crmd-transition-delay="2s"
+    
+    ### Resource Defaults ###
+    rsc_defaults resource-stickiness="INFINITY" \
+            migration-threshold="1"
+    </code>
+
+
+**property**と**rsc_defaults**コマンドが使用されています。
+
+propertyは**クラスタ全体の設定**を、rsc_defaultsは**リソース全体のデフォルト設定**を指定します。
+
+1つ1つのキーワードの意味は以下です。
+<table border="1" >
+<tbody >
+<tr >
+
+<td >コマンド
+</td>
+
+<td >キーワード
+</td>
+
+<td >説明
+</td>
+</tr>
+<tr >
+
+<td rowspan="3" >property
+=クラスタ全体の設定
+</td>
+
+<td >no-quorum-policy
+</td>
+
+<td >サーバ同士が互いに孤立しクォーラムを失った場合にどう動くかを指定します。いきなり「クォーラム」という新たな言葉が登場しましたが、とりあえずサーバが2台の構成である限りはおまじないとして"ignore"を指定する、と覚えておけばよいです。
+
+クォーラムについて詳しく知りたい方は、
+[Pacemakerを使いこなそう！～HAクラスタで止まらないサービスを～](/wp/archives/604)
+のP16以降を読むとよいでしょう。
+</td>
+</tr>
+<tr >
+
+<td >stonith-enabled
+</td>
+
+<td >STONITH(ストニス)を有効にするか無効にするかを指定します。また、新たな言葉(STONITH)が出てきました。STONITHは簡単に言うと、サーバが孤立した場合に両系ノードでリソースが2重に起動してしまうのを防ぐために、強制的にノードを停止させる仕組みのことです。
+
+クラスタにとって非常に重要な概念ですが、CRM設定ファイル自体の理解にはあまり関係ないので、本記事では無効(false)としています。
+STONITHについて詳しく知りたい方は、以下資料を読むとよいでしょう。
+Pacemaker-1.0の場合：
+[HAクラスタをフェイルオーバ失敗から救おう！](/wp/archives/3729)
+[Pacemakerでかんたんクラスタリング体験してみよう！](http://gihyo.jp/admin/serial/01/pacemaker/0003)
+[Pacemakerを使いこなそう！～HAクラスタで止まらないサービスを～](/wp/archives/604)P37以降
+
+Pacemaker-1.1の場合：
+[OSCデモ機の設定を公開します](/wp/archives/4377)
+[試して覚えるPacemaker入門 排他制御機能編](/wp/archives/4338)
+</td>
+</tr>
+<tr >
+
+<td >crmd-transition-delay
+</td>
+
+<td >Pacemakerが内部でリソースをどう配置すべきか等を計算する際の待ち時間を設定します。
+このパラメータはPacemaker 1.0.10までにあったバグに対応するため、[Pacemaker 1.0.11で導入](/wp/archives/1498)されました。
+環境にもよりますが経験的に"2s"(2秒)と設定しておけばほぼ問題ないです。
+Pacemaker-1.1系の場合でも本設定は設定可能ですが、上記バグが改修されているため基本的には不要です。
+</td>
+</tr>
+<tr >
+
+<td rowspan="2" >rsc_defaults=リソース全体のデフォルト設定
+</td>
+
+<td >resource-stickiness
+</td>
+
+<td >リソースが一度稼働したノードにどれだけ"粘着"するか(stickiness)を設定します。値が大きいとリソースは現在稼働中のサーバになるべくとどまろうとし、値が小さいとより最適なノードへ移動しようとします。
+故障発生後にノードを復旧させたときに、自動的に切り戻し(自動フェイルバック)をしたい場合に小さな値(1等)を設定しますが、通常は大きな値(無限大を示す"INFINITY")を設定し自動フェイルバックを無効にします(※)。
+_※リソースが稼働するノードをころころ移動するのは、安定的なサービス提供に悪影響と考えられるからです。_
+</td>
+</tr>
+<tr >
+
+<td >migration-threshold
+</td>
+
+<td >リソースが何回故障したらF/Oするかを指定します。migration-threshold回までの故障はリソースの再起動で対処し、migration-threshold回目の故障でF/Oを実施します。
+通常は1回故障したらF/Oさせたいので"1"とします。
+デフォルト値は0で、この場合無効、つまり何回故障してもF/Oせずリソースが再起動されるだけなので、必ず明示的に指定する必要があります。
+_※ここでいう"故障"はリソース稼働中のもののみ対象です。リソース起動の失敗、および停止の失敗は対象外です。_
+</td>
+</tr>
+</tbody>
+</table>
+ 
+
+この章で、[例のCRM設定ファイル]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)の制御内容のうち以下２つが判明しました。
+
+
+
+	
+  * 1. STONITHは無効です。
+
+	
+    * →stonith-enabled="false"のためです。
+
+
+
+
+	
+  * 2. 1回のリソース故障でF/Oします。自動フェイルバックはしません。
+
+	
+    * →migration-threshold="1"およびresource-stickiness="INFINITY"のためです。
+
+
+
+
+
+STONITHの設定(stonith-enabled)を除けば、だいたいおまじない的に覚えておけばよいでしょう。
+
+STONITHを有効にする場合については、別の機会に詳しく説明したいと思います。
+
+次のページで今回わかったことを実験で確認してみましょう。
+
+
+
+
+# ■実験
+
+
+migration-thresholdは何回故障したらフェイルオーバするかを指定するものでした。
+
+これを変更して、挙動が変わることを実験してみます。例のCRM設定が稼働している環境で、以下手順をやってみてください。
+
+
+## 手順1)故障発生
+
+
+Dummyリソースは/var/run/resource-agents/に空のファイルを作成し、それが存在するかどうかでリソースの稼働をmonitorしています。
+
+このファイルを削除するとわざと故障を発生させることができます。ここではresource1リソースを故障させてみます。
+
+    
+    <code>[root@pm01 ~]# ls /var/run/resource-agents/
+    Dummy-resource1.state  Dummy-resource2.state  Dummy-resource3:0.state
+    [root@pm01 ~]# rm /var/run/resource-agents/Dummy-resource1.state
+    rm: remove regular empty file `/var/run/resource-agents/Dummy-resource1.state'? y
+    </code>
+
+
+これを行うと、10秒以内にPacemakerは故障を検知し、F/Oを開始します。
+crm_mon -rfAを別のコンソールに表示させながら行うと、故障の検知～F/Oの動作をリアルタイムに把握することができます。
+
+
+## 手順2)F/O完了確認
+
+
+crm_monの表示が以下のようになればF/Oは完了です。
+
+    
+    <code>～略～
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+     Resource Group: grp
+         resource1  (ocf::heartbeat:Dummy): Started pm02 ★1
+         resource2  (ocf::heartbeat:Dummy): Started pm02 ★2
+     Clone Set: clnResource
+         Started: [ pm01 pm02 ]
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1                         : up
+        + pm02-eth2                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+        + pm01-eth2                         : up
+    
+    Migration summary:
+    * Node pm01:
+       resource1: migration-threshold=1 fail-count=1 ★3
+    * Node pm02:
+    
+    Failed actions:
+        resource1_monitor_10000 (node=pm01, call=8, rc=7, status=complete): not running ★4 
+    </code>
+
+
+★1、★2部分で、resource1,2が現在pm02で稼働していることがわかります。また★3、★4でresource1に故障があったことがわかります。
+手順1を**1回**実施し、dummy1、dummy2リソースがpm02へF/Oしたことが確認できました。
+
+
+## 手順3)migration-threshold変更
+
+
+次にexample01.crmのmigration-thresholdをmigration-threshold="2"と書き換え、同じことを実施してみます。
+
+書き換え後、前述のインストール手順5でPacemakerを一旦停止し、インストール手順2～4をもう一度実施し、新たなCRM設定ファイルを有効にしてください。
+
+その後、上記手順1をもう一度実行してください。いろいろごにょごにょPacemakerが反応したのちcrm_mon表示が以下のように落ち着くはずです。
+
+    
+    <code>～略～
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+     Resource Group: grp
+         resource1  (ocf::heartbeat:Dummy): Started pm01 ★1'
+         resource2  (ocf::heartbeat:Dummy): Started pm01 ★2'
+     Clone Set: clnResource
+         Started: [ pm01 pm02 ]
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1                         : up
+        + pm02-eth2                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+        + pm01-eth2                         : up
+    
+    Migration summary:
+    * Node pm01:
+       resource1: migration-threshold=2 fail-count=1 ★3'
+    * Node pm02:
+    </code>
+
+
+★1'、★2'でresource1,2リソースはpm01でまだ稼働していることがわかります。★3'でresource1の故障があったことがわかります。
+つまり1回の故障ではpm02へのF/Oは発生しなかったことになります。
+crm_mon表示をじっと見ていた方は気づいたかもしれませんが、上記表示に落ち着くまでに実はresource1,2リソースは一度再起動しています。migration-threshold回に達するまではリソース故障はリソース再起動で対処されるためです。
+
+
+## 手順4)故障（2回目）
+
+
+この状態でさらにもう一度resource1を故障させます。上記手順1をもう一度行ってください。
+crm_mon -rfA表示が以下のように落ち着くはずです。
+
+    
+    <code>～略～
+    Online: [ pm01 pm02 ]
+    
+    Full list of resources:
+    
+     Resource Group: grp
+         resource1  (ocf::heartbeat:Dummy): Started pm02 ★1"
+         resource2  (ocf::heartbeat:Dummy): Started pm02 ★2"
+     Clone Set: clnResource
+         Started: [ pm01 pm02 ]
+    
+    Node Attributes:
+    * Node pm01:
+        + pm02-eth1                         : up
+        + pm02-eth2                         : up
+    * Node pm02:
+        + pm01-eth1                         : up
+        + pm01-eth2                         : up
+    
+    Migration summary:
+    * Node pm01:
+       resource1: migration-threshold=2 fail-count=2 ★3"
+    * Node pm02:
+    
+    Failed actions:
+        resource1_monitor_10000 (node=pm01, call=14, rc=7, status=complete): not running ★4"
+    </code>
+
+
+★4"で故障が発生したことを、★3"の**fail-count=2**でそれが累積2回となったことを示しています。
+★1"、★2"でresource1,2がpm02で稼働していることがわかります。今度はresource1,2リソースがpm02へF/Oしました。
+
+migration-threshold="2"としたことで2回の故障でF/Oするようになったことが確認できました。
+
+今回はCRM設定ファイルの冒頭部分を読み解きました。
+次回以降では、適宜実験も行いつつそれ以降の部分を読み解いていきます。
+次回以降もおつきあいいただければ幸いです。

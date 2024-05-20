@@ -1,0 +1,108 @@
+---
+author: minky
+comments: false
+date: 2011-01-02 03:36:09+00:00
+layout: post
+permalink: /wp/archives/817
+slug: '%e6%9c%ac%e5%b9%b4%e3%82%82linux-ha-japan-project%e3%82%92%e3%82%88%e3%82%8d%e3%81%97%e3%81%8f%e3%81%8a%e9%a1%98%e3%81%84%e3%81%84%e3%81%9f%e3%81%97%e3%81%be%e3%81%99%e3%80%82'
+title: 本年もLinux-HA Japan Projectをよろしくお願いいたします。
+wordpress_id: 817
+categories:
+- その他
+---
+
+**みなさま、新年あけましておめでとうございます。**
+
+
+
+
+
+[](/wp/archives/817/%e8%ac%b9%e8%b3%80%e6%96%b0%e5%b9%b4)
+
+
+
+
+
+  
+
+
+
+
+
+
+[![](/assets/images/wp-content/ecd7529d7dff254b54e7d8ddacac8cb8-1024x640.jpg)](/wp/archives/817/%e8%ac%b9%e8%b3%80%e6%96%b0%e5%b9%b4)
+
+
+
+
+
+  
+
+
+
+
+
+
+昨年は、Pacemaker-1.0.10のリリース、RHEL6のリリースなど、いろいろと高可用クラスタ領域でも
+
+
+
+
+
+話題にことかきませんでした。
+
+
+
+
+
+  
+
+
+
+
+
+
+本年は、Corosync 2.0が出るのでは？と言うロードマップになっていたりと、
+
+
+
+
+
+引き続き本年も、応援キャラともども、Linux-HA Japan Projectをよろしくお願いいたします。
+
+
+
+
+
+  
+
+
+
+
+
+
+P.S     正月ネタではないのですが、[かよちゃん]({{ site.lhajp_resources_url }}/wp-content/KANA_OHAYO.mp3)と、[ころちゃん]({{ site.lhajp_resources_url }}/wp-content/Coro_OHAYO.mp3)の目覚ましボイス、置いておきます。
+
+
+
+
+
+転載等はなしで個人の範囲でご利用くだされ・・・・。
+
+
+
+
+
+P.S 2 引き続き、Gnomeのデスクトップテーマ作れる方募集中です。
+
+
+
+
+
+ML等でご連絡くださいまし。
+
+
+
+
+
+P.S 3 Mac用って、何作ればいいんでしたっけ？w ちょっと考えますw

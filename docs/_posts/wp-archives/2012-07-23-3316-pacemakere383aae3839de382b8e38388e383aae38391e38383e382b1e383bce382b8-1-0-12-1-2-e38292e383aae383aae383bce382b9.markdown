@@ -1,0 +1,36 @@
+---
+author: t-matsuo
+comments: false
+date: 2012-07-23 08:15:09+00:00
+layout: post
+permalink: /wp/archives/3316
+slug: pacemaker%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8-1-0-12-1-2-%e3%82%92%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9
+title: Pacemakerリポジトリパッケージ 1.0.12-1.2 をリリース
+wordpress_id: 3316
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+Pacemakerリポジトリパッケージ 1.0.12-1.2 をリリースしました。
+ベースとなるPacemakerのバージョンは前回と同じく 1.0.12-1 であり、
+付属パッケージを若干バージョンアップしています。
+以下のURL からダウンロードが可能です。
+
+RHEL6用
+[ http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469](http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469)
+
+RHEL5用
+[ http://sourceforge.jp/projects/linux-ha/releases/?package_id=11413](http://sourceforge.jp/projects/linux-ha/releases/?package_id=11413)
+
+なお、本バージョンに含まれるパッケージでは、以前 Linux-HA Japan のメーリングリストで
+話題となった以下の内容が含まれています。
+
+・ ldirectord が RHEL5上で動作しない
+[ http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2012-May/001162.html](http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2012-May/001162.html)
+
+・ PostgreSQL 9.1 レプリケーション構成への対応
+[ http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2012-April/001159.html](http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2012-April/001159.html)
+是非ご活用ください。

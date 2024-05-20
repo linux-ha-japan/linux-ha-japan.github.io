@@ -1,0 +1,143 @@
+---
+author: minky
+comments: false
+date: 2010-08-10 06:14:52+00:00
+layout: post
+permalink: /wp/archives/503
+slug: osc-2010-tokyofall-%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%be%e3%81%99%e3%80%82
+title: OSC 2010 Tokyo/Fall 参加します。
+wordpress_id: 503
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+Linux-HA Japan Projectでは、９月１０日・１１日に東京（日野市）で開催されるOSC2010 Tokyo/Fallに参加いたします。
+
+
+
+
+
+９月１０日（金） 11:15～12:00　DRBDと汎用IAサーバで作る高可用SANストレージ
+
+
+
+
+
+--- ライブマイグレーションをサポートする仮想化基盤への応用
+
+
+
+
+
+９月１０日（金） 16:15～17:00　Pacemakerを使いこなそう！ ～HAクラスタで止まらないサービスを～
+
+
+
+
+
+９月１１日（土） 11:15～12:00　挑戦！Pacemakerで自由自在にHAクラスタリング
+
+
+
+
+
+また、展示ブースでは、PacemakerとDRBDを用いたクラスタリングのデモを実施予定です。
+
+
+
+
+
+  
+
+
+
+
+
+
+都心からは少し離れておりますが、よろしければご参加頂ければ幸いです。
+
+
+
+
+
+### 配布物
+
+
+
+
+
+OSC2010/京都で配布した缶バッヂと、クリアファイルの在庫があるので引き続き東京でも配布いたします。
+
+
+
+
+
+また、缶バッヂは新しいデザインのものを2種類用意いたしました。数量に限りがありますので、在庫が無くなり次第配布を終了いたします。（各種25個です）
+
+
+
+
+
+[![](/assets/images/wp-content/20100901022710-150x150.jpg)](/assets/images/wp-content/20100901022710.jpg)[![](/assets/images/wp-content/20100901022711-150x150.jpg)](/assets/images/wp-content/20100901022711.jpg)
+
+
+
+
+
+※スペシャルサンクス※
+
+
+
+
+
+缶バッヂ制作＆デザイン：株式会社びぎねっと大内様（あっきー君）
+
+
+
+
+
+──────────────────────────────────
+
+
+
+
+
+□■□ --【オープンソースカンファレンス2010 Tokyo/Fall】-- □■□
+
+
+
+
+
+◆日時：2010年9月10日(金)・11日(土) 10:00-17:00
+
+
+
+
+
+◆入場：無料
+
+
+
+
+
+◆会場：明星大学 日野キャンパス（多摩モノレール 「中央大学・明星大学駅」から大学まで直結。会場まで徒歩5分）
+
+
+
+
+
+▼OSC2010 Tokyo/Fallトップページ　[http://www.ospn.jp/osc2010-fall/](http://www.ospn.jp/osc2010-fall/)
+
+
+
+
+
+▼セミナープログラム  
+
+ 1日目　[http://www.ospn.jp/osc2010-fall/modules/eventrsv/?id=1&noform=1](http://www.ospn.jp/osc2010-fall/modules/eventrsv/?id=1&noform=1)  
+
+ 2日目　[http://www.ospn.jp/osc2010-fall/modules/eventrsv/?id=2&noform=1](http://www.ospn.jp/osc2010-fall/modules/eventrsv/?id=2&noform=1)

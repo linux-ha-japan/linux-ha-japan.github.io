@@ -1,0 +1,47 @@
+---
+author: higashik
+comments: false
+date: 2013-10-22 08:39:47+00:00
+layout: post
+permalink: /wp/archives/3882
+slug: osc2013-tokyofall-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2013 Tokyo/Fall セミナー資料・アンケート結果公開
+wordpress_id: 3882
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+10月19日(土) / 10月20日(日)  に明星大学 日野キャンパスにて、開催された[オープンソースカンファレンス2013 Tokyo/Fall](http://www.ospn.jp/osc2013-fall/)にLinux-HA Japanも参加し、ブース展示および講演(19日17:15～)を行いました。
+あいにくの雨模様にもかかわらず、両日合わせ、約1300名ものOSS好きに参加いただき、大変盛り上がった2日間でした。
+
+講演は、[CRM-CLIでHAクラスタを自在に制御しよう！](https://www.ospn.jp/osc2013-fall/modules/eguide/event.php?eid=20)と題し、CRM設定ファイルの読み方の解説とデモを行いました。
+時間の都合でデモを１パターンしかお見せできませんでしたが、実は小ネタをあといくつかご用意していました。本サイトの記事等、別の機会にご紹介できればと思っています。(当日のデモと同様、実際の現場には役に立ちませんので悪しからず・・・)
+
+
+プレゼンテーション資料と、デモの設定ファイルを公開しますので、参考にしていただければと思います。
+
+
+
+
+
+  * セミナー資料：[CRM-CLIでHAクラスタを自在に制御しよう！]({{ site.lhajp_resources_url }}/wp-content/OSC2013TokyoFall.pdf)
+
+
+  * 設定ファイル（雷構成)：[demo01-thunder.crm]({{ site.lhajp_resources_url }}/wp-content/demo01-thunder.crm_.txt)
+
+
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。 (回答者39名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![osc2013tokyofall-qa01](/assets/images/wp-content/osc2013tokyofall-qa01.png)](/assets/images/wp-content/osc2013tokyofall-qa01.png)
+[![osc2013tokyofall-qa02](/assets/images/wp-content/osc2013tokyofall-qa02.png)](/assets/images/wp-content/osc2013tokyofall-qa02.png)
+[![osc2013tokyofall-qa03](/assets/images/wp-content/osc2013tokyofall-qa03.png)](/assets/images/wp-content/osc2013tokyofall-qa03.png)
+[![osc2013tokyofall-qa04](/assets/images/wp-content/osc2013tokyofall-qa04.png)](/assets/images/wp-content/osc2013tokyofall-qa04.png)
+[![osc2013tokyofall-qa05](/assets/images/wp-content/osc2013tokyofall-qa05.png)](/assets/images/wp-content/osc2013tokyofall-qa05.png)
+[![osc2013tokyofall-qa06](/assets/images/wp-content/osc2013tokyofall-qa06.png)](/assets/images/wp-content/osc2013tokyofall-qa06.png)
+[![osc2013tokyofall-qa07](/assets/images/wp-content/osc2013tokyofall-qa07.png)](/assets/images/wp-content/osc2013tokyofall-qa07.png)

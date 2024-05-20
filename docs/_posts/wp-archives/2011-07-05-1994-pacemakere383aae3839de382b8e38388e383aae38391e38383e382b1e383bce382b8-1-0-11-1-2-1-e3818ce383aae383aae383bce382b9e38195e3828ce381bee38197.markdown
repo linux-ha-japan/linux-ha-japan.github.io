@@ -1,0 +1,32 @@
+---
+author: takayukitanaka
+comments: false
+date: 2011-07-05 11:22:33+00:00
+layout: post
+permalink: /wp/archives/1994
+slug: pacemaker%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8-1-0-11-1-2-1-%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%be%e3%81%97
+title: Pacemakerリポジトリパッケージ 1.0.11-1.2.1 がリリースされました
+wordpress_id: 1994
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+7月5日付けで、Pacemakerリポジトリパッケージの最新バージョン pacemaker-1.0.11-1.2.1 がリリースされました。
+
+
+
+
+本バージョンでは、pacemakerやheartbeatなどの本体パッケージが一新されています。また要望の高かったRHEL6(x86_64)用も提供開始されました。
+
+
+
+
+RHEL/CentOS用のリポジトリパッケージ及びソースコード等のダウンロード、変更履歴は以下の Linux-HA Japanプロジェクト開発者向けサイトを参照ください。
+
+
+
+
+[http://sourceforge.jp/projects/linux-ha/releases](http://sourceforge.jp/projects/linux-ha/releases/)

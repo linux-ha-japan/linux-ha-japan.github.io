@@ -1,0 +1,44 @@
+---
+author: higashik
+comments: false
+date: 2014-08-13 07:28:11+00:00
+layout: post
+permalink: /wp/archives/4010
+slug: osc2014-kansaikyoto-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2014 Kansai@Kyoto セミナー資料・アンケート結果公開
+wordpress_id: 4010
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+8月1日(金)、2日(土) に京都リサーチパークにて開催された[オープンソース カンファレンス2014 Kansai@Kyoto](http://www.ospn.jp/osc2014-kyoto/) にLinux-HA Japanも参加し、ブース展示および講演を行いました。前回、前々回に引き続き猛暑を予想していましたが、以外にも曇天ですごしやすい気温の中の開催でした。しかし、会場内は熱気にあふれており、2日間合計約1200名もの方が集まりました。
+
+講演は、北海道のネタと同じ、[Pacemaker + PostgreSQLレプリケーション構成(PG-REX)のフェイルオーバー高速化](https://www.ospn.jp/osc2014-do/modules/eguide/event.php?eid=64)というタイトルで、PostgreSQLのレプリケーション機能とPacemakerを組み合わせたPG-REXというソリューションのご紹介と、その改善のカラクリを中心にお話ししました。
+
+セミナー資料を公開しますので、参考にしていただければと思います。
+
+
+
+
+	
+  * セミナー資料：[Pacemaker + PostgreSQLレプリケーション構成(PG-REX)のフェイルオーバー高速化](http://www.slideshare.net/kazuhcurry/osc2014-kyoto)
+
+
+
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。 
+訳あって、6月13日、14日に開催のOSC2014 Hokkaidoでのアンケートと合算しています。
+(回答者計51名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![osc2014hokkaido+kyoto-qa01](/assets/images/wp-content/a58ba46e7d955ab8d6e7788c0d7a00c0.png)](/assets/images/wp-content/a58ba46e7d955ab8d6e7788c0d7a00c0.png)
+[![osc2014hokkaido+kyoto-qa02](/assets/images/wp-content/40e837984ca5c248b701f863104eaf5a.png)](/assets/images/wp-content/40e837984ca5c248b701f863104eaf5a.png)
+[![osc2014hokkaido+kyoto-qa03](/assets/images/wp-content/674308b2963bd7456c9b7ee32a86332c.png)](/assets/images/wp-content/674308b2963bd7456c9b7ee32a86332c.png)
+[![osc2014hokkaido+kyoto-qa04](/assets/images/wp-content/0ede1995dfe03d0ac35bfe5f96b3ca41.png)](/assets/images/wp-content/0ede1995dfe03d0ac35bfe5f96b3ca41.png)
+[![osc2014hokkaido+kyoto-qa05](/assets/images/wp-content/5d52a9acc883c0f7d32282829a9bc556.png)](/assets/images/wp-content/5d52a9acc883c0f7d32282829a9bc556.png)
+[![osc2014hokkaido+kyoto-qa06](/assets/images/wp-content/6bf441665cf3bc11b87f7d81bf24af1c.png)](/assets/images/wp-content/6bf441665cf3bc11b87f7d81bf24af1c.png)
+[![osc2014hokkaido+kyoto-qa07](/assets/images/wp-content/459ca3be92e14fe753d75a7629ea8333.png)](/assets/images/wp-content/459ca3be92e14fe753d75a7629ea8333.png)

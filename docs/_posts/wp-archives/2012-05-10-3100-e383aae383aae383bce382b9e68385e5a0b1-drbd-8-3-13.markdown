@@ -1,0 +1,371 @@
+---
+author: ikedaj
+comments: false
+date: 2012-05-10 08:25:10+00:00
+layout: post
+permalink: /wp/archives/3100
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-drbd-8-3-13'
+title: リリース情報 (DRBD 8.3.13)
+wordpress_id: 3100
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年5月7日にDRBD 8.3.13がリリースされました！
+
+ということで、メーリングリストに投稿された[リリースノート](http://www.gossamer-threads.com/lists/drbd/users/23703)を意訳してみました。
+  
+
+
+
+
+<blockquote>
+Compared to 8.3.12 this release has only bug fixes, no new features. 
+</blockquote>
+
+
+
+
+<blockquote>
+今回のリリースはバグフィックスのみです。新規機能の追加はありません。
+</blockquote>
+
+
+
+
+
+<blockquote>
+It is worth noting that all previous DRBD-releases did not enforce correct ordering of (some) write operations on a resync-target node. 
+
+This can be triggered with the 'cfq' (and possible other) linux disk schedulers. -- It is known that when you stay with an DRBD release before 8.3.13 and switch the scheduler to 'noop', then it is no longer to reproduce the issue. 
+
+It is a rare condition, which is hard to trigger, it may causes corruption in the sense that it looks like if a single block write was not executed on the secondary. 
+(actually it was overwritten with the previous version of the data, this second write originates from the resync process.) 
+</blockquote>
+
+
+
+
+<blockquote>
+8.3.12以前のリリースでは「再同期処理の書込み順序に不整合が発生する」という症状が報告されていました。
+
+この症状は、LinuxカーネルのI/Oスケジューラを「cfq」に設定した環境で発生することが確認されています。
+8.3.12以前のリリースを使用する場合はI/Oスケジューラを「noop」に設定してください。
+
+この症状の発生条件は非常に限られていますが、セカンダリでデータの破損が発生する可能性があります
+(本来同期されるべき正しいデータではなく、再同期待ちをしていた古いデータが書き込まれる可能性があります。)
+</blockquote>
+
+
+
+
+* * *
+
+
+では、8.3.13の主な変更点を個別に紹介します。
+  
+
+
+
+<blockquote>
+ * Fixed a write ordering problem on SyncTarget nodes for a write to a block that gets resynced at the same time. 
+   The bug can only be triggered with a device that has a firmware that actually reorders writes to the same block 
+</blockquote>
+
+
+
+
+<blockquote>
+「再同期処理の書込み順序に不整合が発生する」という症状が報告が報告されていましたが、これを修正しました。
+このバグは特定のファームウェアを搭載したデバイスで発生することが報告されています。
+</blockquote>
+
+
+
+[参考情報(drbd-8.3.13rc1)](http://www.gossamer-threads.com/lists/drbd/announce/23568)
+DRBDは、プライマリに書き込まれたデータをセカンダリに同期しますが、同期用のネットワークが切断されると当然セカンダリへの同期処理は停止してしまします。ネットワーク障害が発生している間もプライマリへ書き込み処理を実行することはできるので、障害発生中はプライマリとセカンダリの差分が発生する可能性がありますが、ネットワークが復旧すると差分を解消するために再同期処理が実行されます。
+
+ここで、プライマリの特定ブロック(ブロックA)への書込み処理と、セカンダリの特定ブロック(ブロックA')への同期処理について考えてみましょう。セカンダリのブロックA'はプライマリのブロックAと同期している領域です。
+ネットワーク障害から復旧すると、セカンダリはプライマリのデータを再同期しますが、ちょうどブロックA'への再同期を実施しようとしたところで、プライマリのブロックAに新しい書き込みが発生したとします。
+このとき、セカンダリはブロックA'に対して、新しい書込みを同期した後に、古い書込み(ネットワーク障害で同期が遅れていたデータ)を再同期してしまうことがあったらしいのですが、今回のリリースでは正しい順序での書込みが保証されています。
+
+このバグはかなり限定された条件で発生するようなので、8.3.12以前のバージョンを使用している場合でもそれほど神経質になる必要もないと思います。冒頭でも述べられていますが、8.3.12以前のバージョンではI/Oスケジューラに「noop」を設定することが推奨されています。
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Fixed a race between disconnect and receive_state, that could cause a IO lockup 
+</blockquote>
+
+
+
+
+<blockquote>
+IO処理の競合が報告されていましたが、今回のリリースで修正されました。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Fixed resend/resubmit for requests with disk or network timeout 
+</blockquote>
+
+
+
+
+<blockquote>
+ディスクまたはネットワークが再接続されて、同期処理が再開するときの動作を修正しました。
+</blockquote>
+
+
+
+これかな？
+
+
+
+
+  * [drbd: fix resend/resubmit of frozen IO](http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=commit;h=8cdfb13850e5e352c1e809f8b648d65fb2fa1762)
+
+
+
+別のチェンジセット([drbd: Implemented real timeout checking for request processing time](http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=commit;h=74778e2c9bdbb2c172b4ca9536620dadfeccab19))で内部的なタイマーが追加されているのですが、このタイマーがタイムアウトしちゃうと再接続がうまくいっていなかったっぽい。
+  
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Make sure that hard state changed do not disturb the connection establishing process (I.e. detach due to an IO error). 
+   When the bug was triggered it caused a retry in the connect process 
+</blockquote>
+
+
+
+
+<blockquote>
+IOエラーに起因するdetach処理実行時に、ノード間の接続処理が妨げられるという症状を修正しました。
+このバグが発生すると、不要な接続処理が再試行される可能性があります。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Postpone soft state changes to no disturb the connection establishing process (I.e. becoming primary). 
+   When the bug was triggered it could cause both nodes going into SyncSource state 
+</blockquote>
+
+
+
+
+<blockquote>
+プライマリへ昇格する際に、ノード間の接続処理が妨げられるという症状を修正しました。
+このバグが発生すると、両ノードがSyncSource(同期元)状態となる可能性があります。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Fixed a refcount leak that could cause failures when trying to unload a protocol family modules, that was used by DRBD 
+</blockquote>
+
+
+
+これかな？
+
+
+
+
+  * [drbd: Fix module refcount leak in drbd_accept()](http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=commit;h=c2c2067c661c7cba213b0301e2b39f17c1419e51)
+
+
+
+drbd.confのaddressパラメータにはipv4, ipv6, ssocks, sdpを設定することができるのですが、これらのモジュールを参照する方法がなんかちょっと変だったみたいですね。
+DRBDのリソースを停止してもモジュールのアンロードができないという症状が修正されました。
+  
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Dedicated page pool for meta data IOs 
+</blockquote>
+
+
+
+
+<blockquote>
+メタデータ専用のページプールを確保します。
+</blockquote>
+
+
+
+これかな？
+
+
+
+
+  * [drbd: add page pool to be used for meta data IO](http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=commit;h=6f03626b7bb3a54db16918047c3106b0ce3d73f7)
+
+
+
+
+drbd_int.hに追加されたコメントを抜粋します。
+
+
+<blockquote>
++/* We also need a standard (emergency-reserve backed) page pool
++ * for meta data IO (activity log, bitmap).
++ * We can keep it global, as long as it is used as "N pages at a time".
++ * 128 should be plenty, currently we probably can get away with as few as 1.
++ */
+</blockquote>
+
+
+今まではメタデータ用に1ページ分しかメモリを確保できていなったようですが、128に増やしたのでたぶん大丈夫！っつー感じですかね。
+  
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Deny normal detach (as opposed to --forced) if the user tries to detach from the last UpToDate disk in the resource 
+</blockquote>
+
+
+
+
+<blockquote>
+UpToDate状態のディスクに対して、detach処理を実行できないようにしました。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Fixed a possible protocol error that could be caused by "unusual" BIOs. 
+</blockquote>
+
+
+
+
+<blockquote>
+異常なブロックIOに起因してプロトコルエラーが発生する可能性がありましたが、修正されました。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Enforce the disk-timeout option also on meta-data IO operations 
+</blockquote>
+
+
+
+
+<blockquote>
+メタデータ領域に対しても disk-timeoutオプションによるタイムアウトの設定が可能となりました。
+</blockquote>
+
+
+
+
+* * *
+
+
+
+
+<blockquote>
+ * Implemented stable bitmap pages when we do a full write out of the bitmap 
+</blockquote>
+
+
+DRBDはブロックの同期状態をbitmapのフラグで管理しているのですが、bitmapそのものの安定性が向上したっぽい。
+
+
+
+
+  * [drbd: use the newly introduced page pool for bitmap IO](http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=commit;h=6ffb299f85d69f2dd4c563859a3cb0e21669508b)
+
+
+
+alloc_page()が、mempool_alloc()に変更されています。
+mempool、なんぞ（・-・）？
+Google先生に教えを請うたところ
+
+
+<blockquote>
+mempoolは、初期化時に指定したバックエンドアロケータ（従来のslabアロケータやalloc_pageなど）を使用し、指定した数のメモリオブジェクトを常に保持しておくことによってある分量のメモリが常に確保できることを保証する。これにより、高負荷時の安定性の向上が期待される。
+</blockquote>
+
+
+だそうです。
+[参考：全貌を現したLinuxカーネル2.6［第1章］](http://www.atmarkit.co.jp/flinux/special/kernel26/kernel26_01c.html)
+  
+
+
+
+* * *
+
+
+DRBD 8.3.13のソースコードはLinbitのサイトからダウンロードすることができます。
+
+
+
+
+  * [drbd-8.3.13.tar.gz](http://oss.linbit.com/drbd/8.3/drbd-8.3.13.tar.gz)
+
+
+
+  * [git.drbd.org](http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=tag;h=refs/tags/drbd-8.3.13)
+
+
+
+
+Linbitの[有料サポートサイト](http://www.linbit.com/support/drbd-8.3.13/)からRPMをダウンロードすることもできます。

@@ -1,0 +1,56 @@
+---
+author: takayuki.sakamoto.xf
+comments: false
+date: 2020-02-05 08:28:54+00:00
+layout: post
+permalink: /wp/archives/4922
+slug: osc2020-osaka-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2020 Osaka セミナー資料・アンケート結果公開
+wordpress_id: 4922
+categories:
+- イベント情報
+- 読み物
+- その他
+---
+
+2020年1月24日(金)、25日(土)に大阪産業創造館にて開催された[オープンソースカンファレンス2020 Osaka](https://www.ospn.jp/osc2020-osaka/)においてブース展示及びセミナーで参加させていただきました。
+
+ブース展示・セミナーともにたくさんの方にお越しいただきありがとうございました。
+
+当日のセミナー資料を以下で公開いたします。
+
+**セミナープログラム:**
+
+
+
+ 	
+  * 2020-1-25(土) 14時00分
+**[検証におけるPacemaker ログ解析ノウハウ](https://www.ospn.jp/osc2020-osaka/modules/eguide/event.php?eid=16)**
+
+
+**セミナー資料:**
+
+
+
+ 	
+  * ** [検証におけるPacemaker ログ解析ノウハウ(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2020_Osaka.pdf)
+**
+
+
+また、展示ブースでのアンケートへのご協力ありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします(回答者計12名)。
+
+[![osc2020osaka-001](/assets/images/wp-content/osc2020osaka-001.png)](/assets/images/wp-content/osc2020osaka-001.png)
+
+[![osc2020osaka-002](/assets/images/wp-content/osc2020osaka-002.png)](/assets/images/wp-content/osc2020osaka-002.png)
+
+[![osc2020osaka-003](/assets/images/wp-content/osc2020osaka-003.png)](/assets/images/wp-content/osc2020osaka-003.png)
+
+[![osc2020osaka-004](/assets/images/wp-content/osc2020osaka-004.png)](/assets/images/wp-content/osc2020osaka-004.png)
+
+[![osc2019tokyo-fall_005](/assets/images/wp-content/osc2020osaka-005.png)](/assets/images/wp-content/osc2020osaka-005.png)
+
+[![osc2020osaka-006](/assets/images/wp-content/osc2020osaka-006.png)](/assets/images/wp-content/osc2020osaka-006.png)
+
+[![osc2020osaka-007](/assets/images/wp-content/osc2020osaka-007.png)](/assets/images/wp-content/osc2020osaka-007.png)
+
+[![osc2020osaka-008](/assets/images/wp-content/osc2020osaka-008.png)](/assets/images/wp-content/osc2020osaka-008.png)

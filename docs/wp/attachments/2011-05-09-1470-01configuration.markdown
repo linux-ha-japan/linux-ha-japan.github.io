@@ -1,0 +1,18 @@
+---
+attachment_url: /wp/wp-content/uploads/01configuration.swf
+author: kmii
+comments: false
+date: 2011-05-09 12:13:17+00:00
+excerpt: リソース定義ファイルをロードしたときの動作
+layout: post
+permalink: /wp/archives/1465/01configuration
+slug: 01configuration
+title: 01configuration
+wordpress_id: 1470
+---
+
+### [01configuration]({{ site.lhajp_resources_url }}/wp-content/01configuration.swf)
+
+リソースがなにも設定されていない状態から、PostgreSQLのHAクラスタ設定をロードします。
+
+# crm configure load update pg.crm

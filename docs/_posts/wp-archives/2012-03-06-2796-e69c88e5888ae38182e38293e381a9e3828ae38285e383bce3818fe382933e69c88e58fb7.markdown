@@ -1,0 +1,633 @@
+---
+author: ikedaj
+comments: false
+date: 2012-03-06 13:57:58+00:00
+layout: post
+permalink: /wp/archives/2796
+slug: '%e6%9c%88%e5%88%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%933%e6%9c%88%e5%8f%b7'
+title: 月刊あんどりゅーくん(3月号)
+wordpress_id: 2796
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+
+今年は閏年だから一日得したーと思っていましたが
+やっぱ二月は逃げ足はえーなおいまてこら
+ということで、今月もリリース情報と知恵袋です。
+
+
+**リリース情報**
+
+
+
+
+
+
+  1. Corosync 1.99.x
+
+
+
+  2. LCMC 1.3.0
+
+
+
+  3. libqb version 0.10.x
+
+
+
+  4. fence-virt 0.3.0
+
+
+
+
+1. Corosync 1.99.x
+
+Corosync v2に向けたベータ版がほぼ[スケジュール](http://lists.corosync.org/pipermail/discuss/2012-January/000622.html)通りにリリースされています。
+
+
+<blockquote>
+The schedule:
+Alpha          January 17, 2012     version 1.99.0
+Beta          January 31, 2012     version 1.99.1
+RC1          February 7, 2012     version 1.99.2
+RC2          February 14, 2012     version 1.99.3
+RC3          February 20, 2012     version 1.99.4
+RC4          February 27, 2012     version 1.99.5
+RC5          March 6, 2012          version 1.99.6
+Release 2.0.0     March 13, 2012          version 2.0.0
+</blockquote>
+
+
+アルファリリース(1月24日)
+[Corosync 1.99.0 (Alpha release of Needle 2.0) available at ftp.corosync.org!](http://lists.corosync.org/pipermail/discuss/2012-January/000824.html)
+
+
+<blockquote>
+Migrate to libqb (https://github.com/asalkeld/libqb/wiki)
+---------------------------------------------------------
+- Common features like IPC is now shared between Corosync and other
+projects, so it's probably better tested.
+- Corosync is now single threaded (with exception of logging), so no
+longer problems with deadlock, race conditions, ... Also IPC speed
+should be better
+</blockquote>
+
+
+
+
+
+
+  * IPC(プロセス間通信)のライブラリとして[libqb](https://github.com/asalkeld/libqb/wiki)を採用しました。
+
+
+
+  * ログ出力以外の処理はシングルスレッドで実行します。
+このためデッドロックや競合は発生しません。IPCの速度も向上しているはずです。
+
+
+
+  
+
+
+
+<blockquote>
+OBJDB/CONFDB replaced by ICMAP/CMAP
+-----------------------------------
+- Significantly simplified API
+</blockquote>
+
+
+
+
+
+
+  * OBJDB/CONFDBはICMAP/CMAPへ変更されました。
+なんかよくわかんないですけど、「simplified」って書いてあるからまあいいかな…？
+
+
+
+  
+
+
+
+<blockquote>
+Plugins are gone
+----------------
+- For creators of plugins it means, that code need to be built on top of CPG.
+</blockquote>
+
+
+
+
+
+
+  * CPG(Closed Process Group) APIを使用して、プロセスグループの単位でメンバシップを管理します。
+なお、現在のプラグインインタフェースは廃止されます。
+
+
+
+  
+
+
+
+<blockquote>
+Votequorum improved
+-------------------
+- Votequorum now contains almost all functionality of CMAN quorum
+- Many new features implemented (auto_tie_breaker, wait_for_all, ...)
+</blockquote>
+
+
+
+
+
+
+  * クォーラム機能のアレコレが取り込まれています。
+2.0.0がリリースされたら動作検証してみないと！
+
+この後も続々とベータ版がリリースされていますが、やはりクォーラム関連の機能追加は
+今回のリリースにおける大きな目玉の一つです。
+
+
+
+
+後続のベータリリース
+
+  * 1月31日
+[Corosync 1.99.1 (Beta release of Needle 2.0) available at ftp.corosync.org!](http://lists.corosync.org/pipermail/discuss/2012-January/000941.html)
+
+
+
+  * 2月7日
+[Corosync 1.99.2 (Second beta release of Needle 2.0) available at ftp.corosync.org!](http://lists.corosync.org/pipermail/discuss/2012-February/000990.html)
+
+
+
+  * 2月14日
+[Corosync 1.99.4 (Third beta release of Needle 2.0) available at ftp.corosync.org!](http://lists.corosync.org/pipermail/discuss/2012-February/001142.html)
+
+
+
+  * 2月22日
+[Corosync 1.99.5 (Fourth beta release of Needle 2.0) available at ftp.corosync.org!](http://lists.corosync.org/pipermail/discuss/2012-February/001189.html)
+
+
+
+  * 2月28日
+[Corosync 1.99.6 (Fifth beta release of Needle 2.0) available at ftp.corosync.org!](http://lists.corosync.org/pipermail/discuss/2012-February/001222.html)
+
+
+
+  * 3月6日
+[Corosync 1.99.7 (First release candidate of Needle 2.0) available at ftp.corosync.org!](http://lists.corosync.org/pipermail/discuss/2012-March/001274.html)
+
+
+
+あれ？
+1.99.3がどっかいったような気がするけどそれはきっと気のせいだ。
+
+
+2. LCMC 1.3.0
+
+LCMC version 1.3.0が[リリース](http://www.gossamer-threads.com/lists/linuxha/pacemaker/78414)されました。
+大きな機能追加はありませんが、ちょっとした使い勝手が改善されています。
+
+
+<blockquote>
+changelog:
+* implement quick-connect-to-the-cluster box
+* implement a ignore-defaults resource agent list
+* workaround for iSCSITarget RA
+* enable sudo checkbox if user is not root automatically
+* disable one-host cluster by default
+* add --one-host-cluster option
+* rewrite code that collects info from the cluster
+* fixes a null pointer exception while clicking on the host
+* implement multi selection
+</blockquote>
+
+
+
+
+
+
+  * 既存クラスタへの接続がもっと簡単に実行できるようになりました。
+
+
+
+  * 必要のないリソースエージェントのリストは無視できるようになりました。
+
+
+
+  * iSCSITarget RAを設定する際の不具合を回避しています。
+
+
+
+  * LCMCの実行ユーザがrootではない場合、sudoのチェックボックスが自動的に有効となります。
+また、SSHの接続やsudoコマンドの呼び出し回数をできるだけ減らしました。
+これらの操作はログを大量に出力していたので、今回のリリースではログの出力量も改善されています。
+
+
+
+  * 一台のノードによるクラスタの構成はデフォルトでは無効となります。
+
+
+
+  * 「--one-host-cluster 」オプションを追加しました。
+
+
+
+  * クラスタから情報を収集するコードを改善しました。
+
+
+
+  * ホストのアイコンをクリックしたときに「null pointer exception」が発生する動作を修正しました。
+
+
+
+  * 複数の項目を同時に選択できるようになりました。
+選択したい項目をマウスで囲むか、Ctrlキーを押しながらクリックしてみてください。
+例えば、複数のサービスを同時に選択して、一斉に他のノードへマイグレーションしたりすることができます。[スクリーンショット](http://sourceforge.net/apps/gallery/lcmc/index.php?g2_itemId=40)
+
+
+
+
+
+3. libqb version 0.10.x
+
+libqb version 0.10.0に続いて0.10.1がリリースされました。
+今回はバグフィックスリリースなので大きな機能追加、仕様変更などはありません。
+libqbはロギングやトレース、プロセス間通信、ポーリングなどの機能を提供するライブラリです。
+corosync, pacemaker, pacemaker-cloud, kronosnetなどのプロジェクトがlibqbを採用しています。
+
+
+  * 2月8日 [ANNOUNCE release 0.10.0](https://fedorahosted.org/pipermail/quarterback-devel/2012-February/000615.html)
+pacemaker-cloud関連のバグフィックスが含まれています。
+
+
+
+  * 2月14日 [ANNOUNCE release libqb-0.10.1](https://fedorahosted.org/pipermail/quarterback-devel/2012-February/000663.html)
+corosync関連のバグフィックスが含まれています。
+
+
+
+  
+
+  
+
+4. fence-virt 0.3.0
+
+fence-virt version 0.3.0が[リリース](https://www.redhat.com/archives/linux-cluster/2012-February/msg00031.html)されました。
+fence-virtとは、仮想環境でゲストのノードフェンシングを実現するための機能(パッケージ)です。
+PacemakerからSTONITHデバイスとして使用することができます。
+fence-virtはRed Hatの中の人(Lonさん)がごりごり開発しているので、
+最新版のRHELやFedoraで動作を試してみることができます。
+
+
+<blockquote>
+- Serial listener now can handle multiple domain starts/stops
+- Libvirt-qpid replaced with libvirt-qmf - QMFv2 management
+- A pacemaker backend is now available
+- Systemd integration
+- Deprecated cman/checkpoint plugin.
+- Easier to deploy on Fedora systems.
+</blockquote>
+
+
+
+
+
+
+  * LISTENER(serial)の動作が改善されました。
+ホストでfence_virtdを起動した「後に」、ゲストを起動すると
+ホストのfence_virtdがゲストからのフェンシングリクエストを
+うまく受け取れないという不具合が改善されました。
+
+
+
+  * QMFv2対応のBACKENDがlibvirt-qpidからlibvirt-qmfへ変更されました。
+
+
+
+  * Pacemaker対応のBACKENDが利用可能となりました。
+
+
+
+  * systemdに統合されました。
+
+
+
+  * cman/checkpointプラグインは廃止される予定です。
+
+
+
+  * Fedora環境で簡単に動作を確認することができるようになりました。
+
+
+
+fence-virtには「ホストとゲストの通信機能(LISTENER)」「フェンシング機能(BACKEND)」という
+二種類のプラグインがあります。
+これまでのバージョンでは、LISTENERはmulticast, serial、
+BACKENDはlibvirt, libvirt-qpid, checkpointが用意されていました。
+BACKENDは今後、pacemaker, libvirt-qpidd, ovirt, rhev対応のものをつくりまっせ！というのが
+[ここ](https://fedorahosted.org/cluster/wiki/FenceVirt)に書いてあるんですが、Pacemaker対応のBACKENDはイノウエさんが開発してくれましたよ！
+
+
+<blockquote>
+Contributors:
+  Zane Bitter    - QMFv2 backend & Misc Fixes
+  Kazunori INOUE - Serial listener enhancements for multiple machine start/stops Pacemaker backend
+</blockquote>
+
+
+
+あんどりゅーくんの[ClusterLab](http://www.clusterlabs.org/wiki/Guest_Fencing)にも使い方は紹介してありますが
+ここを見てもわかるように、Pacemakerとfence-virtを組み合わせて使うには、Pacemaker 1.1系以上が必要です。
+Linux-HA JapanではPacemaker 1.0系をお勧めしているので
+fence-virtそのものの説明や設定方法をご紹介する機会がなかなかないのですが
+近いうちに別冊あんどりゅーくんのネタにしようと思います。
+でもまだ0.3.0なんだなあ…。もちょっと数字が大きくなってるかと思いましたよ。
+先は長い。
+
+今月のリリース情報は以上です。
+
+
+
+**知恵袋**
+
+
+今回もPacemakerのメーリングに投稿された[話題](http://www.gossamer-threads.com/lists/linuxha/pacemaker/78306)に注目してみます。
+  
+
+まず、ha.cfにはnode-10, node-11の順にホスト名が記述されています。
+
+    
+    <code>
+    # cat /etc/ha.d/ha.cf | grep node
+    
+    node node-10
+    node node-11
+    </code>
+
+
+この状態で、node-10, node-11のHeartbeat/Pacemakerをほぼ同時に起動させます。
+crm_monコマンドを実行すると、ha.cfに記述された順序どおりにホスト名が表示されています。
+
+    
+    <code>
+    # crm_mon -1
+    ============
+    Last updated: Fri Mar  2 18:48:18 2012
+    Last change: Fri Mar  2 18:48:14 2012 via crmd on node-11
+    Stack: Heartbeat
+    Current DC: node-11 (22222222-2222-2222-2222-222222222222) - partition with quorum
+    Version: 1.1.6-b7534bd
+    2 Nodes configured, unknown expected votes
+    0 Resources configured.
+    ============
+    Online: [ node-10 node-11 ]
+    </code>
+
+
+で、ホスト名をちょっと変更してみた。
+
+    
+    <code>
+    # cat /etc/ha.d/ha.cf | grep node
+    
+    node 10-node
+    node 11-node
+    </code>
+
+
+すると、crm_monの表示結果がこんな感じになります。
+
+    
+    <code>
+    # crm_mon -1
+    ============
+    Last updated: Fri Mar  2 18:50:54 2012
+    Last change: Fri Mar  2 18:50:50 2012 via crmd on 10-node
+    Stack: Heartbeat
+    Current DC: 10-node (11111111-1111-1111-1111-111111111111) - partition with quorum
+    Version: 1.1.6-b7534bd
+    2 Nodes configured, unknown expected votes
+    0 Resources configured.
+    ============
+    Online: [ 11-node 10-node ]
+    </code>
+
+
+あれ？
+「Online」の後に表示されるノード名ってどういう順序で並ぶのが正しいんだっけ？
+というのがメーリングリストに投稿された質問の概要なのですが
+ノード名の表示される順序はha.cfの並び順ではなく、クラスタに参加したタイミング順です。
+ただし、上記の例では、11-nodeよりも10-nodeのほうがクラスタへ参加するタイミングが早かったことが
+ha-logから読み取れるので、タイミングとはまた別の要因もあることがわかります。
+  
+
+さて、そもそものノード名の取り出し処理についてですが
+Pacemakerは、メッセージングレイヤ(Heartbeat または Corosync)がやりとりする電文を解析して
+ノードの状態、リソースの状態を把握しています。
+ノード名もこの電文に含まれているのですが、
+「電文からノード名を取り出してディスクに書き込む」
+「ディスクに書き込まれた情報を構造体に保持する」
+という二段階の処理があります。
+  
+
+電文からノード名を取り出してディスクに書き込むまでの流れ
+
+
+
+
+  1. ハッシュテーブルをつくる(g_hash_table_new)
+
+
+
+  2. ハッシュテーブルにノード名を挿入する(g_hash_table_insert)
+
+
+
+  3. 完成したハッシュテーブルからノード名を取り出して(g_hash_table_foreach)、ディスク(cib.xml)に書き出す
+
+
+
+ディスクに書き込まれた情報を構造体に保持するでの流れ
+
+
+  1. ディスク(cib.xml)からノード名を取り出す(g_list_foreach)
+
+
+
+  2. 構造体に追加する(g_list_append)
+
+
+
+クラスタの状態が変化すると、差分情報が電文として送信されてきます。
+Pacemakerは差分情報をもとに状態遷移グラフを作成し、クラスタの状態遷移を実行します。
+状態遷移が完了した後に、最新のクラスタの状態をディスクへ書き込みます。
+  
+
+では、本題に戻りますが
+「電文からノード名を取り出してディスクに書き込む」
+「ディスクに書き込まれた情報を構造体に保持する」
+という処理をを簡略化した"Hello glib world!"を作ってみました。
+
+    
+    <code>
+    #include <stdio.h>
+    #include <glib.h>
+    
+    GList *list = NULL;
+    
+    void g_list_print(gpointer key)
+    {
+            printf("%s, ", (char *)key);
+    }
+    
+    void g_list_add(gpointer key)
+    {
+            list = g_list_append(list, (char *)key);
+    }
+    
+    int main(int argc, char *argv[])
+    {
+            GHashTable* hash = g_hash_table_new(g_str_hash, g_str_equal);
+            int i;
+            for (i = 1; i < argc; i++) {
+                    g_hash_table_insert(hash, argv[i], NULL);
+            }
+            g_hash_table_foreach(hash, (GHFunc)g_list_add, NULL);
+            g_list_foreach(list ,(GFunc)g_list_print, NULL);
+            g_list_free(list);
+            g_hash_table_destroy(hash);
+            return 0;
+    }
+    </code>
+
+
+コンパイルします。
+
+    
+    <code>
+    # gcc -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -lglib-2.0 -o hello_glib hello_glib.c
+    </code>
+
+
+では！Hello glib world!
+引数は、電文に含まれるであろうノード名っぽいナニカです。
+引数の並び順は、ノードがクラスタに参加する順序を擬似しています。
+実環境では数字だけのノード名はありえないかもしれませんが
+動作をわかりやすくするために二桁の数字を引数として与えてみました。
+
+    
+    <code>
+    # ./hello_glib 00 01 02 10 11 12
+    
+    11, 12, 00, 01, 02, 10,
+    </code>
+
+
+お？なんか順序が狂っちゃったな…。
+ノードがクラスタに参加した順序と構造体に保持された順序がどこかで狂っちゃってますね。
+g_hash_table_insert(), g_list_append()は順序どおりに値を挿入するはずなので
+もしかしてg_hash_table_foreach()のキー取り出しがやんちゃな感じ？
+glib、ムズカシーネー。
+ちなみにアルファベットも試してみたんですが、こちらはちゃんと順序どおりに取り出せてるっぽい。
+なので、node-a, node-b, node-c ... とかいうネーミングルールは意外にテッパンなのかもしれません。
+あんまりオシャレじゃないけど。
+
+で、あんどりゅーくん曰く、
+「g_list_append()じゃなくて、g_list_insert_sorted()にしとく？」
+ということなので、そっちも試してみました。
+
+    
+    <code>
+    #include <stdio.h>
+    #include <glib.h>
+    
+    GList *list = NULL;
+    <span style="color: #ff0000;">
+    static gint g_list_compare(
+            gconstpointer a,
+            gconstpointer b)
+    {
+            return (strcmp((char *)a, (char *)b));
+    }
+    </span>
+    void g_list_print(gpointer key)
+    {
+            printf("%s, ", (char *)key);
+    }
+    
+    void g_list_add(gpointer key)
+    {
+    <span style="color: #ff0000;">
+            //list = g_list_append(list, (char *)key);
+            list = g_list_insert_sorted(list, key, (GCompareFunc)g_list_compare);
+    </span>
+    }
+    
+    int main(int argc, char *argv[])
+    {
+            GHashTable* hash = g_hash_table_new(g_str_hash, g_str_equal);
+            int i;
+            for (i = 1; i < argc; i++) {
+                    g_hash_table_insert(hash, argv[i], NULL);
+            }
+            g_hash_table_foreach(hash, (GHFunc)g_list_add, NULL);
+            g_list_foreach(list ,(GFunc)g_list_print, NULL);
+            g_list_free(list);
+            g_hash_table_destroy(hash);
+            return 0;
+    }
+    </code>
+
+
+
+    
+    <code>
+    # gcc -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -lglib-2.0 -o hello_glib hello_glib.c
+    </code>
+
+
+
+    
+    <code>
+    # ./hello_glib 00 01 02 10 11 12
+    
+    00, 01, 02, 10, 11, 12,
+    </code>
+
+
+おお！ちゃんと順序どおりに並んでる(・∀・)ｲｲﾈ!
+こちらの変更、まだPacemaker 1.1系のリポジトリには取り込まれていませんがそのうち入れてくれるはず。
+Pacemaker 1.0系にもバックポート可能なので、Paceamker 1.0.13のリリース時に取り込み予定です。
+ちなみに、Pacemaker 1.0.11や1.0.12ではcrm_monに表示されるノード名が
+変なふうになっちゃう可能性がありますが、Pacemakerの動作自体には影響はないので
+「キモ！」と思いつつ見なかったふりをしてあげてください。
+
+次回は「月刊あんどりゅーくん(4月号)」…ってあれ？なんか同じタイトルの記事があるよね？
+かぶった＼(^o^)／
+まさか一年間続くとは思わなかったからこのへん全く気にしてなかったですよ。
+ということで、次回からは「リリース情報(パッケージ名, バージョン番号)」と
+「別冊あんどりゅーくん(第X号)」にタイトルを変更して、Linux-HAとその周辺のあれこれを
+不定期更新でご紹介しようと思います。
+今年度は月末更新を目標にしていましたが、そういや月末はエクセルバルスやし。
+稼動報告とか見積作成とか戦闘対象のエクセルが着々と増えているので
+まあここは自分に優しく不定期更新に逃げますYO！わーい。
+リリース情報はその都度更新したほうが実は楽なんじゃね？
+と思ってニヤニヤしているのはたぶん今だけで
+来月からは週一目安で逆切れしながらコレかいてるはずなのでなにとぞよろしく～。
+ちなみに別冊あんどりゅーくんのネタは随時募集中です。
+メーリングリストに投稿していただくが、Twitterで #linux_ha_jp のハッシュタグをつけて
+つぶやいていただければなんとかなるかもしれない。
+もちろん寄稿も大歓迎ですよ！！！
+  
+
+では、今月はこれにてどろん！εεεεεヾ(*´ー`)ﾉ
+どろんどろん

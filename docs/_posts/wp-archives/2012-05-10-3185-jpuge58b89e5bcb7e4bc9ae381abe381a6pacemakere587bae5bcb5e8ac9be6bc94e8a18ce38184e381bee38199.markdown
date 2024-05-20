@@ -1,0 +1,46 @@
+---
+author: takayukitanaka
+comments: false
+date: 2012-05-10 10:33:04+00:00
+layout: post
+permalink: /wp/archives/3185
+slug: jpug%e5%8b%89%e5%bc%b7%e4%bc%9a%e3%81%ab%e3%81%a6pacemaker%e5%87%ba%e5%bc%b5%e8%ac%9b%e6%bc%94%e8%a1%8c%e3%81%84%e3%81%be%e3%81%99
+title: JPUG勉強会にてPacemaker出張講演行います
+wordpress_id: 3185
+categories:
+- ニュース
+- イベント情報
+tags:
+- セミナー
+---
+
+※ JPUG勉強会の資料はこちらです→ [23回](/wp/archives/3244), [24回](/wp/archives/3404)
+
+[PostgreSQLのしくみ分科会+アプリケーション分科会さま](http://www.postgresql.jp/wg/shikumi/shikumi23/)からのご依頼により、 2012年5月26日(土曜日) に Pacemaker の出張講演を行います。
+参加申し込みなど詳細は、第23回しくみ＋アプリケーション勉強会の以下 URLを参照ください。
+
+ 
+
+**第23回しくみ＋アプリケーション勉強会URL**
+[http://www.postgresql.jp/wg/shikumi/shikumi23](http://www.postgresql.jp/wg/shikumi/shikumi23)
+
+**日時**
+2012年5月26日（土曜日）　受付開始 14:40 講演開始 15:00
+
+**場所**
+[産業技術大学院大学](http://aiit.ac.jp/view.rbz?cd=115)　4F ゼミ室 (東京都品川区東大井一丁目10番40号）
+
+**UStream & twitter**
+[http://www.ustream.tv/channel/jpug-shikumi](http://www.ustream.tv/channel/jpug-shikumi)　で中継予定です
+ハッシュタグ：　#jpug_study
+
+
+### **「HAクラスタでPostgreSQLを高可用化(前編) ～Pacemaker入門編～」**
+
+
+
+
+講演者： 田中 崇幸 (Linux-HA Japanプロジェクト)
+時刻： 15:55〜17:25
+概要：
+オープンソースであるHAクラスタソフトPacemakerを使用することによって、DB サーバを高可用化することが可能になります。前編では、PostgreSQLをAct/Standby方式としたHAクラスタ環境のデモを交えながら、Pacemakerの概要からインストール方法、設定方法、故障時も含めた運用方法等、Pacemakerの基本を入門編として解説いたします。

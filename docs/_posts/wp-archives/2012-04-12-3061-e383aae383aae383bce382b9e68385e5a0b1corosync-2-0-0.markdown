@@ -1,0 +1,472 @@
+---
+author: ikedaj
+comments: false
+date: 2012-04-12 06:50:34+00:00
+layout: post
+permalink: /wp/archives/3061
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1corosync-2-0-0'
+title: リリース情報 (Corosync 2.0.0)
+wordpress_id: 3061
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年4月10日にCorosync 2.0.0 がリリースされました！
+
+ということで、メーリングリストに投稿された[リリースノート](http://lists.corosync.org/pipermail/discuss/2012-April/001456.html)を意訳してみました。
+  
+
+
+
+
+<blockquote>
+[corosync] Announcing Corosync 2.0.0
+
+I am pleased to announce Corosync (Needle) 2.0.0 availability.
+A tarball is available immediately from our website at
+http://www.corosync.org.
+</blockquote>
+
+
+
+
+<blockquote>
+Corosync (Needle) 2.0.0がリリースされました。
+ソースコードは　Corosync のサイトからダウンロードすることができます。
+[http://www.corosync.org](http://www.corosync.org)
+</blockquote>
+
+
+
+
+
+<blockquote>
+The overall objective for the needle series is to simplify and refine 
+the code base to provide an enhanced user experience.  As part of this 
+objective, the Corosync team has decided to focus on a smaller amount of 
+well tested features.
+</blockquote>
+
+
+
+
+<blockquote>
+Corosync 2.x系をリリースするにあたり、ユーザからのフィードバックを反映して、シンプルかつ洗練されたコードへ改良することを大きな目標としました。また、開発チームが厳選し、十分にテストを実施した新機能もいくつか取り込まれています。
+</blockquote>
+
+
+
+
+
+<blockquote>
+Major changes and improvements:
+</blockquote>
+
+
+
+
+<blockquote>
+主な変更点と改良点は以下のとおりです。
+</blockquote>
+
+
+
+
+
+
+
+  * User visible changes
+
+
+
+
+    1. On-wire Compatibility
+
+
+    2. General
+
+
+    3. Encyrption & Authentication rework
+
+
+    4. New quorum infrastructure
+
+
+
+
+
+
+
+  * Internal / Developers / Package maintainer changes
+
+
+
+
+    1. Migrate to libqb
+
+
+    2. Plugins infrastructure removed
+
+
+    3. OBJDB/CONFDB replaced by ICMAP/CMAP
+
+
+    4. Service cleanup
+
+
+
+
+
+
+
+
+
+  * User visible changes
+
+
+
+
+
+<blockquote>
+On-wire Compatibility
+---------------------
+Corosync 2.x is NOT compatible with previous versions of Corosync (1.3/1.4).
+Please make sure to upgrade all nodes at once.
+</blockquote>
+
+
+
+
+<blockquote>
+Corosync 2.x系は、Corosync 1.3/1.4系と互換性がありません。
+バージョンアップをする場合は、クラスタに含まれる全てのノードをアップデートしてください。
+</blockquote>
+
+
+
+
+
+<blockquote>
+If need arise to run multiple Corosync cluster (in different versions) 
+on the same network, please make sure to tweak multicast address and 
+ports (or use udpu) to avoid overlaps.
+</blockquote>
+
+
+
+
+<blockquote>
+例えば、Corosync 1.3系のノードを二つ含むクラスタA、Corosync 2.x系のノードを二つ含むクラスタB、これら二つのクラスタを同一ネットワーク内で起動させたい場合は、クラスタ内の通信にはマルチキャストアドレスと特定ポート(もしくはUDPユニキャスト)を設定してクラスタ間で通信が混乱しないように注意してください。
+</blockquote>
+
+
+
+
+
+<blockquote>
+General
+-------
+- Nearly all man pages have been updated.
+- Integrate test suite into code base.
+- Improved code portability to different platforms such as Solaris and BSD.
+</blockquote>
+
+
+
+
+<blockquote>
+- [manページ](https://github.com/corosync/corosync/tree/master/man)が大幅に更新されています。
+- テストツールが統合されました。
+- SolarisやBSDへの移植性を考慮してコードを改良しました。
+</blockquote>
+
+
+
+
+
+<blockquote>
+Encyrption & Authentication rework
+----------------------------------
+- Consolidate the crypto infrastructure around nss library.
+This has the advantage of a large user base of FIPS certified encrytpion 
+and authentication but requires a hard b build requirement on the NSS 
+library if security is required in the deployment.
+</blockquote>
+
+
+
+
+<blockquote>
+暗号化と認証の仕組みを改良しました。
+nssライブラリ関連の暗号機構を強化しています。
+FIPS(Federal Information Processing Standardization)に準拠した暗号化と認証の仕組みを利用しているユーザには利点がありますが、実行環境でnssライブラリが必須となります。
+</blockquote>
+
+
+
+
+
+<blockquote>
+New quorum infrastructure
+-------------------------
+- Votequorum has been significantly reworked to match the functionality
+   of its predecessor (CMAN) and to add new features such as
+   auto_tie_breaker, wait_for_all and last_man_standing.
+- See votequorum.5 man page for details.
+</blockquote>
+
+
+
+
+<blockquote>
+votequorum関連のコードを大幅に改良しました。
+votequorumは、以前のバージョンで使用していたCMANと同様のクォーラム機能を提供します。
+
+さらに、次の機能が新たに追加されました。
+ 
+ - auto_tie_breaker
+ - wait_for_all
+ - last_man_standing
+
+詳細は[manページ(votequorum.5)](https://github.com/corosync/corosync/blob/master/man/votequorum.5)を参照してください。
+</blockquote>
+
+
+
+
+
+
+
+
+  * Internal / Developers / Package maintainer changes
+
+
+
+
+
+<blockquote>
+Migrate to libqb (https://github.com/asalkeld/libqb/wiki)
+---------------------------------------------------------
+libqb provides a common framework for IPC/logging and other 
+server/client oriented functionalities The libqb library provides a well 
+tested poll/ipc/logging library that is also used by other parts of the 
+cluster stack. One nice advantage of libqb is its extensive built-in 
+test suite which Corosync was lacking previously for these features.
+</blockquote>
+
+
+
+
+<blockquote>
+ポーリング機能や、IPC(プロセス間通信)、ロギングなどの実装にあたり、libqbというライブラリを採用しました。
+libqbは豊富なテストツールを備えており、Corosyncの品質向上にもつながるはずです。
+</blockquote>
+
+
+
+
+
+<blockquote>
+Plugins infrastructure removed
+------------------------------
+The plugin infrastructure was problematic and has been removed. If a 
+community user previously had a proprietary plugin, the Corosync 
+developers suggest porting that plugin to CPG.
+</blockquote>
+
+
+
+
+<blockquote>
+プラグイン機能は削除しました。
+以前のバージョンで独自のプラグインを使用していた場合はCPGへ移行することをお勧めします。
+</blockquote>
+
+
+
+
+
+<blockquote>
+OBJDB/CONFDB replaced by ICMAP/CMAP
+-----------------------------------
+The new cmap provides a high performance in-memory map for applications. 
+The map also provides configuration data for Corosync.
+</blockquote>
+
+
+
+
+<blockquote>
+OBJDB/CONFDBがICMAP/CMAPへ置き換えられました。
+CMAPを使用することによってパフォーマンスが向上しています。
+</blockquote>
+
+
+
+CMAPは設定ファイルのパラメータとか実行時のステータスとかを保持しているようです。
+
+
+
+
+  * [cmap_overview.8](https://github.com/corosync/corosync/blob/master/man/cmap_overview.8)
+
+
+
+  * [cmap_keys.8](https://github.com/corosync/corosync/blob/master/man/cmap_keys.8)
+
+
+
+
+  
+
+
+
+
+<blockquote>
+Service cleanup
+---------------
+Our simplification objective results in the removal or rework of a few 
+unused services.
+</blockquote>
+
+
+
+
+<blockquote>
+使用されていないサービスを削除しました。
+</blockquote>
+
+
+
+
+
+<blockquote>
+- EVS (removed)
+
+The  EVS service did not have significant user base and was only 
+partially implemented.  Users of EVS are advised to use CPG instead.
+</blockquote>
+
+
+
+
+<blockquote>
+EVSを削除しました。
+プラグイン機能と同様、CPGへ移行することをお勧めします。
+</blockquote>
+
+
+
+そもそもEVSってなんだっけ？ってとこからなんですが「Extended Virtual Synchrony」の略称のようです([参考](http://linux.die.net/man/8/evs_overview))。
+1対Nのメッセージング機能を持っていたようなんですが、どうもあんまり使われてなかったっぽいっていうか、中途半端にしか実装されてなかったような雰囲気もあり、そんなこんなで削除されちゃったんですかね。
+
+  
+
+
+
+<blockquote>
+- PLOAD (major cleanup)
+
+PLOAD is a test-only service. It is now loaded only on demand and 
+treated as test service.
+</blockquote>
+
+
+
+
+<blockquote>
+PLOADの大幅な見直しを行いました。
+PLOADはテスト用のトラフィックを生成するためのツールです。
+</blockquote>
+
+
+
+[corosync-pload](http://linux.die.net/man/8/corosync-pload)
+
+
+<blockquote>
+This is used as a test tool to generate traffic. 
+All nodes will begin transmitting messages and they will stop when 1500000 messages have been received per node.
+</blockquote>
+
+
+ノードあたり1500000件のメッセージを受信した際のパフォーマンスを測定することができるらしい。
+
+  
+
+
+* * *
+
+  
+
+
+
+
+<blockquote>
+My sincere thanks and congratulations to all those that contributed to
+the release of Corosync 2.0.
+</blockquote>
+
+
+
+
+<blockquote>
+Corosync 2.0のリリースに際しご協力いただいた皆様、ありがとうございました。
+</blockquote>
+
+
+
+
+さて、ユーザサイドとしては、これからが本番です。
+なんかこういう言い方するのもアレですが、今からバグ出し祭りが開催されて大騒ぎですね、きっと。
+Heartbeat 3.0系は送信可能なメッセージサイズの上限があるので、リソース数が増えたりノード数が増えたりといった大規模クラスタへの適応が難しかったのですが、Corosyncはそのへん得意なはず。
+いろいろ試してる人に聞いてみたところ、ノードの参加とか離脱とかの動作はやっぱCorosyncのほうが速いらしいんですわ。
+よし！ころちゃん！がんばれぇい！
+
+  
+
+そして、Corosync チームの陣頭指揮を執っているStevenくんも[ブログ](http://sdake.wordpress.com/2012/04/10/corosync-2-0-0-released/)でリリースまでの苦労を語っています。
+
+以下、Stevenくんの思いの丈を意訳。
+
+
+<blockquote>
+Corosync 1.0.0がリリースされた数週間後、開発チームは Corosync 2.0.0のリリースに向けて打合せを行ったのですが、その打合せで「Corosync の実装は複雑すぎる」という点が議論されました。
+つまり、スレッドやらセマフォやらミューテックスやらプロトコルやらプラグインやら、他にも使ってないサービスがあれこれあるし、互換性の問題とか暗号化の仕組みとか、もういろいろあって、なんじゃこりゃ！というのが正直な気持ちなわけです。
+開発チームは、総力をあげて実装を進めてきたつもりだし、開発に協力してくれたコミュニティのメンバもたくさんいたんですけどね。
+打ち合わせの結果、OpenAISからCorosyncへ移行したときと同じように、いいところは今のまま残しつつ、イマイチなところは思い切って切り捨てることにしました。
+
+つまり、
+
+マルチスレッドはもうやめちゃおう！
+互換性なんて気にしない！
+プラグインもいらないや！
+サポートされてない暗号化エンジンも捨てちゃえ！
+使ってないゴミみたいなコードも消しちゃおう！
+
+ということです。
+
+そして、Corosync 2.0.0の開発がはじまってすぐ後に、Angus Salkeldが素敵なアイデアを持ってきてくれました。
+それは、IPC、ロギング、タイマー、ポーリング、共有メモリ、その他いろいろな実装に関連するライブラリのアイデアだったのですが、そのライブラリはlibqbという新しいプロジェクトで開発されることになり、Corosyncもlibqbを使用することになりました。
+libqbの素晴らしいところは、テストツールも同梱しているところです。
+libqbのテストを十分に行うことによって、Corosyncの品質も保証されることになります。
+コードもかなりシンプルになりました。
+Coorsync本体のコードでは、プロトコル関連のAPIをかなり改良しています。
+
+Corosync 2.0.0は、開発チーム、そしてユーザの協力なしにはリリースできなかったことでしょう。
+特に、リリース関連の作業で素晴らしいリーダーシップを発揮してくれた Jan Friesse、
+libqbの開発を通してCorosyncの品質向上に貢献してくれた Angus Salkeld、
+Corosync本体のコードを見直してくれた Fabio Di Nitto
+(Fabioは、クォーラム周りのコードもかなり改良してくれています)、
+この三人がいなければ、今回のリリースは難しかったかもしれません。
+他にもたくさんの人たちの協力によって 無事Corosync 2.0.0をリリースすることができました。
+皆さん、本当にありがとう。
+
+そして、開発者の皆さん、お疲れ様でした！
+18ヶ月前の打ち合わせで設定した目標どおり、シンプルで高品質のパッケージをリリースすることができました。
+
+Corosync 2.0.0は Corosync の[サイト](http://www.corosync.org)からダウンロードすることができます。
+各ディストリビューションのリリースにあわせて、それぞれのリポジトリにも最新版のパッケージが取り込まれる予定です。
+</blockquote>

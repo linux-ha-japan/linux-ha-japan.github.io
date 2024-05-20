@@ -1,0 +1,479 @@
+---
+author: ikedaj
+comments: false
+date: 2011-09-02 16:15:18+00:00
+layout: post
+permalink: /wp/archives/2254
+slug: '%e6%9c%88%e5%88%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%939%e6%9c%88%e5%8f%b7'
+title: 月刊あんどりゅーくん(9月号)
+wordpress_id: 2254
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)あっという間に9月なわけですが
+来月に予定されていたクラスタ集会＠プラハは[中止](http://www.gossamer-threads.com/lists/linuxha/ha-wg/74482#74482)となりました。
+あんどりゅーくんも、ふぁびおくんも、ふろーりあんくんも
+主要な開発者が雁首そろえて「ごめーん、忙しーい」ということなので中止です。
+
+F2Fのミーティングは無理だけど、webinarとか使ってオンラインでミーティングしようね！と、らーすくんが言っているので、興味のある方はこちらにご参加ください。
+開催時間などが確定次第、メーリングリストなどでもご案内します。
+
+というわけで今月も
+
+(1) リリース情報
+(2) 知恵袋
+
+です。
+
+(1) リリース情報
+大きなリリースはありませんでしたが、あんどりゅーくんが着々とバージョンアップの準備を行っています。
+先日、Pacemakerのリポジトリにversion 1.1.6の[タグ](http://hg.clusterlabs.org/pacemaker/1.1/rev/9971ebba4494)がつきました。
+
+リリースの準備として、valgrindやcoverityを使用したコードチェックが実施されていますが、
+valgrindで以下3点のメモリリークが検知されています。
+
+[High: PE: Fix memory leak for re-allocated resources reported by valgrind](http://hg.clusterlabs.org/pacemaker/1.1/rev/89e7bf902cea)
+[Low: PE: Set the name of a xml node in the better way - Fix memory leak](http://hg.clusterlabs.org/pacemaker/1.1/rev/86412b8557d2)
+[High: PE: Resolve memory leak reported by valgrind ](http://hg.clusterlabs.org/pacemaker/1.1/rev/95907e375b7c)
+
+ただし、これらのコードはPacemaker 1.1.5のリリース後に混入しているので
+Pacemaker 1.1.5もしくは、Pacemaker 1.0.10, 1.0.11を使用している場合は影響ありません。
+Pacemaker 1.1.6のリリースに向けて、Pacemaker 1.0.12へのバックポートも開始されています。
+
+あ、そういえば、リリースといえば、こんなのもありました。
+
+[Announcing - the Assimilation monitoring system - a sub-project of Linux-HA](http://www.gossamer-threads.com/lists/linuxha/dev/74333)
+
+こんなのとかって言っちゃ悪いか…。
+これ作ってる、あらんって、Heartbeat本体をつくったエライ人なんですけどね…。
+どーも、あんどりゅーくんと相性が悪いというかなんというか(棒
+
+ちなみに、この「the Assimilation monitoring system」ですが、中身的には
+[matahari](http://matahariproject.org/)とか[pacemaker-cloud](http://pacemaker-cloud.org/)とだいぶかぶってるよね？という指摘もされており
+うーむ、あらんはこれからどこへ行こうとしているのか…。
+[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)(2) 知恵袋
+
+今月はcrmを使った設定のTipsをご紹介します。
+
+
+
+ 
+
+さて、こちらは、もういい加減見飽きた感のある仮想IPの設定ファイルですね。
+仮想IPが同じノードで2個(ip01,ip02)起動する設定です。
+<table style="width: 600px; background-color: #ffffcc; border: 0pt solid #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# cat sample01.crm**  
+
+property \
+no-quorum-policy="ignore" \
+stonith-enabled="false" \
+startup-fencing="false"
+
+rsc_defaults \
+resource-stickiness="INFINITY" \
+migration-threshold="1"
+
+primitive ip01 ocf:heartbeat:IPaddr2 \
+params \
+ip="192.168.200.1" \
+nic="bond0" \
+cidr_netmask="24" \
+op start interval="0s" timeout="60s" on-fail="restart" \
+op monitor interval="10s" timeout="60s" on-fail="restart" \
+op stop interval="0s" timeout="60s" on-fail="block" \
+
+primitive ip02 ocf:heartbeat:IPaddr2 \
+params \
+ip="192.168.200.2" \
+nic="bond0" \
+cidr_netmask="24" \
+op start interval="0s" timeout="60s" on-fail="restart" \
+op monitor interval="10s" timeout="60s" on-fail="restart" \
+op stop interval="0s" timeout="60s" on-fail="block" \
+
+group ip ip01 ip02
+</td>
+</tr>
+</tbody>
+</table>
+慣れてくると、timeoutって全部60sなんだから、まとめて設定したいなあ、とか
+ip01もip02も、opのところって結局はコピペじゃん、とか
+って思いますよね。
+
+実は、ある程度は設定をまるめちゃう（？）っていうのもできるんですな。
+
+第一段階として、オペレーションのtimeoutとon-failを共通化してみましょう。
+op_defaultsというパラメータを使用します。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# cat sample02.crm**  
+
+property \
+no-quorum-policy="ignore" \
+stonith-enabled="false" \
+startup-fencing="false"
+
+rsc_defaults \
+resource-stickiness="INFINITY" \
+migration-threshold="1"
+
+**op_defaults \**
+** timeout="60s" \**
+** on-fail="restart"**
+
+primitive ip01 ocf:heartbeat:IPaddr2 \
+params \
+ip="192.168.200.1" \
+nic="bond0" \
+cidr_netmask="24" \
+** op start \**
+** op monitor interval="10s" \**
+** op stop  on-fail="block" \**
+
+primitive ip02 ocf:heartbeat:IPaddr2 \
+params \
+ip="192.168.200.2" \
+nic="bond0" \
+cidr_netmask="24" \
+** op start \**
+** op monitor interval="10s" \**
+** op stop  on-fail="block" \**
+
+group ip ip01 ip02
+</td>
+</tr>
+</tbody>
+</table>
+opの行がちょっとすっきりしました。
+ここで、注意していただきたいのは、intervalの値です。
+start/stopにはinterval="0s"を設定する必要があるのですが
+intervalのデフォルトは「0」なので、上記の例では
+start/stopにはintervalを設定しなくても、デフォルト値が使用されます。
+op_defaultsでinterval="10s"を設定すると、その値はstart/stopにも引き継がれるので
+この場合は、start/stopで明示的にinterval="0s"を設定する必要があります。
+
+sample02.crmのように、op_defaultsを使用すると、関連するリソースのtimeoutを
+一斉に長く(もしくは短く)したいときとかに便利ですよね。
+
+第二段階として、$id, $id-refを使ってみましょう。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# cat sample03.crm**  
+
+property \
+no-quorum-policy="ignore" \
+stonith-enabled="false" \
+startup-fencing="false"
+
+rsc_defaults \
+resource-stickiness="INFINITY" \
+migration-threshold="1"
+
+op_defaults \
+timeout="60s" \
+on-fail="restart"
+
+primitive ip01 ocf:heartbeat:IPaddr2 \
+params \
+ip="192.168.200.1" \
+nic="bond0" \
+cidr_netmask="24" \
+** operations $id="ip01-setting" \**
+op start \
+op monitor interval="10s" \
+op stop on-fail="block" \
+
+primitive ip02 ocf:heartbeat:IPaddr2 \
+params \
+ip="192.168.200.2" \
+nic="bond0" \
+cidr_netmask="24" \
+** operations $id-ref="ip01-setting"**
+
+group ip ip01 ip02
+</td>
+</tr>
+</tbody>
+</table>
+$idを使用すると、ip01のop設定(start/monitor/stop)を"ip01-setting"というIDで参照できるようになります。
+この例では、ip02に$id-ref="ip01-setting"を指定して、ip01のop設定を参照しています。
+ip01,ip02のオペレーションが同じ場合は、だいぶ設定がすっきりしますね。
+
+今回の設定では、groupに含まれる2つのリソース間で設定を参照していますが
+group関係にないリソース同士や、異なるRA間でも設定を参照することができます。
+
+では、すっきりしたリソースを起動させてみます。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# crm configure load update sample03.crm**  
+
+**# crm_mon -1**
+
+============
+Last updated: Fri Sep  2 18:19:37 2011
+Stack: Heartbeat
+Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+2 Nodes configured, unknown expected votes
+1 Resources configured.
+============
+
+Online: [ node01 node02 ]
+
+Resource Group: ip
+ip01       (ocf::heartbeat:IPaddr2):       Started node01
+ip02       (ocf::heartbeat:IPaddr2):       Started node01
+</td>
+</tr>
+</tbody>
+</table>
+crm_monコマンドに-nオプションをつけると、ノードごとにリソースの状態を確認できますよ。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# crm_mon -1 -n**  
+
+============
+Last updated: Fri Sep  2 18:19:47 2011
+Stack: Heartbeat
+Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+2 Nodes configured, unknown expected votes
+1 Resources configured.
+============
+
+Node node01 (11111111-1111-1111-1111-111111111111): online
+ip02    (ocf::heartbeat:IPaddr2) Started
+ip01    (ocf::heartbeat:IPaddr2) Started
+Node node02 (22222222-2222-2222-2222-222222222222): online
+</td>
+</tr>
+</tbody>
+</table>
+node01で仮想IPが起動していることを確認します。ちゃんと起動していますね。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# ip addr show bond0**  
+
+8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue
+link/ether 00:17:08:7e:11:e2 brd ff:ff:ff:ff:ff:ff
+inet 192.168.200.43/24 brd 192.168.200.255 scope global bond0
+inet **192.168.200.1/24** brd 192.168.200.255 scope global secondary bond0
+inet **192.168.200.2/24** brd 192.168.200.255 scope global secondary bond0
+</td>
+</tr>
+</tbody>
+</table>
+ちなみに、crm onfigure loadの反対は、crm configure saveです。
+現在、クラスタが保持している設定情報をcrm形式でファイルに保存することができます。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# crm configure save /tmp/running.crm**  
+
+** # cat /tmp/running.crm**
+
+node $id="11111111-1111-1111-1111-111111111111" node01
+node $id="22222222-2222-2222-2222-222222222222" node02
+primitive ip01 ocf:heartbeat:IPaddr2 \
+params ip="192.168.200.1" nic="bond0" cidr_netmask="24" \
+operations $id="ip01-setting" \
+op start interval="0" \
+op monitor interval="10s" \
+op stop on-fail="block" interval="0"
+primitive ip02 ocf:heartbeat:IPaddr2 \
+params ip="192.168.200.2" nic="bond0" cidr_netmask="24" \
+operations  $id-ref="ip01-setting"
+group ip ip01 ip02
+property $id="cib-bootstrap-options" \
+dc-version="1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87" \
+cluster-infrastructure="Heartbeat" \
+no-quorum-policy="ignore" \
+stonith-enabled="false" \
+startup-fencing="false"
+rsc_defaults $id="rsc-options" \
+resource-stickiness="INFINITY" \
+migration-threshold="1"
+op_defaults $id="op-options" \
+timeout="60s" \
+on-fail="restart"
+</td>
+</tr>
+</tbody>
+</table>
+XMLが大好きな方は、xmlオプションをつけると楽しいですよ。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# crm configure save xml /tmp/running.xml**
+</td>
+</tr>
+</tbody>
+</table>
+さて、ipコマンドで仮想IPの起動は確認できたわけですが
+モニター処理ってちゃんと実行されてるのかな？というのを確認したい場合もあるかも？？
+そうそう、モニターの間隔を変更した後などには気になるかもしれません。
+ha-debugを目grepしていると、モニターの実行が「開始された」タイミングっていうのはわかるんですが
+モニターがintervalに設定した値でちゃんと「実行されている」かどうかはわかりません。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# tail -f /var/log/ha-debug**  
+
+★ ip01が起動
+**Sep  2 18:19:03 node01 lrmd: [11014]: info: rsc:ip01:4: start**
+Sep  2 18:19:03 node01 IPaddr2[11132]: INFO: ip -f inet addr add 192.168.200.1/24 brd 192.168.200.255 dev bond0
+Sep  2 18:19:03 node01 IPaddr2[11132]: INFO: ip link set bond0 up
+Sep  2 18:19:03 node01 IPaddr2[11132]: INFO: /usr/lib64/heartbeat/send_arp -i 200 -r 5 -p /var/run/resource-agents/send_arp-192.168.200.1 bond0 192.168.200.1 auto not_used not_used
+Sep  2 18:19:03 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip01_start_0 (call=4, rc=0, cib-update=16, confirmed=true) ok
+Sep  2 18:19:05 node01 crmd: [11017]: info: do_lrm_rsc_op: Performing key=10:3:0:579c6480-4f16-4bae-9373-a5d53631427d op=ip01_monitor_10000 )
+★ ip01のモニター処理が開始
+**Sep  2 18:19:05 node01 lrmd: [11014]: info: rsc:ip01:5: monitor**
+Sep  2 18:19:05 node01 crmd: [11017]: info: do_lrm_rsc_op: Performing key=11:3:0:579c6480-4f16-4bae-9373-a5d53631427d op=ip02_start_0 )
+★ ip02が起動
+**Sep  2 18:19:05 node01 lrmd: [11014]: info: rsc:ip02:6: start**
+Sep  2 18:19:05 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip01_monitor_10000 (call=5, rc=0, cib-update=17, confirmed=false) ok
+Sep  2 18:19:05 node01 IPaddr2[11191]: INFO: ip -f inet addr add 192.168.200.2/24 brd 192.168.200.255 dev bond0
+Sep  2 18:19:05 node01 IPaddr2[11191]: INFO: ip link set bond0 up
+Sep  2 18:19:05 node01 IPaddr2[11191]: INFO: /usr/lib64/heartbeat/send_arp -i 200 -r 5 -p /var/run/resource-agents/send_arp-192.168.200.2 bond0 192.168.200.2 auto not_used not_used
+Sep  2 18:19:05 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip02_start_0 (call=6, rc=0, cib-update=18, confirmed=true) ok
+Sep  2 18:19:06 node01 crmd: [11017]: info: do_lrm_rsc_op: Performing key=12:3:0:579c6480-4f16-4bae-9373-a5d53631427d op=ip02_monitor_10000 )
+★ ip02のモニター処理が開始
+**Sep  2 18:19:06 node01 lrmd: [11014]: info: rsc:ip02:7: monitor**
+Sep  2 18:19:06 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip02_monitor_10000 (call=7, rc=0, cib-update=19, confirmed=false) ok
+Sep  2 18:19:07 node01 lrmd: [11014]: info: RA output: (ip01:start:stderr) ARPING 192.168.200.1 from 192.168.200.1 bond0 Sent 5 probes (5 broadcast(s)) Received 0 response(s)
+Sep  2 18:19:09 node01 lrmd: [11014]: info: RA output: (ip02:start:stderr) ARPING 192.168.200.2 from 192.168.200.2 bond0 Sent 5 probes (5 broadcast(s)) Received 0 response(s)
+
+この後、沈黙
+</td>
+</tr>
+</tbody>
+</table>
+ha-debugからもわかるかと思いますが、リソースの制御を実行しているのはlrmdというプロセスです。
+
+Heartbeat関連のプロセスはごりっとこんな感じで起動するわけですが
+(DCノードではpengineプロセスも起動します)
+「master control process」っていうプロセスが親分さんでそれにつらなって、
+ccm,cib,lrmdなどが起動しています。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# pgrep -lf heartbeat**  
+
+**11004 heartbeat: master control process**
+11007 heartbeat: FIFO reader
+11008 heartbeat: write: bcast eth1
+11009 heartbeat: read: bcast eth1
+11012 /usr/lib64/heartbeat/ccm
+11013 /usr/lib64/heartbeat/cib
+11014 /usr/lib64/heartbeat/lrmd -r
+11015 /usr/lib64/heartbeat/stonithd
+11016 /usr/lib64/heartbeat/attrd
+11017 /usr/lib64/heartbeat/crmd
+11018 /usr/lib64/heartbeat/ifcheckd
+
+**# pstree 11004**
+
+heartbeat─
+┬─attrd
+├─ccm
+├─cib
+├─crmd
+├─3*[heartbeat]
+├─ifcheckd
+├─lrmd
+└─stonithd
+</td>
+</tr>
+</tbody>
+</table>
+今回は、lrmdのデバッグログの出力レベルをあげるためにプロセス名に対してSIGUSR1を投げます。
+この操作は実際にリソースが起動しているノードで実行してください。
+今回の例では、node01で実行しています。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# pkill -SIGUSR1 lrmd**
+</td>
+</tr>
+</tbody>
+</table>
+ha-debugに「begin to dump internal data for debugging.」というログが出力されます。
+(その以外にも、おえっていうくらいログがでます)
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# tail -f /var/log/ha-debug**  
+
+Sep  2 18:25:32 node01 lrmd: [11014]: debug: begin to dump internal data for debugging.
+</td>
+</tr>
+</tbody>
+</table>
+しばらく待っていると、お！ip01とip02のモニター処置がちゃんと10秒ごとに実行されてますね！
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# tail -f /var/log/ha-debug**  
+
+Sep  2 18:25:36 node01 lrmd: [11014]: debug: rsc:ip01:5: monitor
+Sep  2 18:25:38 node01 lrmd: [11014]: debug: rsc:ip02:7: monitor
+Sep  2 18:25:46 node01 lrmd: [11014]: debug: rsc:ip01:5: monitor
+Sep  2 18:25:48 node01 lrmd: [11014]: debug: rsc:ip02:7: monitor
+</td>
+</tr>
+</tbody>
+</table>
+デバッグログの出力レベルを元に戻す場合は、SIGUSR2を使います。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# pkill -SIGUSR2 lrmd**
+</td>
+</tr>
+</tbody>
+</table>
+ha-debugに「end to dump internal data for debugging.」というログが出力されます。
+<table style="width: 600px; background-color: #ffffcc;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #ffffcc;" >**# tail -f /var/log/ha-debug**  
+
+Sep  2 18:26:37 node01 lrmd: [11014]: debug: end to dump internal data for debugging.
+</td>
+</tr>
+</tbody>
+</table>
+デバッグログのレベルはSIGUSR1を投げた回数分深くなりますが、その分、出力量も増えるので
+せいぜい2回くらいでいいんじゃないかと。
+
+crmd,pengineなどもデバッグログを深くすることができます。
+ログの多さ、わかりにくさでは定評のあるぺーちゃんですが、
+障害解析時に「もうちょっとログがでるとわかるかもよ～」という気がするときはSIGUSR1してみてください。
+
+**では、今月はこれにてどろん！εεεεεヾ(*´ー`)ﾉ**
+気づいたら9月とかどういうことー。

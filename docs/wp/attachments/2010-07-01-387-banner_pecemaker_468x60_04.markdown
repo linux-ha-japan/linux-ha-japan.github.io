@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/banner_pecemaker_468x60_04.jpg
+author: t-matsuo
+comments: false
+date: 2010-07-01 03:58:24+00:00
+layout: post
+permalink: /wp/archives/369/banner_pecemaker_468x60_04
+slug: banner_pecemaker_468x60_04
+title: banner_pecemaker_468x60_04
+wordpress_id: 387
+---
+
+### [banner_pecemaker_468x60_04](/assets/images/wp-content/banner_pecemaker_468x60_04.jpg)

@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/logo_pacemaker_200x100.png
+author: t-matsuo
+comments: false
+date: 2010-07-01 03:33:04+00:00
+layout: post
+permalink: /wp/archives/369/logo_pacemaker_200x100
+slug: logo_pacemaker_200x100
+title: logo_pacemaker_200x100
+wordpress_id: 371
+---
+
+### [logo_pacemaker_200x100](/assets/images/wp-content/logo_pacemaker_200x100.png)

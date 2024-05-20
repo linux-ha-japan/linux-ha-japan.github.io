@@ -1,0 +1,185 @@
+---
+author: ikedaj
+comments: false
+date: 2012-10-29 05:59:08+00:00
+layout: post
+permalink: /wp/archives/3548
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-heat-v7'
+title: リリース情報 (Heat API v7)
+wordpress_id: 3548
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年10月23日に Heat API v7 が[リリース](http://lists.heat-api.org/pipermail/discuss/2012-October/000202.html)されました！
+
+
+
+<blockquote>
+Good news, everyone!
+The Heat developers are pleased to announce a new version (v7) of Heat.
+
+This version adds an OpenStack-native ReST API, so you'll never need to deal with RPC again. 
+But rest assured (uh, no pun intended) that we intend to continue to maintain and support the existing CloudFormation-compatible API indefinitely.
+
+Download Heat:https://github.com/heat-api/heat/downloads
+Try it out on Fedora 17:
+https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme
+Or Ubuntu 12.04:
+https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu
+</blockquote>
+
+
+
+
+<blockquote>
+みなさん、いよいよ Heat v7 がリリースされました！
+今回のリリースでは、OpenStack の ReST APIに対するサポートが追加されているので、もう RPC で苦労する必要はありません。
+既存の CloudFormation 互換の API も無期限にサポートする予定なので安心してください。
+( rest assured that の rest を ReST にひっかけてるのか…。日本語には訳せない微妙なおやじギャク？ )
+
+- [ダウンロードサイト](https://github.com/heat-api/heat/downloads)
+- [Fedora 17 向けドキュメント](https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme)
+- [Ubuntu 12.04 向けドキュメント](https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu)
+</blockquote>
+
+
+
+
+
+<blockquote>
+What's new in version 7:
+
+* An OpenStack-native ReST API
+- A platform for future innovation, unique to OpenStack.
+- Currently, support is limited to stack operations - support for Resources and Events is coming soon
+- Documentation at https://github.com/heat-api/heat/blob/master/docs/api.md#readme
+
+* CloudWatch-compatible Metric Collection
+- Running instances now report their metrics via Heat's 
+* CloudWatch-compatible API
+- Metric collection is now secure (authenticated/signed)
+
+* Fixes for integration with the Folsom versions of Keystone and Glance
+* A CLI option for fetching templates from Swift
+* Unit tests
+- More! Better! Faster!
+
+* heat-keystone-setup handles upgrades
+* Numerous bug fixes and enhancements
+</blockquote>
+
+
+
+
+<blockquote>
+version 7の新機能
+
+* OpenStack の ReST API に対応しました。
+- OpenStack に特化した革新的な技術基盤です。
+- 今回のリリースではスタック操作にのみ対応しています。リソースやイベントの操作も間もなく対応する予定です。
+- ドキュメントは[こちら](https://github.com/heat-api/heat/blob/master/docs/api.md#readme)
+
+* CloudWatch 互換のメトリックを取得できます。
+- 稼働中のインスタンスからHeat経由でメトリックを取り出すことができます。
+* CloudWatch 互換のAPIに対応しました。
+- メトリックの取得は認証機能も利用可能です。
+
+* Folsomに取り込まれたKeystoneおよびGlanceの新機能に対応しました。
+* Swiftからテンプレートを取得するためのCLIオプションを追加しました。
+* 単体テストを強化しました。
+- More! Better! Faster! (なんかいろいろ頑張った雰囲気は伝わってくる…)
+
+* heat-keystone-setup ツールを追加しました。
+* その他、たくさんのバグ修正および機能強化が取り込まれました。
+</blockquote>
+
+
+
+
+
+<blockquote>
+Upgrade Notes:
+
+Note that the implementation of cfn-push-stats has changed in this version, so you will need to rebuild your JEOS images using the latest 
+version of heat-jeos. Prebuilt images will be available as soon as we find somebody with write access to that repo.
+</blockquote>
+
+
+
+
+<blockquote>
+更新情報:
+
+今回のリリースでは、cfn-push-stats ツールの実装が変更されています。
+このため、最新の heat-jeos ツールを使用して、JEOSイメージを再作成する必要があります。
+ビルド済のイメージもまもなくリポジトリで公開する予定です。
+</blockquote>
+
+
+
+
+<blockquote>
+Also note that if you wish to use the features of the CloudWatch-compatible API (this means any templates that use HA or Autoscaling), you will need a firewall rule to allow instances access to that API (previously only access to heat-metadata was required). See the Getting Started guide for details.
+</blockquote>
+
+
+
+
+<blockquote>
+CloudWatch 互換の API を使用する場合、つまりHAまたはオートスケール機能を使用する場合は、ファイアウォールの設定に注意してください(heat-metadata のみがインスタンスにアクセスできるように設定してください)。
+詳細はドキュメント(上記の Fedora版、Ubuntu版)を参照してください。
+</blockquote>
+
+
+
+
+<blockquote>
+Keystone endpoints have also changed, so if you are upgrading from an existing version of heat, be sure to re-run the bin/heat-keystone-setup script.
+</blockquote>
+
+
+
+
+<blockquote>
+Keystoneのエンドポイントを変更しました。既存のHeatからバージョンアップを行う場合は、bin/heat-keystone-setup スクリプトを実行してください。
+</blockquote>
+
+
+
+参考情報リンク一覧
+
+
+
+     
+	
+    * [Heat Website](http://heat-api.org/)
+	
+
+	
+    * [GitHub](https://github.com/heat-api/heat#readme)
+	
+
+	
+    * IRC - #heat on FreeNode
+	
+
+     
+
+</blockquote>
+ 
+ 
+  
+
+  
+
+
+ 
+ * * *
+ 
+ 
+そろそろ OpenStack 関連の用語わからなさ度合いがMAX  ＼(^o^)／ ぃぇー
+とりあえず Fedora 17 のインストールからやってみっか ＼(^o^)／ ぃぇー
+自社の同じフロアにおぷすたな人達がきゃっきゃうふふしてるはずなんだがこの温度差は一体…

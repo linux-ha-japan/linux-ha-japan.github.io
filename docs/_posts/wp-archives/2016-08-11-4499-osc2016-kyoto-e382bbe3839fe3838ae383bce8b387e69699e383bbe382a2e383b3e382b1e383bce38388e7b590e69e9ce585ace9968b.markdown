@@ -1,0 +1,47 @@
+---
+author: khirata
+comments: false
+date: 2016-08-11 15:37:36+00:00
+layout: post
+permalink: /wp/archives/4499
+slug: osc2016-kyoto-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2016 Kyoto セミナー資料・アンケート結果公開
+wordpress_id: 4499
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- pacemaker
+- セミナー
+---
+
+#### 2年ぶりに夏本番のOSC京都に出展しました！
+
+
+7月29日(金),30日(土) に京都リサーチパーク(KRP)にて開催された [オープンソースカンファレンス2016 Kyoto](http://www.ospn.jp/osc2016-kyoto/) にLinux-HA Japanも参加し、ブース展示および講演を行いました。
+まさに“暑い夏の京都”でしたが、2日間で約1,000名の来場があり、Linux-HA Japanの展示ブースにもOSS初心者から経験者まで多くの皆さまにお越しいただき、ありがとうございました。
+
+講演は「[HAクラスタでできること！ Pacemakerの構築運用に役立つノウハウを紹介！](https://www.ospn.jp/osc2016-kyoto/modules/eguide/event.php?eid=47)」というタイトルで、Pacemakerを利用したシステムの保守運用に役立つ２つのツールを活用しながら、システム故障発生時の「クラスタシステムの動作」や「復旧手順」の考え方から、故障ケース毎の「動作検証方法」の実例まで、Pacemakerの構築運用の基本ノウハウを紹介させていただきました。
+以下にセミナーの資料を公開しますので、Pacemakerの構築運用に関わる理解を少しでも深めていただけたらうれしい限りです。
+
+
+
+
+  * セミナー資料： [HAクラスタでできること！ Pacemakerの構築運用に役立つノウハウを紹介！]({{ site.lhajp_resources_url }}/wp-content/OSC2016Kyoto.pdf)
+
+
+ 
+
+また、当日は展示ブースで多くの方にアンケートのご協力をいただき、ありがとうございました。
+アンケート結果を以下に公開します。
+(回答者計14名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![OSC2016Kyoto_Q1](/assets/images/wp-content/osc_kyoto2016_1.png)](/assets/images/wp-content/osc_kyoto2016_1.png)
+[![OSC2016Kyoto_Q2](/assets/images/wp-content/osc_kyoto2016_2.png)](/assets/images/wp-content/osc_kyoto2016_2.png)
+[![OSC2016Kyoto_Q3](/assets/images/wp-content/osc_kyoto2016_3.png)](/assets/images/wp-content/osc_kyoto2016_3.png)
+[![OSC2016Kyoto_Q4](/assets/images/wp-content/osc_kyoto2016_4.png)](/assets/images/wp-content/osc_kyoto2016_4.png)
+[![OSC2016Kyoto_Q5](/assets/images/wp-content/osc_kyoto2016_5.png)](/assets/images/wp-content/osc_kyoto2016_5.png)
+[![OSC2016Kyoto_Q6](/assets/images/wp-content/osc_kyoto2016_6.png)](/assets/images/wp-content/osc_kyoto2016_6.png)
+[![OSC2016Kyoto_Q7](/assets/images/wp-content/osc_kyoto2016_7.png)](/assets/images/wp-content/osc_kyoto2016_7.png)
+[![OSC2016Kyoto_Q8](/assets/images/wp-content/osc_kyoto2016_8.png)](/assets/images/wp-content/osc_kyoto2016_8.png)

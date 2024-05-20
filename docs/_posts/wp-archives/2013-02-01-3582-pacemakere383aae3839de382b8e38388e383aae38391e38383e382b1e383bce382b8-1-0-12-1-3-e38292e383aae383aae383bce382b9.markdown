@@ -1,0 +1,28 @@
+---
+author: t-matsuo
+comments: false
+date: 2013-02-01 07:15:43+00:00
+layout: post
+permalink: /wp/archives/3582
+slug: pacemaker%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8-1-0-12-1-3-%e3%82%92%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9
+title: Pacemakerリポジトリパッケージ 1.0.12-1.3 をリリース
+wordpress_id: 3582
+categories:
+- ニュース
+tags:
+- pacemaker
+- リリース情報
+---
+
+Pacemakerリポジトリパッケージ1.0.12-1.3をリリースしました。
+
+変更内容はjboss RAのバグフィックスのみです。
+jboss RAを使用していない環境では、アップデートは必要ありません。
+
+リリースノート、変更履歴の確認、およびパッケージのダウンロードは 以下のURLをご参考ください。
+
+RHEL6用
+[ http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469](http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469)
+
+RHEL5用
+[ http://sourceforge.jp/projects/linux-ha/releases/?package_id=11413](http://sourceforge.jp/projects/linux-ha/releases/?package_id=11413)

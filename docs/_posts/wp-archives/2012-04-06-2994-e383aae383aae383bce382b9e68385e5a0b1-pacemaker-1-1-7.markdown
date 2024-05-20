@@ -1,0 +1,456 @@
+---
+author: ikedaj
+comments: false
+date: 2012-04-06 08:55:41+00:00
+layout: post
+permalink: /wp/archives/2994
+slug: '%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e6%83%85%e5%a0%b1-pacemaker-1-1-7'
+title: リリース情報 (Pacemaker 1.1.7)
+wordpress_id: 2994
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+2012年3月29日にPacemaker 1.1.7 リリースされました！
+
+ということで、["The Cluster Guy"](http://theclusterguy.clusterlabs.org/post/20110630492/pacemaker-1-1-7-now-available)に掲載されたリリースノートに注釈を加えながら翻訳してみました。
+
+
+
+<blockquote>
+After much hard work, the latest installment of the Pacemaker 1.1 release series is now ready for general consumption.
+</blockquote>
+
+
+
+
+<blockquote>
+いろいろと大変なこともありましたが、ついにPacemaker 1.1.7をリリースします。
+</blockquote>
+
+
+後述の「変更点」にも挙げられていますが、Corosync 2.0への対応が大変だったようです。
+なお、2012年4月6日の時点ではCorosyncはv1.99.9がリリースされています。
+3月中に2.0がリリースされる予定でしたが、ちょっと遅れているみたいですね。
+
+
+
+<blockquote>
+Changesets          513
+Diff         
+
+1171 files changed,
+90472 insertions,
+19368 deletions
+</blockquote>
+
+
+
+
+<blockquote>
+チェンジセット合計数     513
+変更されたファイル数     1171
+追加行数                90472
+削除行数                19368
+</blockquote>
+
+
+
+
+<blockquote>
+As well as the usual round of bug fixes, see the full changelog,
+</blockquote>
+
+
+
+
+<blockquote>
+バグフィックスも含めた全てのチェンジログは[GitHub](https://raw.github.com/ClusterLabs/pacemaker/master/ChangeLog)で参照することができます。
+</blockquote>
+
+
+
+
+<blockquote>
+this new release brings:
+</blockquote>
+
+
+
+
+<blockquote>
+今回のリリースに含まれる大きな変更点をいくつか紹介します。
+</blockquote>
+
+
+
+
+
+
+  1. Support for Corosync 2.0
+
+
+
+  2. Logging optimisations (less of it and less work performed for logs that wont be printed)
+
+
+
+  3. The ability to specify that A starts after ( B or C or D )
+
+
+
+  4. Support for advanced fencing topologies: eg. kdump || (network && disk) || power
+
+
+
+  5. Resource templates and tickets have been promoted to the stable schema
+
+
+
+  6. Support for gracefully giving up resources depending on a ticket
+
+
+
+
+
+
+* * *
+
+
+1. Support for Corosync 2.0
+
+メッセージングレイヤとして Corosync 2.0 にも対応しました。
+
+・現在サポートされているメッセージングレイヤとクラスタマネージャの組み合わせ
+<table >
+<tbody >
+<tr >
+     
+<td >メッセージングレイヤ
+</td>
+     
+<td >クラスタマネージャ
+</td>
+</tr>
+<tr >
+     
+<td >Heartbeat 3.0.5
+</td>
+     
+<td >Pacemaker 1.0系
+</td>
+</tr>
+<tr >
+     
+<td >Corosync 1.4系
+</td>
+     
+<td >Pacemaker 1.0系
+</td>
+</tr>
+<tr >
+     
+<td >Heartbeat 3.0.5
+</td>
+     
+<td >Pacemaker 1.1.6
+</td>
+</tr>
+<tr >
+     
+<td >Corosync 1.4系
+</td>
+     
+<td >Pacemaker 1.1.6
+</td>
+</tr>
+<tr >
+     
+<td >Corosync 2.0
+</td>
+     
+<td >Pacemaker 1.1.7
+</td>
+</tr>
+</tbody>
+</table>
+
+なお、ここでPacemaker 1.0系と表記しているバージョンは
+Linux-HA Japanのリポジトリからダウンロード可能な1.0.11
+および、ClusterLabからダウンロード可能な1.0.12を指します。
+
+
+
+
+
+  * Pacemaker 1.0.11 [Linux-HA Japan](/wp/dl/packages)
+
+
+
+  * Pacemaker 1.0.12 [ClusterLab](https://github.com/ClusterLabs/pacemaker-1.0)
+
+
+
+
+これより古いバージョンを使用されている場合は、バージョンアップをお勧めします。
+Linux-HA JapanでもPacemaker 1.0.12のパッケージを準備中です！
+もうすぐダウンロードできるようになるらしいです。|_･)ﾁﾗｯ
+
+しかし、Corosync-1.99.9(= 2.0) と Pacemaker-1.1.7 の組み合わせでは
+リソースのモニター故障時にフェイルカウントがあがらないという症状([fail-count is not updated](http://www.gossamer-threads.com/lists/linuxha/pacemaker/79153))、
+が報告されています。
+Corosync 2.0に対応したよ！といいつつもCorosync 2.0 + Pacemaker 1.1.7 の組み合わせは
+まだちょっと微妙ですね…。
+また、Heartbeat-3.0.5とPacemaker-1.1.7の組み合わせでも
+on-failの設定が無効となる(デフォルト値のrestartが採用されてしまう)という症状([on-fail is not effective](http://www.gossamer-threads.com/lists/linuxha/pacemaker/79252))
+が報告されています。
+近いうちに Pacemaker 1.1.7-1 とか -2 とかがリリースされそうな気がします。
+
+ちなみに、Pacemaker 1.1系とCorosync 1.4系以上(2.0系を含む)を組み合わせて動作させる場合は、CorosyncとPacemaker、それぞれのinitスクリプトを実行する必要があります。
+
+[参考情報](http://theclusterguy.clusterlabs.org/post/907043024/introducing-the-pacemaker-master-control-process-for)
+
+起動手順
+
+    
+    
+    <code>
+    # service corosync start
+    # service pacemaker start</code>
+
+
+
+停止手順
+
+    
+    
+    <code>
+    # service pacemaker stop
+    # service corosync stop</code>
+
+
+
+また、Heartbeat 3.0.5とPacemaker 1.1.7を組み合わせて動作させる場合は、ha.cfに下記の設定を追加してください。
+
+    
+    
+    <code>
+    compression bz2
+    compression_threshold 30 
+    traditional_compression yes</code>
+
+
+compression_thresholdの設定値は各環境で調整する必要があります。
+
+参考情報
+[compression with heartbeat doesn't seem to work](http://www.gossamer-threads.com/lists/linuxha/pacemaker/74438)
+[traditional_compression - controls compression mode](http://linux-ha.org/wiki/Ha.cf#traditional_compression_-_controls_compression_mode)
+
+
+
+* * *
+
+
+2. Logging optimisations (less of it and less work performed for logs that wont be printed)
+
+ロギング処理の見直しを行いました。
+
+今まで info で出力されていたメッセージのレベルが debug へ変更されています。
+Pacemaker はちょっとアレなくらいログを吐くので、出力量が減ってきているのはありがたいのですが、リソースの実行状況を追跡するときに頼りにしていたあんなメッセージやこんなメッセージも debug に変更されてました T^T
+これって1.1.6で変更されてたのかなあ…気づかなかったよ…。
+
+[以前](/wp/archives/2254)にご紹介したこともありますが、プロセスにシグナルを送ることによって、そのプロセスだけデバッグレベルを変更することができます。
+
+デバッグレベルをあげる
+
+    
+    
+    <code>
+    # pkill -SIGUSR1 <プロセス名></code>
+
+
+
+デバッグレベルをさげる
+
+    
+    
+    <code>
+    # pkill -SIGUSR2 <プロセス名> </code>
+
+
+
+なお、ロギング処理には[libqb](https://github.com/asalkeld/libqb/wiki)が採用されていますが、Pacemaker 1.1.7のビルド時にlibqpは必須ではありません。
+Pacemaker 1.1.8以降はIPC(プロセス間通信)にもlibqpを採用しており、ビルド時の前提条件にも追加されるようです。
+[参考情報](http://www.gossamer-threads.com/lists/linuxha/pacemaker/79158#79158)
+
+
+
+* * *
+
+
+3. The ability to specify that A starts after ( B or C or D )
+
+リソースB または C または D のいずれかが起動した後に、リソースA を起動させるという複雑な順序制約の設定が可能となりました。
+[参考情報](https://github.com/ClusterLabs/pacemaker/pull/37)
+
+実際に試してみて、またご報告します。
+ふと思ったんですが、これってcrm shellとかLCMCとかでも設定できるようになってるのかな…。
+
+
+4. Support for advanced fencing topologies: eg. kdump || (network && disk) || power
+
+fencing-topology という設定が追加されています。
+
+
+<blockquote>
+High: Fencing: Implement support for advanced fencing topologies: eg. kdump || (network && disk) || power
+High: fencing: Add the fencing topology section to the 1.1 configuration schema
+</blockquote>
+
+
+
+リリースノートとChangesetの文面をみた感じだと、kdump、ネットワーク系STONITHとディスク系SOTNITH、電源系STONITH を複数組み合わせて設定できそうですね。
+OR条件で設定したSTONITHのどれかは必ず成功させてみる！といった感じなんでしょうか。
+
+Pacemaker 1.0系ではSTONITHにpriorityを設定して
+1番目のSTONITHが失敗したら、2番目のSTONITHに挑戦、
+2番目のSTONITHも失敗したら、3番目のSTONITHに挑戦
+といった風に複数のSTONITHを順番に呼び出すことができたのですが
+Pacemaker 1.1ではpriorityの設定ができなくなっていました。
+fencing-topologyはそれにかわるものなのか！？
+こちらも実際に動作を確認して、別冊あんどりゅーくんでご報告したいと思います。
+
+新しく追加されたスキーマを見てみると、indexに順番が指定できそうな予感。
+
+
+    
+    
+    <code>
+    # vim xml/fencing.rng
+    
+    <?xml version="1.0" encoding="utf-8"?>
+    <grammar xmlns="http://relaxng.org/ns/structure/1.0"
+             datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+      <start>
+          <ref name="element-stonith"/>
+      </start>
+      <define name="element-stonith">
+        <element name="fencing-topology">
+          <zeroOrMore>
+            <ref name="element-level"/>
+          </zeroOrMore>
+        </element>
+      </define>
+      <define name="element-level">
+        <element name="fencing-level">
+          <attribute name="id"><data type="ID"></data></attribute>
+          <attribute name="target"><text></text></attribute>
+          <attribute name="index"><data type="positiveInteger"></data></attribute>
+          <attribute name="devices">
+            <data type="string">
+              <param name="pattern">([a-zA-Z0-9_.-]+)(,[a-zA-Z0-9_.-]+)*</param>
+            </data>
+          </attribute>
+        </element>
+      </define>
+    </grammar></code>
+
+
+
+
+
+* * *
+
+
+5. Resource templates and tickets have been promoted to the stable schema
+6. Support for gracefully giving up resources depending on a ticket
+
+この二項目はちょっとまとめちゃいます。
+マルチサイトクラスタで使用する「チケット」の設定が導入されました。
+
+
+
+<blockquote>
+High: PE: Support to make tickets standby for relinquishing tickets gracefully
+High: Tools: crm_mon - Support to display tickets (based on Yuusuke Iida's work)
+High: Tools: crm_simulate - Support to grant/revoke/standby/activate tickets from the new ticket state section
+</blockquote>
+
+
+
+マルチサイトクラスタとは、通常のクラスタ、例えばActive/Standby構成の二台のノードを含むクラスタが遠隔地(サイト)に複数設置されている環境のことです。
+クラスタ内のノードはPacemakerで管理することができますが、遠隔地に設置されたサイト間は、クラスタチケットマネージャ、「booth」が管理します。
+boothは「チケット」と呼ばれる属性をサイトに発行します。
+チケットを持っているサイトだけがサービスを起動することができるので、遠隔地間でサービスが二重起動しないように制御することができます。
+なお、自動切り替えのためには3サイト以上必要です。
+2サイトの場合は手動での切り替えとなります。
+
+また、crm_monコマンドでチケットの情報が表示されるようになっています。
+crm_simulateコマンドもチケットに対応したようです。
+
+booth のソースコードは[こちら](https://github.com/ClusterLabs/booth)からダウンロードできます。
+
+
+
+* * *
+
+
+7. その他
+
+
+<blockquote>
+As per our release calendar, the next 1.1 release is planned for mid-July.
+</blockquote>
+
+
+
+
+<blockquote>
+今後の計画としては、Pacemaker 1.1.8 を7月中旬にリリースする予定です。
+</blockquote>
+
+
+
+
+<blockquote>
+Packages for all current editions of Fedora have been built and will be appearing shortly in the update channels.
+Other distributions will follow when their schedules allow it.
+</blockquote>
+
+
+
+
+<blockquote>
+Fedora用のRPMパッケージはまもなく開発用のリポジトリからダウンロードすることができるようになるはずです。
+その他のディストリビューションに関しては、それぞれのリリーススケジュールに従って配布されます。
+</blockquote>
+
+
+
+
+<blockquote>
+The source tarball (tar.gz) is also available directly from GitHub.
+</blockquote>
+
+
+
+
+<blockquote>
+ソースコードのtarボールは[GitHub](https://nodeload.github.com/ClusterLabs/pacemaker/tarball/Pacemaker-1.1.7)からダウンロードすることができます。
+</blockquote>
+
+
+
+
+<blockquote>
+General installation instructions are available at from the ClusterLabs wiki.
+</blockquote>
+
+
+
+
+<blockquote>
+インストール手順などはClusterLabsの[Wikiページ](http://clusterlabs.org/wiki/Install)を参照してください。
+</blockquote>

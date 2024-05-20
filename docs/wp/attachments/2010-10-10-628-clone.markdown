@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/clone.jpg
+author: t-matsuo
+comments: false
+date: 2010-10-10 07:36:26+00:00
+layout: post
+permalink: /wp/archives/576/clone
+slug: clone
+title: clone
+wordpress_id: 628
+---
+
+### [clone](/assets/images/wp-content/clone.jpg)

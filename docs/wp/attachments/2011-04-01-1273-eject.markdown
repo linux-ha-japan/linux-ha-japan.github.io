@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/eject.zip
+author: t-matsuo
+comments: false
+date: 2011-04-01 03:54:00+00:00
+layout: post
+permalink: /wp/archives/1272/eject
+slug: eject
+title: eject
+wordpress_id: 1273
+---
+
+### [eject]({{ site.lhajp_resources_url }}/wp-content/eject.zip)

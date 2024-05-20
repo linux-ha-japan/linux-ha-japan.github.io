@@ -1,0 +1,66 @@
+---
+author: takayukitanaka
+comments: false
+date: 2010-06-30 07:43:12+00:00
+layout: post
+permalink: /wp/archives/325
+slug: '%e3%82%aa%e3%83%bc%e3%83%97%e3%83%b3%e3%82%bd%e3%83%bc%e3%82%b9%e3%82%ab%e3%83%b3%e3%83%95%e3%82%a1%e3%83%ac%e3%83%b3%e3%82%b92010-hokkaido%e3%81%a7%e8%ac%9b%e6%bc%94%e3%81%97%e3%81%be%e3%81%97'
+title: オープンソースカンファレンス2010 Hokkaidoで講演しました。
+wordpress_id: 325
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+#### Linux-HA Japanプロジェクト初の北海道上陸！
+
+
+
+
+
+6月26日(土) 北海道札幌市で [オープンソースカンファレンス2010 Hokkaido](http://www.ospn.jp/osc2010-do/) が開催されました。この日は6月の北海道とは思えないほどの暑さにもかかわらず、会場は多数の来場者で賑わいました。
+
+
+
+
+
+Linux-HA Japanプロジェクトでは、展示ブースの開設と [「Pacemakerで簡単・手軽にクラスタリングしてみよう！」](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17) という題目でセミナーを行ってきました。
+
+
+
+
+
+セミナーは45分間という時間の中、つたない発表でPacemekerを伝えきれたかわかりませんが、興味を持って聞いてくださった方ありがとうございました。(次は [オープンソースカンファレンス2010  Kansai/Kyoto](http://www.ospn.jp/osc2010-kyoto/) で講演予定です)
+
+
+
+
+
+この時のプレゼンテーション資料を公開しますので、参考にしていただければと思います。
+
+
+
+
+
+  
+
+
+
+
+
+
+##### プレゼンテーション資料
+
+
+
+
+
+	
+  * [「Pacemaker で簡単・気軽にクラスタリングしてみよう！」 (osc2010-do)  
+
+ ](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2010Hokkaido_20100626/ja/1/Pacemaker_OSC2010Hokkaido_20100626.pdf)
+
+

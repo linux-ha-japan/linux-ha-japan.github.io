@@ -1,0 +1,128 @@
+---
+author: ikedaj
+comments: false
+date: 2012-10-15 06:49:00+00:00
+layout: post
+permalink: /wp/archives/3413
+slug: matahari-project-%e3%81%ae%e7%8f%be%e7%8a%b6%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6
+title: Matahari Project の現状について
+wordpress_id: 3413
+categories:
+- 読み物
+tags:
+- リリース情報
+---
+
+しばらくさぼっていましたが9月分のリリース情報をまとめて投稿します！
+
+2012年9月3日にMatahari Projectから[悲しいお知らせ](https://lists.fedorahosted.org/pipermail/matahari/2012-September/002331.html)が（ＴДＴ）
+
+
+
+<blockquote>
+As will be evident to those of you who have been subscribed to this list for a while, I am not working on Matahari and nor is anybody else at Red Hat. There are no plans to put any more work into the project.
+</blockquote>
+
+
+
+
+<blockquote>
+このメーリングリストを購読しているみなさんはもう気付いていることかもしれませんが、私を含め、Red Hatの関係者はMatahariの開発に携わってはいません。そしてプロジェクトの今後についてはまだ何も決まっていません。
+</blockquote>
+
+
+
+
+
+<blockquote>
+The primary reason for this is the lack of end-to-end authentication in the Matahari architecture. Conversations with colleagues and potential users alike have repeatedly shown that the access control and auditing capabilities that this would allow are essential to adoption. 
+However, the effort required to retrofit it into QMF is prohibitive.
+</blockquote>
+
+
+
+
+<blockquote>
+プロジェクトがこのような状態に陥ってしまった一番の原因は、Matahariのアーキテクチャに認証機能が不足していたためです。アクセス制御と監査機能について、同僚やユーザと繰り返し議論してきましたが、これらの機能をQMFへ組み込むことは極めて困難です
+</blockquote>
+
+
+
+
+
+<blockquote>
+As I understand it (this was well before my time), the project began as a proof-of-concept for an RPC messaging system, presumably with the idea that a security model could be bolted on later. 
+Based on lessons learned from Matahari, I would recommend that anybody undertaking a similar endeavour begin with a proof-of-concept of a security model that is easy to configure and bolt on RPC later. Security is the _core_ problem in a remote management system.
+</blockquote>
+
+
+
+
+<blockquote>
+このプロジェクトは信頼性のあるRPCメッセージングシステムを実現するためにはじめられた、というのが私の理解であり、セキュリティに関連する議論は、おそらく後から追加されたのだと思います。
+Matahariと似たようなリモート管理システムに取り組もうとする開発者はまず、セキュリティモデルの簡易版を完成させてから、RPCの設計を行うことをお勧めします。セキュリティはリモート管理システムの、まさに「核」となる問題なのです。
+</blockquote>
+
+
+
+
+
+<blockquote>
+Sadly, I am not aware of any remote management frameworks that replicate the bus architecture of Matahari. 
+Thanks largely to the Web, we live in very much a client-server world, and it may be some years before the pendulum begins to swing back. 
+In the meantime, I expect that system configuration tools (such as Puppet and Chef) that rely on pull rather than push will continue to be prominent.
+</blockquote>
+
+
+
+
+<blockquote>
+残念ながら、Matahariのバスアーキテクチャと同じようなリモート管理フレームワークが他に存在するのかどうかはわかりません。
+インターネットを通じて、私たちはクライアントサーバシステムの恩恵を受けていますがこのようなシステムの動向は何年かごとに振り子がめぐってくるようなものなのかもしれませんし、push型ではなくpull型のシステム構成ツール(例えば、PuppetやChefなど)も注目されるのかもしれません。
+(注：すいません、なんかこの文節ちょっと意味不明…？)
+</blockquote>
+
+
+
+
+
+<blockquote>
+Fedora users may wish to checkout cura: https://fedorahosted.org/cura/
+</blockquote>
+
+
+
+
+<blockquote>
+Fedoraを使用している人は[Cura Prohec](https://lists.fedorahosted.org/pipermail/matahari/2012-September/002331.html)もチェックしてみてください。
+（注：Matahariと似た子なのかなあと思いきや、んーまあなんかいまさら的な？）
+</blockquote>
+
+
+
+
+
+<blockquote>
+If anybody wishes to continue development on Matahari they are, of course, quite welcome to do so (subject to the existing GPLv2+ licence), 
+and I will be happy to assist with the transition. The mailing list will remain available until I get sick of dealing with the daily spam filtering ;)
+
+regards,
+Zane.
+</blockquote>
+
+
+
+
+<blockquote>
+Matahariの開発を引き継ぎたいという方がいらっしゃるのであればもちろん大歓迎です(ライセンスはGPLv2+です)。喜んで引き継ぎのお手伝いもします。
+このメーリングリストもスパム攻撃でうざくなるまでは、このまま使えるようにしておきますね ;)
+</blockquote>
+
+
+
+
+* * *
+
+
+ということで、どなたか引き継ぎを希望される方～。
+Red HatのZaneさん(zbitter at redhat.com)にご連絡くだされ～。

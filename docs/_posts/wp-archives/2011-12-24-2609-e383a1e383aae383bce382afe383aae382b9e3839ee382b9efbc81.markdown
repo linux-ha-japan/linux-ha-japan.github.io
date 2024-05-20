@@ -1,0 +1,30 @@
+---
+author: bellche
+comments: false
+date: 2011-12-24 05:13:10+00:00
+layout: post
+permalink: /wp/archives/2609
+slug: '%e3%83%a1%e3%83%aa%e3%83%bc%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%ef%bc%81'
+title: メリークリスマス！
+wordpress_id: 2609
+categories:
+- ニュース
+- イベント情報
+- その他
+---
+
+メリークリスマスー！
+
+Linux-HA Japanより、みなさまへプレゼントを投下します。
+
+
+
+
+
+■2012年Linux-HA Japan活動予告動画
+
+[http://youtu.be/VIlMzbEHMKQ
+](http://youtu.be/VIlMzbEHMKQ)
+公開録音はまだ予定です！
+
+実現には皆さんのご協力とご支援が不可欠なのでみんな応援してください。

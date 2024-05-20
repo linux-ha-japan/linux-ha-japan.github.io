@@ -1,0 +1,87 @@
+---
+author: bellche
+comments: false
+date: 2011-02-08 05:26:10+00:00
+layout: post
+permalink: /wp/archives/930
+slug: drbd-mc%e3%81%8c%e6%97%a5%e6%9c%ac%e8%aa%9e%e3%83%aa%e3%82%bd%e3%83%bc%e3%82%b9%e5%af%be%e5%bf%9c%e3%81%a8%e3%81%aa%e3%82%8a%e3%81%be%e3%81%99%e3%80%82
+title: DRBD-MCが日本語リソース対応となります。
+wordpress_id: 930
+categories:
+- ニュース
+- リリース情報
+tags:
+- DRBD
+- DRBD-MC
+---
+
+Linbit社からリリースされている、Linux-HAのGUIによる管理ソフト「DRBD-MC」（DRBD Management Console）の日本語パッチがコミットされました。
+
+
+
+
+
+Linux-HA Japanに参加している株式会社サードウェアがDRBD-MCの日本語リソースと、日本語に対応するためのパッチを作成し、これが次期バージョンより適用される形となります。
+
+
+
+
+
+是非使ってみてください。
+
+
+
+
+
+[![](/assets/images/wp-content/Screenshot-DRBD-Management-Console-0.8.12-1-300x205.png)](/assets/images/wp-content/Screenshot-DRBD-Management-Console-0.8.12-1.png)
+
+
+
+
+
+■DRBD-MCで出来ること
+
+
+
+
+
+
+	
+  * Linux-HA 環境のインストール設定
+
+	
+  * Linux-HA 環境の操作
+
+	
+  * DRBDのインストールと設定
+
+	
+  * DRBDの制御
+
+	
+  * その他便利機能がいっぱい♪
+
+
+
+
+
+■DRBD-MCページ
+
+
+
+
+
+→ [http://www.drbd.org/mc/management-console/](http://www.drbd.org/mc/management-console/)
+
+
+
+
+
+  
+
+
+
+
+
+
+[![](/assets/images/wp-content/Screenshot-DRBD-Management-Console-0.8.12-300x205.png)](/assets/images/wp-content/Screenshot-DRBD-Management-Console-0.8.12.png)

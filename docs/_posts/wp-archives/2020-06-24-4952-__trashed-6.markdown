@@ -1,0 +1,174 @@
+---
+author: ksk
+comments: false
+date: 2020-06-24 04:00:59+00:00
+layout: post
+permalink: /wp/archives/4952
+slug: __trashed-6
+title: pm_extra_tools-1.0-1 リリースノート
+wordpress_id: 4952
+categories:
+- リリース情報
+tags:
+- リリース情報
+---
+
+
+
+pm_extra_tools パッケージは Pacemaker-2.0系用の追加ツールをパッケージしたものです。 RHEL 8 High Availability Add-On(以下 HA Add-On) / CentOS 8 に同梱されている Pacemaker-2.0系 と組み合わせて利用します。
+
+
+
+* * *
+
+
+
+
+
+## 1. リリースノート
+
+
+pm_extra_tools-1.0-1 をリリースしました(2020/06/24)。
+
+今回のリリースは pm_extra_tools の最初のリリースです。
+
+従来 Linux-HA Japan コミュニティでは、Pacemaker-1.1系リポジトリパッケージという形でPacemaker本体も全て含めたパッケージのリリースを行ってきましたが、Pacemaker-2.0系以降では追加ツール類のみをパッケージしリリースを行うことにしました。詳細は「参考情報」の [OSC2020 Tokyo/Spring セミナー資料 Linux-HA Japan プロジェクトのこれまでとこれから](/wp/archives/4942) を参照してください。
+
+
+
+* * *
+
+
+
+
+
+## 2. ダウンロード
+
+
+pm_extra_tools パッケージは以下のページよりダウンロードできます。
+
+
+
+ 	
+  * ダウンロードURL
+
+ 	
+    * [pm_extra_tools-1.0-1 リリース](https://osdn.net/projects/linux-ha/releases/73171)
+
+
+
+
+ 	
+  * 動作条件
+
+ 	
+    * RHEL 8.1 HA Add-On / CentOS 8.1911
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+## 3. 使い方
+
+
+pm_extra_tools を利用するには、あらかじめ Pacemaker をインストールする必要があります。Pacemaker のインストール方法は「参考情報」の項などを参照してください。
+
+pm_extra_tools に含まれるツールとその使い方については以下のリンク先を参照してください。
+
+
+
+ 	
+  * [pm_extra_tools README.md](https://github.com/linux-ha-japan/pm_extra_tools/blob/master/README.md)
+
+
+
+
+
+* * *
+
+
+
+
+
+## 4. 変更履歴
+
+
+
+
+
+ 	
+  * pm_extra_tools-1.0-1
+
+ 	
+    * 初版リリース
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+## 5. 既知の制約事項
+
+
+
+
+
+ 	
+  * pm_extra_tools-1.0-1
+
+ 	
+    * pgsql: RHEL 8.2 HA Add-On (もしくは RHEL 8.1 HA Add-On + Errata RHEA-2020:1609 以降)の組み合わせでは、レプリケーション機能(PG-REX構成)が正しく動作しません。
+
+
+
+
+
+
+
+
+* * *
+
+
+
+
+
+## 6. 参考情報
+
+
+
+
+
+ 	
+  * [OSC2020 Tokyo/Spring セミナー資料 Linux-HA Japan プロジェクトのこれまでとこれから](/wp/archives/4942)
+
+ 	
+    * Pacemaker-1.1系リポジトリパッケージとの違い、Pacemaker-2.0系の簡単な構築手順例など
+
+
+
+
+ 	
+  * [Pacemaker 開発コミュニティドキュメント](https://clusterlabs.org/pacemaker/doc/)
+
+ 	
+  * [RHEL 8 High Availability Add-On ドキュメント(Red Hat社)](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/configuring_and_managing_high_availability_clusters/index)
+
+
+以上。

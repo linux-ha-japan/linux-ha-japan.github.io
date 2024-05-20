@@ -1,0 +1,46 @@
+---
+author: ksk
+comments: false
+date: 2012-09-10 02:47:25+00:00
+layout: post
+permalink: /wp/archives/3384
+slug: osc2012%e6%9d%b1%e4%ba%acfall-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2012東京/Fall セミナー資料・アンケート結果公開
+wordpress_id: 3384
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+2012年9月7日(金)、8日(土)に開催された[オープンソースカンファレンス2012 東京/Fall](http://www.ospn.jp/osc2012-fall/)においてデモ展示及びセミナーで参加させていただきました。このときの[セミナー「ディザスタリカバリもオープンソースで!? ～高可用クラスタソフトウェア Pacemaker 次期バージョンプレビュー～」](https://www.ospn.jp/osc2012-fall/modules/eguide/event.php?eid=49)資料を以下で公開しました。
+
+当日セミナーには40名を超える方々にご参加いただき、ありがとうございました。またセミナーの模様は、[ニコニコ動画 オープンソースチャンネル](http://ch.nicovideo.jp/channel/oss)の動画として登録されていますので、お見逃しの方はぜひこちらでも。
+
+**セミナー資料:**
+
+
+
+	
+  * [「ディザスタリカバリもオープンソースで!? ～高可用クラスタソフトウェア Pacemaker 次期バージョンプレビュー～」(PDF: 2.06MB)]({{ site.lhajp_resources_url }}/wp-content/Pacemaker-NextGen-OSC2012TokyoFall-20120908.pdf)
+
+	
+  * [slideshare上の資料(内容は同じです)](http://www.slideshare.net/ksk_ha/pacemaker-nextgen-osc2012tokyofall20120908)
+
+
+**セミナー動画:**
+
+
+
+[【ニコニコ動画】【OSC2012東京秋】ディザスタリカバリもオープンソースで!? ～高可用クラスタソフトウェア Pacemaker 次期バージョンプレビュー～](http://www.nicovideo.jp/watch/1347609417)
+ 
+
+
+
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。 (回答者102名)
+
+[![](/assets/images/wp-content/osc2012tokyo-fall-qa1.png)](/wp/archives/3384/osc2012tokyo-fall-qa1)[![](/assets/images/wp-content/osc2012tokyo-fall-qa2.png)](/wp/archives/3384/osc2012tokyo-fall-qa2)[![](/assets/images/wp-content/osc2012tokyo-fall-qa3.png)](/wp/archives/3384/osc2012tokyo-fall-qa3)[![](/assets/images/wp-content/osc2012tokyo-fall-qa4.png)](/wp/archives/3384/osc2012tokyo-fall-qa4)[![](/assets/images/wp-content/osc2012tokyo-fall-qa5.png)](/wp/archives/3384/osc2012tokyo-fall-qa5)[![](/assets/images/wp-content/osc2012tokyo-fall-qa6.png)](/wp/archives/3384/osc2012tokyo-fall-qa6)

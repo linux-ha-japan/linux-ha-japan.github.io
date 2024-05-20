@@ -1,0 +1,102 @@
+---
+author: minky
+comments: false
+date: 2010-07-08 02:18:22+00:00
+layout: post
+permalink: /wp/archives/441
+slug: pacemaker%e3%81%a8drbd%e3%81%a7%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e6%a7%8b%e7%af%89%e3%81%97%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86%e3%80%80%ef%bc%88%e3%83%87%e3%83%a2%ef%bc%89
+title: PacemakerとDRBDでサーバー構築してみよう（動画デモ）
+wordpress_id: 441
+categories:
+- 読み物
+tags:
+- デモ
+---
+
+オープンソースカンファレンスの展示でも実施していますが、
+
+
+
+
+
+PacemakerとDRBDを組み合わせてサーバーを構築する際の手順を動画にしてみました。
+
+
+
+
+
+CentOS5.5をベースに実施しております。
+
+
+
+
+
+一部省略しておりますが、２台のマシン（仮想マシンでも可）で、簡単に高信頼な仕組みを構築できちゃいます。
+
+
+
+
+
+何かご質問がありましたら、Linux-HA JapanのMLまでよろしくお願いいたします。
+
+
+
+
+
+  
+
+
+
+
+
+
+※ Part2 の Pacemaker を crm コマンドで設定する箇所に間違いがあります。
+
+
+
+
+    
+         (誤) stonith-enabled="no"
+         (正) stonith-enabled="false"
+
+
+
+
+
+  
+
+
+
+
+
+
+Part1 DRBDのコンパイル、設定、Apache,PostgreSQLの設定
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+Part2　Pacemakerのインストール、設定、Drupalのインストール、設定
+
+
+
+
+
+
+
+

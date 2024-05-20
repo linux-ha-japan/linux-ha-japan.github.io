@@ -1,0 +1,70 @@
+---
+author: n_kokubo
+comments: false
+date: 2021-03-11 07:00:00+00:00
+layout: post
+permalink: /wp/archives/4990
+slug: osc2021-online-spring-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2021 Online/Spring セミナー資料公開
+wordpress_id: 4990
+categories:
+- イベント情報
+- 読み物
+---
+
+
+
+
+2021年3月5日(金)、6日(土)にてオンラインにて開催されたオープンソースカンファレンス2021 Online/Springにおいてセミナーで参加させていただきました。  
+  
+たくさんの方にお越しいただき、ありがとうございました。  
+  
+当日のセミナー資料を以下で公開いたします。
+
+
+
+
+
+
+
+**セミナープログラム **
+
+
+
+
+
+
+
+  * 　2021-03-05(金) 15:00-15:45  
+　[試して覚えるPacemaker-2.0入門『シェアードナッシングな高可用クラスタの実現』](http://event.ospn.jp/osc2021-online-spring/session/295927)
+
+
+
+
+
+
+**セミナー資料**
+
+
+
+
+
+
+
+  * 　[試して覚えるPacemaker-2.0入門『シェアードナッシングな高可用性クラスタの実現』(PDF)]({{ site.lhajp_resources_url }}/wp-content/LinuxHAJapan-OSC2021OnlineSpring-20210305.pdf)
+
+
+
+
+
+
+　
+
+
+
+
+
+
+
+
+

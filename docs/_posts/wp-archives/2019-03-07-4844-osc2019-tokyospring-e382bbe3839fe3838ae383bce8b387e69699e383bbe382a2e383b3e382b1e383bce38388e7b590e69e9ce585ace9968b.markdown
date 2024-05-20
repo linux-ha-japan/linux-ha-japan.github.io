@@ -1,0 +1,54 @@
+---
+author: n_kokubo
+comments: false
+date: 2019-03-07 00:08:12+00:00
+layout: post
+permalink: /wp/archives/4844
+slug: osc2019-tokyospring-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2019 Tokyo/Spring セミナー資料・アンケート結果公開
+wordpress_id: 4844
+categories:
+- イベント情報
+- 読み物
+---
+
+2019年2月22日(金)、23日(土)に明星大学にて開催された[オープンソースカンファレンス2019 Tokyo/Spring](https://www.ospn.jp/osc2019-spring/)においてブース展示及びセミナーで参加させていただきました。
+
+ブース展示・セミナーともにたくさんの方にお越しいただきありがとうございました。
+
+当日のセミナー資料を以下で公開いたします。
+
+セミナープログラム:
+
+
+
+	
+  * 2019-02-23(土) 11時00分 [Pacemakerで学ぶHAクラスタ](https://www.ospn.jp/osc2019-spring/modules/eguide/event.php?eid=17)
+
+
+**セミナー資料:**
+
+
+
+	
+  * **  [Pacemakerで学ぶHAクラスタ(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2019_Tokyo-Spring.pdf)
+**
+
+
+また、展示ブースでのアンケートへのご協力ありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします(回答者計19名)。
+
+[![osc2019tokyo_001](/assets/images/wp-content/osc2019tokyo_001.png)](/assets/images/wp-content/osc2019tokyo_001.png)
+
+[![osc2019tokyo_002](/assets/images/wp-content/osc2019tokyo_002.png)](/assets/images/wp-content/osc2019tokyo_002.png)
+
+[![osc2019tokyo_004](/assets/images/wp-content/osc2019tokyo_004.png)](/assets/images/wp-content/osc2019tokyo_004.png)
+
+[![osc2019tokyo_003](/assets/images/wp-content/osc2019tokyo_003.png)](/assets/images/wp-content/osc2019tokyo_003.png)
+
+[![osc2019tokyo_005](/assets/images/wp-content/osc2019tokyo_005.png)](/assets/images/wp-content/osc2019tokyo_005.png)
+
+[![osc2019tokyo_007](/assets/images/wp-content/osc2019tokyo_007.png)](/assets/images/wp-content/osc2019tokyo_007.png)
+
+[![osc2019tokyo_008](/assets/images/wp-content/osc2019tokyo_008.png)](/assets/images/wp-content/osc2019tokyo_008.png)
+
+[![osc2019tokyo_006](/assets/images/wp-content/osc2019tokyo_006.png)](/assets/images/wp-content/osc2019tokyo_006.png)

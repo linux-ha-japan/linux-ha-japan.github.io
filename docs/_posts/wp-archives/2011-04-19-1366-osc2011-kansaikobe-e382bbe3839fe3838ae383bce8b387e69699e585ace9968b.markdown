@@ -1,0 +1,38 @@
+---
+author: takayukitanaka
+comments: false
+date: 2011-04-19 13:10:33+00:00
+layout: post
+permalink: /wp/archives/1366
+slug: osc2011-kansaikobe-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e5%85%ac%e9%96%8b
+title: OSC2011 Kansai@Kobe セミナー資料公開
+wordpress_id: 1366
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+#### Linux-HA Japan は神戸にも行っちゃいました！
+
+
+4月16日(土) に神戸市産業振興センターにて [オープンソースカンファレンス2011 Kansai@Kobe](http://www.ospn.jp/osc2011-kobe/) が開催されました。神戸でのOSC開催は2回目というにもかかわらず、来場者600名という賑わいを見せていました。
+
+Linux-HA Japan では、いつもの如く展示ブースの開設と [「](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17)[実演！Pacemakerで楽々クラスタリング](http://www.ospn.jp/osc2011-kobe/modules/eguide/event.php?eid=17)[」](http://www.ospn.jp/osc2010-do/modules/eguide/event.php?eid=17) という題目で実演セミナーをおこないました。
+
+CentOS5.6によるXen仮想化環境上でPacemakerのデモをさせていただきました。「あんな短い時間でクラスタが構築できるなんて感動しました！」との感想までいただき嬉しい限りです。興味を持って聞いてくださった方ありがとうございました。
+
+プレゼンテーション資料を公開しますので、HAクラスタ構築の参考にしていただければと思います。(自己紹介等一部は削除しましたがご了承ください)
+
+
+
+	
+  * セミナー資料：  [実演！Pacemakerで楽々クラスタリング](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2011Kobe_20110416/ja/1/Pacemaker_OSC2011Kobe_20110416.pdf)
+
+	
+  * 設定例：  [pm_crmgen環境定義書デモサンプル
+]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo.xls)
+
+

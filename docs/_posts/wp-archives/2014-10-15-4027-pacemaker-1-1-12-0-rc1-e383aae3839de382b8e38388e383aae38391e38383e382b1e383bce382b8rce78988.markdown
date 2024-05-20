@@ -1,0 +1,283 @@
+---
+author: ksk
+comments: false
+date: 2014-10-15 23:20:57+00:00
+layout: post
+permalink: /wp/archives/4027
+slug: pacemaker-1-1-12-0-rc1-%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8rc%e7%89%88
+title: Pacemaker-1.1.12-0.RC1 リポジトリパッケージRC版
+wordpress_id: 4027
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+_2014.10.17_
+
+Pacemaker-1.1.12 リポジトリパッケージのRC1版を公開します。
+
+このRC1版は現在検証中ですが、一ヶ月間ほどテスト期間を設けた後、 特に大きな問題がなければこのまま11月末に正式版としてリリースする予定です。
+
+ご興味のある方はぜひ試してみていただいて ご意見等いただければと思います。
+
+**今後の予定**
+
+  * 2014.10.17: Pacemaker-1.1.12-0.RC1 リリース ← イマココ！ 
+  * 2014.11.14頃まで: RC版テスト期間 
+  * 2014.11末: Pacemaker-1.1.12-1.1正式版リリース予定 
+
+* * *
+
+## 1. ダウンロード
+
+RC1版のパッケージは以下のURLよりダウンロードできます(ダウンロードが始まるまでしばらく時間がかかることがあります)。
+
+  * [pacemaker-repo-1.1.12-0.RC1.el6.x86_64.rpm]({{ site.lhajp_resources_url }}/wp-content/pacemaker-repo-1.1.12-0.RC1.el6.x86_64.rpm)
+  * 対応環境: RHEL6および互換OS、x86_64環境 
+
+* * *
+
+## 2. インストール
+
+以下の手順で Pacemakerをインストールします。yum コマンドにより 必要な依存パッケージも自動的にインストールされますので、 OSのインストールメディア等が参照できるようにしておいてください。
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # rpm -ivh pacemaker-repo-1.1.12-0.RC1.el6.x86_64.rpm
+    # yum install pacemaker-all
+
+
+ 
+</td></tr> </table>
+
+* * *
+
+## 3. 設定例
+
+### 3.1. corosync設定ファイルの設定
+
+corosyncの動作に必要な設定を行います。 以下は最低限必要な設定例です。
+
+**/etc/corosync/corosync.conf 設定例**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    totem {
+            version: 2
+            token: 1000
+            rrp_mode: active
+            interface {
+                    ringnumber: 0
+                    bindnetaddr: 192.168.101.0
+                    mcastaddr: 239.255.1.1
+                    mcastport: 5405
+            }
+            interface {
+                    ringnumber: 1
+                    bindnetaddr: 192.168.102.0
+                    mcastaddr: 239.255.1.1
+                    mcastport: 5405
+            }
+    }
+    
+    logging {
+            syslog_facility: daemon
+            debug: off
+    }
+    
+    quorum {
+            provider: corosync_votequorum
+            expected_votes: 2
+    }
+
+
+ 
+</td></tr> </table>
+
+ここで以下の設定項目は環境に合わせて設定してください。
+
+  * bindnetaddr, mcastaddr, mcastport: ネットワークに合わせて設定します。 
+  * syslog_facility : ログの出力先を変更したい場合は適宜変更します。 
+  * expected_votes : クラスタを構成するノードの数を設定します。 
+
+詳細は corysync.conf(5) マニュアルページ等を参照してください。
+
+### 3.2. corosync認証鍵ファイルの設定
+
+corosyncの認証を行うための認証鍵ファイルを作成します。
+
+どれか一つのノード上で corosync-keygen コマンドを実行し、生成された authkey ファイルをクラスタを構成する全てのノードにコピーします。 以下の手順例は node2 へコピーしている例です。
+
+**/etc/corosync/authkey 設定手順例**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # corosync-keygen -l
+    # scp -p /etc/corosync/authkey root@node2:/etc/corosync/authkey
+
+
+ 
+</td></tr> </table>
+
+### 3.3. pacemaker設定ファイルの設定
+
+Pacemakerの内部プロセスが故障した場合もノード故障として取り扱う ようにするため、以下の設定を追加します。
+
+**/etc/sysconfig/pacemaker (追加設定行)**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    export PCMK_fail_fast=yes
+
+
+ 
+</td></tr> </table>
+
+### 3.4. クラスタ起動スクリプトの設定
+
+以下の設定を行うため、クラスタ起動スクリプトの一部を修正します。
+
+  * ノードのshutdown時にPacemakerを正しく停止するため 
+  * hardware watchdog が利用可能な環境では hardware watchdogを利用可能にするため 
+  * corosyncプロセス故障時に watchdog 機能を有効にするため 
+
+以下に修正箇所を示します。
+
+**/etc/init/pacemaker.combined.conf (修正箇所のみ)**
+    
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    --- pacemaker.combined.conf.org 2014-10-14 11:17:24.498010606 +0900
+    +++ pacemaker.combined.conf     2014-10-14 11:19:10.079010163 +0900
+    @@ -2,6 +2,7 @@
+     #
+     # Starts Corosync cluster engine and Pacemaker cluster manager.
+    
+    +stop on runlevel [0123456]
+     kill timeout 3600
+     respawn
+    
+    @@ -20,7 +21,7 @@
+     pre-start script
+         # setup the software watchdog which corosync uses.
+         # rewrite according to environment.
+    -    modprobe softdog soft_margin=60
+    +    [ -c /dev/watchdog ] || modprobe softdog soft_margin=60
+         pidof corosync || start corosync
+    
+         # if you use corosync-notifyd, uncomment the line below.
+    @@ -49,7 +50,7 @@
+         rm -f /var/run/$prog.pid
+    
+         # if you use watchdog of corosync, uncomment the line below.
+    -    #pidof corosync || false
+    +    pidof corosync || false
+    
+         pidof crmd || stop corosync
+
+
+ 
+</td></tr> </table>
+
+* * *
+
+## 4. 起動・終了
+
+### 4.1. 起動コマンド
+
+Pacemakerを起動するには以下のコマンドを実行します。
+
+起動コマンドは Pacemaker-1.0系とは異なり、 Upstart経由(RHEL6の場合)で起動する手順が推奨です。
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # initctl start pacemaker.combined
+
+
+ 
+</td></tr> </table>
+
+正常に起動すると、crm_mon コマンドの表示でノードが Online 状態となります。
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # crm_mon -D1
+    Online: [ node1 node2 ]
+
+
+ 
+</td></tr> </table>
+
+### 4.2. 終了コマンド
+
+Pacemakerを停止するには以下のコマンドを実行します。
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # initctl stop pacemaker.combined
+
+
+ 
+</td></tr> </table>
+
+* * *
+
+## 5. アンインストール
+
+以下の手順で Pacemaker リポジトリパッケージを 全てアンインストールできます。
+
+  * Pacemaker本体のアンインストール 
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # yum erase pacemaker corocync libqb cluster-glue cluster-glue-libs resource-agents \
+    pm_crmgen pm_logconv-cs pm_diskd pm_extras crmsh pssh
+
+
+ 
+</td></tr> </table>
+
+  * Pacemakerリポジトリパッケージのアンインストール 
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    # rpm -e pacemaker-repo
+    # rpm -qa | grep pacemaker-repo
+    #
+
+
+ 
+</td></tr> </table>
+
+* * *
+
+## 6. リポジトリパッケージ内容
+
+リポジトリパッケージには以下のパッケージが含まれています。 このページに記載したインストール手順では★印のついたパッケージが インストールされます。
+
+  * パッケージ一覧 
+    * ★ Pacemaker-1.1.12 
+    * ★ Corosync-2.3.4 
+    * ★ libqb-0.17.1 
+    * ★ cluster-glue-1.0.12 
+    * ★ crmsh-2.1 
+    * ★ pm_diskd-2.0 
+    * ★ pm_extras-2.0 
+    * ★ pm_logconv-cs-2.0 
+    * ★ pm_crmgen-2.0 
+    * ★ pssh-2.3.1-5 
+    * pm_ctl-2.0 
+    * pcs-0.9.90 
+    * fence-agents-4.0.10 
+
+以上です。

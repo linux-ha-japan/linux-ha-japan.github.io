@@ -1,0 +1,29 @@
+---
+author: bellche
+comments: false
+date: 2011-10-26 00:38:18+00:00
+layout: post
+permalink: /wp/archives/2447
+slug: 2012%e5%b9%b4%e3%81%ae%e3%82%ab%e3%83%ac%e3%83%b3%e3%83%80%e3%83%bc%e9%85%8d%e5%b8%83%e3%81%97%e3%81%be%e3%81%99%e3%80%82
+title: 2012年のカレンダー配布します。
+wordpress_id: 2447
+categories:
+- ニュース
+- イベント情報
+- その他
+---
+
+本日より、各種イベントや勉強会で来年２０１２年のカレンダーをお配りします。
+１００部しかないのでちょっとレアですが、ご希望の方はこれからのイベント情報に注目してください。
+
+カレンダーのサンプルはこちら。
+
+[![](/assets/images/wp-content/AcpDYjkCAAAyUfA-300x224.jpg)](/assets/images/wp-content/AcpDYjkCAAAyUfA.jpg)
+
+イラストは、Linux-HA Japanではお馴染みの POP先生、ふたみかずは先生です。ありがとうございます。
+
+WEBラジオ　ペースメーカーに、11月中にお便りを頂いた方から抽選で
+カレンダーをプレゼントします。
+宛先などは、OH☆TVのページ
+[ http://oh-news.net/live/?p=100100](http://oh-news.net/live/?p=100100)
+をみてくださいね。

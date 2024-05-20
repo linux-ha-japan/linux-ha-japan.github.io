@@ -1,0 +1,493 @@
+---
+author: ikedaj
+comments: false
+date: 2011-07-26 11:48:27+00:00
+layout: post
+permalink: /wp/archives/2115
+slug: '%e5%88%a5%e5%86%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%93%e7%ac%ac2%e5%8f%b7'
+title: 別冊あんどりゅーくん(第2号)
+wordpress_id: 2115
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)7月14日(金)と15日(土)に開催されたOSC2011 Kansai@Kyotoに行ってきました。
+クリアフォルダ250枚と団扇300枚は2日目の
+終了3時間前くらいになくなってしまいました。
+次回のOSC＠名古屋でも配布する予定なので
+ご希望の方はお早めにブースまでお越しください。
+
+[![](/assets/images/wp-content/DSCN0981-300x225.jpg)](/wp/archives/2115/dscn0981)
+
+ 
+
+ 
+
+[![](/assets/images/wp-content/DSCN0980-300x225.jpg)](/wp/archives/2115/dscn0980)
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+ 
+
+また、猛暑にもかかわらず、2日目11時からのセミナーには40名の方に参加していただきました。
+講師は「あ、eject の方？」でお馴染みの、たなかさんでした。おつかれさまでした！
+当日の資料は[こちら](/wp/archives/2086)からダウンロードすることができます。
+
+今回は、ブースでお留守番をしていたときにいただいた質問と、
+セミナーの最後にいただいた質問をおさらいしてみようと思います。
+
+**
+ブースでいただいた質問 **
+
+**(1) Pacemakerは仮想環境でも使用できるか？**
+**(2) 必要なNICの本数は？**
+**(3) 事例は公開されているか？**
+**(4) 将来の目標は？**
+**(5) 読み方はピースメーカー？ペースメーカー？**
+**(6) BSDで使えるか？**
+
+**
+(1) Pacemakerは仮想環境でも使用できるか？**
+
+使えます。
+OSC関西＠京都のセミナーでは仮想環境でデモを行いました。
+資料にも「本日のPacemakerデモ環境」として仮想環境でのクラスタ構成が紹介されています。
+仮想環境の構成には
+
+
+
+	
+  * ゲストOSにPacemakerをインストールするパターン
+
+	
+  * ホストOSにPacemakerをインストールするパターン
+
+
+の2パターンがあります。
+
+ゲストOSにPacemakerをインストールするパターンは、ゲストOS≒物理サーバです。
+
+ホストOSにPacemakerをインストールするパターンは、ゲストOSを「リソース」として
+VirtualDomain RAで監視します。 
+ゲストOSのマイグレーションとかもできます。
+このパターンでは、ゲストOS上で起動している特定のプロセスは監視できないので、
+ホストOSにもゲストOSにもPacemakerをインストールする多層式の構成となる場合もあります。
+** **
+
+** **
+
+**
+(2) 必要なNICの本数は？**
+
+ノード間で生死を確認しあうためのインターコネクトLANは絶対に必要です。
+なので、インターコネクトLAN用に最低でも1本は必要です。
+ただし、インターコネクトLANは2本以上用意して冗長性を確保することが推奨されています。
+その他にも、WebサーバやDBなど、外部からアクセスするための仮想IPアドレスが必要なサービスの場合は仮想IP用のサービスLANも必要となります。
+サービスLANは2本以上用意して冗長性を確保することが推奨されています。
+サービスLANを冗長化する場合はbondigを利用してください。
+
+そういえば、インターコネクトLANはbondingしなくていいの？と思われるかもしれませんが、
+メッセージングレイヤにHeartbeatを使用する場合は、bondingでもbondingでなくてもどっちでもいいです。
+ただし、Corosyncを使用する場合はbondingを使用したほうがよいかもしれません。
+Corosyncは複数のインターコネクトLAN構成で、接続が切れたり繋がったりしたときの
+「表示系」がまだちょっと弱かったような気がする。。
+動作は問題ないはず（たぶん）。 
+最近は直ってきたのかもしれません。v1.4でたし！？
+
+一方、メッセージングレイヤにHeartbeatを使用する場合は、bondingを使わない場合が多いような気がします。
+ha.cfにインターフェース名を複数書けばいいだけの話しなので、わざわざbondingにしなくてもいいよねえ、というかbondingドライバのバグにはまっちゃうとヤダとかそういうのもあったような気がする。
+
+インターコネクトLAN、サービスLANの他に、管理者や運用担当者、もしくは運用管理ツールがPacemakerの実行状況などを確認するための管理LANも別系統であると便利かもしれません。
+管理LANはそれほどがつがつ使うこともないはずなのでインターコネクトLANまたはサービスLANと兼用でも問題ありません。
+
+DRBDも組み合わせて使用する場合は、DRBDの同期LANも必要となります。
+DRBDは、一つの同期リソースにつき、1本の同期LANしか設定することができないので
+bondingで冗長化することが推奨されています。
+同期リソースが複数ある場合は、同期LANの本数を増やす、もしくは
+1本の同期LANで複数のポートを使用することになります。 
+
+というわけで
+
+最小構成(合計1本)
+
+
+
+	
+  * インターコネクトLAN    1本
+
+
+冗長構成(合計7本)
+
+
+
+	
+  * インターコネクトLAN    2本
+
+	
+  * サービスLAN               2本(bondingで1本に集約)
+
+	
+  * 管理LAN                     1本
+
+	
+  * DRBDの同期LAN          2本(bondingで1本に集約)
+
+
+となります。
+
+**
+(3) 事例は公開されているか？**
+
+Linux-HA Japanの公式サイトで事例の公開は行っていません。
+お隣にブースを出していただいた株式会社サードウェアさんのWebサイト「[Linux-HA (DRBD) ユーザ事例](http://www.3ware.co.jp/download.html)」からDRBD関連の事例をダウンロードすることができます。
+Linux-HA Japanの公式サイトにも事例を公開していきたいのですが、いろいろと大人の事情で難しいようですね…。
+「公開しても問題ありません」という案件や実際に稼動しているシステムがあれば、ぜひ[メーリングリスト](/wp/ml)までご連絡ください。
+
+ 
+
+**(4) 将来の目標は？**
+
+ちょっとのけぞりましたが、これって今後のロードマップってことですね。
+一瞬、小学校の卒業文集的なナニカかと思いましたよ…。
+ちなみに、あんどりゅーくんのつくった[ロードマップ](http://www.clusterlabs.org/wiki/Planned_Features)はこちら。
+ロードマップというより、これから実装していきたい機能の落書き帳的なものなので、実装予定期日は決まっていません。
+他にも
+
+
+
+	
+  * 仮想環境対応(キーワード：Matahari)
+
+	
+  * 大規模クラスタ対応
+
+
+などがメーリングリストで話題になっています。
+
+ 
+
+**(5) 読み方はピースメーカー？ペースメーカー？**
+
+ペースメーカーです。
+ピースメーカーだと Peacemakerになっちゃう気がします。Pacemakerです。
+
+**
+(6) BSDで使えるか？**
+残念ながらBSDは未踏領域です。人柱大募集です。
+Linux-HA Japan では、RedHat, CentOS用のRPMを作成していますが、
+あんどりゅーくんの管理している [clusterlabs](http://www.clusterlabs.org/rpm/) からはFedora, openSUSE, EPEL用のRPMがダウンロードできます。
+
+Debianは「はらくん」がパッケージングしてくれるらしいよ。
+
+
+[![](/assets/images/wp-content/DSCN0993-300x225.jpg)](/wp/archives/2115/dscn0993)
+
+
+はらくん(高校2年生)
+
+
+[![](/assets/images/wp-content/DSCN0995-300x225.jpg)](/wp/archives/2115/dscn0995)
+
+
+めっさいじられてますけど。
+
+**セミナーでいただいた質問**[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+**(1) デモで実行していたmove/unmoveコマンドはログに出力されるのか？**
+**(2) Pacemakerのログメッセージ一覧表はあるか？**
+**(3) クラスタ内の特定ノードをDCに固定することはできるか？**
+**(4) STONITHを実行するためのハードウェアにはどのようなものがあるのか？**
+
+ 
+
+**(1) デモで実行していたmove/unmoveコマンドはログに出力されるのか？**
+
+Pacemakerの標準ログファイル(/var/log/ha-log)には、
+リソースが移動した状況は出力されますが、どのコマンドが実行されたかはわかりません。
+デモで使用していたpm_logconv-hbの出力ファイル(pm_logconv.out)にも
+コマンドの実行は記録されません。
+うーん、残念、と思っていたのですが、京都から戻ってきて思い出しました。
+syslog(/var/log/messages)には、コマンドの実行履歴が残ります！
+ただし、crm move/unmoveが内部的に実行している
+crm_resourceコマンドの実行履歴が！！
+
+…これはこれでまた残念な結果…。
+残念ながらも、動作確認をしてみました。 
+
+ホスト名はsrv01, srv02です。
+使用した設定ファイルはこちら。
+<table style="width: 600px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f0f8ff;" >### Cluster Option ###
+property \
+no-quorum-policy="ignore" \
+stonith-enabled="false" \
+startup-fencing="false" ### Resource Defaults ###
+rsc_defaults \
+resource-stickiness="INFINITY" \
+migration-threshold="1" 
+
+### Primitive Configuration ###
+primitive dummy ocf:heartbeat:Dummy \
+op start interval="0s" timeout="120s" on-fail="restart" \
+op monitor interval="10s" timeout="120s" on-fail="restart" \
+op stop interval="0s" timeout="120s" on-fail="stop"
+</td>
+</tr>
+</tbody>
+</table>
+初期起動時のリソースの状態はこんな感じ。
+<table style="width: 600px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f0f8ff;" >[root@srv01 ~]#** crm_mon -1**  
+
+============
+Last updated: Mon Jul 25 17:40:27 2011
+Stack: Heartbeat
+Current DC: srv02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+2 Nodes configured, unknown expected votes
+1 Resources configured.
+============
+
+Online: [ srv01 srv02 ]
+
+dummy  (ocf::heartbeat:Dummy): Started srv01
+
+ 
+
+ 
+
+ 
+
+
+</td>
+</tr>
+</tbody>
+</table>
+srv01で起動しているdummyをsrv02へ移動させます。
+ここで、crmコマンドの後の「-R」オプションにご注目！
+
+<table style="width: 600px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f0f8ff;" >[root@srv01 ~]# **crm -R resource move dummy srv02 force**** 
+
+** **** **** **** **** **** **** ****.EXT crm_resource -M -r 'dummy' --node='srv02' --force**
+
+** 
+
+ 
+
+ 
+
+
+</td>
+</tr>
+</tbody>
+</table>
+ご存知の方も多いとは思いますが、crmコマンドが開発されるまでは、
+crm_resource, crm_failcountなど複数のコマンドを使用してクラスタの管理を行ってきました。
+現在でもこれらのコマンド群は使用可能ですが、ほとんどがcrmコマンドで代替可能となっています。
+crmコマンドも結局は、内部的にこれらの古い（？）コマンドを呼び出しているのです。
+syslog(/var/log/messages)にはこの古いほうのコマンドが出力されるのですが、
+crmコマンドとは似ても似つかぬオプションだったりするので、同定が困難です。
+そこで、魔法の「-R」オプションの登場です。
+
+「-R」オプションを使用すると、.EXTで始まる行が出力されますが、
+これが実際に実行されたコマンドの内容です。
+上の例ではcrm_resourceコマンドが出力されています。
+syslog(/var/log/messages)にもcrm_resourceコマンドが実行されたことが記録されています。
+<table style="width: 600px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f0f8ff;" >[root@srv01 ~]# **cat /var/log/messages** 
+Jul 25 17:40:54 srv01 crm_resource: [25478]: info: Invoked: crm_resource -M -r dummy --node=srv02 --force
+</td>
+</tr>
+</tbody>
+</table>
+では、moveコマンドを実行したら必ずunmoveコマンドを実行！というお約束に従って
+unmoveコマンドを実行しましょう。ここでも「-R」オプションをつけてみてください。
+<table style="width: 600px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f0f8ff;" >[root@srv01 ~]# **crm -R resource unmove dummy**
+.EXT crm_resource -U -r 'dummy' 
+
+[root@srv01 ~]# **cat /var/log/messages**
+Jul 25 17:41:22 srv01 crm_resource: [25505]: info: Invoked: crm_resource -U -r dummy
+</td>
+</tr>
+</tbody>
+</table>
+本来なら、Pacemakerの標準ログファイル(/var/log/ha-log)にcrmコマンドの実行内容が
+ばしっとでるのが一番美しい形だと思います。
+今後の改善項目として本家コミュニティにも提案してみようかどうしようか。
+
+
+**
+(2) Pacemakerのログメッセージ一覧表はあるか？**
+
+現状、ありません。
+ただし、pm_logconv-hbを開発する際に選出したログメッセージの一覧表はあるので、
+こちらをわかりやすい形で公開することはできるかもしれません。
+もしくは、勉強会のお題として「ha-logの読み方講座」をやってみる、とかですかね。
+なんかめちゃくちゃ眠気をもよおしそうなお題ですけど。
+
+** **
+
+** **
+
+**
+(3) クラスタ内の特定ノードをDCに固定することはできるか？**
+
+ユーザがDCノードを決定することはできません。
+ホスト名やノードのUUIDによって、初期起動時にDCになりやすいノードというのはあるのですが
+タイミングの問題も絡んでくるので、DCを固定することにこだわらないほうがよいと思います。
+初期起動時に特定ノードをDCとしたい場合は
+1台のノードだけを起動して、そのノードがDCになるのを待ってから
+他のノードを起動させるという運用でごまかすことができます。
+
+参考メーリングリスト：[Linux-ha-jp] [初期起動時のCrrentDC](http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2011-June/000724.html)
+
+crm_mon で表示される「Current DC: ホスト名」で今どのノードがDCになっているのかを確認することができますが、crmadminコマンドでも確認することができます。
+<table style="height: 23px; width: 600px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f0f8ff;" ># **crmadmin -D**
+Designated Controller is: srv02
+</td>
+</tr>
+</tbody>
+</table>
+そういや、DCって「Designated Controller」の略なんだなあとかイマサラ思い出してみるとか。
+** **
+
+** **
+
+**
+(4) STONITHを実行するためのハードウェアにはどのようなものがあるのか？**
+
+HP iLO3, DELL DRAC, IBM IMMなどがあります。
+これらは全てIPMIでサーバを管理することができるので、STONITHプラグインには「ipmi」を使用します。
+HP iLO2, IBM RSAなどはIPMIに対応していないので、それぞれ「riloe」「ibmrsa-telnet」を使用します。
+
+Pacemakerに同梱されているSTONITHプラグインはcrmコマンドで確認することができます。
+（見やすいように一部整形しています）
+<table style="width: 600px;" border="0" >
+<tbody >
+<tr >
+
+<td style="background-color: #f0f8ff;" >#** crm** crm(live)#** ra** 
+
+crm(live)ra# **list stonith**
+
+apcmaster 
+
+apcmastersnmp 
+
+apcsmart 
+
+baytech 
+
+bladehpi
+
+cyclades 
+
+drac3 
+
+external/drac5 
+
+external/dracmc-telnet 
+
+external/hmchttp
+
+external/ibmrsa 
+
+external/ibmrsa-telnet 
+
+external/ipmi 
+
+external/ippower9258 
+
+external/kdumpcheck
+
+external/nut 
+
+external/rackpdu 
+
+external/riloe 
+
+external/sbd 
+
+external/ssh
+
+external/stonith-helper 
+
+external/vmware 
+
+external/xen0 
+
+external/xen0-ha 
+
+ibmhmc
+
+ipmilan 
+
+meatware 
+
+null 
+
+nw_rpc100s 
+
+rcd_serial
+
+rps10 
+
+ssh 
+
+suicide 
+
+wti_mpc 
+
+wti_nps
+</td>
+</tr>
+</tbody>
+</table>
+結構、たくさんありますね。
+ハードウェア制御ボードを使わずにSTONITHの動作を試してみたいときは擬似的に「ssh」が使えます。
+OSCのデモのように仮想環境でSTOTNIHを設定する場合は「xen0」を使います。
+
+ 
+
+** **
+
+** **
+
+**では、次回は名古屋で～。**

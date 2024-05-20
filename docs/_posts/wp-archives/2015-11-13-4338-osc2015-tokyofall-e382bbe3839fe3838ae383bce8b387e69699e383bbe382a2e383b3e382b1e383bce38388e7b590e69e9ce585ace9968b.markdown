@@ -1,0 +1,45 @@
+---
+author: iidayuus
+comments: false
+date: 2015-11-13 05:36:22+00:00
+layout: post
+permalink: /wp/archives/4338
+slug: osc2015-tokyofall-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2015 Tokyo/Fall セミナー資料・アンケート結果公開
+wordpress_id: 4338
+categories:
+- ニュース
+- イベント情報
+tags:
+- OSC
+- セミナー
+---
+
+10月24日(土),25日(日) に明星大学 日野キャンパスにて開催された[オープンソース カンファレンス2015 Tokyo/Fall](http://www.ospn.jp/osc2015-fall/) にLinux-HA Japanも参加し、ブース展示および講演を行いました。
+
+講演は「[試して覚えるPacemaker入門 排他制御機能編](https://www.ospn.jp/osc2015-fall/modules/eguide/event.php?eid=49)」というタイトルで、クラスタにとって重要な機能の一つである排他制御機能について、その重要性やデモを通して使い方を紹介させていただきました。
+
+今回も非常に多くの方（60名程度）に聴講しに来ていただいて、誠にありがとうございました。
+
+以下にセミナーの資料を公開しますので、参考にしていただければと思います。
+
+
+
+	
+  * セミナー資料：[試して覚えるPacemaker入門 排他制御機能編]({{ site.lhajp_resources_url }}/wp-content/076783ca53a363270d253bbb98b59e83.pdf)
+
+
+ 
+
+また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
+アンケート結果を以下に公開します。
+(回答者計61名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![OSC2015TokyoFall_Q0](/assets/images/wp-content/osc_tokyo_fall_0.png)](/assets/images/wp-content/osc_tokyo_fall_0.png)
+[![OSC2015TokyoFall_Q1](/assets/images/wp-content/osc_tokyo_fall_1.png)](/assets/images/wp-content/osc_tokyo_fall_1.png)
+[![OSC2015TokyoFall_Q2](/assets/images/wp-content/osc_tokyo_fall_2.png)](/assets/images/wp-content/osc_tokyo_fall_2.png)
+[![OSC2015TokyoFall_Q3](/assets/images/wp-content/osc_tokyo_fall_3.png)](/assets/images/wp-content/osc_tokyo_fall_3.png)
+[![OSC2015TokyoFall_Q4](/assets/images/wp-content/osc_tokyo_fall_4.png)](/assets/images/wp-content/osc_tokyo_fall_4.png)
+[![OSC2015TokyoFall_Q5](/assets/images/wp-content/osc_tokyo_fall_5.png)](/assets/images/wp-content/osc_tokyo_fall_5.png)
+[![OSC2015TokyoFall_Q6](/assets/images/wp-content/osc_tokyo_fall_6.png)](/assets/images/wp-content/osc_tokyo_fall_6.png)
+[![OSC2015TokyoFall_Q7](/assets/images/wp-content/osc_tokyo_fall_7.png)](/assets/images/wp-content/osc_tokyo_fall_7.png)

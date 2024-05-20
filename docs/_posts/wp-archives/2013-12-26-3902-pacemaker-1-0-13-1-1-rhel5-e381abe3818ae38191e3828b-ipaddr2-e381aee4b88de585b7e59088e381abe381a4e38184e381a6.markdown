@@ -1,0 +1,172 @@
+---
+author: ksk
+comments: false
+date: 2013-12-26 20:20:10+00:00
+layout: post
+permalink: /wp/archives/3902
+slug: pacemaker-1-0-13-1-1-rhel5-%e3%81%ab%e3%81%8a%e3%81%91%e3%82%8b-ipaddr2-%e3%81%ae%e4%b8%8d%e5%85%b7%e5%90%88%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6
+title: Pacemaker-1.0.13-1.1 + RHEL5 における IPaddr2 の不具合について
+wordpress_id: 3902
+categories:
+- その他
+---
+
+Pacemaker-1.0.13-1.1リポジトリパッケージ(2013/04/11リリース)を RHEL 5.9 以前またはそのRHELクローンOS(CentOS等)上で利用した場合、 IPaddr2 が誤動作しサービス停止になる可能性があります。
+
+全てのユーザに影響があるわけではありませんが、 OSC 2013 Tokyo/Fall での展示ブースなどでも同様の報告を頂いているので、 この事象と対処方法について説明したいと思います。
+
+なお、本日(2013/12/26)にリリースされた [Pacemaker-1.0.13-1.2 リポジトリパッケージ](/wp/archives/3898)ではこの不具合は修正されています。
+
+_(2014/04/25追記)_ MLにて、RHEL6.4でも同様の事象が発生した、という [報告](http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2014-April/001675.html)がありましたが、現時点では詳細不明です。本ページで説明している原因はRHEL6上では間違いなく修正が確認されているので、別の要因による事象である可能性があります。もしRHEL6上でも再現した場合、MLにて詳細を報告をいただけると助かります。
+
+* * *
+
+## 事象
+
+定常運用中に、故障が発生していないにも関わらず IPaddr2 が故障と 誤検知し、リソースの停止(サービス停止)が発生することがあります。
+
+事象発生時に出力されるログは次の通りです。
+
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    ERROR: Unknown interface [bond0] No such device.
+    ERROR: [findif] failed
+
+
+ 
+</td></tr> </table>
+
+* * *
+
+## 発生条件
+
+以下の条件をすべて満たす環境において、タイミングによって発生します。
+
+  1. RHEL 5.9以前のRHELまたはRHELクローンOS(CentOS 5.9等)を使用している。 
+  2. Pacemaker-1.0.13-1.1 リポジトリパッケージを使用している。 
+  3. /proc/net/dev に対し複数のプロセスが同時にアクセスする。 
+    * 例1: IPaddr2 を複数使用している 
+    * 例2: Pacemaker以外に /proc/net/dev にアクセスするプロセスが存在する 
+
+* * *
+
+## 原因
+
+RHEL5.9までのカーネル(kernel-2.6.18以前)には、 /proc/net/dev に対して複数のプロセスから同時にアクセスした場合、 デバイスの統計情報が正常に出力されないことがあるという不具合があります。
+
+Pacemaker-1.0.13-1.1(より正確にはresource-agents-3.9.5-1)に含まれる IPaddr2 では、エラーチェック処理の一部として /proc/net/dev の内容を 確認する処理が追加されました。
+
+このため、上記カーネルの不具合の影響により、IPaddr2 が正しくデバ イス名を読み込むことができず、故障と誤検知してしまう場合があります。
+
+より詳細については以下を参照ください。
+
+  * [https://github.com/ClusterLabs/resource-agents/pull/320](https://github.com/ClusterLabs/resource-agents/pull/320)
+<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
+<td style="padding:0.5em;" >
+
+**_Tip_**
+
+</td>
+<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >Pacemaker-1.0.13-1.2 リポジトリパッケージ(resource-agents-3.9.5-1.310) および [ClusterLabs の開発リポジトリ版](https://github.com/ClusterLabs/resource-agents)では、 /proc/net/dev は読み込まない方式に改善されたので、この事象は発生しません。
+</td></tr></table> <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
+<td style="padding:0.5em;" >
+
+**_Tip_**
+
+</td>
+<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >また、Pacemaker-1.0.12-1.3以前のパッケージ(resource-agents-3.9.4 以前)においても、 /proc/net/dev を読み込む処理が含まれていないため、 この事象の影響は受けません。
+</td></tr></table>
+
+* * *
+
+## 対処方法
+
+以下のいずれかの対処が可能です。
+
+  * (案1) 根本対処1: RHEL5.10以降のカーネルにバージョンアップする。 
+  * (案2) 根本対処2: Pacemaker-1.0.13-1.2リポジトリパッケージにバージョンアップする。 
+  * (案3) 暫定対処: IPaddr2 の監視処理(monitor)を停止して運用する。 
+
+(案1)(案2)のいずれかが推奨ですが、どちらの対処についても事前に検証し 運用環境に影響がないことを確認してください。
+
+いかんともしがたい理由で(案1)(案2)のいずれも実施できない場合、も しくは根本対処までに時間がかかる場合は(案3)も可能ですが、 以下で述べる留意点も参照してください。
+
+### (案3) 暫定対処について
+
+暫定対処として、IPaddr2 の監視処理(monitor)を停止する、という 運用対処とする場合のメリット・デメリットには以下があります。
+
+  * メリット: バージョンアップが不要、サービスを停止せずに実施できる。 
+  * デメリット: 仮想IPアドレスが消失するような故障がPacemakerで検知できなくなる 
+
+デメリットに対しては、別の運用管理ツールで仮想IPアドレスを監視す るなどの運用を検討することをオススメします。
+
+なお、サービスLAN監視機能(pingd)によるネットワーク故障検知は そのまま利用可能です。
+
+### 参考: IPaddr2 の監視処理(monitor)停止手順
+
+IPaddr2 リソースの監視処理を停止するには、 monitor の監視間隔(interval)を"0s"に変更します。
+
+以下がその手順例です。
+
+  1. クラスタに参加しているサーバの1台で、crm コマンドを実行します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    root# crm configure
+
+
+ 
+</td></tr> </table>
+  2. IPaddr2 リソースのIDを確認します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    crm(live)configure# show
+
+
+ 
+</td></tr> </table>
+  3. IPaddr2 リソースのID(仮に vip01, vip02 とします)を引数に edit を実行します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    crm(live)configure# edit vip01 vip02
+    
+    例
+    ----(エディタの表示開始)----
+    primitive vip01 ocf:heartbeat:IPaddr2 \
+    params ip="192.168.4.200" nic="eth3" cidr_netmask="24" \
+    op start interval="0" timeout="60s" \
+    op monitor interval="10s" timeout="60s" \ # この行のintervalを変更
+    op stop interval="0" timeout="60s"
+    primitive vip02 ocf:heartbeat:IPaddr2 \
+    params ip="192.168.4.201" nic="eth3" cidr_netmask="24" \
+    op start interval="0" timeout="60s" \
+    op monitor interval="10s" timeout="60s" \ # この行のintervalを変更
+    op stop interval="0" timeout="60s"
+    ----(エディタの表示終了)----
+
+
+ 
+</td></tr> </table>
+  4. monitor の interval の現在の値を、のちに戻すために、記録します。 上記の例では、"10s" 
+  5. monitor の interval を"0s"に変更し、エディタを終了します。 
+  6. show を実行し、修正内容を確認します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    crm(live)configure# show
+
+
+ 
+</td></tr> </table>
+  7. commit を実行し、反映します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
+<td style="padding:0.5em;" >
+    
+    crm(live)configure# commit
+
+
+ 
+</td></tr> </table>
+  8. exit で終了します。 
+
+監視を再開する場合は、上記の手順で、interval の値を元の設定値に戻してください。
+
+以上です。

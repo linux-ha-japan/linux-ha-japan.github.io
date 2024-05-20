@@ -1,0 +1,1104 @@
+---
+author: ikedaj
+comments: false
+date: 2011-04-06 09:22:14+00:00
+layout: post
+permalink: /wp/archives/1178
+slug: '%e5%88%a5%e5%86%8a%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e3%81%8f%e3%82%93%e7%ac%ac1%e5%8f%b7'
+title: 別冊あんどりゅーくん(第1号)
+wordpress_id: 1178
+categories:
+- 読み物
+tags:
+- あんどりゅーくん
+---
+
+というわけで「**月刊あんどりゅーくん**」に引き続き「**別冊あんどりゅーくん**」もはじめました。[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)
+
+
+
+
+
+  
+
+
+
+
+
+
+前月分のメーリングリストから抜粋したおもしろ情報を  
+
+ 「月刊あんどりゅーくん」として発行していく予定ですが  
+
+ 月刊からもれたおもしろネタ、もしくは月刊のボリュームがあふれてきちゃったときは  
+
+ 暫定対処として「別冊あんどりゅーくん」を発行します。  
+
+ 月刊のほうは「ほぼ」月刊を目指しますが、別冊のほうが気が向いたときに発行します。  
+
+ もう一生気が向かないかもしれません。
+
+
+
+
+
+  
+
+
+
+
+
+
+では、今回は下記2項目をご紹介します。  
+
+ (1) バグ情報  
+
+ (2) 知恵袋
+
+
+
+
+
+  
+
+
+
+
+
+
+(1) バグ情報
+
+
+
+
+
+**■ cloneの動作**
+
+
+
+
+
+Master/Slave、cloneについては、まだまだ動作がビミョーな部分もあるのですが、  
+
+ Pacemaker 1.1 ではかなり動作が改善されています。  
+
+ Pacemaker 1.0 へもできる限りバックポートしていますが、うまくバックポートできない場合もありますのでご了承ください。  
+
+ 3月分のメーリングリストでは次の事例が報告されていました。
+
+
+
+
+
+  
+
+
+
+
+
+
+**例1) Pacemaker 1.1 で改善済み、そしてPacemaker 1.0 へのバックポート済みの****[パターン](http://www.gossamer-threads.com/lists/linuxha/users/69924)**
+
+
+
+
+
+crm サンプル
+
+
+
+
+
+property stonith-enabled="false"  
+
+ primitive DummyVM1 ocf:pacemaker:Dummy \  
+
+ op monitor interval="60s" timeout="60s" \  
+
+ op start on-fail="restart" interval="0" \  
+
+ op stop on-fail="ignore" interval="0" \  
+
+ meta is-managed="true" resource-stickiness="1000" migration-threshold="2"  
+
+ primitive DummyVM2 ocf:pacemaker:Dummy \  
+
+ op monitor interval="60s" timeout="60s" \  
+
+ op start on-fail="restart" interval="0" \  
+
+ op stop on-fail="ignore" interval="0" \  
+
+ meta is-managed="true" resource-stickiness="1000" migration-threshold="2"  
+
+ primitive StorGr1 ocf:heartbeat:Dummy \  
+
+ op monitor on-fail="restart" interval="60s" \  
+
+ op start on-fail="restart" interval="0" \  
+
+ op stop on-fail="ignore" interval="0" \  
+
+ meta is-managed="true" resource-stickiness="1000" migration-threshold="2"  
+
+ clone StorGr1-clone StorGr1 \  
+
+ meta target-role="Started" interleave="true" ordered="true"  
+
+ location score-DummyVM1 DummyVM1 400: dl380g5c  
+
+ location score-DummyVM2 DummyVM2 400: dl380g5d  
+
+ order start-DummyVM1-after-StorGr1-clone inf: StorGr1-clone DummyVM1  
+
+ order start-DummyVM2-after-StorGr1-clone inf: StorGr1-clone DummyVM2
+
+
+
+
+
+なんか resource-stickiness とか migration-threshold とかの設定がこだわってんなあという感じですが  
+
+ メーリングリストからほぼコピペです。  
+
+ STONITH設定してねぇぞごるぁと怒られるのがめんどかったので「property stonith-enabled="false"」は  
+
+ 追加で設定しています。でもやっぱりタイムアウト短ぇぞごるぁとは怒られるけどね。
+
+
+
+
+
+  
+
+
+
+
+
+
+というわけで、リソースを起動させます。  
+
+ # crm configure load update sample.crm
+
+
+
+
+
+# crm_mon -i1  
+
+ ============  
+
+ Last updated: Tue Mar 29 17:06:14 2011  
+
+ Stack: Heartbeat  
+
+ Current DC: dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff) - partition with quorum  
+
+ Version: 1.0.10-47037ab663d7 stable-1.0 tip  
+
+ 2 Nodes configured, unknown expected votes  
+
+ 3 Resources configured.  
+
+ ============  
+
+ Online: [ dl380g5c dl380g5d ]  
+
+ DummyVM1        (ocf::pacemaker:Dummy): Started dl380g5c  
+
+ DummyVM2        (ocf::pacemaker:Dummy): Started dl380g5d  
+
+ Clone Set: StorGr1-clone  
+
+ Started: [ dl380g5c dl380g5d ]
+
+
+
+
+
+  
+
+
+
+
+
+
+メーリングリストへの投稿者曰く  
+
+ DummyVM1 and DummyVM2 were both started on node goat1.（ goat1 は dl380g5c に読み替え）  
+
+ ということなんですが、そうかあ？という気が。たぶん上記の配置で正しいと思うんですよね。
+
+
+
+
+
+次にdl380g5d で Pacemaker を停止しました。
+
+
+
+
+
+# service heartbeat stop
+
+
+
+
+
+# crm_mon -i1  
+
+ ============  
+
+ Last updated: Tue Mar 29 17:06:48 2011  
+
+ Stack: Heartbeat  
+
+ Current DC: dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff) - partition with quorum  
+
+ Version: 1.0.10-47037ab663d7 stable-1.0 tip  
+
+ 2 Nodes configured, unknown expected votes  
+
+ 3 Resources configured.  
+
+ ============  
+
+ Online: [ dl380g5c dl380g5d ]  
+
+ DummyVM1        (ocf::pacemaker:Dummy): Started dl380g5c  
+
+ DummyVM2        (ocf::pacemaker:Dummy): Started dl380g5c ← **★ フェイルオーバ**  
+
+ Clone Set: StorGr1-clone  
+
+ Started: [ dl380g5c ]  
+
+ Stopped: [ StorGr1:1 ]
+
+
+
+
+
+投稿者によると、DummyVM2  がフェイルオーバできなかったらしいんですが  
+
+ あんどりゅーくん曰く、1.1.5 だとフェイルオーバできるはずとのこと。（投稿者の環境は 1.1.2）  
+
+ 1.0.11でも無事フェイルオーバできていることを確認しましたので、今回はめでたしめでたし。
+
+
+
+
+
+  
+
+
+
+
+
+
+**例2) Pacemaker 1.1 で改善済み、だけどPacemaker 1.0 へのバックポートが厳しい[パターン](http://www.gossamer-threads.com/lists/linuxha/pacemaker/70772)**
+
+
+
+
+
+crm サンプル  
+
+ primitive ClusterIP ocf:heartbeat:IPaddr2 \  
+
+ params ip="192.168.101.121" nic="bond0" cidr_netmask="24" clusterip_hash="sourceip" \  
+
+ op monitor interval="30s"  
+
+ primitive HttpProxy ocf:pacemaker:Dummy \  
+
+ op monitor interval="60s" timeout="60s" \  
+
+ op start on-fail="restart" interval="0" \  
+
+ op stop on-fail="ignore" interval="0" \  
+
+ clone HttpProxyClone HttpProxy  
+
+ clone ProxyIP ClusterIP \  
+
+ meta globally-unique="true" clone-max="2" clone-node-max="2"  
+
+ colocation HttpProxy-with-ClusterIP inf: HttpProxy ProxyIP  
+
+ order HttpProxyClone-after-ProxyIP inf: ProxyIP HttpProxy  
+
+ property $id="cib-bootstrap-options" \  
+
+ cluster-infrastructure="openais" \  
+
+ expected-quorum-votes="2" \  
+
+ stonith-enabled="false" \  
+
+ no-quorum-policy="ignore"
+
+
+
+
+
+HttpProxy に設定されたリソースは メーリングリストの構成では apache だったんですけどDummy に差し替えました。
+
+
+
+
+
+  
+
+
+
+
+
+
+リソースを起動させます。  
+
+ # crm configure load update sample.crm
+
+
+
+
+
+# crm_mon -i1  
+
+ ============  
+
+ Last updated: Tue Mar 29 17:34:52 2011  
+
+ Stack: Heartbeat  
+
+ Current DC: dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff) - partition with quorum  
+
+ Version: 1.0.10-47037ab663d7 stable-1.0 tip  
+
+ 2 Nodes configured, 2 expected votes  
+
+ 2 Resources configured.  
+
+ ============  
+
+ Online: [ dl380g5c dl380g5d ]  
+
+ HttpProxy       (ocf::pacemaker:Dummy): Started dl380g5c  
+
+ Clone Set: ProxyIP (unique)  
+
+ ClusterIP:0        (ocf::heartbeat:IPaddr2):       Started dl380g5c　←** ★　それぞれのノードに**  
+
+ ClusterIP:1        (ocf::heartbeat:IPaddr2):       Started dl380g5d　←** ★　分散してます**
+
+
+
+
+
+  
+
+
+
+
+
+
+片方のノードをスタンバイ化します。  
+
+  # crm node standby dl380g5d
+
+
+
+
+
+# crm_mon -i1  
+
+ ============  
+
+ Last updated: Tue Mar 29 17:38:13 2011  
+
+ Stack: Heartbeat  
+
+ Current DC: dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff) - partition with quorum  
+
+ Version: 1.0.10-47037ab663d7 stable-1.0 tip  
+
+ 2 Nodes configured, 2 expected votes  
+
+ 2 Resources configured.  
+
+ ============  
+
+ Node dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff): standby  
+
+ Online: [ dl380g5c ]  
+
+ HttpProxy       (ocf::pacemaker:Dummy): Started dl380g5c  
+
+ Clone Set: ProxyIP (unique)  
+
+ ClusterIP:0        (ocf::heartbeat:IPaddr2):       Started dl380g5c  
+
+ ClusterIP:1        (ocf::heartbeat:IPaddr2):       Started dl380g5c　← **★ フェイルオーバ**
+
+
+
+
+
+  
+
+
+
+
+
+
+スタンバイ化したノードをオンラインに戻します。  
+
+ # crm node online dl380g5d
+
+
+
+
+
+# crm_mon -i1  
+
+ ============  
+
+ Last updated: Tue Mar 29 17:38:45 2011  
+
+ Stack: Heartbeat  
+
+ Current DC: dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff) - partition with quorum  
+
+ Version: 1.0.10-47037ab663d7 stable-1.0 tip  
+
+ 2 Nodes configured, 2 expected votes  
+
+ 2 Resources configured.  
+
+ ============  
+
+ Online: [ dl380g5c dl380g5d ]  
+
+ HttpProxy       (ocf::pacemaker:Dummy): Started dl380g5c  
+
+ Clone Set: ProxyIP (unique)  
+
+ ClusterIP:0        (ocf::heartbeat:IPaddr2):       Started dl380g5c  
+
+ ClusterIP:1        (ocf::heartbeat:IPaddr2):       Started dl380g5c ← **★ 居座り。フェイルバックしない。**
+
+
+
+
+
+Pacemaker 1.1.5 だと居座り動作は発生せず、ちゃんともとのノードにフェイルバックできるようです。  
+
+ しかし、このパッチはPacemaker 1.0.11 にはバックポートできませんでした。
+
+
+
+
+
+メーリングリストでは居座りリソースをもとのノードの戻す裏技が紹介されていたのでどうしても困ったときは、参考にしてください。
+
+
+
+
+
+  
+
+
+
+
+
+
+**裏技：clone-node-max を一時的に 1 に変更する（初期設定は 2）**
+
+
+
+
+
+# crm resource meta ProxyIP set clone-node-max 1
+
+
+
+
+
+# crm_mon -i1  
+
+ ============  
+
+ Last updated: Tue Mar 29 17:47:41 2011  
+
+ Stack: Heartbeat  
+
+ Current DC: dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff) - partition with quorum  
+
+ Version: 1.0.10-47037ab663d7 stable-1.0 tip  
+
+ 2 Nodes configured, 2 expected votes  
+
+ 2 Resources configured.  
+
+ ============  
+
+ Online: [ dl380g5c dl380g5d ]  
+
+ HttpProxy       (ocf::pacemaker:Dummy): Started dl380g5c  
+
+ Clone Set: ProxyIP (unique)  
+
+ ClusterIP:0        (ocf::heartbeat:IPaddr2):       Started dl380g5c  
+
+ ClusterIP:1        (ocf::heartbeat:IPaddr2):       Started dl380g5d ← **★ お！戻った！**
+
+
+
+
+
+設定は元に戻しておいたほうがよいです。  
+
+ # crm resource meta ProxyIP set clone-node-max 2
+
+
+
+
+
+  
+
+
+
+
+
+
+では、お次は知恵袋。
+
+
+
+
+
+
+
+
+
+(2) 知恵袋[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)  
+
+ ■ IPaddr2 を使用する場合の注意[](http://www.gossamer-threads.com/lists/linuxha/pacemaker/71067)
+
+
+
+
+
+[元ネタ](http://www.gossamer-threads.com/lists/linuxha/pacemaker/71067)
+
+
+
+
+
+IPaddr2 を使用すると、仮想IPを起動させることができますが、  
+
+ ちゃんと仮想IPが起動したかどうかを確認するときはifconfig コマンドではなく、ip コマンドを使用します。  
+
+ IPaddr で仮想IPを起動したときは、ifconfig コマンドで確認できたのでうっかり忘れちゃいますが、  
+
+ ip コマンドです。
+
+
+
+
+
+  
+
+
+
+
+
+
+crm サンプル
+
+
+
+
+
+### Cluster Option ###  
+
+ property no-quorum-policy="ignore" \  
+
+ stonith-enabled="false" \  
+
+ startup-fencing="false" \  
+
+ ### Resource Defaults ###  
+
+ rsc_defaults resource-stickiness="INFINITY" \  
+
+ migration-threshold="1"  
+
+ ### Primitive Configuration ###  
+
+ primitive ip ocf:heartbeat:IPaddr2 \  
+
+ params \  
+
+ ip="192.168.101.121" \  
+
+ nic="bond0" \  
+
+ cidr_netmask="24" \  
+
+ op start interval="0s" timeout="60s" on-fail="restart" \  
+
+ op monitor interval="10s" timeout="60s" on-fail="restart" \  
+
+ op stop interval="0s" timeout="60s" on-fail="block"
+
+
+
+
+
+  
+
+
+
+
+
+
+リソースを起動させます。  
+
+ # crm configure load update sample.crm
+
+
+
+
+
+# crm_mon -i1  
+
+ ============  
+
+ Last updated: Tue Mar 29 11:18:06 2011  
+
+ Stack: Heartbeat  
+
+ Current DC: dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff) - partition with quorum  
+
+ Version: 1.0.10-47037ab663d7 stable-1.0 tip  
+
+ 2 Nodes configured, unknown expected votes  
+
+ 1 Resources configured.  
+
+ ============  
+
+ Online: [ dl380g5c dl380g5d ]  
+
+ ip      (ocf::heartbeat:IPaddr2):       Started dl380g5c ← **★ 仮想IP起動！**
+
+
+
+
+
+  
+
+
+
+
+
+
+仮想IPの確認方法
+
+
+
+
+
+# ip addr show bond0
+
+
+
+
+
+8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP  
+
+ link/ether 00:17:08:7e:0d:ae brd ff:ff:ff:ff:ff:ff  
+
+ inet 192.168.101.43/24 brd 192.168.101.255 scope global bond0  
+
+ **inet 192.168.101.121/24 brd 192.168.101.255 scope global secondary bond0 ← ★ いた！**  
+
+ inet6 fe80::217:8ff:fe7e:dae/64 scope link  
+
+ valid_lft forever preferred_lft forever
+
+
+
+
+
+  
+
+
+
+
+
+
+IPaddr と IPaddr2 はどっちを使うのがいいの？  
+
+ という質問に対する [bellche](http://twitter.com/bellche/status/50839814123163648) さんからのありがたいお言葉はこちら。  
+
+ 「エイリアスでやるとMacアドレス記録しちゃってArpキャッシュがアレでアレなので仕様変更です。  
+
+ これでフェイルオーバー後、IPが切り替わってるのに、スイッチが新しいサーバに向かない現象を回避してまするよ。」
+
+
+
+
+
+IPaddr2は起動時にArpキャッシュをアレしちゃってるので、スイッチに親切なわけですね。  
+
+ 時代はたぶん IPaddr2 です。
+
+
+
+
+
+  
+
+
+
+
+
+
+**■ maintenance-mode の使い方**  
+
+ [元ネタ  
+
+ ](http://www.gossamer-threads.com/lists/linuxha/pacemaker/70531)  
+
+ これもよくでる話題なのですが、データベースのバージョンアップをしたい時とか  
+
+ データベースはとめたい、でも、Pacemaker はとめたくないという制限があるかと思います。  
+
+ Pacemaker が起動した状態だと、データベースの停止処理を「故障」として検知してしまうので  
+
+ ちょっとしばらくの間、監視処理とか起動停止処理はしなくていいよー、と Pacemaker にお伝えする方法。
+
+
+
+
+
+  
+
+
+
+
+
+
+このコマンドを実行すると、start/stop/monitor 処理が停止します。
+
+
+
+
+
+# crm configure property maintenance-mode=true
+
+
+
+
+
+処理を復活させたい場合は次のコマンドを実行します。  
+
+ # crm configure property maintenance-mode=false
+
+
+
+
+
+似たような操作にこんなのもありますが、こいつはmonitor 処理を停止させませんのでご注意ください。  
+
+ # crm configure property is-managed-default=false
+
+
+
+
+
+  
+
+
+
+
+
+
+**■ リソース起動中の表示について**  
+
+ [元ネタ](http://www.gossamer-threads.com/lists/linuxha/pacemaker/71086)
+
+
+
+
+
+起動処理に時間のかかるアプリケーションの場合、起動が完了したのか、それとも起動処理を実行中なのか  
+
+ というステータスを知りたい場合があるかもしれません。  
+
+ ていうかねー、あんまりそういうの気にしないでほしいんだけど気にする人もたまにいますよね。  
+
+ そういう人のための魔法のオプションをご紹介します。
+
+
+
+
+
+  
+
+
+
+
+
+
+crm サンプル
+
+
+
+
+
+### Cluster Option ###  
+
+ property no-quorum-policy="ignore" \  
+
+ stonith-enabled="false" \  
+
+ startup-fencing="false" \  
+
+ ### Resource Defaults ###  
+
+ rsc_defaults resource-stickiness="INFINITY" \  
+
+ migration-threshold="1"  
+
+ ### Operation Defaults ###  
+
+ **op_defaults record-pending=true ★ 魔法のオプション**  
+
+ ### Primitive Configuration ###  
+
+ primitive ip ocf:heartbeat:IPaddr2 \  
+
+ params \  
+
+ ip="192.168.101.121" \  
+
+ nic="bond0" \  
+
+ cidr_netmask="24" \  
+
+ op start interval="0s" timeout="60s" on-fail="restart" \  
+
+ op monitor interval="10s" timeout="60s" on-fail="restart" \  
+
+ op stop interval="0s" timeout="60s" on-fail="block"
+
+
+
+
+
+  
+
+
+
+
+
+
+今回、IPaddr2の起動処理(ip_start)に sleep 30 を追加して、擬似的に遅延を発生させてみました。
+
+
+
+
+
+# vi /usr/lib/ocf/resource.d/heartbeat/IPaddr2  
+
+ ip_start() {  
+
+ **sleep 30 ← 擬似遅延**  
+
+ if [ -z "$NIC" ]; then # no nic found or specified  
+
+ exit $OCF_ERR_ARGS  
+
+ fi
+
+
+
+
+
+  
+
+
+
+
+
+
+リソースを起動します。  
+
+ # crm configure load update sample.crm
+
+
+
+
+
+  
+
+
+
+
+
+
+リソースの状態を crm_resource で確認します。
+
+
+
+
+
+お。start 処理の状態が pending になってますね。いい感じ。  # crm_resource --resource ip -O  
+
+ ip      (ocf::heartbeat:IPaddr2) Started : ip_monitor_0 (node=dl380g5d, call=2, rc=7): complete  
+
+ ip      (ocf::heartbeat:IPaddr2) Started : **ip_start_0** (node=dl380g5c, call=-1, rc=14): **pending**
+
+
+
+
+
+しばらくすると、start 処理の状態は complete になりました。起動が完了したようです。
+
+
+
+
+
+# crm_resource --resource ip -O  
+
+ ip      (ocf::heartbeat:IPaddr2) Started : ip_monitor_0 (node=dl380g5d, call=2, rc=7): complete  
+
+ ip      (ocf::heartbeat:IPaddr2) Started :** ip_start_0 **(node=dl380g5c, call=3, rc=0): **complete**  
+
+ ip      (ocf::heartbeat:IPaddr2) Started : ip_monitor_10000 (node=dl380g5c, call=4, rc=0): complete
+
+
+
+
+
+  
+
+
+
+
+
+
+で、いつもの crm_mon はというと。。。 -o オプションをつけて実行してみてください。
+
+
+
+
+
+# crm_mon -i1 -o  
+
+ ============  
+
+ Last updated: Tue Mar 29 11:30:43 2011  
+
+ Stack: Heartbeat  
+
+ Current DC: dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff) - partition with quorum  
+
+ Version: 1.0.10-47037ab663d7 stable-1.0 tip  
+
+ 2 Nodes configured, unknown expected votes  
+
+ 1 Resources configured.  
+
+ ============  
+
+ Online: [ dl380g5c dl380g5d ]  
+
+ ip      (ocf::heartbeat:IPaddr2):       Started dl380g5c  
+
+ Operations:  
+
+ * Node dl380g5d:  
+
+ * Node dl380g5c:  
+
+ ip: migration-threshold=1  
+
+ + (-1) start: rc=14 (status: unknown) ← **★ unknown？びみょー。。。**
+
+
+
+
+
+しばらくすると
+
+
+
+
+
+# crm_mon -i1 -o  
+
+ ============  
+
+ Last updated: Tue Mar 29 11:31:17 2011  
+
+ Stack: Heartbeat  
+
+ Current DC: dl380g5d (498d1812-c867-4534-a5aa-85aff30c8eff) - partition with quorum  
+
+ Version: 1.0.10-47037ab663d7 stable-1.0 tip  
+
+ 2 Nodes configured, unknown expected votes  
+
+ 1 Resources configured.  
+
+ ============  
+
+ Online: [ dl380g5c dl380g5d ]  
+
+ ip      (ocf::heartbeat:IPaddr2):       Started dl380g5c  
+
+ Operations:  
+
+ * Node dl380g5d:  
+
+ * Node dl380g5c:  
+
+ ip: migration-threshold=1  
+
+ + (3) start: rc=0 (ok) ← **★ あ。ok になりましたね。**  
+
+ + (4) monitor: interval=10000ms rc=0 (ok)
+
+
+
+
+
+crm_mon -o での表示は pending ではなく unknown だったという残念な結果に終わりました。  
+
+ rc = 14 なんで状態としては同じなんですけどね。  
+
+ ちょっとここは要改善です。
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+**では、今回は残念な結果のまま、どろん！εεεεεヾ(*´ー`)ﾉ**

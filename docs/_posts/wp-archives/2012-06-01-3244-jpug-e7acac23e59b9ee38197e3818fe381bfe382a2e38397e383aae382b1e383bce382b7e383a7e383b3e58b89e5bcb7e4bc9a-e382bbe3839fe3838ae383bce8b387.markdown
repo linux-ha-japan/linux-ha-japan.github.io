@@ -1,0 +1,43 @@
+---
+author: takayukitanaka
+comments: false
+date: 2012-06-01 01:53:34+00:00
+layout: post
+permalink: /wp/archives/3244
+slug: jpug-%e7%ac%ac23%e5%9b%9e%e3%81%97%e3%81%8f%e3%81%bf%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e5%8b%89%e5%bc%b7%e4%bc%9a-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87
+title: JPUG 第23回しくみ+アプリケーション勉強会 セミナー資料公開
+wordpress_id: 3244
+categories:
+- ニュース
+- イベント情報
+tags:
+- 勉強会
+- セミナー
+---
+
+#### 出張公演してきました！
+
+
+5月26日(土) 、産業技術大学院大学にて[第23回しくみ＋アプリケーション 勉強会](http://www.postgresql.jp/wg/shikumi/shikumi23)が開催され、日本PostgreSQLユーザ会さまのご依頼によりPacemaker入門編を出張講演してきました。
+[※ 第24回(後編)の資料はこちらです](/wp/archives/3404)
+
+[![](/assets/images/wp-content/pacemaker_JPUG20120526.jpg)](/assets/images/wp-content/pacemaker_JPUG20120526.jpg)
+
+「HAクラスタでPostgreSQLを高可用化(前編) ～Pacemaker入門編～」というタイトルで、PostgreSQLユーザに対してHAクラスタ基礎のお話から、PostgreSQL DBサーバをHAクラスタ化する構築デモ、故障デモ等を行いました。
+
+Pacemakerを知っている人は少ないだろうという想定のもと、2010年から今まで講演をした内容をすべてまとめたロングバージョンでお話させていただきましたが、参加者のほとんどが実はPacemakerを使い込んでいる人だったというのは驚きでした。
+
+突然のプログラム変更による予定外の勉強会トップバッター講演となり、心の準備が出来ないまま予定時間オーバの約100分もの間しゃべりまくりましたが、参加者の皆さんには最後まで熱心に聴いていただき講演者としては嬉しい限りです。
+
+プレゼンテーション資料とデモで使用したサンプルファイルを公開しますので、参考にしていただければと思います。
+
+
+
+	
+  * セミナー資料：  [HAクラスタでPostgreSQLを高可用化(前編) ～Pacemaker入門編～]({{ site.lhajp_resources_url }}/wp-content/pacemaker_20120526JPUG.pdf)
+
+	
+  * 設定例： [デモ用サンプルファイル（pm_crmgen環境定義書Excelテンプレート）]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo_jpug.xls)
+
+
+次のJPUG勉強会（9月か10月頃の予定）では、後編として [PostgreSQL9.1のStreaming Replication機能と Pacemaker を組み合 わせた高可用ソリューションについてお話](/wp/archives/3404)する予定です。お楽しみに。

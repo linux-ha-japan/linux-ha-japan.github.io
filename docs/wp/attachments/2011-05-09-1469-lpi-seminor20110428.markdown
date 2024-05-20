@@ -1,0 +1,14 @@
+---
+attachment_url: /wp/wp-content/uploads/LPI-seminor20110428.pdf
+author: kmii
+comments: false
+date: 2011-05-09 12:11:08+00:00
+excerpt: OSS HAクラスタPacemakerを活用したHAシステム構築の勘所
+layout: post
+permalink: /wp/archives/1465/lpi-seminor20110428
+slug: lpi-seminor20110428
+title: OSS HAクラスタPacemakerを活用したHAシステム構築の勘所
+wordpress_id: 1469
+---
+
+### [OSS HAクラスタPacemakerを活用したHAシステム構築の勘所]({{ site.lhajp_resources_url }}/wp-content/LPI-seminor20110428.pdf)

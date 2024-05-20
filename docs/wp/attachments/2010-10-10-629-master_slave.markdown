@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/master_slave.jpg
+author: t-matsuo
+comments: false
+date: 2010-10-10 07:36:33+00:00
+layout: post
+permalink: /wp/archives/576/master_slave
+slug: master_slave
+title: master_slave
+wordpress_id: 629
+---
+
+### [master_slave](/assets/images/wp-content/master_slave.jpg)

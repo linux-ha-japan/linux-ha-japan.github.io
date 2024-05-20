@@ -1,0 +1,47 @@
+---
+author: matsuuraknt
+comments: false
+date: 2016-12-09 06:58:52+00:00
+layout: post
+permalink: /wp/archives/4532
+slug: osc2016-fukuoka-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99%e3%83%bb%e3%82%a2%e3%83%b3%e3%82%b1%e3%83%bc%e3%83%88%e7%b5%90%e6%9e%9c%e5%85%ac%e9%96%8b
+title: OSC2016 Fukuoka セミナー資料・アンケート結果公開
+wordpress_id: 4532
+categories:
+- ニュース
+- イベント情報
+---
+
+2016年11月19日(土)に福岡ソフトリサーチパークにて開催された[オープンソースカンファレンス2016 Fukuoka](http://www.ospn.jp/osc2016-fukuoka/)においてブース展示及びセミナーで参加させていただきました。
+当日のセミナー資料を以下で公開いたします。セミナーでは紹介しきれなかった情報も付録として記載していますので、是非ご活用ください。
+
+セミナープログラム:
+
+
+
+	
+  * 2016-11-19 (土) 11時00分 [試して覚えるPacemaker入門 リソース設定編 ～ Pacemakerでノードやサービスを手玉に取ろう！ ～](https://www.ospn.jp/osc2016-fukuoka/modules/eguide/event.php?eid=21)
+
+
+**セミナー資料:** (内容はどちらも同じです)
+
+
+
+	
+  * [slideshare版](http://www.slideshare.net/ssuser5e5dc9/pacemaker-69943002)
+
+	
+  * [PDF版 (1.4MB)]({{ site.lhajp_resources_url }}/wp-content/OSC2016_Fukuoka.pdf)
+
+
+また、展示ブースにもたくさんの方にお立ち寄りいただきありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします。
+(回答者計18名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+
+[![OSC2016Fukuoka_Q1](/assets/images/wp-content/osc_fukuoka2016_1.png)](/assets/images/wp-content/osc_fukuoka2016_1.png)
+[![OSC2016Fukuoka_Q2](/assets/images/wp-content/osc_fukuoka2016_2.png)](/assets/images/wp-content/osc_fukuoka2016_2.png)
+[![OSC2016Fukuoka_Q3](/assets/images/wp-content/osc_fukuoka2016_3.png)](/assets/images/wp-content/osc_fukuoka2016_3.png)
+[![OSC2016Fukuoka_Q4](/assets/images/wp-content/osc_fukuoka2016_4.png)](/assets/images/wp-content/osc_fukuoka2016_4.png)
+[![OSC2016Fukuoka_Q5](/assets/images/wp-content/osc_fukuoka2016_5.png)](/assets/images/wp-content/osc_fukuoka2016_5.png)
+[![OSC2016Fukuoka_Q6](/assets/images/wp-content/osc_fukuoka2016_6.png)](/assets/images/wp-content/osc_fukuoka2016_6.png)
+[![OSC2016Fukuoka_Q7](/assets/images/wp-content/osc_fukuoka2016_7.png)](/assets/images/wp-content/osc_fukuoka2016_7.png)
+[![OSC2016Fukuoka_Q8](/assets/images/wp-content/osc_fukuoka2016_8.png)](/assets/images/wp-content/osc_fukuoka2016_8.png)

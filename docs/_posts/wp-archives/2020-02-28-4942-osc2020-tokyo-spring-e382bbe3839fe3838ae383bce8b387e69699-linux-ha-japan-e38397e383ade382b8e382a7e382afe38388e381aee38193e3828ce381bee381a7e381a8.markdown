@@ -1,0 +1,41 @@
+---
+author: ksk
+comments: false
+date: 2020-02-28 02:29:57+00:00
+layout: post
+permalink: /wp/archives/4942
+slug: osc2020-tokyo-spring-%e3%82%bb%e3%83%9f%e3%83%8a%e3%83%bc%e8%b3%87%e6%96%99-linux-ha-japan-%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%ae%e3%81%93%e3%82%8c%e3%81%be%e3%81%a7%e3%81%a8
+title: 'OSC2020 Tokyo/Spring セミナー資料: Linux-HA Japan プロジェクトのこれまでとこれから'
+wordpress_id: 4942
+categories:
+- イベント情報
+- 読み物
+tags:
+- OSC
+- セミナー
+---
+
+
+
+2020年2月21日(金)、22日(土)に開催予定となっていた [オープンソースカンファレンス2020 Tokyo/Spring](https://www.ospn.jp/osc2020-spring/) は中止となりましたが、講演予定だったセミナー資料を公開します。
+
+Pacemaker-2.0系のリリースや RHEL 8 / CentOS 8 の動向などの取り巻く状況の変化を受け、Linux-HA Japan プロジェクトの今後の活動方針の変更についてまとめていますので、ぜひご一読いただければと思います。
+
+**セミナー資料:** (内容はどちらも同じです)
+
+
+
+ 	
+  * [進化を続けるPacemaker - Linux-HA Japanプロジェクトのこれまでとこれから(slideshare)](https://www.slideshare.net/ksk_ha/linuxha-japan)
+
+ 	
+  * [進化を続けるPacemaker - Linux-HA Japanプロジェクトのこれまでとこれから(PDF版:5.2MB)]({{ site.lhajp_resources_url }}/wp-content/LinuxHAJapan-OSC2020TokyoSpring-20200221.pdf)
+
+
+当日のセミナープログラム(中止):
+
+ 	
+  * [2020-02-21(金) 14時00分 (OSC公式サイト セミナータイムテーブル)](https://www.ospn.jp/osc2020-spring/modules/eguide/event.php?eid=11)
+
+
+以上です。

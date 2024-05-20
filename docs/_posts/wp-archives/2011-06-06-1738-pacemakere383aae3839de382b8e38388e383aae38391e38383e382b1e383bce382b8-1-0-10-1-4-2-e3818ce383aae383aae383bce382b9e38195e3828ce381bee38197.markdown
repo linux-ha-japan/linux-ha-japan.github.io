@@ -1,0 +1,41 @@
+---
+author: takayukitanaka
+comments: false
+date: 2011-06-06 09:28:47+00:00
+layout: post
+permalink: /wp/archives/1738
+slug: pacemaker%e3%83%aa%e3%83%9d%e3%82%b8%e3%83%88%e3%83%aa%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8-1-0-10-1-4-2-%e3%81%8c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%81%95%e3%82%8c%e3%81%be%e3%81%97
+title: Pacemakerリポジトリパッケージ 1.0.10-1.4.2 がリリースされました
+wordpress_id: 1738
+categories:
+- ニュース
+- リリース情報
+tags:
+- リリース情報
+---
+
+6月6日付けで、Pacemakerリポジトリパッケージ(pacemaker-1.0.10-1.4.2)がリリースされました。
+
+本バージョンでは、以下拡張パッケージが更新されています。(拡張パッケージは個別のダウンロードも可能です)
+
+Pacemaker/Heartbeat等の本体系パッケージは、1.0.10-1.4.1と同じです。
+
+
+
+	
+  * crmファイル編集ツール(pm_crmgen)
+
+	
+  * 拡張リソースエージェント・プラグイン(pm_extras)
+
+	
+  * ログメッセージ制御機能(pm_logconv-hb)
+
+
+RHEL/CentOS5用のリポジトリパッケージ、及びソースコード等は以下の Linux-HA Japanプロジェクト開発者向けサイトからダウンロードが可能です。
+
+[http://sourceforge.jp/projects/linux-ha/releases](http://sourceforge.jp/projects/linux-ha/releases/)
+
+ 
+
+1.0.11系のリポジトリパッケージは、6月末を目処にリリース予定です。(要望が高かったRHEL6用パッケージも出す予定です！）

@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/2011fukuoka.jpg
+author: takayukitanaka
+comments: false
+date: 2011-12-07 02:20:01+00:00
+layout: post
+permalink: /wp/archives/2546/2011fukuoka
+slug: 2011fukuoka
+title: 2011fukuoka
+wordpress_id: 2548
+---
+
+### [2011fukuoka](/assets/images/wp-content/2011fukuoka.jpg)

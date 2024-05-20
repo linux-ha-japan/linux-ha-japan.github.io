@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/120969925.jpg
+author: minky
+comments: false
+date: 2010-07-01 00:47:54+00:00
+layout: post
+permalink: /wp/archives/347/attachment/120969925
+slug: '120969925'
+title: '120969925'
+wordpress_id: 348
+---
+
+### [120969925](/assets/images/wp-content/120969925.jpg)

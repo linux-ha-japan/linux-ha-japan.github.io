@@ -1,0 +1,27 @@
+---
+author: bellche
+comments: false
+date: 2010-09-08 09:24:25+00:00
+layout: post
+permalink: /wp/archives/599
+slug: it%e3%81%abpacemaker%e3%81%ae%e8%a8%98%e4%ba%8b%e3%81%8c%e6%8e%b2%e8%bc%89%e3%81%95%e3%82%8c%e3%81%be%e3%81%97%e3%81%9f%e3%80%82
+title: '@ITにPacemakerの記事が掲載されました。'
+wordpress_id: 599
+categories:
+- ニュース
+- 読み物
+---
+
+＠ITさんにPacemaker＋DRBDによるLinux-HA環境の記事が掲載されました。
+
+
+
+
+
+＠IT「体験！ 新しくなったLinux-HA」
+
+
+
+
+
+→ [http://www.atmarkit.co.jp/flinux/special/linuxha01/01a.html](http://www.atmarkit.co.jp/flinux/special/linuxha01/01a.html)
