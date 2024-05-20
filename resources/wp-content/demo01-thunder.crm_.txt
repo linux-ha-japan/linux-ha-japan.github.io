@@ -1,0 +1,50 @@
+property no-quorum-policy="ignore" \
+	stonith-enabled="false" \
+	crmd-transition-delay="2s" 
+
+rsc_defaults resource-stickiness="INFINITY" \
+	migration-threshold="1"
+
+primitive resource1 ocf:heartbeat:Dummy \
+	op start interval="0s" timeout="300s" on-fail="restart" \
+	op monitor interval="10s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource2 ocf:heartbeat:Dummy \
+	op start interval="0s" timeout="300s" on-fail="restart" \
+	op monitor interval="10s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource3 ocf:heartbeat:Dummy \
+	op start interval="0s" timeout="300s" on-fail="restart" \
+	op monitor interval="10s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource4 ocf:heartbeat:Dummy \
+	op start interval="0s" timeout="300s" on-fail="restart" \
+	op monitor interval="10s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource5 ocf:heartbeat:Dummy \
+	op start interval="0s" timeout="300s" on-fail="restart" \
+	op monitor interval="10s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource6 ocf:heartbeat:Dummy \
+	op start interval="0s" timeout="300s" on-fail="restart" \
+	op monitor interval="10s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="300s" on-fail="block"
+
+colocation col1  INFINITY: resource1 resource3 resource5
+colocation col2  INFINITY: resource2 resource4 resource6
+
+order order1 INFINITY: resource6 resource5 resource4 resource3 resource2 resource1
+
+location loc1 resource6 \
+	rule 200: #uname eq pm01 \
+	rule 100: #uname eq pm02
+
+location loc2 resource5 \
+	rule 200: #uname eq pm02 \
+	rule 100: #uname eq pm01
+

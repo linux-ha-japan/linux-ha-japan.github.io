@@ -1,0 +1,44 @@
+### Cluster Option ###
+property no-quorum-policy="ignore" \
+    stonith-enabled="false" \
+    crmd-transition-delay="2s"
+
+### Resource Defaults ###
+rsc_defaults resource-stickiness="INFINITY" \
+    migration-threshold="1"
+
+### Group Configuration ###
+group grp \
+    resource1 \
+    resource2
+
+### Clone Configuration ###
+clone clnResource \
+    resource3
+
+### Primitive Configuration ###
+primitive resource1 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource2 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource3 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+### Resource Location ###
+location rsc_location-1 grp \
+    rule 200: #uname eq pm01 \
+    rule 100: #uname eq pm02
+
+### Resource Colocation ###
+colocation rsc_colocation-1 INFINITY: grp clnResource
+
+### Resource Order ###
+order rsc_order-1 0: clnResource grp symmetrical=false
