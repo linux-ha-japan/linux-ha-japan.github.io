@@ -29,7 +29,7 @@ github_username:  linux-ha-japan
 repository: linux-ha-japan/linux-ha-japan.github.io
 timezone: Asia/Tokyo
 permalink: /posts/:year-:month-:day-:title:output_ext
-lhajp_resources_url: https://github.com/linux-ha-japan/linux-ha-japan.github.io/resources
+lhajp_resources_url: https://github.com/linux-ha-japan/linux-ha-japan.github.io/tree/main/resources
 header_pages:
  - index.md
  - download.md
