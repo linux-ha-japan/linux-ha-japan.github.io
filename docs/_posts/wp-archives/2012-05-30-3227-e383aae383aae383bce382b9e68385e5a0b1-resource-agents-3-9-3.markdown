@@ -269,7 +269,7 @@ Best,
 
 
 cluster-glue-libs-develあたりが罠です。
-Linux-HA Japanの[ダウンロードサイト](/wp/dl/packages)からPacemakerリポジトリパッケージをダウンロードしてcluster-glue-libs-develもインストールしてください。
+Linux-HA Japanの[ダウンロードサイト](/wp/link/packages)からPacemakerリポジトリパッケージをダウンロードしてcluster-glue-libs-develもインストールしてください。
 では、RPMを作成してみましょう。
 
     

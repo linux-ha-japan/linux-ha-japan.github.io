@@ -29,7 +29,7 @@ Pacemaker のロゴおよびバナーを公開します。
 
 [![](/assets/images/wp-content/logo_pacemaker_200x100.png)](/wp/archives/369/logo_pacemaker_200x100)  
 
- サイズ  :  [200x100](//wp/?attachment_id=371) [300x150](//wp/?attachment_id=372)
+ サイズ  :  [200x100](/assets/images/wp-content/logo_pacemaker_200x100.png) [300x150](/assets/images/wp-content/logo_pacemaker_300x150.png)
 
 
 
@@ -43,7 +43,7 @@ Pacemaker のロゴおよびバナーを公開します。
 
 [![](/assets/images/wp-content/banner_pecemaker_468x60_01.jpg)](/wp/archives/369/banner_pecemaker_468x60_01)   
 
- サイズ : [88x31](//wp/?attachment_id=388) [236x60](//wp/?attachment_id=389) [728x90](//wp/?attachment_id=390) [1024x128](//wp/?attachment_id=391)
+ サイズ : [88x31](/assets/images/wp-content/banner_pecemaker_88x31_01.jpg) [236x60](/assets/images/wp-content/banner_pecemaker_236x60_011.jpg) [728x90](/assets/images/wp-content/banner_pecemaker_728x90_01.jpg) [1024x128](/assets/images/wp-content/banner_pecemaker_1024x128_01.jpg)
 
 
 
@@ -57,7 +57,7 @@ Pacemaker のロゴおよびバナーを公開します。
 
 [![](/assets/images/wp-content/banner_pecemaker_468x60_02.jpg)](/wp/archives/369/banner_pecemaker_468x60_02)  
 
- サイズ : [88x31](//wp/?attachment_id=392) [236x60](//wp/?attachment_id=393) [ 728x90](//wp/?attachment_id=394) [ 1024x128](//wp/?attachment_id=395)
+ サイズ : [88x31](/assets/images/wp-content/banner_pecemaker_88x31_02.jpg) [236x60](/assets/images/wp-content/banner_pecemaker_236x60_021.jpg) [ 728x90](/assets/images/wp-content/banner_pecemaker_728x90_02.jpg) [ 1024x128](/assets/images/wp-content/banner_pecemaker_1024x128_02.jpg)
 
 
 
@@ -71,7 +71,7 @@ Pacemaker のロゴおよびバナーを公開します。
 
 [![](/assets/images/wp-content/banner_pecemaker_468x60_03.jpg)](/wp/archives/369/banner_pecemaker_468x60_03)  
 
- サイズ : [88x31](//wp/?attachment_id=396) [236x60](//wp/?attachment_id=397) [728x90](//wp/?attachment_id=398) [1024x128](//wp/?attachment_id=399)
+ サイズ : [88x31](/assets/images/wp-content/banner_pecemaker_88x31_03.jpg) [236x60](/assets/images/wp-content/banner_pecemaker_236x60_031.jpg) [728x90](/assets/images/wp-content/banner_pecemaker_728x90_03.jpg) [1024x128](/assets/images/wp-content/banner_pecemaker_1024x128_03.jpg)
 
 
 
@@ -85,4 +85,4 @@ Pacemaker のロゴおよびバナーを公開します。
 
 [![](/assets/images/wp-content/banner_pecemaker_468x60_04.jpg)](/wp/archives/369/banner_pecemaker_468x60_04)  
 
- サイズ : [88x31](//wp/?attachment_id=400) [236x60](//wp/?attachment_id=401) [728x90](//wp/?attachment_id=402) [1024x128](//wp/?attachment_id=403)
+ サイズ : [88x31](/assets/images/wp-content/banner_pecemaker_88x31_04.jpg) [236x60](/assets/images/wp-content/banner_pecemaker_236x60_041.jpg) [728x90](/assets/images/wp-content/banner_pecemaker_728x90_04.jpg) [1024x128](/assets/images/wp-content/banner_pecemaker_1024x128_04.jpg)

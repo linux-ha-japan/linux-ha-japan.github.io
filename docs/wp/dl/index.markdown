@@ -139,6 +139,6 @@ Pacemakerリポジトリパッケージの旧バージョンは以下のURL(osdn
 
 
  	
-  * [自作のRAやSTONITH Pluginの投稿場所](/wp/dl/find)
+  * [自作のRAやSTONITH Pluginの投稿場所](/wp/find)
 
 

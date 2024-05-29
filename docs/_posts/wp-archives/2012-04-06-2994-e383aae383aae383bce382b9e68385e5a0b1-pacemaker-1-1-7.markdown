@@ -185,7 +185,7 @@ Linux-HA Japanのリポジトリからダウンロード可能な1.0.11
 
 
 
-  * Pacemaker 1.0.11 [Linux-HA Japan](/wp/dl/packages)
+  * Pacemaker 1.0.11 [Linux-HA Japan](/wp/link/packages)
 
 
 

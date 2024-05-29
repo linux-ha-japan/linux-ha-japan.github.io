@@ -1,0 +1,14 @@
+---
+attachment_url: /wp/wp-content/uploads/hb3_or_corosync.jpg
+author: t-matsuo
+comments: false
+date: 2010-09-06 00:44:36+00:00
+excerpt: Heartbeat3 or Corosync
+layout: post
+permalink: /wp/manual/pminstall_cent5/hb3_or_corosync
+slug: hb3_or_corosync
+title: hb3_or_corosync
+wordpress_id: 560
+---
+
+### [hb3_or_corosync](/assets/images/wp-content/hb3_or_corosync.jpg)

@@ -228,7 +228,7 @@ HeartbeatとPacemakerを組み合わせた構成でpgrepコマンドを実行し
 
 ※ pengineプロセスはDCノードでのみ起動します。
 ※ ifcheckdはLinux-HA Japanプロジェクトから提供されている**pm_extras(拡張リソースエージェント・プラグイン)**に含まれています。
-[/wp/dl/packages](/wp/dl/packages)
+[/wp/link/packages](/wp/link/packages)
 [http://sourceforge.jp/projects/linux-ha/releases/52219](http://sourceforge.jp/projects/linux-ha/releases/52219)
 
 参考資料(Clustrelabs Architecture)

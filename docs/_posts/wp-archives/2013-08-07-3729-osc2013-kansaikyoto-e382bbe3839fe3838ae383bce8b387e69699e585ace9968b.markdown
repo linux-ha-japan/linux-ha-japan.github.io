@@ -44,9 +44,9 @@ tags:
 アンケート結果を以下に公開します。 (回答者74名, 円グラフ中の数値は「回答者数,割合(%)」です。)
 [
 ![](/assets/images/wp-content/osc2013kyoto-qa01.png)](/wp/archives/3729/osc2013kyoto-qa01)[
-![](/assets/images/wp-content/osc2013kyoto-qa02.png)](/wp/archives/3762/osc2013kyoto-qa02)[
-![](/assets/images/wp-content/osc2013kyoto-qa03.png)](/wp/archives/3763/osc2013kyoto-qa03)[
-![](/assets/images/wp-content/osc2013kyoto-qa04.png)](/wp/archives/3764/osc2013kyoto-qa04)[
-![](/assets/images/wp-content/osc2013kyoto-qa05.png)](/wp/archives/3765/osc2013kyoto-qa05)[
-![](/assets/images/wp-content/osc2013kyoto-qa06.png)](/wp/archives/3766/osc2013kyoto-qa06)[
-![](/assets/images/wp-content/osc2013kyoto-qa07.png)](/wp/archives/3767/osc2013kyoto-qa07)
+![](/assets/images/wp-content/osc2013kyoto-qa02.png)](/assets/images/wp-content/osc2013kyoto-qa02.png)[
+![](/assets/images/wp-content/osc2013kyoto-qa03.png)](/assets/images/wp-content/osc2013kyoto-qa03.png)[
+![](/assets/images/wp-content/osc2013kyoto-qa04.png)](/assets/images/wp-content/osc2013kyoto-qa04.png)[
+![](/assets/images/wp-content/osc2013kyoto-qa05.png)](/assets/images/wp-content/osc2013kyoto-qa05.png)[
+![](/assets/images/wp-content/osc2013kyoto-qa06.png)](/assets/images/wp-content/osc2013kyoto-qa06.png)[
+![](/assets/images/wp-content/osc2013kyoto-qa07.png)](/assets/images/wp-content/osc2013kyoto-qa07.png)

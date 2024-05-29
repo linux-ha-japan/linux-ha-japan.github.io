@@ -42,7 +42,7 @@ tags:
 
 
 	
-  * 2010/09/10  [Pacemakerを使いこなそう！～HAクラスタで止まらないサービスを～ (松尾 隆利) ](//wp/?attachment_id=605)
+  * 2010/09/10  [Pacemakerを使いこなそう！～HAクラスタで止まらないサービスを～ (松尾 隆利) ]({{ site.lhajp_resources_url }}/wp-content/521492b28866dce52ea21dc3732ca9cf.swf)
 
 	
     * スプリットブレイン・クォーラム・STONITH 等

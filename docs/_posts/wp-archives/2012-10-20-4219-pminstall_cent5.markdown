@@ -84,13 +84,13 @@ CentOS5.5 x86_64 にPacemakerをインストールする方法は、主に以下
 ※インターコネクト用ネットワークインタフェースは、可用性を高めるために物理的に異なるボードの使用を推奨
 
 
-[![Pacemaer 基本構成](/assets/images/wp-content/pm_simple_env.jpg)](/wp/dl/pminstall_cent5/pm_simple_env)
+[![Pacemaer 基本構成](/assets/images/wp-content/pm_simple_env.jpg)](/wp/manual/pminstall_cent5/pm_simple_env)
 
 
 さらに、Pacemakerでは、下図のように、クラスタ制御部にHeartbeat 3 またはCorosync を使用することができますので、それぞれの場合について記述します。
 
 
-[![hb3_or_corosync](/assets/images/wp-content/hb3_or_corosync.jpg)](/wp/dl/pminstall_cent5/hb3_or_corosync)
+[![hb3_or_corosync](/assets/images/wp-content/hb3_or_corosync.jpg)](/wp/manual/pminstall_cent5/hb3_or_corosync)
 
 
 なお、以下には「pm01」の1台分の構築手順しか記載していませんが、「pm01」「pm02」どちらも同じ手順でインストールしてください。
@@ -561,7 +561,7 @@ Pacemakerの起動の確認は、状態表示コマンドのcrm_monコマンド�
 
 以上でPacemakerのインストールは完了です。
 
-この状態では、リソース(制御対象のアプリケーション)を定義していないため、続いて[crmコマンドを使用してリソース制御部の設定](/wp/dl/pm-crm-setting)を行っていきます。
+この状態では、リソース(制御対象のアプリケーション)を定義していないため、続いて[crmコマンドを使用してリソース制御部の設定](/wp/archives/4224)を行っていきます。
 
 
 

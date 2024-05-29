@@ -30,7 +30,7 @@ Linux-HA Japanでは、ここ数年間Pacemakerの普及に努めてまいりま
 [peacemaker-1.0.12-1.3.el6.x86_64.repo.tar]({{ site.lhajp_resources_url }}/wp-content/peacemaker-1.0.12-1.3.el6_.x86_64.repo_.tar.gz)
 
 
-なお、CentOSにはPacemakerが同梱されているため、今まではyumでアップデートするとCentOSのパッケージで上書きされてしまうという事象があり、[インストール手順](/wp/dl/pminstall_cent5)に書いてあるように/etc/yum.repo.d/****.repoファイルに、excludeを記述する必要がありましたが、パッケージ名変更に伴いこの作業が不要となります。
+なお、CentOSにはPacemakerが同梱されているため、今まではyumでアップデートするとCentOSのパッケージで上書きされてしまうという事象があり、[インストール手順](/wp/archives/4219)に書いてあるように/etc/yum.repo.d/****.repoファイルに、excludeを記述する必要がありましたが、パッケージ名変更に伴いこの作業が不要となります。
 
  
 

@@ -105,7 +105,7 @@ After the success fail over,  re-set the equipment layout.
 
 **HOT TO INSTALL:**  
 
- download "[eject](/wp/?attachment_id=1273)" .
+ download "[eject]({{ site.lhajp_resources_url }}/wp-content/eject.zip)" .
 
 
 

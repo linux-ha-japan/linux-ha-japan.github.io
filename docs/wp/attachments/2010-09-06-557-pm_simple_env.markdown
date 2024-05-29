@@ -1,0 +1,13 @@
+---
+attachment_url: /wp/wp-content/uploads/pm_simple_env.jpg
+author: t-matsuo
+comments: false
+date: 2010-09-06 00:36:06+00:00
+layout: post
+permalink: /wp/manual/pminstall_cent5/pm_simple_env
+slug: pm_simple_env
+title: pm_simple_env
+wordpress_id: 557
+---
+
+### [pm_simple_env](/assets/images/wp-content/pm_simple_env.jpg)

@@ -10,7 +10,7 @@ title: crmコマンドを用いたPacemakaer のリソース設定方法
 wordpress_id: 546
 ---
 
-Pacemaker で制御するリソースを設定するには、crm コマンドを使用します。以下にcrmコマンドの基本的な使い方を記述します。前提として、[CentOS 5上にPacemakerのインストール](/wp/dl/pminstall_cent5)が完了し、Pacemakerが起動しているとします。クラスタ制御部は、Corosync、Heartbeat どちらでも構いません。
+Pacemaker で制御するリソースを設定するには、crm コマンドを使用します。以下にcrmコマンドの基本的な使い方を記述します。前提として、[CentOS 5上にPacemakerのインストール](/wp/archives/4219)が完了し、Pacemakerが起動しているとします。クラスタ制御部は、Corosync、Heartbeat どちらでも構いません。
 
 まず、crm コマンドを起動します。(以下太字が実際に入力する部分です)
 
