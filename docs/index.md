@@ -11,8 +11,7 @@ Linux上で高可用(HA)クラスタシステムを構築するための部品�
 
 技術的な質問や議論などがあれば、ぜひ[メーリングリスト](/mailinglist/)に登録いただき、活発に議論いたしましょう！
 
-<font color="red">※お知らせ(2023/11/22): </font>
+<font color="red">※お知らせ(2024/05/30): </font>
 
-Linux-HA Japan のWebサイトは [https://linux-ha-japan.github.io/](https://linux-ha-japan.github.io/) へ移転しました。
-
-旧Webサイト[http://linux-ha.osdn.jp/](http://linux-ha.osdn.jp/) (現在停止中) のコンテンツの一部は今後随時移転する予定です。
+ * 旧Webサイト[http://linux-ha.osdn.jp/](http://linux-ha.osdn.jp/) (現在停止中) のコンテンツを復旧しました。
+   * 詳しくはこちら → [旧Webサイトのコンテンツを復旧しました](/posts/2024-05-30-web-contents-migration.html)
