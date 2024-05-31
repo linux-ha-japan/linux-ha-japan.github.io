@@ -37,7 +37,7 @@ Pacemaker, Corosync の開発コミュニティである ClusterLabs から提�
 
  * [https://clusterlabs.org/pacemaker/doc/](https://clusterlabs.org/pacemaker/doc/)
 
- * [OCFリソースエージェント開発者ガイド [日本語(オンライン版)]](/wp/archives/4328) [[日本語(asciidoc版)]](https://github.com/linux-ha-japan/doc-ja/blob/master/linux-ha-doc/dev-guides/ra-dev-guide.asc) [[英語原文]](https://github.com/ClusterLabs/resource-agents/blob/master/doc/dev-guides/ra-dev-guide.asc)
+ * [OCFリソースエージェント開発者ガイド [日本語(オンライン版)]](/documents/ra-dev-guide.html) [[日本語(asciidoc版)]](https://github.com/linux-ha-japan/doc-ja/blob/master/linux-ha-doc/dev-guides/ra-dev-guide.asc) [[英語原文]](https://github.com/ClusterLabs/resource-agents/blob/master/doc/dev-guides/ra-dev-guide.asc)
    * リソースエージェント(RA)を開発する人向けのドキュメントです。日本語訳は Linux-HA Japan プロジェクトが行いました。
 
 
