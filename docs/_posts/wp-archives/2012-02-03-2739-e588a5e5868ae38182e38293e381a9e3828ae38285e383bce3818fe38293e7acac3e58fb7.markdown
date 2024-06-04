@@ -586,8 +586,7 @@ Pythonのスクリプトです。
 # pcloudsh
 Welcome to pcloudsh, the Pacemaker Cloud Interface terminal type "help" for help and quit to exit.  
 
-pcloudsh# **help
-**Documented commands (type help ):
+pcloudsh# **help**Documented commands (type help ):
 ========================================
 assembly_clone          　　　　　　　　　　　assembly_resource_remove    　　　　　　deployable_start
 assembly_create         　　　　　　　　　　deployable_assembly_add 　　　　    　　　deployable_status
@@ -608,7 +607,7 @@ openstackとかozとかの設定ファイルをいろいろ調べるのは
 なんだかちょっとめんどくさいのですよ。
 
 というわけで、pcloudshは一旦終了します。
-pcloudsh# **quit**** **
+pcloudsh# **quit**
 
 pcloudshとかpcloudshから呼び出されているlibvirt_assembly.py, libvirt_deployable.pyとかを
 にょろにょろと眺めつつ、「jeos_create」はすっとばかして、たぶん「assembly_create」がつくってる設定ファイルを
@@ -743,9 +742,7 @@ drwxr-xr-x. 2 root root 4096  2月  3 12:06 jeos
 では！
 ではでは！
 いよいよdeployableを起動しますよー！！！
-pcloudsh# **deployable_start  dep01**** 
-
-**** **** **** **** **** **** ****Starting Deployable dep01**
+pcloudsh# **deployable_start  dep01**** ****Starting Deployable dep01**
 
  
 

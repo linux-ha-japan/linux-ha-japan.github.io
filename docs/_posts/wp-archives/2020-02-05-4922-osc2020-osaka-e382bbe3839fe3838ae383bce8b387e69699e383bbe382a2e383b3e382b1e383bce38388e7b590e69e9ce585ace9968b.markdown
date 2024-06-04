@@ -33,8 +33,7 @@ categories:
 
 
  	
-  * ** [検証におけるPacemaker ログ解析ノウハウ(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2020_Osaka.pdf)
-**
+  * **[検証におけるPacemaker ログ解析ノウハウ(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2020_Osaka.pdf)**
 
 
 また、展示ブースでのアンケートへのご協力ありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします(回答者計12名)。

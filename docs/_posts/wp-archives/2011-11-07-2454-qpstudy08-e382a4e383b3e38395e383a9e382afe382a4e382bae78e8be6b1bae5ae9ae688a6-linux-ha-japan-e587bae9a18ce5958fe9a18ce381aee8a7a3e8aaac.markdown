@@ -180,8 +180,7 @@ DRBDはレプリケーションソフトウェアです。
 
 正しい組み合わせは「お」です。
 
-**
-(37) OCF(Open Cluster Framework)に順序したリソースエージェント(RA)の説明で誤っているものはどれか**
+**(37) OCF(Open Cluster Framework)に順序したリソースエージェント(RA)の説明で誤っているものはどれか**
 
 (あ) Master/Slaveリソースには、promote/demote/remoteオペレーションを実装する必要がある。
 (い) シェルスクリプト以外にもPerl、PythonなどでRAを作成することができる。
@@ -195,8 +194,7 @@ Master/Slaveリソースには、promote/demote/**notify**オペレーション�
 これはかなり重箱のスミッコ問題なので、上級者向けの問題でした。
 
 
-**
-(39) HeartbeatとPacemakerを組み合わせた構成では複数のプロセスが起動するが、次のうち該当しないものはどれか**
+**(39) HeartbeatとPacemakerを組み合わせた構成では複数のプロセスが起動するが、次のうち該当しないものはどれか**
 
 (あ) crmd
 (い) attrd
@@ -234,8 +232,7 @@ HeartbeatとPacemakerを組み合わせた構成でpgrepコマンドを実行し
 参考資料(Clustrelabs Architecture)
 [http://www.clusterlabs.org/wiki/Architecture#Supported_Cluster_Stacks](http://www.clusterlabs.org/wiki/Architecture#Supported_Cluster_Stacks)
 
-**
-(42) 次の信頼性に関する用語の説明で誤っているものはどれか**
+**(42) 次の信頼性に関する用語の説明で誤っているものはどれか**
 
 (あ) 稼働率は平均故障間隔/平均修復時間で求めることができる。
 (い) 平均故障間隔とは故障から次の故障までの平均的な間隔である。
@@ -248,8 +245,7 @@ HeartbeatとPacemakerを組み合わせた構成でpgrepコマンドを実行し
 稼働率は平均故障間隔/(**平均故障間隔**+平均修復時間)で求めることができます。
 めっさ[IPA](http://www.jitec.ipa.go.jp/)っぽい問題でした。
 
-**
-(48) Pacemakerの設定で誤っているものはどれか**
+**(48) Pacemakerの設定で誤っているものはどれか**
 
 (あ) failure-timeoutには、リソースが故障した後、自動的に故障回数を削除するまでの秒数を設定する。
 (い) target-roleに設定可能な値は、Started/Stopped/Masterのいずれかである。

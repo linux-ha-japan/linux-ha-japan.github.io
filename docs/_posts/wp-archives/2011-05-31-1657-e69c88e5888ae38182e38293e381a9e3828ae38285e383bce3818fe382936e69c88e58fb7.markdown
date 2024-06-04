@@ -538,7 +538,7 @@ Dummy RAは、かなりまるめて説明すると
 
   * クラスタの状態を確認します。  
 
-** ****-fo**オプションをつけると、failcount情報（故障回数）やoperation情報(start,monitorなどの状態)も表示されます。 
+**-fo**オプションをつけると、failcount情報（故障回数）やoperation情報(start,monitorなどの状態)も表示されます。 
 
 
 
@@ -705,7 +705,7 @@ migration-thresholdは、rsc_defaultsセクションに設定します。
 
 
 
-**dummy01.crm **
+**dummy01.crm**
 
 
 
@@ -1270,26 +1270,18 @@ With under 4 weeks to go - not a chance :-)
 
 
 
-** **
 
 
-
-
-** **
 
 
 
 
 **では、今月はこれにてどろん！εεεεεヾ(*´ー`)ﾉ**  
 
-夏休みーはまーだかな** **** **
+夏休みーはまーだかな
 
 
 
 
-** **
 
 
-
-
-** **

@@ -32,8 +32,7 @@ categories:
 
 
 	
-  * ** [増税に立ち向かえ、俺が“コンテナ” を “Pacemaker” と “DRBD” を使って無償で冗長化してやる。(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2019_Tokyo-Fall.pdf)
-**
+  * **[増税に立ち向かえ、俺が“コンテナ” を “Pacemaker” と “DRBD” を使って無償で冗長化してやる。(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2019_Tokyo-Fall.pdf)**
 
 
 また、展示ブースでのアンケートへのご協力ありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします(回答者計23名)。

@@ -45,10 +45,10 @@ PacemakerにはあらかじめApacheやPostgreSQL, Tomcatといったアプリ�
 以下ではタイムアウト値や監視間隔の設定をしていますが、何もしないリソースなので、あまり意味はありません。あくまで参考です。一つのリソースを定義する場合、1行で記述する必要がありますので、行が長くなる場合は"\" で改行してください。
 
     
-    crm(live)configure# <strong>primitive dummy-resource ocf:pacemaker:Dummy \   </strong>  <span style="color: #ff0000;">   ← "dummy-resource"は任意の文字列(ID)</span>
-    > <strong>op start interval="0s" timeout="90s" \             </strong>← dummy-resource の起動時のタイムアウト値の設定
-    > <strong>op monitor interval="3s" timeout="20s" \ </strong>          ← dummy-resource の監視間隔と、タイムアウト値の設定
-    > <strong>op stop interval="0s" timeout="100s" </strong>              ← dummy-resource の停止時のタイムアウト値の設定
+    crm(live)configure# <strong>primitive dummy-resource ocf:pacemaker:Dummy \</strong>  <span style="color: #ff0000;">   ← "dummy-resource"は任意の文字列(ID)</span>
+    > <strong>op start interval="0s" timeout="90s" \</strong>← dummy-resource の起動時のタイムアウト値の設定
+    > <strong>op monitor interval="3s" timeout="20s" \</strong>          ← dummy-resource の監視間隔と、タイムアウト値の設定
+    > <strong>op stop interval="0s" timeout="100s"</strong>              ← dummy-resource の停止時のタイムアウト値の設定
 
 
  

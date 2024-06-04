@@ -63,7 +63,7 @@ LCMC 1.0.2のリリース](http://www.gossamer-threads.com/lists/linuxha/users/7
     
     <span style="font-family: verdana,geneva;">The most important changes:
     
-    <strong>Mavenのpom.xmlを追加しました。 </strong>
+    <strong>Mavenのpom.xmlを追加しました。</strong>
     * add maven pom.xml file 
     
     <strong>CentOS 5でDRBDをインストールする際の問題を解決しました。</strong>
@@ -147,8 +147,7 @@ DRBD 8.3.12のリリース
      * crm-fence-peer.sh: Can now deal with multiple DRBD instances being in
      a master/slave group 
     
-    <strong>故障デバイスを強制的に切り離すための--forceオプションを追加。</strong><strong>
-    disk-timeoutオプションでタイムアウトも設定できるようになりました。</strong>
+    <strong>故障デバイスを強制的に切り離すための--forceオプションを追加。</strong><strong>disk-timeoutオプションでタイムアウトも設定できるようになりました。</strong>
      * Allow detach from frozen backing devices with the new --force option;
      configurable timeout for backing devices by the new disk-timeout option
     </span>
@@ -204,7 +203,7 @@ drbd.confの変更を反映するためには、「# drbdadm adjust all」コマ
 設定例(drbd.conf 一部抜粋)
 
     
-    <span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong> handlers </strong></span>{
+    <span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
      fence-peer                "/usr/lib/drbd/crm-fence-peer.sh";
      after-resync-target     "/usr/lib/drbd/crm-unfence-peer.sh";
      ...
@@ -231,7 +230,7 @@ drbd.confの変更を反映するためには、「# drbdadm adjust all」コマ
 設定例(drbd.conf 一部抜粋)
 
     
-    <span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong> handlers </strong></span>{
+    <span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
      fence-peer                "/usr/lib/drbd/crm-fence-peer.sh";
      after-resync-target     "/usr/lib/drbd/crm-unfence-peer.sh";
      ...
@@ -245,7 +244,7 @@ drbd.confの変更を反映するためには、「# drbdadm adjust all」コマ
     <strong><span style="color: #ff00ff;">resource r0</span></strong> {
      ...
      handlers {
-    <strong> fence-peer               "/usr/lib/drbd/crm-fence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r0</span>";
+    <strong>fence-peer               "/usr/lib/drbd/crm-fence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r0</span>";
      after-resync-target    "/usr/lib/drbd/crm-unfence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r0</span>";</strong>
      }
      ...
@@ -255,7 +254,7 @@ drbd.confの変更を反映するためには、「# drbdadm adjust all」コマ
      ...
      handlers {
      <strong>fence-peer              "/usr/lib/drbd/crm-fence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r1</span>";
-     after-resync-target    "/usr/lib/drbd/crm-unfence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r1</span>"; </strong>
+     after-resync-target    "/usr/lib/drbd/crm-unfence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r1</span>";</strong>
      }
      ...
     }</span>
@@ -384,7 +383,7 @@ node02へフェイルオーバするはずです。
 
 
     
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01 set node01 1</span></strong><strong> </strong></span>
+    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01 set node01 1</span></strong></span>
 
 
 だがしかし！
@@ -404,7 +403,7 @@ groupリソースは停止しましたが、Masterリソースはフェイルオ
     
     Node <strong><span style="color: #ff00ff;">node01 </span></strong>(11111111-1111-1111-1111-111111111111): online
      <span style="color: #ff00ff;"><span style="color: #000000;">prmDRBD:0       (ocf::linbit:drbd)</span></span><strong><span style="color: #ff00ff;"> Master</span></strong>
-    Node <span style="color: #ff00ff;"><strong>node02 </strong></span>(22222222-2222-2222-2222-222222222222): online
+    Node <span style="color: #ff00ff;"><strong>node02</strong></span>(22222222-2222-2222-2222-222222222222): online
      <span style="color: #ff00ff;"><span style="color: #000000;">prmDRBD:1       (ocf::linbit:drbd) </span></span><strong><span style="color: #ff00ff;"><strong>Slave</strong></span></strong>
     
     Migration summary:

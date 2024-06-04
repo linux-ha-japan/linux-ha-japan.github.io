@@ -387,9 +387,9 @@ HttpProxy に設定されたリソースは メーリングリストの構成で
 
  Clone Set: ProxyIP (unique)  
 
- ClusterIP:0        (ocf::heartbeat:IPaddr2):       Started dl380g5c　←** ★　それぞれのノードに**  
+ ClusterIP:0        (ocf::heartbeat:IPaddr2):       Started dl380g5c　←**★　それぞれのノードに**  
 
- ClusterIP:1        (ocf::heartbeat:IPaddr2):       Started dl380g5d　←** ★　分散してます**
+ ClusterIP:1        (ocf::heartbeat:IPaddr2):       Started dl380g5d　←**★　分散してます**
 
 
 
@@ -976,7 +976,7 @@ crm サンプル
 
  ip      (ocf::heartbeat:IPaddr2) Started : ip_monitor_0 (node=dl380g5d, call=2, rc=7): complete  
 
- ip      (ocf::heartbeat:IPaddr2) Started :** ip_start_0 **(node=dl380g5c, call=3, rc=0): **complete**  
+ ip      (ocf::heartbeat:IPaddr2) Started :**ip_start_0**(node=dl380g5c, call=3, rc=0): **complete**  
 
  ip      (ocf::heartbeat:IPaddr2) Started : ip_monitor_10000 (node=dl380g5c, call=4, rc=0): complete
 

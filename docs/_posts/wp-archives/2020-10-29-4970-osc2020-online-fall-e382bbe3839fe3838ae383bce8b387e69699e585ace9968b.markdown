@@ -52,7 +52,7 @@ categories:
 
 
 
-  * ** **[試して覚えるPacemaker-2.0入門『構築・リソース設定』**(PDF)**]({{ site.lhajp_resources_url }}/wp-content/LinuxHAJapan-OSC2020OnlineFall-20201023.pdf)
+  * [試して覚えるPacemaker-2.0入門『構築・リソース設定』**(PDF)**]({{ site.lhajp_resources_url }}/wp-content/LinuxHAJapan-OSC2020OnlineFall-20201023.pdf)
 
 
 

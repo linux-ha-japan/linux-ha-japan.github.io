@@ -31,8 +31,7 @@ categories:
 
 
 	
-  * **  [Pacemakerで学ぶHAクラスタ(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2019_Tokyo-Spring.pdf)
-**
+  * **[Pacemakerで学ぶHAクラスタ(PDF)]({{ site.lhajp_resources_url }}/wp-content/OSC2019_Tokyo-Spring.pdf)**
 
 
 また、展示ブースでのアンケートへのご協力ありがとうございました。当日ブースにてご協力いただいたアンケート結果を以下で公開いたします(回答者計19名)。

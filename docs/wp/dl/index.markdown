@@ -64,7 +64,7 @@ RHEL 8/9 High Availability Add-On および互換OS 同梱版の Pacemaker と�
 
 Pacemakerにリソースを設定する方法を紹介します。
 
-**Pacemaker-2.0 (Pacemaker-2.0系+Corosync 3系) **
+**Pacemaker-2.0 (Pacemaker-2.0系+Corosync 3系)**
 
 
 
@@ -78,7 +78,7 @@ Pacemakerにリソースを設定する方法を紹介します。
 
 
 
-**Pacemaker-1.1 (Pacemaker-1.1系+Corosync 2系) **
+**Pacemaker-1.1 (Pacemaker-1.1系+Corosync 2系)**
 
 
 
@@ -89,8 +89,7 @@ Pacemakerにリソースを設定する方法を紹介します。
   * [すぐに始められる！最新のPacemakerで始める高可用クラスタ入門](/wp/archives/4038)　(2014/10 OSC2014 Tokyo/Fall講演資料)
 
 
-** Pacemaker-1.0 (Pacemaker-1.0系+Heartbeat 2系)
-**
+** Pacemaker-1.0 (Pacemaker-1.0系+Heartbeat 2系)**
 
 
 

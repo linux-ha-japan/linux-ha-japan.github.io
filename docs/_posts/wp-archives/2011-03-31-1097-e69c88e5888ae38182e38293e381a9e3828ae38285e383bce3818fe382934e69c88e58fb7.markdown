@@ -572,8 +572,7 @@ Linux-HA Japan Projectでは [ksk_ha](http://twitter.com/#!/ksk_ha/status/523169
 
 
 **■ STONITH プラグイン  
-
- **
+**
 
 
 

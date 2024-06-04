@@ -32,15 +32,11 @@ tags:
 
 **
 
-
-
 * * *
-
-
 
 **
 
-** ****1-1. Pacemaker 1.0.12**
+**1-1. Pacemaker 1.0.12**
 
 Pacemaker 1.0系の最新版が[リリース](http://theclusterguy.clusterlabs.org/post/13237273559/pacemaker-1-0-12-released)されました！
 後述のCluster-glueとあわせて、Linux-HA Japanではrpmパッケージの公開準備を行っています。
@@ -97,15 +93,11 @@ crm shellのtemplate listコマンドの動作が改善されました。
 また、Pacmaker 1.0系が[githubのリポジトリ](https://github.com/ClusterLabs/pacemaker-1.0)へお引っ越ししました。
 なお、最新版(Pacemaker 1.1系)のリポジトリは[こちら](https://github.com/ClusterLabs/pacemaker)。
 
-** **
+
 
 **
 
-
-
 * * *
-
-
 
 **
 
@@ -176,15 +168,11 @@ INFINITYよりも小さなフェイルカウントの削除する際の動作を
 いやあ、いい感じであらぶってますねえ。
 Rastoさん、会ったことないけど、おもろい人やね。
 
-****
+
 
 **
 
-
-
 * * *
-
-
 
 **
 
