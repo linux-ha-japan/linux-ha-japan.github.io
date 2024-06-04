@@ -14,19 +14,19 @@ tags:
 - リリース情報
 ---
 
-本日、RHEL6 の 32ビット版 リポジトリパッケージの提供を開始しました。
-    対象アーキテクチャが異なるだけで、各コンポーネントのバージョンは64ビット版と同等です。
-    
-    ダウンロードはこちら
-    
-      <a href="http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469">http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469</a>
-    
-      == 追加されたファイル ================================
-      pacemaker-1.0.11-1.2.2.el6.i686.repo.tar.gz
-      pacemaker-debuginfo-1.0.11-1.2.2.el6.i686.repo.tar.gz
-      ======================================================
-    
-    なお、Pacemaker 1.0.12 ベースのリポジトリパッケージのリリースも
-    そろそろ予定しており、32ビット版も提供予定です。
-    お急ぎでない方は、こちらのリリースまで少々お待ちください。
-    
+<pre>本日、RHEL6 の 32ビット版 リポジトリパッケージの提供を開始しました。
+対象アーキテクチャが異なるだけで、各コンポーネントのバージョンは64ビット版と同等です。
+
+ダウンロードはこちら
+
+  <a href="http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469">http://sourceforge.jp/projects/linux-ha/releases/?package_id=12469</a>
+
+  == 追加されたファイル ================================
+  pacemaker-1.0.11-1.2.2.el6.i686.repo.tar.gz
+  pacemaker-debuginfo-1.0.11-1.2.2.el6.i686.repo.tar.gz
+  ======================================================
+
+なお、Pacemaker 1.0.12 ベースのリポジトリパッケージのリリースも
+そろそろ予定しており、32ビット版も提供予定です。
+お急ぎでない方は、こちらのリリースまで少々お待ちください。
+</pre>

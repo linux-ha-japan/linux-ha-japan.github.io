@@ -104,76 +104,66 @@ Dejan Muhamedagic
 今回のリリースでは、LRMD_MAX_CHILDRENのデフォルト値が、実行環境のプロセッサ数に応じて調整されるようになりました。
 
 [calc_max_children()](http://hg.linux-ha.org/glue/file/1f36e9cdcc13/lrm/lrmd/lrmd.c#l1082)という関数が新しく追加されており、実行環境のプロセッサ数の1/2がLRMD_MAX_CHILDRENに設定されます。
+<pre><code>
+   124 static int max_child_count		= 4;
 
-    
-    <code>
-       124 static int max_child_count		= 4;
-    
-      1082 static void
-      1083 calc_max_children()
-      1084 {
-      1085 #ifdef _SC_NPROCESSORS_ONLN
-      1086 	int nprocs;
-      1087 
-      1088 	nprocs = sysconf(_SC_NPROCESSORS_ONLN);
-      1089 	if( nprocs < 1 ) {
-      1090 		lrmd_log(LOG_WARNING, "%s: couldn't get the number of processors"
-      1091 		, __FUNCTION__);
-      1092 	} else {
-      1093 		if( nprocs/2 > max_child_count ) {
-      1094 			max_child_count = nprocs/2;
-      1095 		}
-      1096 		lrmd_log(LOG_INFO, "max-children set to %d "
-      1097 		"(%d processors online)", max_child_count, nprocs);
-      1098 		return;
-      1099 	}
-    </code>
+  1082 static void
+  1083 calc_max_children()
+  1084 {
+  1085 #ifdef _SC_NPROCESSORS_ONLN
+  1086 	int nprocs;
+  1087 
+  1088 	nprocs = sysconf(_SC_NPROCESSORS_ONLN);
+  1089 	if( nprocs < 1 ) {
+  1090 		lrmd_log(LOG_WARNING, "%s: couldn't get the number of processors"
+  1091 		, __FUNCTION__);
+  1092 	} else {
+  1093 		if( nprocs/2 > max_child_count ) {
+  1094 			max_child_count = nprocs/2;
+  1095 		}
+  1096 		lrmd_log(LOG_INFO, "max-children set to %d "
+  1097 		"(%d processors online)", max_child_count, nprocs);
+  1098 		return;
+  1099 	}
+</code></pre>
 
 
 ちなみに、LRMD_MAX_CHILDRENの最少値は4なので、実行環境のプロセッサ数が4以下の場合、LRMD_MAX_CHILDREN=4となります。
 手元の環境で試してみたらこんな感じでした。
+<pre><code>
+<span style="color: #008000;"><strong># cat /proc/cpuinfo | grep processor</strong></span> (プロセッサ数=4)
 
-    
-    <code>
-    <span style="color: #008000;"><strong># cat /proc/cpuinfo | grep processor</strong></span> (プロセッサ数=4)
-    
-    processor       : 0
-    processor       : 1
-    processor       : 2
-    processor       : 3
-    </code>
+processor       : 0
+processor       : 1
+processor       : 2
+processor       : 3
+</code></pre>
 
 
+<pre><code>
+<span style="color: #008000;"><strong># grep max-children /var/log/ha-log</strong></span> (LRMD_MAX_CHILDREN=4)
 
-    
-    <code>
-    <span style="color: #008000;"><strong># grep max-children /var/log/ha-log</strong></span> (LRMD_MAX_CHILDREN=4)
-    
-    Oct 17 14:07:53 dl380g5d lrmd: [5545]: info: max-children set to 4 (4 processors online)
-    </code>
+Oct 17 14:07:53 dl380g5d lrmd: [5545]: info: max-children set to 4 (4 processors online)
+</code></pre>
 
 
 プロセッサをたくさんもっているお金持ちのみなさんはぜひ試してみてください。
 ちなみに、LRMD_MAX_CHILDRENはオンラインでも変更できます。
 
 現在のLRMD_MAX_CHILDRENを表示
-
-    
-    <code>
-    <span style="color: #008000;"><strong># lrmadmin -g max-children</strong></span>
-    max-children: 4
-    </code>
+<pre><code>
+<span style="color: #008000;"><strong># lrmadmin -g max-children</strong></span>
+max-children: 4
+</code></pre>
 
 
 LRMD_MAX_CHILDRENを変更
+<pre><code>
+<span style="color: #008000;"><strong># lrmadmin -p max-children 10</strong></span>
 
-    
-    <code>
-    <span style="color: #008000;"><strong># lrmadmin -p max-children 10</strong></span>
-    
-    <span style="color: #008000;"><strong># lrmadmin -g max-children</strong></span>
-    max-children: 10
-    </code>
+<span style="color: #008000;"><strong># lrmadmin -g max-children</strong></span>
+max-children: 10
+</code></pre>
 
 
 lrmadminコマンドは実行したノードのLRMD_MAX_CHILDRENを変更します。

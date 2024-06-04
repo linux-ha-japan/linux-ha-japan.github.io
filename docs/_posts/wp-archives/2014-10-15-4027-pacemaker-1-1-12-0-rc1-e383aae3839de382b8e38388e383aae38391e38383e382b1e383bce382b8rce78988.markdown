@@ -44,10 +44,8 @@ RC1版のパッケージは以下のURLよりダウンロードできます(ダ�
 以下の手順で Pacemakerをインストールします。yum コマンドにより 必要な依存パッケージも自動的にインストールされますので、 OSのインストールメディア等が参照できるようにしておいてください。
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # rpm -ivh pacemaker-repo-1.1.12-0.RC1.el6.x86_64.rpm
-    # yum install pacemaker-all
+<td style="padding:0.5em;" > <pre># rpm -ivh pacemaker-repo-1.1.12-0.RC1.el6.x86_64.rpm
+# yum install pacemaker-all</pre>
 
 
  
@@ -64,35 +62,33 @@ corosyncの動作に必要な設定を行います。 以下は最低限必要�
 **/etc/corosync/corosync.conf 設定例**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    totem {
-            version: 2
-            token: 1000
-            rrp_mode: active
-            interface {
-                    ringnumber: 0
-                    bindnetaddr: 192.168.101.0
-                    mcastaddr: 239.255.1.1
-                    mcastport: 5405
-            }
-            interface {
-                    ringnumber: 1
-                    bindnetaddr: 192.168.102.0
-                    mcastaddr: 239.255.1.1
-                    mcastport: 5405
-            }
-    }
-    
-    logging {
-            syslog_facility: daemon
-            debug: off
-    }
-    
-    quorum {
-            provider: corosync_votequorum
-            expected_votes: 2
-    }
+<td style="padding:0.5em;" > <pre>totem {
+        version: 2
+        token: 1000
+        rrp_mode: active
+        interface {
+                ringnumber: 0
+                bindnetaddr: 192.168.101.0
+                mcastaddr: 239.255.1.1
+                mcastport: 5405
+        }
+        interface {
+                ringnumber: 1
+                bindnetaddr: 192.168.102.0
+                mcastaddr: 239.255.1.1
+                mcastport: 5405
+        }
+}
+
+logging {
+        syslog_facility: daemon
+        debug: off
+}
+
+quorum {
+        provider: corosync_votequorum
+        expected_votes: 2
+}</pre>
 
 
  
@@ -115,10 +111,8 @@ corosyncの認証を行うための認証鍵ファイルを作成します。
 **/etc/corosync/authkey 設定手順例**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # corosync-keygen -l
-    # scp -p /etc/corosync/authkey root@node2:/etc/corosync/authkey
+<td style="padding:0.5em;" > <pre># corosync-keygen -l
+# scp -p /etc/corosync/authkey root@node2:/etc/corosync/authkey</pre>
 
 
  
@@ -131,9 +125,7 @@ Pacemakerの内部プロセスが故障した場合もノード故障として�
 **/etc/sysconfig/pacemaker (追加設定行)**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    export PCMK_fail_fast=yes
+<td style="padding:0.5em;" > <pre>export PCMK_fail_fast=yes</pre>
 
 
  
@@ -152,35 +144,33 @@ Pacemakerの内部プロセスが故障した場合もノード故障として�
 **/etc/init/pacemaker.combined.conf (修正箇所のみ)**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    --- pacemaker.combined.conf.org 2014-10-14 11:17:24.498010606 +0900
-    +++ pacemaker.combined.conf     2014-10-14 11:19:10.079010163 +0900
-    @@ -2,6 +2,7 @@
-     #
-     # Starts Corosync cluster engine and Pacemaker cluster manager.
-    
-    +stop on runlevel [0123456]
-     kill timeout 3600
-     respawn
-    
-    @@ -20,7 +21,7 @@
-     pre-start script
-         # setup the software watchdog which corosync uses.
-         # rewrite according to environment.
-    -    modprobe softdog soft_margin=60
-    +    [ -c /dev/watchdog ] || modprobe softdog soft_margin=60
-         pidof corosync || start corosync
-    
-         # if you use corosync-notifyd, uncomment the line below.
-    @@ -49,7 +50,7 @@
-         rm -f /var/run/$prog.pid
-    
-         # if you use watchdog of corosync, uncomment the line below.
-    -    #pidof corosync || false
-    +    pidof corosync || false
-    
-         pidof crmd || stop corosync
+<td style="padding:0.5em;" > <pre>--- pacemaker.combined.conf.org 2014-10-14 11:17:24.498010606 +0900
++++ pacemaker.combined.conf     2014-10-14 11:19:10.079010163 +0900
+@@ -2,6 +2,7 @@
+ #
+ # Starts Corosync cluster engine and Pacemaker cluster manager.
+
++stop on runlevel [0123456]
+ kill timeout 3600
+ respawn
+
+@@ -20,7 +21,7 @@
+ pre-start script
+     # setup the software watchdog which corosync uses.
+     # rewrite according to environment.
+-    modprobe softdog soft_margin=60
++    [ -c /dev/watchdog ] || modprobe softdog soft_margin=60
+     pidof corosync || start corosync
+
+     # if you use corosync-notifyd, uncomment the line below.
+@@ -49,7 +50,7 @@
+     rm -f /var/run/$prog.pid
+
+     # if you use watchdog of corosync, uncomment the line below.
+-    #pidof corosync || false
++    pidof corosync || false
+
+     pidof crmd || stop corosync</pre>
 
 
  
@@ -197,9 +187,7 @@ Pacemakerを起動するには以下のコマンドを実行します。
 起動コマンドは Pacemaker-1.0系とは異なり、 Upstart経由(RHEL6の場合)で起動する手順が推奨です。
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # initctl start pacemaker.combined
+<td style="padding:0.5em;" > <pre># initctl start pacemaker.combined</pre>
 
 
  
@@ -208,10 +196,8 @@ Pacemakerを起動するには以下のコマンドを実行します。
 正常に起動すると、crm_mon コマンドの表示でノードが Online 状態となります。
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # crm_mon -D1
-    Online: [ node1 node2 ]
+<td style="padding:0.5em;" > <pre># crm_mon -D1
+Online: [ node1 node2 ]</pre>
 
 
  
@@ -222,9 +208,7 @@ Pacemakerを起動するには以下のコマンドを実行します。
 Pacemakerを停止するには以下のコマンドを実行します。
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # initctl stop pacemaker.combined
+<td style="padding:0.5em;" > <pre># initctl stop pacemaker.combined</pre>
 
 
  
@@ -238,10 +222,8 @@ Pacemakerを停止するには以下のコマンドを実行します。
 
   * Pacemaker本体のアンインストール 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # yum erase pacemaker corocync libqb cluster-glue cluster-glue-libs resource-agents \
-    pm_crmgen pm_logconv-cs pm_diskd pm_extras crmsh pssh
+<td style="padding:0.5em;" > <pre># yum erase pacemaker corocync libqb cluster-glue cluster-glue-libs resource-agents \
+pm_crmgen pm_logconv-cs pm_diskd pm_extras crmsh pssh</pre>
 
 
  
@@ -249,11 +231,9 @@ Pacemakerを停止するには以下のコマンドを実行します。
 
   * Pacemakerリポジトリパッケージのアンインストール 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # rpm -e pacemaker-repo
-    # rpm -qa | grep pacemaker-repo
-    #
+<td style="padding:0.5em;" > <pre># rpm -e pacemaker-repo
+# rpm -qa | grep pacemaker-repo
+#</pre>
 
 
  

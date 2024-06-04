@@ -54,10 +54,8 @@ CentOS5.5をベースに実施しております。
 
 
 
-
-    
-         (誤) stonith-enabled="no"
-         (正) stonith-enabled="false"
+<pre>     (誤) stonith-enabled="no"
+     (正) stonith-enabled="false"</pre>
 
 
 

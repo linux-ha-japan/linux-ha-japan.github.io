@@ -140,53 +140,51 @@ _※2 以後フェイルオーバを「F/O」と略記します。_
 Pacemaker-1.1系の場合、上記に加え fencing_topology というコマンドも使用します。詳細は[OSCデモ機の設定を公開します](/wp/archives/4377)をご覧ください。
 
 早速、９コマンドの解説を、、と言いたいところですが、ここで１つCRM設定ファイルの例を示します。
+<pre><code>### Cluster Option ###
+property no-quorum-policy="ignore" \
+    stonith-enabled="false" \
+    crmd-transition-delay="2s"
 
-    
-    <code>### Cluster Option ###
-    property no-quorum-policy="ignore" \
-        stonith-enabled="false" \
-        crmd-transition-delay="2s"
-    
-    ### Resource Defaults ###
-    rsc_defaults resource-stickiness="INFINITY" \
-        migration-threshold="1"
-    
-    ### Group Configuration ###
-    group grp \
-        resource1 \
-        resource2
-    
-    ### Clone Configuration ###
-    clone clnResource \
-        resource3
-    
-    ### Primitive Configuration ###
-    primitive resource1 ocf:heartbeat:Dummy \
-        op start interval="0s" timeout="300s" on-fail="restart" \
-        op monitor interval="10s" timeout="60s" on-fail="restart" \
-        op stop interval="0s" timeout="300s" on-fail="block"
-    
-    primitive resource2 ocf:heartbeat:Dummy \
-        op start interval="0s" timeout="300s" on-fail="restart" \
-        op monitor interval="10s" timeout="60s" on-fail="restart" \
-        op stop interval="0s" timeout="300s" on-fail="block"
-    
-    primitive resource3 ocf:heartbeat:Dummy \
-        op start interval="0s" timeout="300s" on-fail="restart" \
-        op monitor interval="10s" timeout="60s" on-fail="restart" \
-        op stop interval="0s" timeout="300s" on-fail="block"
-    
-    ### Resource Location ###
-    location rsc_location-1 grp \
-        rule 200: #uname eq pm01 \
-        rule 100: #uname eq pm02
-    
-    ### Resource Colocation ###
-    colocation rsc_colocation-1 INFINITY: grp clnResource
-    
-    ### Resource Order ###
-    order rsc_order-1 0: clnResource grp symmetrical=false
-    </code>
+### Resource Defaults ###
+rsc_defaults resource-stickiness="INFINITY" \
+    migration-threshold="1"
+
+### Group Configuration ###
+group grp \
+    resource1 \
+    resource2
+
+### Clone Configuration ###
+clone clnResource \
+    resource3
+
+### Primitive Configuration ###
+primitive resource1 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource2 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource3 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+### Resource Location ###
+location rsc_location-1 grp \
+    rule 200: #uname eq pm01 \
+    rule 100: #uname eq pm02
+
+### Resource Colocation ###
+colocation rsc_colocation-1 INFINITY: grp clnResource
+
+### Resource Order ###
+order rsc_order-1 0: clnResource grp symmetrical=false
+</code></pre>
 
 
 この例は比較的単純ですが、msを除く８のコマンドを全て含んでおり、Active-Standby構成の基本がつまっています。しかもDummyという特殊なリソースのみを使用しているため、Pacemaker以外、Apacheや共有ディスク等のリソースは不要です。
@@ -249,9 +247,7 @@ CRM設定ファイルを編集した場合なども含め、次回以降は、�
 
 
 
-
-    
-    <code># rm -f /var/lib/heartbeat/crm/*</code>
+<pre><code># rm -f /var/lib/heartbeat/crm/*</code></pre>
 
 
 
@@ -260,9 +256,7 @@ CRM設定ファイルを編集した場合なども含め、次回以降は、�
 
 
 
-
-    
-    <code># rm -f /var/lib/pacemaker/cib/*</code>
+<pre><code># rm -f /var/lib/pacemaker/cib/*</code></pre>
 
 
 この手順は、以前に設定したCRM設定ファイルの情報をクリアします。
@@ -282,9 +276,7 @@ pm01から順番に両系サーバで実施します。
 
 
 
-
-    
-    <code># /etc/init.d/heartbeat start</code>
+<pre><code># /etc/init.d/heartbeat start</code></pre>
 
 
 
@@ -293,9 +285,7 @@ pm01から順番に両系サーバで実施します。
 
 
 
-
-    
-    <code># initctl start pacemaker.combined</code>
+<pre><code># initctl start pacemaker.combined</code></pre>
 
 
 
@@ -304,34 +294,30 @@ pm01から順番に両系サーバで実施します。
 
 
 
-
-    
-    <code># systemctl start pacemaker</code>
+<pre><code># systemctl start pacemaker</code></pre>
 
 
 crm_mon -rfA コマンドで、正常に起動したことを確認します。
 
 以下のように表示されればOKです。こうなるのに数分ぐらいかかるかもしれません。
+<pre><code># crm_mon -rfA
+ ～略～
+ Online: [ pm01 pm02 ]
 
-    
-    <code># crm_mon -rfA
-     ～略～
-     Online: [ pm01 pm02 ]
-    
-     Full list of resources:
-    
-     Node Attributes:
-     * Node pm01:
-        + pm02-eth1                         : up
-        + pm02-eth2                         : up
-     * Node pm02:
-        + pm01-eth1                         : up
-        + pm01-eth2                         : up
-    
-     Migration summary:
-     * Node pm01:
-     * Node pm02:
-    </code>
+ Full list of resources:
+
+ Node Attributes:
+ * Node pm01:
+    + pm02-eth1                         : up
+    + pm02-eth2                         : up
+ * Node pm02:
+    + pm01-eth1                         : up
+    + pm01-eth2                         : up
+
+ Migration summary:
+ * Node pm01:
+ * Node pm02:
+</code></pre>
 
 
 コンソール画面が小さくて、表示全体が見えないという方は、crm_mon -rfA**1**と「1」を引数に加えてください。自動更新が無効になり1回だけ、topコマンドのバッチモードのようにずらずらと結果を表示してくれます。
@@ -341,84 +327,78 @@ crm_mon -rfA コマンドで、正常に起動したことを確認します。
 
 
 以下コマンドをrootユーザで実行し、[例のCRM設定ファイル]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)をPacemakerに反映します。どちらのノードで実行してもかまいません。（例のCRM設定ファイルをexample01.crmという名前のファイルにコピペ・保存したと仮定します。）
-
-    
-    <code># crm configure load update example01.crm</code>
+<pre><code># crm configure load update example01.crm</code></pre>
 
 
 crm_mon -rfA コマンドで、CRM設定ファイルが正常に反映されたことを確認します。以下のように表示されればOKです。
 
 **Pacemaker-1.0系の場合**
+<pre><code># crm_mon -rfA
+============
+Last updated: Thu May 2 11:01:03 2013
+Stack: Heartbeat
+Current DC: pm02 (0841a484-1688-4997-8c14-ae5710ddb791) - partition with quorum
+Version: 1.0.13-30bb726
+2 Nodes configured, unknown expected votes
+2 Resources configured.
+============
 
-    
-    <code># crm_mon -rfA
-    ============
-    Last updated: Thu May 2 11:01:03 2013
-    Stack: Heartbeat
-    Current DC: pm02 (0841a484-1688-4997-8c14-ae5710ddb791) - partition with quorum
-    Version: 1.0.13-30bb726
-    2 Nodes configured, unknown expected votes
-    2 Resources configured.
-    ============
-    
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-    Resource Group: grp
-        resource1 (ocf::heartbeat:Dummy): Started pm01
-        resource2 (ocf::heartbeat:Dummy): Started pm01
-    Clone Set: clnResource
-        Started: [ pm01 pm02 ]
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1 : up
-        + pm02-eth2 : up
-    * Node pm02:
-        + pm01-eth1 : up
-        + pm01-eth2 : up
-    
-    Migration summary:
-    * Node pm01:
-    * Node pm02:
-    </code>
+Online: [ pm01 pm02 ]
+
+Full list of resources:
+
+Resource Group: grp
+    resource1 (ocf::heartbeat:Dummy): Started pm01
+    resource2 (ocf::heartbeat:Dummy): Started pm01
+Clone Set: clnResource
+    Started: [ pm01 pm02 ]
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1 : up
+    + pm02-eth2 : up
+* Node pm02:
+    + pm01-eth1 : up
+    + pm01-eth2 : up
+
+Migration summary:
+* Node pm01:
+* Node pm02:
+</code></pre>
 
 
 **Pacemaker-1.1系の場合**
+<pre><code># crm_mon -rfA
+Last updated: Wed Mar 23 13:33:19 2016
+Last change: Wed Mar 23 13:33:03 2016 by root via cibadmin on pm01
+Stack: corosync
+Current DC: pm01 - partition with quorum
+Version: 1.1.13-6052cd1
+2 Nodes configured
+4 Resources configured
 
-    
-    <code># crm_mon -rfA
-    Last updated: Wed Mar 23 13:33:19 2016
-    Last change: Wed Mar 23 13:33:03 2016 by root via cibadmin on pm01
-    Stack: corosync
-    Current DC: pm01 - partition with quorum
-    Version: 1.1.13-6052cd1
-    2 Nodes configured
-    4 Resources configured
-    
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-     Resource Group: grp
-         resource1  (ocf::heartbeat:Dummy): Started pm01
-         resource2  (ocf::heartbeat:Dummy): Started pm01
-     Clone Set: clnResource [resource3]
-         Started: [ pm01 pm02 ]
-    
-    Node Attributes:
-    * Node pm01:
-        + ringnumber_0                      : 192.168.123.71 is UP
-        + ringnumber_1                      : 192.168.124.71 is UP
-    * Node pm02:
-        + ringnumber_0                      : 192.168.123.72 is UP
-        + ringnumber_1                      : 192.168.124.72 is UP
-    
-    Migration summary:
-    * Node pm01:	
-    * Node pm02:
-    </code>
+Online: [ pm01 pm02 ]
+
+Full list of resources:
+
+ Resource Group: grp
+     resource1  (ocf::heartbeat:Dummy): Started pm01
+     resource2  (ocf::heartbeat:Dummy): Started pm01
+ Clone Set: clnResource [resource3]
+     Started: [ pm01 pm02 ]
+
+Node Attributes:
+* Node pm01:
+    + ringnumber_0                      : 192.168.123.71 is UP
+    + ringnumber_1                      : 192.168.124.71 is UP
+* Node pm02:
+    + ringnumber_0                      : 192.168.123.72 is UP
+    + ringnumber_1                      : 192.168.124.72 is UP
+
+Migration summary:
+* Node pm01:	
+* Node pm02:
+</code></pre>
 
 
 
@@ -434,21 +414,15 @@ crm_mon -rfA コマンドで、CRM設定ファイルが正常に反映された�
 どちらのサーバから実行してもよいですが、現在リソースが稼働しているサーバを先に停止すると、無駄にF/Oをしてしまうので、リソースが稼働していない方("Started xxx"のxxxでない方)を先に停止すると良いでしょう。上記例の場合pm02から先に停止します。
 
 **Pacemaker-1.0系の場合**
-
-    
-    <code># /etc/init.d/heartbeat stop</code>
+<pre><code># /etc/init.d/heartbeat stop</code></pre>
 
 
 **Pacemaker-1.1系,RHEL6の場合**
-
-    
-    <code># initctl stop pacemaker.combined</code>
+<pre><code># initctl stop pacemaker.combined</code></pre>
 
 
 **Pacemaker-1.1系,RHEL7の場合**
-
-    
-    <code># systemctl stop pacemaker</code>
+<pre><code># systemctl stop pacemaker</code></pre>
 
 
 さぁ、動いたでしょうか？
@@ -494,17 +468,15 @@ _※2013.1.22 リソース名をCRM設定とは異なる「dummyN」などと記
 とりあえず、あの短いCRM設定ファイルでもこんなに多くの制御をしていることを理解いただければ結構です。
 
 以降でCRM設定ファイルを上から読みながら、順次種明かしをしていきます。
+<pre><span style="font-size: medium;"><strong>コラム Dummyって？</strong></span>
+例のCRM設定ファイルにDummyというキーワードが出てきます。怪しいですね。
+<strong>primitive resource1 ocf:heartbeat:Dummy</strong>
 
-    
-    <span style="font-size: medium;"><strong>コラム Dummyって？</strong></span>
-    例のCRM設定ファイルにDummyというキーワードが出てきます。怪しいですね。
-    <strong>primitive resource1 ocf:heartbeat:Dummy</strong>
-    
-    でも、ご安心を。DummyはれっきとしたPacemaker付属のリソース管理用スクリプト(リソースエージェント)です。
-    ただし、名前が示唆している通り、あくまでダミーです。
-    Apache等の具体的なリソースを管理するわけではなく、ある一時ファイルを作成し、それが存在することを確認しているだけです。
-    本記事のようなPacemakerの動作を確認したい場合のために用意されています。
-    Apache等のリソースを設定することなく手軽に使用できるので、とても便利ですね。
+でも、ご安心を。DummyはれっきとしたPacemaker付属のリソース管理用スクリプト(リソースエージェント)です。
+ただし、名前が示唆している通り、あくまでダミーです。
+Apache等の具体的なリソースを管理するわけではなく、ある一時ファイルを作成し、それが存在することを確認しているだけです。
+本記事のようなPacemakerの動作を確認したい場合のために用意されています。
+Apache等のリソースを設定することなく手軽に使用できるので、とても便利ですね。</pre>
 
 
 
@@ -513,17 +485,15 @@ _※2013.1.22 リソース名をCRM設定とは異なる「dummyN」などと記
 
 
 早速、例のCRM設定を上から順に読んでいきます。まず冒頭は以下のようになっています。
+<pre><code>### Cluster Option ###
+property no-quorum-policy="ignore" \
+        stonith-enabled="false" \
+        crmd-transition-delay="2s"
 
-    
-    <code>### Cluster Option ###
-    property no-quorum-policy="ignore" \
-            stonith-enabled="false" \
-            crmd-transition-delay="2s"
-    
-    ### Resource Defaults ###
-    rsc_defaults resource-stickiness="INFINITY" \
-            migration-threshold="1"
-    </code>
+### Resource Defaults ###
+rsc_defaults resource-stickiness="INFINITY" \
+        migration-threshold="1"
+</code></pre>
 
 
 **property**と**rsc_defaults**コマンドが使用されています。
@@ -664,13 +634,11 @@ migration-thresholdは何回故障したらフェイルオーバするかを指�
 Dummyリソースは/var/run/resource-agents/に空のファイルを作成し、それが存在するかどうかでリソースの稼働をmonitorしています。
 
 このファイルを削除するとわざと故障を発生させることができます。ここではresource1リソースを故障させてみます。
-
-    
-    <code>[root@pm01 ~]# ls /var/run/resource-agents/
-    Dummy-resource1.state  Dummy-resource2.state  Dummy-resource3:0.state
-    [root@pm01 ~]# rm /var/run/resource-agents/Dummy-resource1.state
-    rm: remove regular empty file `/var/run/resource-agents/Dummy-resource1.state'? y
-    </code>
+<pre><code>[root@pm01 ~]# ls /var/run/resource-agents/
+Dummy-resource1.state  Dummy-resource2.state  Dummy-resource3:0.state
+[root@pm01 ~]# rm /var/run/resource-agents/Dummy-resource1.state
+rm: remove regular empty file `/var/run/resource-agents/Dummy-resource1.state'? y
+</code></pre>
 
 
 これを行うと、10秒以内にPacemakerは故障を検知し、F/Oを開始します。
@@ -681,35 +649,33 @@ crm_mon -rfAを別のコンソールに表示させながら行うと、故障�
 
 
 crm_monの表示が以下のようになればF/Oは完了です。
+<pre><code>～略～
+Online: [ pm01 pm02 ]
 
-    
-    <code>～略～
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-     Resource Group: grp
-         resource1  (ocf::heartbeat:Dummy): Started pm02 ★1
-         resource2  (ocf::heartbeat:Dummy): Started pm02 ★2
-     Clone Set: clnResource
-         Started: [ pm01 pm02 ]
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1                         : up
-        + pm02-eth2                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-        + pm01-eth2                         : up
-    
-    Migration summary:
-    * Node pm01:
-       resource1: migration-threshold=1 fail-count=1 ★3
-    * Node pm02:
-    
-    Failed actions:
-        resource1_monitor_10000 (node=pm01, call=8, rc=7, status=complete): not running ★4 
-    </code>
+Full list of resources:
+
+ Resource Group: grp
+     resource1  (ocf::heartbeat:Dummy): Started pm02 ★1
+     resource2  (ocf::heartbeat:Dummy): Started pm02 ★2
+ Clone Set: clnResource
+     Started: [ pm01 pm02 ]
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1                         : up
+    + pm02-eth2                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+    + pm01-eth2                         : up
+
+Migration summary:
+* Node pm01:
+   resource1: migration-threshold=1 fail-count=1 ★3
+* Node pm02:
+
+Failed actions:
+    resource1_monitor_10000 (node=pm01, call=8, rc=7, status=complete): not running ★4 
+</code></pre>
 
 
 ★1、★2部分で、resource1,2が現在pm02で稼働していることがわかります。また★3、★4でresource1に故障があったことがわかります。
@@ -724,32 +690,30 @@ crm_monの表示が以下のようになればF/Oは完了です。
 書き換え後、前述のインストール手順5でPacemakerを一旦停止し、インストール手順2～4をもう一度実施し、新たなCRM設定ファイルを有効にしてください。
 
 その後、上記手順1をもう一度実行してください。いろいろごにょごにょPacemakerが反応したのちcrm_mon表示が以下のように落ち着くはずです。
+<pre><code>～略～
+Online: [ pm01 pm02 ]
 
-    
-    <code>～略～
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-     Resource Group: grp
-         resource1  (ocf::heartbeat:Dummy): Started pm01 ★1'
-         resource2  (ocf::heartbeat:Dummy): Started pm01 ★2'
-     Clone Set: clnResource
-         Started: [ pm01 pm02 ]
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1                         : up
-        + pm02-eth2                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-        + pm01-eth2                         : up
-    
-    Migration summary:
-    * Node pm01:
-       resource1: migration-threshold=2 fail-count=1 ★3'
-    * Node pm02:
-    </code>
+Full list of resources:
+
+ Resource Group: grp
+     resource1  (ocf::heartbeat:Dummy): Started pm01 ★1'
+     resource2  (ocf::heartbeat:Dummy): Started pm01 ★2'
+ Clone Set: clnResource
+     Started: [ pm01 pm02 ]
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1                         : up
+    + pm02-eth2                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+    + pm01-eth2                         : up
+
+Migration summary:
+* Node pm01:
+   resource1: migration-threshold=2 fail-count=1 ★3'
+* Node pm02:
+</code></pre>
 
 
 ★1'、★2'でresource1,2リソースはpm01でまだ稼働していることがわかります。★3'でresource1の故障があったことがわかります。
@@ -762,35 +726,33 @@ crm_mon表示をじっと見ていた方は気づいたかもしれませんが�
 
 この状態でさらにもう一度resource1を故障させます。上記手順1をもう一度行ってください。
 crm_mon -rfA表示が以下のように落ち着くはずです。
+<pre><code>～略～
+Online: [ pm01 pm02 ]
 
-    
-    <code>～略～
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-     Resource Group: grp
-         resource1  (ocf::heartbeat:Dummy): Started pm02 ★1"
-         resource2  (ocf::heartbeat:Dummy): Started pm02 ★2"
-     Clone Set: clnResource
-         Started: [ pm01 pm02 ]
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1                         : up
-        + pm02-eth2                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-        + pm01-eth2                         : up
-    
-    Migration summary:
-    * Node pm01:
-       resource1: migration-threshold=2 fail-count=2 ★3"
-    * Node pm02:
-    
-    Failed actions:
-        resource1_monitor_10000 (node=pm01, call=14, rc=7, status=complete): not running ★4"
-    </code>
+Full list of resources:
+
+ Resource Group: grp
+     resource1  (ocf::heartbeat:Dummy): Started pm02 ★1"
+     resource2  (ocf::heartbeat:Dummy): Started pm02 ★2"
+ Clone Set: clnResource
+     Started: [ pm01 pm02 ]
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1                         : up
+    + pm02-eth2                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+    + pm01-eth2                         : up
+
+Migration summary:
+* Node pm01:
+   resource1: migration-threshold=2 fail-count=2 ★3"
+* Node pm02:
+
+Failed actions:
+    resource1_monitor_10000 (node=pm01, call=14, rc=7, status=complete): not running ★4"
+</code></pre>
 
 
 ★4"で故障が発生したことを、★3"の**fail-count=2**でそれが累積2回となったことを示しています。

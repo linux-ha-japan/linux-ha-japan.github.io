@@ -27,11 +27,9 @@ DRBDを使うと、単一障害点(Single Point of Failure)を持たない「シ
 
 
 稼働系サーバのDRBDデータ領域でI/Oエラーが発生したら、DRBDはそのディスクを切り離して、待機系サーバ側のディスクを使ったI/Oに切り替えるモードを提供しています。
-
-    
-        disk {
-            on-io-error detach;
-        }
+<pre>    disk {
+        on-io-error detach;
+    }</pre>
 
 
 on-io-errorには、pass-on、call-local-io-errorという値も指定できますが、detachが推奨値になっています。
@@ -53,126 +51,112 @@ DRBDはその動作状態に応じて、10000、10以外のスコアも返しま
 
 cluster1とcluster2の2台のサーバで、DRBDをべーすにしたApacheのHAクラスタを構成し、ディスクI/Oエラーの影響を調べてみました。
 DRBDの設定は以下のとおりです。
+<pre>global {
+    usage-count no;
+}
 
-    
-    global {
-        usage-count no;
+resource r0 {
+    protocol C;
+
+    syncer {
+        rate 20M;
     }
-    
-    resource r0 {
-        protocol C;
-    
-        syncer {
-            rate 20M;
-        }
-    
-        disk {
-            <span style="color: #ff0000;">on-io-error   detach</span>;
-        }
-    
-        device /dev/drbd0;
-        disk   /dev/vg/lv01;
-    
-        on cluster1 {
-            address 10.0.0.3:7788;
-            meta-disk internal;
-        }
-        on cluster2 {
-            address 10.0.0.4:7788;
-            meta-disk internal;
-        }
+
+    disk {
+        <span style="color: #ff0000;">on-io-error   detach</span>;
     }
+
+    device /dev/drbd0;
+    disk   /dev/vg/lv01;
+
+    on cluster1 {
+        address 10.0.0.3:7788;
+        meta-disk internal;
+    }
+    on cluster2 {
+        address 10.0.0.4:7788;
+        meta-disk internal;
+    }
+}</pre>
 
 
 クラスタの設定は次のとおりです。
-
-    
-    property <span style="color: #ff0000;">default-resource-stickiness="200"</span> \
-            no-quorum-policy="ignore" \
-            stonith-enabled="false"
-    primitive alert ocf:heartbeat:MailTo \
-            params email="root" subject="alert from webserver cluster" \
-            op start interval="0" timeout="20" \
-            op stop interval="0" timeout="20"
-    primitive drbd_r0 ocf:linbit:drbd \
-            params drbd_resource="r0" \
-            op monitor interval="20" role="Slave" timeout="40" \
-            op monitor interval="10" role="Master" timeout="40" \
-            op start interval="0" timeout="240" \
-            op stop interval="0" timeout="100"
-    primitive httpd ocf:heartbeat:apache \
-            params configfile="/etc/httpd/conf/httpd.conf" \
-            op start interval="0" timeout="60" \
-            op stop interval="0" timeout="90" \
-            op monitor interval="20" timeout="30"
-    primitive mount ocf:heartbeat:Filesystem \
-            params device="/dev/drbd0" fstype="ext4" directory="/h" options="noatime" \
-            op monitor interval="10" timeout="60" \
-            op start interval="0" timeout="60" \
-            op stop interval="0" timeout="60"
-    primitive vip ocf:heartbeat:IPaddr2 \
-            params ip="10.30.101.6" cidr_netmask="16" \
-            op monitor interval="30" timeout="60"
-    group webserver alert vip mount httpd
-    ms ms_drbd_r0 drbd_r0 \
-            meta master-max="1" master-node-max="1" clone-max="2" clone-node-max="1" notify="true"
-    location loc_webserver webserver 100: cluster1
-    colocation col_drbd_webserver inf: webserver ms_drbd_r0:Master
-    order ord_drbd_webserver inf: ms_drbd_r0:promote webserver:start
+<pre>property <span style="color: #ff0000;">default-resource-stickiness="200"</span> \
+        no-quorum-policy="ignore" \
+        stonith-enabled="false"
+primitive alert ocf:heartbeat:MailTo \
+        params email="root" subject="alert from webserver cluster" \
+        op start interval="0" timeout="20" \
+        op stop interval="0" timeout="20"
+primitive drbd_r0 ocf:linbit:drbd \
+        params drbd_resource="r0" \
+        op monitor interval="20" role="Slave" timeout="40" \
+        op monitor interval="10" role="Master" timeout="40" \
+        op start interval="0" timeout="240" \
+        op stop interval="0" timeout="100"
+primitive httpd ocf:heartbeat:apache \
+        params configfile="/etc/httpd/conf/httpd.conf" \
+        op start interval="0" timeout="60" \
+        op stop interval="0" timeout="90" \
+        op monitor interval="20" timeout="30"
+primitive mount ocf:heartbeat:Filesystem \
+        params device="/dev/drbd0" fstype="ext4" directory="/h" options="noatime" \
+        op monitor interval="10" timeout="60" \
+        op start interval="0" timeout="60" \
+        op stop interval="0" timeout="60"
+primitive vip ocf:heartbeat:IPaddr2 \
+        params ip="10.30.101.6" cidr_netmask="16" \
+        op monitor interval="30" timeout="60"
+group webserver alert vip mount httpd
+ms ms_drbd_r0 drbd_r0 \
+        meta master-max="1" master-node-max="1" clone-max="2" clone-node-max="1" notify="true"
+location loc_webserver webserver 100: cluster1
+colocation col_drbd_webserver inf: webserver ms_drbd_r0:Master
+order ord_drbd_webserver inf: ms_drbd_r0:promote webserver:start</pre>
 
 
 このクラスタを起動すると、cluster1が稼働系になります。
+<pre>Online: [ cluster2 cluster1 ]
 
-    
-    Online: [ cluster2 cluster1 ]
-    
-     Master/Slave Set: ms_drbd_r0
-         Masters: [ cluster1 ]
-         Slaves: [ cluster2 ]
-     Resource Group: webserver
-         alert      (ocf::heartbeat:MailTo):        Started cluster1
-         vip        (ocf::heartbeat:IPaddr2):       Started cluster1
-         mount      (ocf::heartbeat:Filesystem):    Started cluster1
-         httpd      (ocf::heartbeat:apache):        Started cluster1
+ Master/Slave Set: ms_drbd_r0
+     Masters: [ cluster1 ]
+     Slaves: [ cluster2 ]
+ Resource Group: webserver
+     alert      (ocf::heartbeat:MailTo):        Started cluster1
+     vip        (ocf::heartbeat:IPaddr2):       Started cluster1
+     mount      (ocf::heartbeat:Filesystem):    Started cluster1
+     httpd      (ocf::heartbeat:apache):        Started cluster1</pre>
 
 
 このとき、cluster1側のDRBDの動作状態は次のようになっています。
-
-    
-    version: 8.3.15 (api:88/proto:86-97)
-    GIT-hash: dc4c32498e9cbf35734c4716b65ddd6fbd6e1eb4 build by buildsystem@linbit, 2013-01-30 08:31:13
-     0: cs:Connected ro:Primary/Secondary ds:UpToDate/UpToDate C r-----
-        ns:1 nr:77773 dw:77774 dr:686 al:19 bm:48 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0
+<pre>version: 8.3.15 (api:88/proto:86-97)
+GIT-hash: dc4c32498e9cbf35734c4716b65ddd6fbd6e1eb4 build by buildsystem@linbit, 2013-01-30 08:31:13
+ 0: cs:Connected ro:Primary/Secondary ds:UpToDate/UpToDate C r-----
+    ns:1 nr:77773 dw:77774 dr:686 al:19 bm:48 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0</pre>
 
 
 ディスクI/Oエラーを起こす代わりに、cluster1側で次のコマンドを実行して、
 ローカルディスクを切り離してみます。
-
-    
-    drbdadm detach r0
+<pre>drbdadm detach r0</pre>
 
 
 すると、次のようにDRBDの動作状態が変化します。
-
-    
-    GIT-hash: dc4c32498e9cbf35734c4716b65ddd6fbd6e1eb4 build by buildsystem@linbit, 2013-01-30 08:31:13
-     0: cs:Connected ro:Primary/Secondary ds:<span style="color: #ff0000;">Diskless</span>/UpToDate C r-----
-        ns:1 nr:77773 dw:77774 dr:693 al:19 bm:48 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0
+<pre>GIT-hash: dc4c32498e9cbf35734c4716b65ddd6fbd6e1eb4 build by buildsystem@linbit, 2013-01-30 08:31:13
+ 0: cs:Connected ro:Primary/Secondary ds:<span style="color: #ff0000;">Diskless</span>/UpToDate C r-----
+    ns:1 nr:77773 dw:77774 dr:693 al:19 bm:48 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0</pre>
 
 
 しばらく待っていると、Pacemakerは稼働系DRBDデータ領域の障害を検出してフェールオーバを引き起こします。
+<pre>Online: [ cluster2 cluster1 ]
 
-    
-    Online: [ cluster2 cluster1 ]
-    
-     Master/Slave Set: ms_drbd_r0
-         Masters: [ cluster2 ]
-         Slaves: [ cluster1 ]
-     Resource Group: webserver
-         alert      (ocf::heartbeat:MailTo):        Started cluster2
-         vip        (ocf::heartbeat:IPaddr2):       Started cluster2
-         mount      (ocf::heartbeat:Filesystem):    Started cluster2
-         httpd      (ocf::heartbeat:apache):        Started cluster2
+ Master/Slave Set: ms_drbd_r0
+     Masters: [ cluster2 ]
+     Slaves: [ cluster1 ]
+ Resource Group: webserver
+     alert      (ocf::heartbeat:MailTo):        Started cluster2
+     vip        (ocf::heartbeat:IPaddr2):       Started cluster2
+     mount      (ocf::heartbeat:Filesystem):    Started cluster2
+     httpd      (ocf::heartbeat:apache):        Started cluster2</pre>
 
 
 しかし、default-resource-stickiness=INFINITYになっている場合は、ローカルディスクを切り離してもフェールオーバは起こりません。試してみてください。

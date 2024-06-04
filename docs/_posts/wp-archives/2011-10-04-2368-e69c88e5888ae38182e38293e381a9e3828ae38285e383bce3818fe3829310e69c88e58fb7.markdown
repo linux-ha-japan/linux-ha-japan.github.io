@@ -125,47 +125,43 @@ Linux-HA Japanの[メーリングリスト](/wp/ml)や本家の[メーリング�
 なんかたくさんあって大変そう、と思うかもしれませんが
 Pacemakerにはhb_reportというログ収集ツールが付属しています。
 (正確にいうと、cluster-glueのパッケージに含まれています)
-
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# <span style="color: #008000;"><strong>which hb_report</strong></span></span>
-    <span style="font-family: verdana,geneva;">/usr/sbin/hb_report</span>
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <span style="color: #008000;"><strong>which hb_report</strong></span></span>
+<span style="font-family: verdana,geneva;">/usr/sbin/hb_report</span></pre>
 
 
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">hb_report</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">hb_report</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;">usage: hb_report -f {time|"cts:"testnum} [-t time] [-u user] [-l file]</span>
-    <span style="font-family: verdana,geneva;"> [-n nodes] [-E files] [-p patt] [-L patt] [-e prog] [-MSDCZAVsvhd] [dest]</span>
-    
-    <span style="font-family: verdana,geneva;"> -f time: time to start from or a CTS test number</span>
-    <span style="font-family: verdana,geneva;"> -t time: time to finish at (dflt: now)</span>
-    <span style="font-family: verdana,geneva;"> -d     : don't compress, but leave result in a directory</span>
-    <span style="font-family: verdana,geneva;"> -n nodes: node names for this cluster; this option is additive</span>
-    <span style="font-family: verdana,geneva;"> (use either -n "a b" or -n a -n b)</span>
-    <span style="font-family: verdana,geneva;"> if you run hb_report on the loghost or use autojoin,</span>
-    <span style="font-family: verdana,geneva;"> it is highly recommended to set this option</span>
-    <span style="font-family: verdana,geneva;"> -u user: ssh user to access other nodes (dflt: empty, root, hacluster)</span>
-    <span style="font-family: verdana,geneva;"> -l file: log file</span>
-    <span style="font-family: verdana,geneva;"> -E file: extra logs to collect; this option is additive</span>
-    <span style="font-family: verdana,geneva;"> (dflt: /var/log/messages)</span>
-    <span style="font-family: verdana,geneva;"> -s     : sanitize the PE and CIB files</span>
-    <span style="font-family: verdana,geneva;"> -p patt: regular expression to match variables containing sensitive data;</span>
-    <span style="font-family: verdana,geneva;"> this option is additive (dflt: "passw.*")</span>
-    <span style="font-family: verdana,geneva;"> -L patt: regular expression to match in log files for analysis;</span>
-    <span style="font-family: verdana,geneva;"> this option is additive (dflt: CRIT: ERROR:)</span>
-    <span style="font-family: verdana,geneva;"> -e prog: your favourite editor</span>
-    <span style="font-family: verdana,geneva;"> -M     : don't collect extra logs (/var/log/messages)</span>
-    <span style="font-family: verdana,geneva;"> -D     : don't invoke editor to write description</span>
-    <span style="font-family: verdana,geneva;"> -C     : remove the destination directory</span>
-    <span style="font-family: verdana,geneva;"> -Z     : if destination directories exist, remove them instead of exiting</span>
-    <span style="font-family: verdana,geneva;"> (this is default for CTS)</span>
-    <span style="font-family: verdana,geneva;"> -A     : this is an OpenAIS cluster</span>
-    <span style="font-family: verdana,geneva;"> -S     : single node operation; don't try to start report</span>
-    <span style="font-family: verdana,geneva;"> collectors on other nodes</span>
-    <span style="font-family: verdana,geneva;"> -v     : increase verbosity</span>
-    <span style="font-family: verdana,geneva;"> -V     : print version</span>
-    <span style="font-family: verdana,geneva;"> dest   : destination directory</span>
+<span style="font-family: verdana,geneva;">usage: hb_report -f {time|"cts:"testnum} [-t time] [-u user] [-l file]</span>
+<span style="font-family: verdana,geneva;"> [-n nodes] [-E files] [-p patt] [-L patt] [-e prog] [-MSDCZAVsvhd] [dest]</span>
+
+<span style="font-family: verdana,geneva;"> -f time: time to start from or a CTS test number</span>
+<span style="font-family: verdana,geneva;"> -t time: time to finish at (dflt: now)</span>
+<span style="font-family: verdana,geneva;"> -d     : don't compress, but leave result in a directory</span>
+<span style="font-family: verdana,geneva;"> -n nodes: node names for this cluster; this option is additive</span>
+<span style="font-family: verdana,geneva;"> (use either -n "a b" or -n a -n b)</span>
+<span style="font-family: verdana,geneva;"> if you run hb_report on the loghost or use autojoin,</span>
+<span style="font-family: verdana,geneva;"> it is highly recommended to set this option</span>
+<span style="font-family: verdana,geneva;"> -u user: ssh user to access other nodes (dflt: empty, root, hacluster)</span>
+<span style="font-family: verdana,geneva;"> -l file: log file</span>
+<span style="font-family: verdana,geneva;"> -E file: extra logs to collect; this option is additive</span>
+<span style="font-family: verdana,geneva;"> (dflt: /var/log/messages)</span>
+<span style="font-family: verdana,geneva;"> -s     : sanitize the PE and CIB files</span>
+<span style="font-family: verdana,geneva;"> -p patt: regular expression to match variables containing sensitive data;</span>
+<span style="font-family: verdana,geneva;"> this option is additive (dflt: "passw.*")</span>
+<span style="font-family: verdana,geneva;"> -L patt: regular expression to match in log files for analysis;</span>
+<span style="font-family: verdana,geneva;"> this option is additive (dflt: CRIT: ERROR:)</span>
+<span style="font-family: verdana,geneva;"> -e prog: your favourite editor</span>
+<span style="font-family: verdana,geneva;"> -M     : don't collect extra logs (/var/log/messages)</span>
+<span style="font-family: verdana,geneva;"> -D     : don't invoke editor to write description</span>
+<span style="font-family: verdana,geneva;"> -C     : remove the destination directory</span>
+<span style="font-family: verdana,geneva;"> -Z     : if destination directories exist, remove them instead of exiting</span>
+<span style="font-family: verdana,geneva;"> (this is default for CTS)</span>
+<span style="font-family: verdana,geneva;"> -A     : this is an OpenAIS cluster</span>
+<span style="font-family: verdana,geneva;"> -S     : single node operation; don't try to start report</span>
+<span style="font-family: verdana,geneva;"> collectors on other nodes</span>
+<span style="font-family: verdana,geneva;"> -v     : increase verbosity</span>
+<span style="font-family: verdana,geneva;"> -V     : print version</span>
+<span style="font-family: verdana,geneva;"> dest   : destination directory</span></pre>
 
 
 よく使うオプションはこんな感じ。
@@ -177,17 +173,15 @@ Pacemakerにはhb_reportというログ収集ツールが付属しています�
 -C 収集したログは、<dest>.tar.bz2に圧縮されますが、収集処理の途中に作成された一時ディレクトリを削除します。
 
 例えば、13時20分から13時40分までのログを集めたい場合は、次にようなオプションをつけてhb_reportを実行します。
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">hb_report -f 13:20:00 -t 13:40:00 -u root -D -C /tmp/hb_report</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">hb_report -f 13:20:00 -t 13:40:00 -u root -D -C /tmp/hb_report</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> node01: INFO: found log /var/log/ha-debug</span>
-    <span style="font-family: verdana,geneva;"> node02: INFO: found log /var/log/ha-debug</span>
-    <span style="font-family: verdana,geneva;"> node01: INFO: found log /var/log/messages</span>
-    <span style="font-family: verdana,geneva;"> node02: INFO: found log /var/log/messages</span>
-    <span style="font-family: verdana,geneva;"> The report is saved in /tmp/hb_report.tar.bz2</span>
-    
-    <span style="font-family: verdana,geneva;">Thank you for taking time to create this report.</span>
+<span style="font-family: verdana,geneva;"> node01: INFO: found log /var/log/ha-debug</span>
+<span style="font-family: verdana,geneva;"> node02: INFO: found log /var/log/ha-debug</span>
+<span style="font-family: verdana,geneva;"> node01: INFO: found log /var/log/messages</span>
+<span style="font-family: verdana,geneva;"> node02: INFO: found log /var/log/messages</span>
+<span style="font-family: verdana,geneva;"> The report is saved in /tmp/hb_report.tar.bz2</span>
+
+<span style="font-family: verdana,geneva;">Thank you for taking time to create this report.</span></pre>
 
 
 Heartbeatスタックの場合、ha.cfからクラスタ内のノード名を検索します。
@@ -199,247 +193,233 @@ hb_reportはクラスタ内のどのノードで実行してもかまいませ�
 Pacemakerが停止している状態でもログを収集することができます。
 
 では、どんなログが収集されたのかtar.bz2の中身を見てみましょう。
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">tar tjfv /tmp/hb_report.tar.bz2</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">tar tjfv /tmp/hb_report.tar.bz2</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> drwxr-xr-x root/root         0 2011-10-04 13:35:32 hb_report/</span>
-    <span style="font-family: verdana,geneva;"> -rw------- root/root       253 2011-09-30 14:35:08 hb_report/<span style="color: #ff00ff;"><strong>ha.cf</strong></span></span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root    125468 2011-10-04 13:35:32 hb_report/<strong><span style="color: #ff00ff;">ha-log.txt</span></strong></span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root      6538 2011-10-04 13:35:32 hb_report/description.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root       552 2011-10-04 13:35:26 hb_report/crm_mon.txt</span>
-    <span style="font-family: verdana,geneva;"> drwxr-xr-x root/root         0 2011-10-04 13:35:32 hb_report/node01/</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx root/root         0 2011-10-04 13:35:31 hb_report/node01/ha.cf -> ../ha.cf</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root     30561 2011-10-04 13:35:24 hb_report/node01/ha-log.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw------- root/root     18884 2011-10-04 13:35:27 hb_report/node01/<strong><span style="color: #ff00ff;">cib.xml</span></strong></span>
-    <span style="font-family: verdana,geneva;">
-     省略</span>
-    <span style="font-family: verdana,geneva;">
-     drwxr-xr-x root/root         0 2011-10-04 13:35:27 hb_report/node02/pengine/</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root      1124 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-6.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 596 2011-10-04 13:30:00 hb_report/node02/pengine/<strong><span style="color: #ff00ff;">pe-input-1.bz2</span></strong></span>
-    <span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 2142 2011-10-04 13:33:23 hb_report/node02/pengine/pe-input-4.bz2</span>
-    <span style="font-family: verdana,geneva;">
-     省略</span>
+<span style="font-family: verdana,geneva;"> drwxr-xr-x root/root         0 2011-10-04 13:35:32 hb_report/</span>
+<span style="font-family: verdana,geneva;"> -rw------- root/root       253 2011-09-30 14:35:08 hb_report/<span style="color: #ff00ff;"><strong>ha.cf</strong></span></span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root    125468 2011-10-04 13:35:32 hb_report/<strong><span style="color: #ff00ff;">ha-log.txt</span></strong></span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root      6538 2011-10-04 13:35:32 hb_report/description.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root       552 2011-10-04 13:35:26 hb_report/crm_mon.txt</span>
+<span style="font-family: verdana,geneva;"> drwxr-xr-x root/root         0 2011-10-04 13:35:32 hb_report/node01/</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx root/root         0 2011-10-04 13:35:31 hb_report/node01/ha.cf -> ../ha.cf</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root     30561 2011-10-04 13:35:24 hb_report/node01/ha-log.txt</span>
+<span style="font-family: verdana,geneva;"> -rw------- root/root     18884 2011-10-04 13:35:27 hb_report/node01/<strong><span style="color: #ff00ff;">cib.xml</span></strong></span>
+<span style="font-family: verdana,geneva;">
+ 省略</span>
+<span style="font-family: verdana,geneva;">
+ drwxr-xr-x root/root         0 2011-10-04 13:35:27 hb_report/node02/pengine/</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root      1124 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-6.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 596 2011-10-04 13:30:00 hb_report/node02/pengine/<strong><span style="color: #ff00ff;">pe-input-1.bz2</span></strong></span>
+<span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 2142 2011-10-04 13:33:23 hb_report/node02/pengine/pe-input-4.bz2</span>
+<span style="font-family: verdana,geneva;">
+ 省略</span></pre>
 
 
 ha-logとか(ha-log.txtに名前がかわってるけど)遷移グラフ(pengine/pe-*)とかがちゃんと収集されていますね！
 
 解凍して、もうちょっと詳しく見てみましょう。
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">cd /tmp/</span></strong></span>
+<span style="font-family: verdana,geneva;"> [root@node01 tmp]# <strong><span style="color: #008000;">tar xfj hb_report.tar.bz2</span></strong></span>
+<span style="font-family: verdana,geneva;"> [root@node01 tmp]# <strong><span style="color: #008000;">cd hb_report</span></strong></span>
+<span style="font-family: verdana,geneva;"> [root@node01 hb_report]# <strong><span style="color: #008000;">ls -l</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">cd /tmp/</span></strong></span>
-    <span style="font-family: verdana,geneva;"> [root@node01 tmp]# <strong><span style="color: #008000;">tar xfj hb_report.tar.bz2</span></strong></span>
-    <span style="font-family: verdana,geneva;"> [root@node01 tmp]# <strong><span style="color: #008000;">cd hb_report</span></strong></span>
-    <span style="font-family: verdana,geneva;"> [root@node01 hb_report]# <strong><span style="color: #008000;">ls -l</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> 合計 180</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   3259 10月  4 13:35 analysis.txt</span>
-    <span style="font-family: verdana,geneva;"> drwxr-xr-x 3 root root   4096 10月  4 13:35 node01</span>
-    <span style="font-family: verdana,geneva;"> drwxr-xr-x 4 root root   4096 10月  4 13:35 node02</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    552 10月  4 13:35 crm_mon.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   6538 10月  4 13:35 description.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   1267 10月  4 13:35 events.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 125468 10月  4 13:35 ha-log.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     43 10月  4 13:35 ha-log.txt.info</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 root root    253  9月 30 14:35 ha.cf</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    106 10月  4 13:29 hostcache</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     23 10月  4 13:35 members.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   5894 10月  4 13:35 sysinfo.txt</span>
+<span style="font-family: verdana,geneva;"> 合計 180</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   3259 10月  4 13:35 analysis.txt</span>
+<span style="font-family: verdana,geneva;"> drwxr-xr-x 3 root root   4096 10月  4 13:35 node01</span>
+<span style="font-family: verdana,geneva;"> drwxr-xr-x 4 root root   4096 10月  4 13:35 node02</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    552 10月  4 13:35 crm_mon.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   6538 10月  4 13:35 description.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   1267 10月  4 13:35 events.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 125468 10月  4 13:35 ha-log.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     43 10月  4 13:35 ha-log.txt.info</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 root root    253  9月 30 14:35 ha.cf</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    106 10月  4 13:29 hostcache</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     23 10月  4 13:35 members.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   5894 10月  4 13:35 sysinfo.txt</span></pre>
 
 
 description.txtやsysinfo.txtを見ると、パッケージやOSのバージョンがわかるようになっています。
+<pre><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">cat description.txt</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">cat description.txt</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> Please edit this template and describe the issue/problem you</span>
-    <span style="font-family: verdana,geneva;"> encountered. Then, post to</span>
-    <span style="font-family: verdana,geneva;"> Linux-HA@lists.linux-ha.org</span>
-    <span style="font-family: verdana,geneva;"> or file a bug at</span>
-    <span style="font-family: verdana,geneva;"> http://developerbugs.linux-foundation.org/</span>
-    
-    <span style="font-family: verdana,geneva;">See http://linux-ha.org/wiki/ReportingProblems for detailed</span>
-    <span style="font-family: verdana,geneva;"> description on how to report problems.</span>
-    
-    <span style="font-family: verdana,geneva;">Thank you.</span>
-    
-    <span style="font-family: verdana,geneva;">Date: Tue Oct  4 13:35:32 JST 2011</span>
-    <span style="font-family: verdana,geneva;"> By: hb_report -f 13:20:00 -t 13:40:00 -u root -D -C /tmp/hb_report</span>
-    <span style="font-family: verdana,geneva;"> Subject: [short problem description]</span>
-    <span style="font-family: verdana,geneva;"> Severity: [choose one] enhancement minor normal major critical blocking</span>
-    <span style="font-family: verdana,geneva;"> Component: [choose one] CRM LRM CCM RA fencing heartbeat comm GUI tools other</span>
-    
-    <span style="font-family: verdana,geneva;">Detailed description:</span>
-    <span style="font-family: verdana,geneva;"> ---</span>
-    <span style="font-family: verdana,geneva;"> [...]</span>
-    <span style="font-family: verdana,geneva;"> ---</span>
-    
-    <span style="font-family: verdana,geneva;">Common system info found:</span>
-    <span style="font-family: verdana,geneva;"> heartbeat version: 3.0.5 (node: 7e3a82377fa8c88b4d9ee47e29020d4531f4629a)</span>
-    <span style="font-family: verdana,geneva;"> cluster-glue: 1.0.7 (601814740a68 default tip)</span>
-    <span style="font-family: verdana,geneva;"> resource-agents: # Build version: $Format:%H$</span>
-    <span style="font-family: verdana,geneva;"> CRM Version: 1.0.11 (614a4bc7ea74 stable-1.0 tip)</span>
-    <span style="font-family: verdana,geneva;"> package pacemaker is not installed</span>
-    <span style="font-family: verdana,geneva;"> package libpacemaker3 is not installed</span>
-    <span style="font-family: verdana,geneva;"> package pacemaker-pygui is not installed</span>
-    <span style="font-family: verdana,geneva;"> package pacemaker-pymgmt is not installed</span>
-    <span style="font-family: verdana,geneva;"> package pymgmt-client is not installed</span>
-    <span style="font-family: verdana,geneva;"> package openais is not installed</span>
-    <span style="font-family: verdana,geneva;"> package libopenais2 is not installed</span>
-    <span style="font-family: verdana,geneva;"> package libopenais3 is not installed</span>
-    <span style="font-family: verdana,geneva;"> corosync 1.3.1-1.1.el5 - (none) x86_64</span>
-    <span style="font-family: verdana,geneva;"> package libcorosync4 is not installed</span>
-    <span style="font-family: verdana,geneva;"> resource-agents 3.9.1-1.1.el5 - (none) x86_64</span>
-    <span style="font-family: verdana,geneva;"> 省略</span>
-    <span style="font-family: verdana,geneva;"> package libdlm is not installed</span>
-    <span style="font-family: verdana,geneva;"> package libdlm2 is not installed</span>
-    <span style="font-family: verdana,geneva;"> package libdlm3 is not installed</span>
-    <span style="font-family: verdana,geneva;"> package hawk is not installed</span>
-    <span style="font-family: verdana,geneva;"> package ruby is not installed</span>
-    <span style="font-family: verdana,geneva;"> package lighttpd is not installed</span>
-    <span style="font-family: verdana,geneva;"> package kernel-default is not installed</span>
-    <span style="font-family: verdana,geneva;"> package kernel-pae is not installed</span>
-    <span style="font-family: verdana,geneva;"> package kernel-xen is not installed</span>
-    <span style="font-family: verdana,geneva;"> glibc 2.5-58 - Red Hat x86_64</span>
-    <span style="font-family: verdana,geneva;"> glibc 2.5-58 - Red Hat i686</span>
-    <span style="font-family: verdana,geneva;"> Platform: Linux</span>
-    <span style="font-family: verdana,geneva;"> Kernel release: 2.6.18-238.el5</span>
-    <span style="font-family: verdana,geneva;"> Architecture: x86_64</span>
-    <span style="font-family: verdana,geneva;"> Distribution: Description:      Red Hat Enterprise Linux Server release 5.6 (Tikanga)</span>
+<span style="font-family: verdana,geneva;"> Please edit this template and describe the issue/problem you</span>
+<span style="font-family: verdana,geneva;"> encountered. Then, post to</span>
+<span style="font-family: verdana,geneva;"> Linux-HA@lists.linux-ha.org</span>
+<span style="font-family: verdana,geneva;"> or file a bug at</span>
+<span style="font-family: verdana,geneva;"> http://developerbugs.linux-foundation.org/</span>
+
+<span style="font-family: verdana,geneva;">See http://linux-ha.org/wiki/ReportingProblems for detailed</span>
+<span style="font-family: verdana,geneva;"> description on how to report problems.</span>
+
+<span style="font-family: verdana,geneva;">Thank you.</span>
+
+<span style="font-family: verdana,geneva;">Date: Tue Oct  4 13:35:32 JST 2011</span>
+<span style="font-family: verdana,geneva;"> By: hb_report -f 13:20:00 -t 13:40:00 -u root -D -C /tmp/hb_report</span>
+<span style="font-family: verdana,geneva;"> Subject: [short problem description]</span>
+<span style="font-family: verdana,geneva;"> Severity: [choose one] enhancement minor normal major critical blocking</span>
+<span style="font-family: verdana,geneva;"> Component: [choose one] CRM LRM CCM RA fencing heartbeat comm GUI tools other</span>
+
+<span style="font-family: verdana,geneva;">Detailed description:</span>
+<span style="font-family: verdana,geneva;"> ---</span>
+<span style="font-family: verdana,geneva;"> [...]</span>
+<span style="font-family: verdana,geneva;"> ---</span>
+
+<span style="font-family: verdana,geneva;">Common system info found:</span>
+<span style="font-family: verdana,geneva;"> heartbeat version: 3.0.5 (node: 7e3a82377fa8c88b4d9ee47e29020d4531f4629a)</span>
+<span style="font-family: verdana,geneva;"> cluster-glue: 1.0.7 (601814740a68 default tip)</span>
+<span style="font-family: verdana,geneva;"> resource-agents: # Build version: $Format:%H$</span>
+<span style="font-family: verdana,geneva;"> CRM Version: 1.0.11 (614a4bc7ea74 stable-1.0 tip)</span>
+<span style="font-family: verdana,geneva;"> package pacemaker is not installed</span>
+<span style="font-family: verdana,geneva;"> package libpacemaker3 is not installed</span>
+<span style="font-family: verdana,geneva;"> package pacemaker-pygui is not installed</span>
+<span style="font-family: verdana,geneva;"> package pacemaker-pymgmt is not installed</span>
+<span style="font-family: verdana,geneva;"> package pymgmt-client is not installed</span>
+<span style="font-family: verdana,geneva;"> package openais is not installed</span>
+<span style="font-family: verdana,geneva;"> package libopenais2 is not installed</span>
+<span style="font-family: verdana,geneva;"> package libopenais3 is not installed</span>
+<span style="font-family: verdana,geneva;"> corosync 1.3.1-1.1.el5 - (none) x86_64</span>
+<span style="font-family: verdana,geneva;"> package libcorosync4 is not installed</span>
+<span style="font-family: verdana,geneva;"> resource-agents 3.9.1-1.1.el5 - (none) x86_64</span>
+<span style="font-family: verdana,geneva;"> 省略</span>
+<span style="font-family: verdana,geneva;"> package libdlm is not installed</span>
+<span style="font-family: verdana,geneva;"> package libdlm2 is not installed</span>
+<span style="font-family: verdana,geneva;"> package libdlm3 is not installed</span>
+<span style="font-family: verdana,geneva;"> package hawk is not installed</span>
+<span style="font-family: verdana,geneva;"> package ruby is not installed</span>
+<span style="font-family: verdana,geneva;"> package lighttpd is not installed</span>
+<span style="font-family: verdana,geneva;"> package kernel-default is not installed</span>
+<span style="font-family: verdana,geneva;"> package kernel-pae is not installed</span>
+<span style="font-family: verdana,geneva;"> package kernel-xen is not installed</span>
+<span style="font-family: verdana,geneva;"> glibc 2.5-58 - Red Hat x86_64</span>
+<span style="font-family: verdana,geneva;"> glibc 2.5-58 - Red Hat i686</span>
+<span style="font-family: verdana,geneva;"> Platform: Linux</span>
+<span style="font-family: verdana,geneva;"> Kernel release: 2.6.18-238.el5</span>
+<span style="font-family: verdana,geneva;"> Architecture: x86_64</span>
+<span style="font-family: verdana,geneva;"> Distribution: Description:      Red Hat Enterprise Linux Server release 5.6 (Tikanga)</span></pre>
 
 
 crm_mon.txtをみるとhb_reportを実行したときのクラスタの状態がわかります。
+<pre><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">cat crm_mon.txt</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">cat crm_mon.txt</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> ============</span>
-    <span style="font-family: verdana,geneva;"> Stack: Heartbeat</span>
-    <span style="font-family: verdana,geneva;"> Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
-    <span style="font-family: verdana,geneva;"> Version: 1.0.11-614a4bc7ea74 stable-1.0 tip</span>
-    <span style="font-family: verdana,geneva;"> 2 Nodes configured, unknown expected votes</span>
-    <span style="font-family: verdana,geneva;"> 2 Resources configured.</span>
-    <span style="font-family: verdana,geneva;"> ============</span>
-    
-    <span style="font-family: verdana,geneva;">Online: [ node01 node02 ]</span>
-    
-    <span style="font-family: verdana,geneva;"> Resource Group: grpDRBD</span>
-    <span style="font-family: verdana,geneva;"> dummy01    (ocf::pacemaker:Dummy): Started node01</span>
-    <span style="font-family: verdana,geneva;"> dummy02    (ocf::pacemaker:Dummy): Started node01</span>
-    <span style="font-family: verdana,geneva;"> dummy03    (ocf::pacemaker:Dummy): Started node01</span>
-    <span style="font-family: verdana,geneva;"> Master/Slave Set: msDRBD</span>
-    <span style="font-family: verdana,geneva;"> Masters: [ node01 ]</span>
-    <span style="font-family: verdana,geneva;"> Slaves: [ node02 ]</span>
+<span style="font-family: verdana,geneva;"> ============</span>
+<span style="font-family: verdana,geneva;"> Stack: Heartbeat</span>
+<span style="font-family: verdana,geneva;"> Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+<span style="font-family: verdana,geneva;"> Version: 1.0.11-614a4bc7ea74 stable-1.0 tip</span>
+<span style="font-family: verdana,geneva;"> 2 Nodes configured, unknown expected votes</span>
+<span style="font-family: verdana,geneva;"> 2 Resources configured.</span>
+<span style="font-family: verdana,geneva;"> ============</span>
+
+<span style="font-family: verdana,geneva;">Online: [ node01 node02 ]</span>
+
+<span style="font-family: verdana,geneva;"> Resource Group: grpDRBD</span>
+<span style="font-family: verdana,geneva;"> dummy01    (ocf::pacemaker:Dummy): Started node01</span>
+<span style="font-family: verdana,geneva;"> dummy02    (ocf::pacemaker:Dummy): Started node01</span>
+<span style="font-family: verdana,geneva;"> dummy03    (ocf::pacemaker:Dummy): Started node01</span>
+<span style="font-family: verdana,geneva;"> Master/Slave Set: msDRBD</span>
+<span style="font-family: verdana,geneva;"> Masters: [ node01 ]</span>
+<span style="font-family: verdana,geneva;"> Slaves: [ node02 ]</span></pre>
 
 
 また、ノード名でディレクトリが作成されていますが、各ノードのログファイルだけではなく
 実行状況(RUNNING)、DCノード(DC)を判断するためのファイルが作成されています。
+<pre><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node01</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node01</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> 合計 136</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 <strong><span style="color: #ff00ff;">RUNNING</span></strong></span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1942 10月  4 13:35 cib.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 root root 18884 10月  4 13:35 cib.xml</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 crm_mon.txt -> ../crm_mon.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    96 10月  4 13:35 crm_verify.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 dlm_dump.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1770  9月  9 22:00 drbd.conf</span>
-    <span style="font-family: verdana,geneva;"> drwxr-xr-x 2 root root  4096  9月  9 21:25 drbd.d</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   455 10月  4 13:35 events.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 30561 10月  4 13:35 ha-log.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    24 10月  4 13:35 ha-log.txt.info</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root     8 10月  4 13:36 ha.cf -> ../ha.cf</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    37 10月  4 13:35 hb_uuid.txt</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    12 10月  4 13:36 hostcache -> ../hostcache</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 members.txt -> ../members.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  3631 10月  4 13:35 messages</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    23 10月  4 13:35 messages.info</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    51 10月  4 13:35 permissions.txt</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 sysinfo.txt -> ../sysinfo.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 43916 10月  4 13:35 sysstats.txt</span>
-    <span style="font-family: verdana,geneva;">
-     [root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node02</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> 合計 208</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 <strong><span style="color: #ff00ff;">DC</span></strong></span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 <span style="color: #ff00ff;"><strong>RUNNING</strong></span></span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1968 10月  4 13:35 cib.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 root root 18960 10月  4 13:35 cib.xml</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 crm_mon.txt -> ../crm_mon.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    97 10月  4 13:35 crm_verify.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 dlm_dump.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1770  9月  9 22:00 drbd.conf</span>
-    <span style="font-family: verdana,geneva;"> drwxr-xr-x 2 root root  4096  9月  9 21:25 drbd.d</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   812 10月  4 13:35 events.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 94964 10月  4 13:35 ha-log.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    24 10月  4 13:35 ha-log.txt.info</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root     8 10月  4 13:36 ha.cf -> ../ha.cf</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    37 10月  4 13:35 hb_uuid.txt</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    12 10月  4 13:36 hostcache -> ../hostcache</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 members.txt -> ../members.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  3255 10月  4 13:35 messages</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    23 10月  4 13:35 messages.info</span>
-    <span style="font-family: verdana,geneva;"> drwxr-xr-x 2 root root  4096 10月  4 13:35 pengine</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    51 10月  4 13:35 permissions.txt</span>
-    <span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 sysinfo.txt -> ../sysinfo.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 43138 10月  4 13:35 sysstats.txt</span>
+<span style="font-family: verdana,geneva;"> 合計 136</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 <strong><span style="color: #ff00ff;">RUNNING</span></strong></span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1942 10月  4 13:35 cib.txt</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 root root 18884 10月  4 13:35 cib.xml</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 crm_mon.txt -> ../crm_mon.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    96 10月  4 13:35 crm_verify.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 dlm_dump.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1770  9月  9 22:00 drbd.conf</span>
+<span style="font-family: verdana,geneva;"> drwxr-xr-x 2 root root  4096  9月  9 21:25 drbd.d</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   455 10月  4 13:35 events.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 30561 10月  4 13:35 ha-log.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    24 10月  4 13:35 ha-log.txt.info</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root     8 10月  4 13:36 ha.cf -> ../ha.cf</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    37 10月  4 13:35 hb_uuid.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    12 10月  4 13:36 hostcache -> ../hostcache</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 members.txt -> ../members.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  3631 10月  4 13:35 messages</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    23 10月  4 13:35 messages.info</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    51 10月  4 13:35 permissions.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 sysinfo.txt -> ../sysinfo.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 43916 10月  4 13:35 sysstats.txt</span>
+<span style="font-family: verdana,geneva;">
+ [root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node02</span></strong></span>
+
+<span style="font-family: verdana,geneva;"> 合計 208</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 <strong><span style="color: #ff00ff;">DC</span></strong></span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 <span style="color: #ff00ff;"><strong>RUNNING</strong></span></span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1968 10月  4 13:35 cib.txt</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 root root 18960 10月  4 13:35 cib.xml</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 crm_mon.txt -> ../crm_mon.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    97 10月  4 13:35 crm_verify.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 dlm_dump.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1770  9月  9 22:00 drbd.conf</span>
+<span style="font-family: verdana,geneva;"> drwxr-xr-x 2 root root  4096  9月  9 21:25 drbd.d</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   812 10月  4 13:35 events.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 94964 10月  4 13:35 ha-log.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    24 10月  4 13:35 ha-log.txt.info</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root     8 10月  4 13:36 ha.cf -> ../ha.cf</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    37 10月  4 13:35 hb_uuid.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    12 10月  4 13:36 hostcache -> ../hostcache</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 members.txt -> ../members.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  3255 10月  4 13:35 messages</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    23 10月  4 13:35 messages.info</span>
+<span style="font-family: verdana,geneva;"> drwxr-xr-x 2 root root  4096 10月  4 13:35 pengine</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    51 10月  4 13:35 permissions.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 sysinfo.txt -> ../sysinfo.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 43138 10月  4 13:35 sysstats.txt</span></pre>
 
 
 遷移グラフはDCノードで出力されます。
 遷移グラフの解析方法はまた別の回で紹介します。
+<pre><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node02/pengine/</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node02/pengine/</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> 合計 72</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient   600 10月  4 13:29 pe-input-0.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root       169 10月  4 13:35 pe-input-0.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient   596 10月  4 13:30 pe-input-1.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root       169 10月  4 13:35 pe-input-1.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  1463 10月  4 13:33 pe-input-2.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root     10605 10月  4 13:35 pe-input-2.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  1975 10月  4 13:33 pe-input-3.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root      7032 10月  4 13:35 pe-input-3.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  2142 10月  4 13:33 pe-input-4.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root      4445 10月  4 13:35 pe-input-4.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  2287 10月  4 13:33 pe-input-5.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root      1665 10月  4 13:35 pe-input-5.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  2374 10月  4 13:33 pe-input-6.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root      1124 10月  4 13:35 pe-input-6.dot</span>
+<span style="font-family: verdana,geneva;"> 合計 72</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient   600 10月  4 13:29 pe-input-0.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root       169 10月  4 13:35 pe-input-0.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient   596 10月  4 13:30 pe-input-1.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root       169 10月  4 13:35 pe-input-1.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  1463 10月  4 13:33 pe-input-2.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root     10605 10月  4 13:35 pe-input-2.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  1975 10月  4 13:33 pe-input-3.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root      7032 10月  4 13:35 pe-input-3.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  2142 10月  4 13:33 pe-input-4.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root      4445 10月  4 13:35 pe-input-4.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  2287 10月  4 13:33 pe-input-5.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root      1665 10月  4 13:35 pe-input-5.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient  2374 10月  4 13:33 pe-input-6.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root      root      1124 10月  4 13:35 pe-input-6.dot</span></pre>
 
 
 コミュニティにログを投稿する場合は、とりあえずha-logと遷移グラフが空ファイルでないことを確認しておいてください。
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">tar tjfv /tmp/hb_report.tar.bz2 | grep ha-log</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">tar tjfv /tmp/hb_report.tar.bz2 | grep ha-log</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root    125468 2011-10-04 13:35:32 hb_report/ha-log.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root     30561 2011-10-04 13:35:24 hb_report/node01/ha-log.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root        24 2011-10-04 13:35:25 hb_report/node01/ha-log.txt.info</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root        43 2011-10-04 13:35:32 hb_report/ha-log.txt.info</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root     94964 2011-10-04 13:35:25 hb_report/node02/ha-log.txt</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root        24 2011-10-04 13:35:25 hb_report/node02/ha-log.txt.info</span>
-    <span style="font-family: verdana,geneva;">
-     [root@node01 ~]#<strong><span style="color: #008000;"> tar tjfv /tmp/hb_report.tar.bz2 | grep pengine</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> drwxr-xr-x root/root         0 2011-10-04 13:35:27 hb_report/node02/pengine/</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root      1124 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-6.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 596 2011-10-04 13:30:00 hb_report/node02/pengine/pe-input-1.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 2142 2011-10-04 13:33:23 hb_report/node02/pengine/pe-input-4.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root          4445 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-4.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root          7032 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-3.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 1463 2011-10-04 13:33:16 hb_report/node02/pengine/pe-input-2.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root          1665 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-5.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 2287 2011-10-04 13:33:28 hb_report/node02/pengine/pe-input-5.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root           169 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-1.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root           169 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-0.dot</span>
-    <span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 1975 2011-10-04 13:33:19 hb_report/node02/pengine/pe-input-3.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 2374 2011-10-04 13:33:30 hb_report/node02/pengine/pe-input-6.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient  600 2011-10-04 13:29:59 hb_report/node02/pengine/pe-input-0.bz2</span>
-    <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root         10605 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-2.dot</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root    125468 2011-10-04 13:35:32 hb_report/ha-log.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root     30561 2011-10-04 13:35:24 hb_report/node01/ha-log.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root        24 2011-10-04 13:35:25 hb_report/node01/ha-log.txt.info</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root        43 2011-10-04 13:35:32 hb_report/ha-log.txt.info</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root     94964 2011-10-04 13:35:25 hb_report/node02/ha-log.txt</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root        24 2011-10-04 13:35:25 hb_report/node02/ha-log.txt.info</span>
+<span style="font-family: verdana,geneva;">
+ [root@node01 ~]#<strong><span style="color: #008000;"> tar tjfv /tmp/hb_report.tar.bz2 | grep pengine</span></strong></span>
+
+<span style="font-family: verdana,geneva;"> drwxr-xr-x root/root         0 2011-10-04 13:35:27 hb_report/node02/pengine/</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root      1124 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-6.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 596 2011-10-04 13:30:00 hb_report/node02/pengine/pe-input-1.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 2142 2011-10-04 13:33:23 hb_report/node02/pengine/pe-input-4.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root          4445 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-4.dot</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root          7032 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-3.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 1463 2011-10-04 13:33:16 hb_report/node02/pengine/pe-input-2.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root          1665 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-5.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 2287 2011-10-04 13:33:28 hb_report/node02/pengine/pe-input-5.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root           169 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-1.dot</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root           169 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-0.dot</span>
+<span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 1975 2011-10-04 13:33:19 hb_report/node02/pengine/pe-input-3.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient 2374 2011-10-04 13:33:30 hb_report/node02/pengine/pe-input-6.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw------- hacluster/haclient  600 2011-10-04 13:29:59 hb_report/node02/pengine/pe-input-0.bz2</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r-- root/root         10605 2011-10-04 13:35:27 hb_report/node02/pengine/pe-input-2.dot</span></pre>
 
 
 hb_reportはcluster-glueのパッケージに含まれていますが
@@ -447,35 +427,33 @@ Pacemaker 1.1系ではcrm_reportコマンドがpacemakerのパッケージに含
 Pacemaker 1.0.11にもバックポートされているので一応使えます。
 
 使い方はhb_reportとほとんど同じです。
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]#<strong><span style="color: #008000;"> crm_report -f "2011-10-4 13:20:00" -t "2011-10-4 13:40:00" \
+                                -H -u root --dest /tmp/crm_report</span></strong></span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]#<strong><span style="color: #008000;"> crm_report -f "2011-10-4 13:20:00" -t "2011-10-4 13:40:00" \
-                                    -H -u root --dest /tmp/crm_report</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;"> node01:  WARNING: The tarball produced by this program may contain</span>
-    <span style="font-family: verdana,geneva;"> node01:           sensitive information such as passwords.</span>
-    <span style="font-family: verdana,geneva;"> node01:</span>
-    <span style="font-family: verdana,geneva;"> node01:  We will attempt to remove such information if you use the</span>
-    <span style="font-family: verdana,geneva;"> node01:  -p option. For example: -p "pass.*" -p "user.*"</span>
-    <span style="font-family: verdana,geneva;"> node01:</span>
-    <span style="font-family: verdana,geneva;"> node01:  However, doing this may reduce the ability for the recipients</span>
-    <span style="font-family: verdana,geneva;"> node01:  to diagnose issues and generally provide assistance.</span>
-    <span style="font-family: verdana,geneva;"> node01:</span>
-    <span style="font-family: verdana,geneva;"> node01:  IT IS YOUR RESPONSIBILITY TO PROTECT SENSITIVE DATA FROM EXPOSURE</span>
-    <span style="font-family: verdana,geneva;"> node01:</span>
-    <span style="font-family: verdana,geneva;"> node01:  Calculated node list: node01 node02</span>
-    <span style="font-family: verdana,geneva;"> node01:  Collecting data from node01 node02  (2011年10月04日 13時20分00秒 to 2011年10月04日 13時40分00秒)</span>
-    <span style="font-family: verdana,geneva;"> node01:  Including segment [1-268] from /var/log/ha-debug</span>
-    <span style="font-family: verdana,geneva;"> node02:  Including segment [1-768] from /var/log/ha-debug</span>
-    <span style="font-family: verdana,geneva;"> node01:</span>
-    <span style="font-family: verdana,geneva;"> node01:  Collected results are available in /tmp/crm_report.tar.bz2</span>
-    <span style="font-family: verdana,geneva;"> node01:</span>
-    <span style="font-family: verdana,geneva;"> node01:  Please create a bug entry at</span>
-    <span style="font-family: verdana,geneva;"> node01:      http://developerbugs.linux-foundation.org/enter_bug.cgi?product=Pacemaker</span>
-    <span style="font-family: verdana,geneva;"> node01:  Include a description of your problem and attach this tarball</span>
-    <span style="font-family: verdana,geneva;"> node01:</span>
-    <span style="font-family: verdana,geneva;"> node01:  Thank you for taking time to create this report.</span>
-    <span style="font-family: verdana,geneva;"> node01:</span>
+<span style="font-family: verdana,geneva;"> node01:  WARNING: The tarball produced by this program may contain</span>
+<span style="font-family: verdana,geneva;"> node01:           sensitive information such as passwords.</span>
+<span style="font-family: verdana,geneva;"> node01:</span>
+<span style="font-family: verdana,geneva;"> node01:  We will attempt to remove such information if you use the</span>
+<span style="font-family: verdana,geneva;"> node01:  -p option. For example: -p "pass.*" -p "user.*"</span>
+<span style="font-family: verdana,geneva;"> node01:</span>
+<span style="font-family: verdana,geneva;"> node01:  However, doing this may reduce the ability for the recipients</span>
+<span style="font-family: verdana,geneva;"> node01:  to diagnose issues and generally provide assistance.</span>
+<span style="font-family: verdana,geneva;"> node01:</span>
+<span style="font-family: verdana,geneva;"> node01:  IT IS YOUR RESPONSIBILITY TO PROTECT SENSITIVE DATA FROM EXPOSURE</span>
+<span style="font-family: verdana,geneva;"> node01:</span>
+<span style="font-family: verdana,geneva;"> node01:  Calculated node list: node01 node02</span>
+<span style="font-family: verdana,geneva;"> node01:  Collecting data from node01 node02  (2011年10月04日 13時20分00秒 to 2011年10月04日 13時40分00秒)</span>
+<span style="font-family: verdana,geneva;"> node01:  Including segment [1-268] from /var/log/ha-debug</span>
+<span style="font-family: verdana,geneva;"> node02:  Including segment [1-768] from /var/log/ha-debug</span>
+<span style="font-family: verdana,geneva;"> node01:</span>
+<span style="font-family: verdana,geneva;"> node01:  Collected results are available in /tmp/crm_report.tar.bz2</span>
+<span style="font-family: verdana,geneva;"> node01:</span>
+<span style="font-family: verdana,geneva;"> node01:  Please create a bug entry at</span>
+<span style="font-family: verdana,geneva;"> node01:      http://developerbugs.linux-foundation.org/enter_bug.cgi?product=Pacemaker</span>
+<span style="font-family: verdana,geneva;"> node01:  Include a description of your problem and attach this tarball</span>
+<span style="font-family: verdana,geneva;"> node01:</span>
+<span style="font-family: verdana,geneva;"> node01:  Thank you for taking time to create this report.</span>
+<span style="font-family: verdana,geneva;"> node01:</span></pre>
 
 
 

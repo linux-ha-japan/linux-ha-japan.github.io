@@ -29,14 +29,12 @@ tags:
 ### 【開催場所】
 
 
-
-    
-    パソナグループ本部ビル セミナールーム
-    <a href="http://www.pasonatech.co.jp/event/pdf/pgmap_info.pdf" target="_blank">http://www.pasonatech.co.jp/event/pdf/pgmap_info.pdf</a>
-    東京都千代田区大手町2-6-4
-    1.大手町(東京都)[B9]（1分）
-    2.日本橋(東京都)[A3]（2分）
-    3.三越前[B2]（3分）
+<pre>パソナグループ本部ビル セミナールーム
+<a href="http://www.pasonatech.co.jp/event/pdf/pgmap_info.pdf" target="_blank">http://www.pasonatech.co.jp/event/pdf/pgmap_info.pdf</a>
+東京都千代田区大手町2-6-4
+1.大手町(東京都)[B9]（1分）
+2.日本橋(東京都)[A3]（2分）
+3.三越前[B2]（3分）</pre>
 
 
 【参加申込み】
@@ -55,24 +53,20 @@ tags:
 ### 【勉強会内容】
 
 
-
-    
-    今回は初心者向けの内容となっておりますので、Linux-HAの基本的な所を重点に勉強しましょう！
+<pre>今回は初心者向けの内容となっておりますので、Linux-HAの基本的な所を重点に勉強しましょう！</pre>
 
 
+<pre>第1部（19:00-19:45）
+タイトル：「高可用システムの構築って何？」
+概要：高可用システムとは何か、基本から解説します。
+講師：今崎 充智
 
-    
-    第1部（19:00-19:45）
-    タイトル：「高可用システムの構築って何？」
-    概要：高可用システムとは何か、基本から解説します。
-    講師：今崎 充智
-    
-    第2部（20:00-20:45）
-    タイトル：「まずは、Pacemakerを使ってみよう！」
-    概要：Pacemakerを用いたHAクラスタ環境の構築、及び設定ファイル編集ツール
-    pm_crmgenを用いた環境設定手順の説明と実演を行ないます。
-    講師：田中 崇幸
-    講演予定資料：<a rel="attachment wp-att-1895" href="/wp/archives/1747/linux-ha-japan-3-2">講演予定スライド</a> <a rel="attachment wp-att-1896" href="/wp/archives/1747/pm_crmgen_demo2">pm_crmgenデモサンプル</a>
+第2部（20:00-20:45）
+タイトル：「まずは、Pacemakerを使ってみよう！」
+概要：Pacemakerを用いたHAクラスタ環境の構築、及び設定ファイル編集ツール
+pm_crmgenを用いた環境設定手順の説明と実演を行ないます。
+講師：田中 崇幸
+講演予定資料：<a rel="attachment wp-att-1895" href="/wp/archives/1747/linux-ha-japan-3-2">講演予定スライド</a> <a rel="attachment wp-att-1896" href="/wp/archives/1747/pm_crmgen_demo2">pm_crmgenデモサンプル</a></pre>
 
 
 そのほか、「こんな内容やってほしい」というようなリクエストがありましたら、Twitter ID： @linux_ha_jp までリプしていただくか、Linux-HA Japan とりあえず雑用係である私 橘べるちぇまでお気軽にメールをしてください。もちろんMLに投稿していただいても構いません。

@@ -77,11 +77,9 @@ categories:
 
 
 
-
-    
-    # yum install rpm-build gcc libtool automake autoconf kernel-devel
-    # yum install redhat-rpm-config
-    # yum install flex libxslt
+<pre># yum install rpm-build gcc libtool automake autoconf kernel-devel
+# yum install redhat-rpm-config
+# yum install flex libxslt</pre>
 
 
 
@@ -115,15 +113,13 @@ tar.gzのパッケージをダウンロードしてきたら、作業ディレ�
 
 
 
-
-    
-    # cd /usr/local/src
-    # wget http://oss.linbit.com/drbd/8.3/drbd-8.3.10rc1.tar.gz
-    # tar xzf drbd-8.3.10rc1.tar.gz
-    # cd drbd-8.3.10rc1
-    # ls
-    一杯表示される
-    
+<pre># cd /usr/local/src
+# wget http://oss.linbit.com/drbd/8.3/drbd-8.3.10rc1.tar.gz
+# tar xzf drbd-8.3.10rc1.tar.gz
+# cd drbd-8.3.10rc1
+# ls
+一杯表示される
+</pre>
 
 
 
@@ -138,12 +134,10 @@ tar.gzのパッケージをダウンロードしてきたら、作業ディレ�
 
 
 
-
-    
-    # KVER=2.6.18-194.26.1
-    # KDIR=/usr/src/redhat/BUILD/ovzkernel-2.6.18/linux-2.6.18.
-    # export KVER KDIR
-    
+<pre># KVER=2.6.18-194.26.1
+# KDIR=/usr/src/redhat/BUILD/ovzkernel-2.6.18/linux-2.6.18.
+# export KVER KDIR
+</pre>
 
 
 
@@ -153,12 +147,10 @@ tar.gzのパッケージをダウンロードしてきたら、作業ディレ�
 
 
 
-
-    
-    # ./configure
-    # make rpm
-    # make km-rpm
-    
+<pre># ./configure
+# make rpm
+# make km-rpm
+</pre>
 
 
 
@@ -173,11 +165,9 @@ Makeが終わると「/usr/src/redhat/RPMS/i686」にRPMパッケージができ
 
 
 
-
-    
-    # cd /usr/src/redhat/RPMS/i686
-    # rpm -ivh *
-    
+<pre># cd /usr/src/redhat/RPMS/i686
+# rpm -ivh *
+</pre>
 
 
 

@@ -168,74 +168,68 @@ rgmanager RAにも[いくつか修正](https://github.com/ClusterLabs/resource-a
 
 
 とりあえずパッケージをインストールしちゃいます。
-
-    
-    
-    <code>
-    # git clone http://github.com/ClusterLabs/resource-agents.git
-    # cd resource-agents/
-    # ./autogen.sh
-    # ./configure --prefix=/usr --libdir=/usr/lib64 --sysconfdir=/etc --localstatedir=/var
-    # make install</code>
+<pre>
+<code>
+# git clone http://github.com/ClusterLabs/resource-agents.git
+# cd resource-agents/
+# ./autogen.sh
+# ./configure --prefix=/usr --libdir=/usr/lib64 --sysconfdir=/etc --localstatedir=/var
+# make install</code></pre>
 
 
 
 そして、いよいよocf-rarunの出番。今回は、sample RAという動作確認用のRAを作成してみます。
-
-    
-    
-    <code>
-    # cd /usr/lib/ocf/resource.d/pacemaker/
-    # vim sample</code>
+<pre>
+<code>
+# cd /usr/lib/ocf/resource.d/pacemaker/
+# vim sample</code></pre>
 
 
+<pre>
+<code>
+#!/bin/sh
+#
+#
+#   sample OCF RA
 
-    
-    
-    <code>
-    #!/bin/sh
-    #
-    #
-    #   sample OCF RA
-    
-    #######################################################################
-    # Initialization:
-    
-    : ${OCF_FUNCTIONS_DIR=${OCF_ROOT}/lib/heartbeat}
-    . ${OCF_FUNCTIONS_DIR}/ocf-shellfuncs
-    
-    #######################################################################
-    
-    sample_start() {
-            ocf_log debug start
-            echo `date` > ${OCF_RESKEY_state}
-            return $OCF_SUCCESS
-    }
-    
-    sample_stop() {
-            ocf_log debug stop
-            rm -f ${OCF_RESKEY_state}
-            return $OCF_SUCCESS
-    }
-    
-    sample_monitor() {
-            msg=`cat ${OCF_RESKEY_state}`
-            ocf_log debug $msg
-            return $OCF_SUCCESS
-    }
-    
-    sample_validate_all() {
-            ocf_log debug validate_all
-            return $OCF_SUCCESS
-    }
-    
-    
-    #######################################################################
-    # main
-    
-    : ${OCF_RESKEY_state=${HA_VARRUN}/sample-${OCF_RESOURCE_INSTANCE}.state}
-    
-    <p style="text-align: left;"><strong><span style="color: #008000;">ocf_rarun $*</span></strong></p></code>
+#######################################################################
+# Initialization:
+
+: ${OCF_FUNCTIONS_DIR=${OCF_ROOT}/lib/heartbeat}
+. ${OCF_FUNCTIONS_DIR}/ocf-shellfuncs
+
+#######################################################################
+
+sample_start() {
+        ocf_log debug start
+        echo `date` > ${OCF_RESKEY_state}
+        return $OCF_SUCCESS
+}
+
+sample_stop() {
+        ocf_log debug stop
+        rm -f ${OCF_RESKEY_state}
+        return $OCF_SUCCESS
+}
+
+sample_monitor() {
+        msg=`cat ${OCF_RESKEY_state}`
+        ocf_log debug $msg
+        return $OCF_SUCCESS
+}
+
+sample_validate_all() {
+        ocf_log debug validate_all
+        return $OCF_SUCCESS
+}
+
+
+#######################################################################
+# main
+
+: ${OCF_RESKEY_state=${HA_VARRUN}/sample-${OCF_RESOURCE_INSTANCE}.state}
+
+<p style="text-align: left;"><strong><span style="color: #008000;">ocf_rarun $*</span></strong></p></code></pre>
 
 
 
@@ -300,123 +294,105 @@ sample RAがなにやってるかっていうと、実はなにもやってま�
 
 まあ他にもイロイロありまして、「startが呼び出されたとき、すでにリソースが実行中だった場合はなにもしない」とかそのへんもちゃんと作りこんであげる必要がありますが、今回はそのへんすっとばかしてます。実際にRAを作成する場合は既存のRAにどのような処理が実装されているのかを調べてみてください。
 では、いよいよsample RAに実行権限をば！
-
-    
-    
-    <code>
-    # chmod +x sample</code>
+<pre>
+<code>
+# chmod +x sample</code></pre>
 
 
 よし！実行！
-
-    
-    
-    <code>
-    # ./sample
-    ./sample: line 10: /lib/heartbeat/ocf-shellfuncs: No such file or directory</code>
+<pre>
+<code>
+# ./sample
+./sample: line 10: /lib/heartbeat/ocf-shellfuncs: No such file or directory</code></pre>
 
 
 おこられた。。。
 Pacemakerから実行するときはちゃんと環境変数が設定されてるんですけどね、手動実行だとココよくおこられます。
 というわけで、環境変数も設定してあげましょう。
-
-    
-    
-    <code>
-    # export OCF_ROOT=/usr/lib/ocf</code>
+<pre>
+<code>
+# export OCF_ROOT=/usr/lib/ocf</code></pre>
 
 
 よっしゃーやるでー
-
-    
-    
-    <code>
-    # ./sample
-    ERROR: : action not supported</code>
+<pre>
+<code>
+# ./sample
+ERROR: : action not supported</code></pre>
 
 
 またおこられた。。。と思ったけど、これはocf-rarunが吐いてるログ！キタコレ！
 ocf-rarunの御神託に従って、ちゃんと action(処理名というか関数名というか) を引数に与えてみます！
-
-    
-    
-    <code>
-    # ./sample start
-    DEBUG: validate_all
-    DEBUG: start</code>
+<pre>
+<code>
+# ./sample start
+DEBUG: validate_all
+DEBUG: start</code></pre>
 
 
 やったー。
 sample RAのstart処理が実行されました！
 validate_all処理も実行されてますけど、これはいつも呼び出されるやつ(環境変数とかチェックしてるとこだから)なので、問題なし、というか期待通りの動作です。
 ステータスファイルもちゃんと作成されてますね。
+<pre>
+<code>
+# ls -l /var/run/sample-default.state
+-rw-r--r-- 1 root root 28 Dec  3 10:33 /var/run/sample-default.state
 
-    
-    
-    <code>
-    # ls -l /var/run/sample-default.state
-    -rw-r--r-- 1 root root 28 Dec  3 10:33 /var/run/sample-default.state
-    
-    # cat /tmp/sample.state
-    Mon Dec 3 10:33:20 JST 2012</code>
+# cat /tmp/sample.state
+Mon Dec 3 10:33:20 JST 2012</code></pre>
 
 
 今度はmonitor処理を実行してみましょう。
-
-    
-    
-    <code>
-    # ./sample monitor
-    DEBUG: validate_all
-    DEBUG: Mon Dec 3 10:33:20 JST 2012</code>
+<pre>
+<code>
+# ./sample monitor
+DEBUG: validate_all
+DEBUG: Mon Dec 3 10:33:20 JST 2012</code></pre>
 
 
 ふむふむ。ステータスファイルの中身が出力されましたね。
 では、最後にstop処理を実行します。
+<pre>
+<code>
+# ./sample stop
+DEBUG: validate_all
+DEBUG: stop
 
-    
-    
-    <code>
-    # ./sample stop
-    DEBUG: validate_all
-    DEBUG: stop
-    
-    # !ls
-    ls -l /var/run/sample-default.state
-    ls: cannot access /var/run/sample-default.state: No such file or directory</code>
+# !ls
+ls -l /var/run/sample-default.state
+ls: cannot access /var/run/sample-default.state: No such file or directory</code></pre>
 
 
 ステータスファイルは削除されています。っていうかそうなるようにRAつくったから、そうなって当然なんだけどね。
 
 今回、かなりの簡易版でしたが、ocf-rarunの使い方はなんとなく雰囲気わかっていただけたでしょうか。
 例えば、既存のDummy RAを見てみると、スクリプトのお尻のほう、こんな感じですよね。
-
-    
-    
-    <code>
-    case $__OCF_ACTION in
-    meta-data)      meta_data
-                    exit $OCF_SUCCESS
-                    ;;
-    start)          dummy_start;;
-    stop)           dummy_stop;;
-    monitor)        dummy_monitor;;
-    migrate_to)     ocf_log info "Migrating ${OCF_RESOURCE_INSTANCE} to ${OCF_RESKEY_CRM_meta_migrate_to}."
-                    dummy_stop
-                    ;;
-    migrate_from)   ocf_log info "Migrating ${OCF_RESOURCE_INSTANCE} to ${OCF_RESKEY_CRM_meta_migrated_from}."
-                    dummy_start
-                    ;;
-    reload)         ocf_log err "Reloading..."
-                    dummy_start
-                    ;;
-    validate-all)   dummy_validate;;
-    usage|help)     dummy_usage
-                    exit $OCF_SUCCESS
-                    ;;
-    *)              dummy_usage
-                    exit $OCF_ERR_UNIMPLEMENTED
-                    ;;</code>
+<pre>
+<code>
+case $__OCF_ACTION in
+meta-data)      meta_data
+                exit $OCF_SUCCESS
+                ;;
+start)          dummy_start;;
+stop)           dummy_stop;;
+monitor)        dummy_monitor;;
+migrate_to)     ocf_log info "Migrating ${OCF_RESOURCE_INSTANCE} to ${OCF_RESKEY_CRM_meta_migrate_to}."
+                dummy_stop
+                ;;
+migrate_from)   ocf_log info "Migrating ${OCF_RESOURCE_INSTANCE} to ${OCF_RESKEY_CRM_meta_migrated_from}."
+                dummy_start
+                ;;
+reload)         ocf_log err "Reloading..."
+                dummy_start
+                ;;
+validate-all)   dummy_validate;;
+usage|help)     dummy_usage
+                exit $OCF_SUCCESS
+                ;;
+*)              dummy_usage
+                exit $OCF_ERR_UNIMPLEMENTED
+                ;;</code></pre>
 
 
 いや、なんかさ、そんな大したことしてるわけじゃないんだけどさ、なんかこう、うざいじゃないですか。

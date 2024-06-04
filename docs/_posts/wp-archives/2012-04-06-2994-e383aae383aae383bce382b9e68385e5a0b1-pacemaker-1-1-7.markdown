@@ -213,33 +213,27 @@ on-failの設定が無効となる(デフォルト値のrestartが採用され�
 [参考情報](http://theclusterguy.clusterlabs.org/post/907043024/introducing-the-pacemaker-master-control-process-for)
 
 起動手順
-
-    
-    
-    <code>
-    # service corosync start
-    # service pacemaker start</code>
+<pre>
+<code>
+# service corosync start
+# service pacemaker start</code></pre>
 
 
 
 停止手順
-
-    
-    
-    <code>
-    # service pacemaker stop
-    # service corosync stop</code>
+<pre>
+<code>
+# service pacemaker stop
+# service corosync stop</code></pre>
 
 
 
 また、Heartbeat 3.0.5とPacemaker 1.1.7を組み合わせて動作させる場合は、ha.cfに下記の設定を追加してください。
-
-    
-    
-    <code>
-    compression bz2
-    compression_threshold 30 
-    traditional_compression yes</code>
+<pre>
+<code>
+compression bz2
+compression_threshold 30 
+traditional_compression yes</code></pre>
 
 
 compression_thresholdの設定値は各環境で調整する必要があります。
@@ -264,20 +258,16 @@ Pacemaker はちょっとアレなくらいログを吐くので、出力量が�
 [以前](/wp/archives/2254)にご紹介したこともありますが、プロセスにシグナルを送ることによって、そのプロセスだけデバッグレベルを変更することができます。
 
 デバッグレベルをあげる
-
-    
-    
-    <code>
-    # pkill -SIGUSR1 <プロセス名></code>
+<pre>
+<code>
+# pkill -SIGUSR1 <プロセス名></code></pre>
 
 
 
 デバッグレベルをさげる
-
-    
-    
-    <code>
-    # pkill -SIGUSR2 <プロセス名> </code>
+<pre>
+<code>
+# pkill -SIGUSR2 <プロセス名> </code></pre>
 
 
 
@@ -324,38 +314,36 @@ fencing-topologyはそれにかわるものなのか！？
 
 新しく追加されたスキーマを見てみると、indexに順番が指定できそうな予感。
 
+<pre>
+<code>
+# vim xml/fencing.rng
 
-    
-    
-    <code>
-    # vim xml/fencing.rng
-    
-    <?xml version="1.0" encoding="utf-8"?>
-    <grammar xmlns="http://relaxng.org/ns/structure/1.0"
-             datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-      <start>
-          <ref name="element-stonith"/>
-      </start>
-      <define name="element-stonith">
-        <element name="fencing-topology">
-          <zeroOrMore>
-            <ref name="element-level"/>
-          </zeroOrMore>
-        </element>
-      </define>
-      <define name="element-level">
-        <element name="fencing-level">
-          <attribute name="id"><data type="ID"></data></attribute>
-          <attribute name="target"><text></text></attribute>
-          <attribute name="index"><data type="positiveInteger"></data></attribute>
-          <attribute name="devices">
-            <data type="string">
-              <param name="pattern">([a-zA-Z0-9_.-]+)(,[a-zA-Z0-9_.-]+)*</param>
-            </data>
-          </attribute>
-        </element>
-      </define>
-    </grammar></code>
+<?xml version="1.0" encoding="utf-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+      <ref name="element-stonith"/>
+  </start>
+  <define name="element-stonith">
+    <element name="fencing-topology">
+      <zeroOrMore>
+        <ref name="element-level"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="element-level">
+    <element name="fencing-level">
+      <attribute name="id"><data type="ID"></data></attribute>
+      <attribute name="target"><text></text></attribute>
+      <attribute name="index"><data type="positiveInteger"></data></attribute>
+      <attribute name="devices">
+        <data type="string">
+          <param name="pattern">([a-zA-Z0-9_.-]+)(,[a-zA-Z0-9_.-]+)*</param>
+        </data>
+      </attribute>
+    </element>
+  </define>
+</grammar></code></pre>
 
 
 

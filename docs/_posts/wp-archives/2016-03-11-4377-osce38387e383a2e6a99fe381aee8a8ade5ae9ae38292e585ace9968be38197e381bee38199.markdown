@@ -226,65 +226,63 @@ PacemakerのCRM設定は以下です。
 
 
 このCRM設定で、クラスタを構成した場合の「crm_mon -rfA」の表示は以下のようになります。
+<pre><code>Last updated: Wed Mar  2 13:04:40 2016
+Last change: Tue Mar  1 13:39:21 2016 by root via crm_attribute on pm01
+Stack: corosync
+Current DC: pm01 - partition with quorum
+Version: 1.1.13-6052cd1
+2 Nodes configured
+16 Resources configured
 
-    
-    <code>Last updated: Wed Mar  2 13:04:40 2016
-    Last change: Tue Mar  1 13:39:21 2016 by root via crm_attribute on pm01
-    Stack: corosync
-    Current DC: pm01 - partition with quorum
-    Version: 1.1.13-6052cd1
-    2 Nodes configured
-    16 Resources configured
-    
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-     Resource Group: master-group
-         filesystem	(ocf::heartbeat:Filesystem):	Started pm01
-         apache	(ocf::heartbeat:apache):	Started pm01
-         vip-master	(ocf::heartbeat:IPaddr2):	Started pm01
-         vip-rep	(ocf::heartbeat:IPaddr2):	Started pm01
-     Resource Group: grpStonith1
-         prmStonith1-1	(stonith:external/stonith-helper):	Started pm02
-         prmStonith1-2	(stonith:external/ipmi):	Started pm02
-     Resource Group: grpStonith2
-         prmStonith2-1	(stonith:external/stonith-helper):	Started pm01
-         prmStonith2-2	(stonith:external/ipmi):	Started pm01
-     Master/Slave Set: msPostgresql [pgsql]
-         Masters: [ pm01 ]
-         Slaves: [ pm02 ]
-     Master/Slave Set: msDrbd [drbd]
-         Masters: [ pm01 ]
-         Slaves: [ pm02 ]
-     Clone Set: clnPing [prmPing]
-         Started: [ pm01 pm02 ]
-     Clone Set: clnDiskd1 [prmDiskd1]
-         Started: [ pm01 pm02 ]
-    
-    Node Attributes:
-    * Node pm01:
-        + default_ping_set                	: 100       
-        + diskcheck_status_internal       	: normal    
-        + master-drbd                     	: 10000     
-        + master-pgsql                    	: 1000      
-        + pgsql-data-status               	: LATEST    
-        + pgsql-master-baseline           	: 0000001EAC000138
-        + pgsql-status                    	: PRI       
-        + ringnumber_0                    	: 192.168.1.1 is UP
-    * Node pm02:
-        + default_ping_set                	: 100       
-        + diskcheck_status_internal       	: normal    
-        + master-drbd                     	: 10000     
-        + master-pgsql                    	: 100       
-        + pgsql-data-status               	: STREAMING|SYNC
-        + pgsql-status                    	: HS:sync   
-        + ringnumber_0                    	: 192.168.1.2 is UP
-    
-    Migration summary:
-    * Node pm01: 
-    * Node pm02: 
-    </code>
+Online: [ pm01 pm02 ]
+
+Full list of resources:
+
+ Resource Group: master-group
+     filesystem	(ocf::heartbeat:Filesystem):	Started pm01
+     apache	(ocf::heartbeat:apache):	Started pm01
+     vip-master	(ocf::heartbeat:IPaddr2):	Started pm01
+     vip-rep	(ocf::heartbeat:IPaddr2):	Started pm01
+ Resource Group: grpStonith1
+     prmStonith1-1	(stonith:external/stonith-helper):	Started pm02
+     prmStonith1-2	(stonith:external/ipmi):	Started pm02
+ Resource Group: grpStonith2
+     prmStonith2-1	(stonith:external/stonith-helper):	Started pm01
+     prmStonith2-2	(stonith:external/ipmi):	Started pm01
+ Master/Slave Set: msPostgresql [pgsql]
+     Masters: [ pm01 ]
+     Slaves: [ pm02 ]
+ Master/Slave Set: msDrbd [drbd]
+     Masters: [ pm01 ]
+     Slaves: [ pm02 ]
+ Clone Set: clnPing [prmPing]
+     Started: [ pm01 pm02 ]
+ Clone Set: clnDiskd1 [prmDiskd1]
+     Started: [ pm01 pm02 ]
+
+Node Attributes:
+* Node pm01:
+    + default_ping_set                	: 100       
+    + diskcheck_status_internal       	: normal    
+    + master-drbd                     	: 10000     
+    + master-pgsql                    	: 1000      
+    + pgsql-data-status               	: LATEST    
+    + pgsql-master-baseline           	: 0000001EAC000138
+    + pgsql-status                    	: PRI       
+    + ringnumber_0                    	: 192.168.1.1 is UP
+* Node pm02:
+    + default_ping_set                	: 100       
+    + diskcheck_status_internal       	: normal    
+    + master-drbd                     	: 10000     
+    + master-pgsql                    	: 100       
+    + pgsql-data-status               	: STREAMING|SYNC
+    + pgsql-status                    	: HS:sync   
+    + ringnumber_0                    	: 192.168.1.2 is UP
+
+Migration summary:
+* Node pm01: 
+* Node pm02: 
+</code></pre>
 
 
 
@@ -305,10 +303,8 @@ STONITHに関連する設定項目は以下箇所です。それぞれ意味を�
 #### 3行目：STONITH有効化設定
 
 
-
-    
-    <code>	stonith-enabled="true" \
-    </code>
+<pre><code>	stonith-enabled="true" \
+</code></pre>
 
 
 propertyとしてstonith-enabled="true"　と設定することで、STONITH機能が有効になります。
@@ -318,16 +314,14 @@ STONITHを使用しない場合"false"を設定します。
 #### 45～51行目：STONITHリソースのグループ化
 
 
+<pre><code>group grpStonith1 \
+	prmStonith1-1 \
+	prmStonith1-2
 
-    
-    <code>group grpStonith1 \
-    	prmStonith1-1 \
-    	prmStonith1-2
-    
-     group grpStonith2 \
-    	prmStonith2-1 \
-    	prmStonith2-2
-    </code>
+ group grpStonith2 \
+	prmStonith2-1 \
+	prmStonith2-2
+</code></pre>
 
 
 STONITHリソースとして155～201行目で定義するprmStonithX-Xリソースを管理しやすいようそれぞれグループ化しています。
@@ -336,12 +330,10 @@ STONITHリソースとして155～201行目で定義するprmStonithX-Xリソー
 #### 54～56行目：fencing_topology設定
 
 
-
-    
-    <code>fencing_topology \
-    	pm01: prmStonith1-1 prmStonith1-2 \
-    	pm02: prmStonith2-1 prmStonith2-2
-    </code>
+<pre><code>fencing_topology \
+	pm01: prmStonith1-1 prmStonith1-2 \
+	pm02: prmStonith2-1 prmStonith2-2
+</code></pre>
 
 
 fencing_topologyは、各ノード(pm01, pm02)をSTONITHするのに、どのリソースを、どの順番で使用するべきかをPacemakerに教えるための設定です。
@@ -355,56 +347,54 @@ fencing_topologyは、Pacemaker-1.1系から追加された設定項目です。
 #### 155～201行目：STONITHリソース定義
 
 
+<pre><code>primitive prmStonith1-1 stonith:external/stonith-helper \
+	params \
+		pcmk_reboot_retries="1" \
+		pcmk_reboot_timeout="40s" \
+		hostlist="pm01" \
+		dead_check_target="192.168.0.1 192.168.1.1 192.168.2.1 192.168.30.61 192.168.30.63" \
+		standby_check_command="/usr/sbin/crm_resource -r master-group -W | grep -qi `hostname`" \
+		standby_wait_time="10" \
+		run_online_check="yes" \
+	op start interval="0s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="60s" on-fail="ignore"
 
-    
-    <code>primitive prmStonith1-1 stonith:external/stonith-helper \
-    	params \
-    		pcmk_reboot_retries="1" \
-    		pcmk_reboot_timeout="40s" \
-    		hostlist="pm01" \
-    		dead_check_target="192.168.0.1 192.168.1.1 192.168.2.1 192.168.30.61 192.168.30.63" \
-    		standby_check_command="/usr/sbin/crm_resource -r master-group -W | grep -qi `hostname`" \
-    		standby_wait_time="10" \
-    		run_online_check="yes" \
-    	op start interval="0s" timeout="60s" on-fail="restart" \
-    	op stop interval="0s" timeout="60s" on-fail="ignore"
-    
-    primitive prmStonith1-2 stonith:external/ipmi \
-    	params \
-    		pcmk_reboot_timeout="60s" \
-    		hostname="pm01" \
-    		ipaddr="192.168.30.63" \
-    		userid="XXXXX" \
-    		passwd="XXXXXXXXXX" \
-    		interface="lanplus" \
-    	op start interval="0s" timeout="60s" on-fail="restart" \
-    	op monitor interval="3600s" timeout="60s" on-fail="restart" \
-    	op stop interval="0s" timeout="60s" on-fail="ignore"
-    
-    primitive prmStonith2-1 stonith:external/stonith-helper \
-    	params \
-    		pcmk_reboot_retries="1" \
-    		pcmk_reboot_timeout="40s" \
-    		hostlist="pm02" \
-    		dead_check_target="192.168.0.2 192.168.1.2 192.168.2.2 192.168.30.62 192.168.30.64" \
-    		standby_check_command="/usr/sbin/crm_resource -r master-group -W | grep -qi `hostname`" \
-    		standby_wait_time="10" \
-    		run_online_check="yes" \
-    	op start interval="0s" timeout="60s" on-fail="restart" \
-    	op stop interval="0s" timeout="60s" on-fail="ignore"
-    
-    primitive prmStonith2-2 stonith:external/ipmi \
-    	params \
-    		pcmk_reboot_timeout="60s" \
-    		hostname="pm02" \
-    		ipaddr="192.168.30.64" \
-    		userid="XXXXX" \
-    		passwd="XXXXXXXXXX" \
-    		interface="lanplus" \
-    	op start interval="0s" timeout="60s" on-fail="restart" \
-    	op monitor interval="3600s" timeout="60s" on-fail="restart" \
-    	op stop interval="0s" timeout="60s" on-fail="ignore"
-    </code>
+primitive prmStonith1-2 stonith:external/ipmi \
+	params \
+		pcmk_reboot_timeout="60s" \
+		hostname="pm01" \
+		ipaddr="192.168.30.63" \
+		userid="XXXXX" \
+		passwd="XXXXXXXXXX" \
+		interface="lanplus" \
+	op start interval="0s" timeout="60s" on-fail="restart" \
+	op monitor interval="3600s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="60s" on-fail="ignore"
+
+primitive prmStonith2-1 stonith:external/stonith-helper \
+	params \
+		pcmk_reboot_retries="1" \
+		pcmk_reboot_timeout="40s" \
+		hostlist="pm02" \
+		dead_check_target="192.168.0.2 192.168.1.2 192.168.2.2 192.168.30.62 192.168.30.64" \
+		standby_check_command="/usr/sbin/crm_resource -r master-group -W | grep -qi `hostname`" \
+		standby_wait_time="10" \
+		run_online_check="yes" \
+	op start interval="0s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="60s" on-fail="ignore"
+
+primitive prmStonith2-2 stonith:external/ipmi \
+	params \
+		pcmk_reboot_timeout="60s" \
+		hostname="pm02" \
+		ipaddr="192.168.30.64" \
+		userid="XXXXX" \
+		passwd="XXXXXXXXXX" \
+		interface="lanplus" \
+	op start interval="0s" timeout="60s" on-fail="restart" \
+	op monitor interval="3600s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="60s" on-fail="ignore"
+</code></pre>
 
 
 STONITHリソースを定義しています。
@@ -448,13 +438,11 @@ meatwareは、ipmi等によるSTONITHが何らかの原因で失敗し、保守�
 #### 210～213行目：STONITHリソースの配置制約
 
 
-
-    
-    <code>location rsc_location-grpStonith1-3 grpStonith1 \
-    	rule -INFINITY: #uname eq pm01
-    location rsc_location-grpStonith2-4 grpStonith2 \
-    	rule -INFINITY: #uname eq pm02
-    </code>
+<pre><code>location rsc_location-grpStonith1-3 grpStonith1 \
+	rule -INFINITY: #uname eq pm01
+location rsc_location-grpStonith2-4 grpStonith2 \
+	rule -INFINITY: #uname eq pm02
+</code></pre>
 
 
 STONITHリソースのグループに配置制約を設定しています。
@@ -493,39 +481,37 @@ Pacemakerは基本的には、自分自身をSTONITHすることはできない�
 
 
 以下、その設定箇所の抜粋です。
+<pre><code>primitive vip-master ocf:heartbeat:IPaddr2 \
+～中略～
+	op stop interval="0s" timeout="60s" on-fail="fence"
 
-    
-    <code>primitive vip-master ocf:heartbeat:IPaddr2 \
-    ～中略～
-    	op stop interval="0s" timeout="60s" on-fail="fence"
-    
-    primitive filesystem ocf:heartbeat:Filesystem \
-    ～中略～
-    	op stop interval="0s" timeout="60s" on-fail="fence"
-    
-    primitive apache ocf:heartbeat:apache \
-    ～中略～
-    	op stop interval="0s" timeout="60s" on-fail="fence"
-    
-    primitive pgsql ocf:heartbeat:pgsql \
-    ～中略～
-    	op demote interval="0s" timeout="300s" on-fail="fence" \
-    ～中略～
-    	op stop interval="0s" timeout="300s" on-fail="fence"
-    
-    primitive drbd ocf:linbit:drbd \
-    ～中略～
-    	op demote interval="0s" timeout="90s" on-fail="fence" \
-    	op stop interval="0s" timeout="100s" on-fail="fence"
-    
-    primitive prmPing ocf:pacemaker:ping \
-    ～中略～
-    	op stop interval="0s" timeout="60s" on-fail="fence"
-    
-    primitive prmDiskd1 ocf:pacemaker:diskd \
-    ～中略～
-    	op stop interval="0s" timeout="60s" on-fail="fence"
-    </code>
+primitive filesystem ocf:heartbeat:Filesystem \
+～中略～
+	op stop interval="0s" timeout="60s" on-fail="fence"
+
+primitive apache ocf:heartbeat:apache \
+～中略～
+	op stop interval="0s" timeout="60s" on-fail="fence"
+
+primitive pgsql ocf:heartbeat:pgsql \
+～中略～
+	op demote interval="0s" timeout="300s" on-fail="fence" \
+～中略～
+	op stop interval="0s" timeout="300s" on-fail="fence"
+
+primitive drbd ocf:linbit:drbd \
+～中略～
+	op demote interval="0s" timeout="90s" on-fail="fence" \
+	op stop interval="0s" timeout="100s" on-fail="fence"
+
+primitive prmPing ocf:pacemaker:ping \
+～中略～
+	op stop interval="0s" timeout="60s" on-fail="fence"
+
+primitive prmDiskd1 ocf:pacemaker:diskd \
+～中略～
+	op stop interval="0s" timeout="60s" on-fail="fence"
+</code></pre>
 
 
 なお、上記以外のリソースは、仮に停止に失敗し両系で稼動してしまっても問題が無いため、STONITH対象にはしていません。
@@ -542,27 +528,25 @@ Pacemakerは基本的には、自分自身をSTONITHすることはできない�
 Master/Slaveリソースの概念については[Pacemakerで扱えるリソースの種類](/wp/archives/576)をご覧ください。
 
 18～35行目：
+<pre><code>ms msPostgresql \
+	pgsql \
+	meta \
+		master-max="1" \
+		master-node-max="1" \
+		clone-max="2" \
+		clone-node-max="1" \
+		notify="true"
 
-    
-    <code>ms msPostgresql \
-    	pgsql \
-    	meta \
-    		master-max="1" \
-    		master-node-max="1" \
-    		clone-max="2" \
-    		clone-node-max="1" \
-    		notify="true"
-    
-    ms msDrbd \
-    	drbd \
-    	meta \
-    		resource-stickiness="1" \
-    		master-max="1" \
-    		master-node-max="1" \
-    		clone-max="2" \
-    		clone-node-max="1" \
-    		notify="true"
-    </code>
+ms msDrbd \
+	drbd \
+	meta \
+		resource-stickiness="1" \
+		master-max="1" \
+		master-node-max="1" \
+		clone-max="2" \
+		clone-node-max="1" \
+		notify="true"
+</code></pre>
 
 
 Master/Slaveリソースは、
@@ -597,14 +581,12 @@ metaで設定しているパラメータは、それぞれ以下の意味です�
 master-groupグループを定義しているのは、以下の箇所です。
 
 11～15行目：
-
-    
-    <code>group master-group \
-    	filesystem \
-    	apache \
-    	vip-master \
-    	vip-rep
-    </code>
+<pre><code>group master-group \
+	filesystem \
+	apache \
+	vip-master \
+	vip-rep
+</code></pre>
 
 
 groupリソースおよびそのメンバとなっている各primitiveリソースの概念、設定については、[動かして理解するPacemaker ～CRM設定編～](/wp/archives/3786)をご覧ください。
@@ -619,19 +601,17 @@ groupリソースおよびそのメンバとなっている各primitiveリソー
 diskdリソースの定義箇所は以下です。/dev/sda を監視しています。
 
 144～153行目：
-
-    
-    <code>primitive prmDiskd1 ocf:pacemaker:diskd \
-    	params \
-    		name="diskcheck_status_internal" \
-    		device="/dev/sda" \
-    		options="-e" \
-    		interval="10" \
-    		dampen="2" \
-    	op start interval="0s" timeout="60s" on-fail="restart" \
-    	op monitor interval="10s" timeout="60s" on-fail="restart" \
-    	op stop interval="0s" timeout="60s" on-fail="fence"
-    </code>
+<pre><code>primitive prmDiskd1 ocf:pacemaker:diskd \
+	params \
+		name="diskcheck_status_internal" \
+		device="/dev/sda" \
+		options="-e" \
+		interval="10" \
+		dampen="2" \
+	op start interval="0s" timeout="60s" on-fail="restart" \
+	op monitor interval="10s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="60s" on-fail="fence"
+</code></pre>
 
 
 各設定パラメータの意味は以下です。
@@ -662,20 +642,18 @@ diskdリソースの定義箇所は以下です。/dev/sda を監視していま
 pingリソースの定義箇所は以下です。サービスLANを監視するため、サービスLAN側の上位スイッチのIPアドレス(192.168.0.101)に対しpingを発行します。
 
 144～153行目：
-
-    
-    <code>primitive prmPing ocf:pacemaker:ping \
-    	params \
-    		name="default_ping_set" \
-    		host_list="192.168.0.101" \
-    		multiplier="100" \
-    		attempts="2" \
-    		timeout="2" \
-    		debug="true" \
-    	op start interval="0s" timeout="60s" on-fail="restart" \
-    	op monitor interval="10s" timeout="60s" on-fail="restart" \
-    	op stop interval="0s" timeout="60s" on-fail="fence"
-    </code>
+<pre><code>primitive prmPing ocf:pacemaker:ping \
+	params \
+		name="default_ping_set" \
+		host_list="192.168.0.101" \
+		multiplier="100" \
+		attempts="2" \
+		timeout="2" \
+		debug="true" \
+	op start interval="0s" timeout="60s" on-fail="restart" \
+	op monitor interval="10s" timeout="60s" on-fail="restart" \
+	op stop interval="0s" timeout="60s" on-fail="fence"
+</code></pre>
 
 
 各設定パラメータの意味は以下です。
@@ -713,19 +691,17 @@ pingリソースの定義箇所は以下です。サービスLANを監視する�
 #### 204～213行目：配置制約
 
 
-
-    
-    <code>location rsc_location-msPostgresql-1 msPostgresql \
-    	rule -INFINITY: not_defined default_ping_set or default_ping_set lt 100 \
-    	rule -INFINITY: not_defined diskcheck_status_internal or diskcheck_status_internal eq ERROR
-    location rsc_location-msDrbd-2 msDrbd \
-    	rule -INFINITY: not_defined default_ping_set or default_ping_set lt 100 \
-    	rule -INFINITY: not_defined diskcheck_status_internal or diskcheck_status_internal eq ERROR
-    location rsc_location-grpStonith1-3 grpStonith1 \
-    	rule -INFINITY: #uname eq pm01
-    location rsc_location-grpStonith2-4 grpStonith2 \
-    	rule -INFINITY: #uname eq pm02
-    </code>
+<pre><code>location rsc_location-msPostgresql-1 msPostgresql \
+	rule -INFINITY: not_defined default_ping_set or default_ping_set lt 100 \
+	rule -INFINITY: not_defined diskcheck_status_internal or diskcheck_status_internal eq ERROR
+location rsc_location-msDrbd-2 msDrbd \
+	rule -INFINITY: not_defined default_ping_set or default_ping_set lt 100 \
+	rule -INFINITY: not_defined diskcheck_status_internal or diskcheck_status_internal eq ERROR
+location rsc_location-grpStonith1-3 grpStonith1 \
+	rule -INFINITY: #uname eq pm01
+location rsc_location-grpStonith2-4 grpStonith2 \
+	rule -INFINITY: #uname eq pm02
+</code></pre>
 
 
 前半の6行では、PostgreSQLおよびDRBDが、ネットワークまたはディスクに異常を検知したノードでは停止・フェイルオーバするよう、以下を設定しています。
@@ -771,16 +747,14 @@ pingリソースの定義箇所は以下です。サービスLANを監視する�
 #### 216～222行目：同居制約
 
 
-
-    
-    <code>colocation rsc_colocation-msPostgresql-clnPing-1      INFINITY: msPostgresql  clnPing
-    colocation rsc_colocation-msPostgresql-clnDiskd1-2    INFINITY: msPostgresql  clnDiskd1
-    colocation rsc_colocation-msDrbd-clnPing-3            INFINITY: msDrbd        clnPing
-    colocation rsc_colocation-msDrbd-clnDiskd1-4          INFINITY: msDrbd        clnDiskd1
-    colocation rsc_colocation-master-group-msPostgresql-5 INFINITY: master-group  msPostgresql:Master
-    colocation rsc_colocation-master-group-msDrbd-6       INFINITY: master-group  msDrbd:Master
-    colocation rsc_colocation-msDrbd-msPostgresql-7       INFINITY: msDrbd:Master msPostgresql:Master
-    </code>
+<pre><code>colocation rsc_colocation-msPostgresql-clnPing-1      INFINITY: msPostgresql  clnPing
+colocation rsc_colocation-msPostgresql-clnDiskd1-2    INFINITY: msPostgresql  clnDiskd1
+colocation rsc_colocation-msDrbd-clnPing-3            INFINITY: msDrbd        clnPing
+colocation rsc_colocation-msDrbd-clnDiskd1-4          INFINITY: msDrbd        clnDiskd1
+colocation rsc_colocation-master-group-msPostgresql-5 INFINITY: master-group  msPostgresql:Master
+colocation rsc_colocation-master-group-msDrbd-6       INFINITY: master-group  msDrbd:Master
+colocation rsc_colocation-msDrbd-msPostgresql-7       INFINITY: msDrbd:Master msPostgresql:Master
+</code></pre>
 
 
 前半の4行では、初期起動時にネットワークおよびディスクの正常性が確認できているノードでのみPostgreSQLおよびDRBDリソースを起動するため、以下を設定しています。
@@ -817,17 +791,15 @@ pingリソースの定義箇所は以下です。サービスLANを監視する�
 #### 225～232行目：順序制約
 
 
-
-    
-    <code>order rsc_order-clnPing-msPostgresql-1      0:        clnPing              msPostgresql       symmetrical=false
-    order rsc_order-clnDiskd1-msPostgresql-2    0:        clnDiskd1            msPostgresql       symmetrical=false
-    order rsc_order-clnPing-msDrbd-3            0:        clnPing              msDrbd             symmetrical=false
-    order rsc_order-clnDiskd1-msDrbd-4          0:        clnDiskd1            msDrbd             symmetrical=false
-    order rsc_order-msDrbd-master-group-5       INFINITY: msDrbd:promote       master-group:start symmetrical=false
-    order rsc_order-msPostgresql-master-group-6 INFINITY: msPostgresql:promote master-group:start symmetrical=false
-    order rsc_order-msPostgresql-master-group-7 0:        msPostgresql:demote  master-group:stop  symmetrical=false
-    order rsc_order-master-group-msDrbd-8       0:        master-group:stop    msDrbd:demote      symmetrical=false
-    </code>
+<pre><code>order rsc_order-clnPing-msPostgresql-1      0:        clnPing              msPostgresql       symmetrical=false
+order rsc_order-clnDiskd1-msPostgresql-2    0:        clnDiskd1            msPostgresql       symmetrical=false
+order rsc_order-clnPing-msDrbd-3            0:        clnPing              msDrbd             symmetrical=false
+order rsc_order-clnDiskd1-msDrbd-4          0:        clnDiskd1            msDrbd             symmetrical=false
+order rsc_order-msDrbd-master-group-5       INFINITY: msDrbd:promote       master-group:start symmetrical=false
+order rsc_order-msPostgresql-master-group-6 INFINITY: msPostgresql:promote master-group:start symmetrical=false
+order rsc_order-msPostgresql-master-group-7 0:        msPostgresql:demote  master-group:stop  symmetrical=false
+order rsc_order-master-group-msDrbd-8       0:        master-group:stop    msDrbd:demote      symmetrical=false
+</code></pre>
 
 
 前半4行では、初期起動時にネットワークおよびディスクの正常性が確認できているノードでのみリソースを起動するため、以下4点を設定しています。
@@ -876,34 +848,32 @@ PostgreSQLのdemote(≒停止)の前に、PostgreSQLがリッスンしている�
 以下の箇所でPostgreSQLのprimitiveリソースを定義しています。
 
 96～120行目：
-
-    
-    <code>primitive pgsql ocf:heartbeat:pgsql \
-    	params \
-    		pgctl="/usr/pgsql-9.4/bin/pg_ctl" \
-    		start_opt="-p 5432" \
-    		psql="/usr/pgsql-9.4/bin/psql" \
-    		pgdata="/var/lib/pgsql/dbfp/9.4/pgdata/data" \
-    		pgdba="postgres" \
-    		pgport="5432" \
-    		pgdb="template1" \
-    		rep_mode="sync" \
-    		node_list="pm01 pm02" \
-    		master_ip="192.168.2.3" \
-    		restore_command="/bin/cp /var/lib/pgsql/dbfp/9.4/pgarch/arc1/%f %p" \
-    		repuser="repuser" \
-    		primary_conninfo_opt="keepalives_idle=60 keepalives_interval=5 keepalives_count=5" \
-    		stop_escalate="0" \
-    		xlog_check_count="0" \
-    		replication_slot_name="osc_demo_slot" \
-    	op start interval="0s" timeout="300s" on-fail="restart" \
-    	op monitor interval="10s" timeout="60s" on-fail="restart" \
-    	op monitor role="Master" interval="9s" timeout="60s" on-fail="restart" \
-    	op promote interval="0s" timeout="300s" on-fail="restart" \
-    	op demote interval="0s" timeout="300s" on-fail="fence" \
-    	op notify interval="0s" timeout="60s" \
-    	op stop interval="0s" timeout="300s" on-fail="fence"
-    </code>
+<pre><code>primitive pgsql ocf:heartbeat:pgsql \
+	params \
+		pgctl="/usr/pgsql-9.4/bin/pg_ctl" \
+		start_opt="-p 5432" \
+		psql="/usr/pgsql-9.4/bin/psql" \
+		pgdata="/var/lib/pgsql/dbfp/9.4/pgdata/data" \
+		pgdba="postgres" \
+		pgport="5432" \
+		pgdb="template1" \
+		rep_mode="sync" \
+		node_list="pm01 pm02" \
+		master_ip="192.168.2.3" \
+		restore_command="/bin/cp /var/lib/pgsql/dbfp/9.4/pgarch/arc1/%f %p" \
+		repuser="repuser" \
+		primary_conninfo_opt="keepalives_idle=60 keepalives_interval=5 keepalives_count=5" \
+		stop_escalate="0" \
+		xlog_check_count="0" \
+		replication_slot_name="osc_demo_slot" \
+	op start interval="0s" timeout="300s" on-fail="restart" \
+	op monitor interval="10s" timeout="60s" on-fail="restart" \
+	op monitor role="Master" interval="9s" timeout="60s" on-fail="restart" \
+	op promote interval="0s" timeout="300s" on-fail="restart" \
+	op demote interval="0s" timeout="300s" on-fail="fence" \
+	op notify interval="0s" timeout="60s" \
+	op stop interval="0s" timeout="300s" on-fail="fence"
+</code></pre>
 
 
 基本的には[PG-REX](https://osdn.jp/projects/pg-rex/)の手順に従っていますが、最新機能であるレプリケーションスロット機能を有効にするため"replication_slot_name"というパラメータが設定されています。

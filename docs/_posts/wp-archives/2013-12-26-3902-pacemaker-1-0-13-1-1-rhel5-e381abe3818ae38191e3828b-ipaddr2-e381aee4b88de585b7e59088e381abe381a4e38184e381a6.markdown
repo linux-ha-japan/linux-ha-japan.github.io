@@ -28,10 +28,8 @@ _(2014/04/25追記)_ MLにて、RHEL6.4でも同様の事象が発生した、�
 事象発生時に出力されるログは次の通りです。
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    ERROR: Unknown interface [bond0] No such device.
-    ERROR: [findif] failed
+<td style="padding:0.5em;" ><pre>ERROR: Unknown interface [bond0] No such device.
+ERROR: [findif] failed</pre>
 
 
  
@@ -110,39 +108,33 @@ IPaddr2 リソースの監視処理を停止するには、 monitor の監視間
 以下がその手順例です。
 
   1. クラスタに参加しているサーバの1台で、crm コマンドを実行します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    root# crm configure
+<td style="padding:0.5em;" ><pre>root# crm configure</pre>
 
 
  
 </td></tr> </table>
   2. IPaddr2 リソースのIDを確認します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    crm(live)configure# show
+<td style="padding:0.5em;" ><pre>crm(live)configure# show</pre>
 
 
  
 </td></tr> </table>
   3. IPaddr2 リソースのID(仮に vip01, vip02 とします)を引数に edit を実行します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    crm(live)configure# edit vip01 vip02
-    
-    例
-    ----(エディタの表示開始)----
-    primitive vip01 ocf:heartbeat:IPaddr2 \
-    params ip="192.168.4.200" nic="eth3" cidr_netmask="24" \
-    op start interval="0" timeout="60s" \
-    op monitor interval="10s" timeout="60s" \ # この行のintervalを変更
-    op stop interval="0" timeout="60s"
-    primitive vip02 ocf:heartbeat:IPaddr2 \
-    params ip="192.168.4.201" nic="eth3" cidr_netmask="24" \
-    op start interval="0" timeout="60s" \
-    op monitor interval="10s" timeout="60s" \ # この行のintervalを変更
-    op stop interval="0" timeout="60s"
-    ----(エディタの表示終了)----
+<td style="padding:0.5em;" ><pre>crm(live)configure# edit vip01 vip02
+
+例
+----(エディタの表示開始)----
+primitive vip01 ocf:heartbeat:IPaddr2 \
+params ip="192.168.4.200" nic="eth3" cidr_netmask="24" \
+op start interval="0" timeout="60s" \
+op monitor interval="10s" timeout="60s" \ # この行のintervalを変更
+op stop interval="0" timeout="60s"
+primitive vip02 ocf:heartbeat:IPaddr2 \
+params ip="192.168.4.201" nic="eth3" cidr_netmask="24" \
+op start interval="0" timeout="60s" \
+op monitor interval="10s" timeout="60s" \ # この行のintervalを変更
+op stop interval="0" timeout="60s"
+----(エディタの表示終了)----</pre>
 
 
  
@@ -150,17 +142,13 @@ IPaddr2 リソースの監視処理を停止するには、 monitor の監視間
   4. monitor の interval の現在の値を、のちに戻すために、記録します。 上記の例では、"10s" 
   5. monitor の interval を"0s"に変更し、エディタを終了します。 
   6. show を実行し、修正内容を確認します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    crm(live)configure# show
+<td style="padding:0.5em;" ><pre>crm(live)configure# show</pre>
 
 
  
 </td></tr> </table>
   7. commit を実行し、反映します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    crm(live)configure# commit
+<td style="padding:0.5em;" ><pre>crm(live)configure# commit</pre>
 
 
  

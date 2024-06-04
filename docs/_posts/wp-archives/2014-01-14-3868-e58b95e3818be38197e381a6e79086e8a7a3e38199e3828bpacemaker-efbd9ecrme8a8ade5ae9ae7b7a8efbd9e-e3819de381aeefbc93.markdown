@@ -66,19 +66,17 @@ _※前回、前々回の記事でリソース名をCRM設定とは異なる「d
 
 今回注目するのは以下の部分です。
 
+<pre><code>### Resource Location ###
+location rsc_location-1 grp \
+    rule 200: #uname eq pm01 \
+    rule 100: #uname eq pm02
 
-    
-    <code>### Resource Location ###
-    location rsc_location-1 grp \
-        rule 200: #uname eq pm01 \
-        rule 100: #uname eq pm02
-    
-    ### Resource Colocation ###
-    colocation rsc_colocation-1 INFINITY: grp clnResource
-    
-    ### Resource Order ###
-    order rsc_order-1 0: clnResource grp symmetrical=false
-    </code>
+### Resource Colocation ###
+colocation rsc_colocation-1 INFINITY: grp clnResource
+
+### Resource Order ###
+order rsc_order-1 0: clnResource grp symmetrical=false
+</code></pre>
 
 
 
@@ -281,12 +279,10 @@ locationの概要と代表的な書式は以下のようになります。
 
 以下の部分は、グループgrpに対し、ノードpm01での起動にはスコア200を、ノードpm02での起動にはスコア100を指定しています。
 つまり、grpの起動ノードとしてpm01を優先するよう制約しています。
-
-    
-    <code>location rsc_location-1 grp \
-        rule 200: #uname eq pm01 \
-        rule 100: #uname eq pm02
-    </code>
+<pre><code>location rsc_location-1 grp \
+    rule 200: #uname eq pm01 \
+    rule 100: #uname eq pm02
+</code></pre>
 
 
 
@@ -362,10 +358,8 @@ colocationの概要と代表的な書式は以下のようになります。
   
 
 以下の部分は、グループgrpの起動時に、clnResourceが同じノードで起動する(している)ことを強制しています。
-
-    
-    <code>colocation rsc_colocation-1 INFINITY: grp clnResource
-    </code>
+<pre><code>colocation rsc_colocation-1 INFINITY: grp clnResource
+</code></pre>
 
 
 
@@ -480,11 +474,9 @@ orderの概要と代表的な書式は以下のようになります。
 以下の部分は、clnResource→grpの順に起動することを示しています。
 スコア値は0のため、起動後のclnResourceの状態変化はgrpに影響しません。
 symmetricalをfalseにしているため停止順は不定です。
-
-    
-    <code>### Resource Order ###
-    order rsc_order-1 0: clnResource grp symmetrical=false
-    </code>
+<pre><code>### Resource Order ###
+order rsc_order-1 0: clnResource grp symmetrical=false
+</code></pre>
 
 
 
@@ -517,83 +509,77 @@ groupは、colocationとorderを組み合わせて再現することができま
 まず、[例のCRM設定]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)でPacemakerを起動します。
 以下のように起動するはずです。
 
+<pre><code># crm_mon -rfA
+～略～
 
-    
-    <code># crm_mon -rfA
-    ～略～
-    
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-    Resource Group: grp
-        resource1 (ocf::heartbeat:Dummy): Started pm01
-        resource2 (ocf::heartbeat:Dummy): Started pm01
-    Clone Set: clnResource
-        Started: [ pm01 pm02 ]
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1 : up
-        + pm02-eth2 : up
-    * Node pm02:
-        + pm01-eth1 : up
-        + pm01-eth2 : up
-    
-    Migration summary:
-    * Node pm01:
-    * Node pm02:
-    </code>
+Online: [ pm01 pm02 ]
+
+Full list of resources:
+
+Resource Group: grp
+    resource1 (ocf::heartbeat:Dummy): Started pm01
+    resource2 (ocf::heartbeat:Dummy): Started pm01
+Clone Set: clnResource
+    Started: [ pm01 pm02 ]
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1 : up
+    + pm02-eth2 : up
+* Node pm02:
+    + pm01-eth1 : up
+    + pm01-eth2 : up
+
+Migration summary:
+* Node pm01:
+* Node pm02:
+</code></pre>
 
 
 
 次に、クラスタを稼働させたまま、以下コマンドでcolocationのスコア値を-INFINITYに書き換えます。
 どちらのノードで実行してもかまいません。
 
+<pre><code># crm configure edit
+→vi等のエディタが起動し、現在のCRM設定が編集可能になる。
+　以下部分の「inf」を「-inf」に書き換える。
 
-    
-    <code># crm configure edit
-    →vi等のエディタが起動し、現在のCRM設定が編集可能になる。
-    　以下部分の「inf」を「-inf」に書き換える。
-    
-        colocation rsc_colocation-1 inf: grp clnResource
-          ↓書き換え
-        colocation rsc_colocation-1 -inf: grp clnResource
-    
-    　書き換えたらエディタを保存終了する。(viの場合、Esc→:wq)
-    </code>
+    colocation rsc_colocation-1 inf: grp clnResource
+      ↓書き換え
+    colocation rsc_colocation-1 -inf: grp clnResource
+
+　書き換えたらエディタを保存終了する。(viの場合、Esc→:wq)
+</code></pre>
 
 
 
 変更は即座にPacemakerに反映され、おそらく以下のようになります。
 
+<pre><code># crm_mon -rfA
+～略～
 
-    
-    <code># crm_mon -rfA
-    ～略～
-    
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-     Resource Group: grp
-         resource1  (ocf::heartbeat:Dummy): Stopped ★
-         resource2  (ocf::heartbeat:Dummy): Stopped ★
-     Clone Set: clnResource
-         Started: [ pm01 pm02 ]
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1                         : up
-        + pm02-eth2                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-        + pm01-eth2                         : up
-    
-    Migration summary:
-    * Node pm01:
-    * Node pm02:
-    </code>
+Online: [ pm01 pm02 ]
+
+Full list of resources:
+
+ Resource Group: grp
+     resource1  (ocf::heartbeat:Dummy): Stopped ★
+     resource2  (ocf::heartbeat:Dummy): Stopped ★
+ Clone Set: clnResource
+     Started: [ pm01 pm02 ]
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1                         : up
+    + pm02-eth2                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+    + pm01-eth2                         : up
+
+Migration summary:
+* Node pm01:
+* Node pm02:
+</code></pre>
 
 
 
@@ -607,41 +593,37 @@ clnResourceはクローンのため両ノードで起動しており、そのま
 この状態のまま、clnResourceを停止するとどうなるでしょう？
 以下コマンドを実行してください。どちらのノードで実行してもかまいません。
 
-
-    
-    <code># crm resource stop resource3
-    </code>
+<pre><code># crm resource stop resource3
+</code></pre>
 
 
 
 おそらく以下のようになったと思います。
 
+<pre><code># crm_mon -rfA
+～略～
+Online: [ pm01 pm02 ]
 
-    
-    <code># crm_mon -rfA
-    ～略～
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-     Resource Group: grp
-         resource1  (ocf::heartbeat:Dummy): Started pm01 ★
-         resource2  (ocf::heartbeat:Dummy): Started pm01 ★
-     Clone Set: clnResource
-         Stopped: [ resource3:0 resource3:1 ] ☆
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1                         : up
-        + pm02-eth2                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-        + pm01-eth2                         : up
-    
-    Migration summary:
-    * Node pm01:
-    * Node pm02:
-    </code>
+Full list of resources:
+
+ Resource Group: grp
+     resource1  (ocf::heartbeat:Dummy): Started pm01 ★
+     resource2  (ocf::heartbeat:Dummy): Started pm01 ★
+ Clone Set: clnResource
+     Stopped: [ resource3:0 resource3:1 ] ☆
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1                         : up
+    + pm02-eth2                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+    + pm01-eth2                         : up
+
+Migration summary:
+* Node pm01:
+* Node pm02:
+</code></pre>
 
 
 
@@ -660,36 +642,34 @@ orderのスコア値に0およびINFINITYを設定し、0とINIFINITYの意味�
 
 CRM設定は、３つのDummyリソースをorderで順序制約をかけただけのシンプルなものを使用します。
 
+<pre><code>### Cluster Option ###
+property no-quorum-policy="ignore" \
+    stonith-enabled="false" \
+    crmd-transition-delay="2s"
 
-    
-    <code>### Cluster Option ###
-    property no-quorum-policy="ignore" \
-        stonith-enabled="false" \
-        crmd-transition-delay="2s"
-    
-    ### Resource Defaults ###
-    rsc_defaults resource-stickiness="INFINITY" \
-        migration-threshold="1"
-    
-    ### Primitive Configuration ###
-    primitive resource1 ocf:heartbeat:Dummy \
-        op start interval="0s" timeout="300s" on-fail="restart" \
-        op monitor interval="10s" timeout="60s" on-fail="restart" \
-        op stop interval="0s" timeout="300s" on-fail="block"
-    
-    primitive resource2 ocf:heartbeat:Dummy \
-        op start interval="0s" timeout="300s" on-fail="restart" \
-        op monitor interval="10s" timeout="60s" on-fail="restart" \
-        op stop interval="0s" timeout="300s" on-fail="block"
-    
-    primitive resource3 ocf:heartbeat:Dummy \
-        op start interval="0s" timeout="300s" on-fail="restart" \
-        op monitor interval="10s" timeout="60s" on-fail="restart" \
-        op stop interval="0s" timeout="300s" on-fail="block"
-    
-    ### Resource Order ###
-    order rsc_order-1 <strong><u>0</u></strong>: resource1 resource2 resource3
-    </code>
+### Resource Defaults ###
+rsc_defaults resource-stickiness="INFINITY" \
+    migration-threshold="1"
+
+### Primitive Configuration ###
+primitive resource1 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource2 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+primitive resource3 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+### Resource Order ###
+order rsc_order-1 <strong><u>0</u></strong>: resource1 resource2 resource3
+</code></pre>
 
 
 2016.3.24 修正：以前の記事ではorderに「symmetrical=false」を付与していましたが、この場合Pacemaker-1.1系では、以下実験では0とINFINITYの動作の差が無くなった(いずれも以下0の場合と同じ)ため、「symmetrical=false」を削除しました。
@@ -698,70 +678,64 @@ CRM設定は、３つのDummyリソースをorderで順序制約をかけただ�
 
 また、order制約しかかけていないためpm01とpm02を同時に起動すると各リソースが分散してしまい挙動がわかりにくくなります。そのためまずはpm01を起動、設定を読み込み、全リソースがpm01で起動してからpm02を起動します。
 
+<pre><code># crm_mon -rfA
+～略～
 
-    
-    <code># crm_mon -rfA
-    ～略～
-    
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-    resource1       (ocf::heartbeat:Dummy): Started pm01
-    resource2       (ocf::heartbeat:Dummy): Started pm01
-    resource3       (ocf::heartbeat:Dummy): Started pm01
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-    
-    Migration summary:
-    * Node pm01:
-    * Node pm02:
-    </code>
+Online: [ pm01 pm02 ]
+
+Full list of resources:
+
+resource1       (ocf::heartbeat:Dummy): Started pm01
+resource2       (ocf::heartbeat:Dummy): Started pm01
+resource3       (ocf::heartbeat:Dummy): Started pm01
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+
+Migration summary:
+* Node pm01:
+* Node pm02:
+</code></pre>
 
 
 
 
 以下コマンドを実行し、resource1を故障させます。
 
-
-    
-    <code># rm -f /var/run/resource-agents/Dummy-resource1.state</code>
+<pre><code># rm -f /var/run/resource-agents/Dummy-resource1.state</code></pre>
 
 
 
 Pacemakerが故障を検知し、F/Oを実行します。
 
+<pre><code># crm_mon -rfA
+～略～
 
-    
-    <code># crm_mon -rfA
-    ～略～
-    
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-    resource1       (ocf::heartbeat:Dummy): Started pm02 ★F/Oし、pm02で起動
-    resource2       (ocf::heartbeat:Dummy): Started pm01
-    resource3       (ocf::heartbeat:Dummy): Started pm01
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-    
-    Migration summary:
-    * Node pm01:
-       resource1: migration-threshold=1 fail-count=1
-    * Node pm02:
-    
-    Failed actions:
-        resource1_monitor_10000 (node=pm01, call=52, rc=7, status=complete): not running
-    </code>
+Online: [ pm01 pm02 ]
+
+Full list of resources:
+
+resource1       (ocf::heartbeat:Dummy): Started pm02 ★F/Oし、pm02で起動
+resource2       (ocf::heartbeat:Dummy): Started pm01
+resource3       (ocf::heartbeat:Dummy): Started pm01
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+
+Migration summary:
+* Node pm01:
+   resource1: migration-threshold=1 fail-count=1
+* Node pm02:
+
+Failed actions:
+    resource1_monitor_10000 (node=pm01, call=52, rc=7, status=complete): not running
+</code></pre>
 
 
 
@@ -771,37 +745,29 @@ Pacemaker-1.0系と1.1系でログの形式が異なるため、以下それぞ�
 
 **Pacemaker-1.0系の場合**
 ○pm01のログ
-
-    
-    <code># egrep "lrmd:.*info: rsc:[A-Za-z0-9]+ (start|stop)" /var/log/ha-log
-    Jan  8 12:57:58 pm01 lrmd: [1518]: info: rsc:resource1 stop[53] (pid 4772)
-    </code>
+<pre><code># egrep "lrmd:.*info: rsc:[A-Za-z0-9]+ (start|stop)" /var/log/ha-log
+Jan  8 12:57:58 pm01 lrmd: [1518]: info: rsc:resource1 stop[53] (pid 4772)
+</code></pre>
 
 
 ○pm02のログ
-
-    
-    <code># egrep "lrmd:.*info: rsc:[A-Za-z0-9]+ (start|stop)" /var/log/ha-log
-    Jan  8 12:57:58 pm02 lrmd: [1492]: info: rsc:resource1 start[21] (pid 7667)
-    </code>
+<pre><code># egrep "lrmd:.*info: rsc:[A-Za-z0-9]+ (start|stop)" /var/log/ha-log
+Jan  8 12:57:58 pm02 lrmd: [1492]: info: rsc:resource1 start[21] (pid 7667)
+</code></pre>
 
 
 
 **Pacemaker-1.1系の場合**
 ○pm01のログ
-
-    
-    <code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
-    Mar 24 10:29:51 pm01 crmd[25011]:  notice: process_lrm_event: Operation resource1_stop_0: ok (node=pm01, call=21, rc=0, cib-update=72, confirmed=true)
-    </code>
+<pre><code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
+Mar 24 10:29:51 pm01 crmd[25011]:  notice: process_lrm_event: Operation resource1_stop_0: ok (node=pm01, call=21, rc=0, cib-update=72, confirmed=true)
+</code></pre>
 
 
 ○pm02のログ
-
-    
-    <code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
-    Mar 24 10:29:51 pm02 crmd[6357]:  notice: process_lrm_event: Operation resource1_start_0: ok (node=pm02, call=14, rc=0, cib-update=14, confirmed=true)
-    </code>
+<pre><code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
+Mar 24 10:29:51 pm02 crmd[6357]:  notice: process_lrm_event: Operation resource1_start_0: ok (node=pm02, call=14, rc=0, cib-update=14, confirmed=true)
+</code></pre>
 
 
 
@@ -811,48 +777,42 @@ Pacemaker-1.0系と1.1系でログの形式が異なるため、以下それぞ�
 
 次に、orderのスコア値をINFINITYと変更し、さきほどと同じようにresource1を故障させます。
 
-
-    
-    <code>order rsc_order-1 <u>0</u>: resource1 resource2 resource3</code>
+<pre><code>order rsc_order-1 <u>0</u>: resource1 resource2 resource3</code></pre>
 
 
 　　↓書き換え
-
-    
-    <code>order rsc_order-1 <u>INFINITY</u>: resource1 resource2 resource3</code>
+<pre><code>order rsc_order-1 <u>INFINITY</u>: resource1 resource2 resource3</code></pre>
 
 
 
 
 故障後、crm_monは以下のようになると思います。
 
+<pre><code># crm_mon -rfA
+～略～
 
-    
-    <code># crm_mon -rfA
-    ～略～
-    
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-    resource1       (ocf::heartbeat:Dummy): Started pm02 ★F/Oし、pm02で起動
-    resource2       (ocf::heartbeat:Dummy): Started pm01
-    resource3       (ocf::heartbeat:Dummy): Started pm01
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-    
-    Migration summary:
-    * Node pm01:
-       resource1: migration-threshold=1 fail-count=1
-    * Node pm02:
-    
-    Failed actions:
-        resource1_monitor_10000 (node=pm01, call=60, rc=7, status=complete): not running
-    </code>
+Online: [ pm01 pm02 ]
+
+Full list of resources:
+
+resource1       (ocf::heartbeat:Dummy): Started pm02 ★F/Oし、pm02で起動
+resource2       (ocf::heartbeat:Dummy): Started pm01
+resource3       (ocf::heartbeat:Dummy): Started pm01
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+
+Migration summary:
+* Node pm01:
+   resource1: migration-threshold=1 fail-count=1
+* Node pm02:
+
+Failed actions:
+    resource1_monitor_10000 (node=pm01, call=60, rc=7, status=complete): not running
+</code></pre>
 
 
 
@@ -864,45 +824,37 @@ crm_monをよーく見ていた方は気づいたかもしれませんが、実�
 
 **Pacemaker-1.0系の場合**
 ○pm01のログ
-
-    
-    <code># egrep "lrmd:.*info: rsc:[:A-Za-z0-9]+ (start|stop)" /var/log/ha-log
-    Jan  8 13:19:02 pm01 lrmd: [1518]: info: rsc:resource3 stop[61] (pid 5848) ★
-    Jan  8 13:19:02 pm01 lrmd: [1518]: info: rsc:resource2 stop[62] (pid 5849) ★
-    Jan  8 13:19:02 pm01 lrmd: [1518]: info: rsc:resource1 stop[63] (pid 5850)
-    Jan  8 13:19:04 pm01 lrmd: [1518]: info: rsc:resource2 start[64] (pid 5859) ★
-    Jan  8 13:19:05 pm01 lrmd: [1518]: info: rsc:resource3 start[66] (pid 5869) ★
-    </code>
+<pre><code># egrep "lrmd:.*info: rsc:[:A-Za-z0-9]+ (start|stop)" /var/log/ha-log
+Jan  8 13:19:02 pm01 lrmd: [1518]: info: rsc:resource3 stop[61] (pid 5848) ★
+Jan  8 13:19:02 pm01 lrmd: [1518]: info: rsc:resource2 stop[62] (pid 5849) ★
+Jan  8 13:19:02 pm01 lrmd: [1518]: info: rsc:resource1 stop[63] (pid 5850)
+Jan  8 13:19:04 pm01 lrmd: [1518]: info: rsc:resource2 start[64] (pid 5859) ★
+Jan  8 13:19:05 pm01 lrmd: [1518]: info: rsc:resource3 start[66] (pid 5869) ★
+</code></pre>
 
 
 ○pm02のログ
-
-    
-    <code># egrep "lrmd:.*info: rsc:[:A-Za-z0-9]+ (start|stop)" /var/log/ha-log
-    Jan  8 13:19:03 pm02 lrmd: [8126]: info: rsc:resource1 start[5] (pid 8154)
-    </code>
+<pre><code># egrep "lrmd:.*info: rsc:[:A-Za-z0-9]+ (start|stop)" /var/log/ha-log
+Jan  8 13:19:03 pm02 lrmd: [8126]: info: rsc:resource1 start[5] (pid 8154)
+</code></pre>
 
 
 
 **Pacemaker-1.1系の場合**
 ○pm01のログ
-
-    
-    <code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
-    Mar 24 10:33:11 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource3_stop_0: ok ～略～ ★
-    Mar 24 10:33:13 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource2_stop_0: ok ～略～ ★
-    Mar 24 10:33:15 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource1_stop_0: ok ～略～
-    Mar 24 10:33:19 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource2_start_0: ok ～略～ ★
-    Mar 24 10:33:21 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource3_start_0: ok ～略～ ★
-    </code>
+<pre><code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
+Mar 24 10:33:11 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource3_stop_0: ok ～略～ ★
+Mar 24 10:33:13 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource2_stop_0: ok ～略～ ★
+Mar 24 10:33:15 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource1_stop_0: ok ～略～
+Mar 24 10:33:19 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource2_start_0: ok ～略～ ★
+Mar 24 10:33:21 pm01 crmd[25288]:  notice: process_lrm_event: Operation resource3_start_0: ok ～略～ ★
+</code></pre>
 
 
 ○pm02のログ
-
-    
-    <code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
-    Mar 24 10:33:15 pm02 crmd[6453]:  notice: process_lrm_event: Operation resource1_start_0: ok (node=pm02, call=14, rc=0, cib-update=11, confirmed=true)
-    </code>
+<pre><code># egrep "Operation .*_(start|stop)_" /var/log/ha-log
+Mar 24 10:33:15 pm02 crmd[6453]:  notice: process_lrm_event: Operation resource1_start_0: ok (node=pm02, call=14, rc=0, cib-update=11, confirmed=true)
+</code></pre>
 
 
 
@@ -929,64 +881,58 @@ location制約で、属性値の評価をしてみます。
 
 CRM設定は、１つのDummyリソースをlocationで配置制約をかけただけのシンプルなものを使用します。
 
+<pre><code>### Cluster Option ###
+property no-quorum-policy="ignore" \
+    stonith-enabled="false" \
+    crmd-transition-delay="2s"
 
-    
-    <code>### Cluster Option ###
-    property no-quorum-policy="ignore" \
-        stonith-enabled="false" \
-        crmd-transition-delay="2s"
-    
-    ### Resource Defaults ###
-    rsc_defaults resource-stickiness="INFINITY" \
-        migration-threshold="1"
-    
-    ### Primitive Configuration ###
-    primitive resource1 ocf:heartbeat:Dummy \
-        op start interval="0s" timeout="300s" on-fail="restart" \
-        op monitor interval="10s" timeout="60s" on-fail="restart" \
-        op stop interval="0s" timeout="300s" on-fail="block"
-    
-    ### Resource Location ###
-    location rsc_location-1 resource1 \
-        rule -INFINITY: not_defined my_attribute or my_attribute lt 100
-    </code>
+### Resource Defaults ###
+rsc_defaults resource-stickiness="INFINITY" \
+    migration-threshold="1"
+
+### Primitive Configuration ###
+primitive resource1 ocf:heartbeat:Dummy \
+    op start interval="0s" timeout="300s" on-fail="restart" \
+    op monitor interval="10s" timeout="60s" on-fail="restart" \
+    op stop interval="0s" timeout="300s" on-fail="block"
+
+### Resource Location ###
+location rsc_location-1 resource1 \
+    rule -INFINITY: not_defined my_attribute or my_attribute lt 100
+</code></pre>
 
 
 
 これをPacemakerへ反映します。
 ですが、以下のようにresource1は停止したままになるはずです(★部分)。
 
+<pre><code># crm_mon -rfA
+～略～
+Online: [ pm01 pm02 ]
 
-    
-    <code># crm_mon -rfA
-    ～略～
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-    resource1       (ocf::heartbeat:Dummy): Stopped ★resource1は停止したまま
-    
-    Node Attributes:
-    * Node pm01:
-        + pm02-eth1                         : up
-        + pm02-eth2                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-        + pm01-eth2                         : up
-    
-    Migration summary:
-    * Node pm01:
-    * Node pm02:
-    </code>
+Full list of resources:
+
+resource1       (ocf::heartbeat:Dummy): Stopped ★resource1は停止したまま
+
+Node Attributes:
+* Node pm01:
+    + pm02-eth1                         : up
+    + pm02-eth2                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+    + pm01-eth2                         : up
+
+Migration summary:
+* Node pm01:
+* Node pm02:
+</code></pre>
 
 
 
 これはCRM設定の中の以下の部分で、「my_attribute」という属性値が存在しない場合または100以下の場合は起動できないと制約しているためです。
-
-    
-    location rsc_location-1 resource1 \
-        rule -INFINITY: not_defined my_attribute or my_attribute lt 100
-    </code>
+<pre>location rsc_location-1 resource1 \
+    rule -INFINITY: not_defined my_attribute or my_attribute lt 100
+</code></pre>
 
 
 
@@ -994,76 +940,68 @@ resource1を起動させるには、以下のcrm_attributeコマンドで属性�
 どちらのノードで実行してもかまいません。
 -Nオプションで属性値を作成するノードを、-nで属性値名を、-vで値を設定します。
 -lはrebootまたはforeverのいずれかで、rebootはその属性値がPacemakerの停止で属性値がクリアされることを示します。foreverはPacemaker停止後も属性値が残存します。
-
-    
-    <code># crm_attribute -N pm01 -n my_attribute -v 100 -l reboot
-    </code>
+<pre><code># crm_attribute -N pm01 -n my_attribute -v 100 -l reboot
+</code></pre>
 
 
 
 属性値が設定されると、resource1が起動します。
 
+<pre><code># crm_mon -rfA
+～略～
 
-    
-    <code># crm_mon -rfA
-    ～略～
-    
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-    resource1       (ocf::heartbeat:Dummy): Started pm01 ★resource1が起動
-    
-    Node Attributes:
-    * Node pm01:
-        + my_attribute                      : 100 ★属性値が100で設定された
-        + pm02-eth1                         : up
-        + pm02-eth2                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-        + pm01-eth2                         : up
-    
-    Migration summary:
-    * Node pm01:
-    * Node pm02:
-    </code>
+Online: [ pm01 pm02 ]
+
+Full list of resources:
+
+resource1       (ocf::heartbeat:Dummy): Started pm01 ★resource1が起動
+
+Node Attributes:
+* Node pm01:
+    + my_attribute                      : 100 ★属性値が100で設定された
+    + pm02-eth1                         : up
+    + pm02-eth2                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+    + pm01-eth2                         : up
+
+Migration summary:
+* Node pm01:
+* Node pm02:
+</code></pre>
 
 
 
 属性値の値を10に変更してみます。
 
-
-    
-    <code># crm_attribute -N pm01 -n my_attribute -v 10 -l reboot
-    </code>
+<pre><code># crm_attribute -N pm01 -n my_attribute -v 10 -l reboot
+</code></pre>
 
 
 
 resource1が停止すると思います。
 
+<pre><code># crm_mon -rfA
+～略～
+Online: [ pm01 pm02 ]
 
-    
-    <code># crm_mon -rfA
-    ～略～
-    Online: [ pm01 pm02 ]
-    
-    Full list of resources:
-    
-    resource1       (ocf::heartbeat:Dummy): Stopped ★resource1が停止
-    
-    Node Attributes:
-    * Node pm01:
-        + my_attribute                      : 10 ★属性値が10に変更
-        + pm02-eth1                         : up
-        + pm02-eth2                         : up
-    * Node pm02:
-        + pm01-eth1                         : up
-        + pm01-eth2                         : up
-    
-    Migration summary:
-    * Node pm01:
-    * Node pm02:
-    </code>
+Full list of resources:
+
+resource1       (ocf::heartbeat:Dummy): Stopped ★resource1が停止
+
+Node Attributes:
+* Node pm01:
+    + my_attribute                      : 10 ★属性値が10に変更
+    + pm02-eth1                         : up
+    + pm02-eth2                         : up
+* Node pm02:
+    + pm01-eth1                         : up
+    + pm01-eth2                         : up
+
+Migration summary:
+* Node pm01:
+* Node pm02:
+</code></pre>
 
 
 

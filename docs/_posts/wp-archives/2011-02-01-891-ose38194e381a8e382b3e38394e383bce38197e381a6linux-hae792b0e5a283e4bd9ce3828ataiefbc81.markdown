@@ -448,24 +448,22 @@ crmのnodeモードではホスト名が一緒で消せないので注意して�
 
 
 
+<pre>============
+Last updated: Tue Feb  1 14:31:00 2011
+Stack: Heartbeat
+Current DC: ha2 (174fdb94-a218-42b4-b3bf-3971d5658a50) - partition with quorum
+Version: 1.0.9-74392a28b7f31d7ddc86689598bd23114f58978b
+3 Nodes configured, unknown expected votes
+0 Resources configured.
+============
 
-    
-    ============
-    Last updated: Tue Feb  1 14:31:00 2011
-    Stack: Heartbeat
-    Current DC: ha2 (174fdb94-a218-42b4-b3bf-3971d5658a50) - partition with quorum
-    Version: 1.0.9-74392a28b7f31d7ddc86689598bd23114f58978b
-    3 Nodes configured, unknown expected votes
-    0 Resources configured.
-    ============
-    
-    Node ha1 (95030479-e34d-4ed8-954e-3d4398cc10af): UNCLEAN (offline)
-    Online: [ ha2 ha1 ]
-    
-    
-    Migration summary:
-    * Node ha2: 
-    * Node ha1: 
+Node ha1 (95030479-e34d-4ed8-954e-3d4398cc10af): UNCLEAN (offline)
+Online: [ ha2 ha1 ]
+
+
+Migration summary:
+* Node ha2: 
+* Node ha1: </pre>
 
 
 
@@ -489,15 +487,13 @@ crmのnodeモードではホスト名が一緒で消せないので注意して�
 
 
 
-
-    
-    node $id="174fdb94-a218-42b4-b3bf-3971d5658a50" ha2
-    node $id="3b0f1423-f2dd-4a6e-b16c-766f76301d96" ha1
-    node $id="95030479-e34d-4ed8-954e-3d4398cc10af" ha1
-    property $id="cib-bootstrap-options" \
-            dc-version="1.0.9-74392a28b7f31d7ddc86689598bd23114f58978b" \
-            cluster-infrastructure="Heartbeat"
-    
+<pre>node $id="174fdb94-a218-42b4-b3bf-3971d5658a50" ha2
+node $id="3b0f1423-f2dd-4a6e-b16c-766f76301d96" ha1
+node $id="95030479-e34d-4ed8-954e-3d4398cc10af" ha1
+property $id="cib-bootstrap-options" \
+        dc-version="1.0.9-74392a28b7f31d7ddc86689598bd23114f58978b" \
+        cluster-infrastructure="Heartbeat"
+</pre>
 
 
 
@@ -507,13 +503,11 @@ crmのnodeモードではホスト名が一緒で消せないので注意して�
 
 
 
-
-    
-    node $id="174fdb94-a218-42b4-b3bf-3971d5658a50" ha2
-    node $id="3b0f1423-f2dd-4a6e-b16c-766f76301d96" ha1
-    property $id="cib-bootstrap-options" \
-            dc-version="1.0.9-74392a28b7f31d7ddc86689598bd23114f58978b" \
-            cluster-infrastructure="Heartbeat"
+<pre>node $id="174fdb94-a218-42b4-b3bf-3971d5658a50" ha2
+node $id="3b0f1423-f2dd-4a6e-b16c-766f76301d96" ha1
+property $id="cib-bootstrap-options" \
+        dc-version="1.0.9-74392a28b7f31d7ddc86689598bd23114f58978b" \
+        cluster-infrastructure="Heartbeat"</pre>
 
 
 

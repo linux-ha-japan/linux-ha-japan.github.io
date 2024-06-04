@@ -493,19 +493,17 @@ Dummy RAは、かなりまるめて説明すると
 **dummy00.crm**
 
 
-
-    
-    <span style="font-family: verdana,geneva;">### Cluster Option ###
-    property no-quorum-policy="ignore" \
-    stonith-enabled="false" \
-    startup-fencing="false"
-    ### Resource Defaults ###
-    rsc_defaults resource-stickiness="INFINITY"
-    ### Primitive Resource ###
-    primitive dummy01 ocf:pacemaker:Dummy \
-       op start interval="0s" timeout="100s" on-fail="restart" \
-       op monitor interval="10s" timeout="100s" on-fail="restart" \
-       op stop interval="0s" timeout="100s" on-fail="stop"</span>
+<pre><span style="font-family: verdana,geneva;">### Cluster Option ###
+property no-quorum-policy="ignore" \
+stonith-enabled="false" \
+startup-fencing="false"
+### Resource Defaults ###
+rsc_defaults resource-stickiness="INFINITY"
+### Primitive Resource ###
+primitive dummy01 ocf:pacemaker:Dummy \
+   op start interval="0s" timeout="100s" on-fail="restart" \
+   op monitor interval="10s" timeout="100s" on-fail="restart" \
+   op stop interval="0s" timeout="100s" on-fail="stop"</span></pre>
 
 
 

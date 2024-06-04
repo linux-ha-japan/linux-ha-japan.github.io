@@ -60,9 +60,7 @@ LINBIT社のOSSダウンロードページ（ [http://oss.linbit.com/drbd-mc/](
 
 
 
-
-    
-    # java -jar  DMC-0.7.9.jar
+<pre># java -jar  DMC-0.7.9.jar</pre>
 
 
 

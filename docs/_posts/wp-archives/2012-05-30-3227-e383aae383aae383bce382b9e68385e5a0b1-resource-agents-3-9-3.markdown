@@ -61,38 +61,36 @@ rgmanagerにvm.shスクリプトが追加されました。libvirtの「トン�
 
 vm.shで「--tunnelled」オプションも使えるようになったみたいですね。
 virshコマンドのヘルプはこんな感じでした。これみてもよくわかんないな…。
+<pre><code>
+# virsh help migrate
+  名前
+    migrate - 他のホストにドメインを移動させる
 
-    
-    <code>
-    # virsh help migrate
-      名前
-        migrate - 他のホストにドメインを移動させる
-    
-      形式
-        migrate [--live] [--p2p] [--direct] [--tunnelled] [--persistent] [--undefinesource] [--suspend] [--copy-storage-all] [--copy-storage-inc] [--change-protection] [--verbose] <domain> <desturi> [<migrateuri>] [<dname>] [--timeout <number>] [--xml <string>]
-    
-      詳細
-        ドメインを他のホストに移動させる。活性移動では --live を付加する。
-    
-      オプション
-        --live           活性移動
-        --p2p            peer-2-peer migration
-        --direct         direct migration
-    <span style="color: #ff00ff;">    --tunnelled      tunnelled migration</span>
-        --persistent     persist VM on destination
-        --undefinesource  undefine VM on source
-        --suspend        do not restart the domain on the destination host
-        --copy-storage-all  migration with non-shared storage with full disk copy
-        --copy-storage-inc  migration with non-shared storage with incremental copy (same base image shared between source and destination)
-        --change-protection  prevent any configuration changes to domain until migration ends)
-        --verbose        display the progress of migration
-        [--domain] <string>  ドメイン名、id または uuid
-        [--desturi] <string>  connection URI of the destination host as seen from the client(normal migration) or source(p2p migration)
-        [--migrateuri] <string>  移動 URI。通常は省略可
-        [--dname] <string>  移行中に新しい名前に改名（サポートがある場合）
-        --timeout <number>  force guest to suspend if live migration exceeds timeout (in seconds)
-        --xml <string>   filename containing updated XML for the target
-    </code>
+  形式
+    migrate [--live] [--p2p] [--direct] [--tunnelled] [--persistent] [--undefinesource] [--suspend] [--copy-storage-all] [--copy-storage-inc] [--change-protection] [--verbose] <domain> <desturi> [<migrateuri>] [<dname>] [--timeout <number>] [--xml <string>]
+
+  詳細
+    ドメインを他のホストに移動させる。活性移動では --live を付加する。
+
+  オプション
+    --live           活性移動
+    --p2p            peer-2-peer migration
+    --direct         direct migration
+<span style="color: #ff00ff;">    --tunnelled      tunnelled migration</span>
+    --persistent     persist VM on destination
+    --undefinesource  undefine VM on source
+    --suspend        do not restart the domain on the destination host
+    --copy-storage-all  migration with non-shared storage with full disk copy
+    --copy-storage-inc  migration with non-shared storage with incremental copy (same base image shared between source and destination)
+    --change-protection  prevent any configuration changes to domain until migration ends)
+    --verbose        display the progress of migration
+    [--domain] <string>  ドメイン名、id または uuid
+    [--desturi] <string>  connection URI of the destination host as seen from the client(normal migration) or source(p2p migration)
+    [--migrateuri] <string>  移動 URI。通常は省略可
+    [--dname] <string>  移行中に新しい名前に改名（サポートがある場合）
+    --timeout <number>  force guest to suspend if live migration exceeds timeout (in seconds)
+    --xml <string>   filename containing updated XML for the target
+</code></pre>
 
 
 
@@ -211,149 +209,125 @@ Best,
 
 では、バージョンアップの方法をご紹介します。
 試した環境はRHEL6.2です。
+<pre><code>
+$ uname -a
+Linux dl380g5c 2.6.32-220.el6.x86_64 #1 SMP Wed Nov 9 08:03:13 EST 2011 x86_64 x86_64 x86_64 GNU/Linux
 
-    
-    <code>
-    $ uname -a
-    Linux dl380g5c 2.6.32-220.el6.x86_64 #1 SMP Wed Nov 9 08:03:13 EST 2011 x86_64 x86_64 x86_64 GNU/Linux
-    
-    $ cat /etc/redhat-release
-    Red Hat Enterprise Linux Server release 6.2 (Santiago)
-    </code>
+$ cat /etc/redhat-release
+Red Hat Enterprise Linux Server release 6.2 (Santiago)
+</code></pre>
 
 
 まず、GitHubからソースコードをダウンロードします。
-
-    
-    <code>
-    $ git clone http://github.com/ClusterLabs/resource-agents.git
-    </code>
+<pre><code>
+$ git clone http://github.com/ClusterLabs/resource-agents.git
+</code></pre>
 
 
 タグを確認して…
-
-    
-    <code>
-    $ cd resource-agents
-    $ git describe --tags
-    <span style="color: #ff00ff;">v3.9.3</span>
-    </code>
+<pre><code>
+$ cd resource-agents
+$ git describe --tags
+<span style="color: #ff00ff;">v3.9.3</span>
+</code></pre>
 
 
 ビルドの準備をにょろにょろと実行して…
-
-    
-    <code>
-    $ ./autogen.sh
-    $ ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc
-    </code>
+<pre><code>
+$ ./autogen.sh
+$ ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc
+</code></pre>
 
 
 依存関係を確認します。
-
-    
-    <code>
-    $ grep BuildRequires resource-agents.spec
-    BuildRequires: automake autoconf pkgconfig
-    BuildRequires: perl python-devel
-    BuildRequires: libxslt glib2-devel
-    BuildRequires: which
-    BuildRequires: cluster-glue-libs-devel
-    BuildRequires: docbook-style-xsl docbook-dtds
-    BuildRequires: libnet-devel
-    BuildRequires:  libnet1
-    BuildRequires:  libnet
-    BuildRequires:  libglue-devel
-    BuildRequires:  libxslt docbook_4 docbook-xsl-stylesheets
-    </code>
+<pre><code>
+$ grep BuildRequires resource-agents.spec
+BuildRequires: automake autoconf pkgconfig
+BuildRequires: perl python-devel
+BuildRequires: libxslt glib2-devel
+BuildRequires: which
+BuildRequires: cluster-glue-libs-devel
+BuildRequires: docbook-style-xsl docbook-dtds
+BuildRequires: libnet-devel
+BuildRequires:  libnet1
+BuildRequires:  libnet
+BuildRequires:  libglue-devel
+BuildRequires:  libxslt docbook_4 docbook-xsl-stylesheets
+</code></pre>
 
 
 cluster-glue-libs-develあたりが罠です。
 Linux-HA Japanの[ダウンロードサイト](/wp/link/packages)からPacemakerリポジトリパッケージをダウンロードしてcluster-glue-libs-develもインストールしてください。
 では、RPMを作成してみましょう。
+<pre><code>
+# su - root
+# make rpm
 
-    
-    <code>
-    # su - root
-    # make rpm
-    
-    Processing files: resource-agents-debuginfo-3.9.3-1.el6.x86_64
-    伸張ファイルの検査中: /usr/lib/rpm/check-files /root/rpmbuild/BUILDROOT/resource-agents-3.9.3-1.el6.x86_64
-    書き込み完了: /home/resource-agents/resource-agents-3.9.3-1.el6.src.rpm
-    書き込み完了: /home/resource-agents/x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
-    書き込み完了: /home/resource-agents/x86_64/ldirectord-3.9.3-1.el6.x86_64.rpm
-    書き込み完了: /home/resource-agents/x86_64/resource-agents-debuginfo-3.9.3-1.el6.x86_64.rpm
-    </code>
+Processing files: resource-agents-debuginfo-3.9.3-1.el6.x86_64
+伸張ファイルの検査中: /usr/lib/rpm/check-files /root/rpmbuild/BUILDROOT/resource-agents-3.9.3-1.el6.x86_64
+書き込み完了: /home/resource-agents/resource-agents-3.9.3-1.el6.src.rpm
+書き込み完了: /home/resource-agents/x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
+書き込み完了: /home/resource-agents/x86_64/ldirectord-3.9.3-1.el6.x86_64.rpm
+書き込み完了: /home/resource-agents/x86_64/resource-agents-debuginfo-3.9.3-1.el6.x86_64.rpm
+</code></pre>
 
 
 出来上がったRPMをインストールしてください。
-
-    
-    <code>
-    # rpm -ihv x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
-    </code>
+<pre><code>
+# rpm -ihv x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
+</code></pre>
 
 
 または
-
-    
-    <code>
-    # rpm -Uhv x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
-    </code>
+<pre><code>
+# rpm -Uhv x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
+</code></pre>
 
 
 RPMが必要ない場合は、make installでインストールしてください。
 この場合も当然、cluster-glue-libs-develとかそのへんの依存関係には注意してください。
-
-    
-    <code>
-    # make install
-    </code>
+<pre><code>
+# make install
+</code></pre>
 
 
 gitとかmakeとかめんどくさいなあ、特定のRAだけアップデートしたいんだけどなあ
 という場合は、コピペでも大丈夫！
 [GitHub](https://github.com/ClusterLabs/resource-agents)の「ZIP」というアイコンをぽちっとしてソースコードをダウンロードしましょう。
 zipファイルをunzipコマンドで解凍してあげると、RAはheartbeatという名前のディレクトリの下にもりっといます。
-
-    
-    <code>
-    # ls heartbeat
-    AoEtarget     LVM          SendArp             apache            ids                 ocf-shellfuncs     sapdb.sh
-    AudibleAlarm  LinuxSCSI    ServeRAID           apache-conf.sh    iscsi               ocf-shellfuncs.in  scsi2reservation
-    CTDB          MailTo       SphinxSearchDaemon  asterisk          jboss               oracle             sfex
-    ClusterMon    Makefile     Squid               conntrackd        lxc                 oralsnr            shellfuncs
-    Delay         Makefile.am  Stateful            db2               mysql               pgsql              shellfuncs.in
-    Dummy         Makefile.in  SysInfo             dhcpd             mysql-proxy         pingd              slapd
-    EvmsSCC       ManageRAID   VIPArip             drbd              named               portblock          symlink
-    Evmsd         ManageVE     VirtualDomain       eDir88            nfsserver           postfix            syslog-ng
-    Filesystem    Pure-FTPd    WAS                 ethmonitor        nginx               pound              tomcat
-    ICP           README       WAS6                exportfs          ocf-binaries        proftpd            varnish
-    IPaddr        Raid1        WinPopup            fio               ocf-binaries.in     ra-api-1.dtd       vmware
-    IPaddr2       Route        Xen                 http-mon.sh       ocf-directories     rsyncd
-    IPsrcaddr     SAPDatabase  Xinetd              iSCSILogicalUnit  ocf-directories.in  rsyslog
-    IPv6addr.c    SAPInstance  anything            iSCSITarget       ocf-returncodes     sapdb-nosha.sh
-    </code>
+<pre><code>
+# ls heartbeat
+AoEtarget     LVM          SendArp             apache            ids                 ocf-shellfuncs     sapdb.sh
+AudibleAlarm  LinuxSCSI    ServeRAID           apache-conf.sh    iscsi               ocf-shellfuncs.in  scsi2reservation
+CTDB          MailTo       SphinxSearchDaemon  asterisk          jboss               oracle             sfex
+ClusterMon    Makefile     Squid               conntrackd        lxc                 oralsnr            shellfuncs
+Delay         Makefile.am  Stateful            db2               mysql               pgsql              shellfuncs.in
+Dummy         Makefile.in  SysInfo             dhcpd             mysql-proxy         pingd              slapd
+EvmsSCC       ManageRAID   VIPArip             drbd              named               portblock          symlink
+Evmsd         ManageVE     VirtualDomain       eDir88            nfsserver           postfix            syslog-ng
+Filesystem    Pure-FTPd    WAS                 ethmonitor        nginx               pound              tomcat
+ICP           README       WAS6                exportfs          ocf-binaries        proftpd            varnish
+IPaddr        Raid1        WinPopup            fio               ocf-binaries.in     ra-api-1.dtd       vmware
+IPaddr2       Route        Xen                 http-mon.sh       ocf-directories     rsyncd
+IPsrcaddr     SAPDatabase  Xinetd              iSCSILogicalUnit  ocf-directories.in  rsyslog
+IPv6addr.c    SAPInstance  anything            iSCSITarget       ocf-returncodes     sapdb-nosha.sh
+</code></pre>
 
 
 では、使いたいRAを所定のディレクトリにコピー！
 この例ではpgsql RAをアップデートしています。
 コピーする前に一応バックアップもとっておいてくださいね。
-
-    
-    <code>
-    # cp -p heartbeat/pgsql /usr/lib/ocf/resource.d/heartbeat/pgsql
-    </code>
+<pre><code>
+# cp -p heartbeat/pgsql /usr/lib/ocf/resource.d/heartbeat/pgsql
+</code></pre>
 
 
 configureのオプションによって配布先は異なるかもしれませんが、前のバージョンのresrouce-agentsをインストールしているのであれば、ocfとかresource.dとかで検索してそれっぽいディレクトリを探してください。
 
 実行権限もちゃんとついてると思いますが、一応確認してください。
-
-    
-    <code>
-    # ls -l /usr/lib/ocf/resource.d/heartbeat/pgsql
-    </code>
+<pre><code>
+# ls -l /usr/lib/ocf/resource.d/heartbeat/pgsql
+</code></pre>
 
 
 RAのバグかな？と思ったら、まずは最新版のRAを試してみることをおすすめします。

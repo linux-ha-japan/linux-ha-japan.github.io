@@ -62,22 +62,20 @@ categories:
 
 
 
+<pre># ls -la /etc
+合計 3832
+-rw-r--r--  1 root root    2562  1月 15  2008 a2ps-site.cfg
+-rw-r--r--  1 root root   15288  1月 15  2008 a2ps.cfg
+drwxr-xr-x  4 root root    4096  4月  5 14:59 acpi
+-rw-r--r--  1 root root      47  5月 28 17:49 adjtime
+drwxr-xr-x  4 root root    4096  4月  5 15:02 alchemist
+-rw-r--r--  1 root root    1512  4月 26  2005 aliases
+-rw-r-----  1 root smmsp  12288  5月 31 12:37 aliases.db
+drwxr-xr-x  4 root root    4096  4月  5 14:58 alsa
 
-    
-    # ls -la /etc
-    合計 3832
-    -rw-r--r--  1 root root    2562  1月 15  2008 a2ps-site.cfg
-    -rw-r--r--  1 root root   15288  1月 15  2008 a2ps.cfg
-    drwxr-xr-x  4 root root    4096  4月  5 14:59 acpi
-    -rw-r--r--  1 root root      47  5月 28 17:49 adjtime
-    drwxr-xr-x  4 root root    4096  4月  5 15:02 alchemist
-    -rw-r--r--  1 root root    1512  4月 26  2005 aliases
-    -rw-r-----  1 root smmsp  12288  5月 31 12:37 aliases.db
-    drwxr-xr-x  4 root root    4096  4月  5 14:58 alsa
-    
-    長い行は今のテーマだと自動で折り返されてしまうので注意。
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    
+長い行は今のテーマだと自動で折り返されてしまうので注意。
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+</pre>
 
 
 
@@ -87,26 +85,22 @@ WP-Syntax プラグインを導入しました。ソースコードやxmlなど�
 
 
 
-
-    
-    
-    <xml>
-    <foo>
-    <hoge a="aaaa">hoge</hoge>
-    </xml>
-    </foo>
-    
+<pre>
+<xml>
+<foo>
+<hoge a="aaaa">hoge</hoge>
+</xml>
+</foo>
+</pre>
 
 
 
-
-    
-    
-    #include <stdio.h>
-    int main() {
-        return 0
-    }
-    
+<pre>
+#include <stdio.h>
+int main() {
+    return 0
+}
+</pre>
 
 
 

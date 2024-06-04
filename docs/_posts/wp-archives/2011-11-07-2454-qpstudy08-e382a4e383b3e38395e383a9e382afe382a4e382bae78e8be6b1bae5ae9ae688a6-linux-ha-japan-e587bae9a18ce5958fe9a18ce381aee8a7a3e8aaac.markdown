@@ -41,67 +41,61 @@ Pacemakerうんぬんよりも国語の問題でした。
 各ノードで1つずつcloneが起動します。
 
 clone.crm
+<pre><span style="font-family: verdana,geneva;">property \
+ no-quorum-policy="ignore" \
+ stonith-enabled="false" \
+ startup-fencing="false" \
+ crmd-transition-delay="2s"
 
-    
-    <span style="font-family: verdana,geneva;">property \
-     no-quorum-policy="ignore" \
-     stonith-enabled="false" \
-     startup-fencing="false" \
-     crmd-transition-delay="2s"
-    
-    rsc_defaults \
-     resource-stickiness="INFINITY" \
-     migration-threshold="1"
-    
-    clone clone01 \
-     dummy01 \
-     meta \
-     clone-max="2" \
-     clone-node-max="1"
-    
-    primitive dummy01 ocf:pacemaker:Dummy \
-     op start interval="0s" timeout="120s" on-fail="restart" \
-     op monitor interval="10s" timeout="120s" on-fail="restart" \
-     op stop interval="0s" timeout="120s" on-fail="block"</span>
+rsc_defaults \
+ resource-stickiness="INFINITY" \
+ migration-threshold="1"
+
+clone clone01 \
+ dummy01 \
+ meta \
+ clone-max="2" \
+ clone-node-max="1"
+
+primitive dummy01 ocf:pacemaker:Dummy \
+ op start interval="0s" timeout="120s" on-fail="restart" \
+ op monitor interval="10s" timeout="120s" on-fail="restart" \
+ op stop interval="0s" timeout="120s" on-fail="block"</span></pre>
 
 
 crm_monコマンドでリソースの起動状態を確認してみましょう。
+<pre><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1</strong></span>
+============
+Last updated: Mon Nov  7 15:32:19 2011
+Stack: Heartbeat
+Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+2 Nodes configured, unknown expected votes
+1 Resources configured.
+============
 
-    
-    <span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1</strong></span>
-    ============
-    Last updated: Mon Nov  7 15:32:19 2011
-    Stack: Heartbeat
-    Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
-    Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
-    2 Nodes configured, unknown expected votes
-    1 Resources configured.
-    ============
-    
-    Online: [ node01 node02 ]
-    
-     Clone Set: clone01
-     Started: [ node01 node02 ]</span>
+Online: [ node01 node02 ]
+
+ Clone Set: clone01
+ Started: [ node01 node02 ]</span></pre>
 
 
 crm_monコマンドに-nオプションをつけてみます。
 node01でdummy01:0、node02でdummy01:1が起動していることがわかりますね。
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n</span></strong>
+============
+Last updated: Mon Nov  7 15:32:37 2011
+Stack: Heartbeat
+Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+2 Nodes configured, unknown expected votes
+1 Resources configured.
+============
 
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n</span></strong>
-    ============
-    Last updated: Mon Nov  7 15:32:37 2011
-    Stack: Heartbeat
-    Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
-    Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
-    2 Nodes configured, unknown expected votes
-    1 Resources configured.
-    ============
-    
-    Node node01 (11111111-1111-1111-1111-111111111111): online
-     dummy01:0       (ocf::pacemaker:Dummy) Started
-    Node node02 (22222222-2222-2222-2222-222222222222): online
-     dummy01:1       (ocf::pacemaker:Dummy) Started</span>
+Node node01 (11111111-1111-1111-1111-111111111111): online
+ dummy01:0       (ocf::pacemaker:Dummy) Started
+Node node02 (22222222-2222-2222-2222-222222222222): online
+ dummy01:1       (ocf::pacemaker:Dummy) Started</span></pre>
 
 
 cloneは<リソース名>:(コロン)<インスタンス番号>で区別されます。
@@ -110,51 +104,43 @@ cloneは<リソース名>:(コロン)<インスタンス番号>で区別され�
 
 DCノードでha-logを検索すると、次の順序でdummy01:1、dummy01:0が起動したことがわかります。
 ※ match_graph_event関数のログはDCノードにしか出力されません。
-
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># grep -R match_graph_event /var/log/ha-log</span></strong>
-    Nov  7 15:32:15 node02 crmd: [15471]: info: match_graph_event: Action dummy01:1_monitor_0 (6) confirmed on node02 (rc=0)
-    Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action dummy01:0_monitor_0 (4) confirmed on node01 (rc=0)
-    Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:1_start_0</span></strong> (9) confirmed on <strong><span style="color: #ff00ff;">node02</span></strong> (rc=0)
-    Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action dummy01:1_monitor_10000 (10) confirmed on node02 (rc=0)
-    Nov  7 15:32:17 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:0_start_0</span></strong> (7) confirmed on <strong><span style="color: #ff00ff;">node01 </span></strong>(rc=0)
-    Nov  7 15:32:18 node02 crmd: [15471]: info: match_graph_event: Action dummy01:0_monitor_10000 (8) confirmed on node01 (rc=0)</span>
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># grep -R match_graph_event /var/log/ha-log</span></strong>
+Nov  7 15:32:15 node02 crmd: [15471]: info: match_graph_event: Action dummy01:1_monitor_0 (6) confirmed on node02 (rc=0)
+Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action dummy01:0_monitor_0 (4) confirmed on node01 (rc=0)
+Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:1_start_0</span></strong> (9) confirmed on <strong><span style="color: #ff00ff;">node02</span></strong> (rc=0)
+Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action dummy01:1_monitor_10000 (10) confirmed on node02 (rc=0)
+Nov  7 15:32:17 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:0_start_0</span></strong> (7) confirmed on <strong><span style="color: #ff00ff;">node01 </span></strong>(rc=0)
+Nov  7 15:32:18 node02 crmd: [15471]: info: match_graph_event: Action dummy01:0_monitor_10000 (8) confirmed on node01 (rc=0)</span></pre>
 
 
 node01のclone(dummy01:0)を故障させます。
-
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01:0 set node01 1</span></strong></span>
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01:0 set node01 1</span></strong></span></pre>
 
 
 node01のclone(dummy01:0)が停止したことを確認します。
+<pre><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1 -n -f</strong></span>
+============
+Last updated: Mon Nov  7 15:36:38 2011
+Stack: Heartbeat
+Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+2 Nodes configured, unknown expected votes
+1 Resources configured.
+============
 
-    
-    <span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1 -n -f</strong></span>
-    ============
-    Last updated: Mon Nov  7 15:36:38 2011
-    Stack: Heartbeat
-    Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
-    Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
-    2 Nodes configured, unknown expected votes
-    1 Resources configured.
-    ============
-    
-    Node node01 (11111111-1111-1111-1111-111111111111): online
-    Node node02 (22222222-2222-2222-2222-222222222222): online
-     dummy01:1       (ocf::pacemaker:Dummy) Started
-    
-    Migration summary:
-    * Node node02:
-    * Node node01:
-     <strong><span style="color: #ff00ff;">dummy01:0: migration-threshold=1 fail-count=1</span></strong></span>
+Node node01 (11111111-1111-1111-1111-111111111111): online
+Node node02 (22222222-2222-2222-2222-222222222222): online
+ dummy01:1       (ocf::pacemaker:Dummy) Started
+
+Migration summary:
+* Node node02:
+* Node node01:
+ <strong><span style="color: #ff00ff;">dummy01:0: migration-threshold=1 fail-count=1</span></strong></span></pre>
 
 
 DCノードでha-logを検索すると、dummy01:0が停止したことがわかります。
-
-    
-    <span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># grep -R match_graph_event /var/log/ha-log</strong></span>
-    Nov  7 15:36:19 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:0_stop_0</span></strong> (7) confirmed on <strong><span style="color: #ff00ff;">node01 </span></strong>(rc=0)</span>
+<pre><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># grep -R match_graph_event /var/log/ha-log</strong></span>
+Nov  7 15:36:19 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:0_stop_0</span></strong> (7) confirmed on <strong><span style="color: #ff00ff;">node01 </span></strong>(rc=0)</span></pre>
 
 
 ここで、node02で起動していたdummy01:1は停止しません。
@@ -207,21 +193,19 @@ Master/Slaveリソースには、promote/demote/**notify**オペレーション�
 pacemakerdというプロセスは存在しません。
 
 HeartbeatとPacemakerを組み合わせた構成でpgrepコマンドを実行してみます。
-
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># pgrep -lf heartbeat</span></strong>
-    15458 heartbeat: master control process    ← Heartbeatの親プロセス(通称MCP)
-    15461 heartbeat: FIFO reader        ← FIFOプロセス
-    15462 heartbeat: write: bcast eth1    ← ハートビート通信用のプロセス
-    15463 heartbeat: read: bcast eth1    ← ハートビート通信用のプロセス
-    15466 /usr/lib64/heartbeat/ccm        ← Consensus Cluster Membership(クラスタのメンバシップを管理する)
-    15467 /usr/lib64/heartbeat/cib        ← Cluster Information Base(クラスタの状態を保管する)
-    15468 /usr/lib64/heartbeat/lrmd -r    ← Local Resource Management Daemon(リソースを制御する)
-    15469 /usr/lib64/heartbeat/stonithd    ← フェンシングを実行するデーモン
-    15470 /usr/lib64/heartbeat/attrd    ← 属性値の更新/削除を実行するデーモン
-    15471 /usr/lib64/heartbeat/crmd        ← Cluster Resource Management Daemon(クラスタの状態遷移を管理する)
-    15472 /usr/lib64/heartbeat/ifcheckd    ← インターコネクトLAN状態確認デーモン
-    15476 /usr/lib64/heartbeat/pengine    ← Policy Engine(クラスタの状態遷移図を作成する)</span>
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># pgrep -lf heartbeat</span></strong>
+15458 heartbeat: master control process    ← Heartbeatの親プロセス(通称MCP)
+15461 heartbeat: FIFO reader        ← FIFOプロセス
+15462 heartbeat: write: bcast eth1    ← ハートビート通信用のプロセス
+15463 heartbeat: read: bcast eth1    ← ハートビート通信用のプロセス
+15466 /usr/lib64/heartbeat/ccm        ← Consensus Cluster Membership(クラスタのメンバシップを管理する)
+15467 /usr/lib64/heartbeat/cib        ← Cluster Information Base(クラスタの状態を保管する)
+15468 /usr/lib64/heartbeat/lrmd -r    ← Local Resource Management Daemon(リソースを制御する)
+15469 /usr/lib64/heartbeat/stonithd    ← フェンシングを実行するデーモン
+15470 /usr/lib64/heartbeat/attrd    ← 属性値の更新/削除を実行するデーモン
+15471 /usr/lib64/heartbeat/crmd        ← Cluster Resource Management Daemon(クラスタの状態遷移を管理する)
+15472 /usr/lib64/heartbeat/ifcheckd    ← インターコネクトLAN状態確認デーモン
+15476 /usr/lib64/heartbeat/pengine    ← Policy Engine(クラスタの状態遷移図を作成する)</span></pre>
 
 
 ※ pengineプロセスはDCノードでのみ起動します。

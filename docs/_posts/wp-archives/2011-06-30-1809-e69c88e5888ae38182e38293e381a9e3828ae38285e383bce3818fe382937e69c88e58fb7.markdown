@@ -397,28 +397,26 @@ Code cleanups ; Removal of compatibility code for kernels older than 2.6.18
 <tr >
 
 <td style="background-color: #f5f5f5;" >
+<pre><span style="font-family: verdana,geneva; font-size: small;">### Cluster Option ###
+property \
+        no-quorum-policy="ignore" \
+        stonith-enabled="false" \
+        startup-fencing="false"
 
-    
-    <span style="font-family: verdana,geneva; font-size: small;">### Cluster Option ###
-    property \
-            no-quorum-policy="ignore" \
-            stonith-enabled="false" \
-            startup-fencing="false"
-    
-    ### Resource Defaults ###
-    rsc_defaults \
-            resource-stickiness="INFINITY" \
-            migration-threshold="1"
-    
-    ### Primitive Configuration ###
-    primitive prmDummy ocf:pacemaker:Dummy \
-            op start interval="0s" timeout="100s" on-fail="restart" \
-            op monitor interval="10s" timeout="100s" on-fail="restart" \
-            op stop interval="0s" timeout="100s" on-fail="block"
-    
-    location location-01 prmDummy \
-            rule 200: #uname eq xen01 \
-            rule 100: #uname eq xen02</span>
+### Resource Defaults ###
+rsc_defaults \
+        resource-stickiness="INFINITY" \
+        migration-threshold="1"
+
+### Primitive Configuration ###
+primitive prmDummy ocf:pacemaker:Dummy \
+        op start interval="0s" timeout="100s" on-fail="restart" \
+        op monitor interval="10s" timeout="100s" on-fail="restart" \
+        op stop interval="0s" timeout="100s" on-fail="block"
+
+location location-01 prmDummy \
+        rule 200: #uname eq xen01 \
+        rule 100: #uname eq xen02</span></pre>
 
 
 

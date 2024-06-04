@@ -155,9 +155,7 @@ INFINITYよりも小さなフェイルカウントの削除する際の動作を
 
 また、LCMCのGUI画面からそれぞれのノードをクラスタに追加していかなくても
 コマンドラインから複数のノードを一括してクラスタに登録することも可能となりました。
-
-    
-    <span style="font-family: verdana,geneva;">例) lcmc --cluster alice-bob --host 192.168.122.2 --host 192.168.122.3</span>
+<pre><span style="font-family: verdana,geneva;">例) lcmc --cluster alice-bob --host 192.168.122.2 --host 192.168.122.3</span></pre>
 
 
 上記の例では、クラスタ名「alice-bob」に「192.168.122.2」と「192.168.122.3」の2ノードを追加しています。
@@ -197,85 +195,79 @@ HB3+Pacemakerで、IPaddr2が付くIFがノードによって名前が違う場�
 ということですね。
 
 node01のネットワーク構成
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ifconfig</span>
+<span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:91:00</span>
+<span style="font-family: verdana,geneva;"> inet addr:192.168.28.121  Bcast:192.168.28.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:422 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:190 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:58908 (57.5 KiB)  TX bytes:20725 (20.2 KiB)</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ifconfig</span>
-    <span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:91:00</span>
-    <span style="font-family: verdana,geneva;"> inet addr:192.168.28.121  Bcast:192.168.28.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:422 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:190 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:58908 (57.5 KiB)  TX bytes:20725 (20.2 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>eth1</strong></span>      Link encap:Ethernet  HWaddr 00:16:3E:39:91:01</span>
-    <span style="font-family: verdana,geneva;"> inet addr:192.168.200.121  Bcast:192.168.200.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:24 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:0 (0.0 b)  TX bytes:2831 (2.7 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
-    <span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
-    <span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:1334 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:1334 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:2147876 (2.0 MiB)  TX bytes:2147876 (2.0 MiB)</span>
+<span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>eth1</strong></span>      Link encap:Ethernet  HWaddr 00:16:3E:39:91:01</span>
+<span style="font-family: verdana,geneva;"> inet addr:192.168.200.121  Bcast:192.168.200.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:24 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:0 (0.0 b)  TX bytes:2831 (2.7 KiB)</span>
+
+<span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
+<span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
+<span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:1334 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:1334 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
+<span style="font-family: verdana,geneva;"> RX bytes:2147876 (2.0 MiB)  TX bytes:2147876 (2.0 MiB)</span></pre>
 
 
 node02のネットワーク構成
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ifconfig</span>
+<span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:92:00</span>
+<span style="font-family: verdana,geneva;"> inet addr:192.168.28.122  Bcast:192.168.28.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:281 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:50 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:45680 (44.6 KiB)  TX bytes:7261 (7.0 KiB)</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ifconfig</span>
-    <span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:92:00</span>
-    <span style="font-family: verdana,geneva;"> inet addr:192.168.28.122  Bcast:192.168.28.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:281 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:50 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:45680 (44.6 KiB)  TX bytes:7261 (7.0 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">eth2</span></strong>      Link encap:Ethernet  HWaddr 00:16:3E:39:92:02</span>
-    <span style="font-family: verdana,geneva;"> inet addr:192.168.200.122  Bcast:192.168.200.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:21 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:0 (0.0 b)  TX bytes:2633 (2.5 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
-    <span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
-    <span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:1473 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:1473 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:2318404 (2.2 MiB)  TX bytes:2318404 (2.2 MiB)</span>
+<span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">eth2</span></strong>      Link encap:Ethernet  HWaddr 00:16:3E:39:92:02</span>
+<span style="font-family: verdana,geneva;"> inet addr:192.168.200.122  Bcast:192.168.200.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:21 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:0 (0.0 b)  TX bytes:2633 (2.5 KiB)</span>
+
+<span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
+<span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
+<span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:1473 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:1473 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
+<span style="font-family: verdana,geneva;"> RX bytes:2318404 (2.2 MiB)  TX bytes:2318404 (2.2 MiB)</span></pre>
 
 
 仮想IPアドレスは「**192.168.200.200**」を割り当てることにします。
 ここで、crm設定ファイルにご注目。
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# cat IPaddr2.crm</span>
+<span style="font-family: verdana,geneva;">property \</span>
+<span style="font-family: verdana,geneva;">    no-quorum-policy="ignore" \</span>
+<span style="font-family: verdana,geneva;">    stonith-enabled="false" \</span>
+<span style="font-family: verdana,geneva;">    startup-fencing="false" \</span>
+<span style="font-family: verdana,geneva;">    crmd-transition-delay="2s"</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# cat IPaddr2.crm</span>
-    <span style="font-family: verdana,geneva;">property \</span>
-    <span style="font-family: verdana,geneva;">    no-quorum-policy="ignore" \</span>
-    <span style="font-family: verdana,geneva;">    stonith-enabled="false" \</span>
-    <span style="font-family: verdana,geneva;">    startup-fencing="false" \</span>
-    <span style="font-family: verdana,geneva;">    crmd-transition-delay="2s"</span>
-    
-    <span style="font-family: verdana,geneva;">rsc_defaults \</span>
-    <span style="font-family: verdana,geneva;">    resource-stickiness="INFINITY" \</span>
-    <span style="font-family: verdana,geneva;">    migration-threshold="1"</span>
-    
-    <span style="font-family: verdana,geneva;">primitive p_ip ocf:heartbeat:IPaddr2 \</span>
-    <span style="font-family: verdana,geneva;">    params \</span>
-    <span style="font-family: verdana,geneva;">    ip="192.168.200.200" \</span>
-    <span style="font-family: verdana,geneva;">    cidr_netmask="24" \</span>
-    <span style="font-family: verdana,geneva;">    op start interval="0s" timeout="60s" on-fail="restart" \</span>
-    <span style="font-family: verdana,geneva;">    op monitor interval="10s" timeout="60s" on-fail="restart" \</span>
-    <span style="font-family: verdana,geneva;">    op stop interval="0s" timeout="60s" on-fail="block"</span>
+<span style="font-family: verdana,geneva;">rsc_defaults \</span>
+<span style="font-family: verdana,geneva;">    resource-stickiness="INFINITY" \</span>
+<span style="font-family: verdana,geneva;">    migration-threshold="1"</span>
+
+<span style="font-family: verdana,geneva;">primitive p_ip ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana,geneva;">    params \</span>
+<span style="font-family: verdana,geneva;">    ip="192.168.200.200" \</span>
+<span style="font-family: verdana,geneva;">    cidr_netmask="24" \</span>
+<span style="font-family: verdana,geneva;">    op start interval="0s" timeout="60s" on-fail="restart" \</span>
+<span style="font-family: verdana,geneva;">    op monitor interval="10s" timeout="60s" on-fail="restart" \</span>
+<span style="font-family: verdana,geneva;">    op stop interval="0s" timeout="60s" on-fail="block"</span></pre>
 
 
 いつもと違うのは、nicパラメータの設定を「**していない**」ということです。
@@ -283,160 +275,146 @@ ipパラメータは必須設定項目ですが、nicパラメータは必須設
 nicパラメータを設定していない場合、ルーティングテーブルを参照してインターフェースが自動的に選択されます。
 crmコマンドを使って、IPaddr2 RAの設定方法を表示してみます。
 
+<pre><span style="color: #339966;"><strong><span style="font-family: verdana,geneva;"># crm ra info IPaddr2</span></strong></span>
+<span style="font-family: verdana,geneva;">Manages virtual IPv4 addresses (Linux specific version) (ocf:heartbeat:IPaddr2)</span>
 
-    
-    <span style="color: #339966;"><strong><span style="font-family: verdana,geneva;"># crm ra info IPaddr2</span></strong></span>
-    <span style="font-family: verdana,geneva;">Manages virtual IPv4 addresses (Linux specific version) (ocf:heartbeat:IPaddr2)</span>
-    
-    <span style="font-family: verdana,geneva;">This Linux-specific resource manages IP alias IP addresses.</span>
-    <span style="font-family: verdana,geneva;">It can add an IP alias, or remove one.</span>
-    <span style="font-family: verdana,geneva;">In addition, it can implement Cluster Alias IP functionality</span>
-    <span style="font-family: verdana,geneva;">if invoked as a clone resource.</span>
-    
-    <span style="font-family: verdana,geneva;">Parameters (* denotes required, [] the default):</span>
-    
-    <span style="font-family: verdana,geneva;">ip* (string): IPv4 address</span>
-    <span style="font-family: verdana,geneva;"> The IPv4 address to be configured in dotted quad notation, for example</span>
-    <span style="font-family: verdana,geneva;"> "192.168.1.1".</span>
-    
-    <span style="font-family: verdana,geneva;">nic (string, [eth0]): Network interface</span>
-    <span style="font-family: verdana,geneva;"> The base network interface on which the IP address will be brought</span>
-    <span style="font-family: verdana,geneva;"> online.</span>
-    
-    <span style="font-family: verdana,geneva;"> If left empty, the script will try and determine this from the</span>
-    <span style="font-family: verdana,geneva;"> routing table.</span>
-    
-    <span style="font-family: verdana,geneva;"> Do NOT specify an alias interface in the form eth0:1 or anything here;</span>
-    <span style="font-family: verdana,geneva;"> rather, specify the base interface only.</span>
-    
-    <span style="font-family: verdana,geneva;"> Prerequisite:</span>
-    
-    <span style="font-family: verdana,geneva;"> There must be at least one static IP address, which is not managed by</span>
-    <span style="font-family: verdana,geneva;"> the cluster, assigned to the network interface.</span>
-    
-    <span style="font-family: verdana,geneva;"> If you can not assign any static IP address on the interface,</span>
-    <span style="font-family: verdana,geneva;"> modify this kernel parameter:</span>
-    <span style="font-family: verdana,geneva;"> sysctl -w net.ipv4.conf.all.promote_secondaries=1</span>
-    <span style="font-family: verdana,geneva;"> (or per device)</span>
-    
-    <span style="font-family: verdana,geneva;">cidr_netmask (string): CIDR netmask</span>
-    <span style="font-family: verdana,geneva;"> The netmask for the interface in CIDR format</span>
-    <span style="font-family: verdana,geneva;"> (e.g., 24 and not 255.255.255.0)</span>
-    
-    <span style="font-family: verdana,geneva;"> If unspecified, the script will also try to determine this from the</span>
-    <span style="font-family: verdana,geneva;"> routing table.</span>
-    
-    <span style="font-family: verdana,geneva;"><省略></span>
+<span style="font-family: verdana,geneva;">This Linux-specific resource manages IP alias IP addresses.</span>
+<span style="font-family: verdana,geneva;">It can add an IP alias, or remove one.</span>
+<span style="font-family: verdana,geneva;">In addition, it can implement Cluster Alias IP functionality</span>
+<span style="font-family: verdana,geneva;">if invoked as a clone resource.</span>
+
+<span style="font-family: verdana,geneva;">Parameters (* denotes required, [] the default):</span>
+
+<span style="font-family: verdana,geneva;">ip* (string): IPv4 address</span>
+<span style="font-family: verdana,geneva;"> The IPv4 address to be configured in dotted quad notation, for example</span>
+<span style="font-family: verdana,geneva;"> "192.168.1.1".</span>
+
+<span style="font-family: verdana,geneva;">nic (string, [eth0]): Network interface</span>
+<span style="font-family: verdana,geneva;"> The base network interface on which the IP address will be brought</span>
+<span style="font-family: verdana,geneva;"> online.</span>
+
+<span style="font-family: verdana,geneva;"> If left empty, the script will try and determine this from the</span>
+<span style="font-family: verdana,geneva;"> routing table.</span>
+
+<span style="font-family: verdana,geneva;"> Do NOT specify an alias interface in the form eth0:1 or anything here;</span>
+<span style="font-family: verdana,geneva;"> rather, specify the base interface only.</span>
+
+<span style="font-family: verdana,geneva;"> Prerequisite:</span>
+
+<span style="font-family: verdana,geneva;"> There must be at least one static IP address, which is not managed by</span>
+<span style="font-family: verdana,geneva;"> the cluster, assigned to the network interface.</span>
+
+<span style="font-family: verdana,geneva;"> If you can not assign any static IP address on the interface,</span>
+<span style="font-family: verdana,geneva;"> modify this kernel parameter:</span>
+<span style="font-family: verdana,geneva;"> sysctl -w net.ipv4.conf.all.promote_secondaries=1</span>
+<span style="font-family: verdana,geneva;"> (or per device)</span>
+
+<span style="font-family: verdana,geneva;">cidr_netmask (string): CIDR netmask</span>
+<span style="font-family: verdana,geneva;"> The netmask for the interface in CIDR format</span>
+<span style="font-family: verdana,geneva;"> (e.g., 24 and not 255.255.255.0)</span>
+
+<span style="font-family: verdana,geneva;"> If unspecified, the script will also try to determine this from the</span>
+<span style="font-family: verdana,geneva;"> routing table.</span>
+
+<span style="font-family: verdana,geneva;"><省略></span></pre>
 
 
 では、クラスタにcrm設定ファイルを反映してみましょう。
-
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# crm configure load update IPaddr2.crm</span>
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# crm configure load update IPaddr2.crm</span></pre>
 
 
 node01で仮想IPが起動しました。
+<pre><span style="font-family: verdana,geneva;">[root@node02 ~] crm_mon -1 -Af</span>
+<span style="font-family: verdana,geneva;">============</span>
+<span style="font-family: verdana,geneva;">Last updated: Thu Dec  1 16:55:21 2011</span>
+<span style="font-family: verdana,geneva;">Stack: Heartbeat</span>
+<span style="font-family: verdana,geneva;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+<span style="font-family: verdana,geneva;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+<span style="font-family: verdana,geneva;">2 Nodes configured, unknown expected votes</span>
+<span style="font-family: verdana,geneva;">1 Resources configured.</span>
+<span style="font-family: verdana,geneva;">============</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node02 ~] crm_mon -1 -Af</span>
-    <span style="font-family: verdana,geneva;">============</span>
-    <span style="font-family: verdana,geneva;">Last updated: Thu Dec  1 16:55:21 2011</span>
-    <span style="font-family: verdana,geneva;">Stack: Heartbeat</span>
-    <span style="font-family: verdana,geneva;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
-    <span style="font-family: verdana,geneva;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
-    <span style="font-family: verdana,geneva;">2 Nodes configured, unknown expected votes</span>
-    <span style="font-family: verdana,geneva;">1 Resources configured.</span>
-    <span style="font-family: verdana,geneva;">============</span>
-    
-    <span style="font-family: verdana,geneva;">Online: [ node01 node02 ]</span>
-    
-    <span style="font-family: verdana,geneva;">p_ip    (ocf::heartbeat:IPaddr2):       Started <strong><span style="color: #ff00ff;">node01</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;">Node Attributes:</span>
-    <span style="font-family: verdana,geneva;">* Node node01:</span>
-    <span style="font-family: verdana,geneva;"> + node02-eth0                       : up</span>
-    <span style="font-family: verdana,geneva;">* Node node02:</span>
-    <span style="font-family: verdana,geneva;"> + node01-eth0                       : up</span>
-    
-    <span style="font-family: verdana,geneva;">Migration summary:</span>
-    <span style="font-family: verdana,geneva;">* Node node01:</span>
-    <span style="font-family: verdana,geneva;">* Node node02:</span>
+<span style="font-family: verdana,geneva;">Online: [ node01 node02 ]</span>
+
+<span style="font-family: verdana,geneva;">p_ip    (ocf::heartbeat:IPaddr2):       Started <strong><span style="color: #ff00ff;">node01</span></strong></span>
+
+<span style="font-family: verdana,geneva;">Node Attributes:</span>
+<span style="font-family: verdana,geneva;">* Node node01:</span>
+<span style="font-family: verdana,geneva;"> + node02-eth0                       : up</span>
+<span style="font-family: verdana,geneva;">* Node node02:</span>
+<span style="font-family: verdana,geneva;"> + node01-eth0                       : up</span>
+
+<span style="font-family: verdana,geneva;">Migration summary:</span>
+<span style="font-family: verdana,geneva;">* Node node01:</span>
+<span style="font-family: verdana,geneva;">* Node node02:</span></pre>
 
 
 node01のeth1に仮想IPアドレス「192.168.200.200」が割り当てられています。
-
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ip addr show</span>
-    <span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
-    <span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
-    <span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
-    <span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:00 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;"> inet 192.168.28.121/24 brd 192.168.28.255 scope global eth0</span>
-    <span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:01 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;"> inet 192.168.200.121/24 brd 192.168.200.255 scope global eth1</span>
-    <span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global secondary eth1</span>
-    <span style="font-family: verdana,geneva;">4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:02 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:03 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:04 brd ff:ff:ff:ff:ff:ff</span>
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ip addr show</span>
+<span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
+<span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
+<span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:00 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;"> inet 192.168.28.121/24 brd 192.168.28.255 scope global eth0</span>
+<span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:01 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;"> inet 192.168.200.121/24 brd 192.168.200.255 scope global eth1</span>
+<span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global secondary eth1</span>
+<span style="font-family: verdana,geneva;">4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:02 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:03 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:04 brd ff:ff:ff:ff:ff:ff</span></pre>
 
 
 では、ここでnode01のクラスタを停止してみましょう。
-
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# service heartbeat stop</span>
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# service heartbeat stop</span></pre>
 
 
 仮想IPはnode02へフェイルオーバしました。
+<pre><span style="font-family: verdana,geneva;">[root@node02 ~]# crm_mon -1 -Af</span>
+<span style="font-family: verdana,geneva;">============</span>
+<span style="font-family: verdana,geneva;">Last updated: Thu Dec  1 16:56:16 2011</span>
+<span style="font-family: verdana,geneva;">Stack: Heartbeat</span>
+<span style="font-family: verdana,geneva;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+<span style="font-family: verdana,geneva;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+<span style="font-family: verdana,geneva;">2 Nodes configured, unknown expected votes</span>
+<span style="font-family: verdana,geneva;">1 Resources configured.</span>
+<span style="font-family: verdana,geneva;">============</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node02 ~]# crm_mon -1 -Af</span>
-    <span style="font-family: verdana,geneva;">============</span>
-    <span style="font-family: verdana,geneva;">Last updated: Thu Dec  1 16:56:16 2011</span>
-    <span style="font-family: verdana,geneva;">Stack: Heartbeat</span>
-    <span style="font-family: verdana,geneva;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
-    <span style="font-family: verdana,geneva;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
-    <span style="font-family: verdana,geneva;">2 Nodes configured, unknown expected votes</span>
-    <span style="font-family: verdana,geneva;">1 Resources configured.</span>
-    <span style="font-family: verdana,geneva;">============</span>
-    
-    <span style="font-family: verdana,geneva;">Online: [ node02 ]</span>
-    <span style="font-family: verdana,geneva;">OFFLINE: [ node01 ]</span>
-    
-    <span style="font-family: verdana,geneva;"> p_ip   (ocf::heartbeat:IPaddr2):       Started <strong><span style="color: #ff00ff;">node02</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;">Node Attributes:</span>
-    <span style="font-family: verdana,geneva;">* Node node02:</span>
-    <span style="font-family: verdana,geneva;"> + node01-eth0                       : up</span>
-    
-    <span style="font-family: verdana,geneva;">Migration summary:</span>
-    <span style="font-family: verdana,geneva;">* Node node02:</span>
+<span style="font-family: verdana,geneva;">Online: [ node02 ]</span>
+<span style="font-family: verdana,geneva;">OFFLINE: [ node01 ]</span>
+
+<span style="font-family: verdana,geneva;"> p_ip   (ocf::heartbeat:IPaddr2):       Started <strong><span style="color: #ff00ff;">node02</span></strong></span>
+
+<span style="font-family: verdana,geneva;">Node Attributes:</span>
+<span style="font-family: verdana,geneva;">* Node node02:</span>
+<span style="font-family: verdana,geneva;"> + node01-eth0                       : up</span>
+
+<span style="font-family: verdana,geneva;">Migration summary:</span>
+<span style="font-family: verdana,geneva;">* Node node02:</span></pre>
 
 
 node02のeth2に仮想IPアドレス「192.168.200.200」が割り当てられています。
-
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ip addr show</span>
-    <span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
-    <span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
-    <span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
-    <span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:00 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;"> inet 192.168.28.122/24 brd 192.168.28.255 scope global eth0</span>
-    <span style="font-family: verdana,geneva;">3: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:01 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;">4: <strong><span style="color: #ff00ff;">eth2</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:02 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;"> inet 192.168.200.122/24 brd 192.168.200.255 scope global eth2</span>
-    <span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global secondary eth2</span>
-    <span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:03 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:04 brd ff:ff:ff:ff:ff:ff</span>
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ip addr show</span>
+<span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
+<span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
+<span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:00 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;"> inet 192.168.28.122/24 brd 192.168.28.255 scope global eth0</span>
+<span style="font-family: verdana,geneva;">3: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:01 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;">4: <strong><span style="color: #ff00ff;">eth2</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:02 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;"> inet 192.168.200.122/24 brd 192.168.200.255 scope global eth2</span>
+<span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global secondary eth2</span>
+<span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:03 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:04 brd ff:ff:ff:ff:ff:ff</span></pre>
 
 
 今回の例のように、ノードごとに異なるインターフェースを使用したい場合は
@@ -446,9 +424,7 @@ nicパラメータを設定しないことで期待する動作が得られま�
 「**unknown error**」となるので注意してください。
 
 エラーの例(/var/log/ha-log)
-
-    
-    <span style="font-family: verdana,geneva;">res_IPaddr2_1_start_0 (node=minky0, call=93, rc=1, status=complete): <strong>unknown error</strong></span>
+<pre><span style="font-family: verdana,geneva;">res_IPaddr2_1_start_0 (node=minky0, call=93, rc=1, status=complete): <strong>unknown error</strong></span></pre>
 
 
 [参考1,](https://twitter.com/#!/minky0/status/141782864202182657) [参考2](https://twitter.com/#!/linux_ha_jp/status/141790185473060864)
@@ -473,255 +449,229 @@ IPaddr2 RAはstart処理の際、arpコマンドを実行して、ARPテーブ�
 (環境の詳細情報は伺っていないので、勘違いしているかもしれません)
 
 node01のネットワーク構成
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ifconfig</span>
+<span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:91:00</span>
+<span style="font-family: verdana,geneva;"> inet addr:192.168.28.121  Bcast:192.168.28.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:143 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:73 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:19092 (18.6 KiB)  TX bytes:9635 (9.4 KiB)</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ifconfig</span>
-    <span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:91:00</span>
-    <span style="font-family: verdana,geneva;"> inet addr:192.168.28.121  Bcast:192.168.28.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:143 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:73 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:19092 (18.6 KiB)  TX bytes:9635 (9.4 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
-    <span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
-    <span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:1259 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:1259 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:2053800 (1.9 MiB)  TX bytes:2053800 (1.9 MiB)</span>
+<span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
+<span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
+<span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:1259 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:1259 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
+<span style="font-family: verdana,geneva;"> RX bytes:2053800 (1.9 MiB)  TX bytes:2053800 (1.9 MiB)</span></pre>
 
 
 node02のネットワーク構成
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ifconfig</span>
+<span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:92:00</span>
+<span style="font-family: verdana,geneva;"> inet addr:192.168.28.122  Bcast:192.168.28.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:108 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:54 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:16270 (15.8 KiB)  TX bytes:7436 (7.2 KiB)</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ifconfig</span>
-    <span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:92:00</span>
-    <span style="font-family: verdana,geneva;"> inet addr:192.168.28.122  Bcast:192.168.28.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:108 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:54 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:16270 (15.8 KiB)  TX bytes:7436 (7.2 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
-    <span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
-    <span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:1358 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:1358 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:2265620 (2.1 MiB)  TX bytes:2265620 (2.1 MiB)</span>
+<span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
+<span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
+<span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:1358 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:1358 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
+<span style="font-family: verdana,geneva;"> RX bytes:2265620 (2.1 MiB)  TX bytes:2265620 (2.1 MiB)</span></pre>
 
 
 eth1にIPアドレス「192.168.200.200」を設定します。
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# cat IPaddr2.crm</span>
+<span style="font-family: verdana,geneva;">property \</span>
+<span style="font-family: verdana,geneva;">    no-quorum-policy="ignore" \</span>
+<span style="font-family: verdana,geneva;">    stonith-enabled="false" \</span>
+<span style="font-family: verdana,geneva;">    startup-fencing="false" \</span>
+<span style="font-family: verdana,geneva;">    crmd-transition-delay="2s"</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# cat IPaddr2.crm</span>
-    <span style="font-family: verdana,geneva;">property \</span>
-    <span style="font-family: verdana,geneva;">    no-quorum-policy="ignore" \</span>
-    <span style="font-family: verdana,geneva;">    stonith-enabled="false" \</span>
-    <span style="font-family: verdana,geneva;">    startup-fencing="false" \</span>
-    <span style="font-family: verdana,geneva;">    crmd-transition-delay="2s"</span>
-    
-    <span style="font-family: verdana,geneva;">rsc_defaults \</span>
-    <span style="font-family: verdana,geneva;">    resource-stickiness="INFINITY" \</span>
-    <span style="font-family: verdana,geneva;">    migration-threshold="1"</span>
-    
-    <span style="font-family: verdana,geneva;">primitive p_ip ocf:heartbeat:IPaddr2 \</span>
-    <span style="font-family: verdana,geneva;">    params \</span>
-    <strong><span style="font-family: verdana,geneva; color: #ff00ff;">     ip="192.168.200.200" \
-         nic="eth1" \</span></strong>
-    <span style="font-family: verdana,geneva;">    cidr_netmask="24" \</span>
-    <span style="font-family: verdana,geneva;">    op start interval="0s" timeout="60s" on-fail="restart" \</span>
-    <span style="font-family: verdana,geneva;">    op monitor interval="10s" timeout="60s" on-fail="restart" \</span>
-    <span style="font-family: verdana,geneva;">    op stop interval="0s" timeout="60s" on-fail="block"</span>
+<span style="font-family: verdana,geneva;">rsc_defaults \</span>
+<span style="font-family: verdana,geneva;">    resource-stickiness="INFINITY" \</span>
+<span style="font-family: verdana,geneva;">    migration-threshold="1"</span>
+
+<span style="font-family: verdana,geneva;">primitive p_ip ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana,geneva;">    params \</span>
+<strong><span style="font-family: verdana,geneva; color: #ff00ff;">     ip="192.168.200.200" \
+     nic="eth1" \</span></strong>
+<span style="font-family: verdana,geneva;">    cidr_netmask="24" \</span>
+<span style="font-family: verdana,geneva;">    op start interval="0s" timeout="60s" on-fail="restart" \</span>
+<span style="font-family: verdana,geneva;">    op monitor interval="10s" timeout="60s" on-fail="restart" \</span>
+<span style="font-family: verdana,geneva;">    op stop interval="0s" timeout="60s" on-fail="block"</span></pre>
 
 
 クラスタにcrm設定ファイルを反映してみましょう。
-
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# crm configure load update IPaddr2.crm</span>
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# crm configure load update IPaddr2.crm</span></pre>
 
 
 node01にIPアドレス「192.168.200.200」が設定されました。
+<pre><span style="font-family: verdana,geneva;">[root@node02 ~]# crm_mon -1 -Af</span>
+<span style="font-family: verdana,geneva;">============</span>
+<span style="font-family: verdana,geneva;">Last updated: Thu Dec  1 17:16:45 2011</span>
+<span style="font-family: verdana,geneva;">Stack: Heartbeat</span>
+<span style="font-family: verdana,geneva;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+<span style="font-family: verdana,geneva;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+<span style="font-family: verdana,geneva;">2 Nodes configured, unknown expected votes</span>
+<span style="font-family: verdana,geneva;">1 Resources configured.</span>
+<span style="font-family: verdana,geneva;">============</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node02 ~]# crm_mon -1 -Af</span>
-    <span style="font-family: verdana,geneva;">============</span>
-    <span style="font-family: verdana,geneva;">Last updated: Thu Dec  1 17:16:45 2011</span>
-    <span style="font-family: verdana,geneva;">Stack: Heartbeat</span>
-    <span style="font-family: verdana,geneva;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
-    <span style="font-family: verdana,geneva;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
-    <span style="font-family: verdana,geneva;">2 Nodes configured, unknown expected votes</span>
-    <span style="font-family: verdana,geneva;">1 Resources configured.</span>
-    <span style="font-family: verdana,geneva;">============</span>
-    
-    <span style="font-family: verdana,geneva;">Online: [ node01 node02 ]</span>
-    
-    <span style="font-family: verdana,geneva;"> p_ip   (ocf::heartbeat:IPaddr2):       Started <strong><span style="color: #ff00ff;">node01</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;">Node Attributes:</span>
-    <span style="font-family: verdana,geneva;">* Node node01:</span>
-    <span style="font-family: verdana,geneva;"> + node02-eth0                       : up</span>
-    <span style="font-family: verdana,geneva;">* Node node02:</span>
-    <span style="font-family: verdana,geneva;"> + node01-eth0                       : up</span>
-    
-    <span style="font-family: verdana,geneva;">Migration summary:</span>
-    <span style="font-family: verdana,geneva;">* Node node02:</span>
-    <span style="font-family: verdana,geneva;">* Node node01:</span>
+<span style="font-family: verdana,geneva;">Online: [ node01 node02 ]</span>
+
+<span style="font-family: verdana,geneva;"> p_ip   (ocf::heartbeat:IPaddr2):       Started <strong><span style="color: #ff00ff;">node01</span></strong></span>
+
+<span style="font-family: verdana,geneva;">Node Attributes:</span>
+<span style="font-family: verdana,geneva;">* Node node01:</span>
+<span style="font-family: verdana,geneva;"> + node02-eth0                       : up</span>
+<span style="font-family: verdana,geneva;">* Node node02:</span>
+<span style="font-family: verdana,geneva;"> + node01-eth0                       : up</span>
+
+<span style="font-family: verdana,geneva;">Migration summary:</span>
+<span style="font-family: verdana,geneva;">* Node node02:</span>
+<span style="font-family: verdana,geneva;">* Node node01:</span></pre>
 
 
-
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ip addr show</span>
-    <span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
-    <span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
-    <span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
-    <span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:00 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;"> inet 192.168.28.121/24 brd 192.168.28.255 scope global eth0</span>
-    <span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:01 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global eth1</span>
-    <span style="font-family: verdana,geneva;">4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:02 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:03 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:04 brd ff:ff:ff:ff:ff:ff</span>
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ip addr show</span>
+<span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
+<span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
+<span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:00 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;"> inet 192.168.28.121/24 brd 192.168.28.255 scope global eth0</span>
+<span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:01 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global eth1</span>
+<span style="font-family: verdana,geneva;">4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:02 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:03 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:04 brd ff:ff:ff:ff:ff:ff</span></pre>
 
 
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ifconfig</span>
+<span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:91:00</span>
+<span style="font-family: verdana,geneva;"> inet addr:192.168.28.121  Bcast:192.168.28.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:851 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:431 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:179548 (175.3 KiB)  TX bytes:96557 (94.2 KiB)</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ifconfig</span>
-    <span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:91:00</span>
-    <span style="font-family: verdana,geneva;"> inet addr:192.168.28.121  Bcast:192.168.28.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:851 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:431 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:179548 (175.3 KiB)  TX bytes:96557 (94.2 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">eth1</span></strong>      Link encap:Ethernet  HWaddr 00:16:3E:39:91:01</span>
-    <span style="font-family: verdana,geneva;"> inet addr:<strong><span style="color: #ff00ff;">192.168.200.200</span></strong>  Bcast:192.168.200.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:16 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:0 (0.0 b)  TX bytes:2528 (2.4 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
-    <span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
-    <span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:1259 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:1259 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:2053800 (1.9 MiB)  TX bytes:2053800 (1.9 MiB)</span>
+<span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">eth1</span></strong>      Link encap:Ethernet  HWaddr 00:16:3E:39:91:01</span>
+<span style="font-family: verdana,geneva;"> inet addr:<strong><span style="color: #ff00ff;">192.168.200.200</span></strong>  Bcast:192.168.200.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:16 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:0 (0.0 b)  TX bytes:2528 (2.4 KiB)</span>
+
+<span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
+<span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
+<span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:1259 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:1259 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
+<span style="font-family: verdana,geneva;"> RX bytes:2053800 (1.9 MiB)  TX bytes:2053800 (1.9 MiB)</span></pre>
 
 
 node01,node02以外のノード(ここではnode03)から「192.168.200.200」に対してpingを実行します。
-
-    
-    <span style="font-family: verdana,geneva;">[root@node03 ~]# ping 192.168.200.200</span>
-    <span style="font-family: verdana,geneva;">PING 192.168.200.200 (192.168.200.200) 56(84) bytes of data.</span>
-    <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=1 ttl=64 time=0.565 ms</span>
-    <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=2 ttl=64 time=0.159 ms</span>
-    <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=3 ttl=64 time=0.167 ms</span>
+<pre><span style="font-family: verdana,geneva;">[root@node03 ~]# ping 192.168.200.200</span>
+<span style="font-family: verdana,geneva;">PING 192.168.200.200 (192.168.200.200) 56(84) bytes of data.</span>
+<span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=1 ttl=64 time=0.565 ms</span>
+<span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=2 ttl=64 time=0.159 ms</span>
+<span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=3 ttl=64 time=0.167 ms</span></pre>
 
 
 ここで、node01のクラスタを停止します。
-
-    
-    <span style="font-family: verdana,geneva;">[root@node01 ~]# service heartbeat stop</span>
+<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# service heartbeat stop</span></pre>
 
 
 IPアドレス「192.168.200.200」はnode02にフェイルオーバしました。
+<pre><span style="font-family: verdana,geneva;">[root@node02 ~]# crm_mon -1 -Af</span>
+<span style="font-family: verdana,geneva;">============</span>
+<span style="font-family: verdana,geneva;">Last updated: Thu Dec  1 17:18:42 2011</span>
+<span style="font-family: verdana,geneva;">Stack: Heartbeat</span>
+<span style="font-family: verdana,geneva;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+<span style="font-family: verdana,geneva;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+<span style="font-family: verdana,geneva;">2 Nodes configured, unknown expected votes</span>
+<span style="font-family: verdana,geneva;">1 Resources configured.</span>
+<span style="font-family: verdana,geneva;">============</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node02 ~]# crm_mon -1 -Af</span>
-    <span style="font-family: verdana,geneva;">============</span>
-    <span style="font-family: verdana,geneva;">Last updated: Thu Dec  1 17:18:42 2011</span>
-    <span style="font-family: verdana,geneva;">Stack: Heartbeat</span>
-    <span style="font-family: verdana,geneva;">Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
-    <span style="font-family: verdana,geneva;">Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
-    <span style="font-family: verdana,geneva;">2 Nodes configured, unknown expected votes</span>
-    <span style="font-family: verdana,geneva;">1 Resources configured.</span>
-    <span style="font-family: verdana,geneva;">============</span>
-    
-    <span style="font-family: verdana,geneva;">Online: [ node02 ]</span>
-    <span style="font-family: verdana,geneva;">OFFLINE: [ node01 ]</span>
-    
-    <span style="font-family: verdana,geneva;"> p_ip   (ocf::heartbeat:IPaddr2):       Started <strong><span style="color: #ff00ff;">node02</span></strong></span>
-    
-    <span style="font-family: verdana,geneva;">Node Attributes:</span>
-    <span style="font-family: verdana,geneva;">* Node node02:</span>
-    <span style="font-family: verdana,geneva;"> + node01-eth0                       : up</span>
-    
-    <span style="font-family: verdana,geneva;">Migration summary:</span>
-    <span style="font-family: verdana,geneva;">* Node node02:</span>
+<span style="font-family: verdana,geneva;">Online: [ node02 ]</span>
+<span style="font-family: verdana,geneva;">OFFLINE: [ node01 ]</span>
+
+<span style="font-family: verdana,geneva;"> p_ip   (ocf::heartbeat:IPaddr2):       Started <strong><span style="color: #ff00ff;">node02</span></strong></span>
+
+<span style="font-family: verdana,geneva;">Node Attributes:</span>
+<span style="font-family: verdana,geneva;">* Node node02:</span>
+<span style="font-family: verdana,geneva;"> + node01-eth0                       : up</span>
+
+<span style="font-family: verdana,geneva;">Migration summary:</span>
+<span style="font-family: verdana,geneva;">* Node node02:</span></pre>
 
 
-
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ip addr show</span>
-    <span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
-    <span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
-    <span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
-    <span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:00 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;"> inet 192.168.28.122/24 brd 192.168.28.255 scope global eth0</span>
-    <span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:01 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global eth1</span>
-    <span style="font-family: verdana,geneva;">4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:02 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:03 brd ff:ff:ff:ff:ff:ff</span>
-    <span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
-    <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:04 brd ff:ff:ff:ff:ff:ff</span>
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ip addr show</span>
+<span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
+<span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
+<span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:00 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;"> inet 192.168.28.122/24 brd 192.168.28.255 scope global eth0</span>
+<span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:01 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global eth1</span>
+<span style="font-family: verdana,geneva;">4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:02 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:03 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:04 brd ff:ff:ff:ff:ff:ff</span></pre>
 
 
+<pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ifconfig</span>
+<span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:92:00</span>
+<span style="font-family: verdana,geneva;"> inet addr:192.168.28.122  Bcast:192.168.28.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:1106 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:667 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:186902 (182.5 KiB)  TX bytes:233273 (227.8 KiB)</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ifconfig</span>
-    <span style="font-family: verdana,geneva;">eth0      Link encap:Ethernet  HWaddr 00:16:3E:39:92:00</span>
-    <span style="font-family: verdana,geneva;"> inet addr:192.168.28.122  Bcast:192.168.28.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:1106 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:667 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:186902 (182.5 KiB)  TX bytes:233273 (227.8 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">eth1</span></strong>      Link encap:Ethernet  HWaddr 00:16:3E:39:92:01</span>
-    <span style="font-family: verdana,geneva;"> inet addr:<strong><span style="color: #ff00ff;">192.168.200.200 </span></strong> Bcast:192.168.200.255  Mask:255.255.255.0</span>
-    <span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:39 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:25 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:5349 (5.2 KiB)  TX bytes:3347 (3.2 KiB)</span>
-    
-    <span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
-    <span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
-    <span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
-    <span style="font-family: verdana,geneva;"> RX packets:1422 errors:0 dropped:0 overruns:0 frame:0</span>
-    <span style="font-family: verdana,geneva;"> TX packets:1422 errors:0 dropped:0 overruns:0 carrier:0</span>
-    <span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
-    <span style="font-family: verdana,geneva;"> RX bytes:2268820 (2.1 MiB)  TX bytes:2268820 (2.1 MiB)</span>
+<span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">eth1</span></strong>      Link encap:Ethernet  HWaddr 00:16:3E:39:92:01</span>
+<span style="font-family: verdana,geneva;"> inet addr:<strong><span style="color: #ff00ff;">192.168.200.200 </span></strong> Bcast:192.168.200.255  Mask:255.255.255.0</span>
+<span style="font-family: verdana,geneva;"> UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:39 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:25 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:1000</span>
+<span style="font-family: verdana,geneva;"> RX bytes:5349 (5.2 KiB)  TX bytes:3347 (3.2 KiB)</span>
+
+<span style="font-family: verdana,geneva;">lo        Link encap:Local Loopback</span>
+<span style="font-family: verdana,geneva;"> inet addr:127.0.0.1  Mask:255.0.0.0</span>
+<span style="font-family: verdana,geneva;"> UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
+<span style="font-family: verdana,geneva;"> RX packets:1422 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="font-family: verdana,geneva;"> TX packets:1422 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="font-family: verdana,geneva;"> collisions:0 txqueuelen:0</span>
+<span style="font-family: verdana,geneva;"> RX bytes:2268820 (2.1 MiB)  TX bytes:2268820 (2.1 MiB)</span></pre>
 
 
 さて、pingはどうなったかというと…
+<pre><span style="font-family: verdana,geneva;">[root@node03 ~]# ping 192.168.200.200</span>
 
-    
-    <span style="font-family: verdana,geneva;">[root@node03 ~]# ping 192.168.200.200</span>
-    
-    <span style="font-family: verdana,geneva;"><省略></span>
-    <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=14 ttl=64 time=0.159 ms</span>
-    <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=15 ttl=64 time=0.169 ms</span>
-    <strong><span style="font-family: verdana,geneva; color: #ff00ff;">64 bytes from 192.168.200.200: icmp_seq=17 ttl=64 time=3.22 ms</span></strong>
-    <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=18 ttl=64 time=0.226 ms</span>
-    <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=19 ttl=64 time=0.177 ms</span>
-    <span style="font-family: verdana,geneva;"><省略></span>
+<span style="font-family: verdana,geneva;"><省略></span>
+<span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=14 ttl=64 time=0.159 ms</span>
+<span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=15 ttl=64 time=0.169 ms</span>
+<strong><span style="font-family: verdana,geneva; color: #ff00ff;">64 bytes from 192.168.200.200: icmp_seq=17 ttl=64 time=3.22 ms</span></strong>
+<span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=18 ttl=64 time=0.226 ms</span>
+<span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=19 ttl=64 time=0.177 ms</span>
+<span style="font-family: verdana,geneva;"><省略></span></pre>
 
 
 確かに、一瞬遅延してますね。
@@ -729,16 +679,14 @@ IPアドレス「192.168.200.200」はnode02にフェイルオーバしました
 
 ちなみに、node01,node02,node03は仮想マシン(xen)です。
 ネットワークスイッチは経由していません。
-
-    
-    <span style="font-family: verdana,geneva;">[root@ikedaj-81 ~]# cat /etc/redhat-release</span>
-    <span style="font-family: verdana,geneva;">Red Hat Enterprise Linux Server release 5.7 (Tikanga)</span>
-    <span style="font-family: verdana,geneva;">[root@ikedaj-81 ~]# xm list</span>
-    <span style="font-family: verdana,geneva;">Name                                      ID Mem(MiB) VCPUs State   Time(s)</span>
-    <span style="font-family: verdana,geneva;">Domain-0                                   0      967     2 r-----   9522.9</span>
-    <span style="font-family: verdana,geneva;">node01                                    13      256     1 -b----     26.3</span>
-    <span style="font-family: verdana,geneva;">node02                                    14      256     1 -b----     25.0</span>
-    <span style="font-family: verdana,geneva;">node03                                     3      256     1 -b----   2653.8</span>
+<pre><span style="font-family: verdana,geneva;">[root@ikedaj-81 ~]# cat /etc/redhat-release</span>
+<span style="font-family: verdana,geneva;">Red Hat Enterprise Linux Server release 5.7 (Tikanga)</span>
+<span style="font-family: verdana,geneva;">[root@ikedaj-81 ~]# xm list</span>
+<span style="font-family: verdana,geneva;">Name                                      ID Mem(MiB) VCPUs State   Time(s)</span>
+<span style="font-family: verdana,geneva;">Domain-0                                   0      967     2 r-----   9522.9</span>
+<span style="font-family: verdana,geneva;">node01                                    13      256     1 -b----     26.3</span>
+<span style="font-family: verdana,geneva;">node02                                    14      256     1 -b----     25.0</span>
+<span style="font-family: verdana,geneva;">node03                                     3      256     1 -b----   2653.8</span></pre>
 
 
 そういえば、「オレオレマスター」状態が確認されたということは

@@ -61,15 +61,13 @@ CentOS上にインストールする場合、CentOS 同梱版の Pacemaker と�
 **/etc/yum.repos.d/CentOS-Base.repo 設定例**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    [base]
-    (...)
-    exclude=pacemaker* corosync* resource-agents* crmsh* cluster-glue* libqb* fence-agents* pcs*
-    
-    [updates]
-    (...)
-    exclude=pacemaker* corosync* resource-agents* crmsh* cluster-glue* libqb* fence-agents* pcs*
+<td style="padding:0.5em;" ><pre>[base]
+(...)
+exclude=pacemaker* corosync* resource-agents* crmsh* cluster-glue* libqb* fence-agents* pcs*
+
+[updates]
+(...)
+exclude=pacemaker* corosync* resource-agents* crmsh* cluster-glue* libqb* fence-agents* pcs*</pre>
 
 
  
@@ -82,10 +80,8 @@ CentOS上にインストールする場合、CentOS 同梱版の Pacemaker と�
 以下の手順で Pacemakerをインストールします。 yum コマンドにより必要な依存パッケージも自動的にインストールされます。
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # yum install -y pacemaker-repo-1.1.15-1.1.el7.x86_64.rpm
-    # yum install -y pacemaker-all
+<td style="padding:0.5em;" ><pre># yum install -y pacemaker-repo-1.1.15-1.1.el7.x86_64.rpm
+# yum install -y pacemaker-all</pre>
 
 
  
@@ -102,35 +98,33 @@ corosyncの動作に必要な設定を行います。 以下は最低限必要�
 **/etc/corosync/corosync.conf 設定例**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    totem {
-            version: 2
-            token: 1000
-            rrp_mode: active
-            interface {
-                    ringnumber: 0
-                    bindnetaddr: 192.168.101.0
-                    mcastaddr: 239.255.1.1
-                    mcastport: 5405
-            }
-            interface {
-                    ringnumber: 1
-                    bindnetaddr: 192.168.102.0
-                    mcastaddr: 239.255.1.2
-                    mcastport: 5405
-            }
-    }
-    
-    logging {
-            syslog_facility: daemon
-            debug: off
-    }
-    
-    quorum {
-            provider: corosync_votequorum
-            expected_votes: 2
-    }
+<td style="padding:0.5em;" ><pre>totem {
+        version: 2
+        token: 1000
+        rrp_mode: active
+        interface {
+                ringnumber: 0
+                bindnetaddr: 192.168.101.0
+                mcastaddr: 239.255.1.1
+                mcastport: 5405
+        }
+        interface {
+                ringnumber: 1
+                bindnetaddr: 192.168.102.0
+                mcastaddr: 239.255.1.2
+                mcastport: 5405
+        }
+}
+
+logging {
+        syslog_facility: daemon
+        debug: off
+}
+
+quorum {
+        provider: corosync_votequorum
+        expected_votes: 2
+}</pre>
 
 
  
@@ -153,10 +147,8 @@ corosyncの認証を行うための認証鍵ファイルを作成します。
 **/etc/corosync/authkey 設定手順例**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # corosync-keygen -l
-    # scp -p /etc/corosync/authkey root@node2:/etc/corosync/authkey
+<td style="padding:0.5em;" ><pre># corosync-keygen -l
+# scp -p /etc/corosync/authkey root@node2:/etc/corosync/authkey</pre>
 
 
  
@@ -173,9 +165,7 @@ Pacemakerの内部プロセスが故障した場合もノード故障として�
 **/etc/sysconfig/pacemaker (追加設定行)**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    export PCMK_fail_fast=yes
+<td style="padding:0.5em;" ><pre>export PCMK_fail_fast=yes</pre>
 
 
  
@@ -186,9 +176,7 @@ Pacemakerの内部プロセスが故障した場合もノード故障として�
 **/etc/sysconfig/pacemaker (追加設定行)**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    PCMK_fail_fast=yes
+<td style="padding:0.5em;" ><pre>PCMK_fail_fast=yes</pre>
 
 
  
@@ -212,28 +200,26 @@ RHEL 6では、以下の設定を行うためクラスタ起動スクリプト�
 **/etc/init/pacemaker.combined.conf (修正箇所抜粋)**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td >
-    
-    <tt><font color="#FF6600">--- pacemaker.combined.conf.1.1.15.org  2016-09-09 11:10:23.000000000 +0900</font>
-    <font color="#009900">+++ pacemaker.combined.conf     2016-12-28 16:16:03.575999967 +0900</font>
-    <font color="#0000FF">@@ -22,7 +22,7 @@</font>
-     pre-start script
-         # setup the software watchdog which corosync uses.
-         # rewrite according to environment.
-    <font color="#FF6600">-    [ -c /dev/watchdog ] || modprobe softdog soft_margin=60</font>
-    <font color="#009900">+    [ -c /dev/watchdog ] || modprobe softdog</font>
-         pidof corosync || start corosync
-    
-         # if you use corosync-notifyd, uncomment the line below.
-    <font color="#0000FF">@@ -52,7 +52,7 @@</font>
-         rm -f "/var/run/$prog.pid"
-    
-         # if you use watchdog of corosync, uncomment the line below.
-    <font color="#FF6600">-    #pidof corosync || false</font>
-    <font color="#009900">+    pidof corosync || false</font>
-    
-         pidof crmd || stop corosync
-    </tt>
+<td ><pre><tt><font color="#FF6600">--- pacemaker.combined.conf.1.1.15.org  2016-09-09 11:10:23.000000000 +0900</font>
+<font color="#009900">+++ pacemaker.combined.conf     2016-12-28 16:16:03.575999967 +0900</font>
+<font color="#0000FF">@@ -22,7 +22,7 @@</font>
+ pre-start script
+     # setup the software watchdog which corosync uses.
+     # rewrite according to environment.
+<font color="#FF6600">-    [ -c /dev/watchdog ] || modprobe softdog soft_margin=60</font>
+<font color="#009900">+    [ -c /dev/watchdog ] || modprobe softdog</font>
+     pidof corosync || start corosync
+
+     # if you use corosync-notifyd, uncomment the line below.
+<font color="#0000FF">@@ -52,7 +52,7 @@</font>
+     rm -f "/var/run/$prog.pid"
+
+     # if you use watchdog of corosync, uncomment the line below.
+<font color="#FF6600">-    #pidof corosync || false</font>
+<font color="#009900">+    pidof corosync || false</font>
+
+     pidof crmd || stop corosync
+</tt></pre>
 
 </td></tr></table>
  
@@ -253,28 +239,26 @@ RHEL 7では、以下の設定を行うためクラスタ起動スクリプト(s
 **/etc/systemd/system/corosync.service (修正箇所抜粋)**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td >
-    
-    <tt># cp -p /usr/lib/systemd/system/corosync.service /etc/systemd/system
-    # vi /etc/systemd/system/corosync.service
-    
-    <font color="#FF6600">--- /usr/lib/systemd/system/corosync.service    2016-09-09 10:47:56.000000000 +0900</font>
-    <font color="#009900">+++ /etc/systemd/system/corosync.service        2016-12-28 16:10:59.131016326 +0900</font>
-    <font color="#0000FF">@@ -15,11 +15,11 @@</font>
-     #  pacemaker.service, and if you want to exert the watchdog when a
-     #  corosync process is terminated abnormally,
-     #  uncomment the line of the following Restart= and RestartSec=.
-    <font color="#FF6600">-#Restart=on-failure</font>
-    <font color="#009900">+Restart=on-failure</font>
-     #  Specify a period longer than soft_margin as RestartSec.
-    <font color="#FF6600">-#RestartSec=70</font>
-    <font color="#009900">+RestartSec=70</font>
-     #  rewrite according to environment.
-    <font color="#FF6600">-#ExecStartPre=/sbin/modprobe softdog soft_margin=60</font>
-    <font color="#009900">+ExecStartPre=/sbin/modprobe softdog</font>
-    
-     [Install]
-     WantedBy=multi-user.target</tt>
+<td ><pre><tt># cp -p /usr/lib/systemd/system/corosync.service /etc/systemd/system
+# vi /etc/systemd/system/corosync.service
+
+<font color="#FF6600">--- /usr/lib/systemd/system/corosync.service    2016-09-09 10:47:56.000000000 +0900</font>
+<font color="#009900">+++ /etc/systemd/system/corosync.service        2016-12-28 16:10:59.131016326 +0900</font>
+<font color="#0000FF">@@ -15,11 +15,11 @@</font>
+ #  pacemaker.service, and if you want to exert the watchdog when a
+ #  corosync process is terminated abnormally,
+ #  uncomment the line of the following Restart= and RestartSec=.
+<font color="#FF6600">-#Restart=on-failure</font>
+<font color="#009900">+Restart=on-failure</font>
+ #  Specify a period longer than soft_margin as RestartSec.
+<font color="#FF6600">-#RestartSec=70</font>
+<font color="#009900">+RestartSec=70</font>
+ #  rewrite according to environment.
+<font color="#FF6600">-#ExecStartPre=/sbin/modprobe softdog soft_margin=60</font>
+<font color="#009900">+ExecStartPre=/sbin/modprobe softdog</font>
+
+ [Install]
+ WantedBy=multi-user.target</tt></pre>
 
 </td></tr></table>
  
@@ -282,22 +266,20 @@ RHEL 7では、以下の設定を行うためクラスタ起動スクリプト(s
 **/etc/systemd/system/pacemaker.service (修正箇所抜粋)**
     
 <table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td >
-    
-    <tt># cp -p /usr/lib/systemd/system/pacemaker.service /etc/systemd/system
-    # vi /etc/systemd/system/pacemaker.service
-    
-    <font color="#FF6600">--- /usr/lib/systemd/system/pacemaker.service   2015-05-29 17:30:30.000000000 +0900</font>
-    <font color="#009900">+++ /etc/systemd/system/pacemaker.service       2015-06-08 15:35:12.594000000 +0900</font>
-    <font color="#0000FF">@@ -43,7 +43,7 @@</font>
-     # If you want Corosync to stop whenever Pacemaker is stopped,
-     # uncomment the next line too:
-     #
-    <font color="#FF6600">-# ExecStopPost=/bin/sh -c 'pidof crmd || killall -TERM corosync'</font>
-    <font color="#009900">+ExecStopPost=/bin/sh -c 'pidof crmd || killall -TERM corosync'</font>
-    
-     # Uncomment this for older versions of systemd that didn't support
-     # TimeoutStopSec</tt>
+<td ><pre><tt># cp -p /usr/lib/systemd/system/pacemaker.service /etc/systemd/system
+# vi /etc/systemd/system/pacemaker.service
+
+<font color="#FF6600">--- /usr/lib/systemd/system/pacemaker.service   2015-05-29 17:30:30.000000000 +0900</font>
+<font color="#009900">+++ /etc/systemd/system/pacemaker.service       2015-06-08 15:35:12.594000000 +0900</font>
+<font color="#0000FF">@@ -43,7 +43,7 @@</font>
+ # If you want Corosync to stop whenever Pacemaker is stopped,
+ # uncomment the next line too:
+ #
+<font color="#FF6600">-# ExecStopPost=/bin/sh -c 'pidof crmd || killall -TERM corosync'</font>
+<font color="#009900">+ExecStopPost=/bin/sh -c 'pidof crmd || killall -TERM corosync'</font>
+
+ # Uncomment this for older versions of systemd that didn't support
+ # TimeoutStopSec</tt></pre>
 
 </td></tr></table>
  
@@ -317,9 +299,7 @@ Pacemakerを起動するには以下のコマンドを実行します。クラ�
 #### 6.1.1. 起動コマンド(RHEL 6用)
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # initctl start pacemaker.combined
+<td style="padding:0.5em;" ><pre># initctl start pacemaker.combined</pre>
 
 
  
@@ -328,9 +308,7 @@ Pacemakerを起動するには以下のコマンドを実行します。クラ�
 #### 6.1.2. 起動コマンド(RHEL 7用)
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # systemctl start pacemaker
+<td style="padding:0.5em;" ><pre># systemctl start pacemaker</pre>
 
 
  
@@ -341,10 +319,8 @@ Pacemakerを起動するには以下のコマンドを実行します。クラ�
 正常に起動すると、crm_mon コマンドの表示でノードが Online 状態となります。
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # crm_mon -D1
-    Online: [ node1 node2 ]
+<td style="padding:0.5em;" ><pre># crm_mon -D1
+Online: [ node1 node2 ]</pre>
 
 
  
@@ -357,9 +333,7 @@ Pacemakerを停止するには以下のコマンドを実行します。クラ�
 #### 6.3.1. 終了コマンド (RHEL 6用)
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # initctl stop pacemaker.combined
+<td style="padding:0.5em;" ><pre># initctl stop pacemaker.combined</pre>
 
 
  
@@ -368,9 +342,7 @@ Pacemakerを停止するには以下のコマンドを実行します。クラ�
 #### 6.3.2. 終了コマンド (RHEL 7用)
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # systemctl stop pacemaker
+<td style="padding:0.5em;" ><pre># systemctl stop pacemaker</pre>
 
 
  
@@ -384,10 +356,8 @@ Pacemakerを停止するには以下のコマンドを実行します。クラ�
 
   * Pacemaker本体のアンインストール 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # yum erase pacemaker corocync libqb cluster-glue cluster-glue-libs resource-agents \
-    pm_crmgen pm_logconv-cs pm_diskd pm_extras crmsh pssh
+<td style="padding:0.5em;" ><pre># yum erase pacemaker corocync libqb cluster-glue cluster-glue-libs resource-agents \
+pm_crmgen pm_logconv-cs pm_diskd pm_extras crmsh pssh</pre>
 
 
  
@@ -395,11 +365,9 @@ Pacemakerを停止するには以下のコマンドを実行します。クラ�
 
   * Pacemakerリポジトリパッケージのアンインストール 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" >
-    
-    # yum erase -y pacemaker-repo
-    # yum list installed | grep pacemaker-repo
-    #
+<td style="padding:0.5em;" ><pre># yum erase -y pacemaker-repo
+# yum list installed | grep pacemaker-repo
+#</pre>
 
 
  

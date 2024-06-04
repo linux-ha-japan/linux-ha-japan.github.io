@@ -239,45 +239,41 @@ DRBD 8.3.14および8.4.2以降では、バリア機能が無効となったの�
 >   * /sys/block/drbdXX/drbd/ で世代識別子(Generation ID)を確認することができます。
 
 > 
-
->     
->     
->     <code>
->     # cat /sys/block/drbd0/drbd/meta_data/data_gen_id
->     0xC33DD9E7F1CEB539
->     0x0000000000000000
->     0x42813628676CC944
->     0x0000000000000004
->     </code>
->     
+<pre>
+<code>
+# cat /sys/block/drbd0/drbd/meta_data/data_gen_id
+0xC33DD9E7F1CEB539
+0x0000000000000000
+0x42813628676CC944
+0x0000000000000004
+</code>
+</pre>
 > 
 > 
 これってdrbdadmコマンドでみれるアレのことやね。
+<pre>
+<code>
+# drbdadm show-gi all
 
->     
->     
->     <code>
->     # drbdadm show-gi all
->     
->            +--<  Current data generation UUID  >-
->            |               +--<  Bitmap's base data generation UUID  >-
->            |               |                 +--<  younger history UUID  >-
->            |               |                 |         +-<  older history  >-
->            V               V                 V         V
->     C33DD9E7F1CEB539:0000000000000000:42813628676CC944:0000000000000004:1:1:1:1:0:0:0
->                                                                         ^ ^ ^ ^ ^ ^ ^
->                                           -<  Data consistency flag  >--+ | | | | | |
->                                  -<  Data was/is currently up-to-date  >--+ | | | | |
->                                       -<  Node was/is currently primary  >--+ | | | |
->                                       -<  Node was/is currently connected  >--+ | | |
->              -<  Node was in the progress of setting all bits in the bitmap  >--+ | |
->                             -<  The peer's disk was out-dated or inconsistent  >--+ |
->           -<  This node was a crashed primary, and has not seen its peer since   >--+
->     
->     flags: Primary, Connected, UpToDate
->     meta-data: need apply-al
->     </code>
->     
+       +--<  Current data generation UUID  >-
+       |               +--<  Bitmap's base data generation UUID  >-
+       |               |                 +--<  younger history UUID  >-
+       |               |                 |         +-<  older history  >-
+       V               V                 V         V
+C33DD9E7F1CEB539:0000000000000000:42813628676CC944:0000000000000004:1:1:1:1:0:0:0
+                                                                    ^ ^ ^ ^ ^ ^ ^
+                                      -<  Data consistency flag  >--+ | | | | | |
+                             -<  Data was/is currently up-to-date  >--+ | | | | |
+                                  -<  Node was/is currently primary  >--+ | | | |
+                                  -<  Node was/is currently connected  >--+ | | |
+         -<  Node was in the progress of setting all bits in the bitmap  >--+ | |
+                        -<  The peer's disk was out-dated or inconsistent  >--+ |
+      -<  This node was a crashed primary, and has not seen its peer since   >--+
+
+flags: Primary, Connected, UpToDate
+meta-data: need apply-al
+</code>
+</pre>
 > 
 > 
 

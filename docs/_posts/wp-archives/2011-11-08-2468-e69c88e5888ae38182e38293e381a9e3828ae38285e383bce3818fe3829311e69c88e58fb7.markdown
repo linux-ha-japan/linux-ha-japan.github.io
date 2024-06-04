@@ -31,27 +31,25 @@ tags:
 
 Clustre-glueは、lrmdやSTONITH、その他各種ライブラリを含むコンポーネントです。
 
+<pre><span style="font-family: verdana,geneva;">The highlights: 
 
-    
-    <span style="font-family: verdana,geneva;">The highlights: 
-    
-    <strong>新しい STONITH プラグイン(libvirt, vcenter, hetzner)が追加されました。</strong>
-    - new <span style="color: #000000;">external/libvirt</span> stonith plugin (thanks to Holger Teutsch)
-    - new external/vcenter stonith plugin (thanks to Nhan Ngo Dinh)
-    - new external/hetzner stonith plugin (thanks to RaSca) 
-    
-    <strong><a href="http://www.linux-ha.org/wiki/SBD_Fencing" target="_blank">sbd</a>(storage-based death) が複数デバイスにも対応しました。</strong>
-    - support for multiple devices in sbd 
-    
-    <strong>lrmd(local resource management datemon)がCIB(Cluster Information Base)からだけではなく、
-    ローカルの設定ファイルからもパラメータを取得することができるようになりました。</strong>
-    - lrmd can read parameters from local files, not only from CIB
-     (important for configurations with sensitive data) 
-    
-    <strong>重複するログの出力を制御することができるようになりました。</strong>
-    - log spamming control
-     (allows controling number of similar messages logged)
-    </span>
+<strong>新しい STONITH プラグイン(libvirt, vcenter, hetzner)が追加されました。</strong>
+- new <span style="color: #000000;">external/libvirt</span> stonith plugin (thanks to Holger Teutsch)
+- new external/vcenter stonith plugin (thanks to Nhan Ngo Dinh)
+- new external/hetzner stonith plugin (thanks to RaSca) 
+
+<strong><a href="http://www.linux-ha.org/wiki/SBD_Fencing" target="_blank">sbd</a>(storage-based death) が複数デバイスにも対応しました。</strong>
+- support for multiple devices in sbd 
+
+<strong>lrmd(local resource management datemon)がCIB(Cluster Information Base)からだけではなく、
+ローカルの設定ファイルからもパラメータを取得することができるようになりました。</strong>
+- lrmd can read parameters from local files, not only from CIB
+ (important for configurations with sensitive data) 
+
+<strong>重複するログの出力を制御することができるようになりました。</strong>
+- log spamming control
+ (allows controling number of similar messages logged)
+</span></pre>
 
 
 [
@@ -59,46 +57,44 @@ LCMC 1.0.2のリリース](http://www.gossamer-threads.com/lists/linuxha/users/7
 
 今回のリリースはバグフィックスがメインなので大きな機能追加はありません。
 ちなみに[ロゴ](http://lcmc.sourceforge.net/)はむりやりピンクになってます。
+<pre><span style="font-family: verdana,geneva;">The most important changes:
 
-    
-    <span style="font-family: verdana,geneva;">The most important changes:
-    
-    <strong>Mavenのpom.xmlを追加しました。</strong>
-    * add maven pom.xml file 
-    
-    <strong>CentOS 5でDRBDをインストールする際の問題を解決しました。</strong>
-    * fix installation of DRBD on centos5 
-    
-    <strong>サードパーティのライブラリで発生する警告を抑止しました。</strong>
-    * @SuppressWarnings in the 3rd party libs 
-    
-    <strong>ディレクトリ構造を変更しました。</strong>
-    * change directory structure to the latest standard 
-    
-    <strong>仮想環境用のオプションを追加しました。</strong>
-    * add options in VM wizard for XEN 
-    
-    <strong>brctlコマンドの検索パスを追加しました。</strong>
-    * search for brctl in /usr/sbin /sbin and /usr/local/sbin dirs 
-    
-    <strong>旧パッケージ(DRBD-MC)で使用していた名称をLCMCに置き換えました。</strong>
-    * change some old names to LCMC 
-    
-    <strong>Java 7でコンパイルしました。</strong>
-    * make it compile with Java 7 
-    
-    <strong>左クリックでポップアップが起動しないようにしました。</strong>
-    * don't let the left click to show a popup 
-    
-    <strong>DRBD 関連の修正</strong>
-    * fix the "after" DRBD option in DRBD < 8.4
-    * use units for all DRBD numeric fields 
-    
-    <strong>アイコンを変更しました。</strong>
-    * change application icon 
-    
-    <strong>startupスクリプトを追加しました。</strong>
-    * add LCMC startup script</span>
+<strong>Mavenのpom.xmlを追加しました。</strong>
+* add maven pom.xml file 
+
+<strong>CentOS 5でDRBDをインストールする際の問題を解決しました。</strong>
+* fix installation of DRBD on centos5 
+
+<strong>サードパーティのライブラリで発生する警告を抑止しました。</strong>
+* @SuppressWarnings in the 3rd party libs 
+
+<strong>ディレクトリ構造を変更しました。</strong>
+* change directory structure to the latest standard 
+
+<strong>仮想環境用のオプションを追加しました。</strong>
+* add options in VM wizard for XEN 
+
+<strong>brctlコマンドの検索パスを追加しました。</strong>
+* search for brctl in /usr/sbin /sbin and /usr/local/sbin dirs 
+
+<strong>旧パッケージ(DRBD-MC)で使用していた名称をLCMCに置き換えました。</strong>
+* change some old names to LCMC 
+
+<strong>Java 7でコンパイルしました。</strong>
+* make it compile with Java 7 
+
+<strong>左クリックでポップアップが起動しないようにしました。</strong>
+* don't let the left click to show a popup 
+
+<strong>DRBD 関連の修正</strong>
+* fix the "after" DRBD option in DRBD < 8.4
+* use units for all DRBD numeric fields 
+
+<strong>アイコンを変更しました。</strong>
+* change application icon 
+
+<strong>startupスクリプトを追加しました。</strong>
+* add LCMC startup script</span></pre>
 
 
 [
@@ -109,14 +105,12 @@ Ubuntu 10.04向けに下記のパッケージがアップデートされまし�
 どのパッケージも現行の最新版ですね。
 ところで、Ubuntu 11.10向けは一体…？
 
-
-    
-    <span style="font-family: verdana,geneva;">This update includes:
-    » Corosync 1.4.2
-    » Heartbeat 3.0.5
-    » cluster-glue 1.0.8
-    » resource-agents 3.9.2
-    » Pacemaker 1.1.6</span>
+<pre><span style="font-family: verdana,geneva;">This update includes:
+» Corosync 1.4.2
+» Heartbeat 3.0.5
+» cluster-glue 1.0.8
+» resource-agents 3.9.2
+» Pacemaker 1.1.6</span></pre>
 
 
 [
@@ -126,64 +120,60 @@ DRBD 8.3.12のリリース
 今回のリリースはバグフィックスがメインなので、大きな機能追加はありませんでした。
 ただし、PacemakerからDRBDを制御する際に利用する drbd RAに修正が入っているため、この点は別途ご紹介したいと思います。
 
+<pre><span style="font-family: verdana,geneva;">8.3.12 (api:88/proto:86-96)
+--------
+<strong>DRBD 8.3.7以前のバージョンとの互換性に関する修正</strong>
+ * Fixed a rare compatibility issue with DRBD's older than 8.3.7
+ when negotiating the bio_size 
 
-    
-    <span style="font-family: verdana,geneva;">8.3.12 (api:88/proto:86-96)
-    --------
-    <strong>DRBD 8.3.7以前のバージョンとの互換性に関する修正</strong>
-     * Fixed a rare compatibility issue with DRBD's older than 8.3.7
-     when negotiating the bio_size 
-    
-    <strong>pause/unpauseが並行して実行された場合に発生する競合条件での不具合を修正</strong>
-     * Fixed a rare race condition where an empty resync could stall with
-     if pause/unpause events happen in parallel 
-    
-    <strong>再接続処理を高速化</strong>
-     * Made the re-establishing of connections quicker, if it got a broken pipe
-     once. Previously there was a bug in the code caused it to waste the first
-     successful established connection after a broken pipe event. 
-    
-    <strong>DRBDの複数リソースをPacemakerのgroupで管理する場合の不具合修正(<span style="color: #ff00ff;">後述</span>)</strong>
-     * crm-fence-peer.sh: Can now deal with multiple DRBD instances being in
-     a master/slave group 
-    
-    <strong>故障デバイスを強制的に切り離すための--forceオプションを追加。</strong><strong>disk-timeoutオプションでタイムアウトも設定できるようになりました。</strong>
-     * Allow detach from frozen backing devices with the new --force option;
-     configurable timeout for backing devices by the new disk-timeout option
-    </span>
+<strong>pause/unpauseが並行して実行された場合に発生する競合条件での不具合を修正</strong>
+ * Fixed a rare race condition where an empty resync could stall with
+ if pause/unpause events happen in parallel 
+
+<strong>再接続処理を高速化</strong>
+ * Made the re-establishing of connections quicker, if it got a broken pipe
+ once. Previously there was a bug in the code caused it to waste the first
+ successful established connection after a broken pipe event. 
+
+<strong>DRBDの複数リソースをPacemakerのgroupで管理する場合の不具合修正(<span style="color: #ff00ff;">後述</span>)</strong>
+ * crm-fence-peer.sh: Can now deal with multiple DRBD instances being in
+ a master/slave group 
+
+<strong>故障デバイスを強制的に切り離すための--forceオプションを追加。</strong><strong>disk-timeoutオプションでタイムアウトも設定できるようになりました。</strong>
+ * Allow detach from frozen backing devices with the new --force option;
+ configurable timeout for backing devices by the new disk-timeout option
+</span></pre>
 
 
 
 **「DRBDの複数リソースをPacemakerのgroupで管理する場合の不具合修正」について**
 DRBDに複数のリソースを設定する場合、drbd.confに複数のresourceセクションを作成します。
 
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">resource r0</span></strong> {
+        device        minor 0;
+        meta-disk    internal;
+        disk            /dev/cciss/c0d1p1;
 
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">resource r0</span></strong> {
-            device        minor 0;
-            meta-disk    internal;
-            disk            /dev/cciss/c0d1p1;
-    
-            on node01{
-                    address 192.168.200.101:7790;
-            }
-            on node02{
-                    address 192.168.200.102:7790;
-            }
-    }
-    
-    <strong><span style="color: #ff00ff;">resource r1 </span></strong>{
-    </span><span style="font-family: verdana,geneva;">        device        minor 1;
-            meta-disk    internal;
-            disk            /dev/cciss/c0d1p2;
-    
-            on node01{
-                    address 192.168.200.101:7791;
-            }
-            on node02{
-                    address 192.168.200.102:7791;
-            }</span><span style="font-family: verdana,geneva;">
-    }</span>
+        on node01{
+                address 192.168.200.101:7790;
+        }
+        on node02{
+                address 192.168.200.102:7790;
+        }
+}
+
+<strong><span style="color: #ff00ff;">resource r1 </span></strong>{
+</span><span style="font-family: verdana,geneva;">        device        minor 1;
+        meta-disk    internal;
+        disk            /dev/cciss/c0d1p2;
+
+        on node01{
+                address 192.168.200.101:7791;
+        }
+        on node02{
+                address 192.168.200.102:7791;
+        }</span><span style="font-family: verdana,geneva;">
+}</span></pre>
 
 
 さて、いきなりちょっと話がかわりますが、handlersセクションとdiskセクションの設定について。
@@ -201,17 +191,15 @@ handersセクションとdiskセクションに以下の行を追加して、設
 drbd.confの変更を反映するためには、「# drbdadm adjust all」コマンドを実行します。
 
 設定例(drbd.conf 一部抜粋)
+<pre><span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
+ fence-peer                "/usr/lib/drbd/crm-fence-peer.sh";
+ after-resync-target     "/usr/lib/drbd/crm-unfence-peer.sh";
+ ...
+ }
 
-    
-    <span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
-     fence-peer                "/usr/lib/drbd/crm-fence-peer.sh";
-     after-resync-target     "/usr/lib/drbd/crm-unfence-peer.sh";
-     ...
-     }
-    
-    <strong><span style="color: #ff00ff;">disk</span></strong> {
-     fencing         resource-only;
-    }</span>
+<strong><span style="color: #ff00ff;">disk</span></strong> {
+ fencing         resource-only;
+}</span></pre>
 
 
 ※ 詳細は「The DRBD User's Guide [8.3.2. Resource-level fencing using the Cluster Information Base (CIB)](http://www.drbd.org/users-guide/s-pacemaker-fencing.html#s-pacemaker-fencing-cib)」を参照
@@ -222,42 +210,38 @@ drbd.confの変更を反映するためには、「# drbdadm adjust all」コマ
 この場合、もともとのhandlersセクションの設定ではなく、resourceセクションの設定が優先して使用されます。
 また、crm-fence-peer.sh および crm-unfence-peer.sh には、--id-prefixを指定します。
 
-
-    
-    <span style="font-family: verdana,geneva;"><strong><strong>--id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;"><リソース名></span></strong></strong></span>
+<pre><span style="font-family: verdana,geneva;"><strong><strong>--id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;"><リソース名></span></strong></strong></span></pre>
 
 
 設定例(drbd.conf 一部抜粋)
+<pre><span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
+ fence-peer                "/usr/lib/drbd/crm-fence-peer.sh";
+ after-resync-target     "/usr/lib/drbd/crm-unfence-peer.sh";
+ ...
+ }
 
-    
-    <span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
-     fence-peer                "/usr/lib/drbd/crm-fence-peer.sh";
-     after-resync-target     "/usr/lib/drbd/crm-unfence-peer.sh";
-     ...
-     }
-    
-    <strong><span style="color: #ff00ff;">disk</span></strong> {
-     on-io-error     detach;
-     fencing         resource-only;
-    }
-    
-    <strong><span style="color: #ff00ff;">resource r0</span></strong> {
-     ...
-     handlers {
-    <strong>fence-peer               "/usr/lib/drbd/crm-fence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r0</span>";
-     after-resync-target    "/usr/lib/drbd/crm-unfence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r0</span>";</strong>
-     }
-     ...
-    }
-    
-    <strong><span style="color: #ff00ff;">resource r1 </span></strong>{
-     ...
-     handlers {
-     <strong>fence-peer              "/usr/lib/drbd/crm-fence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r1</span>";
-     after-resync-target    "/usr/lib/drbd/crm-unfence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r1</span>";</strong>
-     }
-     ...
-    }</span>
+<strong><span style="color: #ff00ff;">disk</span></strong> {
+ on-io-error     detach;
+ fencing         resource-only;
+}
+
+<strong><span style="color: #ff00ff;">resource r0</span></strong> {
+ ...
+ handlers {
+<strong>fence-peer               "/usr/lib/drbd/crm-fence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r0</span>";
+ after-resync-target    "/usr/lib/drbd/crm-unfence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r0</span>";</strong>
+ }
+ ...
+}
+
+<strong><span style="color: #ff00ff;">resource r1 </span></strong>{
+ ...
+ handlers {
+ <strong>fence-peer              "/usr/lib/drbd/crm-fence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r1</span>";
+ after-resync-target    "/usr/lib/drbd/crm-unfence-peer.sh --id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">r1</span>";</strong>
+ }
+ ...
+}</span></pre>
 
 
 なんでこんなめんどくさいことになっていたかというと、まあぶっちゃけ、DRBDに同梱されたdrbd RAが
@@ -287,93 +271,89 @@ Master/Slaveリソースのフェイルオーバが失敗します。**
 となります。
 
 ms-group.crm
+<pre><span style="font-family: verdana,geneva;">### Cluster Option ###
+property \
+ no-quorum-policy="ignore" \
+ stonith-enabled="false" \
+ startup-fencing="false" \
+ crmd-transition-delay="2s"
 
-    
-    <span style="font-family: verdana,geneva;">### Cluster Option ###
-    property \
-     no-quorum-policy="ignore" \
-     stonith-enabled="false" \
-     startup-fencing="false" \
-     crmd-transition-delay="2s"
-    
-    ### Resource Defaults ###
-    rsc_defaults \
-     resource-stickiness="INFINITY" \
-     migration-threshold="1"
-    
-    ### MasterSlave Configuration ###
-    ms msDRBD \
-     prmDRBD \
-     meta \
-     master-max="1" \
-     master-node-max="1" \
-     clone-max="2" \
-     clone-node-max="1" \
-     notify="true"
-    
-    ### Group Configuration ###
-    group grpDRBD dummy01 dummy02 dummy03
-    
-    ### Primitive Configuration ###
-    primitive prmDRBD ocf:linbit:drbd \
-     params \
-     drbd_resource="r0" \
-     op start interval="0s" timeout="240s" on-fail="restart" \
-     op monitor interval="10s" timeout="20s" on-fail="restart" role="Master" \
-     op monitor interval="20s" timeout="20s" on-fail="restart" role="Slave" \
-     op promote interval="0s" timeout="90s" on-fail="restart" \
-     op demote interval="0s" timeout="90s" on-fail="block" \
-     op stop interval="0s" timeout="100s" on-fail="block"
-    
-    primitive dummy01 ocf:pacemaker:Dummy \
-     op start interval="0s" timeout="120s" on-fail="restart" \
-     op monitor interval="10s" timeout="120s" on-fail="restart" \
-     op stop interval="0s" timeout="120s" on-fail="block"
-    
-    primitive dummy02 ocf:pacemaker:Dummy \
-     op start interval="0s" timeout="120s" on-fail="restart" \
-     op monitor interval="10s" timeout="120s" on-fail="restart" \
-     op stop interval="0s" timeout="120s" on-fail="block"
-    
-    primitive dummy03 ocf:pacemaker:Dummy \
-     op start interval="0s" timeout="120s" on-fail="restart" \
-     op monitor interval="10s" timeout="120s" on-fail="restart" \
-     op stop interval="0s" timeout="120s" on-fail="block"
-    
-    ### Resource Colocation ###
-    colocation rsc_colocation-1 inf: grpDRBD msDRBD:Master
-    
-    ### Resource Order ###
-    order rsc_order-1 0: msDRBD:promote grpDRBD:start</span>
+### Resource Defaults ###
+rsc_defaults \
+ resource-stickiness="INFINITY" \
+ migration-threshold="1"
+
+### MasterSlave Configuration ###
+ms msDRBD \
+ prmDRBD \
+ meta \
+ master-max="1" \
+ master-node-max="1" \
+ clone-max="2" \
+ clone-node-max="1" \
+ notify="true"
+
+### Group Configuration ###
+group grpDRBD dummy01 dummy02 dummy03
+
+### Primitive Configuration ###
+primitive prmDRBD ocf:linbit:drbd \
+ params \
+ drbd_resource="r0" \
+ op start interval="0s" timeout="240s" on-fail="restart" \
+ op monitor interval="10s" timeout="20s" on-fail="restart" role="Master" \
+ op monitor interval="20s" timeout="20s" on-fail="restart" role="Slave" \
+ op promote interval="0s" timeout="90s" on-fail="restart" \
+ op demote interval="0s" timeout="90s" on-fail="block" \
+ op stop interval="0s" timeout="100s" on-fail="block"
+
+primitive dummy01 ocf:pacemaker:Dummy \
+ op start interval="0s" timeout="120s" on-fail="restart" \
+ op monitor interval="10s" timeout="120s" on-fail="restart" \
+ op stop interval="0s" timeout="120s" on-fail="block"
+
+primitive dummy02 ocf:pacemaker:Dummy \
+ op start interval="0s" timeout="120s" on-fail="restart" \
+ op monitor interval="10s" timeout="120s" on-fail="restart" \
+ op stop interval="0s" timeout="120s" on-fail="block"
+
+primitive dummy03 ocf:pacemaker:Dummy \
+ op start interval="0s" timeout="120s" on-fail="restart" \
+ op monitor interval="10s" timeout="120s" on-fail="restart" \
+ op stop interval="0s" timeout="120s" on-fail="block"
+
+### Resource Colocation ###
+colocation rsc_colocation-1 inf: grpDRBD msDRBD:Master
+
+### Resource Order ###
+order rsc_order-1 0: msDRBD:promote grpDRBD:start</span></pre>
 
 
 初期起動時の様子をcrm_monコマンドで確認します。
 node01でMasterリソースとgroup(dummy01+dummy02+dummy03)が起動しています。
 node02ではSlaveリソースが起動しています。
 
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n -f</span></strong>
+============
+Last updated: Wed Nov  2 16:29:21 2011
+Stack: Heartbeat
+Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+2 Nodes configured, unknown expected votes
+2 Resources configured.
+============
 
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n -f</span></strong>
-    ============
-    Last updated: Wed Nov  2 16:29:21 2011
-    Stack: Heartbeat
-    Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
-    Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
-    2 Nodes configured, unknown expected votes
-    2 Resources configured.
-    ============
-    
-    Node <strong><span style="color: #ff00ff;">node01 </span></strong>(11111111-1111-1111-1111-111111111111): online
-     dummy03 (ocf::pacemaker:Dummy) Started
-     dummy02 (ocf::pacemaker:Dummy) Started
-     dummy01 (ocf::pacemaker:Dummy) Started
-     prmDRBD:0       (ocf::linbit:drbd) <strong><span style="color: #ff00ff;">Master</span></strong>
-    Node <strong><span style="color: #ff00ff;">node02 </span></strong>(22222222-2222-2222-2222-222222222222): online
-     prmDRBD:1       (ocf::linbit:drbd) <strong><span style="color: #ff00ff;">Slave</span></strong>
-    
-    Migration summary:
-    * Node node01:
-    * Node node02:</span>
+Node <strong><span style="color: #ff00ff;">node01 </span></strong>(11111111-1111-1111-1111-111111111111): online
+ dummy03 (ocf::pacemaker:Dummy) Started
+ dummy02 (ocf::pacemaker:Dummy) Started
+ dummy01 (ocf::pacemaker:Dummy) Started
+ prmDRBD:0       (ocf::linbit:drbd) <strong><span style="color: #ff00ff;">Master</span></strong>
+Node <strong><span style="color: #ff00ff;">node02 </span></strong>(22222222-2222-2222-2222-222222222222): online
+ prmDRBD:1       (ocf::linbit:drbd) <strong><span style="color: #ff00ff;">Slave</span></strong>
+
+Migration summary:
+* Node node01:
+* Node node02:</span></pre>
 
 
 さて、ここでgroupリソースに含まれる一番目のリソース(dummy01)を故障させてみましょう。
@@ -381,58 +361,50 @@ dummy01が故障したら、groupリソースも停止するはずですよね�
 さらに、Masterリソースとgroupリソースには同居制約が設定されているのでMasterリソースとgroupリソースは
 node02へフェイルオーバするはずです。
 
-
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01 set node01 1</span></strong></span>
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01 set node01 1</span></strong></span></pre>
 
 
 だがしかし！
 groupリソースは停止しましたが、Masterリソースはフェイルオーバせずにnode01に居残ってしまいました。
 
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n -f</span></strong>
+============
+Last updated: Wed Nov  2 16:30:24 2011
+Stack: Heartbeat
+Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
+Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
+2 Nodes configured, unknown expected votes
+2 Resources configured.
+============
 
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n -f</span></strong>
-    ============
-    Last updated: Wed Nov  2 16:30:24 2011
-    Stack: Heartbeat
-    Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
-    Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
-    2 Nodes configured, unknown expected votes
-    2 Resources configured.
-    ============
-    
-    Node <strong><span style="color: #ff00ff;">node01 </span></strong>(11111111-1111-1111-1111-111111111111): online
-     <span style="color: #ff00ff;"><span style="color: #000000;">prmDRBD:0       (ocf::linbit:drbd)</span></span><strong><span style="color: #ff00ff;"> Master</span></strong>
-    Node <span style="color: #ff00ff;"><strong>node02</strong></span>(22222222-2222-2222-2222-222222222222): online
-     <span style="color: #ff00ff;"><span style="color: #000000;">prmDRBD:1       (ocf::linbit:drbd) </span></span><strong><span style="color: #ff00ff;"><strong>Slave</strong></span></strong>
-    
-    Migration summary:
-    * Node node01:
-     <strong><span style="color: #ff00ff;">dummy01: migration-threshold=1 fail-count=1</span></strong>
-    * Node node02:</span>
+Node <strong><span style="color: #ff00ff;">node01 </span></strong>(11111111-1111-1111-1111-111111111111): online
+ <span style="color: #ff00ff;"><span style="color: #000000;">prmDRBD:0       (ocf::linbit:drbd)</span></span><strong><span style="color: #ff00ff;"> Master</span></strong>
+Node <span style="color: #ff00ff;"><strong>node02</strong></span>(22222222-2222-2222-2222-222222222222): online
+ <span style="color: #ff00ff;"><span style="color: #000000;">prmDRBD:1       (ocf::linbit:drbd) </span></span><strong><span style="color: #ff00ff;"><strong>Slave</strong></span></strong>
+
+Migration summary:
+* Node node01:
+ <strong><span style="color: #ff00ff;">dummy01: migration-threshold=1 fail-count=1</span></strong>
+* Node node02:</span></pre>
 
 
 結論から言ってしまうと、この動作はバグなわけです。
 ということで、ちょっと遷移グラフでも見てみますか。遷移グラフはDCノードに出力されています。
 
-
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># ls -l /var/lib/pengine/</span></strong>
-    合計 32
-    -rw------- 1 hacluster haclient  611 11月  2 16:16 pe-input-0.bz2
-    -rw------- 1 hacluster haclient  741 11月  2 16:16 pe-input-1.bz2
-    -rw------- 1 hacluster haclient  747 11月  2 16:16 pe-input-2.bz2
-    -rw------- 1 hacluster haclient 1438 11月  2 16:29 pe-input-3.bz2
-    -rw------- 1 hacluster haclient 2055 11月  2 16:29 pe-input-4.bz2
-    -rw------- 1 hacluster haclient 2165 11月  2 16:29 pe-input-5.bz2
-    -rw------- 1 hacluster haclient 2424 11月  2 16:30 pe-input-6.bz2
-    -rw-r--r-- 1 hacluster haclient    1 11月  2 16:30 pe-input.last</span>
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># ls -l /var/lib/pengine/</span></strong>
+合計 32
+-rw------- 1 hacluster haclient  611 11月  2 16:16 pe-input-0.bz2
+-rw------- 1 hacluster haclient  741 11月  2 16:16 pe-input-1.bz2
+-rw------- 1 hacluster haclient  747 11月  2 16:16 pe-input-2.bz2
+-rw------- 1 hacluster haclient 1438 11月  2 16:29 pe-input-3.bz2
+-rw------- 1 hacluster haclient 2055 11月  2 16:29 pe-input-4.bz2
+-rw------- 1 hacluster haclient 2165 11月  2 16:29 pe-input-5.bz2
+-rw------- 1 hacluster haclient 2424 11月  2 16:30 pe-input-6.bz2
+-rw-r--r-- 1 hacluster haclient    1 11月  2 16:30 pe-input.last</span></pre>
 
 
 DCノードのha-logを検索すると、次のようなメッセージが出力されています。
-
-    
-    <span style="font-family: verdana,geneva;">info: process_pe_message: Transition 6: PEngine Input stored in: <strong><span style="color: #ff00ff;">/var/lib/pengine/pe-input-6.bz2</span></strong></span>
+<pre><span style="font-family: verdana,geneva;">info: process_pe_message: Transition 6: PEngine Input stored in: <strong><span style="color: #ff00ff;">/var/lib/pengine/pe-input-6.bz2</span></strong></span></pre>
 
 
 Master/Slaveリソースが変な感じで居残っちゃったあたりのログをみると、
@@ -440,27 +412,25 @@ Master/Slaveリソースが変な感じで居残っちゃったあたりのロ�
 ということで、遷移グラフの中身をのぞいてみましょう。
 遷移グラフの解析には**ptest**というコマンドを使うのですが、ptestはcrmシェルから呼び出すこともできます。
 
-
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># cd /var/lib/pengine/
-    # crm
-    crm(live)# cib import pe-input-6.bz2
-    crm(pe-input-6)# configure ptest vvv nograph
-    </span></strong>ptest[2343]: 2011/11/02_16:31:39 notice: unpack_config: On loss of CCM Quorum: Ignore
-    ptest[2343]: 2011/11/02_16:31:39 WARN: unpack_nodes: Blind faith: not fencing unseen nodes
-    ptest[2343]: 2011/11/02_16:31:39 notice: group_print:  Resource Group: grpDRBD
-    ptest[2343]: 2011/11/02_16:31:39 notice: native_print:      dummy01     (ocf::pacemaker:Dummy): Started node01
-    ptest[2343]: 2011/11/02_16:31:39 notice: native_print:      dummy02     (ocf::pacemaker:Dummy): Started node01
-    ptest[2343]: 2011/11/02_16:31:39 notice: native_print:      dummy03     (ocf::pacemaker:Dummy): Started node01
-    ptest[2343]: 2011/11/02_16:31:39 notice: clone_print:  Master/Slave Set: msDRBD
-    ptest[2343]: 2011/11/02_16:31:39 notice: short_print:      Masters: [ node01 ]
-    ptest[2343]: 2011/11/02_16:31:39 notice: short_print:      Slaves: [ node02 ]
-    ptest[2343]: 2011/11/02_16:31:39 WARN: common_apply_stickiness: Forcing dummy01 away from node01 after 1 failures (max=1)
-    ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Stop    resource dummy01   (node01)
-    ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Stop    resource dummy02   (node01)
-    ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Stop    resource dummy03   (node01)
-    <span style="color: #ff00ff;"><strong>ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Leave   resource prmDRBD:0 (Master node01)
-    ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Leave   resource prmDRBD:1 (Slave node02)</strong></span></span>
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># cd /var/lib/pengine/
+# crm
+crm(live)# cib import pe-input-6.bz2
+crm(pe-input-6)# configure ptest vvv nograph
+</span></strong>ptest[2343]: 2011/11/02_16:31:39 notice: unpack_config: On loss of CCM Quorum: Ignore
+ptest[2343]: 2011/11/02_16:31:39 WARN: unpack_nodes: Blind faith: not fencing unseen nodes
+ptest[2343]: 2011/11/02_16:31:39 notice: group_print:  Resource Group: grpDRBD
+ptest[2343]: 2011/11/02_16:31:39 notice: native_print:      dummy01     (ocf::pacemaker:Dummy): Started node01
+ptest[2343]: 2011/11/02_16:31:39 notice: native_print:      dummy02     (ocf::pacemaker:Dummy): Started node01
+ptest[2343]: 2011/11/02_16:31:39 notice: native_print:      dummy03     (ocf::pacemaker:Dummy): Started node01
+ptest[2343]: 2011/11/02_16:31:39 notice: clone_print:  Master/Slave Set: msDRBD
+ptest[2343]: 2011/11/02_16:31:39 notice: short_print:      Masters: [ node01 ]
+ptest[2343]: 2011/11/02_16:31:39 notice: short_print:      Slaves: [ node02 ]
+ptest[2343]: 2011/11/02_16:31:39 WARN: common_apply_stickiness: Forcing dummy01 away from node01 after 1 failures (max=1)
+ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Stop    resource dummy01   (node01)
+ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Stop    resource dummy02   (node01)
+ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Stop    resource dummy03   (node01)
+<span style="color: #ff00ff;"><strong>ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Leave   resource prmDRBD:0 (Master node01)
+ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Leave   resource prmDRBD:1 (Slave node02)</strong></span></span></pre>
 
 
 おーう。
@@ -474,66 +444,58 @@ Master/Slaveリソースが変な感じで居残っちゃったあたりのロ�
 
 とりあえず、Pacemaker 1.0.12のリポジトリから最新版のソースコードを持ってきます。
 クラスタを作りこむのはめんどくさいので、makeだけしておきます。
-
-    
-    <span style="font-family: verdana,geneva;"># hg clone <strong><span style="color: #ff00ff;">http://hg.clusterlabs.org/pacemaker/stable-1.0</span></strong>
-    # cd stable-1.0
-    # hg update -C stable-1.0
-    # ./autogen.sh
-    # ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc --with-lcrso-dir=/usr/libexec/lcrso
-    # make</span>
+<pre><span style="font-family: verdana,geneva;"># hg clone <strong><span style="color: #ff00ff;">http://hg.clusterlabs.org/pacemaker/stable-1.0</span></strong>
+# cd stable-1.0
+# hg update -C stable-1.0
+# ./autogen.sh
+# ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc --with-lcrso-dir=/usr/libexec/lcrso
+# make</span></pre>
 
 
 そして、新しいcrmシェルを探して…
 
-
-    
-    <span style="font-family: verdana,geneva;"># find . -name crm
-    ./shell/crm
-    ./include/crm
-    ./.hg/store/data/crm
-    ./.hg/store/data/include/crm
-    ./.hg/store/data/lib/crm
-    ./lib/crm</span>
+<pre><span style="font-family: verdana,geneva;"># find . -name crm
+./shell/crm
+./include/crm
+./.hg/store/data/crm
+./.hg/store/data/include/crm
+./.hg/store/data/lib/crm
+./lib/crm</span></pre>
 
 
 実行権限を追加します。
 
-
-    
-    <span style="font-family: verdana,geneva;"># cd ./shell/crm
-    # chmod +x crm</span>
+<pre><span style="font-family: verdana,geneva;"># cd ./shell/crm
+# chmod +x crm</span></pre>
 
 
 いよいよ、Pacemaker 1.0.12(もどき)でptestを実行！
 
-
-    
-    <span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># ./crm
-    crm(live)# cib import /tmp/pe-input-6.bz2
-    crm(pe-input-6)# configure ptest vvv nograph</strong></span>
-    ptest[19529]: 2011/11/02_17:09:29 notice: unpack_config: On loss of CCM Quorum: Ignore
-    ptest[19529]: 2011/11/02_17:09:29 WARN: unpack_nodes: Blind faith: not fencing unseen nodes
-    ptest[19529]: 2011/11/02_17:09:29 notice: group_print:  Resource Group: grpDRBD
-    ptest[19529]: 2011/11/02_17:09:29 notice: native_print:      dummy01    (ocf::pacemaker:Dummy): Started node01
-    ptest[19529]: 2011/11/02_17:09:29 notice: native_print:      dummy02    (ocf::pacemaker:Dummy): Started node01
-    ptest[19529]: 2011/11/02_17:09:29 notice: native_print:      dummy03    (ocf::pacemaker:Dummy): Started node01
-    ptest[19529]: 2011/11/02_17:09:29 notice: clone_print:  Master/Slave Set: msDRBD
-    ptest[19529]: 2011/11/02_17:09:29 notice: short_print:      Masters: [ node01 ]
-    ptest[19529]: 2011/11/02_17:09:29 notice: short_print:      Slaves: [ node02 ]
-    ptest[19529]: 2011/11/02_17:09:29 WARN: common_apply_stickiness: Forcing dummy01 away from node01 after 1 failures (max=1)
-    ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for dummy01 on node02
-    ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for dummy02 on node02
-    ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for dummy03 on node02
-    ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (20s) for prmDRBD:0 on node01
-    ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for prmDRBD:1 on node02
-    ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (20s) for prmDRBD:0 on node01
-    ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for prmDRBD:1 on node02
-    <strong><span style="color: #ff00ff;">ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy01  (Started node01 -> node02)
-    ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy02  (Started node01 -> node02)
-    ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy03  (Started node01 -> node02)
-    ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Demote  prmDRBD:0 (Master -> Slave node01)
-    ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Promote prmDRBD:1 (Slave -> Master node02)</span></strong></span>
+<pre><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># ./crm
+crm(live)# cib import /tmp/pe-input-6.bz2
+crm(pe-input-6)# configure ptest vvv nograph</strong></span>
+ptest[19529]: 2011/11/02_17:09:29 notice: unpack_config: On loss of CCM Quorum: Ignore
+ptest[19529]: 2011/11/02_17:09:29 WARN: unpack_nodes: Blind faith: not fencing unseen nodes
+ptest[19529]: 2011/11/02_17:09:29 notice: group_print:  Resource Group: grpDRBD
+ptest[19529]: 2011/11/02_17:09:29 notice: native_print:      dummy01    (ocf::pacemaker:Dummy): Started node01
+ptest[19529]: 2011/11/02_17:09:29 notice: native_print:      dummy02    (ocf::pacemaker:Dummy): Started node01
+ptest[19529]: 2011/11/02_17:09:29 notice: native_print:      dummy03    (ocf::pacemaker:Dummy): Started node01
+ptest[19529]: 2011/11/02_17:09:29 notice: clone_print:  Master/Slave Set: msDRBD
+ptest[19529]: 2011/11/02_17:09:29 notice: short_print:      Masters: [ node01 ]
+ptest[19529]: 2011/11/02_17:09:29 notice: short_print:      Slaves: [ node02 ]
+ptest[19529]: 2011/11/02_17:09:29 WARN: common_apply_stickiness: Forcing dummy01 away from node01 after 1 failures (max=1)
+ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for dummy01 on node02
+ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for dummy02 on node02
+ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for dummy03 on node02
+ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (20s) for prmDRBD:0 on node01
+ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for prmDRBD:1 on node02
+ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (20s) for prmDRBD:0 on node01
+ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for prmDRBD:1 on node02
+<strong><span style="color: #ff00ff;">ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy01  (Started node01 -> node02)
+ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy02  (Started node01 -> node02)
+ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy03  (Started node01 -> node02)
+ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Demote  prmDRBD:0 (Master -> Slave node01)
+ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Promote prmDRBD:1 (Slave -> Master node02)</span></strong></span></pre>
 
 
 よっしゃ！キタコレ！
@@ -547,88 +509,80 @@ Pacemaker 1.0系へのバックポートはなかなか難しいようなので�
 将来的にcrm_simulateコマンドを使って解析したほうが便利になるかもしれません。
 
 ちなみにPacemaker 1.1系の最新版はhgからGitHubへお引っ越ししました。
-
-    
-    <span style="font-family: verdana,geneva;"># <span style="color: #000000;">git</span> clone <strong><span style="color: #ff00ff;">http://github.com/ClusterLabs/pacemaker</span></strong>
-    # cd pacemaker/
-    # ./autogen.sh
-    # ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc  --with-lcrso-dir=/usr/libexec/lcrso
-    # make</span>
+<pre><span style="font-family: verdana,geneva;"># <span style="color: #000000;">git</span> clone <strong><span style="color: #ff00ff;">http://github.com/ClusterLabs/pacemaker</span></strong>
+# cd pacemaker/
+# ./autogen.sh
+# ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc  --with-lcrso-dir=/usr/libexec/lcrso
+# make</span></pre>
 
 
-
-    
-    <span style="font-family: verdana,geneva;"># find . -name crm_simulate
-    ./tools/.libs/crm_simulate
-    ./tools/crm_simulate</span>
+<pre><span style="font-family: verdana,geneva;"># find . -name crm_simulate
+./tools/.libs/crm_simulate
+./tools/crm_simulate</span></pre>
 
 
 コマンドに喰わせるのは、さっきと同じ遷移グラフです。
 
+<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># ./crm_simulate -S -x /tmp/pe-input-6.bz2</span></strong>
 
-    
-    <span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># ./crm_simulate -S -x /tmp/pe-input-6.bz2</span></strong>
-    
-    Current cluster status:
-    Online: [ node01 node02 ]
-    
-     Resource Group: grpDRBD
-     dummy01    (ocf::pacemaker:Dummy): Started node01
-     dummy02    (ocf::pacemaker:Dummy): Started node01
-     dummy03    (ocf::pacemaker:Dummy): Started node01
-     Master/Slave Set: msDRBD [prmDRBD]
-     Masters: [ node01 ]
-     Slaves: [ node02 ]
-    
-    Transition Summary:
-    <strong><span style="color: #ff00ff;">crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy01    (Started node01 -> node02)
-    crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy02    (Started node01 -> node02)
-    crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy03    (Started node01 -> node02)
-    crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Demote  prmDRBD:0  (Master -> Slave node01)
-    crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Promote prmDRBD:1  (Slave -> Master node02)
-    </span></strong>
-    Executing cluster transition:
-     * Executing action 16: dummy03_stop_0 on node01
-     * Executing action 4: prmDRBD:0_cancel_10000 on node01
-     * Executing action 5: prmDRBD:1_cancel_20000 on node02
-     * Executing action 13: dummy02_stop_0 on node01
-     * Executing action 71: prmDRBD:0_notify_0 on node01
-     * Executing action 73: prmDRBD:1_notify_0 on node02
-     * Executing action 10: dummy01_stop_0 on node01
-     * Executing action 25: prmDRBD:0_demote_0 on node01
-     * Executing action 72: prmDRBD:0_notify_0 on node01
-     * Executing action 74: prmDRBD:1_notify_0 on node02
-     * Executing action 67: prmDRBD:0_notify_0 on node01
-     * Executing action 69: prmDRBD:1_notify_0 on node02
-     * Executing action 30: prmDRBD:1_promote_0 on node02
-     * Executing action 68: prmDRBD:0_notify_0 on node01
-     * Executing action 70: prmDRBD:1_notify_0 on node02
-     * Executing action 11: dummy01_start_0 on node02
-     * Executing action 14: dummy02_start_0 on node02
-     * Executing action 17: dummy03_start_0 on node02
-     * Executing action 26: prmDRBD:0_monitor_20000 on node01
-     * Executing action 31: prmDRBD:1_monitor_10000 on node02
-     * Executing action 12: dummy01_monitor_10000 on node02
-     * Executing action 15: dummy02_monitor_10000 on node02
-     * Executing action 18: dummy03_monitor_10000 on node02
-    
-    Revised cluster status:
-    Online: [ node01 node02 ]
-    
-     Resource Group: grpDRBD
-     dummy01    (ocf::pacemaker:Dummy): Started node02
-     dummy02    (ocf::pacemaker:Dummy): Started node02
-     dummy03    (ocf::pacemaker:Dummy): Started node02
-     Master/Slave Set: msDRBD [prmDRBD]
-     Masters: [ node02 ]
-     Slaves: [ node01 ]</span>
+Current cluster status:
+Online: [ node01 node02 ]
+
+ Resource Group: grpDRBD
+ dummy01    (ocf::pacemaker:Dummy): Started node01
+ dummy02    (ocf::pacemaker:Dummy): Started node01
+ dummy03    (ocf::pacemaker:Dummy): Started node01
+ Master/Slave Set: msDRBD [prmDRBD]
+ Masters: [ node01 ]
+ Slaves: [ node02 ]
+
+Transition Summary:
+<strong><span style="color: #ff00ff;">crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy01    (Started node01 -> node02)
+crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy02    (Started node01 -> node02)
+crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy03    (Started node01 -> node02)
+crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Demote  prmDRBD:0  (Master -> Slave node01)
+crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Promote prmDRBD:1  (Slave -> Master node02)
+</span></strong>
+Executing cluster transition:
+ * Executing action 16: dummy03_stop_0 on node01
+ * Executing action 4: prmDRBD:0_cancel_10000 on node01
+ * Executing action 5: prmDRBD:1_cancel_20000 on node02
+ * Executing action 13: dummy02_stop_0 on node01
+ * Executing action 71: prmDRBD:0_notify_0 on node01
+ * Executing action 73: prmDRBD:1_notify_0 on node02
+ * Executing action 10: dummy01_stop_0 on node01
+ * Executing action 25: prmDRBD:0_demote_0 on node01
+ * Executing action 72: prmDRBD:0_notify_0 on node01
+ * Executing action 74: prmDRBD:1_notify_0 on node02
+ * Executing action 67: prmDRBD:0_notify_0 on node01
+ * Executing action 69: prmDRBD:1_notify_0 on node02
+ * Executing action 30: prmDRBD:1_promote_0 on node02
+ * Executing action 68: prmDRBD:0_notify_0 on node01
+ * Executing action 70: prmDRBD:1_notify_0 on node02
+ * Executing action 11: dummy01_start_0 on node02
+ * Executing action 14: dummy02_start_0 on node02
+ * Executing action 17: dummy03_start_0 on node02
+ * Executing action 26: prmDRBD:0_monitor_20000 on node01
+ * Executing action 31: prmDRBD:1_monitor_10000 on node02
+ * Executing action 12: dummy01_monitor_10000 on node02
+ * Executing action 15: dummy02_monitor_10000 on node02
+ * Executing action 18: dummy03_monitor_10000 on node02
+
+Revised cluster status:
+Online: [ node01 node02 ]
+
+ Resource Group: grpDRBD
+ dummy01    (ocf::pacemaker:Dummy): Started node02
+ dummy02    (ocf::pacemaker:Dummy): Started node02
+ dummy03    (ocf::pacemaker:Dummy): Started node02
+ Master/Slave Set: msDRBD [prmDRBD]
+ Masters: [ node02 ]
+ Slaves: [ node01 ]</span></pre>
 
 
 crm_simulateに-Vオプションを追加すると、さらに詳細なデバッグ情報を出力されます。
 
-
-    
-    <span style="font-family: verdana,geneva;"># ./crm_simulate -S -x /tmp/pe-input-6.bz2 <strong><span style="color: #008000;">-VVV</span></strong></span>
+<pre><span style="font-family: verdana,geneva;"># ./crm_simulate -S -x /tmp/pe-input-6.bz2 <strong><span style="color: #008000;">-VVV</span></strong></span></pre>
 
 
 crm_simulateは、今回のようなレグレッションテストだけではなく、擬似故障の発生にも使用できます。
@@ -643,13 +597,11 @@ Pacemaker 1.0系では使えないコマンドなんですが、次期バージ�
 追加する行は、groupに含まれる全てのリソース分、必要です。
 -inf: defined のあとに、**fail-count-<groupに含まれるリソース名>**を指定してください。
 この例では、groupに含まれる全てのリソース(dummy01, dummy02, dummy03)に制約が設定されています。
-
-    
-    <span style="font-family: verdana,geneva;">### Resource Location ###
-    location rsc_location-1 msDRBD \
-     rule role=master  -inf: defined fail-count-dummy01 \
-     rule role=master  -inf: defined fail-count-dummy02 \
-     rule role=master  -inf: defined fail-count-dummy03 </span>
+<pre><span style="font-family: verdana,geneva;">### Resource Location ###
+location rsc_location-1 msDRBD \
+ rule role=master  -inf: defined fail-count-dummy01 \
+ rule role=master  -inf: defined fail-count-dummy02 \
+ rule role=master  -inf: defined fail-count-dummy03 </span></pre>
 
 
 さらに、もう一つ注意事項があります。
@@ -658,33 +610,25 @@ Pacemaker 1.0系では使えないコマンドなんですが、次期バージ�
 つまり、groupリソース名(今回の例ではgrpDRBD)をmoveコマンドのオプションに指定しても
 Master/Slaveリソースおよびgroupリソースはnode01からnode02へ移動してくれないのです。
 この動作も、さっきのバグと原因は同じなのでPacemaker 1.0.12では修正されています。
-
-    
-    <span style="font-family: verdana,geneva;"># crm resource <strong><span style="color: #ff00ff;">move </span></strong><strong><span style="color: #ff00ff;">grpDRBD </span></strong>node02 force　→ groupリソースは停止するが、Master/Slaveが元のまま</span>
+<pre><span style="font-family: verdana,geneva;"># crm resource <strong><span style="color: #ff00ff;">move </span></strong><strong><span style="color: #ff00ff;">grpDRBD </span></strong>node02 force　→ groupリソースは停止するが、Master/Slaveが元のまま</span></pre>
 
 
 というわけで、Pacemaker 1.0.11で、リソースの移動を実行する場合は
 groupリソースではなく、groupリソースに含まれる最終のprimitiveリソースを
 moveコマンドのオプションに指定してください。
 今回の例では、dummy03を指定します。
-
-    
-    <span style="font-family: verdana,geneva;"># crm resource <strong><span style="color: #ff00ff;">move dummy03</span></strong> node02 force
-    </span>
+<pre><span style="font-family: verdana,geneva;"># crm resource <strong><span style="color: #ff00ff;">move dummy03</span></strong> node02 force
+</span></pre>
 
 
 moveコマンドを実行したあとは、unmoveコマンドを忘れずに！
-
-    
-    <span style="font-family: verdana,geneva;"># crm resource unmove dummy03</span>
+<pre><span style="font-family: verdana,geneva;"># crm resource unmove dummy03</span></pre>
 
 
 
 
 
-
-    
-    <span style="font-family: verdana,geneva;"><span style="color: #000000;">libvirtli</span></span>
+<pre><span style="font-family: verdana,geneva;"><span style="color: #000000;">libvirtli</span></span></pre>
 
 
 

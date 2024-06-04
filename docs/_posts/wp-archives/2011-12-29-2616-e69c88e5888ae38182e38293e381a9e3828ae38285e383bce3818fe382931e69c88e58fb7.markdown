@@ -161,58 +161,54 @@ diskセクションに「read-balancing」パラメータが追加されまし�
 ちょっと最後の二つ(least-pending, when-congested-remote)の違いがわかりません。
 
 
-
-    
-    
-    <div><span style="font-family: verdana, geneva;">--- a/documentation/drbdsetup.xml
-    +++ b/documentation/drbdsetup.xml
-    @@ -481,6 +481,23 @@
-    </para>
-    </listitem>
-    </varlistentry>
-    +
-    +        <varlistentry>
-    +          <term>
-    +            <option>--read-balancing <replaceable>method</replaceable></option>
-    +          </term>
-    +          <listitem>
-    +           <para>
-    +             The supported <replaceable>methods</replaceable> for load balancing of
-    +             read requests are <option>prefer-local</option>, <option>prefer-remote</option>,
-    +             <option>round-robin</option>, <option>least-pending</option> and
-    +             <option>when-congested-remote</option>.</para>
-    +             <para> The default value of is <option>prefer-local</option>.
-    +             This option is available since 8.4.1.
-    +             </para>
-    +          </listitem>
-    +        </varlistentry>
-    +</span></div>
+<pre>
+<div><span style="font-family: verdana, geneva;">--- a/documentation/drbdsetup.xml
++++ b/documentation/drbdsetup.xml
+@@ -481,6 +481,23 @@
+</para>
+</listitem>
+</varlistentry>
++
++        <varlistentry>
++          <term>
++            <option>--read-balancing <replaceable>method</replaceable></option>
++          </term>
++          <listitem>
++           <para>
++             The supported <replaceable>methods</replaceable> for load balancing of
++             read requests are <option>prefer-local</option>, <option>prefer-remote</option>,
++             <option>round-robin</option>, <option>least-pending</option> and
++             <option>when-congested-remote</option>.</para>
++             <para> The default value of is <option>prefer-local</option>.
++             This option is available since 8.4.1.
++             </para>
++          </listitem>
++        </varlistentry>
++</span></div></pre>
 
 
 
 
 
+<pre>
+<div><span style="font-family: verdana, geneva;">--- a/drbd/linux/drbd.h
++++ b/drbd/linux/drbd.h
+@@ -96,6 +96,14 @@ enum drbd_on_congestion {
+OC_DISCONNECT,
+}; 
 
-    
-    
-    <div><span style="font-family: verdana, geneva;">--- a/drbd/linux/drbd.h
-    +++ b/drbd/linux/drbd.h
-    @@ -96,6 +96,14 @@ enum drbd_on_congestion {
-    OC_DISCONNECT,
-    }; 
-    
-    +enum drbd_read_balancing {
-    +       RB_PREFER_LOCAL,
-    +       RB_PREFER_REMOTE,
-    +       RB_ROUND_ROBIN,
-    +       RB_LEAST_PENDING,
-    +       RB_CONGESTED_REMOTE,
-    +};
-    +
-    /* KEEP the order, do not delete or insert. Only append. */
-    enum drbd_ret_code {
-    ERR_CODE_BASE           = 100,
-    </span></div>
++enum drbd_read_balancing {
++       RB_PREFER_LOCAL,
++       RB_PREFER_REMOTE,
++       RB_ROUND_ROBIN,
++       RB_LEAST_PENDING,
++       RB_CONGESTED_REMOTE,
++};
++
+/* KEEP the order, do not delete or insert. Only append. */
+enum drbd_ret_code {
+ERR_CODE_BASE           = 100,
+</span></div></pre>
 
 
 **1.2 BOOTH[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**

@@ -49,27 +49,25 @@ tags:
   
 
 設定例)
+<pre>
+<resources>
+ <primitive class="ocf" id="A" provider="pacemaker" type="Dummy"/>
+ <primitive class="ocf" id="B" provider="pacemaker" type="Dummy">
+ <primitive class="ocf" id="C" provider="pacemaker" type="Dummy"/>
+</resources>
 
-    
-    
-    <resources>
-     <primitive class="ocf" id="A" provider="pacemaker" type="Dummy"/>
-     <primitive class="ocf" id="B" provider="pacemaker" type="Dummy">
-     <primitive class="ocf" id="C" provider="pacemaker" type="Dummy"/>
-    </resources>
-    
-    <constraints>
-     <rsc_order id="order01">
-       <resource_set id="require-all-set-1" sequential="false" require-all="false">
-         <resource_ref id="A"/>
-         <resource_ref id="B"/>
-       </resource_set>
-       <resource_set id="require-all-set-2">
-         <resource_ref id="C"/>
-       </resource_set>
-      </rsc_order>
-    </constraints>
-    
+<constraints>
+ <rsc_order id="order01">
+   <resource_set id="require-all-set-1" sequential="false" require-all="false">
+     <resource_ref id="A"/>
+     <resource_ref id="B"/>
+   </resource_set>
+   <resource_set id="require-all-set-2">
+     <resource_ref id="C"/>
+   </resource_set>
+  </rsc_order>
+</constraints>
+</pre>
 
 
 えーっと、いつもの便利なcrm shellさんは、まだrequire-allに対応していません！
@@ -84,53 +82,51 @@ STONITHの設定にfencing-topologyというパラメータが追加されまし
   
 
 設定例）
+<pre>
+<resources>
+ <primitive class="stonith" id="ssh01" type="external/ssh">
+  <instance_attributes id="attr01">
+   <nvpair id="hostlist01" name="hostlist" value="node-a"/>
+  </instance_attributes>
+  <operations>
+   <op id="ssh01-start-0s" interval="0s" name="start" timeout="60s"/>
+   <op id="ssh01-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/>
+   <op id="ssh01-stop-0s" interval="0s" name="stop" timeout="60s"/>
+  </operations>
+ </primitive>
 
-    
-    
-    <resources>
-     <primitive class="stonith" id="ssh01" type="external/ssh">
-      <instance_attributes id="attr01">
-       <nvpair id="hostlist01" name="hostlist" value="node-a"/>
-      </instance_attributes>
-      <operations>
-       <op id="ssh01-start-0s" interval="0s" name="start" timeout="60s"/>
-       <op id="ssh01-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/>
-       <op id="ssh01-stop-0s" interval="0s" name="stop" timeout="60s"/>
-      </operations>
-     </primitive>
-    
-     <primitive class="stonith" id="ssh02" type="external/ssh">
-      <instance_attributes id="attr02">
-       <nvpair id="hostlist02" name="hostlist" value="node-b"/>
-      </instance_attributes>
-      <operations>
-       <op id="ssh02-start-0s" interval="0s" name="start" timeout="60s"/>
-       <op id="ssh02-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/>
-       <op id="ssh02-stop-0s" interval="0s" name="stop" timeout="60s"/>
-      </operations>
-     </primitive>
-    
-    </resources>
-    
-    <constraints>
-     <rsc_location id="loc01" rsc="ssh01">
-      <rule id="loc01-rule" score="-INFINITY">
-       <expression attribute="#uname" id="loc01-expression" operation="eq" value="node-a"/>
-      </rule>
-     </rsc_location>
-    
-     <rsc_location id="loc02" rsc="ssh02">
-      <rule id="loc02-rule" score="-INFINITY">
-       <expression attribute="#uname" id="loc02-expression" operation="eq" value="node-b"/>
-      </rule>
-     </rsc_location>
-    </constraints>
-    
-    <fencing-topology>
-     <fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/>
-     <fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/>
-    </fencing-topology>
-    
+ <primitive class="stonith" id="ssh02" type="external/ssh">
+  <instance_attributes id="attr02">
+   <nvpair id="hostlist02" name="hostlist" value="node-b"/>
+  </instance_attributes>
+  <operations>
+   <op id="ssh02-start-0s" interval="0s" name="start" timeout="60s"/>
+   <op id="ssh02-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/>
+   <op id="ssh02-stop-0s" interval="0s" name="stop" timeout="60s"/>
+  </operations>
+ </primitive>
+
+</resources>
+
+<constraints>
+ <rsc_location id="loc01" rsc="ssh01">
+  <rule id="loc01-rule" score="-INFINITY">
+   <expression attribute="#uname" id="loc01-expression" operation="eq" value="node-a"/>
+  </rule>
+ </rsc_location>
+
+ <rsc_location id="loc02" rsc="ssh02">
+  <rule id="loc02-rule" score="-INFINITY">
+   <expression attribute="#uname" id="loc02-expression" operation="eq" value="node-b"/>
+  </rule>
+ </rsc_location>
+</constraints>
+
+<fencing-topology>
+ <fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/>
+ <fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/>
+</fencing-topology>
+</pre>
 
 
 上記の設定は、sshでSTONITHする例なんですが、fencing-topologyもまだcrm shellが対応していません！むきー！
@@ -160,16 +156,14 @@ fencing-topologyタグには、さらにfencing-levelタグを追加して、id�
   
 
 今回はsshプラグインしか設定しませんでしたが、sshとipmiを設定する場合はこんな感じになります。
-
-    
-    
-    <fencing-topology>
-     <fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/>
-     <fencing-level id="stonith01-2" target="node-a" index="2" devices="ipmi01"/>
-     <fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/>
-     <fencing-level id="stonith02-2" target="node-b" index="2" devices="ipmi02"/>
-    </fencing-topology>
-    
+<pre>
+<fencing-topology>
+ <fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/>
+ <fencing-level id="stonith01-2" target="node-a" index="2" devices="ipmi01"/>
+ <fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/>
+ <fencing-level id="stonith02-2" target="node-b" index="2" devices="ipmi02"/>
+</fencing-topology>
+</pre>
 
 
 この場合、sshの次にipmiが呼び出されます。
@@ -178,30 +172,28 @@ fencing-topologyタグには、さらにfencing-levelタグを追加して、id�
   
 
 使用可能なプラグインを表示する方法
+<pre>
+<span style="color: #ff00ff;"># crm ra list stonith</span>
 
-    
-    
-    <span style="color: #ff00ff;"># crm ra list stonith</span>
-    
-    ** INFO: Cannot get rhcs plugin subplugins                     apcmaster
-    apcmastersnmp                                                  apcsmart
-    baytech                                                        bladehpi
-    cyclades                                                       drac3
-    external/drac5                                                 external/dracmc-telnet
-    external/hmchttp                                               external/ibmrsa
-    external/ibmrsa-telnet                                         external/ipmi
-    external/ippower9258                                           external/kdumpcheck
-    external/nut                                                   external/rackpdu
-    external/riloe                                                 external/sbd
-    external/ssh                                                   external/vmware
-    external/xen0                                                  external/xen0-ha
-    ibmhmc                                                         ipmilan
-    meatware                                                       null
-    nw_rpc100s                                                     rcd_serial
-    rps10                                                          ssh
-    suicide                                                        wti_mpc
-    wti_nps
-    
+** INFO: Cannot get rhcs plugin subplugins                     apcmaster
+apcmastersnmp                                                  apcsmart
+baytech                                                        bladehpi
+cyclades                                                       drac3
+external/drac5                                                 external/dracmc-telnet
+external/hmchttp                                               external/ibmrsa
+external/ibmrsa-telnet                                         external/ipmi
+external/ippower9258                                           external/kdumpcheck
+external/nut                                                   external/rackpdu
+external/riloe                                                 external/sbd
+external/ssh                                                   external/vmware
+external/xen0                                                  external/xen0-ha
+ibmhmc                                                         ipmilan
+meatware                                                       null
+nw_rpc100s                                                     rcd_serial
+rps10                                                          ssh
+suicide                                                        wti_mpc
+wti_nps
+</pre>
 
 
 Pacemaker 1.0系と1.1系でSTONITHの設定方法ががらっと変わっちゃった理由なんですが、Pacemaker 1.1系はRed Hat Cluster Suite(RHCS)から名前をかえたHigh Availability Add-On(はぁん？)のフェンス機能にも対応できるようにSTONITH周りがごりっと書き直されています。

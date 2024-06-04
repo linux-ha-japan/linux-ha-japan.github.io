@@ -364,62 +364,54 @@ fence-virtそのものの説明や設定方法をご紹介する機会がなか�
   
 
 まず、ha.cfにはnode-10, node-11の順にホスト名が記述されています。
+<pre><code>
+# cat /etc/ha.d/ha.cf | grep node
 
-    
-    <code>
-    # cat /etc/ha.d/ha.cf | grep node
-    
-    node node-10
-    node node-11
-    </code>
+node node-10
+node node-11
+</code></pre>
 
 
 この状態で、node-10, node-11のHeartbeat/Pacemakerをほぼ同時に起動させます。
 crm_monコマンドを実行すると、ha.cfに記述された順序どおりにホスト名が表示されています。
-
-    
-    <code>
-    # crm_mon -1
-    ============
-    Last updated: Fri Mar  2 18:48:18 2012
-    Last change: Fri Mar  2 18:48:14 2012 via crmd on node-11
-    Stack: Heartbeat
-    Current DC: node-11 (22222222-2222-2222-2222-222222222222) - partition with quorum
-    Version: 1.1.6-b7534bd
-    2 Nodes configured, unknown expected votes
-    0 Resources configured.
-    ============
-    Online: [ node-10 node-11 ]
-    </code>
+<pre><code>
+# crm_mon -1
+============
+Last updated: Fri Mar  2 18:48:18 2012
+Last change: Fri Mar  2 18:48:14 2012 via crmd on node-11
+Stack: Heartbeat
+Current DC: node-11 (22222222-2222-2222-2222-222222222222) - partition with quorum
+Version: 1.1.6-b7534bd
+2 Nodes configured, unknown expected votes
+0 Resources configured.
+============
+Online: [ node-10 node-11 ]
+</code></pre>
 
 
 で、ホスト名をちょっと変更してみた。
+<pre><code>
+# cat /etc/ha.d/ha.cf | grep node
 
-    
-    <code>
-    # cat /etc/ha.d/ha.cf | grep node
-    
-    node 10-node
-    node 11-node
-    </code>
+node 10-node
+node 11-node
+</code></pre>
 
 
 すると、crm_monの表示結果がこんな感じになります。
-
-    
-    <code>
-    # crm_mon -1
-    ============
-    Last updated: Fri Mar  2 18:50:54 2012
-    Last change: Fri Mar  2 18:50:50 2012 via crmd on 10-node
-    Stack: Heartbeat
-    Current DC: 10-node (11111111-1111-1111-1111-111111111111) - partition with quorum
-    Version: 1.1.6-b7534bd
-    2 Nodes configured, unknown expected votes
-    0 Resources configured.
-    ============
-    Online: [ 11-node 10-node ]
-    </code>
+<pre><code>
+# crm_mon -1
+============
+Last updated: Fri Mar  2 18:50:54 2012
+Last change: Fri Mar  2 18:50:50 2012 via crmd on 10-node
+Stack: Heartbeat
+Current DC: 10-node (11111111-1111-1111-1111-111111111111) - partition with quorum
+Version: 1.1.6-b7534bd
+2 Nodes configured, unknown expected votes
+0 Resources configured.
+============
+Online: [ 11-node 10-node ]
+</code></pre>
 
 
 あれ？
@@ -476,46 +468,42 @@ Pacemakerは差分情報をもとに状態遷移グラフを作成し、クラ�
 「電文からノード名を取り出してディスクに書き込む」
 「ディスクに書き込まれた情報を構造体に保持する」
 という処理をを簡略化した"Hello glib world!"を作ってみました。
+<pre><code>
+#include <stdio.h>
+#include <glib.h>
 
-    
-    <code>
-    #include <stdio.h>
-    #include <glib.h>
-    
-    GList *list = NULL;
-    
-    void g_list_print(gpointer key)
-    {
-            printf("%s, ", (char *)key);
-    }
-    
-    void g_list_add(gpointer key)
-    {
-            list = g_list_append(list, (char *)key);
-    }
-    
-    int main(int argc, char *argv[])
-    {
-            GHashTable* hash = g_hash_table_new(g_str_hash, g_str_equal);
-            int i;
-            for (i = 1; i < argc; i++) {
-                    g_hash_table_insert(hash, argv[i], NULL);
-            }
-            g_hash_table_foreach(hash, (GHFunc)g_list_add, NULL);
-            g_list_foreach(list ,(GFunc)g_list_print, NULL);
-            g_list_free(list);
-            g_hash_table_destroy(hash);
-            return 0;
-    }
-    </code>
+GList *list = NULL;
+
+void g_list_print(gpointer key)
+{
+        printf("%s, ", (char *)key);
+}
+
+void g_list_add(gpointer key)
+{
+        list = g_list_append(list, (char *)key);
+}
+
+int main(int argc, char *argv[])
+{
+        GHashTable* hash = g_hash_table_new(g_str_hash, g_str_equal);
+        int i;
+        for (i = 1; i < argc; i++) {
+                g_hash_table_insert(hash, argv[i], NULL);
+        }
+        g_hash_table_foreach(hash, (GHFunc)g_list_add, NULL);
+        g_list_foreach(list ,(GFunc)g_list_print, NULL);
+        g_list_free(list);
+        g_hash_table_destroy(hash);
+        return 0;
+}
+</code></pre>
 
 
 コンパイルします。
-
-    
-    <code>
-    # gcc -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -lglib-2.0 -o hello_glib hello_glib.c
-    </code>
+<pre><code>
+# gcc -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -lglib-2.0 -o hello_glib hello_glib.c
+</code></pre>
 
 
 では！Hello glib world!
@@ -523,13 +511,11 @@ Pacemakerは差分情報をもとに状態遷移グラフを作成し、クラ�
 引数の並び順は、ノードがクラスタに参加する順序を擬似しています。
 実環境では数字だけのノード名はありえないかもしれませんが
 動作をわかりやすくするために二桁の数字を引数として与えてみました。
+<pre><code>
+# ./hello_glib 00 01 02 10 11 12
 
-    
-    <code>
-    # ./hello_glib 00 01 02 10 11 12
-    
-    11, 12, 00, 01, 02, 10,
-    </code>
+11, 12, 00, 01, 02, 10,
+</code></pre>
 
 
 お？なんか順序が狂っちゃったな…。
@@ -544,64 +530,58 @@ glib、ムズカシーネー。
 で、あんどりゅーくん曰く、
 「g_list_append()じゃなくて、g_list_insert_sorted()にしとく？」
 ということなので、そっちも試してみました。
+<pre><code>
+#include <stdio.h>
+#include <glib.h>
 
-    
-    <code>
-    #include <stdio.h>
-    #include <glib.h>
-    
-    GList *list = NULL;
-    <span style="color: #ff0000;">
-    static gint g_list_compare(
-            gconstpointer a,
-            gconstpointer b)
-    {
-            return (strcmp((char *)a, (char *)b));
-    }
-    </span>
-    void g_list_print(gpointer key)
-    {
-            printf("%s, ", (char *)key);
-    }
-    
-    void g_list_add(gpointer key)
-    {
-    <span style="color: #ff0000;">
-            //list = g_list_append(list, (char *)key);
-            list = g_list_insert_sorted(list, key, (GCompareFunc)g_list_compare);
-    </span>
-    }
-    
-    int main(int argc, char *argv[])
-    {
-            GHashTable* hash = g_hash_table_new(g_str_hash, g_str_equal);
-            int i;
-            for (i = 1; i < argc; i++) {
-                    g_hash_table_insert(hash, argv[i], NULL);
-            }
-            g_hash_table_foreach(hash, (GHFunc)g_list_add, NULL);
-            g_list_foreach(list ,(GFunc)g_list_print, NULL);
-            g_list_free(list);
-            g_hash_table_destroy(hash);
-            return 0;
-    }
-    </code>
+GList *list = NULL;
+<span style="color: #ff0000;">
+static gint g_list_compare(
+        gconstpointer a,
+        gconstpointer b)
+{
+        return (strcmp((char *)a, (char *)b));
+}
+</span>
+void g_list_print(gpointer key)
+{
+        printf("%s, ", (char *)key);
+}
+
+void g_list_add(gpointer key)
+{
+<span style="color: #ff0000;">
+        //list = g_list_append(list, (char *)key);
+        list = g_list_insert_sorted(list, key, (GCompareFunc)g_list_compare);
+</span>
+}
+
+int main(int argc, char *argv[])
+{
+        GHashTable* hash = g_hash_table_new(g_str_hash, g_str_equal);
+        int i;
+        for (i = 1; i < argc; i++) {
+                g_hash_table_insert(hash, argv[i], NULL);
+        }
+        g_hash_table_foreach(hash, (GHFunc)g_list_add, NULL);
+        g_list_foreach(list ,(GFunc)g_list_print, NULL);
+        g_list_free(list);
+        g_hash_table_destroy(hash);
+        return 0;
+}
+</code></pre>
 
 
-
-    
-    <code>
-    # gcc -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -lglib-2.0 -o hello_glib hello_glib.c
-    </code>
+<pre><code>
+# gcc -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -lglib-2.0 -o hello_glib hello_glib.c
+</code></pre>
 
 
+<pre><code>
+# ./hello_glib 00 01 02 10 11 12
 
-    
-    <code>
-    # ./hello_glib 00 01 02 10 11 12
-    
-    00, 01, 02, 10, 11, 12,
-    </code>
+00, 01, 02, 10, 11, 12,
+</code></pre>
 
 
 おお！ちゃんと順序どおりに並んでる(・∀・)ｲｲﾈ!

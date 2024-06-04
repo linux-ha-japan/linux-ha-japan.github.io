@@ -24,12 +24,10 @@ tags:
 
 
 
+<pre>Heartbeat:
+<a href="http://hg.linux-ha.org/heartbeat-STABLE_3_0/archive/STABLE-3.0.4.tar.bz2">http://hg.linux-ha.org/heartbeat-STABLE_3_0/archive/STABLE-3.0.4.tar.bz2</a>
 
-    
-    Heartbeat:
-    <a href="http://hg.linux-ha.org/heartbeat-STABLE_3_0/archive/STABLE-3.0.4.tar.bz2">http://hg.linux-ha.org/heartbeat-STABLE_3_0/archive/STABLE-3.0.4.tar.bz2</a>
-    
-    cluster-glue:
-    <a href="http://hg.linux-ha.org/glue/archive/glue-1.0.7.tar.bz2">http://hg.linux-ha.org/glue/archive/glue-1.0.7.tar.bz2</a>
-    
-    
+cluster-glue:
+<a href="http://hg.linux-ha.org/glue/archive/glue-1.0.7.tar.bz2">http://hg.linux-ha.org/glue/archive/glue-1.0.7.tar.bz2</a>
+
+</pre>
