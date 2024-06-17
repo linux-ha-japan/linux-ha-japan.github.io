@@ -27,7 +27,7 @@ it was no longer save to run DRBD in protocol A or B with barriers enabled.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 今回のリリースに取り込まれた修正によって、DRBDの上位レイヤーで FLUSH/FUA がサポートされます。
 
 以前のリリースで確認されたバグについて：
@@ -53,7 +53,7 @@ you might get write reordering on secondary, which is bad.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 問題が発生するパターン
  * プロトコルAまたはプロトコルBを使用している。
  * 使用しているカーネルのバージョンが 2.6.36 以上である(REHL6/CentOS6 は 2.6.32)。
@@ -76,7 +76,7 @@ OR
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 解決策
  * "no-disk-barrier" パラメータを設定してください。
  * DRBD 8.3.14にアップデートしてください。
@@ -93,7 +93,7 @@ You solved the issue if you take _one_ of the two described ways out.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 繰り返しになりますが、すべての条件にあてはまる場合にのみ、データの不整合が発生する可能性があります。2つの解決策のいずれを選択してください。
 </blockquote>
 
@@ -120,126 +120,72 @@ DRBD 8.3.14および8.4.2以降では、バリア機能が無効となったの�
 
 
 <blockquote>
-
-> 
-> 
+<ul>
 8.3.14 (api:88/proto:86-97) 
 -------- 
-
->   * No longer support write-ordering "barrier" on kernels newer than 2.6.36 (or RHEL's 2.6.32), since it is no longer supported by the kernel's IO-layer 
-
-> 
-
->   * Fixed the cause of the "ASSERT FAILED tl_hash..." messages 
-
-> 
-
->   * Fixed an OOPS in case a on-congestion policy was set and the node becomes disk less 
-
-> 
-
->   * Fixed a list corruption for read requests that complete with an error after they were aborted 
-
-> 
-
->   * Fixed a kernel panic if the device size was an exact multiple of 128MiB 
-
-> 
-
->   * Finish requests that completed while IO on DRBD was frozen. Before such requests where never completed by DRBD 
-
-> 
-
->   * Fixed a potential memory allocation during deadlock online resize 
-
-> 
-
->   * Online resize with internal meta data failed to write the bitmap to the new on-disk-location after the resize operation. This issue was introduced with 8.3.10 
-
-> 
-
->   * Do not go through NetworkFailure state during a regular disconnect 
-
-> 
-
->   * Improve the handling of read-errors: Make sure that sectors that had a read error are overwritten with data from the peer on the next resync 
-
-> 
-
->   * Expose the data-generation-uuids through /sys/block/drbdXX/drbd/ 
-
-> 
-
->   * Add a stop-sector to the online verify feature 
-
-> 
-
->   * Support FLUSH/FUA for layers above DRBD 
-
-> 
-
->   * The new flag --peer-max-bio-size for drbdmeta create-md is of use if you plan to use the device for long time without peer 
-
-> 
-
+<li> No longer support write-ordering "barrier" on kernels newer than 2.6.36 (or RHEL's 2.6.32), since it is no longer supported by the kernel's IO-layer 
+</li>
+<li> Fixed the cause of the "ASSERT FAILED tl_hash..." messages 
+</li>
+<li> Fixed an OOPS in case a on-congestion policy was set and the node becomes disk less 
+</li>
+<li> Fixed a list corruption for read requests that complete with an error after they were aborted 
+</li>
+<li> Fixed a kernel panic if the device size was an exact multiple of 128MiB 
+</li>
+<li> Finish requests that completed while IO on DRBD was frozen. Before such requests where never completed by DRBD 
+</li>
+<li> Fixed a potential memory allocation during deadlock online resize 
+</li>
+<li> Online resize with internal meta data failed to write the bitmap to the new on-disk-location after the resize operation. This issue was introduced with 8.3.10 
+</li>
+<li> Do not go through NetworkFailure state during a regular disconnect 
+</li>
+<li> Improve the handling of read-errors: Make sure that sectors that had a read error are overwritten with data from the peer on the next resync 
+</li>
+<li> Expose the data-generation-uuids through /sys/block/drbdXX/drbd/ 
+</li>
+<li> Add a stop-sector to the online verify feature 
+</li>
+<li> Support FLUSH/FUA for layers above DRBD 
+</li>
+<li> The new flag --peer-max-bio-size for drbdmeta create-md is of use if you plan to use the device for long time without peer 
+</li>
+</ul>
 </blockquote>
 
 
 
 
-<blockquote>
-
-> 
-> 
-
->   * 2.6.36以上のカーネル(RHELは2.6.32以上)でDRBDを実行する場合、バリア機能は無効となります。
-
-> 
-
->   * 「ASSERT FAILED tl_hash...」というログメッセージが発生する原因を修正しました(ローカルディスクの書き込み性能があまり良くない環境で同期LANが切断されるとハッシュテーブルへのアクセスエラーが発生していたようです)。
-
-> 
-
->   * on-congestion パラメータを設定した環境でディスクレスモードになるとカーネルパニックが発生する症状を修正しました。(on-congestion は DRBD Proxy を使用した環境で送信キューがあふれた時の動作を指定するパラメータです)。
-
-> 
-
->   * 読み込み処理のエラーが発生した場合に、リスト構造が破損する症状を修正しました。
-
-> 
-
->   * デバイスサイズがちょうど128MiBの倍数である場合にカーネルパニックが発生する症状を修正しました。
-
-> 
-
->   * デバイスが一時的なサスペンド状態から解除された場合の動作を改善しました。
-
-> 
+<blockquote style="background-color:white;border-color:white;color:black;">
+<ul>
+<li> 2.6.36以上のカーネル(RHELは2.6.32以上)でDRBDを実行する場合、バリア機能は無効となります。
+</li> 
+<li> 「ASSERT FAILED tl_hash...」というログメッセージが発生する原因を修正しました(ローカルディスクの書き込み性能があまり良くない環境で同期LANが切断されるとハッシュテーブルへのアクセスエラーが発生していたようです)。
+</li> 
+<li> on-congestion パラメータを設定した環境でディスクレスモードになるとカーネルパニックが発生する症状を修正しました。(on-congestion は DRBD Proxy を使用した環境で送信キューがあふれた時の動作を指定するパラメータです)。
+</li> 
+<li> 読み込み処理のエラーが発生した場合に、リスト構造が破損する症状を修正しました。
+</li> 
+<li> デバイスサイズがちょうど128MiBの倍数である場合にカーネルパニックが発生する症状を修正しました。
+</li> 
+<li> デバイスが一時的なサスペンド状態から解除された場合の動作を改善しました。
+</li> 
 
 例えば、プロトコルCで読み書き処理を実行している場合：
 セカンダリノードからの書き込み完了通知が戻ってこないとき、プライマリノードはサスペンド状態となります。セカンダリノードからの通知がタイムアウトしてしまって、結局、プライマリノードはスタンドアローン状態で次の処理を開始しようとする場合、サスペンド状態になっていた処理は未実行とみなされていたのですが、ローカルディスクへの読み書き処理については「完了」として処理されるようになりました。
 
-
->   * オンラインサイズ変更の処理がデッドロックした際にメモリ割り当てエラーが発生する可能性がありましたが、修正されました。
-
-> 
-
->   * 内部メタデータを利用している環境でオンラインサイズ変更を実施した際に発生していたビットマップ関連のバグを修正しました。(8.3.10で混入していたバグですが、オンラインサイズ変更を実行していない場合は影響ありません)
-
-> 
-
->   * 切断動作が定期的に発生するような条件では NetworkFailure へ遷移しないよう変更されました。
-
-> 
-
->   * 読み込みエラーに対する処理が改善されました。読み込みエラーが発生したセクタに対して、次回再同期の際、上書き処理が実行されます。
-
-> 
-
->   * /sys/block/drbdXX/drbd/ で世代識別子(Generation ID)を確認することができます。
-
-> 
-<pre>
+<li> オンラインサイズ変更の処理がデッドロックした際にメモリ割り当てエラーが発生する可能性がありましたが、修正されました。
+</li> 
+<li> 内部メタデータを利用している環境でオンラインサイズ変更を実施した際に発生していたビットマップ関連のバグを修正しました。(8.3.10で混入していたバグですが、オンラインサイズ変更を実行していない場合は影響ありません)
+</li> 
+<li> 切断動作が定期的に発生するような条件では NetworkFailure へ遷移しないよう変更されました。
+</li> 
+<li> 読み込みエラーに対する処理が改善されました。読み込みエラーが発生したセクタに対して、次回再同期の際、上書き処理が実行されます。
+</li> 
+<li> /sys/block/drbdXX/drbd/ で世代識別子(Generation ID)を確認することができます。
+</li> 
+<pre style="background-color: aliceblue">
 <code>
 # cat /sys/block/drbd0/drbd/meta_data/data_gen_id
 0xC33DD9E7F1CEB539
@@ -248,10 +194,8 @@ DRBD 8.3.14および8.4.2以降では、バリア機能が無効となったの�
 0x0000000000000004
 </code>
 </pre>
-> 
-> 
 これってdrbdadmコマンドでみれるアレのことやね。
-<pre>
+<pre style="background-color: aliceblue">
 <code>
 # drbdadm show-gi all
 
@@ -274,46 +218,30 @@ flags: Primary, Connected, UpToDate
 meta-data: need apply-al
 </code>
 </pre>
-> 
-> 
 
-
->   * オンラインベリファイ実行時に終了セクタを指定するオプション(stop-sector)を追加しました。
-
-> 
-
->   * DRBDの上位レイヤでFLUSH/FUAをサポートしました。
-
-> 
-
->   * メタデータ作成時に実行するコマンドに新しいオプション(--peer-max-bio-size)を追加しました。DRBDを単一ノードで運用する場合にこのオプションを指定するとよいでしょう。
-
-> 
-
+<li> オンラインベリファイ実行時に終了セクタを指定するオプション(stop-sector)を追加しました。
+</li> 
+<li> DRBDの上位レイヤでFLUSH/FUAをサポートしました。
+</li> 
+<li> メタデータ作成時に実行するコマンドに新しいオプション(--peer-max-bio-size)を追加しました。DRBDを単一ノードで運用する場合にこのオプションを指定するとよいでしょう。
+</li> 
+</ul>
 </blockquote>
 
 
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 参考情報リンク一覧
-
-> 
-> 
-     
-	
->     * [Linbitのサポートページ(ライセンスを購入したユーザのみ利用可能です)](http://www.linbit.com/support/drbd-8.3.14/)
-	
-> 
-	
->     * [ソースコード](http://oss.linbit.com/drbd/8.3/drbd-8.3.14.tar.gz)
-	
-> 
-	
->     * [リポジトリ](http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=tag;h=refs/tags/drbd-8.3.14)
-	
-> 
-     
-
+<ul>
+     <ul>
+	<li><a href="http://www.linbit.com/support/drbd-8.3.14/" target="_blank">Linbitのサポートページ(ライセンスを購入したユーザのみ利用可能です)</a>
+	</li>
+	<li><a href="http://oss.linbit.com/drbd/8.3/drbd-8.3.14.tar.gz" target="_blank">ソースコード</a>
+	</li>
+	<li><a href="http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=tag;h=refs/tags/drbd-8.3.14" target="_blank">リポジトリ</a>
+	</li>
+     <ul>
+</ul>
 </blockquote>

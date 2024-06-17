@@ -14,57 +14,34 @@ Linux上で[高可用(HA)クラスタシステム](http://ja.wikipedia.org/wiki/
 今は主に Pacemaker , Heartbeat , Corosync , DRBD等を扱ってます。
 
  
-<table style="width: 671px; height: 57px;" border="0" >
-<tbody >
-<tr >
 
-<td >[Pacemakerの概要](manual/pacemaker_outline)
-</td>
-
-<td style="text-align: left;" >Pacemakerが対応する故障や構成、バージョンの選び方等について記載しています。
-</td>
+<table style="width: 671px; height: 57px;" border="0">
+<tbody>
+<tr>
+<td><a href="manual/pacemaker_outline">Pacemakerの概要</a></td>
+<td style="text-align: left;">Pacemakerが対応する故障や構成、バージョンの選び方等について記載しています。</td>
 </tr>
-<tr >
-
-<td >[ダウンロード](dl)
-</td>
-
-<td style="text-align: left;" >RHELおよびCentOS等のRHEL互換OS向けPacemaker RPMパッケージ(yumのリポジトリ形式)をダウンロードできます。Pacemaker本体およびCorosync/Heartbeatはもちろん、設定ファイル(crm)作成支援ツール、ディスク監視機能、STONITH支援ツールなどLinux-HA Japan独自の便利ツールも同梱し、インストールが楽ちんになっています。
-</td>
+<tr>
+<td><a href="dl">ダウンロード</a></td>
+<td style="text-align: left;">RHELおよびCentOS等のRHEL互換OS向けPacemaker RPMパッケージ(yumのリポジトリ形式)をダウンロードできます。Pacemaker本体およびCorosync/Heartbeatはもちろん、設定ファイル(crm)作成支援ツール、ディスク監視機能、STONITH支援ツールなどLinux-HA Japan独自の便利ツールも同梱し、インストールが楽ちんになっています。</td>
 </tr>
-<tr >
-
-<td >[マニュアル](manual)
-</td>
-
-<td >本家コミュニティ提供の公式マニュアルやLinux-HA Japan提供の翻訳マニュアル。
-マニュアル読んでもよくわからない場合は、過去の[カンファレンス](archives/tag/osc)や[勉強会](archives/tag/%E5%8B%89%E5%BC%B7%E4%BC%9A)等の発表資料も参考に。
-</td>
+<tr>
+<td><a href="manual">マニュアル</a></td>
+<td>本家コミュニティ提供の公式マニュアルやLinux-HA Japan提供の翻訳マニュアル。
+マニュアル読んでもよくわからない場合は、過去の<a href="archives/tag/osc">カンファレンス</a>や<a href="archives/tag/%E5%8B%89%E5%BC%B7%E4%BC%9A">勉強会</a>等の発表資料も参考に。</td>
 </tr>
-<tr >
-
-<td >[メーリングリスト](ml)
-</td>
-
-<td >インストール方法や設定方法等の質問はMLまで。
-※投稿するにはメールアドレスの登録が必要です。
-</td>
+<tr>
+<td><a href="ml">メーリングリスト</a></td>
+<td>インストール方法や設定方法等の質問はMLまで。
+※投稿するにはメールアドレスの登録が必要です。</td>
 </tr>
-<tr >
-
-<td >[イベント情報](archives/category/event)
-</td>
-
-<td >カンファレンスへの出展や講演、勉強会開催情報、講演時のスライド公開など。
-</td>
+<tr>
+<td><a href="archives/category/event">イベント情報</a></td>
+<td>カンファレンスへの出展や講演、勉強会開催情報、講演時のスライド公開など。</td>
 </tr>
-<tr >
-
-<td >[開発者向けサイト](http://osdn.jp/projects/linux-ha/)
-</td>
-
-<td >Linux-HA Japan開発者向けサイトです。Linux-HA Japan独自開発機能のソースコードやバイナリのダウンロード等。
-</td>
+<tr>
+<td><a href="http://osdn.jp/projects/linux-ha/">開発者向けサイト</a></td>
+<td>Linux-HA Japan開発者向けサイトです。Linux-HA Japan独自開発機能のソースコードやバイナリのダウンロード等。</td>
 </tr>
 </tbody>
 </table>

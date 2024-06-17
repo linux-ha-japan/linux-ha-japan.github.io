@@ -64,41 +64,40 @@ Pacemaker 1.1.6のリリースに向けて、Pacemaker 1.0.12へのバックポ�
 
 さて、こちらは、もういい加減見飽きた感のある仮想IPの設定ファイルですね。
 仮想IPが同じノードで2個(ip01,ip02)起動する設定です。
-<table style="width: 600px; background-color: #ffffcc; border: 0pt solid #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# cat sample01.crm**  
+<table style="width: 600px; background-color: #ffffcc; border: 0pt solid #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="color: #339966; font-family: verdana, geneva;"><strong># cat sample01.crm</strong> </span> 
 
-property \
-no-quorum-policy="ignore" \
-stonith-enabled="false" \
-startup-fencing="false"
+<span style="font-family: verdana, geneva;">property \</span>
+<span style="font-family: verdana, geneva;"> no-quorum-policy="ignore" \</span>
+<span style="font-family: verdana, geneva;"> stonith-enabled="false" \</span>
+<span style="font-family: verdana, geneva;"> startup-fencing="false"</span>
 
-rsc_defaults \
-resource-stickiness="INFINITY" \
-migration-threshold="1"
+<span style="font-family: verdana, geneva;">rsc_defaults \</span>
+<span style="font-family: verdana, geneva;"> resource-stickiness="INFINITY" \</span>
+<span style="font-family: verdana, geneva;"> migration-threshold="1"</span>
 
-primitive ip01 ocf:heartbeat:IPaddr2 \
-params \
-ip="192.168.200.1" \
-nic="bond0" \
-cidr_netmask="24" \
-op start interval="0s" timeout="60s" on-fail="restart" \
-op monitor interval="10s" timeout="60s" on-fail="restart" \
-op stop interval="0s" timeout="60s" on-fail="block" \
+<span style="font-family: verdana, geneva;">primitive ip01 ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana, geneva;"> params \</span>
+<span style="font-family: verdana, geneva;"> ip="192.168.200.1" \</span>
+<span style="font-family: verdana, geneva;"> nic="bond0" \</span>
+<span style="font-family: verdana, geneva;"> cidr_netmask="24" \</span>
+<span style="font-family: verdana, geneva;"> op start interval="0s" timeout="60s" on-fail="restart" \</span>
+<span style="font-family: verdana, geneva;"> op monitor interval="10s" timeout="60s" on-fail="restart" \</span>
+<span style="font-family: verdana, geneva;"> op stop interval="0s" timeout="60s" on-fail="block" \</span>
 
-primitive ip02 ocf:heartbeat:IPaddr2 \
-params \
-ip="192.168.200.2" \
-nic="bond0" \
-cidr_netmask="24" \
-op start interval="0s" timeout="60s" on-fail="restart" \
-op monitor interval="10s" timeout="60s" on-fail="restart" \
-op stop interval="0s" timeout="60s" on-fail="block" \
+<span style="font-family: verdana, geneva;">primitive ip02 ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana, geneva;"> params \</span>
+<span style="font-family: verdana, geneva;"> ip="192.168.200.2" \</span>
+<span style="font-family: verdana, geneva;"> nic="bond0" \</span>
+<span style="font-family: verdana, geneva;"> cidr_netmask="24" \</span>
+<span style="font-family: verdana, geneva;"> op start interval="0s" timeout="60s" on-fail="restart" \</span>
+<span style="font-family: verdana, geneva;"> op monitor interval="10s" timeout="60s" on-fail="restart" \</span>
+<span style="font-family: verdana, geneva;"> op stop interval="0s" timeout="60s" on-fail="block" \</span>
 
-group ip ip01 ip02
-</td>
+<span style="font-family: verdana, geneva;">group ip ip01 ip02</span></td>
 </tr>
 </tbody>
 </table>
@@ -110,45 +109,44 @@ ip01もip02も、opのところって結局はコピペじゃん、とか
 
 第一段階として、オペレーションのtimeoutとon-failを共通化してみましょう。
 op_defaultsというパラメータを使用します。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# cat sample02.crm**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># cat sample02.crm</span></strong> </span> 
 
-property \
-no-quorum-policy="ignore" \
-stonith-enabled="false" \
-startup-fencing="false"
+<span style="font-family: verdana, geneva;">property \</span>
+<span style="font-family: verdana, geneva;"> no-quorum-policy="ignore" \</span>
+<span style="font-family: verdana, geneva;"> stonith-enabled="false" \</span>
+<span style="font-family: verdana, geneva;"> startup-fencing="false"</span>
 
-rsc_defaults \
-resource-stickiness="INFINITY" \
-migration-threshold="1"
+<span style="font-family: verdana, geneva;">rsc_defaults \</span>
+<span style="font-family: verdana, geneva;"> resource-stickiness="INFINITY" \</span>
+<span style="font-family: verdana, geneva;"> migration-threshold="1"</span>
 
-**op_defaults \**
-** timeout="60s" \**
-** on-fail="restart"**
+<span style="font-family: verdana, geneva;"><strong><span style="color: #ff00ff;">op_defaults \</span></strong></span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;"> timeout="60s" \</span></strong></span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;"> on-fail="restart"</span></strong></span>
 
-primitive ip01 ocf:heartbeat:IPaddr2 \
-params \
-ip="192.168.200.1" \
-nic="bond0" \
-cidr_netmask="24" \
-** op start \**
-** op monitor interval="10s" \**
-** op stop  on-fail="block" \**
+<span style="font-family: verdana, geneva;">primitive ip01 ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana, geneva;"> params \</span>
+<span style="font-family: verdana, geneva;"> ip="192.168.200.1" \</span>
+<span style="font-family: verdana, geneva;"> nic="bond0" \</span>
+<span style="font-family: verdana, geneva;"> cidr_netmask="24" \</span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;"> op start \</span></strong></span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;"> op monitor interval="10s" \</span></strong></span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;"> op stop  on-fail="block" \</span></strong></span>
 
-primitive ip02 ocf:heartbeat:IPaddr2 \
-params \
-ip="192.168.200.2" \
-nic="bond0" \
-cidr_netmask="24" \
-** op start \**
-** op monitor interval="10s" \**
-** op stop  on-fail="block" \**
+<span style="font-family: verdana, geneva;">primitive ip02 ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana, geneva;"> params \</span>
+<span style="font-family: verdana, geneva;"> ip="192.168.200.2" \</span>
+<span style="font-family: verdana, geneva;"> nic="bond0" \</span>
+<span style="font-family: verdana, geneva;"> cidr_netmask="24" \</span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;"> op start \</span></strong></span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;"> op monitor interval="10s" \</span></strong></span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;"> op stop  on-fail="block" \</span></strong></span>
 
-group ip ip01 ip02
-</td>
+<span style="font-family: verdana, geneva;">group ip ip01 ip02</span></td>
 </tr>
 </tbody>
 </table>
@@ -164,44 +162,43 @@ sample02.crmのように、op_defaultsを使用すると、関連するリソー
 一斉に長く(もしくは短く)したいときとかに便利ですよね。
 
 第二段階として、$id, $id-refを使ってみましょう。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# cat sample03.crm**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># cat sample03.crm</span></strong> </span> 
 
-property \
-no-quorum-policy="ignore" \
-stonith-enabled="false" \
-startup-fencing="false"
+<span style="font-family: verdana, geneva;">property \</span>
+<span style="font-family: verdana, geneva;"> no-quorum-policy="ignore" \</span>
+<span style="font-family: verdana, geneva;"> stonith-enabled="false" \</span>
+<span style="font-family: verdana, geneva;"> startup-fencing="false"</span>
 
-rsc_defaults \
-resource-stickiness="INFINITY" \
-migration-threshold="1"
+<span style="font-family: verdana, geneva;">rsc_defaults \</span>
+<span style="font-family: verdana, geneva;"> resource-stickiness="INFINITY" \</span>
+<span style="font-family: verdana, geneva;"> migration-threshold="1"</span>
 
-op_defaults \
-timeout="60s" \
-on-fail="restart"
+<span style="font-family: verdana, geneva;">op_defaults \</span>
+<span style="font-family: verdana, geneva;"> timeout="60s" \</span>
+<span style="font-family: verdana, geneva;"> on-fail="restart"</span>
 
-primitive ip01 ocf:heartbeat:IPaddr2 \
-params \
-ip="192.168.200.1" \
-nic="bond0" \
-cidr_netmask="24" \
-** operations $id="ip01-setting" \**
-op start \
-op monitor interval="10s" \
-op stop on-fail="block" \
+<span style="font-family: verdana, geneva;">primitive ip01 ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana, geneva;"> params \</span>
+<span style="font-family: verdana, geneva;"> ip="192.168.200.1" \</span>
+<span style="font-family: verdana, geneva;"> nic="bond0" \</span>
+<span style="font-family: verdana, geneva;"> cidr_netmask="24" \</span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;"> operations $id="ip01-setting" \</span></strong></span>
+<span style="font-family: verdana, geneva;"> op start \</span>
+<span style="font-family: verdana, geneva;"> op monitor interval="10s" \</span>
+<span style="font-family: verdana, geneva;"> op stop on-fail="block" \</span>
 
-primitive ip02 ocf:heartbeat:IPaddr2 \
-params \
-ip="192.168.200.2" \
-nic="bond0" \
-cidr_netmask="24" \
-**operations $id-ref="ip01-setting"**
+<span style="font-family: verdana, geneva;">primitive ip02 ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana, geneva;"> params \</span>
+<span style="font-family: verdana, geneva;"> ip="192.168.200.2" \</span>
+<span style="font-family: verdana, geneva;"> nic="bond0" \</span>
+<span style="font-family: verdana, geneva;"> cidr_netmask="24" \</span>
+<span style="color: #ff00ff; font-family: verdana, geneva;"> <strong>operations $id-ref="ip01-setting"</strong></span>
 
-group ip ip01 ip02
-</td>
+<span style="font-family: verdana, geneva;">group ip ip01 ip02</span></td>
 </tr>
 </tbody>
 </table>
@@ -213,117 +210,112 @@ ip01,ip02のオペレーションが同じ場合は、だいぶ設定がすっ�
 group関係にないリソース同士や、異なるRA間でも設定を参照することができます。
 
 では、すっきりしたリソースを起動させてみます。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# crm configure load update sample03.crm**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># crm configure load update sample03.crm</span></strong> </span> 
 
-**# crm_mon -1**
+<span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># crm_mon -1</span></strong></span>
 
-============
-Last updated: Fri Sep  2 18:19:37 2011
-Stack: Heartbeat
-Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
-Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
-2 Nodes configured, unknown expected votes
-1 Resources configured.
-============
+<span style="font-family: verdana, geneva;">============</span>
+<span style="font-family: verdana, geneva;"> Last updated: Fri Sep  2 18:19:37 2011</span>
+<span style="font-family: verdana, geneva;"> Stack: Heartbeat</span>
+<span style="font-family: verdana, geneva;"> Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+<span style="font-family: verdana, geneva;"> Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+<span style="font-family: verdana, geneva;"> 2 Nodes configured, unknown expected votes</span>
+<span style="font-family: verdana, geneva;"> 1 Resources configured.</span>
+<span style="font-family: verdana, geneva;"> ============</span>
 
-Online: [ node01 node02 ]
+<span style="font-family: verdana, geneva;">Online: [ node01 node02 ]</span>
 
-Resource Group: ip
-ip01       (ocf::heartbeat:IPaddr2):       Started node01
-ip02       (ocf::heartbeat:IPaddr2):       Started node01
-</td>
+<span style="font-family: verdana, geneva;"> Resource Group: ip</span>
+<span style="font-family: verdana, geneva;"> ip01       (ocf::heartbeat:IPaddr2):       Started node01</span>
+<span style="font-family: verdana, geneva;"> ip02       (ocf::heartbeat:IPaddr2):       Started node01</span></td>
 </tr>
 </tbody>
 </table>
 crm_monコマンドに-nオプションをつけると、ノードごとにリソースの状態を確認できますよ。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# crm_mon -1 -n**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># crm_mon -1 -n</span></strong> </span> 
 
-============
-Last updated: Fri Sep  2 18:19:47 2011
-Stack: Heartbeat
-Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum
-Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
-2 Nodes configured, unknown expected votes
-1 Resources configured.
-============
+<span style="font-family: verdana, geneva;">============</span>
+<span style="font-family: verdana, geneva;"> Last updated: Fri Sep  2 18:19:47 2011</span>
+<span style="font-family: verdana, geneva;"> Stack: Heartbeat</span>
+<span style="font-family: verdana, geneva;"> Current DC: node02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+<span style="font-family: verdana, geneva;"> Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+<span style="font-family: verdana, geneva;"> 2 Nodes configured, unknown expected votes</span>
+<span style="font-family: verdana, geneva;"> 1 Resources configured.</span>
+<span style="font-family: verdana, geneva;"> ============</span>
 
-Node node01 (11111111-1111-1111-1111-111111111111): online
-ip02    (ocf::heartbeat:IPaddr2) Started
-ip01    (ocf::heartbeat:IPaddr2) Started
-Node node02 (22222222-2222-2222-2222-222222222222): online
-</td>
+<span style="font-family: verdana, geneva;">Node node01 (11111111-1111-1111-1111-111111111111): online</span>
+<span style="font-family: verdana, geneva;"> ip02    (ocf::heartbeat:IPaddr2) Started</span>
+<span style="font-family: verdana, geneva;"> ip01    (ocf::heartbeat:IPaddr2) Started</span>
+<span style="font-family: verdana, geneva;"> Node node02 (22222222-2222-2222-2222-222222222222): online</span></td>
 </tr>
 </tbody>
 </table>
 node01で仮想IPが起動していることを確認します。ちゃんと起動していますね。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# ip addr show bond0**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="color: #339966; font-family: verdana, geneva;"><strong># ip addr show bond0</strong> </span> 
 
-8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue
-link/ether 00:17:08:7e:11:e2 brd ff:ff:ff:ff:ff:ff
-inet 192.168.200.43/24 brd 192.168.200.255 scope global bond0
-inet **192.168.200.1/24** brd 192.168.200.255 scope global secondary bond0
-inet **192.168.200.2/24** brd 192.168.200.255 scope global secondary bond0
-</td>
+<span style="font-family: verdana, geneva;">8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue</span>
+<span style="font-family: verdana, geneva;"> link/ether 00:17:08:7e:11:e2 brd ff:ff:ff:ff:ff:ff</span>
+<span style="font-family: verdana, geneva;"> inet 192.168.200.43/24 brd 192.168.200.255 scope global bond0</span>
+<span style="font-family: verdana, geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.1/24</span></strong> brd 192.168.200.255 scope global secondary bond0</span>
+<span style="font-family: verdana, geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.2/24</span></strong> brd 192.168.200.255 scope global secondary bond0</span></td>
 </tr>
 </tbody>
 </table>
 ちなみに、crm onfigure loadの反対は、crm configure saveです。
 現在、クラスタが保持している設定情報をcrm形式でファイルに保存することができます。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# crm configure save /tmp/running.crm**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># crm configure save /tmp/running.crm</span></strong> </span> 
 
-** # cat /tmp/running.crm**
+<span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"> # cat /tmp/running.crm</span></strong></span>
 
-node $id="11111111-1111-1111-1111-111111111111" node01
-node $id="22222222-2222-2222-2222-222222222222" node02
-primitive ip01 ocf:heartbeat:IPaddr2 \
-params ip="192.168.200.1" nic="bond0" cidr_netmask="24" \
-operations $id="ip01-setting" \
-op start interval="0" \
-op monitor interval="10s" \
-op stop on-fail="block" interval="0"
-primitive ip02 ocf:heartbeat:IPaddr2 \
-params ip="192.168.200.2" nic="bond0" cidr_netmask="24" \
-operations  $id-ref="ip01-setting"
-group ip ip01 ip02
-property $id="cib-bootstrap-options" \
-dc-version="1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87" \
-cluster-infrastructure="Heartbeat" \
-no-quorum-policy="ignore" \
-stonith-enabled="false" \
-startup-fencing="false"
-rsc_defaults $id="rsc-options" \
-resource-stickiness="INFINITY" \
-migration-threshold="1"
-op_defaults $id="op-options" \
-timeout="60s" \
-on-fail="restart"
-</td>
+<span style="font-family: verdana, geneva;">node $id="11111111-1111-1111-1111-111111111111" node01</span>
+<span style="font-family: verdana, geneva;"> node $id="22222222-2222-2222-2222-222222222222" node02</span>
+<span style="font-family: verdana, geneva;"> primitive ip01 ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana, geneva;"> params ip="192.168.200.1" nic="bond0" cidr_netmask="24" \</span>
+<span style="font-family: verdana, geneva;"> operations $id="ip01-setting" \</span>
+<span style="font-family: verdana, geneva;"> op start interval="0" \</span>
+<span style="font-family: verdana, geneva;"> op monitor interval="10s" \</span>
+<span style="font-family: verdana, geneva;"> op stop on-fail="block" interval="0"</span>
+<span style="font-family: verdana, geneva;"> primitive ip02 ocf:heartbeat:IPaddr2 \</span>
+<span style="font-family: verdana, geneva;"> params ip="192.168.200.2" nic="bond0" cidr_netmask="24" \</span>
+<span style="font-family: verdana, geneva;"> operations  $id-ref="ip01-setting"</span>
+<span style="font-family: verdana, geneva;"> group ip ip01 ip02</span>
+<span style="font-family: verdana, geneva;"> property $id="cib-bootstrap-options" \</span>
+<span style="font-family: verdana, geneva;"> dc-version="1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87" \</span>
+<span style="font-family: verdana, geneva;"> cluster-infrastructure="Heartbeat" \</span>
+<span style="font-family: verdana, geneva;"> no-quorum-policy="ignore" \</span>
+<span style="font-family: verdana, geneva;"> stonith-enabled="false" \</span>
+<span style="font-family: verdana, geneva;"> startup-fencing="false"</span>
+<span style="font-family: verdana, geneva;"> rsc_defaults $id="rsc-options" \</span>
+<span style="font-family: verdana, geneva;"> resource-stickiness="INFINITY" \</span>
+<span style="font-family: verdana, geneva;"> migration-threshold="1"</span>
+<span style="font-family: verdana, geneva;"> op_defaults $id="op-options" \</span>
+<span style="font-family: verdana, geneva;"> timeout="60s" \</span>
+<span style="font-family: verdana, geneva;"> on-fail="restart"</span></td>
 </tr>
 </tbody>
 </table>
 XMLが大好きな方は、xmlオプションをつけると楽しいですよ。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# crm configure save xml /tmp/running.xml**
-</td>
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># crm configure save xml /tmp/running.xml</span></strong></span></td>
 </tr>
 </tbody>
 </table>
@@ -332,38 +324,37 @@ XMLが大好きな方は、xmlオプションをつけると楽しいですよ�
 そうそう、モニターの間隔を変更した後などには気になるかもしれません。
 ha-debugを目grepしていると、モニターの実行が「開始された」タイミングっていうのはわかるんですが
 モニターがintervalに設定した値でちゃんと「実行されている」かどうかはわかりません。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# tail -f /var/log/ha-debug**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># tail -f /var/log/ha-debug</span></strong> </span> 
 
-★ ip01が起動
-**Sep  2 18:19:03 node01 lrmd: [11014]: info: rsc:ip01:4: start**
-Sep  2 18:19:03 node01 IPaddr2[11132]: INFO: ip -f inet addr add 192.168.200.1/24 brd 192.168.200.255 dev bond0
-Sep  2 18:19:03 node01 IPaddr2[11132]: INFO: ip link set bond0 up
-Sep  2 18:19:03 node01 IPaddr2[11132]: INFO: /usr/lib64/heartbeat/send_arp -i 200 -r 5 -p /var/run/resource-agents/send_arp-192.168.200.1 bond0 192.168.200.1 auto not_used not_used
-Sep  2 18:19:03 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip01_start_0 (call=4, rc=0, cib-update=16, confirmed=true) ok
-Sep  2 18:19:05 node01 crmd: [11017]: info: do_lrm_rsc_op: Performing key=10:3:0:579c6480-4f16-4bae-9373-a5d53631427d op=ip01_monitor_10000 )
-★ ip01のモニター処理が開始
-**Sep  2 18:19:05 node01 lrmd: [11014]: info: rsc:ip01:5: monitor**
-Sep  2 18:19:05 node01 crmd: [11017]: info: do_lrm_rsc_op: Performing key=11:3:0:579c6480-4f16-4bae-9373-a5d53631427d op=ip02_start_0 )
-★ ip02が起動
-**Sep  2 18:19:05 node01 lrmd: [11014]: info: rsc:ip02:6: start**
-Sep  2 18:19:05 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip01_monitor_10000 (call=5, rc=0, cib-update=17, confirmed=false) ok
-Sep  2 18:19:05 node01 IPaddr2[11191]: INFO: ip -f inet addr add 192.168.200.2/24 brd 192.168.200.255 dev bond0
-Sep  2 18:19:05 node01 IPaddr2[11191]: INFO: ip link set bond0 up
-Sep  2 18:19:05 node01 IPaddr2[11191]: INFO: /usr/lib64/heartbeat/send_arp -i 200 -r 5 -p /var/run/resource-agents/send_arp-192.168.200.2 bond0 192.168.200.2 auto not_used not_used
-Sep  2 18:19:05 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip02_start_0 (call=6, rc=0, cib-update=18, confirmed=true) ok
-Sep  2 18:19:06 node01 crmd: [11017]: info: do_lrm_rsc_op: Performing key=12:3:0:579c6480-4f16-4bae-9373-a5d53631427d op=ip02_monitor_10000 )
-★ ip02のモニター処理が開始
-**Sep  2 18:19:06 node01 lrmd: [11014]: info: rsc:ip02:7: monitor**
-Sep  2 18:19:06 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip02_monitor_10000 (call=7, rc=0, cib-update=19, confirmed=false) ok
-Sep  2 18:19:07 node01 lrmd: [11014]: info: RA output: (ip01:start:stderr) ARPING 192.168.200.1 from 192.168.200.1 bond0 Sent 5 probes (5 broadcast(s)) Received 0 response(s)
-Sep  2 18:19:09 node01 lrmd: [11014]: info: RA output: (ip02:start:stderr) ARPING 192.168.200.2 from 192.168.200.2 bond0 Sent 5 probes (5 broadcast(s)) Received 0 response(s)
+<span style="font-family: verdana, geneva;">★ ip01が起動</span>
+<span style="color: #ff00ff; font-family: verdana, geneva;"> <strong>Sep  2 18:19:03 node01 lrmd: [11014]: info: rsc:ip01:4: start</strong></span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:03 node01 IPaddr2[11132]: INFO: ip -f inet addr add 192.168.200.1/24 brd 192.168.200.255 dev bond0</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:03 node01 IPaddr2[11132]: INFO: ip link set bond0 up</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:03 node01 IPaddr2[11132]: INFO: /usr/lib64/heartbeat/send_arp -i 200 -r 5 -p /var/run/resource-agents/send_arp-192.168.200.1 bond0 192.168.200.1 auto not_used not_used</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:03 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip01_start_0 (call=4, rc=0, cib-update=16, confirmed=true) ok</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:05 node01 crmd: [11017]: info: do_lrm_rsc_op: Performing key=10:3:0:579c6480-4f16-4bae-9373-a5d53631427d op=ip01_monitor_10000 )</span>
+<span style="font-family: verdana, geneva;"> ★ ip01のモニター処理が開始</span>
+<span style="color: #ff00ff; font-family: verdana, geneva;"> <strong>Sep  2 18:19:05 node01 lrmd: [11014]: info: rsc:ip01:5: monitor</strong></span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:05 node01 crmd: [11017]: info: do_lrm_rsc_op: Performing key=11:3:0:579c6480-4f16-4bae-9373-a5d53631427d op=ip02_start_0 )</span>
+<span style="font-family: verdana, geneva;"> ★ ip02が起動</span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;">Sep  2 18:19:05 node01 lrmd: [11014]: info: rsc:ip02:6: start</span></strong></span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:05 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip01_monitor_10000 (call=5, rc=0, cib-update=17, confirmed=false) ok</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:05 node01 IPaddr2[11191]: INFO: ip -f inet addr add 192.168.200.2/24 brd 192.168.200.255 dev bond0</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:05 node01 IPaddr2[11191]: INFO: ip link set bond0 up</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:05 node01 IPaddr2[11191]: INFO: /usr/lib64/heartbeat/send_arp -i 200 -r 5 -p /var/run/resource-agents/send_arp-192.168.200.2 bond0 192.168.200.2 auto not_used not_used</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:05 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip02_start_0 (call=6, rc=0, cib-update=18, confirmed=true) ok</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:06 node01 crmd: [11017]: info: do_lrm_rsc_op: Performing key=12:3:0:579c6480-4f16-4bae-9373-a5d53631427d op=ip02_monitor_10000 )</span>
+<span style="font-family: verdana, geneva;"> ★ ip02のモニター処理が開始</span>
+<span style="font-family: verdana, geneva;"> <strong><span style="color: #ff00ff;">Sep  2 18:19:06 node01 lrmd: [11014]: info: rsc:ip02:7: monitor</span></strong></span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:06 node01 crmd: [11017]: info: process_lrm_event: LRM operation ip02_monitor_10000 (call=7, rc=0, cib-update=19, confirmed=false) ok</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:07 node01 lrmd: [11014]: info: RA output: (ip01:start:stderr) ARPING 192.168.200.1 from 192.168.200.1 bond0 Sent 5 probes (5 broadcast(s)) Received 0 response(s)</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:19:09 node01 lrmd: [11014]: info: RA output: (ip02:start:stderr) ARPING 192.168.200.2 from 192.168.200.2 bond0 Sent 5 probes (5 broadcast(s)) Received 0 response(s)</span>
 
-この後、沈黙
-</td>
+<span style="font-family: verdana, geneva;">この後、沈黙</span></td>
 </tr>
 </tbody>
 </table>
@@ -373,98 +364,92 @@ Heartbeat関連のプロセスはごりっとこんな感じで起動するわ�
 (DCノードではpengineプロセスも起動します)
 「master control process」っていうプロセスが親分さんでそれにつらなって、
 ccm,cib,lrmdなどが起動しています。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# pgrep -lf heartbeat**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="color: #339966; font-family: verdana, geneva;"><strong># pgrep -lf heartbeat</strong> </span> 
 
-**11004 heartbeat: master control process**
-11007 heartbeat: FIFO reader
-11008 heartbeat: write: bcast eth1
-11009 heartbeat: read: bcast eth1
-11012 /usr/lib64/heartbeat/ccm
-11013 /usr/lib64/heartbeat/cib
-11014 /usr/lib64/heartbeat/lrmd -r
-11015 /usr/lib64/heartbeat/stonithd
-11016 /usr/lib64/heartbeat/attrd
-11017 /usr/lib64/heartbeat/crmd
-11018 /usr/lib64/heartbeat/ifcheckd
+<span style="color: #ff00ff; font-family: verdana, geneva;"><strong>11004 heartbeat: master control process</strong></span>
+<span style="font-family: verdana, geneva;"> 11007 heartbeat: FIFO reader</span>
+<span style="font-family: verdana, geneva;"> 11008 heartbeat: write: bcast eth1</span>
+<span style="font-family: verdana, geneva;"> 11009 heartbeat: read: bcast eth1</span>
+<span style="font-family: verdana, geneva;"> 11012 /usr/lib64/heartbeat/ccm</span>
+<span style="font-family: verdana, geneva;"> 11013 /usr/lib64/heartbeat/cib</span>
+<span style="font-family: verdana, geneva;"> 11014 /usr/lib64/heartbeat/lrmd -r</span>
+<span style="font-family: verdana, geneva;"> 11015 /usr/lib64/heartbeat/stonithd</span>
+<span style="font-family: verdana, geneva;"> 11016 /usr/lib64/heartbeat/attrd</span>
+<span style="font-family: verdana, geneva;"> 11017 /usr/lib64/heartbeat/crmd</span>
+<span style="font-family: verdana, geneva;"> 11018 /usr/lib64/heartbeat/ifcheckd</span>
 
-**# pstree 11004**
+<span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># pstree 11004</span></strong></span>
 
-heartbeat─
-┬─attrd
-├─ccm
-├─cib
-├─crmd
-├─3*[heartbeat]
-├─ifcheckd
-├─lrmd
-└─stonithd
-</td>
+<span style="font-family: verdana, geneva;">heartbeat─
+┬─attrd</span>
+<span style="font-family: verdana, geneva;"> ├─ccm</span>
+<span style="font-family: verdana, geneva;"> ├─cib</span>
+<span style="font-family: verdana, geneva;"> ├─crmd</span>
+<span style="font-family: verdana, geneva;"> ├─3*[heartbeat]</span>
+<span style="font-family: verdana, geneva;"> ├─ifcheckd</span>
+<span style="font-family: verdana, geneva;"> ├─lrmd</span>
+<span style="font-family: verdana, geneva;"> └─stonithd</span></td>
 </tr>
 </tbody>
 </table>
 今回は、lrmdのデバッグログの出力レベルをあげるためにプロセス名に対してSIGUSR1を投げます。
 この操作は実際にリソースが起動しているノードで実行してください。
 今回の例では、node01で実行しています。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# pkill -SIGUSR1 lrmd**
-</td>
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># pkill -SIGUSR1 lrmd</span></strong></span></td>
 </tr>
 </tbody>
 </table>
 ha-debugに「begin to dump internal data for debugging.」というログが出力されます。
 (その以外にも、おえっていうくらいログがでます)
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# tail -f /var/log/ha-debug**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># tail -f /var/log/ha-debug</span></strong> </span> 
 
-Sep  2 18:25:32 node01 lrmd: [11014]: debug: begin to dump internal data for debugging.
-</td>
+<span style="font-family: verdana, geneva;">Sep  2 18:25:32 node01 lrmd: [11014]: debug: begin to dump internal data for debugging.</span></td>
 </tr>
 </tbody>
 </table>
 しばらく待っていると、お！ip01とip02のモニター処置がちゃんと10秒ごとに実行されてますね！
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# tail -f /var/log/ha-debug**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># tail -f /var/log/ha-debug</span></strong> </span> 
 
-Sep  2 18:25:36 node01 lrmd: [11014]: debug: rsc:ip01:5: monitor
-Sep  2 18:25:38 node01 lrmd: [11014]: debug: rsc:ip02:7: monitor
-Sep  2 18:25:46 node01 lrmd: [11014]: debug: rsc:ip01:5: monitor
-Sep  2 18:25:48 node01 lrmd: [11014]: debug: rsc:ip02:7: monitor
-</td>
+<span style="font-family: verdana, geneva;">Sep  2 18:25:36 node01 lrmd: [11014]: debug: rsc:ip01:5: monitor</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:25:38 node01 lrmd: [11014]: debug: rsc:ip02:7: monitor</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:25:46 node01 lrmd: [11014]: debug: rsc:ip01:5: monitor</span>
+<span style="font-family: verdana, geneva;"> Sep  2 18:25:48 node01 lrmd: [11014]: debug: rsc:ip02:7: monitor</span></td>
 </tr>
 </tbody>
 </table>
 デバッグログの出力レベルを元に戻す場合は、SIGUSR2を使います。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# pkill -SIGUSR2 lrmd**
-</td>
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># pkill -SIGUSR2 lrmd</span></strong></span></td>
 </tr>
 </tbody>
 </table>
 ha-debugに「end to dump internal data for debugging.」というログが出力されます。
-<table style="width: 600px; background-color: #ffffcc;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" >**# tail -f /var/log/ha-debug**  
+<table style="width: 600px; background-color: #ffffcc;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"><strong><span style="color: #339966;"># tail -f /var/log/ha-debug</span></strong> </span> 
 
-Sep  2 18:26:37 node01 lrmd: [11014]: debug: end to dump internal data for debugging.
-</td>
+<span style="font-family: verdana, geneva;">Sep  2 18:26:37 node01 lrmd: [11014]: debug: end to dump internal data for debugging.</span></td>
 </tr>
 </tbody>
 </table>

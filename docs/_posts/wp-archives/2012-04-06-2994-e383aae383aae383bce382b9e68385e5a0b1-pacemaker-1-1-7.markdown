@@ -26,7 +26,7 @@ After much hard work, the latest installment of the Pacemaker 1.1 release series
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 いろいろと大変なこともありましたが、ついにPacemaker 1.1.7をリリースします。
 </blockquote>
 
@@ -49,7 +49,7 @@ Diff
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 チェンジセット合計数     513
 変更されたファイル数     1171
 追加行数                90472
@@ -66,8 +66,8 @@ As well as the usual round of bug fixes, see the full changelog,
 
 
 
-<blockquote>
-バグフィックスも含めた全てのチェンジログは[GitHub](https://raw.github.com/ClusterLabs/pacemaker/master/ChangeLog)で参照することができます。
+<blockquote style="background-color:white;border-color:white;color:black;">
+バグフィックスも含めた全てのチェンジログは<a href="https://raw.github.com/ClusterLabs/pacemaker/master/ChangeLog" target="_blank">GitHub</a>で参照することができます。
 </blockquote>
 
 
@@ -80,7 +80,7 @@ this new release brings:
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 今回のリリースに含まれる大きな変更点をいくつか紹介します。
 </blockquote>
 
@@ -124,55 +124,32 @@ this new release brings:
 メッセージングレイヤとして Corosync 2.0 にも対応しました。
 
 ・現在サポートされているメッセージングレイヤとクラスタマネージャの組み合わせ
-<table >
-<tbody >
-<tr >
-     
-<td >メッセージングレイヤ
-</td>
-     
-<td >クラスタマネージャ
-</td>
+
+<table>
+<tbody>
+<tr>
+     <td>メッセージングレイヤ</td>
+     <td>クラスタマネージャ</td>
 </tr>
-<tr >
-     
-<td >Heartbeat 3.0.5
-</td>
-     
-<td >Pacemaker 1.0系
-</td>
+<tr>
+     <td>Heartbeat 3.0.5</td>
+     <td>Pacemaker 1.0系</td>
 </tr>
-<tr >
-     
-<td >Corosync 1.4系
-</td>
-     
-<td >Pacemaker 1.0系
-</td>
+<tr>
+     <td>Corosync 1.4系</td>
+     <td>Pacemaker 1.0系</td>
 </tr>
-<tr >
-     
-<td >Heartbeat 3.0.5
-</td>
-     
-<td >Pacemaker 1.1.6
-</td>
+<tr>
+     <td>Heartbeat 3.0.5</td>
+     <td>Pacemaker 1.1.6</td>
 </tr>
-<tr >
-     
-<td >Corosync 1.4系
-</td>
-     
-<td >Pacemaker 1.1.6
-</td>
+<tr>
+     <td>Corosync 1.4系</td>
+     <td>Pacemaker 1.1.6</td>
 </tr>
-<tr >
-     
-<td >Corosync 2.0
-</td>
-     
-<td >Pacemaker 1.1.7
-</td>
+<tr>
+     <td>Corosync 2.0</td>
+     <td>Pacemaker 1.1.7</td>
 </tr>
 </tbody>
 </table>
@@ -395,7 +372,7 @@ As per our release calendar, the next 1.1 release is planned for mid-July.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 今後の計画としては、Pacemaker 1.1.8 を7月中旬にリリースする予定です。
 </blockquote>
 
@@ -410,7 +387,7 @@ Other distributions will follow when their schedules allow it.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Fedora用のRPMパッケージはまもなく開発用のリポジトリからダウンロードすることができるようになるはずです。
 その他のディストリビューションに関しては、それぞれのリリーススケジュールに従って配布されます。
 </blockquote>
@@ -425,8 +402,8 @@ The source tarball (tar.gz) is also available directly from GitHub.
 
 
 
-<blockquote>
-ソースコードのtarボールは[GitHub](https://nodeload.github.com/ClusterLabs/pacemaker/tarball/Pacemaker-1.1.7)からダウンロードすることができます。
+<blockquote style="background-color:white;border-color:white;color:black;">
+ソースコードのtarボールは<a href="https://nodeload.github.com/ClusterLabs/pacemaker/tarball/Pacemaker-1.1.7" target="_blank">GitHub</a>からダウンロードすることができます。
 </blockquote>
 
 
@@ -439,6 +416,6 @@ General installation instructions are available at from the ClusterLabs wiki.
 
 
 
-<blockquote>
-インストール手順などはClusterLabsの[Wikiページ](http://clusterlabs.org/wiki/Install)を参照してください。
+<blockquote style="background-color:white;border-color:white;color:black;">
+インストール手順などはClusterLabsの<a href="http://clusterlabs.org/wiki/Install" target="_blank">Wikiページ</a>を参照してください。
 </blockquote>

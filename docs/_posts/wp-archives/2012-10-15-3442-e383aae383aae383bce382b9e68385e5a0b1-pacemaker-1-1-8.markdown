@@ -28,7 +28,7 @@ the final hold-up was some stonith interactions in the presence of multiple clie
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 今回リリースするバージョンは Pacemaker 1.1.8 です。
 前回のリリースからしばらく間が空いてしまいましたが、これはSTONITH関連の修正に時間がかかってしまったためです。
 </blockquote>
@@ -49,10 +49,10 @@ https://github.com/ClusterLabs/pacemaker/blob/master/ChangeLog
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 リリースに際し、動作確認にご協力いただいたみなさん、本当にありがとうございます。
 FedoraとEPELのパッケージもまもなく公開されるはずです。
-詳細なチェンジログは[はこちら](https://github.com/ClusterLabs/pacemaker/blob/master/ChangeLog)を確認してください。
+詳細なチェンジログは<a href="https://github.com/ClusterLabs/pacemaker/blob/master/ChangeLog" target="_blank">はこちら</a>を確認してください。
 </blockquote>
 
 
@@ -75,25 +75,23 @@ FedoraとEPELのパッケージもまもなく公開されるはずです。
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 - tarballのバージョン：1a5341f
 - 変更履歴の統計情報
-
-> 
-> 
-	2107のファイルが変更されました。
+<ul>
+	<ul>2107のファイルが変更されました。
 	117258行が追加されました。
-	73606行が削除されました。
-  
-
+	73606行が削除されました。</ul>
+  </ul>
+</ul>
 
 - APIの見直しを行いました。
 - lrmdを再実装しました。Pacemaker 1.1.8に同梱されるlrmdはsystemdおよびupstart用のRAをサポートしています。
 - cib.xmlや遷移グラフの出力先を変更しました。
-
-	例)${localstatedir}=/var でビルドした場合
-	     /var/lib/pengine/　→　/var/lib/pacemaker/pengine/
-
-- CRM shellは[別プロジェクト](https://savannah.nongnu.org/projects/crmsh/)として開発が進められることになりました。
+<ul>
+	<ul>例)${localstatedir}=/var でビルドした場合</ul>
+	     <ul>/var/lib/pengine/　→　/var/lib/pacemaker/pengine/</ul>
+</ul>
+- CRM shellは<a href="https://savannah.nongnu.org/projects/crmsh/" target="_blank">別プロジェクト</a>として開発が進められることになりました。
 - デーモンやツール類から出力されるエラーコードを統一しました。
 </blockquote>

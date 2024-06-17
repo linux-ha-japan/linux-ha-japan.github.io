@@ -22,37 +22,25 @@ Hello,
 
 The current glue repository has been tagged as 1.0.11.
 The highlights:
-
-> 
-> 
-
->   * lrmd sets max number of children depending on the number of processors
-
-> 
-
->   * compatibility for stonith agents and hb_report for pacemaker v1.1.8
-
-> 
-
+<ul>
+<li>lrmd sets max number of children depending on the number of processors
+</li>
+<li>compatibility for stonith agents and hb_report for pacemaker v1.1.8
+</li>
+</ul>
 </blockquote>
 
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 今回のリリースに含まれる変更点：
-
-> 
-> 
-
->   * リソースエージェント(Resource Agent:RA)を実行する際にlrmdからforkされる子プロセスの数が、実行環境のプロセッサ数に応じて調整されるようになりました。
-
-> 
-
->   * STONITHエージェントおよびhb_reportツールがPacemaker 1.1.8 に対応しました。
-
-> 
-
+<ul>
+<li>リソースエージェント(Resource Agent:RA)を実行する際にlrmdからforkされる子プロセスの数が、実行環境のプロセッサ数に応じて調整されるようになりました。
+</li>
+<li>STONITHエージェントおよびhb_reportツールがPacemaker 1.1.8 に対応しました。
+</li>
+</ul>
 </blockquote>
 
 
@@ -72,8 +60,8 @@ Dejan Muhamedagic
 
 
 
-<blockquote>
-最新版のソースコードは[こちら](http://hg.linux-ha.org/glue/archive/glue-1.0.11.tar.bz2)からダウンロードすることができます。
+<blockquote style="background-color:white;border-color:white;color:black;">
+最新版のソースコードは<a href="http://hg.linux-ha.org/glue/archive/glue-1.0.11.tar.bz2" target="_blank">こちら</a>からダウンロードすることができます。
 </blockquote>
 
 

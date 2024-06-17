@@ -32,10 +32,10 @@ http://www.corosync.org.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Corosync (Needle) 2.0.0がリリースされました。
 ソースコードは　Corosync のサイトからダウンロードすることができます。
-[http://www.corosync.org](http://www.corosync.org)
+<a href="http://www.corosync.org" target="_blank">http://www.corosync.org</a>
 </blockquote>
 
 
@@ -52,7 +52,7 @@ well tested features.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Corosync 2.x系をリリースするにあたり、ユーザからのフィードバックを反映して、シンプルかつ洗練されたコードへ改良することを大きな目標としました。また、開発チームが厳選し、十分にテストを実施した新機能もいくつか取り込まれています。
 </blockquote>
 
@@ -67,7 +67,7 @@ Major changes and improvements:
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 主な変更点と改良点は以下のとおりです。
 </blockquote>
 
@@ -139,7 +139,7 @@ Please make sure to upgrade all nodes at once.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Corosync 2.x系は、Corosync 1.3/1.4系と互換性がありません。
 バージョンアップをする場合は、クラスタに含まれる全てのノードをアップデートしてください。
 </blockquote>
@@ -157,7 +157,7 @@ ports (or use udpu) to avoid overlaps.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 例えば、Corosync 1.3系のノードを二つ含むクラスタA、Corosync 2.x系のノードを二つ含むクラスタB、これら二つのクラスタを同一ネットワーク内で起動させたい場合は、クラスタ内の通信にはマルチキャストアドレスと特定ポート(もしくはUDPユニキャスト)を設定してクラスタ間で通信が混乱しないように注意してください。
 </blockquote>
 
@@ -176,8 +176,8 @@ General
 
 
 
-<blockquote>
-- [manページ](https://github.com/corosync/corosync/tree/master/man)が大幅に更新されています。
+<blockquote style="background-color:white;border-color:white;color:black;">
+- <a href="https://github.com/corosync/corosync/tree/master/man" target="_blank">manページ</a>が大幅に更新されています。
 - テストツールが統合されました。
 - SolarisやBSDへの移植性を考慮してコードを改良しました。
 </blockquote>
@@ -198,7 +198,7 @@ library if security is required in the deployment.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 暗号化と認証の仕組みを改良しました。
 nssライブラリ関連の暗号機構を強化しています。
 FIPS(Federal Information Processing Standardization)に準拠した暗号化と認証の仕組みを利用しているユーザには利点がありますが、実行環境でnssライブラリが必須となります。
@@ -220,7 +220,7 @@ New quorum infrastructure
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 votequorum関連のコードを大幅に改良しました。
 votequorumは、以前のバージョンで使用していたCMANと同様のクォーラム機能を提供します。
 
@@ -230,7 +230,7 @@ votequorumは、以前のバージョンで使用していたCMANと同様のク
  - wait_for_all
  - last_man_standing
 
-詳細は[manページ(votequorum.5)](https://github.com/corosync/corosync/blob/master/man/votequorum.5)を参照してください。
+詳細は<a href="https://github.com/corosync/corosync/blob/master/man/votequorum.5" target="_blank">manページ(votequorum.5)</a>を参照してください。
 </blockquote>
 
 
@@ -259,7 +259,7 @@ test suite which Corosync was lacking previously for these features.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 ポーリング機能や、IPC(プロセス間通信)、ロギングなどの実装にあたり、libqbというライブラリを採用しました。
 libqbは豊富なテストツールを備えており、Corosyncの品質向上にもつながるはずです。
 </blockquote>
@@ -279,7 +279,7 @@ developers suggest porting that plugin to CPG.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 プラグイン機能は削除しました。
 以前のバージョンで独自のプラグインを使用していた場合はCPGへ移行することをお勧めします。
 </blockquote>
@@ -298,7 +298,7 @@ The map also provides configuration data for Corosync.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 OBJDB/CONFDBがICMAP/CMAPへ置き換えられました。
 CMAPを使用することによってパフォーマンスが向上しています。
 </blockquote>
@@ -334,7 +334,7 @@ unused services.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 使用されていないサービスを削除しました。
 </blockquote>
 
@@ -352,7 +352,7 @@ partially implemented.  Users of EVS are advised to use CPG instead.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 EVSを削除しました。
 プラグイン機能と同様、CPGへ移行することをお勧めします。
 </blockquote>
@@ -376,7 +376,7 @@ treated as test service.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 PLOADの大幅な見直しを行いました。
 PLOADはテスト用のトラフィックを生成するためのツールです。
 </blockquote>
@@ -412,7 +412,7 @@ the release of Corosync 2.0.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Corosync 2.0のリリースに際しご協力いただいた皆様、ありがとうございました。
 </blockquote>
 
@@ -467,6 +467,6 @@ Corosync本体のコードを見直してくれた Fabio Di Nitto
 そして、開発者の皆さん、お疲れ様でした！
 18ヶ月前の打ち合わせで設定した目標どおり、シンプルで高品質のパッケージをリリースすることができました。
 
-Corosync 2.0.0は Corosync の[サイト](http://www.corosync.org)からダウンロードすることができます。
+Corosync 2.0.0は Corosync の<a href="http://www.corosync.org" target="_blank">サイト</a>からダウンロードすることができます。
 各ディストリビューションのリリースにあわせて、それぞれのリポジトリにも最新版のパッケージが取り込まれる予定です。
 </blockquote>

@@ -113,31 +113,19 @@ Linux-HA も rgmanager もインストールされちゃいますが
 RHEL6.1での操作例
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td ># git clone http://github.com/ClusterLabs/resource-agents/  
-
-# cd resource-agents/  
-
-# git checkout v3.9.1  
-
-# ./autogen.sh  
-
-# ./configure --with-ras-set=linux-ha  
-
-# make  
-
-
-
-
-# make install  
-
-または  
-
-# make rpm
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td><span style="font-family: verdana,geneva;"># git clone http://github.com/ClusterLabs/resource-agents/</span><br></br>
+<span style="font-family: verdana,geneva;"> # cd resource-agents/</span><br></br>
+<span style="font-family: verdana,geneva;"> # git checkout v3.9.1</span><br></br>
+<span style="font-family: verdana,geneva;"> # ./autogen.sh</span><br></br>
+<span style="font-family: verdana,geneva;"> # ./configure --with-ras-set=linux-ha</span><br></br>
+<span style="font-family: verdana,geneva;"> # make </span> </p>
+<p><span style="font-family: verdana,geneva;"># make install</span><br></br>
+<span style="font-family: verdana,geneva;"> または</span><br></br>
+<span style="font-family: verdana,geneva;"> # make rpm</span></td>
 </tr>
 </tbody>
 </table>
@@ -392,11 +380,11 @@ Code cleanups ; Removal of compatibility code for kernels older than 2.6.18
 **dummy.crm**
 
 
-<table style="height: 369px; width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f5f5f5;" >
+<table style="height: 369px; width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f5f5f5;">
 <pre><span style="font-family: verdana,geneva; font-size: small;">### Cluster Option ###
 property \
         no-quorum-policy="ignore" \
@@ -417,9 +405,6 @@ primitive prmDummy ocf:pacemaker:Dummy \
 location location-01 prmDummy \
         rule 200: #uname eq xen01 \
         rule 100: #uname eq xen02</span></pre>
-
-
-
 </td>
 </tr>
 </tbody>
@@ -431,17 +416,12 @@ location location-01 prmDummy \
 早速、リソースを起動させてみましょう。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm configure load update dummy.crm **  
-
-
-
-
-crm_verify[2854]: 2011/06/27_19:51:32 WARN: unpack_nodes: Blind faith: not fencing unseen nodes
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm configure load update dummy.crm </span></strong> </span><span style="font-size: small;"> </span><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva; font-size: small;">crm_verify[2854]: 2011/06/27_19:51:32 WARN: unpack_nodes: Blind faith: not fencing unseen nodes</span></td>
 </tr>
 </tbody>
 </table>
@@ -463,50 +443,24 @@ crm_mon に -f オプションをつけて、リソースの状態を確認し�
 
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f **  
-
-
-
-
-============  
-
-Last updated: Mon Jun 27 19:51:54 2011  
-
-Stack: Heartbeat  
-
-Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
-
-Version: 1.0.11-db98485d06ed stable-1.0 tip  
-
-2 Nodes configured, unknown expected votes  
-
-1 Resources configured.  
-
-============ 
-
-
-
-
-Online: [ xen01 xen02 ]
-
-
-
-
-prmDummy        (ocf::pacemaker:Dummy): Started xen01
-
-
-
-
-Migration summary:  
-
-* Node xen02:  
-
-* Node xen01:
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm_mon -i1 -f </span></strong> </span><span style="font-size: small;"> </span><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva; font-size: small;">============</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Last updated: Mon Jun 27 19:51:54 2011</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Stack: Heartbeat</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Version: 1.0.11-db98485d06ed stable-1.0 tip</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 2 Nodes configured, unknown expected votes</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 1 Resources configured.</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> ============ </span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Online: [ xen01 xen02 ]</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">prmDummy        (ocf::pacemaker:Dummy): Started xen01</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Migration summary:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen02:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen01:</span></td>
 </tr>
 </tbody>
 </table>
@@ -528,12 +482,11 @@ migration-threshold="1"　なので、xen01 で一回故障すると
 では、ノード xen01 で Dummy RA のステータスファイルを削除して故障を発生させてみます。
 
 
-<table style="width: 700px; background-color: #f5f5f5;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# rm -f /var/run/Dummy-prmDummy.state**
-</td>
+<table style="width: 700px; background-color: #f5f5f5;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva; font-size: small;"><strong><span style="color: #339966;"># rm -f /var/run/Dummy-prmDummy.state</span></strong></span></td>
 </tr>
 </tbody>
 </table>
@@ -542,59 +495,27 @@ migration-threshold="1"　なので、xen01 で一回故障すると
 リソースの状態を確認すると…
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f **  
-
-
-
-
-============  
-
-Last updated: Mon Jun 27 19:52:31 2011  
-
-Stack: Heartbeat  
-
-Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
-
-Version: 1.0.11-db98485d06ed stable-1.0 tip  
-
-2 Nodes configured, unknown expected votes  
-
-1 Resources configured.  
-
-============ 
-
-
-
-
-Online: [ xen01 xen02 ] 
-
-
-
-
-**prmDummy ** (ocf::pacemaker:Dummy): Started **xen02**
-
-
-
-
-Migration summary:  
-
-* Node xen02:  
-
-* Node xen01:  
-
-**prmDummy: migration-threshold=1 fail-count=1**
-
-
-
-
-**Failed actions:**  
-
-** prmDummy_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running**
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm_mon -i1 -f </span></strong> </span><span style="font-size: small;"> </span><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva; font-size: small;">============</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Last updated: Mon Jun 27 19:52:31 2011</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Stack: Heartbeat</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Version: 1.0.11-db98485d06ed stable-1.0 tip</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 2 Nodes configured, unknown expected votes</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 1 Resources configured.</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> ============ </span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Online: [ xen01 xen02 ] </span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;"><strong><span style="color: #ff00ff;">prmDummy </span></strong> (ocf::pacemaker:Dummy): Started <strong><span style="color: #ff00ff;">xen02</span></strong></span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Migration summary:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen02:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen01:</span><br></br>
+<span style="color: #ff00ff; font-family: verdana,geneva; font-size: small;"> <strong>prmDummy: migration-threshold=1 fail-count=1</strong></span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;"><strong><span style="color: #ff00ff;">Failed actions:</span></strong></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> <strong><span style="color: #ff00ff;"> prmDummy_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running</span></strong></span></td>
 </tr>
 </tbody>
 </table>
@@ -614,23 +535,15 @@ prmDummy は xen02 へフェイルオーバしました！
 まず、次のようにコマンドラインから crm シェルを実行してみてください。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource failcount**  
-
-
-
-
-usage:  
-
-failcount <rsc> set <node> <value>  
-
-failcount <rsc> delete <node>  
-
-failcount <rsc> show <node>
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm resource failcount</span></strong> </span><span style="font-size: small;"> </span><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva; font-size: small;">usage:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> failcount <rsc> set <node> <value></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> failcount <rsc> delete <node></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> failcount <rsc> show <node></span></td>
 </tr>
 </tbody>
 </table>
@@ -658,17 +571,12 @@ failcount を削除するには、リソース名とノード名を指定する�
 リソース名はえーっと…と思ったときは、次のコマンドを実行してください。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource show ** ** **** **  
-
-
-
-
-**prmDummy **(ocf::pacemaker:Dummy) Started
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm resource show </span></strong> </span><span style="font-size: small;"><strong><span style="color: #ff00ff;"> </span></strong></span><span style="font-size: small;"><strong><span style="color: #ff00ff;"> </span></strong></span> </span> </p>
+<p><span style="font-family: verdana,geneva; font-size: small;"><strong><span style="color: #ff00ff;">prmDummy </span></strong>(ocf::pacemaker:Dummy) Started</span></td>
 </tr>
 </tbody>
 </table>
@@ -681,17 +589,12 @@ failcount を削除するには、リソース名とノード名を指定する�
 の前に、今のカウント数をちょっと確認しておきましょう。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource failcount prmDummy show xen01 **  
-
-
-
-
-** ** scope=status  name=fail-count-prmDummy value=1
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm resource failcount prmDummy show xen01 </span></strong></span> </span> </p>
+<p><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"> </span></strong> </span><span style="font-size: small;"> </span><span style="font-size: small;">scope=status  name=fail-count-prmDummy value=1</span></span></td>
 </tr>
 </tbody>
 </table>
@@ -702,12 +605,11 @@ failcount は 1 ですね。あたりまえですが crm_mon -f の表示と同�
 今度こそは failcount をクリア！
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource failcount prmDummy delete xen01**
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva; font-size: small;"><strong><span style="color: #339966;"># crm resource failcount prmDummy delete xen01</span></strong></span></td>
 </tr>
 </tbody>
 </table>
@@ -716,17 +618,12 @@ failcount は 1 ですね。あたりまえですが crm_mon -f の表示と同�
 ちゃんと消えたかなー…。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource failcount prmDummy show xen01**  
-
-
-
-
-scope=status  name=fail-count-prmDummy value=0
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva; font-size: small;"><strong><span style="color: #339966;"># crm resource failcount prmDummy show xen01</span></strong> </span> </p>
+<p><span style="font-family: verdana,geneva;"><span style="font-size: small;"> </span><span style="font-size: small;"> </span><span style="font-size: small;"> scope=status  name=fail-count-prmDummy value=0</span></span></td>
 </tr>
 </tbody>
 </table>
@@ -737,57 +634,26 @@ failcount は 0 になりました！成功です。
 crm_mon -f でも確認してみましょう。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f **  
-
-
-
-
-============  
-
-Last updated: Mon Jun 27 19:53:05 2011  
-
-Stack: Heartbeat  
-
-Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
-
-Version: 1.0.11-db98485d06ed stable-1.0 tip  
-
-2 Nodes configured, unknown expected votes  
-
-1 Resources configured.  
-
-============
-
-
-
-
-Online: [ xen01 xen02 ]
-
-
-
-
-prmDummy        (ocf::pacemaker:Dummy): Started xen02
-
-
-
-
-Migration summary:  
-
-* Node xen02:  
-
-* Node xen01:
-
-
-
-
-**Failed actions:**  
-
-** prmDummy_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running**
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm_mon -i1 -f </span></strong> </span><span style="font-size: small;"> </span><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva; font-size: small;">============</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Last updated: Mon Jun 27 19:53:05 2011</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Stack: Heartbeat</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Version: 1.0.11-db98485d06ed stable-1.0 tip</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 2 Nodes configured, unknown expected votes</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 1 Resources configured.</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> ============</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Online: [ xen01 xen02 ]</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">prmDummy        (ocf::pacemaker:Dummy): Started xen02</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Migration summary:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen02:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen01:</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;"><strong><span style="color: #ff00ff;">Failed actions:</span></strong></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> <strong><span style="color: #ff00ff;"> prmDummy_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running</span></strong></span></td>
 </tr>
 </tbody>
 </table>
@@ -811,17 +677,12 @@ Migration summary:
 コマンドラインから次のように crm シェルを起動してみましょう。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource cleanup **** **  
-
-
-
-
-usage: cleanup <rsc> [<node>]
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm resource cleanup </span></strong></span><span style="font-size: small;"><strong><span style="color: #339966;"> </span></strong> </span><span style="font-size: small;"><span style="color: #339966;"><span style="color: #000000;"> </span></span></span> </span> </p>
+<p><span style="font-family: verdana,geneva;"><span style="font-size: small;"><span style="color: #339966;"><span style="color: #000000;">usage: cleanup <rsc> [<node>]</span></span></span></span></td>
 </tr>
 </tbody>
 </table>
@@ -845,19 +706,13 @@ usage: cleanup <rsc> [<node>]
 では、cleanup コマンドを実行してみましょう。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource cleanup prmDummy xen01**  
-
-
-
-
-Cleaning up prmDummy on xen01  
-
-Waiting for 2 replies from the CRMd..
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm resource cleanup prmDummy xen01</span></strong> </span><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva;"><span style="font-size: small;">Cleaning up prmDummy on xen01</span></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Waiting for 2 replies from the CRMd..</span></td>
 </tr>
 </tbody>
 </table>
@@ -866,50 +721,24 @@ Waiting for 2 replies from the CRMd..
 crm_mon -f で確認してみると…
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f**  
-
-
-
-
-============  
-
-Last updated: Mon Jun 27 19:55:17 2011  
-
-Stack: Heartbeat  
-
-Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
-
-Version: 1.0.11-db98485d06ed stable-1.0 tip  
-
-2 Nodes configured, unknown expected votes  
-
-1 Resources configured.  
-
-============
-
-
-
-
-Online: [ xen01 xen02 ]
-
-
-
-
-prmDummy        (ocf::pacemaker:Dummy): Started xen02
-
-
-
-
-Migration summary:  
-
-* Node xen02:  
-
-* Node xen01:
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm_mon -i1 -f</span></strong> </span> </span> </p>
+<p><span style="font-family: verdana,geneva;"><span style="font-size: small;"> </span><span style="font-size: small;">============</span></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Last updated: Mon Jun 27 19:55:17 2011</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Stack: Heartbeat</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Version: 1.0.11-db98485d06ed stable-1.0 tip</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 2 Nodes configured, unknown expected votes</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 1 Resources configured.</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> ============</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Online: [ xen01 xen02 ]</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">prmDummy        (ocf::pacemaker:Dummy): Started xen02</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Migration summary:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen02:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen01:</span></td>
 </tr>
 </tbody>
 </table>
@@ -927,17 +756,12 @@ fail-cout も Failed actions もうまく消えてくれたところで、フェ
 リソースの移動には move コマンドを使用します。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource move**  
-
-
-
-
-usage: migrate <rsc> [<node>] [<lifetime>] [force]
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm resource move</span></strong> </span><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva;"><span style="font-size: small;">usage: migrate <rsc> [<node>] [<lifetime>] [force]</span></span></td>
 </tr>
 </tbody>
 </table>
@@ -953,72 +777,32 @@ usage: migrate <rsc> [<node>] [<lifetime>] [force]
 で、move コマンドを実行する前に、ちょっと現在の configure を表示させてみましょう。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f5f5f5;" >
-
-
-**# crm configure show**
-
-
-
-
-node $id="11111111-1111-1111-1111-111111111111" xen01  
-
-node $id="22222222-2222-2222-2222-222222222222" xen02  
-
-
-
-
-
-
-primitive prmDummy ocf:pacemaker:Dummy \  
-
-op start interval="0s" timeout="100s" on-fail="restart" \  
-
-op monitor interval="10s" timeout="100s" on-fail="restart" \  
-
-op stop interval="0s" timeout="100s" on-fail="block"
-
-
-
-
-location location-01 prmDummy \  
-
-rule $id="location-01-rule" 200: #uname eq xen01 \  
-
-rule $id="location-01-rule-0" 100: #uname eq xen02
-
-
-
-
-property **$id="cib-bootstrap-options" \**  
-
-** dc-version="1.0.11-db98485d06ed stable-1.0 tip" \**  
-
-**cluster-infrastructure="Heartbeat" \**  
-
-no-quorum-policy="ignore" \  
-
-stonith-enabled="false" \  
-
-startup-fencing="false" \  
-
-**last-lrm-refresh="1309172113"**
-
-
-
-
-rsc_defaults $id="rsc-options" \  
-
-resource-stickiness="INFINITY" \  
-
-migration-threshold="1"
-
-
-
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f5f5f5;">
+<p style="text-align: justify;"><span style="font-family: verdana,geneva; font-size: small;"><strong><span style="color: #339966;"># crm configure show</span></strong></span></p>
+<p style="text-align: justify;"><span style="font-family: verdana,geneva; font-size: small;">node $id="11111111-1111-1111-1111-111111111111" xen01</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> node $id="22222222-2222-2222-2222-222222222222" xen02</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> </span></p>
+<p style="text-align: justify;"><span style="font-family: verdana,geneva; font-size: small;">primitive prmDummy ocf:pacemaker:Dummy \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> op start interval="0s" timeout="100s" on-fail="restart" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> op monitor interval="10s" timeout="100s" on-fail="restart" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> op stop interval="0s" timeout="100s" on-fail="block"</span></p>
+<p style="text-align: justify;"><span style="font-family: verdana,geneva; font-size: small;"> location location-01 prmDummy \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> rule $id="location-01-rule" 200: #uname eq xen01 \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> rule $id="location-01-rule-0" 100: #uname eq xen02</span></p>
+<p style="text-align: justify;"><span style="font-family: verdana,geneva; font-size: small;"> property <strong><span style="color: #ff00ff;">$id="cib-bootstrap-options" \</span></strong></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> <strong><span style="color: #ff00ff;"> dc-version="1.0.11-db98485d06ed stable-1.0 tip" \</span></strong></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> <strong><span style="color: #ff00ff;">cluster-infrastructure="Heartbeat" \</span></strong></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> no-quorum-policy="ignore" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> stonith-enabled="false" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> startup-fencing="false" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> <strong><span style="color: #ff00ff;">last-lrm-refresh="1309172113"</span></strong></span></p>
+<p style="text-align: justify;"><span style="font-family: verdana,geneva; font-size: small;"> rsc_defaults $id="rsc-options" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> resource-stickiness="INFINITY" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> migration-threshold="1"</span></p>
 </td>
 </tr>
 </tbody>
@@ -1037,23 +821,15 @@ migration-threshold="1"
 では、prmDummy　を xen02 から xen01 へ移動させてみましょう。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource move prmDummy xen01 force**  
-
-
-
-
-WARNING: Creating rsc_location constraint 'cli-standby-prmDummy' with a score of -INFINITY for resource prmDummy on xen02.  
-
-This will prevent prmDummy from running on xen02 until the constraint is removed using the 'crm_resource -U' command or manually with cibadmin  
-
-This will be the case even if xen02 is the last node in the cluster  
-
-This message can be disabled with -Q
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm resource move prmDummy xen01 force</span></strong> </span><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva; font-size: small;">WARNING: Creating rsc_location constraint 'cli-standby-prmDummy' with a score of -INFINITY for resource prmDummy on xen02.</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> This will prevent prmDummy from running on xen02 until the constraint is removed using the 'crm_resource -U' command or manually with cibadmin</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> This will be the case even if xen02 is the last node in the cluster</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> This message can be disabled with -Q</span></td>
 </tr>
 </tbody>
 </table>
@@ -1066,50 +842,24 @@ This message can be disabled with -Q
 prmDummy は xen02 から xen01 へちゃんと移動しています。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm_mon -i1 -f **  
-
-
-
-
-============  
-
-Last updated: Mon Jun 27 19:59:36 2011  
-
-Stack: Heartbeat  
-
-Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum  
-
-Version: 1.0.11-db98485d06ed stable-1.0 tip  
-
-2 Nodes configured, unknown expected votes  
-
-1 Resources configured.  
-
-============
-
-
-
-
-Online: [ xen01 xen02 ]
-
-
-
-
-**prmDummy **(ocf::pacemaker:Dummy): Started** xen01**
-
-
-
-
-Migration summary:  
-
-* Node xen02:  
-
-* Node xen01:
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #339966;"># crm_mon -i1 -f </span></strong><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva; font-size: small;">============</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Last updated: Mon Jun 27 19:59:36 2011</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Stack: Heartbeat</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Current DC: xen02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> Version: 1.0.11-db98485d06ed stable-1.0 tip</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 2 Nodes configured, unknown expected votes</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> 1 Resources configured.</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> ============</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Online: [ xen01 xen02 ]</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;"><strong><span style="color: #ff00ff;">prmDummy </span></strong>(ocf::pacemaker:Dummy): Started<strong><span style="color: #ff00ff;"> xen01</span></strong></span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">Migration summary:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen02:</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> * Node xen01:</span></td>
 </tr>
 </tbody>
 </table>
@@ -1134,80 +884,36 @@ location の設定を変更することによって、リソースを移動さ�
 
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f5f5f5;" >**# crm configure show**  
-
-
-
-
-node $id="11111111-1111-1111-1111-111111111111" xen01  
-
-node $id="22222222-2222-2222-2222-222222222222" xen02
-
-
-
-
-primitive prmDummy ocf:pacemaker:Dummy \  
-
-op start interval="0s" timeout="100s" on-fail="restart" \  
-
-op monitor interval="10s" timeout="100s" on-fail="restart" \  
-
-op stop interval="0s" timeout="100s" on-fail="block"  
-
-** **
-
-
-
-
-**location cli-prefer-prmDummy prmDummy \**  
-
-** rule $id="cli-prefer-rule-prmDummy" inf: #uname eq xen01**  
-
-**location cli-standby-prmDummy prmDummy \**  
-
-** rule $id="cli-standby-rule-prmDummy" -inf: #uname eq xen02**  
-
-
-
-
-
-
-location location-01 prmDummy \  
-
-rule $id="location-01-rule" 200: #uname eq xen01 \  
-
-rule $id="location-01-rule-0" 100: #uname eq xen02
-
-
-
-
-property $id="cib-bootstrap-options" \  
-
-dc-version="1.0.11-db98485d06ed stable-1.0 tip" \  
-
-cluster-infrastructure="Heartbeat" \  
-
-no-quorum-policy="ignore" \  
-
-stonith-enabled="false" \  
-
-startup-fencing="false" \  
-
-last-lrm-refresh="1309172113"
-
-
-
-
-rsc_defaults $id="rsc-options" \  
-
-resource-stickiness="INFINITY" \  
-
-migration-threshold="1"
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #339966;"># crm configure show</span></strong> </span> </p>
+<p><span style="font-family: verdana,geneva;"><span style="font-size: small;">node $id="11111111-1111-1111-1111-111111111111" xen01</span></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> node $id="22222222-2222-2222-2222-222222222222" xen02</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">primitive prmDummy ocf:pacemaker:Dummy \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> op start interval="0s" timeout="100s" on-fail="restart" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> op monitor interval="10s" timeout="100s" on-fail="restart" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> op stop interval="0s" timeout="100s" on-fail="block"</span><br></br>
+<span style="font-family: verdana,geneva;"> <strong><span style="font-size: small; color: #ff00ff;"> </span></strong></span></p>
+<p><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #ff00ff;">location cli-prefer-prmDummy prmDummy \</span></strong></span><br></br>
+<span style="font-family: verdana,geneva;"> <strong><span style="font-size: small; color: #ff00ff;"> rule $id="cli-prefer-rule-prmDummy" inf: #uname eq xen01</span></strong></span><br></br>
+<span style="font-family: verdana,geneva;"> <strong><span style="font-size: small; color: #ff00ff;">location cli-standby-prmDummy prmDummy \</span></strong></span><br></br>
+<span style="font-family: verdana,geneva;"> <strong><span style="font-size: small; color: #ff00ff;"> rule $id="cli-standby-rule-prmDummy" -inf: #uname eq xen02</span></strong></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> </span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">location location-01 prmDummy \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> rule $id="location-01-rule" 200: #uname eq xen01 \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> rule $id="location-01-rule-0" 100: #uname eq xen02</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">property $id="cib-bootstrap-options" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> dc-version="1.0.11-db98485d06ed stable-1.0 tip" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> cluster-infrastructure="Heartbeat" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> no-quorum-policy="ignore" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> stonith-enabled="false" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> startup-fencing="false" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> last-lrm-refresh="1309172113"</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;">rsc_defaults $id="rsc-options" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> resource-stickiness="INFINITY" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> migration-threshold="1"</span></td>
 </tr>
 </tbody>
 </table>
@@ -1225,12 +931,11 @@ migration-threshold="1"
 unmove コマンドはノード名を指定する必要はありません。
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm resource unmove prmDummy**
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="color: #339966; font-family: verdana,geneva; font-size: small;"><strong># crm resource unmove prmDummy</strong></span></td>
 </tr>
 </tbody>
 </table>
@@ -1239,65 +944,30 @@ unmove コマンドはノード名を指定する必要はありません。
 ここで、configure を確認してみると…
 
 
-<table style="width: 700px;" border="0" >
-<tbody >
-<tr >
 
-<td style="text-align: justify; background-color: #f5f5f5;" >**# crm configure show**  
-
-
-
-
-node $id="11111111-1111-1111-1111-111111111111" xen01  
-
-node $id="22222222-2222-2222-2222-222222222222" xen02
-
-
-
-
-primitive prmDummy ocf:pacemaker:Dummy \  
-
-op start interval="0s" timeout="100s" on-fail="restart" \  
-
-op monitor interval="10s" timeout="100s" on-fail="restart" \  
-
-op stop interval="0s" timeout="100s" on-fail="block"
-
-
-
-
-location location-01 prmDummy \  
-
-rule $id="location-01-rule" 200: #uname eq xen01 \  
-
-rule $id="location-01-rule-0" 100: #uname eq xen02
-
-
-
-
-property $id="cib-bootstrap-options" \  
-
-dc-version="1.0.11-db98485d06ed stable-1.0 tip" \  
-
-cluster-infrastructure="Heartbeat" \  
-
-no-quorum-policy="ignore" \  
-
-stonith-enabled="false" \  
-
-startup-fencing="false" \  
-
-last-lrm-refresh="1309172113"
-
-
-
-
-rsc_defaults $id="rsc-options" \  
-
-resource-stickiness="INFINITY" \  
-
-migration-threshold="1"
-</td>
+<table style="width: 700px;" border="0">
+<tbody>
+<tr>
+<td style="text-align: justify; background-color: #f5f5f5;"><span style="font-family: verdana,geneva;"><span style="font-size: small;"><strong><span style="color: #339966;"># crm configure show</span></strong> </span><span style="font-size: small;"> </span> </span> </p>
+<p><span style="font-family: verdana,geneva;"><span style="font-size: small;">node $id="11111111-1111-1111-1111-111111111111" xen01</span></span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> node $id="22222222-2222-2222-2222-222222222222" xen02</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;"> primitive prmDummy ocf:pacemaker:Dummy \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> op start interval="0s" timeout="100s" on-fail="restart" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> op monitor interval="10s" timeout="100s" on-fail="restart" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> op stop interval="0s" timeout="100s" on-fail="block"</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;"> location location-01 prmDummy \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> rule $id="location-01-rule" 200: #uname eq xen01 \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> rule $id="location-01-rule-0" 100: #uname eq xen02</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;"> property $id="cib-bootstrap-options" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> dc-version="1.0.11-db98485d06ed stable-1.0 tip" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> cluster-infrastructure="Heartbeat" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> no-quorum-policy="ignore" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> stonith-enabled="false" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> startup-fencing="false" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> last-lrm-refresh="1309172113"</span></p>
+<p><span style="font-family: verdana,geneva; font-size: small;"> rsc_defaults $id="rsc-options" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> resource-stickiness="INFINITY" \</span><br></br>
+<span style="font-family: verdana,geneva; font-size: small;"> migration-threshold="1"</span></td>
 </tr>
 </tbody>
 </table>

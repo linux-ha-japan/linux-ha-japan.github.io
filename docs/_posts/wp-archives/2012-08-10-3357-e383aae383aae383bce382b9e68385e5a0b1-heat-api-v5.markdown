@@ -30,7 +30,7 @@ CloudFormation is a programmable interface and tempalting system for orchestrati
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Heatの新しいバージョンをリリースすることができてうれしく思います。
 HeatはOpenStack版のAWS CloudFormationを開発するプロジェクトです。
 CloudFormationはクラウドアプリケーションを制御するためのプログラマブルなインターフェースとテンプレートを提供します。
@@ -50,8 +50,8 @@ https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-
 
 
 
-<blockquote>
-[Fedora 17](https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme)または[Ubuntu 12.04](https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu)でHeat v5を試してみてください。
+<blockquote style="background-color:white;border-color:white;color:black;">
+<a href="https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme" target="_blank">Fedora 17</a>または<a href="https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu" target="_blank">Ubuntu 12.04</a>でHeat v5を試してみてください。
 </blockquote>
 
 
@@ -69,7 +69,7 @@ What's new in version 5:
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Heat v5の新機能
 </blockquote>
 
@@ -85,7 +85,7 @@ Heat can now use CloudWatch to monitor instances and cause stacks to scale up an
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 * ロードバランスとオートスケール
 
 HeatはCloudWatchを使用してインスタンスの監視を行い、スタックのスケールアップ、スケールダウンを実行します。
@@ -109,7 +109,7 @@ If two users belong to the same tenant, they can see and modify the same stacks.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 * テナント単位のスタック操作
 
 スタックはユーザ単位ではなくテナント単位でアクセスされます。
@@ -133,7 +133,7 @@ A running stack can now be updated by sending a new template via the `UpdateStac
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 * スタックの更新
 
 実行中のスタックに対してもテンプレートによる更新処理が可能となりました。
@@ -158,7 +158,7 @@ Support for multiple availability zones and database snapshots is not yet implem
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 * リモートデータベースストレージ
 
 HeatはAWSが提供しているMySQLのインスタンスをサポートしています。
@@ -183,11 +183,11 @@ Heat developers have produced a port of the heat CLI tool which uses the Boto AW
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 * 互換性の改善
 
 Heat APIはAWS CloudFormation APIに完全に準拠しています。
-また、BotoのAWSクライアントライブラリを使用したheat用の[コマンドラインツール](https://github.com/heat-api/heat/wiki/Heat-CLI-Boto-migration-&-API-rework)が開発されました。
+また、BotoのAWSクライアントライブラリを使用したheat用の<a href="https://github.com/heat-api/heat/wiki/Heat-CLI-Boto-migration-&-API-rework" target="_blank">コマンドラインツール</a>が開発されました。
 </blockquote>
 
 
@@ -207,11 +207,11 @@ Heat now has scripts for running integration tests using Beaker:
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 * 統合テストツール
 
 Heatには統合テストを実行するためのスクリプトを同梱されています。
-[テストツール](https://github.com/heat-api/heat-integration-tests#heat-integration-tests)は[Beaker](http://beaker-project.org)を使用して開発されています。
+<a href="https://github.com/heat-api/heat-integration-tests#heat-integration-tests" target="_blank">テストツール</a>は<a href="http://beaker-project.org" target="_blank">Beaker</a>を使用して開発されています。
 </blockquote>
 
 
@@ -232,11 +232,11 @@ Note that single-instance EBS templates are not functional at the moment:
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 * hear-jeosの改善
 
 OSイメージを生成するためのコマンドラインツールが改良されて使いやすくなりました。
-シングルインスタンスのEBSテンプレートは現時点では[未対応](https://github.com/heat-api/heat/issues/185)です。
+シングルインスタンスのEBSテンプレートは現時点では<a href="https://github.com/heat-api/heat/issues/185" target="_blank">未対応</a>です。
 </blockquote>
 
 

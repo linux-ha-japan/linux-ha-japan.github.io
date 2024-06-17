@@ -30,10 +30,10 @@ As some may know, Angus and I were working previously on a project called pacema
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 すでにご存じの方もいらっしゃるとは思いますが、Angusと私は「Pacemaker Cloud」というプロジェクトでクラウド環境における高可用性について検討を重ねてきましたが、このプロジェクトは2012年3月に終了し、新しいプロジェクトを開始することになりました。
 新しいプロジェクトの名前は「Heat」です。
-「Heat」の詳細についてはこちらの[ブログエントリ](http://sdake.wordpress.com/2012/04/24/the-heat-api-a-template-based-orchestration-framework/)を参照してください。
+「Heat」の詳細についてはこちらの<a href="http://sdake.wordpress.com/2012/04/24/the-heat-api-a-template-based-orchestration-framework/" target="_blank">ブログエントリ</a>を参照してください。
 </blockquote>
 
 
@@ -46,7 +46,7 @@ We have just released Heat API (v4) which has a really nice HA feature for users
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Heat API (v4)はOpenStackで構築されたクラウド環境に高可用性機能を提供します。
 Heatはクラウド上で実行されるアプリケーションを定義したテンプレートを使用しますが、最終的に、Amazon AWS CloudFormationと同等のAPIとテンプレートの提供を目標としており、かなり近いところまで完成しています。
 </blockquote>
@@ -61,7 +61,7 @@ Heat's High Availability feature set will restart failed applications and escala
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Heatの高可用性機能を利用して、故障したアプリケーションの再起動を実行したり、故障回数が敷居値を超えた場合には、アプリケーションではなく仮想マシンそのものの再起動を実行したりすることができます。
 これらの動作はテンプレートに定義され、API経由で実行されます。
 </blockquote>
@@ -76,7 +76,7 @@ Heat does a ton of great things, which is why I ask you to give it a spin, espec
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 OpenStack環境で様々な検証作業、評価作業を行っているみなさん、Heatへの質問やフィードバックをお待ちしています！
 </blockquote>
 
@@ -116,7 +116,7 @@ Thanks!
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 今すぐHeatを試してみたいという方は、githubでプロジェクトをフォローしてください。
 pacemaker-cloud、もしくはheat-apiのメーリングリストでもフィードバックをお待ちしています。
 </blockquote>
@@ -167,7 +167,7 @@ Over the last year, Angus Salkeld and I have been developing a IAAS high availab
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Angusと私は昨年までPacemaker CloudプロジェクトでIAASの高可用性について検討してきましたが、高可用なクラウド環境を実現するためにはorchestration、つまり様々なコンポーネントが調和した状態で機能することが必要であるということがわかりました。
 Red Hatの別プロジェクトで働いている開発者たちも同じ問題をかかえていました。
 私たちは二週間ほどPacemaker Cloudプロジェクトの仕事から離れて、別プロジェクトとの協働について、つまり、AWS CloudFormationのようなテンプレートを使用したシステム構築をOpenStackでも実現することができるかどうかという点について検討しました。
@@ -184,7 +184,7 @@ The developers decided to take another couple weeks to determine if we could get
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 開発者たちはさらに何週間か議論を重ね、複数の仮想マシンを制御するための様々な機能について検討しました。そしていよいよ、Heat APIのリリースが実現したのです。
 たくさんの開発者が参加してくれたおかげで、HeatはPacemaker Cloudよりも機能面でかなり上回っています。
 このため、Pacemaker Cloudは開発を中止し、Heatの開発に注力することになりました。
@@ -200,7 +200,7 @@ A bit about Heat:  The Heat API implements the AWS Cloud Formations API. This AP
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Heatについて:
 Heat APIはAWS Cloud Formation APIと同じような実装です。テンプレートを使用して複数の仮想マシンスタックを作成することができます。
 将来的には、OpenStack環境でAWS CloudFormationのスタックを起動させることを目標としています。
@@ -217,7 +217,7 @@ Given that C was a poor choice of implementation language for making REST based 
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 RESTベースのクラウドサービスを想定して、HeatはCではなくPythonで実装されています。また、HeatはOpenStackの設計方針にも追従しています。
 Heatという新しいプロジェクトの実現可能性を検討している段階での初期デザインはまさにそのアーキテクチャの基本となるものであり、関連するドキュメント(※)はsecond iteration releaseで実現可能な動作を前提に記述されています。
 </blockquote>
@@ -235,7 +235,7 @@ A mailing list is available for developer and user discussion. We track mileston
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 開発者用、ユーザ用のメーリングリストもすでに利用可能です。githubでマイルストーンや議論の管理も行っています。開発はかなりはやいスピードで進行しています。興味のある方はgithubやIRCのチャット(#heat on freenode)に参加してください！
 </blockquote>
 

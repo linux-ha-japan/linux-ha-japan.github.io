@@ -232,63 +232,71 @@ Fedoraにはもう取り込まれているので、今回はFedora 16で動作�
 
 	
     * NetworkManagerのサービスを停止
-# systemctl disable NetworkManager.service
-# systemctl stop NetworkManager.service
+<pre><span style="font-family: verdana,geneva;"> # systemctl disable NetworkManager.service</span>
+<span style="font-family: verdana,geneva;"> # systemctl stop NetworkManager.service</span></pre>
+
+
 
 
 	
     * networkのサービスを開始
-# systemctl enable network.service
-# systemctl start network.service
+<pre><span style="font-family: verdana,geneva;"> # systemctl enable network.service</span>
+<span style="font-family: verdana,geneva;"> # systemctl start network.service</span></pre>
+
+
 
 
 	
     * ブリッジの作成
-# cd /etc/sysconfig/network-scripts/
-# cp -p ifcfg-em1 ifcfg-br0
+<pre><span style="font-family: verdana,geneva;"> # cd /etc/sysconfig/network-scripts/</span>
+<span style="font-family: verdana,geneva;"> # cp -p ifcfg-em1 ifcfg-br0
 
 # vim ifcfg-em1
 HWADDR="XX:XX:XX:XX:XX:XX"
 IPV6INIT="no"
 UUID="1dad842d-1912-ef5a-a43a-bc238fb267e7"
-** #IPADDR0="192.168.XXX.XXX"         ★ コメントにいれる**
-** #PREFIX0="24" 　　　　　　　　　　　　　　     ★ コメントにいれる**
+<strong><span style="color: #ff00ff;"> #IPADDR0="192.168.XXX.XXX"         ★ コメントにいれる</span></strong>
+<strong><span style="color: #ff00ff;"> #PREFIX0="24" 　　　　　　　　　　　　　　     ★ コメントにいれる</span></strong>
 DEFROUTE="yes"
 IPV4_FAILURE_FATAL="yes"
 NM_CONTROLLED="yes"
 BOOTPROTO="none"
-** #GATEWAY0="192.168.XXX.XXX"      ★ コメントにいれる**
+<strong><span style="color: #ff00ff;"> #GATEWAY0="192.168.XXX.XXX"      ★ コメントにいれる</span></strong>
 DEVICE="em1"
 TYPE="Ethernet"
 ONBOOT="yes"
 NAME="System em1"
-** BRIDGE=br0 ★ 追記**
+<strong><span style="color: #ff00ff;"> BRIDGE=br0 ★ 追記</span></strong>
 
 
 # vim ifcfg-br0
 HWADDR="XX:XX:XX:XX:XX:XX"
 IPV6INIT="no"
 UUID="1dad842d-1912-ef5a-a43a-bc238fb267e7"
-** IPADDR="192.168.XXX.XXX"               ★ IPADDR0 → IPADDR**
-** PREFIX="24"                                     　 ★ PREFIX0 → PREFIX**
+<strong><span style="color: #ff00ff;"> IPADDR="192.168.XXX.XXX"               ★ IPADDR0 → IPADDR</span></strong>
+<strong><span style="color: #ff00ff;"> PREFIX="24"                                     　 ★ PREFIX0 → PREFIX</span></strong>
 DEFROUTE="yes"
 IPV4_FAILURE_FATAL="yes"
 NM_CONTROLLED="yes"
 BOOTPROTO="none"
-** GATEWAY="192.168.XXX.XXX"           ★ GATEWAY0 → GATEWAY**
-** DEVICE="br0"                                     ★ em1      → br0**
-** TYPE="Bridge"                                     ★ Ethernet → Bridge**
+<strong><span style="color: #ff00ff;"> GATEWAY="192.168.XXX.XXX"           ★ GATEWAY0 → GATEWAY</span></strong>
+<strong><span style="color: #ff00ff;"> DEVICE="br0"                                     ★ em1      → br0</span></strong>
+<strong><span style="color: #ff00ff;"> TYPE="Bridge"                                     ★ Ethernet → Bridge</span></strong>
 ONBOOT="yes"
-** NAME="System br0"                             ★ em1      → br0** 
+<strong><span style="color: #ff00ff;"> NAME="System br0"                             ★ em1      → br0</span></strong> 
 
  
+
+</span></pre>
 
 
 
 
 	
     * ネットワークの再起動
-# systemctl restart network.service
+<pre><span style="font-family: verdana,geneva;"> # systemctl restart network.service</span></pre>
+
+
 
 
 
@@ -301,15 +309,19 @@ ONBOOT="yes"
 
 	
     * 「空白文字(Tab)」が「#011」へ変換されちゃっていたので、「EscapeControlCharactersOnReceive」の設定を追加してください([参考](http://www.rsyslog.com/doc/rsconf1_escapecontrolcharactersonreceive.html))。
-# vim /etc/rsyslog.conf 
+<pre><span style="font-family: verdana,geneva;"> # vim /etc/rsyslog.conf 
 
-$EscapeControlCharactersOnReceive off
+<span style="font-family: verdana,geneva;">$EscapeControlCharactersOnReceive off</span>
 
  
 
+</span></pre>
+
 
 rsyslogサービスを再起動します。
-# systemctl restart rsyslog.service
+<pre><span style="font-family: verdana,geneva;"> # systemctl restart rsyslog.service</span></pre>
+
+
 
 
 
@@ -366,16 +378,20 @@ virt-managerを使ってゲストにもFedora 16をにょろにょろとイン�
 **3. OSのアップデート**
 
 yumの設定を行います。
-# vim /etc/yum.conf  
+<pre><span style="font-family: verdana,geneva;"> # vim /etc/yum.conf </span><span style="font-family: verdana,geneva;"> 
 
 proxy=http://プロキシサーバのIPアドレス:8080
 
  
 
+</span></pre>
+
 
 ホストOSとゲストOSのアップデートを行います。20分くらいかかりました。
-# yum -y install yum-plugin-fastestmirror
-# yum -y update
+<pre><span style="font-family: verdana,geneva;"> # yum -y install yum-plugin-fastestmirror</span>
+<span style="font-family: verdana,geneva;"> # yum -y update</span></pre>
+
+
 **4. Pacemaker Cloudの環境構築**
 
 では！いよいよPacemaker Cloudの環境を構築します！
@@ -392,68 +408,76 @@ proxy=http://プロキシサーバのIPアドレス:8080
   * qpid-tools
 
 
-# yum -y install pacemaker-cloud 
+<pre><span style="font-family: verdana,geneva;"># yum -y install pacemaker-cloud 
 
-インストールしています:
-pacemaker-cloud                         x86_64             0.5.0-1.fc16                            updates             123 k
+<span style="font-family: verdana,geneva;">インストールしています:</span>
+<span style="font-family: verdana,geneva;"> pacemaker-cloud                         x86_64             0.5.0-1.fc16                            updates             123 k</span>
 
-依存性関連でのインストールをします。:
-cluster-glue-libs                       x86_64             1.0.6-8.fc16                            fedora              116 k
-febootstrap-supermin-helper             x86_64             3.10-1.fc16                             fedora              308 k
-gfs2-utils                              x86_64             3.1.3-1.fc16                            updates             210 k
-gvnc-tools                              x86_64             0.4.3-1.fc15                            fedora               61 k
-hfsplus-tools                           x86_64             332.14-12.fc15                          fedora              118 k
-hivex                                   x86_64             1.3.3-1.fc16                            updates              87 k
-jfsutils                                x86_64             1.1.13-8.fc12                           fedora              203 k
-libguestfs                              x86_64             1:1.16.1-1.fc16                         updates             1.3 M
-libmicrohttpd                           x86_64             0.9.7-1.fc16                            fedora               46 k
-libqb                                   x86_64             0.9.0-1.fc16                            updates              61 k
-m2crypto                                x86_64             0.21.1-5.fc16                           fedora              452 k
-nilfs-utils                             x86_64             2.0.23-1.fc16                           fedora               98 k
-numpy                                   x86_64             1:1.6.0-2.1.fc16                        fedora              2.5 M
-oz                                      noarch             0.7.0-3.fc16                            updates             124 k
-pacemaker-libs                          x86_64             1.1.6-4.fc16                            fedora              360 k
-perl-hivex                              x86_64             1.3.3-1.fc16                            updates              37 k
-pyparted                                x86_64             3.8-1.fc16                              fedora              188 k
-python-daemon                           noarch             1.6-1.fc16                              fedora               26 k
-python-libguestfs                       x86_64             1:1.16.1-1.fc16                         updates             160 k
-python-lockfile                         noarch             1:0.9.1-1.fc16                          fedora               27 k
-python-nose                             noarch             1.1.2-1.fc16                            fedora              260 k
-python-qpid-qmf                         x86_64             0.12-4.fc16.2                           fedora              1.2 M
-python-setuptools                       noarch             0.6.24-1.fc16                           updates             325 k
-qpid-cpp-client                         x86_64             0.12-4.fc16.2                           fedora              976 k
-qpid-cpp-server                         x86_64             0.12-4.fc16.2                           fedora              1.0 M
-qpid-qmf                                x86_64             0.12-4.fc16.2                           fedora              438 k
-reiserfs-utils                          x86_64             2:3.6.21-4.fc15                         fedora              232 k
-scrub                                   x86_64             2.4-2.fc15                              fedora               35 k
-zerofree                                x86_64             1.0.1-8.fc15                            fedora               20 k
-zfs-fuse                                x86_64             0.6.9-8.20100709git.fc15                fedora              910 k
+<span style="font-family: verdana,geneva;">依存性関連でのインストールをします。:</span>
+<span style="font-family: verdana,geneva;"> cluster-glue-libs                       x86_64             1.0.6-8.fc16                            fedora              116 k</span>
+<span style="font-family: verdana,geneva;"> febootstrap-supermin-helper             x86_64             3.10-1.fc16                             fedora              308 k</span>
+<span style="font-family: verdana,geneva;"> gfs2-utils                              x86_64             3.1.3-1.fc16                            updates             210 k</span>
+<span style="font-family: verdana,geneva;"> gvnc-tools                              x86_64             0.4.3-1.fc15                            fedora               61 k</span>
+<span style="font-family: verdana,geneva;"> hfsplus-tools                           x86_64             332.14-12.fc15                          fedora              118 k</span>
+<span style="font-family: verdana,geneva;"> hivex                                   x86_64             1.3.3-1.fc16                            updates              87 k</span>
+<span style="font-family: verdana,geneva;"> jfsutils                                x86_64             1.1.13-8.fc12                           fedora              203 k</span>
+<span style="font-family: verdana,geneva;"> libguestfs                              x86_64             1:1.16.1-1.fc16                         updates             1.3 M</span>
+<span style="font-family: verdana,geneva;"> libmicrohttpd                           x86_64             0.9.7-1.fc16                            fedora               46 k</span>
+<span style="font-family: verdana,geneva;"> libqb                                   x86_64             0.9.0-1.fc16                            updates              61 k</span>
+<span style="font-family: verdana,geneva;"> m2crypto                                x86_64             0.21.1-5.fc16                           fedora              452 k</span>
+<span style="font-family: verdana,geneva;"> nilfs-utils                             x86_64             2.0.23-1.fc16                           fedora               98 k</span>
+<span style="font-family: verdana,geneva;"> numpy                                   x86_64             1:1.6.0-2.1.fc16                        fedora              2.5 M</span>
+<span style="font-family: verdana,geneva;"> oz                                      noarch             0.7.0-3.fc16                            updates             124 k</span>
+<span style="font-family: verdana,geneva;"> pacemaker-libs                          x86_64             1.1.6-4.fc16                            fedora              360 k</span>
+<span style="font-family: verdana,geneva;"> perl-hivex                              x86_64             1.3.3-1.fc16                            updates              37 k</span>
+<span style="font-family: verdana,geneva;"> pyparted                                x86_64             3.8-1.fc16                              fedora              188 k</span>
+<span style="font-family: verdana,geneva;"> python-daemon                           noarch             1.6-1.fc16                              fedora               26 k</span>
+<span style="font-family: verdana,geneva;"> python-libguestfs                       x86_64             1:1.16.1-1.fc16                         updates             160 k</span>
+<span style="font-family: verdana,geneva;"> python-lockfile                         noarch             1:0.9.1-1.fc16                          fedora               27 k</span>
+<span style="font-family: verdana,geneva;"> python-nose                             noarch             1.1.2-1.fc16                            fedora              260 k</span>
+<span style="font-family: verdana,geneva;"> python-qpid-qmf                         x86_64             0.12-4.fc16.2                           fedora              1.2 M</span>
+<span style="font-family: verdana,geneva;"> python-setuptools                       noarch             0.6.24-1.fc16                           updates             325 k</span>
+<span style="font-family: verdana,geneva;"> qpid-cpp-client                         x86_64             0.12-4.fc16.2                           fedora              976 k</span>
+<span style="font-family: verdana,geneva;"> qpid-cpp-server                         x86_64             0.12-4.fc16.2                           fedora              1.0 M</span>
+<span style="font-family: verdana,geneva;"> qpid-qmf                                x86_64             0.12-4.fc16.2                           fedora              438 k</span>
+<span style="font-family: verdana,geneva;"> reiserfs-utils                          x86_64             2:3.6.21-4.fc15                         fedora              232 k</span>
+<span style="font-family: verdana,geneva;"> scrub                                   x86_64             2.4-2.fc15                              fedora               35 k</span>
+<span style="font-family: verdana,geneva;"> zerofree                                x86_64             1.0.1-8.fc15                            fedora               20 k</span>
+<span style="font-family: verdana,geneva;"> zfs-fuse                                x86_64             0.6.9-8.20100709git.fc15                fedora              910 k</span>
+
+ 
 
  
 
- 
+</span></pre>
 
 
 おう…。これはyum万歳ですね…。
-# yum -y install qpid-tools 
+<pre><span style="font-family: verdana,geneva;"># yum -y install qpid-tools 
 
-インストールしています:
-qpid-tools                     noarch                    0.12-4.fc16. fedora                     43 k
+<span style="font-family: verdana,geneva;">インストールしています:</span>
+<span style="font-family: verdana,geneva;"> qpid-tools                     noarch                    0.12-4.fc16. fedora                     43 k</span>
 
-依存性関連でのインストールをします。:
-python-qpid                    noarch                    0.12-1.fc16                         fedora                    395 k
+<span style="font-family: verdana,geneva;">依存性関連でのインストールをします。:</span>
+<span style="font-family: verdana,geneva;"> python-qpid                    noarch                    0.12-1.fc16                         fedora                    395 k</span>
+
+ 
 
  
 
- 
+</span></pre>
 
 
 pcloud-cpedを起動します。自動起動の設定をONとします。
-# systemctl start pcloud-cped.service
-# systemctl enable pcloud-cped.service
+<pre><span style="font-family: verdana,geneva;"> # systemctl start pcloud-cped.service</span>
+<span style="font-family: verdana,geneva;"> # systemctl enable pcloud-cped.service</span></pre>
+
+
 qpiddを停止します。自動起動の設定をOFFとします。
-# systemctl stop qpidd.service
-# systemctl disable qpidd.service
+<pre><span style="font-family: verdana,geneva;"> # systemctl stop qpidd.service</span>
+<span style="font-family: verdana,geneva;"> # systemctl disable qpidd.service</span></pre>
+
+
 pcloud-cpedがブローカーの役割も兼ねているので、ポートのバッティングなどを防止するために
 デフォルトのブローカー(qpidd)が停止させておきます。
 
@@ -472,8 +496,8 @@ pcloud-cpedがブローカーの役割も兼ねているので、ポートのバ
   * httpd
 
 
-# ssh node01
-# yum -y install matahari 
+<pre><span style="font-family: verdana,geneva;"> # ssh node01</span>
+<span style="font-family: verdana,geneva;"> # yum -y install matahari 
 
 インストールしています:
 matahari                            x86_64               0.6.0-2.fc16                            updates                14 k
@@ -530,38 +554,44 @@ tuned                               noarch               0.2.21-1.fc16          
 
  
 
+</span></pre>
+
 
 おう…。matahariもけっこうやるな…。
-# yum -y install resource-agents 
+<pre><span style="font-family: verdana,geneva;"># yum -y install resource-agents 
 
 インストールしています:
-resource-agents                     x86_64                   3.9.2-2.fc16                     fedora                   464 k
+<span style="font-family: verdana,geneva;"> resource-agents                     x86_64                   3.9.2-2.fc16                     fedora                   464 k</span>
 
-依存性関連でのインストールをします。:
-cluster-glue-libs                   x86_64                   1.0.6-8.fc16                     fedora                   116 k
-libnet                              x86_64                   1.1.5-2.fc15                     fedora                    54 k
+<span style="font-family: verdana,geneva;">依存性関連でのインストールをします。:</span>
+<span style="font-family: verdana,geneva;"> cluster-glue-libs                   x86_64                   1.0.6-8.fc16                     fedora                   116 k</span>
+<span style="font-family: verdana,geneva;"> libnet                              x86_64                   1.1.5-2.fc15                     fedora                    54 k</span>
 
  
+
+</span></pre>
 
 
 今回はサービスとしてhttpdを起動させてみます。
-# yum -y install httpd 
+<pre><span style="font-family: verdana,geneva;"># yum -y install httpd 
 
 インストールしています:
-httpd                            x86_64                    2.2.21-1.fc16                     fedora                    807 k
+<span style="font-family: verdana,geneva;"> httpd                            x86_64                    2.2.21-1.fc16                     fedora                    807 k</span>
 
-依存性関連でのインストールをします。:
-apr                              x86_64                    1.4.5-1.fc16                      fedora                     97 k
-apr-util                         x86_64                    1.3.12-1.fc16                     fedora                     80 k
-apr-util-ldap                    x86_64                    1.3.12-1.fc16                     fedora                     16 k
-httpd-tools                      x86_64                    2.2.21-1.fc16                     fedora                     68 k 
+<span style="font-family: verdana,geneva;">依存性関連でのインストールをします。:
+<span style="font-family: verdana,geneva;"> apr                              x86_64                    1.4.5-1.fc16                      fedora                     97 k</span>
+<span style="font-family: verdana,geneva;"> apr-util                         x86_64                    1.3.12-1.fc16                     fedora                     80 k</span>
+<span style="font-family: verdana,geneva;"> apr-util-ldap                    x86_64                    1.3.12-1.fc16                     fedora                     16 k</span>
+<span style="font-family: verdana,geneva;"> httpd-tools                      x86_64                    2.2.21-1.fc16                     fedora                     68 k</span> </span>
 
  
+
+</span></pre>
 
 
 matahariの設定ファイルを編集します。
 MATAHARI_BROKERパラメータにホストのIPアドレスを指定してください。
-# vim /etc/sysconfig/matahari 
+<pre><span style="font-family: verdana,geneva;"># vim /etc/sysconfig/matahari 
 
 MATAHARI_BROKER=192.168.XX.XX
 
@@ -569,15 +599,23 @@ MATAHARI_BROKER=192.168.XX.XX
 
  
 
+</span></pre>
+
 
 matahari-hostを起動します。自動起動の設定をONとします。
-# systemctl start matahari-host.service
-# systemctl enable matahari-host.service
+<pre><span style="font-family: verdana,geneva;"> # systemctl start matahari-host.service</span>
+<span style="font-family: verdana,geneva;"> # systemctl enable matahari-host.service</span></pre>
+
+
 matahari-serviceを起動します。自動起動の設定をONとします。
-# systemctl start matahari-service.service
-# systemctl enable matahari-service.service
+<pre><span style="font-family: verdana,geneva;"> # systemctl start matahari-service.service</span>
+<span style="font-family: verdana,geneva;"> # systemctl enable matahari-service.service</span></pre>
+
+
 ゲストでの作業はこれで終了です。ゲストは停止させておいてください。
-# virsh destroy node01
+<pre><span style="font-family: verdana,geneva;"> # virsh destroy node01</span></pre>
+
+
 **5. Pacemaker Cloudの動作確認**
 
 ホストで「pcloudsh」を実行します。
@@ -597,7 +635,9 @@ assembly_resource_list  　　　　 deployable_reload
 
 Undocumented commands:
 ======================
-EOF  exit  help  quit
+EOF  exit  help  quit</pre>
+
+
 んー、AngusさんとかPádraigさんとかのHow Toには
 ここで「jeos_create」を実行するって書いてあるんですけど
 これって、oz-installコマンドが呼び出されて
@@ -608,25 +648,33 @@ openstackとかozとかの設定ファイルをいろいろ調べるのは
 
 というわけで、pcloudshは一旦終了します。
 pcloudsh# **quit**
+</pre>
+
 
 pcloudshとかpcloudshから呼び出されているlibvirt_assembly.py, libvirt_deployable.pyとかを
 にょろにょろと眺めつつ、「jeos_create」はすっとばかして、たぶん「assembly_create」がつくってる設定ファイルを
 力技でつくってみましたよ！
 
 デフォルトでassemblyの情報を保持しているディレクトリにいってみる。
-# cd /var/lib/pacemaker-cloud/assemblies
+<pre><span style="font-family: verdana,geneva;"> # cd /var/lib/pacemaker-cloud/assemblies</span></pre>
+
+
 ゲストの設定ファイルをここにコピーします。リンク貼ってもよいかもしれません。
-# cp -p /etc/libvirt/qemu/node01.xml .
+<pre><span style="font-family: verdana,geneva;"> # cp -p /etc/libvirt/qemu/node01.xml .</span></pre>
+
+
 assemblyの設定ファイルを頑張ってつくっちゃうよ！
-# cd /var/lib/pacemaker-cloud
-# vim db_assemblies.xml
+<pre><span style="font-family: verdana,geneva;"> # cd /var/lib/pacemaker-cloud</span>
+<span style="font-family: verdana,geneva;"> # vim db_assemblies.xml
 
 <?xml version="1.0"?>
 <assemblspan style=
 
 font-family: verdana,genevaspan style=font-family: verdana,geneva;;span style=font-family: verdana,geneva;ies pcmkc-velispan style=font-family: verdana,geneva;font-family: verdana,geneva;rsion="0.5.0">
 <assembly name="node01" uuid="6431507885019665d69a171b7b2d34a0" infrastructure="libvirt"/>
-</assemblies> 
+</assemblies> </span></pre>
+
+
 uuidはゲストの設定ファイル(node01.xml)のuuidタグに設定された値を使用しました。
 ハイフンは取り除いています。
 たーぶん、このuuidはバッティングしなければなんでもいいんじゃないかなあと思っていましたが
@@ -639,9 +687,13 @@ infrastructureのデフォルトはlibvirtです。
 では、ここから正規の手順に戻ります。
 pcloudshを起動します。
 # pcloudsh
+</pre>
+
 
 deployableを作成します。dep01という名前にしました。
-pcloudsh# **deployable_create   dep01**
+pcloudsh# **deployable_create   dep01**</pre>
+
+
 作成したdeployableを表示してみます。
 pcloudsh# **deployable_list** 
 
@@ -650,6 +702,8 @@ Name
 dep01
 
  
+
+</pre>
 
 
 assemblyを表示します。さっき力技でつくった設定ファイルの中身がみれます。
@@ -661,9 +715,13 @@ node01       　　 6431507885019665d69a171b7b2d34a0
 
  
 
+</pre>
+
 
 deployableにassemblyを登録します。
-pcloudsh# **deployable_assembly_add   dep01   node01**
+pcloudsh# **deployable_assembly_add   dep01   node01**</pre>
+
+
 assemblyにリソースを追加します。
 「res01」という名前の「httpd」サービスをリソースとして追加しました。
 pcloudsh# **assembly_resource_add    res01    httpd    node01**  
@@ -671,6 +729,8 @@ pcloudsh# **assembly_resource_add    res01    httpd    node01**  
 assembly_resource_add ['res01', 'httpd', 'node01']
 
  
+
+</pre>
 
 
 作成したリソースの情報を表示します。
@@ -683,24 +743,28 @@ res01           httpd     lsb       60s
 
  
 
+</pre>
+
 
 ちなみに登録できるリソースはテンプレートが用意されています。
-# ls -l /usr/share/pacemaker-cloud/resource_templates
+<pre><span style="font-family: verdana,geneva;"> # ls -l /usr/share/pacemaker-cloud/resource_templates</span>
+<span style="font-family: verdana,geneva;"> </span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  92 11月  9 03:50 aeolus-conductor.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  82 11月  9 03:50 condor.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  94 11月  9 03:50 conductor-dbomatic.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  97 11月  9 03:50 conductor-delayed_job.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  91 11月  9 03:50 deltacloud-core.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root 100 11月  9 03:50 deltacloud-ec2-us-east-1.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root 100 11月  9 03:50 deltacloud-ec2-us-west-1.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  91 11月  9 03:50 deltacloud-mock.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root 158 11月  9 03:50 dummy.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  81 11月  9 03:50 <strong>httpd.xml</strong></span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  88 11月  9 03:50 imagefactory.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  80 11月  9 03:50 ntpd.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  81 11月  9 03:50 postgresql.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  81 11月  9 03:50 qpidd.xml</span></pre>
 
--rw-r--r--. 1 root root  92 11月  9 03:50 aeolus-conductor.xml
--rw-r--r--. 1 root root  82 11月  9 03:50 condor.xml
--rw-r--r--. 1 root root  94 11月  9 03:50 conductor-dbomatic.xml
--rw-r--r--. 1 root root  97 11月  9 03:50 conductor-delayed_job.xml
--rw-r--r--. 1 root root  91 11月  9 03:50 deltacloud-core.xml
--rw-r--r--. 1 root root 100 11月  9 03:50 deltacloud-ec2-us-east-1.xml
--rw-r--r--. 1 root root 100 11月  9 03:50 deltacloud-ec2-us-west-1.xml
--rw-r--r--. 1 root root  91 11月  9 03:50 deltacloud-mock.xml
--rw-r--r--. 1 root root 158 11月  9 03:50 dummy.xml
--rw-r--r--. 1 root root  81 11月  9 03:50 **httpd.xml**
--rw-r--r--. 1 root root  88 11月  9 03:50 imagefactory.xml
--rw-r--r--. 1 root root  80 11月  9 03:50 ntpd.xml
--rw-r--r--. 1 root root  81 11月  9 03:50 postgresql.xml
--rw-r--r--. 1 root root  81 11月  9 03:50 qpidd.xml
+
 v0.5.0のpcloudshは、リソースの監視間隔を変更したり
 パラメータを追加する機能が未実装なので、上記のxmlファイルを
 直接編集してリソースをつくりこんでいくことになります。
@@ -710,15 +774,15 @@ v0.5.0のpcloudshは、リソースの監視間隔を変更したり
 というわけで、assemblyにリソースを追加するところまでできました。
 ここで、設定ファイルの中身を確認してみましょう。
 deployableとassemblyの設定が追加されていることがわかりますね！
-# cd /var/lib/pacemaker-cloud/
-# ls -l
+<pre><span style="font-family: verdana,geneva;"> # cd /var/lib/pacemaker-cloud/</span>
+<span style="font-family: verdana,geneva;"> # ls -l</span>
+<span style="font-family: verdana,geneva;"> </span>
+<span style="font-family: verdana,geneva;"> drwxr-xr-x. 2 root root 4096  2月  3 13:28 assemblies</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  312  2月  3 13:43 db_assemblies.xml</span>
+<span style="font-family: verdana,geneva;"> -rw-r--r--. 1 root root  147  2月  3 13:43 db_deployable.xml</span>
+<span style="font-family: verdana,geneva;"> drwxr-xr-x. 2 root root 4096  2月  3 12:06 jeos</span>
 
-drwxr-xr-x. 2 root root 4096  2月  3 13:28 assemblies
--rw-r--r--. 1 root root  312  2月  3 13:43 db_assemblies.xml
--rw-r--r--. 1 root root  147  2月  3 13:43 db_deployable.xml
-drwxr-xr-x. 2 root root 4096  2月  3 12:06 jeos
-
-# cat db_deployable.xml
+<span style="font-family: verdana,geneva;"> # cat db_deployable.xml
 <?xml version="1.0"?>
 <deployables pcmkc-version="0.5.0">
 <deployable name="dep01">
@@ -738,6 +802,8 @@ drwxr-xr-x. 2 root root 4096  2月  3 12:06 jeos
 
  
 
+</span></pre>
+
 
 では！
 ではでは！
@@ -746,74 +812,94 @@ pcloudsh# **deployable_start  dep01**** ****Starting Deployable dep01**
 
  
 
+</pre>
+
 
 ちょっと待つ。
 Event: {'reason': 'All good', 'assembly': 'node01', 'state': 'running', 'deployable': 'dep01'}
-Event: {'reason': '**Started OK**', 'assembly': '**node01**', 'state': '**running**', 'service': '**httpd**', 'deployable': 'dep01'}
+Event: {'reason': '**Started OK**', 'assembly': '**node01**', 'state': '**running**', 'service': '**httpd**', 'deployable': 'dep01'}</pre>
+
+
 おお！
 pcloudshのターミナルになんかログがでました。
 assembly、起動したっぽい！
 httpdも起動したっぽい！
 
 どれどれ。
-# virsh list Id 名前               状態
-----------------------------------
-5 node01               実行中
-ゲスト、起動してますね！
-# ssh node01 pgrep -lf httpd
+<pre><span style="font-family: verdana,geneva;"> # virsh list Id 名前               状態</span>
+<span style="font-family: verdana,geneva;"> ----------------------------------</span>
+<span style="font-family: verdana,geneva;"> 5 node01               実行中</span></pre>
 
-1063 /usr/sbin/httpd -k start
-1064 /usr/sbin/httpd -k start
-1065 /usr/sbin/httpd -k start
-1066 /usr/sbin/httpd -k start
-1067 /usr/sbin/httpd -k start
-1068 /usr/sbin/httpd -k start
-1069 /usr/sbin/httpd -k start
-1070 /usr/sbin/httpd -k start
-1071 /usr/sbin/httpd -k start
+
+ゲスト、起動してますね！
+<pre><span style="font-family: verdana,geneva;"> # ssh node01 pgrep -lf httpd
+</span>
+<span style="font-family: verdana,geneva;"> 1063 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1064 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1065 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1066 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1067 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1068 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1069 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1070 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1071 /usr/sbin/httpd -k start</span></pre>
+
+
 ゲストの中でhttpdも起動してますね！
 よしよし。
 
 では、早速、httpdを故障させてみます。
-# ssh node01 pkill -KILL httpd
+<pre><span style="font-family: verdana,geneva;"> # ssh node01 pkill -KILL httpd</span></pre>
+
+
 pcloudshのターミナルをじっと見ていると
 Event: {'reason': '**monitor failed'**, 'assembly': 'node01', 'state': 'failed', 'service': 'httpd', 'deployable': 'dep01'}
-Event: {'reason': '**Started OK**', 'assembly': 'node01', 'state': 'running', 'service': 'httpd', 'deployable': 'dep01'}
+Event: {'reason': '**Started OK**', 'assembly': 'node01', 'state': 'running', 'service': 'httpd', 'deployable': 'dep01'}</pre>
+
+
 おおおお！
 なんか故障を検知したっぽい！
 そしてhttpdが再起動したっぽい！
 
 どれどれ。
-# ssh node01 pgrep -lf httpd 
+<pre><span style="font-family: verdana,geneva;"> # ssh node01 pgrep -lf httpd 
 
-1139 /usr/sbin/httpd -k start
-1140 /usr/sbin/httpd -k start
-1141 /usr/sbin/httpd -k start
-1142 /usr/sbin/httpd -k start
-1143 /usr/sbin/httpd -k start
-1144 /usr/sbin/httpd -k start
-1145 /usr/sbin/httpd -k start
-1146 /usr/sbin/httpd -k start
-1147 /usr/sbin/httpd -k start
+<span style="font-family: verdana,geneva;">1139 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1140 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1141 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1142 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1143 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1144 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1145 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1146 /usr/sbin/httpd -k start</span>
+<span style="font-family: verdana,geneva;"> 1147 /usr/sbin/httpd -k start</span>
 
  
+
+</span></pre>
 
 
 あ。PIDかわってる。
 
 では、お次はゲスト故障です。
-# virsh destroy node01
-ドメイン node01 は強制停止されました
+<pre><span style="font-family: verdana,geneva;"> # virsh destroy node01</span>
+<span style="font-family: verdana,geneva;"> ドメイン node01 は強制停止されました</span></pre>
+
+
 pcloudshのターミナルをじっと見ていると
 Event: {'reason': '**Not reachable**', 'assembly': 'node01', 'state': 'failed', 'deployable': 'dep01'}
-Event: {'reason': '**All good**', 'assembly': 'node01', 'state': 'running', 'deployable': 'dep01'}
+Event: {'reason': '**All good**', 'assembly': 'node01', 'state': 'running', 'deployable': 'dep01'}</pre>
+
+
 おおおおおお！
 なんか故障を検知したっぽい！
 そしてゲストが再起動したっぽい！
-# virsh list
-Id 名前               状態
-----------------------------------
-6 node01               実行中
+<pre><span style="font-family: verdana,geneva;"> # virsh list</span>
+<span style="font-family: verdana,geneva;"> Id 名前               状態</span>
+<span style="font-family: verdana,geneva;"> ----------------------------------</span>
+<span style="font-family: verdana,geneva;"> 6 node01               実行中</span></pre>
+
+
 あ。Idかわってる。
 
 ほほう。
@@ -823,30 +909,36 @@ Id 名前               状態
 で、ちょっと話はそれますが、QMFつかったMatahariとの接続とかってどうなってるのとかいう情報を
 ホストのqpid-statコマンドで確認することができます。
 ポート番号はデフォルトで「49000」です。
-# qpid-stat -c localhost:49000 Connections
+<pre><span style="font-family: verdana,geneva;"> # qpid-stat -c localhost:49000 Connections
+</span>
+<span style="font-family: verdana,geneva;"> client-addr                               cproc            cpid   auth       connected  idle  msgIn  msgOut</span>
+<span style="font-family: verdana,geneva;"> =========================================================</span>
+<span style="font-family: verdana,geneva;"> 192.168.28.83:49000-192.168.28.121:51986  matahari-qmf-se  757    anonymous  2m 1s      0s      96     49</span>
+<span style="font-family: verdana,geneva;"> 192.168.28.83:49000-192.168.28.121:51985  matahari-qmf-ho  758    anonymous  2m 1s      0s     160     39</span>
+<span style="font-family: verdana,geneva;"> 127.0.0.1:49000-127.0.0.1:54414           cped             27162  anonymous  15m 24s    0s     246     92</span>
+<span style="font-family: verdana,geneva;"> 127.0.0.1:49000-127.0.0.1:54438           qpid-stat        28179  anonymous  0s         0s     233    298</span>
+<span style="font-family: verdana,geneva;"> 127.0.0.1:49000-127.0.0.1:54425           dped             27515  anonymous  4m 39s     0s     128     42</span>
+<span style="font-family: verdana,geneva;"> 127.0.0.1:49000-127.0.0.1:54427           dped             27515  anonymous  4m 39s     0s    1.39k  1.67k</span>
+<span style="font-family: verdana,geneva;"> 127.0.0.1:49000-127.0.0.1:54426           python           27514  anonymous  4m 39s     0s     131     58</span>
+<span style="font-family: verdana,geneva;"> 127.0.0.1:49000-127.0.0.1:54421           python           27288  anonymous  8m 55s     0s    2.05k  2.69k</span>
+<span style="font-family: verdana,geneva;"> 127.0.0.1:49000-127.0.0.1:54422           python           27288  anonymous  8m 55s     0s    2.05k  2.67k</span></pre>
 
-client-addr                               cproc            cpid   auth       connected  idle  msgIn  msgOut
-=========================================================
-192.168.28.83:49000-192.168.28.121:51986  matahari-qmf-se  757    anonymous  2m 1s      0s      96     49
-192.168.28.83:49000-192.168.28.121:51985  matahari-qmf-ho  758    anonymous  2m 1s      0s     160     39
-127.0.0.1:49000-127.0.0.1:54414           cped             27162  anonymous  15m 24s    0s     246     92
-127.0.0.1:49000-127.0.0.1:54438           qpid-stat        28179  anonymous  0s         0s     233    298
-127.0.0.1:49000-127.0.0.1:54425           dped             27515  anonymous  4m 39s     0s     128     42
-127.0.0.1:49000-127.0.0.1:54427           dped             27515  anonymous  4m 39s     0s    1.39k  1.67k
-127.0.0.1:49000-127.0.0.1:54426           python           27514  anonymous  4m 39s     0s     131     58
-127.0.0.1:49000-127.0.0.1:54421           python           27288  anonymous  8m 55s     0s    2.05k  2.69k
-127.0.0.1:49000-127.0.0.1:54422           python           27288  anonymous  8m 55s     0s    2.05k  2.67k
+
 んー、見方がよくわかりませんが、ホストからゲストのmatahari-qmf-serviceとmatahari-qmf-hostが見えてますね。
 あと、cpedとかdpedもみえてる。
 dpedが二つあるのはよくわかりません。
 pythonはpcloudshなのかなあ？
 
 このへんはあまり深追いせず、deployableを停止します。
-pcloudsh# **deployable_stop   dep01**
+pcloudsh# **deployable_stop   dep01**</pre>
+
+
 ゲストも停止しました。
-# virsh list
-Id 名前               状態
-----------------------------------
+<pre><span style="font-family: verdana,geneva;"> # virsh list</span>
+<span style="font-family: verdana,geneva;"> Id 名前               状態</span>
+<span style="font-family: verdana,geneva;"> ----------------------------------</span></pre>
+
+
 ふーやれやれ。
 これでv0.5.0の動作確認は終了です。
 現段階では、単一ホスト内でのゲストの起動と監視しかできません。

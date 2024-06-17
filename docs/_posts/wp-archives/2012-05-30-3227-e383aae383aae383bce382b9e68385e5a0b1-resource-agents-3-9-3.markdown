@@ -25,7 +25,7 @@ Big thanks go to all contributors! Needless to say, without you this release wou
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 5月25日にresource-agents 3.9.3をリリースしました。
 バグの報告やパッチの作成などにご協力いただいたみなさん、本当にありがとうございました！
 </blockquote>
@@ -40,7 +40,7 @@ Some highlights:
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 今回のリリースで注目すべき大きな変更点は下記のとおりです。
 </blockquote>
 
@@ -54,7 +54,7 @@ Some highlights:
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 rgmanagerにvm.shスクリプトが追加されました。libvirtの「トンネルマイグレーション」をサポートしています。
 </blockquote>
 
@@ -104,7 +104,7 @@ virshコマンドのヘルプはこんな感じでした。これみてもよく
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 新しいRAがいくつか追加されました。
 </blockquote>
 
@@ -120,7 +120,7 @@ RAの名前は、そのRAが起動/監視/停止処理を担当するサービ�
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 mysql RAの修正です。
 レプリケーション機能のサポートが一部改良されています。
 </blockquote>
@@ -135,7 +135,7 @@ mysql RAの修正です。
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 pgsql RAの修正です、
 レプリケーション機能のサポートが追加されました。
 </blockquote>
@@ -150,7 +150,7 @@ pgsql RAの修正です、
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Raid1 RAの修正です。
 複数のmdデバイスで構成されたアレイに対するサポートが追加されました。
 </blockquote>
@@ -165,7 +165,7 @@ Raid1 RAの修正です。
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 SAPInstance RAおよびSAPDatabase RAの修正です。
 すいません、SAP、みたことすらないのでアレなんですが、saphostagentというツール？コマンド？を使って複数のデータベースを操作することができるようになったような感じです。
 </blockquote>
@@ -180,7 +180,7 @@ SAPInstance RAおよびSAPDatabase RAの修正です。
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 ocftのテストケースを追加しました。
 </blockquote>
 
@@ -200,8 +200,8 @@ Best,
 
 
 
-<blockquote>
-チェンジログは[GitHub](https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog)で参照することができます。
+<blockquote style="background-color:white;border-color:white;color:black;">
+チェンジログは<a href="https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog" target="_blank">GitHub</a>で参照することができます。
 可能であれば、早い時期にバージョンアップすることをお勧めします。
 </blockquote>
 

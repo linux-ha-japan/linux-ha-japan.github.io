@@ -33,14 +33,7 @@ Heartbeat はクラスタ基盤サービス(通信とメンバシップ管理)�
 
 Heartbeatデーモンは、ユーザが使えるようにするためにクラスタリソースマネージャ（CRM）と組み合わせる必要があります。CRMは、クラスタが提供する高可用サービス（IPアドレス、webサーバなど）を起動・停止します。Heartbeatと連携する標準クラスタリソースマネージャは[Pacemaker](http://www.clusterlabs.org)です。Pacemakerは高い拡張性と多機能性を誇り、Heartbeatと[Corosync](http://www.corosync.org)の両方のクラスタメッセージングレイヤをサポートします。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >Heartbeatリリース 2.1.4まで、Pacemakerは、Linux-HAプロジェクトの一環としてHeartbeatと共同開発されていました。しかし、当リリース後、Pacemakerプロジェクトは独立プロジェクトとして分割され、Heartbeatクラスタメッセージングを完全サポートしながら開発が進められました。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">Heartbeatリリース 2.1.4まで、Pacemakerは、Linux-HAプロジェクトの一環としてHeartbeatと共同開発されていました。しかし、当リリース後、Pacemakerプロジェクトは独立プロジェクトとして分割され、Heartbeatクラスタメッセージングを完全サポートしながら開発が進められました。</td></tr></table>
 
 * * *
 
@@ -56,14 +49,7 @@ Heartbeat通信モジュールは、高度な認証機能を持ち、ローカ�
   * IPv4ブロードキャストUDP 
   * IPv4マルチキャストUDP 
   * シリアル接続通信 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Warning_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >シリアル接続の接続性（ ha.cf のmanページを参照, man ha.cf ）に関しては特に注意してください。原則として、不明な点があればシリアル接続は使わないでください。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Warning</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">シリアル接続の接続性（ <tt>ha.cf</tt> のmanページを参照, <tt>man ha.cf</tt> ）に関しては特に注意してください。原則として、不明な点があればシリアル接続は使わないでください。</td></tr></table>
 
 Heartbeatはノード故障を0.5秒以内に確実に探知します。Heartbeatは、設定を行うことにより、システムウォッチドッグ(watchdog)タイマに登録することもできます。
 
@@ -134,14 +120,7 @@ Cluster Glueをビルドするには、ビルド環境上に以下のツール�
   * net-snmp 開発ヘッダ：SNMP関連の機能を有効にするため 
   * OpenIPMI 開発ヘッダ：IPMI関連機能を有効にするため 
   * Python（言語インタプリタだけでライブラリヘッダは不要） 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >このリストはデフォルトの設定の場合に適用されます。標準以外のconfigureオプション設定を行った場合、これ以外の依存パッケージが必要になる可能性があります。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">このリストはデフォルトの設定の場合に適用されます。標準以外のconfigureオプション設定を行った場合、これ以外の依存パッケージが必要になる可能性があります。</td></tr></table>
 
 #### Cluster Glueソースをダウンロードする
 
@@ -153,13 +132,9 @@ Cluster Glueのリリースバージョンを圧縮 tarballとしてダウンロ
 
 たとえば、1.0.1リリースをダウンロードしたい場合、以下のようなコマンドシーケンスになります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># wget http://hg.linux-ha.org/glue/archive/glue-1.0.1.tar.bz2
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># wget http://hg.linux-ha.org/glue/archive/glue-1.0.1.tar.bz2
 # tar -vxjf glue-1.0.1.tar.bz2</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ##### 最新Mercurialスナップショットをダウンロードする
 
@@ -167,20 +142,15 @@ Cluster Glueのリリースバージョンを圧縮 tarballとしてダウンロ
 
 tipから自動生成されるtarballをダウンロードするには、以下のコマンドシーケンスを使います。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># wget http://hg.linux-ha.org/glue/archive/tip.tar.bz2
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># wget http://hg.linux-ha.org/glue/archive/tip.tar.bz2
 # tar -vxjf tip.tar.bz2</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ##### Mercurialからソースをチェックアウトする
 
 手元の環境に Mercurial がインストールされている場合、この方法が使えます。リポジトリを _クローン_ することでソースをチェックアウトしてください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>$ hg clone http://hg.linux-ha.org/glue cluster-glue
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">$ hg clone http://hg.linux-ha.org/glue cluster-glue
 requesting all changes
 adding changesets
 adding manifests
@@ -188,57 +158,36 @@ adding file changes
 added 12491 changesets with 34830 changes to 2632 files
 updating working directory
 356 files updated, 0 files merged, 0 files removed, 0 files unresolved</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 #### Cluster Glueをビルドする
 
 Cluster Glueのビルドは、GNU Autotoolsの活用により自動化されています。Cluster Glueのビルドとインストールを同じマシン上で行う場合は、以下のコマンドシーケンスを使います。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>$ ./autogen.sh
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">$ ./autogen.sh
 $ ./configure
 $ make
 $ sudo make install</pre>
-
-
- 
-</td></tr> </table> <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >autogen.sh スクリプトは、 automake 、 autoheader 、 autoconf および libtool の便利なラッパーです。
-</td></tr></table>
+ </td></tr> </table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;"><tt>autogen.sh</tt> スクリプトは、 <tt>automake</tt> 、 <tt>autoheader</tt> 、 <tt>autoconf</tt> および <tt>libtool</tt> の便利なラッパーです。</td></tr></table>
 
 数多くのconfigureオプションがサポートされており、これらのカスタマイズによりシステムに合わせてHeartbeatを最適化できます。configure に --help オプション をつけてを実行するとオプションのリストを表示できます。カスタマイズしたビルドを行うには以下のようなステップから構成されることになります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>$ ./autogen.sh
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">$ ./autogen.sh
 $ ./configure --help
 $ ./configure configuration-options
 $ make
 $ sudo make install</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 よく使われる典型的な設定オプションとして、以下の例に示すように --prefix 、 --sysconfdir 、および --localstatedir があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>$ ./autogen.sh
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">$ ./autogen.sh
 $ ./configure --help
 $ ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 $ make
 $ sudo make install</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 #### ビルド済みパッケージ
 
@@ -267,14 +216,7 @@ Heartbeatをビルドする場合、ビルド環境上では以下のツール�
   * Open IPMI開発ヘッダ：IPMI関連機能を有効にするため 
   * Python（言語インタプリタだけでライブラリヘッダは不要） 
   * cluster-glue 開発ヘッダ：ソースからこれらをビルドする方法は、ソースからCluster Glueをビルドしインストールするを参照してください。 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >このリストはデフォルトの設定の場合に適用されます。標準以外のconfigureオプション設定を行った場合、これ以外の依存パッケージが必要になる可能性があります。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">このリストはデフォルトの設定の場合に適用されます。標準以外のconfigureオプション設定を行った場合、これ以外の依存パッケージが必要になる可能性があります。</td></tr></table>
 
 #### Heartbeatソースをダウンロードする
 
@@ -284,13 +226,9 @@ Heartbeatのリリースバージョンを圧縮tarballとしてダウンロー�
 
 たとえば、3.0.4リリースをダウンロードしたい場合、以下のコマンドシーケンスになります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># wget http://hg.linux-ha.org/dev/archive/STABLE-3.0.4.tar.bz2
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># wget http://hg.linux-ha.org/dev/archive/STABLE-3.0.4.tar.bz2
 # tar -vxjf STABLE-3.0.4.tar.bz2</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ##### 最新Mercurialスナップショットをダウンロードする
 
@@ -298,20 +236,15 @@ Heartbeatのリリースバージョンを圧縮tarballとしてダウンロー�
 
 tip から自動生成されるtarballをダウンロードするには、以下のコマンドシーケンスを使います。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># wget http://hg.linux-ha.org/dev/archive/tip.tar.bz2
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># wget http://hg.linux-ha.org/dev/archive/tip.tar.bz2
 # tar -vxjf tip.tar.bz2</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ##### Mercurialからソースをチェックアウトする
 
 手元の環境に Mercurial がインストールされている場合、この方法が使えます。リポジトリを _クローン_ することでソースをチェックアウトしてください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>$ hg clone http://hg.linux-ha.org/dev heartbeat-dev
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">$ hg clone http://hg.linux-ha.org/dev heartbeat-dev
 requesting all changes
 adding changesets
 adding manifests
@@ -319,57 +252,36 @@ adding file changes
 added 12491 changesets with 34830 changes to 2632 files
 updating working directory
 356 files updated, 0 files merged, 0 files removed, 0 files unresolved</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 #### Heartbeatをビルドする
 
 Heartbeatのビルドは、GNU Autotoolsの活用により自動化されています。Heartbeatのビルドとインストールを同じマシン上で行う場合は、以下のコマンドシーケンスを使います。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>$ ./bootstrap
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">$ ./bootstrap
 $ ./configure
 $ make
 $ sudo make install</pre>
-
-
- 
-</td></tr> </table> <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >bootstrapスクリプトは、 automake 、 autoheader 、 autoconf および libtool の便利なラッパーとなります。 ConfigureMe は、autoconf生成の configure スクリプトに対する便利なラッパーとなります。
-</td></tr></table>
+ </td></tr> </table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">bootstrapスクリプトは、 <tt>automake</tt> 、 <tt>autoheader</tt> 、 <tt>autoconf</tt> および <tt>libtool</tt> の便利なラッパーとなります。 <tt>ConfigureMe</tt> は、autoconf生成の <tt>configure</tt> スクリプトに対する便利なラッパーとなります。</td></tr></table>
 
 いくつかの設定オプションがサポートされており、それらをカスタマイズして、システムに対してHeartbeatを最適化できます。設定オプションリストを読み込むには --help オプションで configure を起動します。したがってカスタマイズされたビルドはこれらのステップで行えます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>$ ./bootstrap
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">$ ./bootstrap
 $ ./configure --help
 $ ./configure <configuration-options>
 $ make
 $ sudo make install</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 典型的な設定オプションは以下のような --prefix 、 --sysconfdir およ び --localstatedir となります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>$ ./bootstrap
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">$ ./bootstrap
 $ ./configure --help
 $ ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 $ make
 $ sudo make install</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 #### ビルドパッケージ
 
@@ -403,61 +315,37 @@ Red Hat Enterprise LinuxおよびSUSE Linux Enterpriseサーバ用の商用サ�
 
 cluster-glue および heartbeat パッケージは、DebianおよびUbuntuに簡単にインストールできます。APTに正しいパッケージリポジトリが設定されていると前提して、以下のコマンドでこれらのパッケージをインストールしてください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>aptitude install heartbeat cluster-glue</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">aptitude install heartbeat cluster-glue</pre>
+ </td></tr> </table>
 
 必要であれば、Pacemakerは以下のコマンドでインストールしてください。（これについては本マニュアルの範囲外です。）
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>aptitude install cluster-agents pacemaker</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">aptitude install cluster-agents pacemaker</pre>
+ </td></tr> </table>
 
 ### Fedora、RHELおよびCentOS
 
 Red Hatプラットフォームでは、YUMパッケージマネージャで cluster-glue および heartbeat パッケージをインストールします。 /etc/yum.repos.d/ で正しいパッケージリポジトリが設定されていると前提して、以下のコマンドでこれらの2つのパッケージをインストールしてください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>yum install heartbeat cluster-glue</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">yum install heartbeat cluster-glue</pre>
+ </td></tr> </table>
 
 必要であれば、Pacemakerは以下のコマンドでインストールしてください。（これについては本マニュアルの範囲外です。）
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>yum install resource-agents pacemaker</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">yum install resource-agents pacemaker</pre>
+ </td></tr> </table>
 
 ### OpenSUSEおよびSLES
 
 SUSEtプラットフォームでは、Zypperパッケージマネージャで cluster-glue および heartbeat パッケージをインストールします。正しいパッケージリポジトリが設定されていると前提して、以下のコマンドでこれらの2つのパッケージをインストールしてください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>zypper install heartbeat cluster-glue</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">zypper install heartbeat cluster-glue</pre>
+ </td></tr> </table>
 
 必要であれば、Pacemakerは以下のコマンドでインストールしてください。（これについては本マニュアルの範囲外です。）
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>zypper install resource-agents pacemaker</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">zypper install resource-agents pacemaker</pre>
+ </td></tr> </table>
 
 * * *
 
@@ -476,8 +364,7 @@ SUSEtプラットフォームでは、Zypperパッケージマネージャで cl
 
 以下は、簡単な ha.cf ファイルの例です。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>autojoin none
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">autojoin none
 mcast bond0 239.0.0.43 694 1 0
 bcast eth2
 warntime 5
@@ -487,10 +374,7 @@ keepalive 2
 node alice
 node bob
 pacemaker respawn</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 autojoin を none に設定すると、クラスタノード自動発見機能（auto-discovery）を無効にし、ノードオプションによってクラスタノードが明確にリストされます。これにより、少数ノードのクラスタではクラスタ起動が早くなります。
 
@@ -508,60 +392,37 @@ node オプションは、クラスタメンバを識別します。ここでリ
 
 pacemaker respawn は、Pacemakerクラスタマネージャを有効にし、Pacemakerが故障した場合でも自動的に再起動されるようにします。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >Heartbeatリリース3.0.4までは、 pacemaker キーワードは crm と呼ばれていました。新バージョンでは、後位互換アリアスとして古い名前が維持されていますが、 pacemaker が優先的に使われる構文となっています。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">Heartbeatリリース3.0.4までは、 <tt>pacemaker</tt> キーワードは <tt>crm</tt> と呼ばれていました。新バージョンでは、後位互換アリアスとして古い名前が維持されていますが、 <tt>pacemaker</tt> が優先的に使われる構文となっています。</td></tr></table>
 
 ### authkeys ファイル
 
 /etc/ha.d/authkeys は、相互クラスタノード認証に使われるシークレット（あらかじめ共有されている）を持っています。これはrootしか読み込むことができず、以下のフォーマットに従う必要があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>auth <num>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">auth <num>
 <num> <algorithm> <secret></pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 num は1で始まる単純なキーインデックスです。通常、 authkeys ファイルでは1つしかキーがありません。
 
 algorithm が、使用されるシグネチャーアルゴリズムです。この場合、 md5 か sha1 を使うことができますが、 crc （単純な周期的冗長チェックですが安全ではない）の使用は推薦されていません。 secret は実際の認証キーです。authkeysファイルは生成されたシークレットを使って、以下のシェルハックで作成することができます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>( echo -ne "auth 1\n1 sha1 "; \
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">( echo -ne "auth 1\n1 sha1 "; \
   dd if=/dev/urandom bs=512 count=1 | openssl md5 ) \
   > /etc/ha.d/authkeys
 chmod 0600 /etc/ha.d/authkeys</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ### クラスタ設定をクラスタノードに反映させる
 
 ha.cfファイルとauthkeys configurationファイルの内容を反映させるためには、 ha_propagate コマンドを使います。このコマンドは以下のいずれかを使って起動します。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>/usr/lib/heartbeat/ha_propagate</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">/usr/lib/heartbeat/ha_propagate</pre>
+ </td></tr> </table>
 
 または
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>/usr/lib64/heartbeat/ha_propagate</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">/usr/lib64/heartbeat/ha_propagate</pre>
+ </td></tr> </table>
 
 このユーティリティは、 scp を使い、 /etc/ha.d/ha.cf でリストされているノードに設定ファイルをコピーします。また、その後、このユーティリティは、sshを使いノードに接続し、 chkconfig heartbeat on を発行して、システム起動でHeartbeatサービスを有効にします。
 
@@ -569,27 +430,16 @@ ha.cfファイルとauthkeys configurationファイルの内容を反映させ�
 
 Heartbeatサービスは、マシンでの他のシステムサービスを起動するのと同じように起できます。システムプラットフォームに応じて、以下のいずれかのコマンドを使います。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>/etc/init.d/heartbeat start</pre>
-
-
- 
-</td></tr> </table> <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>service heartbeat start</pre>
-
-
- 
-</td></tr> </table> <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>rcheartbeat start</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">/etc/init.d/heartbeat start</pre>
+ </td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">service heartbeat start</pre>
+ </td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">rcheartbeat start</pre>
+ </td></tr> </table>
 
 ha.cfの pacemaker エントリを通じて、Heartbeatは、その残りのサービスと共にPacemakerデーモン（歴史的な理由により crmd と名付けられた）を起動します。数秒後、プロセステーブルでHeartbeatプロセスを探知できます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># ps -AHfww | grep heartbeat
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># ps -AHfww | grep heartbeat
 root      2772  1639  0 14:27 pts/0    00:00:00         grep heartbeat
 root      4175     1  0 Nov08 ?        00:37:57   heartbeat: master control process
 root      4224  4175  0 Nov08 ?        00:01:13     heartbeat: FIFO reader
@@ -604,15 +454,11 @@ root      4236  4175  0 Nov08 ?        00:02:48     /usr/lib/heartbeat/stonithd
 102       4237  4175  0 Nov08 ?        00:00:54     /usr/lib/heartbeat/attrd
 102       4238  4175  0 Nov08 ?        00:08:32     /usr/lib/heartbeat/crmd
 102       5724  4238  0 Nov08 ?        00:04:47       /usr/lib/heartbeat/pengine</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 最後に、Pacemaker crm_mon コマンドを通じて、クラスタが機能していることを確認できます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># crm_mon -1
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># crm_mon -1
 ============
 Last updated: Mon Dec 13 14:29:36 2010
 Stack: Heartbeat
@@ -623,10 +469,7 @@ Version: 1.0.9-74392a28b7f31d7ddc86689598bd23114f58978b
 ============
 
 Online: [ alice bob ]</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ### これからの作業
 
@@ -650,21 +493,13 @@ Note:このアップグレード手順はアプリケーションのダウンタ
 
 アップグレード手順はその時点のスタンバイノード（その時点でいかなるリソースをも実行していないクラスタノード）で開始してください。クラスタがactive-active設定（両方のノードがリソースを実行している）を使っている場合、1つのノードを選択し、以下のコマンドを発行して、ピアノードにすべてのリソースを転送してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># hb_standby</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># hb_standby</pre>
+ </td></tr> </table>
 
 次に、 _そのノードでのみ_ 、Heartbeatサービスを停止してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># /etc/init.d/heartbeat stop</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># /etc/init.d/heartbeat stop</pre>
+ </td></tr> </table>
 
 #### ソフトウェアをアップグレードする
 
@@ -680,19 +515,9 @@ Note:このアップグレード手順はアプリケーションのダウンタ
 
 ここで、クラスタメッセージングレイヤは、クラスタの起動でPacemakerを起動するよう指示される必要があります。これは ha.cf 設定ファイルに以下を付加して行うことができます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>crm respawn</pre>
-
-
- 
-</td></tr> </table> <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Important_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >この時点で 、ha.cf(5) マニュアルページに対して、ha.cfファイルをチェックして、古いオプションを削除する必要があります。 ha.cf の修正が終わると、ファイルをピアノードにコピーしてください。
-</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">crm respawn</pre>
+ </td></tr> </table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Important</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">この時点で 、<tt>ha.cf(5)</tt> マニュアルページに対して、ha.cfファイルをチェックして、古いオプションを削除する必要があります。 <tt>ha.cf</tt> の修正が終わると、ファイルをピアノードにコピーしてください。</td></tr></table>
 
 #### Heartbeatを再起動する
 
@@ -706,45 +531,26 @@ Note:このアップグレード手順はアプリケーションのダウンタ
 
 本項は、有効にされた内蔵CRMで、Heartbeat 2.1クラスタをHeartbeat 3.0（Pacemaker）にアップグレードするステップを説明します。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >正しく計画され実行されるアップグレード手順であれば、アップグレードは、アプリケーションのダウンタイムなしで数分で終了します。プロダクションクラスタをアップグレードする前に、本項で説明されている手順をよく読み理解してください。本項で説明されているすべてのコマンドは root として実行される必要があります。すべてのクラスタノードでは、個々のステップを同時に実行しないでください。その代わり、次のステップに進む前に、それぞれのノードで手順を終えてください。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">正しく計画され実行されるアップグレード手順であれば、アップグレードは、アプリケーションのダウンタイムなしで数分で終了します。プロダクションクラスタをアップグレードする前に、本項で説明されている手順をよく読み理解してください。本項で説明されているすべてのコマンドは <tt>root</tt> として実行される必要があります。すべてのクラスタノードでは、個々のステップを同時に実行しないでください。その代わり、次のステップに進む前に、それぞれのノードで手順を終えてください。</td></tr></table>
 
 #### クラスタを管理されていないモードにする
 
 このステップにおいて、クラスタは、そのリソースのコントロールを一時的に放棄します。これは、クラスタがそのノードやリソースをアップグレード中は監視しないで、その間、アプリケーションやノードの故障を是正しないことを意味します。しかし、その時点で実行されているリソースは実行を続けます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># crm_attribute -t crm_config -n is_managed_default -v false</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># crm_attribute -t crm_config -n is_managed_default -v false</pre>
+ </td></tr> </table>
 
 ほとんどの設定では、個々のリソースは個別に is_managed 属性を設定しないで、クラスタ全体属性である is_managed_default がそれらのすべてに適用されます。特定の設定において、この属性が設定されているリソースがある場合、それは、デフォルトが適用されるために削除される必要があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># crm_resource -t primitive -r <resource-id> -p is_managed -D</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># crm_resource -t primitive -r <resource-id> -p is_managed -D</pre>
+ </td></tr> </table>
 
 #### CIBのバックアップを作成する
 
 この時点で、ClusterInformation Base (CIB)のコピーを保存する必要があります。保存するCIBは、ファイル名が cib.xml に保存されています。このファイルは通常 /var/lib/heartbeat/crm にあります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># cp /var/lib/heartbeat/crm/cib.xml</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># cp /var/lib/heartbeat/crm/cib.xml</pre>
+ </td></tr> </table>
 
 このステップは、クラスタにその時点で接続されている1つのノードでのみ実施してください。このファイルは削除しないでください。ファイルは後でリストアされます。
 
@@ -759,41 +565,20 @@ shutdownバグにより影響を受けるHeartbeat（レガシーバージョン
 
 #### CRMに関連したファイルを削除する
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Warning_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >本項を読み進める前に、クラスタノードの1つにCIBのバックアップコピーを作成しておいてください（CIBのバックアップを作成するで説明されているように）。その後、ノードからローカルCRM関連ファイルを削除してください。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Warning</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">本項を読み進める前に、クラスタノードの1つにCIBのバックアップコピーを作成しておいてください（<a href="#_backing_up_the_cib">CIBのバックアップを作成する</a>で説明されているように）。その後、ノードからローカルCRM関連ファイルを削除してください。</td></tr></table>
 
 ファイルを削除するには、CRMがCIB情報を保存するディレクトリ（通常、 /var/lib/heartbeat/crm ）からすべてのファイルを削除してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># rm /var/lib/heartbeat/crm/*</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># rm /var/lib/heartbeat/crm/*</pre>
+ </td></tr> </table>
 
 #### CIBをリストアする
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >このステップは、すべてのクラスタノードでHeartbeatが停止されたままであり、すべてのクラスタノードで、それらのCIBコンテンツが削除されている場合にのみ実行してください。残留CIB設定を持つノードがまだある場合、CRMに関連したファイルを削除するの説明に従ってファイルを削除してください。CIBをリストアするということは、CIBのバックアップを作成するで説明されているCIBバックアップを /var/lib/heartbeat/crm にコピーすることを意味します。
-</td></tr></table> <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># cp ~/cib.xml /var/lib/heartbeat/crm/cib.xml
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">このステップは、すべてのクラスタノードでHeartbeatが停止されたままであり、すべてのクラスタノードで、それらのCIBコンテンツが削除されている場合にのみ実行してください。残留CIB設定を持つノードがまだある場合、<a href="#_wiping_files_related_to_the_crm">CRMに関連したファイルを削除する</a>の説明に従ってファイルを削除してください。CIBをリストアするということは、<a href="#_backing_up_the_cib">CIBのバックアップを作成する</a>で説明されているCIBバックアップを <tt>/var/lib/heartbeat/crm</tt> にコピーすることを意味します。</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># cp ~/cib.xml /var/lib/heartbeat/crm/cib.xml
 # chown hacluster:haclient /var/lib/heartbeat/crm/cib.xml
 # chmod 0600 /var/lib/heartbeat/crm/cib.xml</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 このステップは1つのノードでのみ実施する必要があります。つまり、クラスタソフトウェアをアップグレードしようとしている最初のノードです。他のすべてのノードでは、 /var/lib/heartbeat/crm ディレクトリは空の状態でなければなりません（PacemakerはCIBを自動的に配布します）。
 
@@ -807,14 +592,7 @@ shutdownバグにより影響を受けるHeartbeat（レガシーバージョン
 
 #### Heartbeatサービスを再起動する
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >パッケージ管理システムが、インストール中あるいはインストール後に自動的にHeartbeatサービスを再起動する場合、このステップは省略することができます。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">パッケージ管理システムが、インストール中あるいはインストール後に自動的にHeartbeatサービスを再起動する場合、このステップは省略することができます。</td></tr></table>
 
 まず、 /etc/init.d/heartbeat start でCIBをリストアした（参照：CIBをリストアする）ノードでHeartbeatを再起動してください。次に、残りのクラスタノードでこのコマンドを繰り返してください。この時点で：
 
@@ -826,23 +604,15 @@ shutdownバグにより影響を受けるHeartbeat（レガシーバージョン
 
 クラスタソフトウェアがアップグレードされたら、クラスタを管理されたモード（managed mode）に戻してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># crm_attribute -t crm_config -n is_managed_default -v true</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># crm_attribute -t crm_config -n is_managed_default -v true</pre>
+ </td></tr> </table>
 
 #### CIBスキーマをアップグレードする
 
 アップグレードされたクラスタは、理論的には、アップグレード前CIBスキーマを操作できますが、CIBを最新のスキーマにアップグレードすることを強く推奨します。アップグレードを行うには、すべてのノードでの間のクラスタ通信が再確立された _後_ 、以下のコマンドを実行してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># cibadmin --upgrade --force</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># cibadmin --upgrade --force</pre>
+ </td></tr> </table>
 
 * * *
 
@@ -880,57 +650,32 @@ Linux-HA開発者は、通常、 #linux-ha channel の irc.freenode.net サー�
 
 Cluster GlueやHeartbeatで問題を見つけた場合、そして、それを訂正できる場合、パッチを開発者に送ってください。パッチを開発者に送るには、本項で説明されている手順に従ってください。以下のコマンドでホストリポジトリのワーキングコピー（Mercurial _クローン_ ）を作成してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>hg clone http://hg.linux-ha.org/dev heartbeat</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">hg clone http://hg.linux-ha.org/dev heartbeat</pre>
+ </td></tr> </table>
 
 新しいMercurialキューと新しいパッチセットを作成してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>cd heartbeat
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">cd heartbeat
 hg qinit
 hg qnew --edit --force fix-superfrobnication</pre>
-
-
- 
-</td></tr> </table> <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >--force オプションはローカルな修正を、作成したパッチセットに適用します。 パッチメッセージでは、以下のような分かりやすい説明を記述してください。
-</td></tr></table> <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>High: IPC: fix superfrobnication on 63-bit platforms
+ </td></tr> </table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;"><tt>--force</tt> オプションはローカルな修正を、作成したパッチセットに適用します。 パッチメッセージでは、以下のような分かりやすい説明を記述してください。</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">High: IPC: fix superfrobnication on 63-bit platforms
 
 In the IPC layer, superfrobnication breaks on 63-bit middle-endian
 Linux platforms when ACPI is disabled. Fencepost align
 foobar_create_reqqueue() and guard against memory spinlock starvation
 to fix this.</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 これでパッチはメーリングリストで提供され評価されます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>hg email --to=linux-ha-dev@lists.linux-ha.org fix-superfrobnication</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">hg email --to=linux-ha-dev@lists.linux-ha.org fix-superfrobnication</pre>
+ </td></tr> </table>
 
 一旦、パッチが採用されると、ホスト開発者がそのパッチをリポジトリにプッシュします。この時点で、チェックアウトをホストから更新でき、自分自身のパッチセットを削除できます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>hg qpop -a
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">hg qpop -a
 hg pull --update
 hg qdelete fix-superfrobnication</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>

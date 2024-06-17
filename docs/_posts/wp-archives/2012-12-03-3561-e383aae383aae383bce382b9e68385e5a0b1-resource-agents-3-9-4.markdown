@@ -19,68 +19,32 @@ tags:
 
 
 <blockquote>
-
-> 
-> 
-
->   * ocf-rarun: support for resource agents, reduces code complexity and number of software errors
-> 
-
->   * zabbixserver: new resource agent
-> 
-
->   * IPaddr2: partial rewrite and support for IPv6
-> 
-
->   * iscsi: support for auto recovery and performance improvements
-> 
-
->   * mysql-proxy: numerous improvements, features, and fixes
-> 
-
->   * Raid1: support for multiple arrays (configured in parameters)
-> 
-
->   * tools: replace the findif binary by findif.sh
-> 
-
->   * Raid1 ocft test case
-> 
-
+<ul>
+<li>ocf-rarun: support for resource agents, reduces code complexity and number of software errors</li>
+<li>zabbixserver: new resource agent</li>
+<li>IPaddr2: partial rewrite and support for IPv6</li>
+<li>iscsi: support for auto recovery and performance improvements</li>
+<li>mysql-proxy: numerous improvements, features, and fixes</li>
+<li>Raid1: support for multiple arrays (configured in parameters)</li>
+<li>tools: replace the findif binary by findif.sh</li>
+<li>Raid1 ocft test case</li>
+</ul>
 </blockquote>
 
 
 
 
-<blockquote>
-
-> 
-> 
-
->   * ocf-rarun: ocf-rarunという新しいスクリプトが追加されました。
-> 
-
->   * zabbixserver: zabbixserver用のRAが新規に追加されました。
-> 
-
->   * IPaddr2: LVSによる負荷分散構成でのIPv6に対応しました。
-> 
-
->   * iscsi: オートリカバリのサポートとパフォーマンスの改善が取り込まれました。
-> 
-
->   * mysql-proxy: 機能追加およびバグ修正が数多く取り込まれています。
-> 
-
->   * Raid1: 複数のアレイで構成された環境に対応しました(構成情報をパラメータとして設定することができます)。
-> 
-
->   * tools: findif.sh(スクリプト)から呼び出されている findif(バイナリ)を変更しました。
-> 
-
->   * Raid1 関連のテストケース(ocft)が追加されました。
-> 
-
+<blockquote style="background-color:white;border-color:white;color:black;">
+<ul>
+<li>ocf-rarun: ocf-rarunという新しいスクリプトが追加されました。</li>
+<li>zabbixserver: zabbixserver用のRAが新規に追加されました。</li>
+<li>IPaddr2: LVSによる負荷分散構成でのIPv6に対応しました。</li>
+<li>iscsi: オートリカバリのサポートとパフォーマンスの改善が取り込まれました。</li>
+<li>mysql-proxy: 機能追加およびバグ修正が数多く取り込まれています。</li>
+<li>Raid1: 複数のアレイで構成された環境に対応しました(構成情報をパラメータとして設定することができます)。</li>
+<li>tools: findif.sh(スクリプト)から呼び出されている findif(バイナリ)を変更しました。</li>
+<li>Raid1 関連のテストケース(ocft)が追加されました。</li>
+</ul>
 </blockquote>
 
 
@@ -135,8 +99,8 @@ The full list of changes for the linux-ha RA set is available in ChangeLog
 
 
 
-<blockquote>
-今回のリリースに含まれるすべてのチェンジログはこちらを[参照](https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog)してください。
+<blockquote style="background-color:white;border-color:white;color:black;">
+今回のリリースに含まれるすべてのチェンジログはこちらを<a href="https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog" target="_blank">参照</a>してください。
 </blockquote>
 
 
@@ -150,9 +114,9 @@ Please upgrade at the earliest opportunity.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 resource-agentsのパッケージには、Pacemaker/Heartbeat用のリソースエージェント(Resource Agent:RA)だけではなく、Red Hat Cluster Suiteに含まれるrgmanager用のRAも含まれています。
-rgmanager RAにも[いくつか修正](https://github.com/ClusterLabs/resource-agents/commits/master/rgmanager/src/resources)が取り込まれていますので、できるだけ早くアップグレードすることをおすすめします。
+rgmanager RAにも<a href="https://github.com/ClusterLabs/resource-agents/commits/master/rgmanager/src/resources" target="_blank">いくつか修正</a>が取り込まれていますので、できるだけ早くアップグレードすることをおすすめします。
 </blockquote>
 
 

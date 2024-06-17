@@ -164,67 +164,38 @@ Pacemakerはフェイルオーバ時に、対象リソースの停止、起動�
 *2 あくまで年に1～2回の故障が発生すると仮定した場合の目安です。リソース構成、アプリケーション、故障発生頻度等により実現できない場合もあります。
 
 以下に稼働率と具体的な稼働時間(年間)、Pacemakerでの対応可否をまとめてみます。
-<table border="1" align="center" >
-<tbody >
-<tr >
-稼働率[%]
-許容される年間停止時間
-実現方法イメージ
+
+<table border="1" align="center">
+<tbody>
+<tr>
+<th>稼働率[%]</th>
+<th>許容される年間停止時間</th>
+<th>実現方法イメージ</th>
 </tr>
-<tr >
-
-<td >99
-</td>
-
-<td >約3.6日
-</td>
-
-<td >異常があればメールが送信され、運用者が駆けつけ対応ぐらいでOK
-</td>
+<tr>
+<td>99</td>
+<td>約3.6日</td>
+<td>異常があればメールが送信され、運用者が駆けつけ対応ぐらいでOK</td>
 </tr>
-<tr >
-
-<td >99.9
-</td>
-
-<td >約8.7時間
-</td>
-
-<td >運用者が近くにいればよいが、遠方だと厳しいかも。手動でもいいが、**Pacemaker**がほしくなるところか。
-</td>
+<tr>
+<td>99.9</td>
+<td>約8.7時間</td>
+<td>運用者が近くにいればよいが、遠方だと厳しいかも。手動でもいいが、<strong>Pacemaker</strong>がほしくなるところか。</td>
 </tr>
-<tr >
-
-<td >99.99
-</td>
-
-<td >約52分
-</td>
-
-<td >商用システムはだいたいこれぐらいを求められるか。**Pacemaker**で対応可能。
-</td>
+<tr>
+<td>99.99</td>
+<td>約52分</td>
+<td>商用システムはだいたいこれぐらいを求められるか。<strong>Pacemaker</strong>で対応可能。</td>
 </tr>
-<tr >
-
-<td >99.999
-</td>
-
-<td >約5分
-</td>
-
-<td >いわゆるファイブナイン。**Pacemaker**で対応可能。
-</td>
+<tr>
+<td>99.999</td>
+<td>約5分</td>
+<td>いわゆるファイブナイン。<strong>Pacemaker</strong>で対応可能。</td>
 </tr>
-<tr >
-
-<td >99.9999
-</td>
-
-<td >31秒
-</td>
-
-<td >リソース構成、故障パターンによってはなんとかPacemakerで対応できる・・・？ハードウェアおよび仮想マシンレベルでのFT(フォールト・トレラント)もほしいところ。
-</td>
+<tr>
+<td>99.9999</td>
+<td>31秒</td>
+<td>リソース構成、故障パターンによってはなんとかPacemakerで対応できる・・・？ハードウェアおよび仮想マシンレベルでのFT(フォールト・トレラント)もほしいところ。</td>
 </tr>
 </tbody>
 </table>
@@ -378,45 +349,28 @@ Pacemakerは、スプリットブレインを防ぐため、以下３種類の�
 
 
 表：排他制御の種類
-<table width="100%" border="1" align="center" >
-<tbody >
-<tr >
-排他制御の名称(読み)
-概要
-停止失敗への対応
+
+<table width="100%" border="1" align="center">
+<tbody>
+<tr>
+<th style="text-align: center;">排他制御の名称<small>(読み)</small></th>
+<th style="text-align: center;">概要</th>
+<th style="text-align: center;">停止失敗への対応</th>
 </tr>
-<tr >
-
-<td >STONITH(ストニス)
-</td>
-
-<td >ネットワーク越しに相手ノードの電源を強制的に落とす
-</td>
-
-<td style="text-align: center;" >OK
-</td>
+<tr>
+<td>STONITH<small>(ストニス)</small></td>
+<td>ネットワーク越しに相手ノードの電源を強制的に落とす</td>
+<td style="text-align: center;"><span style="color: #0000ff;">OK</span></td>
 </tr>
-<tr >
-
-<td >SFEX(エスエフイーエックス)
-</td>
-
-<td >共有ディスク上にロック情報を書き込む
-</td>
-
-<td style="text-align: center;" >NG
-</td>
+<tr>
+<td>SFEX<small>(エスエフイーエックス)</small></td>
+<td>共有ディスク上にロック情報を書き込む</td>
+<td style="text-align: center;"><span style="color: #ff0000;">NG</span></td>
 </tr>
-<tr >
-
-<td >VIPcheck(ビップチェック)
-</td>
-
-<td >仮想IPアドレスへpingを行い相手ノードの状態を確認する
-</td>
-
-<td style="text-align: center;" >NG
-</td>
+<tr>
+<td>VIPcheck<small>(ビップチェック)</small></td>
+<td>仮想IPアドレスへpingを行い相手ノードの状態を確認する</td>
+<td style="text-align: center;"><span style="color: #ff0000;">NG</span></td>
 </tr>
 </tbody>
 </table>

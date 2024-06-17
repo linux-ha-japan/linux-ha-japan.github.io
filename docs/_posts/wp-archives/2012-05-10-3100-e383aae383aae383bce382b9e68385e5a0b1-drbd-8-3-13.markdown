@@ -28,7 +28,7 @@ Compared to 8.3.12 this release has only bug fixes, no new features.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 今回のリリースはバグフィックスのみです。新規機能の追加はありません。
 </blockquote>
 
@@ -48,7 +48,7 @@ It is a rare condition, which is hard to trigger, it may causes corruption in th
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 8.3.12以前のリリースでは「再同期処理の書込み順序に不整合が発生する」という症状が報告されていました。
 
 この症状は、LinuxカーネルのI/Oスケジューラを「cfq」に設定した環境で発生することが確認されています。
@@ -77,7 +77,7 @@ It is a rare condition, which is hard to trigger, it may causes corruption in th
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 「再同期処理の書込み順序に不整合が発生する」という症状が報告が報告されていましたが、これを修正しました。
 このバグは特定のファームウェアを搭載したデバイスで発生することが報告されています。
 </blockquote>
@@ -107,7 +107,7 @@ DRBDは、プライマリに書き込まれたデータをセカンダリに同�
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 IO処理の競合が報告されていましたが、今回のリリースで修正されました。
 </blockquote>
 
@@ -126,7 +126,7 @@ IO処理の競合が報告されていましたが、今回のリリースで修
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 ディスクまたはネットワークが再接続されて、同期処理が再開するときの動作を修正しました。
 </blockquote>
 
@@ -159,7 +159,7 @@ IO処理の競合が報告されていましたが、今回のリリースで修
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 IOエラーに起因するdetach処理実行時に、ノード間の接続処理が妨げられるという症状を修正しました。
 このバグが発生すると、不要な接続処理が再試行される可能性があります。
 </blockquote>
@@ -180,7 +180,7 @@ IOエラーに起因するdetach処理実行時に、ノード間の接続処理
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 プライマリへ昇格する際に、ノード間の接続処理が妨げられるという症状を修正しました。
 このバグが発生すると、両ノードがSyncSource(同期元)状態となる可能性があります。
 </blockquote>
@@ -226,7 +226,7 @@ DRBDのリソースを停止してもモジュールのアンロードができ�
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 メタデータ専用のページプールを確保します。
 </blockquote>
 
@@ -271,7 +271,7 @@ drbd_int.hに追加されたコメントを抜粋します。
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 UpToDate状態のディスクに対して、detach処理を実行できないようにしました。
 </blockquote>
 
@@ -290,7 +290,7 @@ UpToDate状態のディスクに対して、detach処理を実行できないよ
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 異常なブロックIOに起因してプロトコルエラーが発生する可能性がありましたが、修正されました。
 </blockquote>
 
@@ -309,7 +309,7 @@ UpToDate状態のディスクに対して、detach処理を実行できないよ
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 メタデータ領域に対しても disk-timeoutオプションによるタイムアウトの設定が可能となりました。
 </blockquote>
 

@@ -60,13 +60,9 @@ Pacemaker-1.1.13-0.RC1リポジトリパッケージのリリース版は以下�
 
 以下の手順で Pacemakerをインストールします。yum コマンドにより 必要な依存パッケージも自動的にインストールされますので、 OSのインストールメディア等が参照できるようにしておいてください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># rpm -ivh pacemaker-repo-1.1.13-0.RC1.el6.x86_64.rpm
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># rpm -ivh pacemaker-repo-1.1.13-0.RC1.el6.x86_64.rpm
 # yum install pacemaker-all</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 * * *
 
@@ -78,8 +74,7 @@ corosyncの動作に必要な設定を行います。 以下は最低限必要�
 
 **/etc/corosync/corosync.conf 設定例**
     
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>totem {
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">totem {
         version: 2
         token: 1000
         rrp_mode: active
@@ -106,10 +101,7 @@ quorum {
         provider: corosync_votequorum
         expected_votes: 2
 }</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ここで以下の設定項目は環境に合わせて設定してください。
 
@@ -127,13 +119,9 @@ corosyncの認証を行うための認証鍵ファイルを作成します。
 
 **/etc/corosync/authkey 設定手順例**
     
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># corosync-keygen -l
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># corosync-keygen -l
 # scp -p /etc/corosync/authkey root@node2:/etc/corosync/authkey</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ### 4.3. pacemaker設定ファイルの設定
 
@@ -145,23 +133,15 @@ Pacemakerの内部プロセスが故障した場合もノード故障として�
 
 **/etc/sysconfig/pacemaker (追加設定行)**
     
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>export PCMK_fail_fast=yes</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">export PCMK_fail_fast=yes</pre>
+ </td></tr> </table>
 
 #### 4.3.2. pacemaker設定ファイルの設定(RHEL 7用)
 
 **/etc/sysconfig/pacemaker (追加設定行)**
     
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>PCMK_fail_fast=yes</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">PCMK_fail_fast=yes</pre>
+ </td></tr> </table>
 
 ### 4.4. クラスタ起動スクリプトの設定
 
@@ -180,8 +160,7 @@ RHEL 6では、以下の設定を行うためクラスタ起動スクリプト�
 
 **/etc/init/pacemaker.combined.conf (修正箇所抜粋)**
     
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><font color="#FF6600">--- pacemaker.combined.conf.1.1.13.org  2015-07-10 17:11:22.000000000 +0900</font>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><font color="#FF6600">--- pacemaker.combined.conf.1.1.13.org  2015-07-10 17:11:22.000000000 +0900</font>
 <font color="#009900">+++ pacemaker.combined.conf     2015-08-13 16:16:27.447000431 +0900</font>
 <font color="#0000FF">@@ -24,7 +24,7 @@</font>
  pre-start script
@@ -200,9 +179,7 @@ RHEL 6では、以下の設定を行うためクラスタ起動スクリプト�
 <font color="#009900">+    pidof corosync || false</font>
 
      pidof crmd || stop corosync
-</tt></pre>
-
-</td></tr></table>
+</tt></pre></td></tr></table>
  
 
 #### 4.4.2. クラスタ起動スクリプトの設定(RHEL 7用)
@@ -219,8 +196,7 @@ RHEL 7では、以下の設定を行うためクラスタ起動スクリプト(s
 
 **/etc/systemd/system/corosync.service (修正箇所抜粋)**
     
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt># cp -p /usr/lib/systemd/system/corosync.service /etc/systemd/system
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt># cp -p /usr/lib/systemd/system/corosync.service /etc/systemd/system
 # vi /etc/systemd/system/corosync.service
 
 <font color="#FF6600">--- /usr/lib/systemd/system/corosync.service    2015-05-28 15:32:09.000000000 +0900</font>
@@ -239,15 +215,12 @@ RHEL 7では、以下の設定を行うためクラスタ起動スクリプト(s
 <font color="#009900">+ExecStartPre=/sbin/modprobe softdog soft_margin=6</font>
 
  [Install]
- WantedBy=multi-user.target</tt></pre>
-
-</td></tr></table>
+ WantedBy=multi-user.target</tt></pre></td></tr></table>
  
 
 **/etc/systemd/system/pacemaker.service (修正箇所抜粋)**
     
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt># cp -p /usr/lib/systemd/system/pacemaker.service /etc/systemd/system
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt># cp -p /usr/lib/systemd/system/pacemaker.service /etc/systemd/system
 # vi /etc/systemd/system/pacemaker.service
 
 <font color="#FF6600">--- /usr/lib/systemd/system/pacemaker.service   2015-05-29 17:30:30.000000000 +0900</font>
@@ -260,9 +233,7 @@ RHEL 7では、以下の設定を行うためクラスタ起動スクリプト(s
 <font color="#009900">+ExecStopPost=/bin/sh -c 'pidof crmd || killall -TERM corosync'</font>
 
  # Uncomment this for older versions of systemd that didn't support
- # TimeoutStopSec</tt></pre>
-
-</td></tr></table>
+ # TimeoutStopSec</tt></pre></td></tr></table>
  
 
 * * *
@@ -279,33 +250,21 @@ Pacemakerを起動するには以下のコマンドを実行します。クラ�
 
 #### 5.1.1. 起動コマンド(RHEL 6用)
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># initctl start pacemaker.combined</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># initctl start pacemaker.combined</pre>
+ </td></tr> </table>
 
 #### 5.1.2. 起動コマンド(RHEL 7用)
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># systemctl start pacemaker</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># systemctl start pacemaker</pre>
+ </td></tr> </table>
 
 ### 5.2. 起動確認コマンド
 
 正常に起動すると、crm_mon コマンドの表示でノードが Online 状態となります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># crm_mon -D1
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># crm_mon -D1
 Online: [ node1 node2 ]</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ### 5.3. 終了コマンド
 
@@ -313,21 +272,13 @@ Pacemakerを停止するには以下のコマンドを実行します。クラ�
 
 #### 5.3.1. 終了コマンド (RHEL 6用)
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># initctl stop pacemaker.combined</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># initctl stop pacemaker.combined</pre>
+ </td></tr> </table>
 
 #### 5.3.2. 終了コマンド (RHEL 7用)
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># systemctl stop pacemaker</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># systemctl stop pacemaker</pre>
+ </td></tr> </table>
 
 * * *
 
@@ -336,23 +287,15 @@ Pacemakerを停止するには以下のコマンドを実行します。クラ�
 以下の手順で Pacemaker リポジトリパッケージを 全てアンインストールできます。
 
   * Pacemaker本体のアンインストール 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># yum erase pacemaker corocync libqb cluster-glue cluster-glue-libs resource-agents \
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># yum erase pacemaker corocync libqb cluster-glue cluster-glue-libs resource-agents \
 pm_crmgen pm_logconv-cs pm_diskd pm_extras crmsh pssh</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
   * Pacemakerリポジトリパッケージのアンインストール 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># rpm -e pacemaker-repo
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># rpm -e pacemaker-repo
 # rpm -qa | grep pacemaker-repo
 #</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 * * *
 

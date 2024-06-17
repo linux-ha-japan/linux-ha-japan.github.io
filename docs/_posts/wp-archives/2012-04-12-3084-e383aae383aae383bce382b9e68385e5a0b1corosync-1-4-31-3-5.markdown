@@ -32,10 +32,10 @@ http://www.corosync.org.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Corosync 1.4.3 および 1.3.5 がリリースされました。
 ソースコードは　Corosync のサイトからダウンロードすることができます。
-[http://www.corosync.org](http://www.corosync.org)
+<a href="http://www.corosync.org" target="_blank">http://www.corosync.org</a>
 </blockquote>
 
 
@@ -51,7 +51,7 @@ still using this version, please consider upgrade to 1.4.3.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 今回のリリースはバグフィックスがメインですが、深刻なバグもいくつか含まれています。
 1.4.3は、サポートするプラットフォームにBSDも追加されました。
 1.3.5は、1.3系の最後のリリースとなります。
@@ -125,7 +125,7 @@ great milestone.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 (いつもと同じく)古いバージョンを使っているユーザにはアップグレードをおすすめします。
 リリースにご協力いただいた皆さん、ありがとうございました。
 </blockquote>

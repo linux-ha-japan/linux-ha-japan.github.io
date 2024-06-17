@@ -85,47 +85,28 @@ Linux-HAを学習する上で基本となる構成は、サービスを提供す
 
 
 前置きが長くなりましたが、具体的な設定をしてみましょう。今回の環境は前回の予告にも有るとおり以下の環境で構成します。リソースはUnboundだとデータを持たないのでApacheに変更します。
-<table border="0" >
-<tbody >
-<tr >
 
-<td >OS
-</td>
-
-<td >CentOS5.5 x86_84
-</td>
+<table border="0">
+<tbody>
+<tr>
+<td>OS</td>
+<td>CentOS5.5 x86_84</td>
 </tr>
-<tr >
-
-<td >クラスタソフト
-</td>
-
-<td >Heartbeat 3.0.4 / Pacemaker 1.0.10
-</td>
+<tr>
+<td>クラスタソフト</td>
+<td>Heartbeat 3.0.4 / Pacemaker 1.0.10</td>
 </tr>
-<tr >
-
-<td >データ同期
-</td>
-
-<td >DRBD8.3.10
-</td>
+<tr>
+<td>データ同期</td>
+<td>DRBD8.3.10</td>
 </tr>
-<tr >
-
-<td >制御対象
-</td>
-
-<td >仮想IP / Apache
-</td>
+<tr>
+<td>制御対象</td>
+<td>仮想IP / Apache</td>
 </tr>
-<tr >
-
-<td >監視用インターフェース
-</td>
-
-<td >eth1 / eth2 (eth0はサービス用ポート）
-</td>
+<tr>
+<td>監視用インターフェース</td>
+<td>eth1 / eth2 (eth0はサービス用ポート）</td>
 </tr>
 </tbody>
 </table>

@@ -27,13 +27,9 @@ _(2014/04/25追記)_ MLにて、RHEL6.4でも同様の事象が発生した、�
 
 事象発生時に出力されるログは次の通りです。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>ERROR: Unknown interface [bond0] No such device.
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">ERROR: Unknown interface [bond0] No such device.
 ERROR: [findif] failed</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 * * *
 
@@ -60,21 +56,8 @@ Pacemaker-1.0.13-1.1(より正確にはresource-agents-3.9.5-1)に含まれる I
 より詳細については以下を参照ください。
 
   * [https://github.com/ClusterLabs/resource-agents/pull/320](https://github.com/ClusterLabs/resource-agents/pull/320)
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Tip_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >Pacemaker-1.0.13-1.2 リポジトリパッケージ(resource-agents-3.9.5-1.310) および [ClusterLabs の開発リポジトリ版](https://github.com/ClusterLabs/resource-agents)では、 /proc/net/dev は読み込まない方式に改善されたので、この事象は発生しません。
-</td></tr></table> <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Tip_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >また、Pacemaker-1.0.12-1.3以前のパッケージ(resource-agents-3.9.4 以前)においても、 /proc/net/dev を読み込む処理が含まれていないため、 この事象の影響は受けません。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Tip</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">Pacemaker-1.0.13-1.2 リポジトリパッケージ(resource-agents-3.9.5-1.310) および <a href="https://github.com/ClusterLabs/resource-agents"><tt>ClusterLabs</tt> の開発リポジトリ版</a>では、 <tt>/proc/net/dev</tt> は読み込まない方式に改善されたので、この事象は発生しません。</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Tip</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">また、Pacemaker-1.0.12-1.3以前のパッケージ(resource-agents-3.9.4 以前)においても、 <tt>/proc/net/dev</tt> を読み込む処理が含まれていないため、 この事象の影響は受けません。</td></tr></table>
 
 * * *
 
@@ -107,20 +90,14 @@ IPaddr2 リソースの監視処理を停止するには、 monitor の監視間
 
 以下がその手順例です。
 
-  1. クラスタに参加しているサーバの1台で、crm コマンドを実行します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>root# crm configure</pre>
-
-
- 
-</td></tr> </table>
-  2. IPaddr2 リソースのIDを確認します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>crm(live)configure# show</pre>
-
-
- 
-</td></tr> </table>
-  3. IPaddr2 リソースのID(仮に vip01, vip02 とします)を引数に edit を実行します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>crm(live)configure# edit vip01 vip02
+  1. クラスタに参加しているサーバの1台で、crm コマンドを実行します。 
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">root# crm configure</pre>
+ </td></tr> </table>
+  2. IPaddr2 リソースのIDを確認します。 
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">crm(live)configure# show</pre>
+ </td></tr> </table>
+  3. IPaddr2 リソースのID(仮に vip01, vip02 とします)を引数に edit を実行します。 
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">crm(live)configure# edit vip01 vip02
 
 例
 ----(エディタの表示開始)----
@@ -135,24 +112,15 @@ op start interval="0" timeout="60s" \
 op monitor interval="10s" timeout="60s" \ # この行のintervalを変更
 op stop interval="0" timeout="60s"
 ----(エディタの表示終了)----</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
   4. monitor の interval の現在の値を、のちに戻すために、記録します。 上記の例では、"10s" 
   5. monitor の interval を"0s"に変更し、エディタを終了します。 
-  6. show を実行し、修正内容を確認します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>crm(live)configure# show</pre>
-
-
- 
-</td></tr> </table>
-  7. commit を実行し、反映します。 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>crm(live)configure# commit</pre>
-
-
- 
-</td></tr> </table>
+  6. show を実行し、修正内容を確認します。 
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">crm(live)configure# show</pre>
+ </td></tr> </table>
+  7. commit を実行し、反映します。 
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">crm(live)configure# commit</pre>
+ </td></tr> </table>
   8. exit で終了します。 
 
 監視を再開する場合は、上記の手順で、interval の値を元の設定値に戻してください。

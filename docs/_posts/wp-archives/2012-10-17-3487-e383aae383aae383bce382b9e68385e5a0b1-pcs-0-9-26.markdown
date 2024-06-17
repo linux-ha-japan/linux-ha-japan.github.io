@@ -23,7 +23,7 @@ We've been making improvements to the pcs (pacemaker/corosync configuration syst
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 ここ数か月ほど、pcs (pacemaker/corosync configuration system)の改良を続けてきましたが、いよいよ v0.9.26 をリリースすることができました。
 </blockquote>
 
@@ -37,7 +37,7 @@ Currently you can setup a basic cluster (including configuring corosync 2.0 udpu
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 pcsは、クラスタを設定するためのコマンドラインツールです(corosync 2.0系の設定も可能です)。
 </blockquote>
 
@@ -52,10 +52,10 @@ that illustrates setting up a cluster using pcs.  This should be showing up shor
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 David Vosselさんにpcs版の「Clusters from Scratch」(Pacemakerを使用してクラスタを構築するためのドキュメント)を作成していただいているところです。こちらも、間もなくみなさんにご紹介できると思います。
 
-注：pcs版のドキュメントですが、[それっぽい](http://www.clusterlabs.org/doc/)のを発見しました。
+注：pcs版のドキュメントですが、<a href="http://www.clusterlabs.org/doc/" target="_blank">それっぽい</a>のを発見しました。
 </blockquote>
 
 
@@ -76,13 +76,13 @@ In the near future we are planning on having builds for SUSE & Ubuntu/Debian.
 
 
 
-<blockquote>
-pcs のリポジトリは[こちら](https://github.com/feist/pcs/)。
-最新版のソースコードは[こちら](https://github.com/downloads/feist/pcs/pcs-0.9.26.tar.gz)からダウンロードすることもできます。
+<blockquote style="background-color:white;border-color:white;color:black;">
+pcs のリポジトリは<a href="https://github.com/feist/pcs/" target="_blank">こちら</a>。
+最新版のソースコードは<a href="https://github.com/downloads/feist/pcs/pcs-0.9.26.tar.gz" target="_blank">こちら</a>からダウンロードすることもできます。
 
 Fedora 18に同梱される予定のrpmパッケージをダウンロードすることもできます。
-- [RPM](http://people.redhat.com/cfeist/pcs/pcs-0.9.26-1.fc18.noarch.rpm)
-- [SRPM](http://people.redhat.com/cfeist/pcs/pcs-0.9.26-1.fc18.src.rpm)
+- <a href="http://people.redhat.com/cfeist/pcs/pcs-0.9.26-1.fc18.noarch.rpm" target="_blank">RPM</a>
+- <a href="http://people.redhat.com/cfeist/pcs/pcs-0.9.26-1.fc18.src.rpm" target="_blank">SRPM</a>
 
 SUSE, Ubuntu/Debian用のパッケージも提供できるようにしたいと思っています。
 </blockquote>
@@ -101,7 +101,7 @@ Chris
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 pcs はコマンドラインツールですが、GUIやデーモンのようなツールでクラスタを制御する方法についても検討中です。ユーザのみなさんからのフィードバックや問い合わせを募集しています！
 私宛にメール(cfeist at redhat.com)を送っていただくか、githubのプロジェクトに参加してご意見をお寄せください。
 </blockquote>

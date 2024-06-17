@@ -230,78 +230,75 @@ crm_resourceコマンドの実行履歴が！！
 
 ホスト名はsrv01, srv02です。
 使用した設定ファイルはこちら。
-<table style="width: 600px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f0f8ff;" >### Cluster Option ###
-property \
-no-quorum-policy="ignore" \
-stonith-enabled="false" \
-startup-fencing="false" ### Resource Defaults ###
-rsc_defaults \
-resource-stickiness="INFINITY" \
-migration-threshold="1" 
+<table style="width: 600px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f0f8ff;"><span style="font-family: verdana,geneva; font-size: small;">### Cluster Option ###</span>
+<span style="font-family: verdana,geneva; font-size: small;"> property \</span>
+<span style="font-family: verdana,geneva; font-size: small;"> no-quorum-policy="ignore" \</span>
+<span style="font-family: verdana,geneva; font-size: small;"> stonith-enabled="false" \</span>
+<span style="font-family: verdana,geneva; font-size: small;"> startup-fencing="false" </span><span style="font-family: verdana,geneva; font-size: small;">### Resource Defaults ###</span>
+<span style="font-family: verdana,geneva; font-size: small;"> rsc_defaults \</span>
+<span style="font-family: verdana,geneva; font-size: small;"> resource-stickiness="INFINITY" \</span>
+<span style="font-family: verdana,geneva; font-size: small;"> migration-threshold="1"</span> 
 
-### Primitive Configuration ###
-primitive dummy ocf:heartbeat:Dummy \
-op start interval="0s" timeout="120s" on-fail="restart" \
-op monitor interval="10s" timeout="120s" on-fail="restart" \
-op stop interval="0s" timeout="120s" on-fail="stop"
-</td>
+<span style="font-family: verdana,geneva; font-size: small;">### Primitive Configuration ###</span>
+<span style="font-family: verdana,geneva; font-size: small;"> primitive dummy ocf:heartbeat:Dummy \</span>
+<span style="font-family: verdana,geneva; font-size: small;"> op start interval="0s" timeout="120s" on-fail="restart" \</span>
+<span style="font-family: verdana,geneva; font-size: small;"> op monitor interval="10s" timeout="120s" on-fail="restart" \</span>
+<span style="font-family: verdana,geneva; font-size: small;"> op stop interval="0s" timeout="120s" on-fail="stop"</span></td>
 </tr>
 </tbody>
 </table>
 初期起動時のリソースの状態はこんな感じ。
-<table style="width: 600px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f0f8ff;" >[root@srv01 ~]#** crm_mon -1**  
+<table style="width: 600px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f0f8ff;"><span style="font-family: verdana,geneva; font-size: small;">[root@srv01 ~]#<strong><span style="color: #339966;"> crm_mon -1</span></strong> </span><span style="font-family: verdana,geneva; font-size: small;"> 
 
 ============
-Last updated: Mon Jul 25 17:40:27 2011
-Stack: Heartbeat
-Current DC: srv02 (22222222-2222-2222-2222-222222222222) - partition with quorum
-Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87
-2 Nodes configured, unknown expected votes
-1 Resources configured.
-============
+<span style="font-family: verdana,geneva; font-size: small;"> Last updated: Mon Jul 25 17:40:27 2011</span>
+<span style="font-family: verdana,geneva; font-size: small;"> Stack: Heartbeat</span>
+<span style="font-family: verdana,geneva; font-size: small;"> Current DC: srv02 (22222222-2222-2222-2222-222222222222) - partition with quorum</span>
+<span style="font-family: verdana,geneva; font-size: small;"> Version: 1.0.11-1554a83db0d3c3e546cfd3aaff6af1184f79ee87</span>
+<span style="font-family: verdana,geneva; font-size: small;"> 2 Nodes configured, unknown expected votes</span>
+<span style="font-family: verdana,geneva; font-size: small;"> 1 Resources configured.</span>
+<span style="font-family: verdana,geneva; font-size: small;"> ============</span>
 
-Online: [ srv01 srv02 ]
+<span style="font-family: verdana,geneva; font-size: small;">Online: [ srv01 srv02 ]</span>
 
-dummy  (ocf::heartbeat:Dummy): Started srv01
-
- 
+<span style="font-family: verdana,geneva; font-size: small;"> dummy  (ocf::heartbeat:Dummy): Started srv01</span>
 
  
 
  
 
+ 
 
-</td>
+</span></td>
 </tr>
 </tbody>
 </table>
 srv01で起動しているdummyをsrv02へ移動させます。
 ここで、crmコマンドの後の「-R」オプションにご注目！
 
-<table style="width: 600px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f0f8ff;" >[root@srv01 ~]# **crm -R resource move dummy srv02 force**** 
+<table style="width: 600px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f0f8ff;"><span style="font-family: verdana,geneva; font-size: small;">[root@srv01 ~]# <span style="color: #339966;"><strong>crm -R resource move dummy srv02 force</strong></span></span><span style="font-size: small;"><strong><span style="font-family: verdana,geneva; color: #ff00ff;"> 
 
-**.EXT crm_resource -M -r 'dummy' --node='srv02' --force**
+<span style="font-family: verdana,geneva; color: #ff00ff;"><strong>.EXT crm_resource -M -r 'dummy' --node='srv02' --force</strong></span>
 
-** 
-
- 
+</span></strong> 
 
  
 
+ 
 
-</td>
+</span></td>
 </tr>
 </tbody>
 </table>
@@ -317,28 +314,26 @@ crmコマンドとは似ても似つかぬオプションだったりするの�
 これが実際に実行されたコマンドの内容です。
 上の例ではcrm_resourceコマンドが出力されています。
 syslog(/var/log/messages)にもcrm_resourceコマンドが実行されたことが記録されています。
-<table style="width: 600px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f0f8ff;" >[root@srv01 ~]# **cat /var/log/messages** 
-Jul 25 17:40:54 srv01 crm_resource: [25478]: info: Invoked: crm_resource -M -r dummy --node=srv02 --force
-</td>
+<table style="width: 600px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f0f8ff;"><span style="font-family: verdana,geneva; font-size: small;">[root@srv01 ~]# <strong><span style="color: #339966;">cat /var/log/messages</span></strong> </span><span style="font-family: verdana,geneva; font-size: small;">
+Jul 25 17:40:54 srv01 crm_resource: [25478]: info: Invoked: crm_resource -M -r dummy --node=srv02 --force</span></td>
 </tr>
 </tbody>
 </table>
 では、moveコマンドを実行したら必ずunmoveコマンドを実行！というお約束に従って
 unmoveコマンドを実行しましょう。ここでも「-R」オプションをつけてみてください。
-<table style="width: 600px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f0f8ff;" >[root@srv01 ~]# **crm -R resource unmove dummy**
-.EXT crm_resource -U -r 'dummy' 
+<table style="width: 600px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f0f8ff;"><span style="font-family: verdana,geneva; font-size: small;">[root@srv01 ~]# <strong><span style="color: #339966;">crm -R resource unmove dummy</span></strong>
+</span><span style="font-family: verdana,geneva; font-size: small;">.EXT crm_resource -U -r 'dummy'</span> 
 
-[root@srv01 ~]# **cat /var/log/messages**
-Jul 25 17:41:22 srv01 crm_resource: [25505]: info: Invoked: crm_resource -U -r dummy
-</td>
+<span style="font-family: verdana,geneva; font-size: small;">[root@srv01 ~]# <strong><span style="color: #339966;">cat /var/log/messages</span></strong>
+Jul 25 17:41:22 srv01 crm_resource: [25505]: info: Invoked: crm_resource -U -r dummy</span></td>
 </tr>
 </tbody>
 </table>
@@ -372,13 +367,12 @@ Jul 25 17:41:22 srv01 crm_resource: [25505]: info: Invoked: crm_resource -U -r d
 参考メーリングリスト：[Linux-ha-jp] [初期起動時のCrrentDC](http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2011-June/000724.html)
 
 crm_mon で表示される「Current DC: ホスト名」で今どのノードがDCになっているのかを確認することができますが、crmadminコマンドでも確認することができます。
-<table style="height: 23px; width: 600px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f0f8ff;" ># **crmadmin -D**
-Designated Controller is: srv02
-</td>
+<table style="height: 23px; width: 600px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f0f8ff;"><span style="font-family: verdana,geneva; font-size: small;"># <strong><span style="color: #339966;">crmadmin -D</span></strong>
+</span><span style="font-family: verdana,geneva; font-size: small;">Designated Controller is: srv02</span></td>
 </tr>
 </tbody>
 </table>
@@ -396,84 +390,83 @@ HP iLO2, IBM RSAなどはIPMIに対応していないので、それぞれ「ril
 
 Pacemakerに同梱されているSTONITHプラグインはcrmコマンドで確認することができます。
 （見やすいように一部整形しています）
-<table style="width: 600px;" border="0" >
-<tbody >
-<tr >
 
-<td style="background-color: #f0f8ff;" >#** crm** crm(live)#** ra** 
+<table style="width: 600px;" border="0">
+<tbody>
+<tr>
+<td style="background-color: #f0f8ff;"><span style="font-family: verdana,geneva; font-size: small;">#<strong><span style="color: #339966;"> crm</span></strong> </span><span style="font-family: verdana,geneva; font-size: small;">crm(live)#<strong><span style="color: #339966;"> ra</span></strong></span> 
 
-crm(live)ra# **list stonith**
+<span style="font-family: verdana,geneva; font-size: small;">crm(live)ra# <span style="color: #339966;"><strong>list stonith</strong></span></span>
 
-apcmaster 
+<span style="font-family: verdana,geneva; font-size: small;">apcmaster </span>
 
-apcmastersnmp 
+<span style="font-family: verdana,geneva; font-size: small;">apcmastersnmp </span>
 
-apcsmart 
+<span style="font-family: verdana,geneva; font-size: small;">apcsmart </span>
 
-baytech 
+<span style="font-family: verdana,geneva; font-size: small;">baytech </span>
 
-bladehpi
+<span style="font-family: verdana,geneva; font-size: small;">bladehpi</span>
 
-cyclades 
+<span style="font-family: verdana,geneva; font-size: small;">cyclades </span>
 
-drac3 
+<span style="font-family: verdana,geneva; font-size: small;">drac3 </span>
 
-external/drac5 
+<span style="font-family: verdana,geneva; font-size: small;">external/drac5 </span>
 
-external/dracmc-telnet 
+<span style="font-family: verdana,geneva; font-size: small;">external/dracmc-telnet </span>
 
-external/hmchttp
+<span style="font-family: verdana,geneva; font-size: small;">external/hmchttp</span>
 
-external/ibmrsa 
+<span style="font-family: verdana,geneva; font-size: small;">external/ibmrsa </span>
 
-external/ibmrsa-telnet 
+<span style="font-family: verdana,geneva; font-size: small;"> external/ibmrsa-telnet </span>
 
-external/ipmi 
+<span style="font-family: verdana,geneva; font-size: small;">external/ipmi </span>
 
-external/ippower9258 
+<span style="font-family: verdana,geneva; font-size: small;">external/ippower9258 </span>
 
-external/kdumpcheck
+<span style="font-family: verdana,geneva; font-size: small;">external/kdumpcheck</span>
 
-external/nut 
+<span style="font-family: verdana,geneva; font-size: small;">external/nut </span>
 
-external/rackpdu 
+<span style="font-family: verdana,geneva; font-size: small;">external/rackpdu </span>
 
-external/riloe 
+<span style="font-family: verdana,geneva; font-size: small;"> external/riloe </span>
 
-external/sbd 
+<span style="font-family: verdana,geneva; font-size: small;">external/sbd </span>
 
-external/ssh
+<span style="font-family: verdana,geneva; font-size: small;">external/ssh</span>
 
-external/stonith-helper 
+<span style="font-family: verdana,geneva; font-size: small;">external/stonith-helper </span>
 
-external/vmware 
+<span style="font-family: verdana,geneva; font-size: small;">external/vmware </span>
 
-external/xen0 
+<span style="font-family: verdana,geneva; font-size: small;">external/xen0 </span>
 
-external/xen0-ha 
+<span style="font-family: verdana,geneva; font-size: small;">external/xen0-ha </span>
 
-ibmhmc
+<span style="font-family: verdana,geneva; font-size: small;">ibmhmc</span>
 
-ipmilan 
+<span style="font-family: verdana,geneva; font-size: small;">ipmilan </span>
 
-meatware 
+<span style="font-family: verdana,geneva; font-size: small;">meatware </span>
 
-null 
+<span style="font-family: verdana,geneva; font-size: small;">null </span>
 
-nw_rpc100s 
+<span style="font-family: verdana,geneva; font-size: small;">nw_rpc100s </span>
 
-rcd_serial
+<span style="font-family: verdana,geneva; font-size: small;">rcd_serial</span>
 
-rps10 
+<span style="font-family: verdana,geneva; font-size: small;">rps10 </span>
 
-ssh 
+<span style="font-family: verdana,geneva; font-size: small;">ssh </span>
 
-suicide 
+<span style="font-family: verdana,geneva; font-size: small;">suicide </span>
 
-wti_mpc 
+<span style="font-family: verdana,geneva; font-size: small;">wti_mpc </span>
 
-wti_nps
-</td>
+<span style="font-family: verdana,geneva; font-size: small;">wti_nps</span></td>
 </tr>
 </tbody>
 </table>

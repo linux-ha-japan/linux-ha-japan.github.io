@@ -34,15 +34,15 @@ https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 みなさん、いよいよ Heat v7 がリリースされました！
 今回のリリースでは、OpenStack の ReST APIに対するサポートが追加されているので、もう RPC で苦労する必要はありません。
 既存の CloudFormation 互換の API も無期限にサポートする予定なので安心してください。
 ( rest assured that の rest を ReST にひっかけてるのか…。日本語には訳せない微妙なおやじギャク？ )
 
-- [ダウンロードサイト](https://github.com/heat-api/heat/downloads)
-- [Fedora 17 向けドキュメント](https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme)
-- [Ubuntu 12.04 向けドキュメント](https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu)
+- <a href="https://github.com/heat-api/heat/downloads" target="_blank">ダウンロードサイト</a>
+- <a href="https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme" target="_blank">Fedora 17 向けドキュメント</a>
+- <a href="https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu" target="_blank">Ubuntu 12.04 向けドキュメント</a>
 </blockquote>
 
 
@@ -74,13 +74,13 @@ What's new in version 7:
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 version 7の新機能
 
 * OpenStack の ReST API に対応しました。
 - OpenStack に特化した革新的な技術基盤です。
 - 今回のリリースではスタック操作にのみ対応しています。リソースやイベントの操作も間もなく対応する予定です。
-- ドキュメントは[こちら](https://github.com/heat-api/heat/blob/master/docs/api.md#readme)
+- ドキュメントは<a href="https://github.com/heat-api/heat/blob/master/docs/api.md#readme" target="_blank">こちら</a>
 
 * CloudWatch 互換のメトリックを取得できます。
 - 稼働中のインスタンスからHeat経由でメトリックを取り出すことができます。
@@ -110,7 +110,7 @@ version of heat-jeos. Prebuilt images will be available as soon as we find someb
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 更新情報:
 
 今回のリリースでは、cfn-push-stats ツールの実装が変更されています。
@@ -128,7 +128,7 @@ Also note that if you wish to use the features of the CloudWatch-compatible API 
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 CloudWatch 互換の API を使用する場合、つまりHAまたはオートスケール機能を使用する場合は、ファイアウォールの設定に注意してください(heat-metadata のみがインスタンスにアクセスできるように設定してください)。
 詳細はドキュメント(上記の Fedora版、Ubuntu版)を参照してください。
 </blockquote>
@@ -143,7 +143,7 @@ Keystone endpoints have also changed, so if you are upgrading from an existing v
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Keystoneのエンドポイントを変更しました。既存のHeatからバージョンアップを行う場合は、bin/heat-keystone-setup スクリプトを実行してください。
 </blockquote>
 

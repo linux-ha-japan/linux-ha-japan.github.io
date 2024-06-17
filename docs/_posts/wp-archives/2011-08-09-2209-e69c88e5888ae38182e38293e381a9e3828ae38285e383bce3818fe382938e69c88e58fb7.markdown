@@ -127,36 +127,33 @@ onセクションの中でvolume{}をもりもり増やしていけばよいわ�
 
 (1) セカンダリのDRBDを停止  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm down all
-# service drbd stop
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm down all</span>
+<span style="font-family: verdana, geneva;"> # service drbd stop</span></td>
 </tr>
 </tbody>
 </table>
 PacemakerからDRBDを起動させている場合は、Pacemakerを停止します。  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># service heartbeat stop
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># service heartbeat stop</span></td>
 </tr>
 </tbody>
 </table>
 
 (2) セカンダリのDRBDをアンインストール  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># rpm -e drbd-pacemaker drbd-utils drbd-km-2.6.18_238.el5-8.3.11.1-1
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># rpm -e drbd-pacemaker drbd-utils drbd-km-2.6.18_238.el5-8.3.11.1-1</span></td>
 </tr>
 </tbody>
 </table>
@@ -164,49 +161,45 @@ PacemakerからDRBDを起動させている場合は、Pacemakerを停止しま�
 
 (3) セカンダリのDRBDをアップデート  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># rpm -ihv drbd-utils-8.4.0-1.x86_64.rpm
-# rpm –ihv drbd-km-2.6.18_238.el5-8.4.0-1.x86_64.rpm
-# rpm –ihv drbd-pacemaker-8.4.0-1.x86_64.rpm
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># rpm -ihv drbd-utils-8.4.0-1.x86_64.rpm</span>
+<span style="font-family: verdana, geneva;"> # rpm –ihv drbd-km-2.6.18_238.el5-8.4.0-1.x86_64.rpm</span>
+<span style="font-family: verdana, geneva;"> # rpm –ihv drbd-pacemaker-8.4.0-1.x86_64.rpm</span></td>
 </tr>
 </tbody>
 </table>
 PacemakerからDRBDを起動させる場合は、DRBDが自動起動しないように設定します。  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># chkconfig drbd off
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># chkconfig drbd off</span></td>
 </tr>
 </tbody>
 </table>
 設定ファイルを復元します。  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># cp -p /etc/drbd.conf.rpmsave /etc/drbd.conf
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># cp -p /etc/drbd.conf.rpmsave /etc/drbd.conf</span></td>
 </tr>
 </tbody>
 </table>
 
 (4) メタデータの削除と再作成  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm wipe-md all
-# drbdadm create-md all
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm wipe-md all</span>
+<span style="font-family: verdana, geneva;"> # drbdadm create-md all</span></td>
 </tr>
 </tbody>
 </table>
@@ -214,23 +207,21 @@ PacemakerからDRBDを起動させる場合は、DRBDが自動起動しないよ
 
 (5) DRBDの起動  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># service drbd start
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># service drbd start</span></td>
 </tr>
 </tbody>
 </table>
 PacemakerからDRBDを起動させる場合は、Pacemakerを起動します。  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># service heartbeat start
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># service heartbeat start</span></td>
 </tr>
 </tbody>
 </table>
@@ -238,27 +229,25 @@ PacemakerからDRBDを起動させる場合は、Pacemakerを起動します。
 同期領域のサイズがでかいと、この処理がネックですねえ。
 apply-alだとココ省略できるんかなあ。  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># cat /proc/drbd
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># cat /proc/drbd</span></td>
 </tr>
 </tbody>
 </table>
-<table border="1" cellspacing="2" cellpadding="2" width="100%" >
-<tbody >
-<tr >
 
-<td >version: 8.4.0
-(api:1/proto:86-100)
-GIT-hash: 28753f559ab51b549d16bcf487fe625d5919c49c build by root@srv01,2011-07-25 13:46:08
-0: cs:SyncTarget ro:Secondary/Primary ds:Inconsistent/UpToDate C r-----
-ns:0 nr:0 dw:0 dr:263296 al:0 bm:15 lo:22 pe:46 ua:0 ap:0 ep:1 wo:b oos:9513840
-[>....................] sync'ed: 2.7% (9288/9540)M
-finish: 0:03:41 speed: 42,900(42,900) want: 40,960 K/sec
-</td>
+<table border="1" cellspacing="2" cellpadding="2" width="100%">
+<tbody>
+<tr>
+<td><span style="font-family: verdana, geneva;">version: 8.4.0
+(api:1/proto:86-100)</span>
+<span style="font-family: verdana, geneva;"> GIT-hash: 28753f559ab51b549d16bcf487fe625d5919c49c build by root@srv01,2011-07-25 13:46:08</span>
+<span style="font-family: verdana, geneva;"> 0: cs:SyncTarget ro:Secondary/Primary ds:Inconsistent/UpToDate C r-----</span>
+<span style="font-family: verdana, geneva;"> ns:0 nr:0 dw:0 dr:263296 al:0 bm:15 lo:22 pe:46 ua:0 ap:0 ep:1 wo:b oos:9513840</span>
+<span style="font-family: verdana, geneva;"> [>....................] sync'ed: 2.7% (9288/9540)M</span>
+<span style="font-family: verdana, geneva;"> finish: 0:03:41 speed: 42,900(42,900) want: 40,960 K/sec</span></td>
 </tr>
 </tbody>
 </table>
@@ -269,26 +258,24 @@ DRBDのサービスを停止させたくないので、プライマリとセカ�
 
 プライマリをセカンダリに降格  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># umount <dir>
-# drbdadm secondary all
-# drbdadm down all
-# service drbd stop
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># umount <dir></span>
+<span style="font-family: verdana, geneva;"> # drbdadm secondary all</span>
+<span style="font-family: verdana, geneva;"> # drbdadm down all</span>
+<span style="font-family: verdana, geneva;"> # service drbd stop</span></td>
 </tr>
 </tbody>
 </table>
 セカンダリをプライマリに昇格  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm primary all
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm primary all</span></td>
 </tr>
 </tbody>
 </table>
@@ -307,12 +294,11 @@ RPMを入れ替えた後、drbd.confを元に戻してDRBDを起動すればOK�
 
 8.3から8.4にアップデートした後、次の手順でdrbd.confを変換します。  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm dump all
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm dump all</span></td>
 </tr>
 </tbody>
 </table>
@@ -323,12 +309,11 @@ dumpオプションをつけてdrbdadmコマンドを実行すると、なんと
 
 なので、これを適当に/tmpとかに出力してあげて、ちょこっと編集します。  
 
-<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm dump all > /tmp/drbd.conf
-</td>
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm dump all > /tmp/drbd.conf</span></td>
 </tr>
 </tbody>
 </table>
@@ -336,69 +321,63 @@ dumpオプションをつけてdrbdadmコマンドを実行すると、なんと
 追加しなくても動作に問題はないんですけどね、
 次のadjustオプションでいろいろ聞かれてめんどくさいので。  
 
-<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># vi /tmp/drbd.conf
-</td>
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># vi /tmp/drbd.conf</span></td>
 </tr>
 </tbody>
 </table>
-<table style="background-color: #ffffcc; width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: white;" >global {
-usage-count no;
-}  
+<table style="background-color: #ffffcc; width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: white;"><span style="font-family: verdana, geneva;">global {
+</span><span style="font-family: verdana, geneva;"> usage-count no;
+} </span> 
 
-
-</td>
+<span style="font-family: verdana, geneva;"> </span></td>
 </tr>
 </tbody>
 </table>
 元のやつを一応保存しとく。  
 
-<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># cp -p /etc/drbd.conf /etc/drbd.conf.org
-</td>
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># cp -p /etc/drbd.conf /etc/drbd.conf.org</span></td>
 </tr>
 </tbody>
 </table>
 新しいやつをコピー。  
 
-<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># mv /tmp/drbd.conf /etc/drbd.conf
-</td>
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># mv /tmp/drbd.conf /etc/drbd.conf</span></td>
 </tr>
 </tbody>
 </table>
 対向ノードにもコピー。  
 
-<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># scp -p /etc/drbd.conf <対向ノード>:/etc/drbd.conf
-</td>
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># scp -p /etc/drbd.conf <対向ノード>:/etc/drbd.conf</span></td>
 </tr>
 </tbody>
 </table>
 両方のノードでdrbdadmコマンドを実行し、設定を反映させます。  
 
-<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm adjust all
-</td>
+<table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm adjust all</span></td>
 </tr>
 </tbody>
 </table>
@@ -412,25 +391,23 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 - スプリットブレイン回復時に、特定ノードのデータを破棄する方法
 8.3系  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm secondary <resource>
-# drbdadm -- --discard-my-data connect <resource>
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm secondary <resource></span>
+<span style="font-family: verdana, geneva;"> # drbdadm -- --discard-my-data connect <resource></span></td>
 </tr>
 </tbody>
 </table>
 8.4系  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm secondary <resource>
-# drbdadm connect --discard-my-data <resource>
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm secondary <resource></span>
+<span style="font-family: verdana, geneva;"> # drbdadm connect --discard-my-data <resource></span></td>
 </tr>
 </tbody>
 </table>
@@ -440,23 +417,21 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 - 初期同期の方法
 
 8.3系
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm -- --overwrite-data-of-peer primary <resource>
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm -- --overwrite-data-of-peer primary <resource></span></td>
 </tr>
 </tbody>
 </table>
 8.4系  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm primary --force <resource>
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm primary --force <resource></span></td>
 </tr>
 </tbody>
 </table>
@@ -465,23 +440,21 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 
 8.4からの新機能です。
 プロトコルCで同期中のリソースを一時的にプロトコルAに変更する場合
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm net-options --protocol=A <resource>
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm net-options --protocol=A <resource></span></td>
 </tr>
 </tbody>
 </table>
 元に戻すときは同じコマンドで、--protocol=Cってするか  
 
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm adjust <resource>
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm adjust <resource></span></td>
 </tr>
 </tbody>
 </table>
@@ -492,12 +465,11 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 
 8.4からの新機能です。
 一時的にデュアルプライマリ(両ノードがプライマリに昇格可能)を許可します。
-<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2" >
-<tbody >
-<tr >
 
-<td style="background-color: #ffffcc;" ># drbdadm net-options --protocol=C --allow-two-primaries <resource>
-</td>
+<table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
+<tbody>
+<tr>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm net-options --protocol=C --allow-two-primaries <resource></span></td>
 </tr>
 </tbody>
 </table>

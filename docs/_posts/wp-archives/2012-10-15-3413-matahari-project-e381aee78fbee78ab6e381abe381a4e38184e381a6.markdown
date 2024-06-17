@@ -26,7 +26,7 @@ As will be evident to those of you who have been subscribed to this list for a w
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 このメーリングリストを購読しているみなさんはもう気付いていることかもしれませんが、私を含め、Red Hatの関係者はMatahariの開発に携わってはいません。そしてプロジェクトの今後についてはまだ何も決まっていません。
 </blockquote>
 
@@ -42,7 +42,7 @@ However, the effort required to retrofit it into QMF is prohibitive.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 プロジェクトがこのような状態に陥ってしまった一番の原因は、Matahariのアーキテクチャに認証機能が不足していたためです。アクセス制御と監査機能について、同僚やユーザと繰り返し議論してきましたが、これらの機能をQMFへ組み込むことは極めて困難です
 </blockquote>
 
@@ -58,7 +58,7 @@ Based on lessons learned from Matahari, I would recommend that anybody undertaki
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 このプロジェクトは信頼性のあるRPCメッセージングシステムを実現するためにはじめられた、というのが私の理解であり、セキュリティに関連する議論は、おそらく後から追加されたのだと思います。
 Matahariと似たようなリモート管理システムに取り組もうとする開発者はまず、セキュリティモデルの簡易版を完成させてから、RPCの設計を行うことをお勧めします。セキュリティはリモート管理システムの、まさに「核」となる問題なのです。
 </blockquote>
@@ -76,7 +76,7 @@ In the meantime, I expect that system configuration tools (such as Puppet and Ch
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 残念ながら、Matahariのバスアーキテクチャと同じようなリモート管理フレームワークが他に存在するのかどうかはわかりません。
 インターネットを通じて、私たちはクライアントサーバシステムの恩恵を受けていますがこのようなシステムの動向は何年かごとに振り子がめぐってくるようなものなのかもしれませんし、push型ではなくpull型のシステム構成ツール(例えば、PuppetやChefなど)も注目されるのかもしれません。
 (注：すいません、なんかこの文節ちょっと意味不明…？)
@@ -93,8 +93,8 @@ Fedora users may wish to checkout cura: https://fedorahosted.org/cura/
 
 
 
-<blockquote>
-Fedoraを使用している人は[Cura Prohec](https://lists.fedorahosted.org/pipermail/matahari/2012-September/002331.html)もチェックしてみてください。
+<blockquote style="background-color:white;border-color:white;color:black;">
+Fedoraを使用している人は<a href="https://lists.fedorahosted.org/pipermail/matahari/2012-September/002331.html" target="_blank">Cura Prohec</a>もチェックしてみてください。
 （注：Matahariと似た子なのかなあと思いきや、んーまあなんかいまさら的な？）
 </blockquote>
 
@@ -113,7 +113,7 @@ Zane.
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 Matahariの開発を引き継ぎたいという方がいらっしゃるのであればもちろん大歓迎です(ライセンスはGPLv2+です)。喜んで引き継ぎのお手伝いもします。
 このメーリングリストもスパム攻撃でうざくなるまでは、このまま使えるようにしておきますね ;)
 </blockquote>

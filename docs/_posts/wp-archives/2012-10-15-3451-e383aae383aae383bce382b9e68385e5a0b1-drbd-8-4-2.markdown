@@ -30,7 +30,7 @@ For any user of DRBD-8.4 we suggest to upgrade to 8.4.2. Previous 8.4 releases h
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 いよいよDRBD 8.4.2をリリースすることができました！
 DRBD 8.4系を使用されている場合は、今回リリースした8.4.2へアップデートしてください。
 前回までのリリースにはいくつかのバグが含まれており、再同期処理実行時にセカンダリノードでデータの欠損が発生するというバグも報告されています。
@@ -48,7 +48,7 @@ DRBD 8.4系を使用されている場合は、今回リリースした8.4.2へ�
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 8.3.13より前のバージョンでは、再同期先に対する書き込み順序を操作するような処理を行っていないので、今回のバグフィックスを適応する必要はありません。
 </blockquote>
 
@@ -69,7 +69,7 @@ DRBD 8.4系を使用されている場合は、今回リリースした8.4.2へ�
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 LinuxのI/Oスケジューラをcfqを設定している場合(もしかしたら他のパラメータでも可能性があるかもしれませんが)、再同期先に対する書き込み順序の整合性が損なわれる事象が確認されています。
 DRBD 8.3.13より前のバージョンを使用しており、さらに、スケジューラをnoopに設定している環境では、この事象は再現していません。
 この事象は非常に頻度が低いのですが、再同期先に対する書き込み処理が実行されていないようにみえるという症状が確認された場合、結果的にデータ破損が発生している可能性があります。
@@ -89,196 +89,108 @@ DRBD 8.4よりもDRBD 8.3のほうがパフォーマンスがよいのか？と�
 <blockquote>
 8.4.2 (api:genl1/proto:86-101) 
 -------- 
-
-> 
-> 
-
->   * Fixed IO resuming after connection was established before fence peer handler returned 
-
-> 
-
->   * Fixed an issue in the state engine that could cause state lockup with multiple volumes 
-
-> 
-
->   * Write all pages of the bitmap if it gets moved during an online resize operation. (This issue was introduced with 8.3.10) 
-
-> 
-
->   * Fixed a race condition could cause DRBD to go through a NetworkFailure state during disconnect 
-
-> 
-
->   * Fixed a race condition in the disconnect code path that could lead to a BUG() (introduced with 8.4.0) 
-
-> 
-
->   * Fixed a write ordering problem on SyncTarget nodes for a write to a block that gets resynced at the same time. The bug can only be triggered with a device that has a firmware that actually reorders writes to the same block (merged from 8.3.13) 
-
-> 
-
->   * Fixed a potential deadlock during restart of conflicting writes 
-
-> 
-
->   * Disable the write ordering method "barrier" by default, since it is not possible for a driver to find out if it works reliably since 2.6.36 
-
-> 
-
->   * All fixes that went into 8.3.13 
-
-> 
-
->   * Removed a null pointer access when using on-congestion policy on a diskless device 
-
-> 
-
->   * In case of a graceful detach under IO load, wait for the outstanding IO. (As opposed to aborting IOs as a forcefully detach does) 
-
-> 
-
->   * Reinstate disabling AL updates with invalidate-remote (8.4.0 regression) 
-
-> 
-
->   * Reinstate the 'disk-barrier no', 'disk-flushes no', and 'disk-drain no' switches (8.4.0 regression) 
-
-> 
-
->   * Backported the request code from DRBD-9. Improves handling of many corner cases. 
-
-> 
-
->   * Support FLUSH/FUA bio flags 
-
-> 
-
->   * Made the establishing of connections faster 
-
-> 
-
->   * New option 'al-updates no' to disable writing transactions into the  activity log. It is use full if you prefer a full sync after a primary  crash, for improved performance of a spread out random write work load 
-
-> 
-
->   * Expose the data generation identifies via sysfs 
-
-> 
-
->   * "--stop" option for online verify to specify a stop sector 
-
-> 
-
+<ul>
+<li> Fixed IO resuming after connection was established before fence peer handler returned 
+</li>
+<li> Fixed an issue in the state engine that could cause state lockup with multiple volumes 
+</li>
+<li> Write all pages of the bitmap if it gets moved during an online resize operation. (This issue was introduced with 8.3.10) 
+</li>
+<li> Fixed a race condition could cause DRBD to go through a NetworkFailure state during disconnect 
+</li>
+<li> Fixed a race condition in the disconnect code path that could lead to a BUG() (introduced with 8.4.0) 
+</li>
+<li> Fixed a write ordering problem on SyncTarget nodes for a write to a block that gets resynced at the same time. The bug can only be triggered with a device that has a firmware that actually reorders writes to the same block (merged from 8.3.13) 
+</li>
+<li> Fixed a potential deadlock during restart of conflicting writes 
+</li>
+<li> Disable the write ordering method "barrier" by default, since it is not possible for a driver to find out if it works reliably since 2.6.36 
+</li>
+<li> All fixes that went into 8.3.13 
+</li>
+<li> Removed a null pointer access when using on-congestion policy on a diskless device 
+</li>
+<li> In case of a graceful detach under IO load, wait for the outstanding IO. (As opposed to aborting IOs as a forcefully detach does) 
+</li>
+<li> Reinstate disabling AL updates with invalidate-remote (8.4.0 regression) 
+</li>
+<li> Reinstate the 'disk-barrier no', 'disk-flushes no', and 'disk-drain no' switches (8.4.0 regression) 
+</li>
+<li> Backported the request code from DRBD-9. Improves handling of many corner cases. 
+</li>
+<li> Support FLUSH/FUA bio flags 
+</li>
+<li> Made the establishing of connections faster 
+</li>
+<li> New option 'al-updates no' to disable writing transactions into the  activity log. It is use full if you prefer a full sync after a primary  crash, for improved performance of a spread out random write work load 
+</li>
+<li> Expose the data generation identifies via sysfs 
+</li>
+<li> "--stop" option for online verify to specify a stop sector 
+</li>
+</ul>
 </blockquote>
 
 
 
 
-<blockquote>
-
-> 
-> 
-
->   * fence peer ハンドラの処理が完了する前に再接続が確立した条件での、I/O再開始動作を修正しました。
-
-> 
-
->   * 複数ボリュームを使用している場合に、状態遷移の途中でロック状態が発生する可能性がありましたが、修正されました。
-
-> 
-
->   * 同期領域のサイズをオンラインで変更するとメタデータも変更されるため、ビットマップもすべて書き直すよう修正しました。(8.3.10で混入していたバグですが、オンラインリサイズ処理を実行していない場合は影響ありません)
-
-> 
-
->   * 同期ネットワークの切断時に NetworkFailure 状態を引き起こす競合条件を修正しました。
-
-> 
-
->   * バグを引き起こす可能性のある競合条件を修正しました。(8.4.0で混入していたバグの修正)
-
-> 
-
->   * 再同期先処置で発生する書き込み順序の不整合を修正しました。このバグはある特定のファームウェアを使用している場合にのみ発生します。(8.3.13の修正をマージ)
-
-> 
-
->   * 書き込み処理を再開始する際、デッドロックが発生する可能性がありましたが、修正されました。
-
-> 
-
->   * 書き込み順序を制御するパラメータのデフォルト値を disk-barrier no に変更しました。カーネルのバージョンが 2.6.36 よりも新しい環境で disk-barrier no を設定していない場合に書き込み順序の不整合が発生する可能性があるためです。
-
-> 
-
->   * 8.3.13で取り込んだ修正を8.4系にも反映しました。
-
-> 
-
->   * ディスクレス状態となったデバイスに対して on-congestion ポリシーが有効となる条件での動作を修正しました。
-
-> 
-
->   * リソースを無効化(detach)する際に、graceful detach を指定すると実行中のIOが終了するまで待機します。forcefully detach を指定した場合は実行中のIOを強制終了します。
-
-> 
-
->   * invalidate-remote を設定した場合、すべての更新が無効となります。(8.4.0で発生したリグレッションの修正)
-
-> 
-
->   * disk-barrier no, disk-flushes no, disk-drain no を設定した際の動作を元に戻しました。(8.4.0で発生したリグレッションの修正)
-
-> 
-
->   * DRBD 9系からバックポートを実施しました。発生頻度が低いと思われる障害についても多数のテストを実施しています。
-
-> 
-
->   * FLUSH/FUAフラグに対応しました。
-
-> 
-
->   * 接続確立時の動作を高速化しました。
-
-> 
-
->   * al-updates no を設定すると、アクティビティログへの書き込みが無効となります。プライマリノードが故障した場合、完全同期を実行する必要がありますが、al-updates no を設定するとランダム書き込みの速度向上が見込まれます。
-
-> 
-
->   * sysfs によるデバイス認識状態を表示します。
-
-> 
-
->   * オンラインベリファイ実行時に特定のセクタで停止するオプション(--stop)を追加しました。
-
-> 
-
+<blockquote style="background-color:white;border-color:white;color:black;">
+<ul>
+<li>fence peer ハンドラの処理が完了する前に再接続が確立した条件での、I/O再開始動作を修正しました。
+</li>
+<li>複数ボリュームを使用している場合に、状態遷移の途中でロック状態が発生する可能性がありましたが、修正されました。
+</li>
+<li>同期領域のサイズをオンラインで変更するとメタデータも変更されるため、ビットマップもすべて書き直すよう修正しました。(8.3.10で混入していたバグですが、オンラインリサイズ処理を実行していない場合は影響ありません)
+</li>
+<li>同期ネットワークの切断時に NetworkFailure 状態を引き起こす競合条件を修正しました。
+</li>
+<li>バグを引き起こす可能性のある競合条件を修正しました。(8.4.0で混入していたバグの修正)
+</li>
+<li>再同期先処置で発生する書き込み順序の不整合を修正しました。このバグはある特定のファームウェアを使用している場合にのみ発生します。(8.3.13の修正をマージ)
+</li>
+<li>書き込み処理を再開始する際、デッドロックが発生する可能性がありましたが、修正されました。
+</li>
+<li>書き込み順序を制御するパラメータのデフォルト値を disk-barrier no に変更しました。カーネルのバージョンが 2.6.36 よりも新しい環境で disk-barrier no を設定していない場合に書き込み順序の不整合が発生する可能性があるためです。
+</li>
+<li>8.3.13で取り込んだ修正を8.4系にも反映しました。
+</li>
+<li>ディスクレス状態となったデバイスに対して on-congestion ポリシーが有効となる条件での動作を修正しました。
+</li>
+<li>リソースを無効化(detach)する際に、graceful detach を指定すると実行中のIOが終了するまで待機します。forcefully detach を指定した場合は実行中のIOを強制終了します。
+</li>
+<li>invalidate-remote を設定した場合、すべての更新が無効となります。(8.4.0で発生したリグレッションの修正)
+</li>
+<li>disk-barrier no, disk-flushes no, disk-drain no を設定した際の動作を元に戻しました。(8.4.0で発生したリグレッションの修正)
+</li>
+<li>DRBD 9系からバックポートを実施しました。発生頻度が低いと思われる障害についても多数のテストを実施しています。
+</li>
+<li>FLUSH/FUAフラグに対応しました。
+</li>
+<li>接続確立時の動作を高速化しました。
+</li>
+<li>al-updates no を設定すると、アクティビティログへの書き込みが無効となります。プライマリノードが故障した場合、完全同期を実行する必要がありますが、al-updates no を設定するとランダム書き込みの速度向上が見込まれます。
+</li>
+<li>sysfs によるデバイス認識状態を表示します。
+</li>
+<li>オンラインベリファイ実行時に特定のセクタで停止するオプション(--stop)を追加しました。
+</li>
+</ul>
 </blockquote>
 
 
 
 
 
-<blockquote>
+<blockquote style="background-color:white;border-color:white;color:black;">
 参考情報リンク一覧
-
-> 
-> 
-     
-	
->     * [Linbitのサポートページ(ライセンスを購入したユーザのみ利用可能です)](http://www.linbit.com/support/drbd-8.4.2/)
-	
-> 
-	
->     * [ソースコード](http://oss.linbit.com/drbd/8.4/drbd-8.4.2.tar.gz)
-	
-> 
-	
->     * [リポジトリ](http://git.drbd.org/gitweb.cgi?p=drbd-8.4.git;a=tag;h=refs/tags/drbd-8.4.2)
-	
-> 
-     
-
+<ul>
+     <ul>
+	<li><a href="http://www.linbit.com/support/drbd-8.4.2/" target="_blank">Linbitのサポートページ(ライセンスを購入したユーザのみ利用可能です)</a>
+	</li>
+	<li><a href="http://oss.linbit.com/drbd/8.4/drbd-8.4.2.tar.gz" target="_blank">ソースコード</a>
+	</li>
+	<li><a href="http://git.drbd.org/gitweb.cgi?p=drbd-8.4.git;a=tag;h=refs/tags/drbd-8.4.2" target="_blank">リポジトリ</a>
+	</li>
+     <ul>
+</ul>
 </blockquote>

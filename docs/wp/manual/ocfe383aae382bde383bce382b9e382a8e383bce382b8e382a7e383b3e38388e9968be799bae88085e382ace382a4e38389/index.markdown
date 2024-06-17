@@ -71,8 +71,7 @@ metaパラメータは OCF_RESKEY_CRM_meta_ 名前空間でリソースエージ
 
 それぞれのリソースエージェントは、一連のXML メタデータで自分自身の目的とサポートされているパラメータを記述しなければなりません。このメタデータは、オンラインヘルプに対して、クラスタ管理アプリケーションによって使われ、リソースエージェントのmanページもそれから生成されます。以下は、架空のリソースエージェントからの一連の仮想メタデータです。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000080"><?xml</font></b> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"1.0"</font><b><font color="#000080">?></font></b>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000080"><?xml</font></b> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"1.0"</font><b><font color="#000080">?></font></b>
 <b><font color="#000080"><!DOCTYPE</font></b> <font color="#009900">resource</font>-<font color="#009900">agent</font> <font color="#009900">SYSTEM</font> <font color="#FF0000">"ra-api-1.dtd"</font><b><font color="#000080">></font></b>
 <b><font color="#0000FF"><resource-agent</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"foobar"</font> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"0.1"</font><b><font color="#0000FF">></font></b>
   <b><font color="#0000FF"><version></font></b>0.1<b><font color="#0000FF"></version></font></b>
@@ -116,9 +115,7 @@ OCF Resource Agent Developers Guide.
     <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"meta-data"</font>    <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"5"</font> <b><font color="#0000FF">/></font></b>
     <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"validate-all"</font>   <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/></font></b>
   <b><font color="#0000FF"></actions></font></b>
-<b><font color="#0000FF"></resource-agent></font></b></tt></pre>
-
-</td></tr></table>
+<b><font color="#0000FF"></resource-agent></font></b></tt></pre></td></tr></table>
  
 
 resource-agent 要素はリソースエージェント毎に1つだけ設定される必要があり、リソースエージェントの name と version を定義します。
@@ -165,14 +162,7 @@ actions リストは、リソースエージェントが「サポートされて
 
 リソースエージェントは正しくない引数で起動されました。これは、「あってはならない」エラーに対する安全策で、リソースエージェントは、たとえば、正しくない数のコマンドライン引数で起動されたような場合にのみに返すべきです。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >リソースエージェントは、サポートしていないアクションを実行するよう指示された場合、このエラーを返すべきではありません。その代わり、そのような状況では、OCF_ERR_UNIMPLEMENTEDを返すべきです。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">リソースエージェントは、サポートしていないアクションを実行するよう指示された場合、このエラーを返すべきではありません。その代わり、そのような状況では、OCF_ERR_UNIMPLEMENTEDを返すべきです。</td></tr></table>
 
 ### OCF_ERR_UNIMPLEMENTED (3)
 
@@ -204,14 +194,7 @@ actions リストは、リソースエージェントが「サポートされて
 
 リソースは実行されていないことが判明しました。これは、 monitor アクションのみによって返される終了コードです。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >これはリソースが _正しく_ 終了されているか、そもそも起動されていなかったことを意味します。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">これはリソースが <em>正しく</em> 終了されているか、そもそも起動されていなかったことを意味します。</td></tr></table>
 
 リソースがエラー状態のせいで実行されていない場合、 monitor アクションは、代わりに OCF_ERR_ 終了コードの一つか、 OCF_FAILED_MASTER を返すべきです。
 
@@ -219,14 +202,7 @@ actions リストは、リソースエージェントが「サポートされて
 
 リソースは、 Master roleで実行されていると判明しました。これはstateful (Master/Slave)リソースにのみ適用され、そして、それらの monitor アクションにのみ適用されます。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >"slaveモードでの実行"に対しては特定の終了コードはありません。これは、通常に実行されているprimitiveリソースと、slaveとして実行されているstatefulリソースの間の区別がないからです。 Slave roleで通常に実行されているstatefulリソース のmonitor アクションは OCF_SUCCESS を返します。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">"slaveモードでの実行"に対しては特定の終了コードはありません。これは、通常に実行されているprimitiveリソースと、slaveとして実行されているstatefulリソースの間の区別がないからです。 <tt>Slave</tt> roleで通常に実行されているstatefulリソース の<tt>monitor</tt> アクションは <tt>OCF_SUCCESS</tt> を返します。</td></tr></table>
 
 ### OCF_FAILED_MASTER (9)
 
@@ -244,12 +220,8 @@ actions リストは、リソースエージェントが「サポートされて
 
 スクリプトとして実装されたリソースは、標準の"shebang" (#!)ヘッダ構文を使い、そのインタプリタを指定しなければなりません。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>#!/bin/sh</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">#!/bin/sh</pre>
+ </td></tr> </table>
 
 リソースエージェントがshellで記述されている場合、必須ではありませんが汎用shellインタプリタを指定してください。 /bin/sh 互換として宣言されたリソースエージェントは、特定のshellにネイティブな構文（例 ：bash にネイティブな ${!variable} 構文）を使用できません。必要に応じて、 checkbashisms などのsanitizationユーティリティを使い、そのようなリソースエージェントを実行してください。
 
@@ -259,15 +231,12 @@ actions リストは、リソースエージェントが「サポートされて
 
 リソースエージェントは、リソースエージェントの著者や著作権保持者、そして、リソースエージェントに適用されるライセンスを記載したコメントを記述する必要があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><i><font color="#9A1900">#</font></i>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><i><font color="#9A1900">#</font></i>
 <i><font color="#9A1900">#   Resource Agent for managing foobar resources.</font></i>
 <i><font color="#9A1900">#</font></i>
 <i><font color="#9A1900">#   License:      GNU General Public License (GPL)</font></i>
 <i><font color="#9A1900">#   (c) 2008-2010 John Doe, Jane Roe,</font></i>
-<i><font color="#9A1900">#                 and Linux-HA contributors</font></i></tt></pre>
-
-</td></tr></table>
+<i><font color="#9A1900">#                 and Linux-HA contributors</font></i></tt></pre></td></tr></table>
  
 
 リソースエージェントが、複数のバージョンに対するライセンスを参照する場合、それはその時点のバージョンが対象であると前提します。
@@ -276,31 +245,19 @@ actions リストは、リソースエージェントが「サポートされて
 
 どのようなshellリソースエージェントも、 .ocf-shellfuncs 関数ライブラリをソースとしなければなりません。これは、以下の構文を使って、 $OCF_FUNCTIONS_DIR で行うことができます。 $OCF_FUNCTIONS_DIR は、テスト目的およびドキュメンテーションの生成に対して、コマンドラインから上書きされます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><i><font color="#9A1900"># Initialization:</font></i>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><i><font color="#9A1900"># Initialization:</font></i>
 <font color="#990000">:</font> <font color="#009900">${OCF_FUNCTIONS_DIR=${OCF_ROOT}/resource.d/heartbeat}</font>
-<font color="#990000">.</font> <font color="#009900">${OCF_FUNCTIONS_DIR}</font><font color="#990000">/.</font>ocf-shellfuncs</tt></pre>
-
-</td></tr></table>
+<font color="#990000">.</font> <font color="#009900">${OCF_FUNCTIONS_DIR}</font><font color="#990000">/.</font>ocf-shellfuncs</tt></pre></td></tr></table>
  
 
 リソースエージェントパラメータのデフォルトは、 _default 接尾語で変数を初期化することにより設定されるべきです。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><i><font color="#9A1900"># Defaults</font></i>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><i><font color="#9A1900"># Defaults</font></i>
 <font color="#009900">OCF_RESKEY_superfrobnicate_default</font><font color="#990000">=</font><font color="#993399">0</font>
 
-<font color="#990000">:</font> <font color="#009900">${OCF_RESKEY_superfrobnicate=${OCF_RESKEY_superfrobnicate_default}}</font></tt></pre>
-
-</td></tr></table>
- <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >リソースエージェントは、メタデータで required と指定されていないパラメータに対してデフォルトを設定しなければなりません。
-</td></tr></table>
+<font color="#990000">:</font> <font color="#009900">${OCF_RESKEY_superfrobnicate=${OCF_RESKEY_superfrobnicate_default}}</font></tt></pre></td></tr></table>
+ 
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">リソースエージェントは、メタデータで <tt>required</tt> と指定されていないパラメータに対してデフォルトを設定しなければなりません。</td></tr></table>
 
 ### リソースエージェントアクションを実装する関数
 
@@ -310,8 +267,7 @@ actions リストは、リソースエージェントが「サポートされて
 
 これは、リソースエージェントの一部で、リソースエージェントが起動された場合に実際に実行される部分です。これは、大体において標準的な構造となっています。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><i><font color="#9A1900"># Make sure meta-data and usage always succeed</font></i>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><i><font color="#9A1900"># Make sure meta-data and usage always succeed</font></i>
 <b><font color="#0000FF">case</font></b> <font color="#009900">$__OCF_ACTION</font> <b><font color="#0000FF">in</font></b>
 meta-data<font color="#990000">)</font>      foobar_meta_data
                 <b><font color="#0000FF">exit</font></b> <font color="#009900">$OCF_SUCCESS</font>
@@ -343,9 +299,7 @@ validate-all<font color="#990000">)</font>   <font color="#990000">;;</font>
 
 <i><font color="#9A1900"># The resource agent may optionally log a debug message</font></i>
 ocf_log debug <font color="#FF0000">"${OCF_RESOURCE_INSTANCE} $__OCF_ACTION returned $rc"</font>
-<b><font color="#0000FF">exit</font></b> <font color="#009900">$rc</font></tt></pre>
-
-</td></tr></table>
+<b><font color="#0000FF">exit</font></b> <font color="#009900">$rc</font></tt></pre></td></tr></table>
  
 
 * * *
@@ -362,8 +316,7 @@ ocf_log debug <font color="#FF0000">"${OCF_RESOURCE_INSTANCE} $__OCF_ACTION retu
 
 リソースエージェントは、 start アクションで起動されると、リソースを起動しなければなりません（すでに実行されていない場合）。このことは、エージェントは、リソースの設定を検証し、その状態を問合せし、もしそのリソースが実行されていない場合にのみ、そのリソースを起動する必要があります。これを行う一般的な方法は、以下の例で示されているように、 validate_all および monitor 関数を最初に起動することになるでしょう。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_start()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_start()</font></b> {
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
     foobar_validate_all <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$?</font>
 
@@ -390,17 +343,14 @@ ocf_log debug <font color="#FF0000">"${OCF_RESOURCE_INSTANCE} $__OCF_ACTION retu
 
     <i><font color="#9A1900"># only return $OCF_SUCCESS if _everything_ succeeded as expected</font></i>
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 ### stop アクション
 
 リソースエージェントは、 stop アクションで起動された場合、リソース（実行されている場合）を停止しなければなりません。このことは、エージェントはリソースの設定を検証し、その状態を問合せし、そして、それがその時点で実行されている場合にのみ、そのリソースを停止しなければならないことを意味します。これを行う一般的な方法は、以下の例で示されているように、 validate_all およ び monitor 関数を最初に起動することです。ここで覚えておかなければならないのは、 stop は強制的なオペレーションであるということです。リソースエージェントは、その権限の範囲内でリソース（ノードをリブートしたり停止したりできない）を停止する必要があります。以下の例を見てください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_stop()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_stop()</font></b> {
     <b><font color="#0000FF">local</font></b> rc
 
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
@@ -444,24 +394,10 @@ ocf_log debug <font color="#FF0000">"${OCF_RESOURCE_INSTANCE} $__OCF_ACTION retu
     <i><font color="#9A1900"># only return $OCF_SUCCESS if _everything_ succeeded as expected</font></i>
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
 
-}</tt></pre>
-
-</td></tr></table>
- <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >正しいstopオペレーションに対して期待される終了コードは $OCF_SUCCESS です（ $OCF_NOT_RUNNING ではありません）。
-</td></tr></table> <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Important_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >失敗したstopオペレーションは危険な状況を生み出す可能性があります。つまり、クラスタマネージャは、ノードを隔離（fencing）することにより問題を解決しようとし、stopオペレーションが失敗したノードをクラスタから強制的に排除します。しかし、最終的にはこの方法はデータを保護しますが、アプリケーションやそれらのユーザに混乱を引き起こします。したがって、リソースエージェントは、適切なリソース停止手段がすべて実行し尽した場合にのみ、エラーで終了する必要があります。
-</td></tr></table>
+}</tt></pre></td></tr></table>
+ 
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">正しいstopオペレーションに対して期待される終了コードは <tt>$OCF_SUCCESS</tt> です（ <tt>$OCF_NOT_RUNNING</tt> ではありません）。</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Important</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">失敗したstopオペレーションは危険な状況を生み出す可能性があります。つまり、クラスタマネージャは、ノードを隔離（fencing）することにより問題を解決しようとし、stopオペレーションが失敗したノードをクラスタから強制的に排除します。しかし、最終的にはこの方法はデータを保護しますが、アプリケーションやそれらのユーザに混乱を引き起こします。したがって、リソースエージェントは、適切なリソース停止手段がすべて実行し尽した場合にのみ、エラーで終了する必要があります。</td></tr></table>
 
 ### monitor アクション
 
@@ -470,8 +406,7 @@ monitor アクションは、リソースのその時点の状態を問合せし
   * リソースがその時点で実行されています（ $OCF_SUCCESS を返します） 
   * リソースは正しく停止されています（ $OCF_NOT_RUNNING を返します） 
   * リソースはエラーに遭遇したため失敗したと認識されます（エラーを示す適切な $OCF_ERR_ コードを返します。） 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_monitor()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_monitor()</font></b> {
     <b><font color="#0000FF">local</font></b> rc
 
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
@@ -499,21 +434,12 @@ monitor アクションは、リソースのその時点の状態を問合せし
     <b><font color="#0000FF">esac</font></b>
 
     <b><font color="#0000FF">return</font></b> <font color="#009900">$rc</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 Stateful (master/slave)リソースエージェントは、より高度な監視機構を使い、 Master roleを引き受けるのにどのインスタンスが最適であるかを識別するヒントをクラスタマネージャに提供することができます。 詳細はmasterプリファレンスを指定するで説明されています。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >クラスタマネージャは、 _probe_ に対して monitor アクションを起動し、リソースがその時点で実行されているかどうかをテストします。通常、monitorオペレーションは、probeおよび「実際の」monitorアクションの間、まったく同じように機能します。しかし、特定のリソースが、probesに対して特別な処理を行う場合、その目的のために ocf_is_probe 簡易関数がOCF shell関数ライブラリで提供されています。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">クラスタマネージャは、 <em>probe</em> に対して <tt>monitor</tt> アクションを起動し、リソースがその時点で実行されているかどうかをテストします。通常、monitorオペレーションは、probeおよび「実際の」monitorアクションの間、まったく同じように機能します。しかし、特定のリソースが、probesに対して特別な処理を行う場合、その目的のために <tt>ocf_is_probe</tt> 簡易関数がOCF shell関数ライブラリで提供されています。</td></tr></table>
 
 ### validate-all アクション
 
@@ -528,8 +454,7 @@ validate-all は、通常、関数で定義されています。この関数は�
 
 Probesは、検証にあらたな問題を提議します。probe中（クラスタマネージャが、probe実行ノードでリソースが _起動されていない _と予測する場合）、いくつかの必要部分（コンポーネント）は、影響を受けるノードでは使用不可能となると_予測される_かもしれません。たとえば、これには、probe中の読み込みには提供されないストレージデバイスの共有データが含まれます。したがって validate-all 関数は、 ocf_is_probe 簡易関数を使って、probesを特別に取り扱う必要があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_validate_all()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_validate_all()</font></b> {
     <i><font color="#9A1900"># Test for configuration errors first</font></i>
     <b><font color="#0000FF">if</font></b> <font color="#990000">!</font> ocf_is_decimal <font color="#009900">$OCF_RESKEY_eggs</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
        ocf_log err <font color="#FF0000">"eggs is not numeric!"</font>
@@ -549,17 +474,14 @@ Probesは、検証にあらたな問題を提議します。probe中（クラス
     <b><font color="#0000FF">fi</font></b>
 
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 ### meta-data アクション
 
 meta-data アクションは、リソースエージェントメタデータを標準出力にダンプします。出力は、メタデータで指定されているようにメタデータフォーマットに準拠する必要があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt>foobar_meta_data {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt>foobar_meta_data {
     cat <font color="#990000"><<</font>EOF
 <font color="#990000"><?</font>xml <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"1.0"</font><font color="#990000">?></font>
 <font color="#990000"><!</font>DOCTYPE resource-agent SYSTEM <font color="#FF0000">"ra-api-1.dtd"</font><font color="#990000">></font>
@@ -568,17 +490,14 @@ meta-data アクションは、リソースエージェントメタデータを�
   <font color="#990000"><</font>longdesc <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><font color="#990000">></font>
 <font color="#990000">...</font>
 EOF
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 ### promote アクション
 
 promote アクションはオプショナルとなっています。これは、 _stateful_ リソースエージェントによってのみサポートされなければなりません。このことは、エージェントは Master  と Slave という2つの個別の役割（role）を識別しなければならないことを意味します。 Slave は、statelessリソースエージェントでの Started 状態と機能的には同じです。したがって、通常（stateless）のリソースエージェントは、 start および stop のみを実装しなければなりませんが、statefulリソースエージェントは、 Started ( Slave ）および Master の役割（role）の間での遷移を可能にするため、 promote アクションもサポートしなければなりません。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_promote()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_promote()</font></b> {
     <b><font color="#0000FF">local</font></b> rc
 
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
@@ -632,17 +551,14 @@ promote アクションはオプショナルとなっています。これは、
 
     <i><font color="#9A1900"># only return $OCF_SUCCESS if _everything_ succeeded as expected</font></i>
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 ### demote アクション
 
 demote アクションはオプショナルです。これは、 _stateful_ リソースエージェントによってのみサポートされる必要があります。このことは、エージェントは Master  と Slave という2つの個別の役割（role）を識別しなければならないことを意味します。 Slave は、statelessリソースエージェントでの Started 状態と機能的には同じです。したがって、通常（stateless）のリソースエージェントは、 start および stop のみを実装しなければなりませんが、statefulリソースエージェントは、 Master および Started ( Slave )の役割（role）の間での遷移を可能にするため、 demote アクションもサポートしなければなりません。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_demote()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_demote()</font></b> {
     <b><font color="#0000FF">local</font></b> rc
 
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
@@ -698,9 +614,7 @@ demote アクションはオプショナルです。これは、 _stateful_ リ�
 
     <i><font color="#9A1900"># only return $OCF_SUCCESS if _everything_ succeeded as expected</font></i>
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 ### migrate_to アクション
@@ -712,8 +626,7 @@ migrate_to アクションは、2つの目的に対応しています。
 
 以下の例は、pushタイプのマイグレーションを示しています。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_migrate_to()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_migrate_to()</font></b> {
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
     foobar_validate_all <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$?</font>
 
@@ -733,15 +646,12 @@ migrate_to アクションは、2つの目的に対応しています。
 
     <i><font color="#9A1900"># only return $OCF_SUCCESS if _everything_ succeeded as expected</font></i>
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 対称的に、freeze/thawタイプのマイグレーションは以下のようなfreezeオペレーションを実装します。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_migrate_to()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_migrate_to()</font></b> {
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
     foobar_validate_all <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$?</font>
 
@@ -759,9 +669,7 @@ migrate_to アクションは、2つの目的に対応しています。
 
     <i><font color="#9A1900"># only return $OCF_SUCCESS if _everything_ succeeded as expected</font></i>
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 ### migrate_from アクション
@@ -773,8 +681,7 @@ migrate_from アクションは以下の2つの目的の1つに対応します�
 
 以下の例は、pushタイプのマイグレーションを示しています。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_migrate_from()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_migrate_from()</font></b> {
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
     foobar_validate_all <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$?</font>
 
@@ -790,15 +697,12 @@ migrate_from アクションは以下の2つの目的の1つに対応します�
 
     <i><font color="#9A1900"># only return $OCF_SUCCESS if _everything_ succeeded as expected</font></i>
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 対称的に、freeze/thawタイプのマイグレーションは以下のようなthawオペレーションを実装します。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_migrate_from()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_migrate_from()</font></b> {
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
     foobar_validate_all <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$?</font>
 
@@ -819,9 +723,7 @@ migrate_from アクションは以下の2つの目的の1つに対応します�
 
     <i><font color="#9A1900"># only return $OCF_SUCCESS if _everything_ succeeded as expected</font></i>
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 ### notify アクション
@@ -838,8 +740,7 @@ migrate_from アクションは以下の2つの目的の1つに対応します�
 
 通知は、"pull"スキームを使っているmaster/slaveリソースに特に便利です。この場合、masterはプロバイダであり、slaveはサブスクライバとなります。masterは、プロモートが発生した時にのみ明らかであり、slaveは、正しいプロバイダに彼ら自身を加入するよう設定するために "pre-promote" 通知を使うことができます。同じように、サブスクライバも、プロバイダから脱会したいかもそれません。その場合、それに対して "post-demote" 通知を使うことができます。このコンセプトについては以下の例を参照してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_notify()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_notify()</font></b> {
     <b><font color="#0000FF">local</font></b> type_op
     <font color="#009900">type_op</font><font color="#990000">=</font><font color="#FF0000">"${OCF_RESKEY_CRM_meta_notify_type}-${OCF_RESKEY_CRM_meta_notify_operation}"</font>
 
@@ -856,17 +757,9 @@ migrate_from アクションは以下の2つの目的の1つに対応します�
     <b><font color="#0000FF">esac</font></b>
 
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
- <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >master/slaveリソースエージェントは、 _multi-master_ 設定をサポートできます。この場合、常に、複数のmasterが存在します。その場合、 $OCF_RESKEY_CRM_meta_notify_*_uname 変数は、それぞれhostnameのリスト（空白文字で区切られた）を持ちます（例で示されているような1つだけのホスト名でなく）。そのような状況の下で、リソースエージェントは、このリストで正しく繰り返される必要があります。
-</td></tr></table>
+}</tt></pre></td></tr></table>
+ 
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">master/slaveリソースエージェントは、 <em>multi-master</em> 設定をサポートできます。この場合、常に、複数のmasterが存在します。その場合、 <tt>$OCF_RESKEY_CRM_meta_notify_*_uname</tt> 変数は、それぞれhostnameのリスト（空白文字で区切られた）を持ちます（例で示されているような1つだけのホスト名でなく）。そのような状況の下で、リソースエージェントは、このリストで正しく繰り返される必要があります。</td></tr></table>
 
 * * *
 
@@ -906,10 +799,7 @@ OCFリソースエージェントのディレクトリ階層のルート。こ�
 
 リソースエージェントは、ロギングに対して ocf_log 関数を使います。この簡易ロギングラッパーは以下のように起動されます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt>ocf_log <font color="#990000"><</font>severity<font color="#990000">></font> <font color="#FF0000">"Log message</font></tt></pre>
-
-</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt>ocf_log <font color="#990000"><</font>severity<font color="#990000">></font> <font color="#FF0000">"Log message</font></tt></pre></td></tr></table>
  
 
 これは、以下のseverityをサポートします。
@@ -924,74 +814,49 @@ OCFリソースエージェントのディレクトリ階層のルート。こ�
 
 リソースエージェントは、特定の実行可能ファイルの使用可能性をテストする必要があります。ここでは have_binary 簡易関数が便利です。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#0000FF">if</font></b> <font color="#990000">!</font> have_binary frobnicate<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#0000FF">if</font></b> <font color="#990000">!</font> have_binary frobnicate<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
    ocf_log warn <font color="#FF0000">"Missing frobnicate binary, frobnication disabled!"</font>
-<b><font color="#0000FF">fi</font></b></tt></pre>
-
-</td></tr></table>
+<b><font color="#0000FF">fi</font></b></tt></pre></td></tr></table>
  
 
 バイナリのないことがリソースに対して致命的エラーとなる場合 、check_binary 関数が使われるべきです。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt>check_binary frobnicate</tt></pre>
-
-</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt>check_binary frobnicate</tt></pre></td></tr></table>
  
 
 check_binary を使うのは、指定されたバイナリの存在（そして実行可能性）と $OCF_ERR_INSTALLED で終了する（見つからない場合または実行されない場合）をテストする省略メソッドです。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >テスト用のバイナリがフルパスとして指定されていない場合、 have_binary および check_binary は、両方とも $PATH を使います。バイナリインストレーションパスワードは、ディストリビューションやユーザポリシーによって異なるため、フルパスはテストしないほうがいいでしょう。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">テスト用のバイナリがフルパスとして指定されていない場合、 <tt>have_binary</tt> および <tt>check_binary</tt> は、両方とも <tt>$PATH</tt> を使います。バイナリインストレーションパスワードは、ディストリビューションやユーザポリシーによって異なるため、フルパスはテストしないほうがいいでしょう。</td></tr></table>
 
 ### コマンドを実行し、それらの出力を記録する： ocf_run
 
 リソースエージェントがコマンドを実行し、その出力を記録する必要がある場合、リソースエージェントは、この例で起動されているように ocf_run 簡易関数を使う必要があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt>ocf_run <font color="#FF0000">"frobnicate --spam=eggs"</font> <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$OCF_ERR_GENERIC</font></tt></pre>
-
-</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt>ocf_run <font color="#FF0000">"frobnicate --spam=eggs"</font> <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$OCF_ERR_GENERIC</font></tt></pre></td></tr></table>
  
 
 上記のコマンドを使い、リソースエージェントは、 frobnicate --spam=eggs を起動し、その出力と終了コードを記録します。終了コードが非ゼロ（エラーを示す）の場合、 ocf_run が err ロギングseverityでコマンド出力をログし、そして、その後リソースエージェントは終了します。リソースエージェントが正しいコマンド実行と失敗したコマンド実行の両方の結果を記録したい場合 、 ocf_run を -v フラグで使用できます。以下の例では、 ocf_run は、コマンド終了コードがゼロの場合（成功）、コマンドからの出力を info severityでログし、コマンド終了コードがゼロ以外の場合、 err で出力をログします。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt>ocf_run -v <font color="#FF0000">"frobnicate --spam=eggs"</font> <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$OCF_ERR_GENERIC</font></tt></pre>
-
-</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt>ocf_run -v <font color="#FF0000">"frobnicate --spam=eggs"</font> <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$OCF_ERR_GENERIC</font></tt></pre></td></tr></table>
  
 
 最後に、リソースエージェントが、ゼロ以外の終了コードのコマンドの出力を、severityが _other_ thanのエラーでログしたい場合は、 -info または -warn オプションを ocf_run に付加して行うことができます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt>ocf_run -warn <font color="#FF0000">"frobnicate --spam=eggs"</font></tt></pre>
-
-</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt>ocf_run -warn <font color="#FF0000">"frobnicate --spam=eggs"</font></tt></pre></td></tr></table>
  
 
 ### ロック： ocf_take_lock および ocf_release_lock_on_exit
 
 リソースに関しては、クラスタ設定において同じタイプの異なるリソースがある場合があります。それらは、並列でアクションを実行するべきではありません。同じマシンでアクションが同時実行されないようにするために、リソースエージェントは 、ocf_take_lock および ocf_release_lock_on_exit 簡易関数を使うことができます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><font color="#009900">LOCKFILE</font><font color="#990000">=</font><font color="#009900">${HA_RSCTMP}</font>/foobar
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><font color="#009900">LOCKFILE</font><font color="#990000">=</font><font color="#009900">${HA_RSCTMP}</font>/foobar
 ocf_release_lock_on_exit <font color="#009900">$LOCKFILE</font>
 
 <b><font color="#000000">foobar_start()</font></b> {
     <font color="#990000">...</font>
     ocf_take_lock <font color="#009900">$LOCKFILE</font>
     <font color="#990000">...</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 ocf_take_lock は、指定された $LOCKFILE を読み込もうとします。これが不可能な場合 、ocf_take_lock は、0秒から1秒の間、ランダムな時間スリープし、その後、リトライします 。ocf_release_lock_on_exit は、エージェントが終了する場合（なんらかの理由で）、lockfileをリリースします。
@@ -1000,44 +865,30 @@ ocf_take_lock は、指定された $LOCKFILE を読み込もうとします。�
 
 特にパラメータ検証において、指定された値が数値であるかどうかをテストすると効果的です。そのため にocf_is_decimal 関数があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>foobar_validate_all() {
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">foobar_validate_all() {
     if ! ocf_is_decimal $OCF_RESKEY_eggs; then
         ocf_log err "eggs is not numeric!"
         exit $OCF_ERR_CONFIGURED
     fi
     ...
 }</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ### ブール値に対してテストする： ocf_is_true
 
 リソースエージェントがbooleanパラメータを定義する場合、そのパラメータに対する値は、 0/1 、 true/false あるいは on / off としてユーザにより指定されます。しかし、これは、リソースエージェントからの各種のすべての値をテストするには面倒であることから、エージェントは代わり にocf_is_true 簡易関数を使うべきです。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#0000FF">if</font></b> ocf_is_true <font color="#009900">$OCF_RESKEY_superfrobnicate</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#0000FF">if</font></b> ocf_is_true <font color="#009900">$OCF_RESKEY_superfrobnicate</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
     ocf_run <font color="#FF0000">"frobnicate --super"</font>
-<b><font color="#0000FF">fi</font></b></tt></pre>
-
-</td></tr></table>
- <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >ocf_is_true が、空の変数あるいは存在しない変数に対して使われると、その関数は、常に、 1 の終了コードを返します。これは false と同じです。
-</td></tr></table>
+<b><font color="#0000FF">fi</font></b></tt></pre></td></tr></table>
+ 
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;"><tt>ocf_is_true</tt> が、空の変数あるいは存在しない変数に対して使われると、その関数は、常に、 <tt>1</tt> の終了コードを返します。これは <tt>false</tt> と同じです。</td></tr></table>
 
 ### 疑似リソース： ha_pseudo_resource
 
 「疑似リソース」というのは、リソースエージェントが、実際には、startしたりstopしたりしない実行可能プロセスに類似したもので、単一のアクションを実行するだけのものであり、したがって、アクションが実行されたかどうかを追跡する何らかのフォームが必要となります。 portblock リソースエージェントがこの例です。疑似リソースに対するリソースエージェントは ha_pseudo_resource 簡易関数を使います。この簡易関数はリソースの状態を記録する _tracking files_ を使います。 foobar が疑似リソースを管理するよう構築されている場合、その start アクションは以下のようになります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_start()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_start()</font></b> {
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
     foobar_validate_all <font color="#990000">||</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$?</font>
 
@@ -1062,9 +913,7 @@ ocf_take_lock は、指定された $LOCKFILE を読み込もうとします。�
 
     <i><font color="#9A1900"># only return $OCF_SUCCESS if _everything_ succeeded as expected</font></i>
     <b><font color="#0000FF">return</font></b> <font color="#009900">$OCF_SUCCESS</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 * * *
@@ -1083,21 +932,17 @@ ocf_take_lock は、指定された $LOCKFILE を読み込もうとします。�
 
 特定のプロセス（既知のプロセスIDを持った）がその時点で実行されているかどうかをテストするのによく用いられる方法は、それに 0 シグナルを送り、エラーをキャッチすることです。以下に類似した方法が示されています。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#0000FF">if</font></b> kill -s <font color="#993399">0</font> `cat <font color="#009900">$daemon_pid_file</font>`<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#0000FF">if</font></b> kill -s <font color="#993399">0</font> `cat <font color="#009900">$daemon_pid_file</font>`<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
     ocf_log debug <font color="#FF0000">"Process is currently running"</font>
 <b><font color="#0000FF">else</font></b>
     ocf_log warn <font color="#FF0000">"Process is dead, removing pid file"</font>
     rm -f <font color="#009900">$daemon_pid_file</font>
-<b><font color="#0000FF">if</font></b></tt></pre>
-
-</td></tr></table>
+<b><font color="#0000FF">if</font></b></tt></pre></td></tr></table>
  
 
 この方法は大きな欠点があります。 kill -s 0 は、zombieプロセスに対しても正しく終了します。Zombieは、defunctプロセスとしても知られているもので、実行はされてはいませんが、プロセステーブルでエントリを保持しているプロセスです。したがって、それらは、すべての場合に対して、故障したリソースと見なされ、それらに対する kill -s 0 アプローチは、誤解を招きやすい成功結果を生じます。この場合、 kill -s 0 アプローチは、別のセーフガード（ただしLinuxでしか機能しません）を使うことができます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><font color="#009900">pid</font><font color="#990000">=</font>`cat <font color="#009900">$daemon_pid_file</font>`
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><font color="#009900">pid</font><font color="#990000">=</font>`cat <font color="#009900">$daemon_pid_file</font>`
 <b><font color="#0000FF">if</font></b> kill -s <font color="#993399">0</font> <font color="#009900">$pid</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
     <i><font color="#9A1900"># Process exists in process table, check its status</font></i>
     <b><font color="#0000FF">if</font></b> grep -E <font color="#FF0000">"State:[[:space:]]+Z </font><font color="#CC33CC">\(</font><font color="#FF0000">zombie</font><font color="#CC33CC">\)</font><font color="#FF0000">"</font> /proc<font color="#990000">/</font><font color="#009900">$pid</font>/status<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
@@ -1110,30 +955,15 @@ ocf_take_lock は、指定された $LOCKFILE を読み込もうとします。�
 <b><font color="#0000FF">else</font></b>
     ocf_log warn <font color="#FF0000">"Process is dead, removing pid file"</font>
     rm -f <font color="#009900">$daemon_pid_file</font>
-<b><font color="#0000FF">if</font></b></tt></pre>
-
-</td></tr></table>
- <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Important_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >これらの例よりずっと高度はアプローチがあります。それは、daemonをクライアントプロセスに接続することにより、そのdaemonの _機能_ をテストすることです。これは、monitorアクションの例で示されています。
-</td></tr></table>
+<b><font color="#0000FF">if</font></b></tt></pre></td></tr></table>
+ 
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Important</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">これらの例よりずっと高度はアプローチがあります。それは、daemonをクライアントプロセスに接続することにより、そのdaemonの <em>機能</em> をテストすることです。これは、<a href="#_literal_monitor_literal_action"><tt>monitor</tt></a>アクションの例で示されています。</td></tr></table>
 
 ### masterプリファレンスを指定する
 
 Stateful (master/slave)リソースはそれら自身の _master プリファレンス_ を設定する必要があります。それにより、それらはクラスタマネージャにヒントを提供できます。これは、 Master roleへプロモートするためのベストインスタンスとなります。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Important_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >複数のインスタンスが同一の正のmasterプリファレンスを持つことができます。この場合、クラスタリソースマネージャは、プロモートするリソースエージェントを自動的に選択します。しかし、 _すべての_ インスタンスが（デフォルト）masterスコア（0）を持っている場合、クラスタマネージャは、どのインスタンスをもプロモートしません。 したがって、少なくとも1つのインスタンスが正のmasterスコアを持っていなければなりません。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Important</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">複数のインスタンスが同一の正のmasterプリファレンスを持つことができます。この場合、クラスタリソースマネージャは、プロモートするリソースエージェントを自動的に選択します。しかし、 <em>すべての</em> インスタンスが（デフォルト）masterスコア（0）を持っている場合、クラスタマネージャは、どのインスタンスをもプロモートしません。 したがって、少なくとも1つのインスタンスが正のmasterスコアを持っていなければなりません。</td></tr></table>
 
 これに対しては、 crm_master が効果的です。 crm_attribute の簡易ラッパーは、master-$OCF_RESOURCE_INSTANCEと名前が付けられたノード属性を設定し（それが実行されているノードに対して）、指定された値をこの属性に設定します。そして、クラスタマネージャは、対応するインスタンスに対して、これをプロモートスコアに変換します。
 
@@ -1143,8 +973,7 @@ Statefulリソースエージェントは、通常、 monitorやnotifyアクシ�
   * リソースがslave role（しかし、なんらかの非同期複製がmasterより「遅れている」）であるかどうか 
   * リソースが正しく停止されているかどうか 
   * リソースが予期しないで故障したかどうか 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10" ><tr >
-<td ><pre><tt><b><font color="#000000">foobar_monitor()</font></b> {
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000000">foobar_monitor()</font></b> {
     <b><font color="#0000FF">local</font></b> rc
 
     <i><font color="#9A1900"># exit immediately if configuration is not valid</font></i>
@@ -1190,9 +1019,7 @@ Statefulリソースエージェントは、通常、 monitorやnotifyアクシ�
     <b><font color="#0000FF">esac</font></b>
 
     <b><font color="#0000FF">return</font></b> <font color="#009900">$rc</font>
-}</tt></pre>
-
-</td></tr></table>
+}</tt></pre></td></tr></table>
  
 
 * * *
@@ -1205,12 +1032,8 @@ Statefulリソースエージェントは、通常、 monitorやnotifyアクシ�
 
 リソースエージェントリポジトリ（したがって、インストールされたいずれのリソースエージェントパッケージ）は、 ocf-tester と名付けられたユーティリティを含んでいます。このshellスクリプトは、リソースエージェントの機能を効率的に簡単にテストできるようにします。通常、 ocf-tester は、以下で示されているように root として起動されます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>ocf-tester -n <name> [-o <param>=<value> ... ] <resource agent></pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">ocf-tester -n <name> [-o <param>=<value> ... ] <resource agent></pre>
+ </td></tr> </table>
 
   * <name> は、任意のリソース名です。 
   * <param>=<value> は、 -o オプションで、テスト用に設定したいリソースパラメータに応じていくつでも設定できます。 
@@ -1220,15 +1043,8 @@ ocf-tester は、起動されると、すべての必須アクションを実行
 
 また、これは、オプショナルのアクションもテストします。オプショナルアクションは、宣伝された時、期待通りに実行される必要がありますが、実装されていない場合には、 ocf-tester がエラーを示さないようにします。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Important_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >ocf-tester はアクションの「ドライラン」を起動しませんし、いかなる種類のリソースダミーをも作成しません。そのかわり、これは、実際のリソースエージェントをそのまま実行します。この場合、それが、データベースのオープンやクローズ、ファイルシステムの実装、仮想マシンの起動や停止などを含んでいても、そのまま実行します。この場合、これは注意して使用しなければなりません。たとえば、以下のように、 foobar リソースデータベースで ocf-tester を実行することができます。
-</td></tr></table> <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre># ocf-tester -n foobartest \
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Important</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;"><tt>ocf-tester</tt> はアクションの「ドライラン」を起動しませんし、いかなる種類のリソースダミーをも作成しません。そのかわり、これは、実際のリソースエージェントをそのまま実行します。この場合、それが、データベースのオープンやクローズ、ファイルシステムの実装、仮想マシンの起動や停止などを含んでいても、そのまま実行します。この場合、これは注意して使用しなければなりません。たとえば、以下のように、 <tt>foobar</tt> リソースデータベースで <tt>ocf-tester</tt> を実行することができます。</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># ocf-tester -n foobartest \
              -o superfrobnicate=true \
              -o datadir=/tmp \
              /home/johndoe/ra-dev/foobar
@@ -1236,10 +1052,7 @@ Beginning tests for /home/johndoe/ra-dev/foobar...
 * Your agent does not support the notify action (optional)
 * Your agent does not support the reload action (optional)
 /home/johndoe/ra-dev/foobar passed all tests</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ### リソースエージェントをインストールする
 
@@ -1253,21 +1066,13 @@ Beginning tests for /home/johndoe/ra-dev/foobar...
 
 パッケージリソースがプロジェクトの一部としてパッケージする場合、本項で説明されている注意事項に従ってください。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >代わりにリソースエージェントを Linux-HAリソースエージェントリポジトリに提出したい場合、その詳細については リソースエージェントを提出するを参照してください。
-</td></tr></table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">代わりにリソースエージェントを Linux-HAリソースエージェントリポジトリに提出したい場合、その詳細については <a href="#_submitting_resource_agents">リソースエージェントを提出する</a>を参照してください。</td></tr></table>
 
 #### RPMパッケージング
 
 OCFリソースエージェントは 、<toppackage>-resource-agents という名前でRPMサブパッケージに入れてください。この場合、パッケージがそのプロバイダディレクトリを所有しており、上位 resource-agents パッケージ（ディレクトリ階層を設定し簡易shell関数を提供する）に依存していることを確認してください。以下にRPM仕様スニペットが示されています。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>%package resource-agents
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">%package resource-agents
 Summary: OCF resource agent for Foobar
 Group: System Environment/Base
 Requires: %{name} = %{version}-%{release}, resource-agents
@@ -1279,48 +1084,25 @@ This package contains the OCF-compliant resource agents for Foobar.
 %defattr(755,root,root,-)
 %dir %{_prefix}/lib/ocf/resource.d/fortytwo
 %{_prefix}/lib/ocf/resource.d/fortytwo/foobar</pre>
-
-
- 
-</td></tr> </table> <table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >RPM spec ファイルに %package 宣言が記述されている場合、RPMは、それ をName , Version , License などのトップレベルフィールドを継承するサブパッケージであると認識します。そのようなサブパッケージは、それ自身の名前の前に、トップレベルパッケージの名前を自動的に付加します。したがって、上記のスニペットは foobar-resource-agents (パッケージ Name は foobar であると前提されている)と名前が付けられたサブパッケージを作成します。
-</td></tr></table>
+ </td></tr> </table>
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">RPM spec ファイルに <tt>%package</tt> 宣言が記述されている場合、RPMは、それ を<tt>Name</tt> , <tt>Version</tt> , <tt>License</tt> などのトップレベルフィールドを継承するサブパッケージであると認識します。そのようなサブパッケージは、それ自身の名前の前に、トップレベルパッケージの名前を自動的に付加します。したがって、上記のスニペットは <tt>foobar-resource-agents</tt> (パッケージ <tt>Name</tt> は <tt>foobar</tt> であると前提されている)と名前が付けられたサブパッケージを作成します。</td></tr></table>
 
 #### Debianパッケージング
 
 Debianパッケージに関しては、RPMsと同じように、リソースエージェントを保持する別のパッケージを作成してください。この場合、これは cluster-agents パッケージに依存します。
 
-<table frame="void" style="margin:0.2em 0;" > <tr valign="top" >
-<td style="padding:0.5em;" >
-
-**_Note_**
-
-</td>
-<td style="border-left:3px solid #e8e8e8; padding:0.5em;" >本項では debhelper でパッケージングされていると前提します。以下に debian/control スニペットの例が示されています。
-</td></tr></table> <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>Package: foobar-cluster-agents
+<table frame="void" style="margin:0.2em 0;"> <tr valign="top"><td style="padding:0.5em;"><p><b><u>Note</u></b></p></td> <td style="border-left:3px solid #e8e8e8; padding:0.5em;">本項では <tt>debhelper</tt> でパッケージングされていると前提します。以下に <tt>debian/control</tt> スニペットの例が示されています。</td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">Package: foobar-cluster-agents
 Priority: extra
 Architecture: all
 Depends: cluster-agents
 Description: OCF-compliant resource agents for Foobar</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 ここでは、別の .install ファイルも作成します。 foobar リソースエージェントを fortytwo のサブパッケージとしてインストールする例に従い 、debian/fortytwo-cluster-agents.install ファイルは、以下の内容から構成されます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>usr/lib/ocf/resource.d/fortytwo/foobar</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">usr/lib/ocf/resource.d/fortytwo/foobar</pre>
+ </td></tr> </table>
 
 ### リソースエージェントを提出する
 
@@ -1328,77 +1110,49 @@ Description: OCF-compliant resource agents for Foobar</pre>
 
 まず、以下のコマンドで、上位リポジトリのワーキングコピー（Mercurial _clone_） を作成してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>hg clone http://hg.linux-ha.org/agents resource-agents</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">hg clone http://hg.linux-ha.org/agents resource-agents</pre>
+ </td></tr> </table>
 
 新規Mercurialキューと、新規パッチセットを作成してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>cd resource-agents
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">cd resource-agents
 hg qinit
 hg qnew --edit foobar-ra</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 パッチメッセージで、以下のような分かりやすい説明を記述してください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>High: foobar: new resource agent
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">High: foobar: new resource agent
 
 This new resource agent adds functionality to manage a foobar service.
 It supports being configured as a primitive or as a master/slave set,
 and also optionally supports superfrobnication.</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 リソースエージェントを heartbeat サブディレクトリにコピーしてください。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>cd heartbeat
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">cd heartbeat
 cp /path/to/your/local/copy/of/foobar .
 chmod 0755 foobar
 hg add foobar
 cd ..</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>
 
 次に、 resource-agents/heartbeat で Makefile.am ファイルを編集し、新規リソースエージェントを ocf_SCRIPTS リストに追加してください。これにより、エージェントが正しくインストールされるようにします。最後に resource-agents/doc でMakefile.amを開き 、ocf_heartbeat_<name>.7 を man_MANS 変数に追加してください。これにより、リソースエージェントのマニュアルページが、そのメタデータから自動的に作成され、そのマニュアルページが正しい場所にインストールされます。
 
 この作業が行われたら、パッチセットを更新することができます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>hg qrefresh</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">hg qrefresh</pre>
+ </td></tr> </table>
 
 これで、パッチセットはメーリングリストで参照が可能となります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>hg email --to=linux-ha-dev@lists.linux-ha.org foobar-ra</pre>
-
-
- 
-</td></tr> </table>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">hg email --to=linux-ha-dev@lists.linux-ha.org foobar-ra</pre>
+ </td></tr> </table>
 
 新規リソースエージェントが、マージできるようになれば、上位開発者は、パッチを上位リポジトリにpushします。この時点で、上位からチェックアウトを更新し、元のパッチセットを削除できます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;" > <tr >
-<td style="padding:0.5em;" ><pre>hg qpop -a
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">hg qpop -a
 hg pull --update
 hg qdelete foobar-ra</pre>
-
-
- 
-</td></tr> </table>
+ </td></tr> </table>

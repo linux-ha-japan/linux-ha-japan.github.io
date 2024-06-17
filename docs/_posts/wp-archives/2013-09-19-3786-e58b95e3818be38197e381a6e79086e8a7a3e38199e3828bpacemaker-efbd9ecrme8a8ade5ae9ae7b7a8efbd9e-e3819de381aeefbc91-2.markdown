@@ -501,88 +501,59 @@ rsc_defaults resource-stickiness="INFINITY" \
 propertyは**クラスタ全体の設定**を、rsc_defaultsは**リソース全体のデフォルト設定**を指定します。
 
 1つ1つのキーワードの意味は以下です。
-<table border="1" >
-<tbody >
-<tr >
 
-<td >コマンド
-</td>
-
-<td >キーワード
-</td>
-
-<td >説明
-</td>
+<table border="1">
+<tbody>
+<tr>
+<td>コマンド</td>
+<td>キーワード</td>
+<td>説明</td>
 </tr>
-<tr >
-
-<td rowspan="3" >property
-=クラスタ全体の設定
-</td>
-
-<td >no-quorum-policy
-</td>
-
-<td >サーバ同士が互いに孤立しクォーラムを失った場合にどう動くかを指定します。いきなり「クォーラム」という新たな言葉が登場しましたが、とりあえずサーバが2台の構成である限りはおまじないとして"ignore"を指定する、と覚えておけばよいです。
+<tr>
+<td rowspan="3">property
+=クラスタ全体の設定</td>
+<td>no-quorum-policy</td>
+<td>サーバ同士が互いに孤立しクォーラムを失った場合にどう動くかを指定します。いきなり「クォーラム」という新たな言葉が登場しましたが、とりあえずサーバが2台の構成である限りはおまじないとして"ignore"を指定する、と覚えておけばよいです。
 
 クォーラムについて詳しく知りたい方は、
-[Pacemakerを使いこなそう！～HAクラスタで止まらないサービスを～](/wp/archives/604)
-のP16以降を読むとよいでしょう。
-</td>
+<a href="/wp/archives/604">Pacemakerを使いこなそう！～HAクラスタで止まらないサービスを～</a>
+のP16以降を読むとよいでしょう。</td>
 </tr>
-<tr >
-
-<td >stonith-enabled
-</td>
-
-<td >STONITH(ストニス)を有効にするか無効にするかを指定します。また、新たな言葉(STONITH)が出てきました。STONITHは簡単に言うと、サーバが孤立した場合に両系ノードでリソースが2重に起動してしまうのを防ぐために、強制的にノードを停止させる仕組みのことです。
+<tr>
+<td>stonith-enabled</td>
+<td>STONITH(ストニス)を有効にするか無効にするかを指定します。また、新たな言葉(STONITH)が出てきました。STONITHは簡単に言うと、サーバが孤立した場合に両系ノードでリソースが2重に起動してしまうのを防ぐために、強制的にノードを停止させる仕組みのことです。
 
 クラスタにとって非常に重要な概念ですが、CRM設定ファイル自体の理解にはあまり関係ないので、本記事では無効(false)としています。
 STONITHについて詳しく知りたい方は、以下資料を読むとよいでしょう。
 Pacemaker-1.0の場合：
-[HAクラスタをフェイルオーバ失敗から救おう！](/wp/archives/3729)
-[Pacemakerでかんたんクラスタリング体験してみよう！](http://gihyo.jp/admin/serial/01/pacemaker/0003)
-[Pacemakerを使いこなそう！～HAクラスタで止まらないサービスを～](/wp/archives/604)P37以降
+<a href="/wp/archives/3729">HAクラスタをフェイルオーバ失敗から救おう！</a>
+<a href="http://gihyo.jp/admin/serial/01/pacemaker/0003">Pacemakerでかんたんクラスタリング体験してみよう！</a>
+<a href="/wp/archives/604">Pacemakerを使いこなそう！～HAクラスタで止まらないサービスを～</a>P37以降
 
 Pacemaker-1.1の場合：
-[OSCデモ機の設定を公開します](/wp/archives/4377)
-[試して覚えるPacemaker入門 排他制御機能編](/wp/archives/4338)
-</td>
+<a href="/wp/archives/4377">OSCデモ機の設定を公開します</a>
+<a href="/wp/archives/4338">試して覚えるPacemaker入門 排他制御機能編</a></td>
 </tr>
-<tr >
-
-<td >crmd-transition-delay
-</td>
-
-<td >Pacemakerが内部でリソースをどう配置すべきか等を計算する際の待ち時間を設定します。
-このパラメータはPacemaker 1.0.10までにあったバグに対応するため、[Pacemaker 1.0.11で導入](/wp/archives/1498)されました。
+<tr>
+<td>crmd-transition-delay</td>
+<td>Pacemakerが内部でリソースをどう配置すべきか等を計算する際の待ち時間を設定します。
+このパラメータはPacemaker 1.0.10までにあったバグに対応するため、<a href="/wp/archives/1498">Pacemaker 1.0.11で導入</a>されました。
 環境にもよりますが経験的に"2s"(2秒)と設定しておけばほぼ問題ないです。
-Pacemaker-1.1系の場合でも本設定は設定可能ですが、上記バグが改修されているため基本的には不要です。
-</td>
+Pacemaker-1.1系の場合でも本設定は設定可能ですが、上記バグが改修されているため基本的には不要です。</td>
 </tr>
-<tr >
-
-<td rowspan="2" >rsc_defaults=リソース全体のデフォルト設定
-</td>
-
-<td >resource-stickiness
-</td>
-
-<td >リソースが一度稼働したノードにどれだけ"粘着"するか(stickiness)を設定します。値が大きいとリソースは現在稼働中のサーバになるべくとどまろうとし、値が小さいとより最適なノードへ移動しようとします。
+<tr>
+<td rowspan="2">rsc_defaults=リソース全体のデフォルト設定</td>
+<td>resource-stickiness</td>
+<td>リソースが一度稼働したノードにどれだけ"粘着"するか(stickiness)を設定します。値が大きいとリソースは現在稼働中のサーバになるべくとどまろうとし、値が小さいとより最適なノードへ移動しようとします。
 故障発生後にノードを復旧させたときに、自動的に切り戻し(自動フェイルバック)をしたい場合に小さな値(1等)を設定しますが、通常は大きな値(無限大を示す"INFINITY")を設定し自動フェイルバックを無効にします(※)。
-_※リソースが稼働するノードをころころ移動するのは、安定的なサービス提供に悪影響と考えられるからです。_
-</td>
+<span style="font-size: x-small;"><em>※リソースが稼働するノードをころころ移動するのは、安定的なサービス提供に悪影響と考えられるからです。</em></span></td>
 </tr>
-<tr >
-
-<td >migration-threshold
-</td>
-
-<td >リソースが何回故障したらF/Oするかを指定します。migration-threshold回までの故障はリソースの再起動で対処し、migration-threshold回目の故障でF/Oを実施します。
+<tr>
+<td>migration-threshold</td>
+<td>リソースが何回故障したらF/Oするかを指定します。migration-threshold回までの故障はリソースの再起動で対処し、migration-threshold回目の故障でF/Oを実施します。
 通常は1回故障したらF/Oさせたいので"1"とします。
 デフォルト値は0で、この場合無効、つまり何回故障してもF/Oせずリソースが再起動されるだけなので、必ず明示的に指定する必要があります。
-_※ここでいう"故障"はリソース稼働中のもののみ対象です。リソース起動の失敗、および停止の失敗は対象外です。_
-</td>
+<span style="font-size: x-small;"><em>※ここでいう"故障"はリソース稼働中のもののみ対象です。リソース起動の失敗、および停止の失敗は対象外です。</em></span></td>
 </tr>
 </tbody>
 </table>
