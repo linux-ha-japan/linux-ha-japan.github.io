@@ -22,7 +22,7 @@ title: Linux-HA Japan
 email: linux-ha-japan@lists.osdn.me
 description: High-Availability Clustering on Linux
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://linux-ha-japan.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username:
 twitter_hashtag: "#linux_ha_jp"
 github_username:  linux-ha-japan
