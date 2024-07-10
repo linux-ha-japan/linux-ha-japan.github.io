@@ -102,11 +102,11 @@ Dejan Muhamedagic
   1086 	int nprocs;
   1087 
   1088 	nprocs = sysconf(_SC_NPROCESSORS_ONLN);
-  1089 	if( nprocs < 1 ) {
+  1089 	if( nprocs &lt; 1 ) {
   1090 		lrmd_log(LOG_WARNING, "%s: couldn't get the number of processors"
   1091 		, __FUNCTION__);
   1092 	} else {
-  1093 		if( nprocs/2 > max_child_count ) {
+  1093 		if( nprocs/2 &gt; max_child_count ) {
   1094 			max_child_count = nprocs/2;
   1095 		}
   1096 		lrmd_log(LOG_INFO, "max-children set to %d "

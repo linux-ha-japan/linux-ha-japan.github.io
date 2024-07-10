@@ -935,7 +935,7 @@ Pacemaker-1.1.19-1.1からの主な差分について記載します。
     * 必須依存パッケージとして gnutls-2.12 以降のバージョンが必須となりました(RHSA-2017:0574)。
 
 	
-    * STONITH の実行履歴が管理されるようになりました。STONITH が失敗した場合、crm_mon はデフォルトで「Failed Fencing Actions:」を表示します。履歴は、stonith_admin -c -H <ノード> でクリアできます。
+    * STONITH の実行履歴が管理されるようになりました。STONITH が失敗した場合、crm_mon はデフォルトで「Failed Fencing Actions:」を表示します。履歴は、stonith_admin -c -H &lt;ノード&gt; でクリアできます。
 
 	
     * SNMP トラップ送信機能の改善により、常に MIB の全項目が送信される（1.1.19-1.1 までは省略されていた項目も送信される）ようになりました。

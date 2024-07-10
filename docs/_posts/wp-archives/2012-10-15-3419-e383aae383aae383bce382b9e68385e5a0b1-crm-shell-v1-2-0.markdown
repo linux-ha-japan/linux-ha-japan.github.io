@@ -125,12 +125,12 @@ doc/crm.8.txt
    883 
    884 Usage:
    885 ...............
-   886         secret <rsc> set <param> <value>
-   887         secret <rsc> stash <param>
-   888         secret <rsc> unstash <param>
-   889         secret <rsc> delete <param>
-   890         secret <rsc> show <param>
-   891         secret <rsc> check <param>
+   886         secret &lt;rsc&gt; set &lt;param&gt; &lt;value&gt;
+   887         secret &lt;rsc&gt; stash &lt;param&gt;
+   888         secret &lt;rsc&gt; unstash &lt;param&gt;
+   889         secret &lt;rsc&gt; delete &lt;param&gt;
+   890         secret &lt;rsc&gt; show &lt;param&gt;
+   891         secret &lt;rsc&gt; check &lt;param&gt;
    892 ...............
    893 Example:
    894 ...............
@@ -170,7 +170,7 @@ There are also numerous bug fixes and enhancements. For the full set of changes,
 <blockquote>
 == Note about Pacemaker versions == 
 
-CRM shell 1.2.0 supports all Pacemaker 1.1 versions <= v1.1.7. 
+CRM shell 1.2.0 supports all Pacemaker 1.1 versions &lt;= v1.1.7. 
 The latter versions should work for the most part, but due to the number of changes post 1.1.7 there are no guarantees. 
 </blockquote>
 
@@ -190,7 +190,7 @@ CRM shell 1.2.0 は Pacemaker 1.1.7以前のバージョンで使用可能です
 <blockquote>
 == Installing == 
 
-Installing the CRM shell along with Pacemaker 1.1 versions <= v1.1.7 is possible, but it will result in file conflicts. 
+Installing the CRM shell along with Pacemaker 1.1 versions &lt;= v1.1.7 is possible, but it will result in file conflicts. 
 You need to enforce file overwriting when installing packages. 
 </blockquote>
 

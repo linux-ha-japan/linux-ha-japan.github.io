@@ -253,7 +253,7 @@ common {
 protocol C;
 
 handlers {
-local-io-error "/usr/lib/drbd/notify-io-error.sh; /usr/lib/drbd/notify-emergency-shutdown.sh; echo o > /proc/sysrq-trigger ; halt -f";
+local-io-error "/usr/lib/drbd/notify-io-error.sh; /usr/lib/drbd/notify-emergency-shutdown.sh; echo o &gt; /proc/sysrq-trigger ; halt -f";
 }
 syncer {
 rate 200M;
@@ -298,7 +298,7 @@ version: 8.3.8 (api:88/proto:86-94)
 GIT-hash: d78846e52224fd00562f7c225bcc25b2d422321d build by ***@***.org, 2010-06-04 08:04:16
 0: cs:SyncSource ro:Primary/Secondary ds:UpToDate/Inconsistent C r----
 ns:400544 nr:0 dw:0 dr:400544 al:0 bm:24 lo:0 pe:0 ua:0 ap:0 ep:1 wo:b oos:2539220
-[=>..................] sync'ed: 13.8% (2539220/2939764)K delay_probe: 48
+[=&gt;..................] sync'ed: 13.8% (2539220/2939764)K delay_probe: 48
 finish: 0:04:04 speed: 10,080 (19,072) K/sec</blockquote>
 
 
@@ -409,12 +409,12 @@ Apacheだけ、リソース監視にserver-statusというApacheの仕組みを�
 
 
 <blockquote>ServerName web.example.com:80
-<Location /server-status>
+&lt;Location /server-status&gt;
 SetHandler server-status
 Order deny,allow
 Deny from all
 Allow from 127.0.0.1
-</Location></blockquote>
+&lt;/Location&gt;</blockquote>
 
 
 

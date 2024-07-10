@@ -41,5 +41,6 @@ Pacemaker をより気軽に試してみることができるように、Windows
 
 
 
+<iframe class="speakerdeck-iframe" style="border: 0px none; background: rgba(0, 0, 0, 0.1) padding-box; margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 387px;" src="https://speakerdeck.com/player/020b2b82595d48568c2109385df542fd" title="VirtualBox と Rocky Linux 8 で始める Pacemaker    ~ VirtualBox でも STONITH 機能が試せる! VirtualBMCの活用" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" data-ratio="1.4470284237726099" frameborder="0"></iframe>
 
 以上です。

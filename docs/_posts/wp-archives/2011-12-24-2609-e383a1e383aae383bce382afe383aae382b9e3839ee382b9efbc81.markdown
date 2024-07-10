@@ -19,6 +19,7 @@ Linux-HA Japanより、みなさまへプレゼントを投下します。
 
 
 
+<iframe width="640" height="360" src="http://www.youtube.com/embed/VIlMzbEHMKQ" frameborder="0" allowfullscreen></iframe>
 
 
 ■2012年Linux-HA Japan活動予告動画

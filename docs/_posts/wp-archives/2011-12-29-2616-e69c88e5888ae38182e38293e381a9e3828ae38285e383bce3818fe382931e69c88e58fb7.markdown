@@ -165,25 +165,25 @@ diskセクションに「read-balancing」パラメータが追加されまし�
 <div><span style="font-family: verdana, geneva;">--- a/documentation/drbdsetup.xml
 +++ b/documentation/drbdsetup.xml
 @@ -481,6 +481,23 @@
-</para>
-</listitem>
-</varlistentry>
+&lt;/para&gt;
+&lt;/listitem&gt;
+&lt;/varlistentry&gt;
 +
-+        <varlistentry>
-+          <term>
-+            <option>--read-balancing <replaceable>method</replaceable></option>
-+          </term>
-+          <listitem>
-+           <para>
-+             The supported <replaceable>methods</replaceable> for load balancing of
-+             read requests are <option>prefer-local</option>, <option>prefer-remote</option>,
-+             <option>round-robin</option>, <option>least-pending</option> and
-+             <option>when-congested-remote</option>.</para>
-+             <para> The default value of is <option>prefer-local</option>.
++        &lt;varlistentry&gt;
++          &lt;term&gt;
++            &lt;option&gt;--read-balancing &lt;replaceable&gt;method&lt;/replaceable&gt;&lt;/option&gt;
++          &lt;/term&gt;
++          &lt;listitem&gt;
++           &lt;para&gt;
++             The supported &lt;replaceable&gt;methods&lt;/replaceable&gt; for load balancing of
++             read requests are &lt;option&gt;prefer-local&lt;/option&gt;, &lt;option&gt;prefer-remote&lt;/option&gt;,
++             &lt;option&gt;round-robin&lt;/option&gt;, &lt;option&gt;least-pending&lt;/option&gt; and
++             &lt;option&gt;when-congested-remote&lt;/option&gt;.&lt;/para&gt;
++             &lt;para&gt; The default value of is &lt;option&gt;prefer-local&lt;/option&gt;.
 +             This option is available since 8.4.1.
-+             </para>
-+          </listitem>
-+        </varlistentry>
++             &lt;/para&gt;
++          &lt;/listitem&gt;
++        &lt;/varlistentry&gt;
 +</span></div></pre>
 
 

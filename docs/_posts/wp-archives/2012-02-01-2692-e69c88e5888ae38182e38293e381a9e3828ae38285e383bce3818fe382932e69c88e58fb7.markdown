@@ -204,7 +204,7 @@ Pacemaker Cloudはaeolus, libvirt, openstack, ovirtとの連携を目指して�
 <span style="font-size: small;">Requires: python-daemon</span>
 <span style="font-size: small;">Requires: python-qmf</span>
 <span style="font-size: small;">Requires: qpid-cpp-server</span>
-<span style="font-size: small;">Requires: oz > 0.5.0-1</span>
+<span style="font-size: small;">Requires: oz &gt; 0.5.0-1</span>
 <span style="font-size: small;">Requires: %{name}-core = %{version}-%{release}</span>
 <span style="font-size: small;">Requires: %{name}-core = %{version}-%{release}</span>
 <span style="font-size: small;">Requires: openstack-nova</span>
@@ -422,9 +422,9 @@ IPaddr2の**unique_clone_address**パラメータ、cloneの**globally-unique**�
 だっはっは！なんぞこれｗｗｗうけるｗｗｗ
 <pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># ip addr show | grep bond0</span></strong></span>
 <span style="font-family: verdana,geneva;">
-<span style="font-size: small;">2: eth2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 qlen 1000</span>
-<span style="font-size: small;">3: eth3: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond0 qlen 1000</span>
-<span style="font-size: small;">8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue</span>
+<span style="font-size: small;">2: eth2: &lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast master bond0 qlen 1000</span>
+<span style="font-size: small;">3: eth3: &lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast master bond0 qlen 1000</span>
+<span style="font-size: small;">8: bond0: &lt;BROADCAST,MULTICAST,MASTER,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue</span>
 <span style="font-size: small;"> inet 192.168.200.43/24 brd 192.168.200.255 scope global bond0</span>
 <span style="font-size: small;"> inet 192.168.200.22/24 brd 192.168.200.255 scope global secondary bond0</span>
 <span style="font-size: small;"> inet 192.168.200.20/24 brd 192.168.200.255 scope global secondary bond0</span>

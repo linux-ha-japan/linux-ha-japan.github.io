@@ -87,7 +87,7 @@ LCMC 1.0.2のリリース](http://www.gossamer-threads.com/lists/linuxha/users/7
 * don't let the left click to show a popup 
 
 <strong>DRBD 関連の修正</strong>
-* fix the "after" DRBD option in DRBD < 8.4
+* fix the "after" DRBD option in DRBD &lt; 8.4
 * use units for all DRBD numeric fields 
 
 <strong>アイコンを変更しました。</strong>
@@ -210,7 +210,7 @@ drbd.confの変更を反映するためには、「# drbdadm adjust all」コマ
 この場合、もともとのhandlersセクションの設定ではなく、resourceセクションの設定が優先して使用されます。
 また、crm-fence-peer.sh および crm-unfence-peer.sh には、--id-prefixを指定します。
 
-<pre><span style="font-family: verdana,geneva;"><strong><strong>--id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;"><リソース名></span></strong></strong></span></pre>
+<pre><span style="font-family: verdana,geneva;"><strong><strong>--id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">&lt;リソース名&gt;</span></strong></strong></span></pre>
 
 
 設定例(drbd.conf 一部抜粋)
@@ -491,11 +491,11 @@ ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor 
 ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for prmDRBD:1 on node02
 ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (20s) for prmDRBD:0 on node01
 ptest[19529]: 2011/11/02_17:09:29 notice: RecurringOp:  Start recurring monitor (10s) for prmDRBD:1 on node02
-<strong><span style="color: #ff00ff;">ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy01  (Started node01 -> node02)
-ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy02  (Started node01 -> node02)
-ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy03  (Started node01 -> node02)
-ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Demote  prmDRBD:0 (Master -> Slave node01)
-ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Promote prmDRBD:1 (Slave -> Master node02)</span></strong></span></pre>
+<strong><span style="color: #ff00ff;">ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy01  (Started node01 -&gt; node02)
+ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy02  (Started node01 -&gt; node02)
+ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Move    resource dummy03  (Started node01 -&gt; node02)
+ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Demote  prmDRBD:0 (Master -&gt; Slave node01)
+ptest[19529]: 2011/11/02_17:09:29 notice: LogActions: Promote prmDRBD:1 (Slave -&gt; Master node02)</span></strong></span></pre>
 
 
 よっしゃ！キタコレ！
@@ -537,11 +537,11 @@ Online: [ node01 node02 ]
  Slaves: [ node02 ]
 
 Transition Summary:
-<strong><span style="color: #ff00ff;">crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy01    (Started node01 -> node02)
-crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy02    (Started node01 -> node02)
-crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy03    (Started node01 -> node02)
-crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Demote  prmDRBD:0  (Master -> Slave node01)
-crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Promote prmDRBD:1  (Slave -> Master node02)
+<strong><span style="color: #ff00ff;">crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy01    (Started node01 -&gt; node02)
+crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy02    (Started node01 -&gt; node02)
+crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Move    dummy03    (Started node01 -&gt; node02)
+crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Demote  prmDRBD:0  (Master -&gt; Slave node01)
+crm_simulate[13819]: 2011/11/02_17:03:20 notice: LogActions: Promote prmDRBD:1  (Slave -&gt; Master node02)
 </span></strong>
 Executing cluster transition:
  * Executing action 16: dummy03_stop_0 on node01
@@ -595,7 +595,7 @@ Pacemaker 1.0系では使えないコマンドなんですが、次期バージ�
 暫定対応
 次のように、配置制約(location)を追加してください。
 追加する行は、groupに含まれる全てのリソース分、必要です。
--inf: defined のあとに、**fail-count-<groupに含まれるリソース名>**を指定してください。
+-inf: defined のあとに、**fail-count-&lt;groupに含まれるリソース名&gt;**を指定してください。
 この例では、groupに含まれる全てのリソース(dummy01, dummy02, dummy03)に制約が設定されています。
 <pre><span style="font-family: verdana,geneva;">### Resource Location ###
 location rsc_location-1 msDRBD \

@@ -86,17 +86,17 @@ WP-Syntax プラグインを導入しました。ソースコードやxmlなど�
 
 
 <pre>
-<xml>
-<foo>
-<hoge a="aaaa">hoge</hoge>
-</xml>
-</foo>
+&lt;xml&gt;
+&lt;foo&gt;
+&lt;hoge a="aaaa"&gt;hoge&lt;/hoge&gt;
+&lt;/xml&gt;
+&lt;/foo&gt;
 </pre>
 
 
 
 <pre>
-#include <stdio.h>
+#include &lt;stdio.h&gt;
 int main() {
     return 0
 }

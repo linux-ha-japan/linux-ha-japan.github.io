@@ -39,9 +39,9 @@ PacemakerにはあらかじめApacheやPostgreSQL, Tomcatといったアプリ�
 ここでは、Dummyという「何もしない」リソースを設定してみます。
 以下ではタイムアウト値や監視間隔の設定をしていますが、何もしないリソースなので、あまり意味はありません。あくまで参考です。一つのリソースを定義する場合、1行で記述する必要がありますので、行が長くなる場合は"\" で改行してください。
 <pre>crm(live)configure# <strong>primitive dummy-resource ocf:pacemaker:Dummy \</strong>  <span style="color: #ff0000;">   ← "dummy-resource"は任意の文字列(ID)</span>
-> <strong>op start interval="0s" timeout="90s" \</strong>← dummy-resource の起動時のタイムアウト値の設定
-> <strong>op monitor interval="3s" timeout="20s" \</strong>          ← dummy-resource の監視間隔と、タイムアウト値の設定
-> <strong>op stop interval="0s" timeout="100s"</strong>              ← dummy-resource の停止時のタイムアウト値の設定</pre>
+&gt; <strong>op start interval="0s" timeout="90s" \</strong>← dummy-resource の起動時のタイムアウト値の設定
+&gt; <strong>op monitor interval="3s" timeout="20s" \</strong>          ← dummy-resource の監視間隔と、タイムアウト値の設定
+&gt; <strong>op stop interval="0s" timeout="100s"</strong>              ← dummy-resource の停止時のタイムアウト値の設定</pre>
 
 
  
@@ -54,8 +54,8 @@ PacemakerにはSTONITHという機能があり、制御不能のサーバを強�
 (クォーラムがよくわからない場合、"2台の時はignoreを使用する" は、おまじないと思ってください ^^)
 (STONITH, クォーラムを勉強したい場合は、この辺りを参考に。 [/wp/archives/604](/wp/archives/604) )
 <pre>crm(live)configure# <strong>property $id="cib-bootstrap-options" \</strong>
-> <strong>stonith-enabled="false"</strong> \
-> <strong>no-quorum-policy="ignore"</strong></pre>
+&gt; <strong>stonith-enabled="false"</strong> \
+&gt; <strong>no-quorum-policy="ignore"</strong></pre>
 
 
 上記を打ち込んでもすぐには反映されません。まずは、設定した内容を確認します。

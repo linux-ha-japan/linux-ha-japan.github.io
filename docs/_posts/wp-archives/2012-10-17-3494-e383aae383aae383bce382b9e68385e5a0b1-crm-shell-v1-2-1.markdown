@@ -97,7 +97,7 @@ CRM shell 1.2.1 は Pacemaker 1.1系をサポートしています。
 
 <blockquote>
 == Installing ==
-Installing the CRM shell along with Pacemaker 1.1 versions <=v1.1.7 is possible, but it will result in file conflicts. 
+Installing the CRM shell along with Pacemaker 1.1 versions &lt;=v1.1.7 is possible, but it will result in file conflicts. 
 You need to enforce file overwriting when installing packages.
 </blockquote>
 

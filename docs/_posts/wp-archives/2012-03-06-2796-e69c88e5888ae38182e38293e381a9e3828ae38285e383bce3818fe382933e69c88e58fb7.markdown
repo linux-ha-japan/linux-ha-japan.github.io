@@ -469,8 +469,8 @@ Pacemakerは差分情報をもとに状態遷移グラフを作成し、クラ�
 「ディスクに書き込まれた情報を構造体に保持する」
 という処理をを簡略化した"Hello glib world!"を作ってみました。
 <pre><code>
-#include <stdio.h>
-#include <glib.h>
+#include &lt;stdio.h&gt;
+#include &lt;glib.h&gt;
 
 GList *list = NULL;
 
@@ -488,7 +488,7 @@ int main(int argc, char *argv[])
 {
         GHashTable* hash = g_hash_table_new(g_str_hash, g_str_equal);
         int i;
-        for (i = 1; i < argc; i++) {
+        for (i = 1; i &lt; argc; i++) {
                 g_hash_table_insert(hash, argv[i], NULL);
         }
         g_hash_table_foreach(hash, (GHFunc)g_list_add, NULL);
@@ -531,8 +531,8 @@ glib、ムズカシーネー。
 「g_list_append()じゃなくて、g_list_insert_sorted()にしとく？」
 ということなので、そっちも試してみました。
 <pre><code>
-#include <stdio.h>
-#include <glib.h>
+#include &lt;stdio.h&gt;
+#include &lt;glib.h&gt;
 
 GList *list = NULL;
 <span style="color: #ff0000;">
@@ -560,7 +560,7 @@ int main(int argc, char *argv[])
 {
         GHashTable* hash = g_hash_table_new(g_str_hash, g_str_equal);
         int i;
-        for (i = 1; i < argc; i++) {
+        for (i = 1; i &lt; argc; i++) {
                 g_hash_table_insert(hash, argv[i], NULL);
         }
         g_hash_table_foreach(hash, (GHFunc)g_list_add, NULL);

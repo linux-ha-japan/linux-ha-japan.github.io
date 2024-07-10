@@ -124,7 +124,7 @@ RHEL5 → OK、RHEL6 → NGということになります。
 
 
 
-Background: the bio->bi_rw flags have been changed a few times  
+Background: the bio-&gt;bi_rw flags have been changed a few times  
 
 in the upstream kernel, and RHEL 6.1 changed it again in yet some  
 
@@ -135,7 +135,7 @@ right yet, leading to a compile error.
 
 
 
-RHEL 6.1ではbio->bi_rwフラグの取り扱いが変更されており、DRBDはそれに対応できていないとのこと。  
+RHEL 6.1ではbio-&gt;bi_rwフラグの取り扱いが変更されており、DRBDはそれに対応できていないとのこと。  
 
 （8.3系も8.4系もどっちも未対応です）  
 

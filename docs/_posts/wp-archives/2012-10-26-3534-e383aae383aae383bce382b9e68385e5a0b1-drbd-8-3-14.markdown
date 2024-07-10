@@ -41,9 +41,9 @@ it was no longer save to run DRBD in protocol A or B with barriers enabled.
 In case you... 
  * use protocol A or B 
  AND 
- * have a kernel >= 2.6.36 (or 2.6.32 if it is RHEL6/CentOS6 or other clone) 
+ * have a kernel &gt;= 2.6.36 (or 2.6.32 if it is RHEL6/CentOS6 or other clone) 
  AND 
- * have DRBD <= 8.3.13 
+ * have DRBD &lt;= 8.3.13 
  AND 
  * do not have the option "no-disk-barrier" set. (= barriers enabled) 
  THEN 
@@ -199,20 +199,20 @@ DRBD 8.3.14および8.4.2以降では、バリア機能が無効となったの�
 <code>
 # drbdadm show-gi all
 
-       +--<  Current data generation UUID  >-
-       |               +--<  Bitmap's base data generation UUID  >-
-       |               |                 +--<  younger history UUID  >-
-       |               |                 |         +-<  older history  >-
+       +--&lt;  Current data generation UUID  &gt;-
+       |               +--&lt;  Bitmap's base data generation UUID  &gt;-
+       |               |                 +--&lt;  younger history UUID  &gt;-
+       |               |                 |         +-&lt;  older history  &gt;-
        V               V                 V         V
 C33DD9E7F1CEB539:0000000000000000:42813628676CC944:0000000000000004:1:1:1:1:0:0:0
                                                                     ^ ^ ^ ^ ^ ^ ^
-                                      -<  Data consistency flag  >--+ | | | | | |
-                             -<  Data was/is currently up-to-date  >--+ | | | | |
-                                  -<  Node was/is currently primary  >--+ | | | |
-                                  -<  Node was/is currently connected  >--+ | | |
-         -<  Node was in the progress of setting all bits in the bitmap  >--+ | |
-                        -<  The peer's disk was out-dated or inconsistent  >--+ |
-      -<  This node was a crashed primary, and has not seen its peer since   >--+
+                                      -&lt;  Data consistency flag  &gt;--+ | | | | | |
+                             -&lt;  Data was/is currently up-to-date  &gt;--+ | | | | |
+                                  -&lt;  Node was/is currently primary  &gt;--+ | | | |
+                                  -&lt;  Node was/is currently connected  &gt;--+ | | |
+         -&lt;  Node was in the progress of setting all bits in the bitmap  &gt;--+ | |
+                        -&lt;  The peer's disk was out-dated or inconsistent  &gt;--+ |
+      -&lt;  This node was a crashed primary, and has not seen its peer since   &gt;--+
 
 flags: Primary, Connected, UpToDate
 meta-data: need apply-al

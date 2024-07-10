@@ -60,4 +60,5 @@ Linux-HA Japan では、いつもの如く展示ブースの開設と [「](http
 
 
 
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="640" height="480" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="src" value="http://sourceforge.jp/projects/linux-ha/document/Pacemaker_OSC2010Fukuoka_20101211.swf/ja/2/Pacemaker_OSC2010Fukuoka_20101211.swf.bin" /><param name="allowfullscreen" value="true" /><embed type="application/x-shockwave-flash" width="640" height="480" src="http://sourceforge.jp/projects/linux-ha/document/Pacemaker_OSC2010Fukuoka_20101211.swf/ja/2/Pacemaker_OSC2010Fukuoka_20101211.swf.bin" allowfullscreen="true" /></object>
 

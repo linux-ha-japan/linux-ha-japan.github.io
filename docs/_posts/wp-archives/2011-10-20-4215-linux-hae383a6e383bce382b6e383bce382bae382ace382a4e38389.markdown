@@ -269,7 +269,7 @@ $ sudo make install</pre>
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">$ ./bootstrap
 $ ./configure --help
-$ ./configure <configuration-options>
+$ ./configure &lt;configuration-options&gt;
 $ make
 $ sudo make install</pre>
  </td></tr> </table>
@@ -398,8 +398,8 @@ pacemaker respawn は、Pacemakerクラスタマネージャを有効にし、Pa
 
 /etc/ha.d/authkeys は、相互クラスタノード認証に使われるシークレット（あらかじめ共有されている）を持っています。これはrootしか読み込むことができず、以下のフォーマットに従う必要があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">auth <num>
-<num> <algorithm> <secret></pre>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">auth &lt;num&gt;
+&lt;num&gt; &lt;algorithm&gt; &lt;secret&gt;</pre>
  </td></tr> </table>
 
 num は1で始まる単純なキーインデックスです。通常、 authkeys ファイルでは1つしかキーがありません。
@@ -408,7 +408,7 @@ algorithm が、使用されるシグネチャーアルゴリズムです。こ�
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">( echo -ne "auth 1\n1 sha1 "; \
   dd if=/dev/urandom bs=512 count=1 | openssl md5 ) \
-  > /etc/ha.d/authkeys
+  &gt; /etc/ha.d/authkeys
 chmod 0600 /etc/ha.d/authkeys</pre>
  </td></tr> </table>
 
@@ -542,7 +542,7 @@ Note:このアップグレード手順はアプリケーションのダウンタ
 
 ほとんどの設定では、個々のリソースは個別に is_managed 属性を設定しないで、クラスタ全体属性である is_managed_default がそれらのすべてに適用されます。特定の設定において、この属性が設定されているリソースがある場合、それは、デフォルトが適用されるために削除される必要があります。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># crm_resource -t primitive -r <resource-id> -p is_managed -D</pre>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;"># crm_resource -t primitive -r &lt;resource-id&gt; -p is_managed -D</pre>
  </td></tr> </table>
 
 #### CIBのバックアップを作成する

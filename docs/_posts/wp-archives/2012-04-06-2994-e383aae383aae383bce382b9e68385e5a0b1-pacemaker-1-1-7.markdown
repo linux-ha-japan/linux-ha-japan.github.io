@@ -237,14 +237,14 @@ Pacemaker はちょっとアレなくらいログを吐くので、出力量が�
 デバッグレベルをあげる
 <pre>
 <code>
-# pkill -SIGUSR1 <プロセス名></code></pre>
+# pkill -SIGUSR1 &lt;プロセス名&gt;</code></pre>
 
 
 
 デバッグレベルをさげる
 <pre>
 <code>
-# pkill -SIGUSR2 <プロセス名> </code></pre>
+# pkill -SIGUSR2 &lt;プロセス名&gt; </code></pre>
 
 
 
@@ -295,32 +295,32 @@ fencing-topologyはそれにかわるものなのか！？
 <code>
 # vim xml/fencing.rng
 
-<?xml version="1.0" encoding="utf-8"?>
-<grammar xmlns="http://relaxng.org/ns/structure/1.0"
-         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-  <start>
-      <ref name="element-stonith"/>
-  </start>
-  <define name="element-stonith">
-    <element name="fencing-topology">
-      <zeroOrMore>
-        <ref name="element-level"/>
-      </zeroOrMore>
-    </element>
-  </define>
-  <define name="element-level">
-    <element name="fencing-level">
-      <attribute name="id"><data type="ID"></data></attribute>
-      <attribute name="target"><text></text></attribute>
-      <attribute name="index"><data type="positiveInteger"></data></attribute>
-      <attribute name="devices">
-        <data type="string">
-          <param name="pattern">([a-zA-Z0-9_.-]+)(,[a-zA-Z0-9_.-]+)*</param>
-        </data>
-      </attribute>
-    </element>
-  </define>
-</grammar></code></pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"&gt;
+  &lt;start&gt;
+      &lt;ref name="element-stonith"/&gt;
+  &lt;/start&gt;
+  &lt;define name="element-stonith"&gt;
+    &lt;element name="fencing-topology"&gt;
+      &lt;zeroOrMore&gt;
+        &lt;ref name="element-level"/&gt;
+      &lt;/zeroOrMore&gt;
+    &lt;/element&gt;
+  &lt;/define&gt;
+  &lt;define name="element-level"&gt;
+    &lt;element name="fencing-level"&gt;
+      &lt;attribute name="id"&gt;&lt;data type="ID"/&gt;&lt;/attribute&gt;
+      &lt;attribute name="target"&gt;&lt;text/&gt;&lt;/attribute&gt;
+      &lt;attribute name="index"&gt;&lt;data type="positiveInteger"/&gt;&lt;/attribute&gt;
+      &lt;attribute name="devices"&gt;
+        &lt;data type="string"&gt;
+          &lt;param name="pattern"&gt;([a-zA-Z0-9_.-]+)(,[a-zA-Z0-9_.-]+)*</param>
+        &lt;/data&gt;
+      &lt;/attribute&gt;
+    &lt;/element&gt;
+  &lt;/define&gt;
+&lt;/grammar&gt;</code></pre>
 
 
 

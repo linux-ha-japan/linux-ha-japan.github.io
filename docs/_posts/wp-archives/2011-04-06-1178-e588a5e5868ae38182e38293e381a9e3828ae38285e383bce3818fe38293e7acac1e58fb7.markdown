@@ -716,7 +716,7 @@ crm サンプル
 
 
 
-8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP  
+8: bond0: &lt;BROADCAST,MULTICAST,MASTER,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP  
 
  link/ether 00:17:08:7e:0d:ae brd ff:ff:ff:ff:ff:ff  
 

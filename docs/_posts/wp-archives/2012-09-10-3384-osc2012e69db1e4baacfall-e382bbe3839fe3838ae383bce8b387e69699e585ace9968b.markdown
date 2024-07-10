@@ -34,7 +34,8 @@ tags:
 
 
 
-[【ニコニコ動画】【OSC2012東京秋】ディザスタリカバリもオープンソースで!? ～高可用クラスタソフトウェア Pacemaker 次期バージョンプレビュー～](http://www.nicovideo.jp/watch/1347609417)
+
+<iframe width="312" height="176" src="http://ext.nicovideo.jp/thumb/1347609417" scrolling="no" style="border:solid 1px #CCC;" frameborder="0">[【ニコニコ動画】【OSC2012東京秋】ディザスタリカバリもオープンソースで!? ～高可用クラスタソフトウェア Pacemaker 次期バージョンプレビュー～](http://www.nicovideo.jp/watch/1347609417)</iframe>
  
 
 

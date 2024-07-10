@@ -115,7 +115,7 @@ onセクションの中でvolume{}をもりもり増やしていけばよいわ�
 
 ・DRBDのアップデート方法
 8.3系から8.4系へのアップデートについて
-アナウンスでは「drbdadm apply-al <resource>」でうまくいくはず、
+アナウンスでは「drbdadm apply-al &lt;resource&gt;」でうまくいくはず、
 とのことでしたが、とりあえず、私は失敗しました。
 で、今のところ、うまくいっている方法をご紹介します。
 この方法は、2ノード構成でどちらか片方のノードをプライマリに維持する
@@ -246,7 +246,7 @@ apply-alだとココ省略できるんかなあ。
 <span style="font-family: verdana, geneva;"> GIT-hash: 28753f559ab51b549d16bcf487fe625d5919c49c build by root@srv01,2011-07-25 13:46:08</span>
 <span style="font-family: verdana, geneva;"> 0: cs:SyncTarget ro:Secondary/Primary ds:Inconsistent/UpToDate C r-----</span>
 <span style="font-family: verdana, geneva;"> ns:0 nr:0 dw:0 dr:263296 al:0 bm:15 lo:22 pe:46 ua:0 ap:0 ep:1 wo:b oos:9513840</span>
-<span style="font-family: verdana, geneva;"> [>....................] sync'ed: 2.7% (9288/9540)M</span>
+<span style="font-family: verdana, geneva;"> [&gt;....................] sync'ed: 2.7% (9288/9540)M</span>
 <span style="font-family: verdana, geneva;"> finish: 0:03:41 speed: 42,900(42,900) want: 40,960 K/sec</span></td>
 </tr>
 </tbody>
@@ -262,7 +262,7 @@ DRBDのサービスを停止させたくないので、プライマリとセカ�
 <table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># umount <dir></span>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># umount &lt;dir&gt;</span>
 <span style="font-family: verdana, geneva;"> # drbdadm secondary all</span>
 <span style="font-family: verdana, geneva;"> # drbdadm down all</span>
 <span style="font-family: verdana, geneva;"> # service drbd stop</span></td>
@@ -313,7 +313,7 @@ dumpオプションをつけてdrbdadmコマンドを実行すると、なんと
 <table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm dump all > /tmp/drbd.conf</span></td>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm dump all &gt; /tmp/drbd.conf</span></td>
 </tr>
 </tbody>
 </table>
@@ -367,7 +367,7 @@ dumpオプションをつけてdrbdadmコマンドを実行すると、なんと
 <table style="width: 100%; font-family: Osaka;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># scp -p /etc/drbd.conf <対向ノード>:/etc/drbd.conf</span></td>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># scp -p /etc/drbd.conf &lt;対向ノード&gt;:/etc/drbd.conf</span></td>
 </tr>
 </tbody>
 </table>
@@ -395,8 +395,8 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 <table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm secondary <resource></span>
-<span style="font-family: verdana, geneva;"> # drbdadm -- --discard-my-data connect <resource></span></td>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm secondary &lt;resource&gt;</span>
+<span style="font-family: verdana, geneva;"> # drbdadm -- --discard-my-data connect &lt;resource&gt;</span></td>
 </tr>
 </tbody>
 </table>
@@ -406,8 +406,8 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 <table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm secondary <resource></span>
-<span style="font-family: verdana, geneva;"> # drbdadm connect --discard-my-data <resource></span></td>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm secondary &lt;resource&gt;</span>
+<span style="font-family: verdana, geneva;"> # drbdadm connect --discard-my-data &lt;resource&gt;</span></td>
 </tr>
 </tbody>
 </table>
@@ -421,7 +421,7 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 <table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm -- --overwrite-data-of-peer primary <resource></span></td>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm -- --overwrite-data-of-peer primary &lt;resource&gt;</span></td>
 </tr>
 </tbody>
 </table>
@@ -431,7 +431,7 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 <table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm primary --force <resource></span></td>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm primary --force &lt;resource&gt;</span></td>
 </tr>
 </tbody>
 </table>
@@ -444,7 +444,7 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 <table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm net-options --protocol=A <resource></span></td>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm net-options --protocol=A &lt;resource&gt;</span></td>
 </tr>
 </tbody>
 </table>
@@ -454,7 +454,7 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 <table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm adjust <resource></span></td>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm adjust &lt;resource&gt;</span></td>
 </tr>
 </tbody>
 </table>
@@ -469,7 +469,7 @@ drbd.confの変更はDRBDが動いたままでも実行できます。
 <table style="width: 100%;" border="1" cellspacing="2" cellpadding="2">
 <tbody>
 <tr>
-<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm net-options --protocol=C --allow-two-primaries <resource></span></td>
+<td style="background-color: #ffffcc;"><span style="font-family: verdana, geneva;"># drbdadm net-options --protocol=C --allow-two-primaries &lt;resource&gt;</span></td>
 </tr>
 </tbody>
 </table>

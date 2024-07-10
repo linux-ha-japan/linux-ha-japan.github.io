@@ -42,7 +42,7 @@ NetworkManager-config-server あり(RHEL 7 標準の動作)
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">(ネットワーク接続断が発生してもIPアドレス設定は保持されたまま)
 # ip addr show dev eth1
-3: eth1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast
+3: eth1: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc pfifo_fast
  state DOWN group default qlen 1000
     link/ether 08:00:27:67:bb:18 brd ff:ff:ff:ff:ff:ff
     inet 192.168.33.101/24 brd 192.168.33.255 scope global noprefixroute eth1
@@ -54,7 +54,7 @@ NetworkManager-config-server なし(CentOS 7 標準の動作)
     
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">(ネットワーク接続断が発生するとIPアドレス設定が削除される)
 # ip addr show dev eth1
-3: eth1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc pfifo_fast
+3: eth1: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc pfifo_fast
  state DOWN group default qlen 1000
     link/ether 08:00:27:67:bb:18 brd ff:ff:ff:ff:ff:ff
 #</pre>

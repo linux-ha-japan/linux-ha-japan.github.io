@@ -431,8 +431,8 @@ Pacemaker-1.1.17-1.1からの主な差分について記載します。
     * sosreport コマンドで pacemaker 設定が取得できない問題が修正されました。 
   * corosync-2.4.4-1 
     * CVE-2018-1084 の問題が修正されました。 
-    * SNMP トラップでコミュニティ名を指定するオプション(corosync-notifyd -c <community name>)が追加されました。 
-    * corosync プロセスの優先度(nice 値)を指定するオプション(corosync -P <num>)が追加されました。 
+    * SNMP トラップでコミュニティ名を指定するオプション(corosync-notifyd -c &lt;community name&gt;)が追加されました。 
+    * corosync プロセスの優先度(nice 値)を指定するオプション(corosync -P &lt;num&gt;)が追加されました。 
     * bind が失敗し続けると corosync プロセス が CPU を 100% 使用する問題が修正されました。 
   * libqb-1.0.2-2（RHEL6版） 
     * RHEL6環境で時刻補正を行うとcorosyncが通信異常を誤検知する問題が修正されました(1.1.17-1.1で発生した問題)。 

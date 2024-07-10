@@ -265,7 +265,7 @@ node01で仮想IPが起動していることを確認します。ちゃんと起
 <tr>
 <td style="background-color: #ffffcc;"><span style="color: #339966; font-family: verdana, geneva;"><strong># ip addr show bond0</strong> </span> 
 
-<span style="font-family: verdana, geneva;">8: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue</span>
+<span style="font-family: verdana, geneva;">8: bond0: &lt;BROADCAST,MULTICAST,MASTER,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue</span>
 <span style="font-family: verdana, geneva;"> link/ether 00:17:08:7e:11:e2 brd ff:ff:ff:ff:ff:ff</span>
 <span style="font-family: verdana, geneva;"> inet 192.168.200.43/24 brd 192.168.200.255 scope global bond0</span>
 <span style="font-family: verdana, geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.1/24</span></strong> brd 192.168.200.255 scope global secondary bond0</span>

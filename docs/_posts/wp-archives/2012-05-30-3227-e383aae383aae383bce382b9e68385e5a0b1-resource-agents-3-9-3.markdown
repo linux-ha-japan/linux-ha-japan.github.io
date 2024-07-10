@@ -67,7 +67,7 @@ virshコマンドのヘルプはこんな感じでした。これみてもよく
     migrate - 他のホストにドメインを移動させる
 
   形式
-    migrate [--live] [--p2p] [--direct] [--tunnelled] [--persistent] [--undefinesource] [--suspend] [--copy-storage-all] [--copy-storage-inc] [--change-protection] [--verbose] <domain> <desturi> [<migrateuri>] [<dname>] [--timeout <number>] [--xml <string>]
+    migrate [--live] [--p2p] [--direct] [--tunnelled] [--persistent] [--undefinesource] [--suspend] [--copy-storage-all] [--copy-storage-inc] [--change-protection] [--verbose] &lt;domain&gt; &lt;desturi&gt; [&lt;migrateuri&gt;] [&lt;dname&gt;] [--timeout &lt;number&gt;] [--xml &lt;string&gt;]
 
   詳細
     ドメインを他のホストに移動させる。活性移動では --live を付加する。
@@ -84,12 +84,12 @@ virshコマンドのヘルプはこんな感じでした。これみてもよく
     --copy-storage-inc  migration with non-shared storage with incremental copy (same base image shared between source and destination)
     --change-protection  prevent any configuration changes to domain until migration ends)
     --verbose        display the progress of migration
-    [--domain] <string>  ドメイン名、id または uuid
-    [--desturi] <string>  connection URI of the destination host as seen from the client(normal migration) or source(p2p migration)
-    [--migrateuri] <string>  移動 URI。通常は省略可
-    [--dname] <string>  移行中に新しい名前に改名（サポートがある場合）
-    --timeout <number>  force guest to suspend if live migration exceeds timeout (in seconds)
-    --xml <string>   filename containing updated XML for the target
+    [--domain] &lt;string&gt;  ドメイン名、id または uuid
+    [--desturi] &lt;string&gt;  connection URI of the destination host as seen from the client(normal migration) or source(p2p migration)
+    [--migrateuri] &lt;string&gt;  移動 URI。通常は省略可
+    [--dname] &lt;string&gt;  移行中に新しい名前に改名（サポートがある場合）
+    --timeout &lt;number&gt;  force guest to suspend if live migration exceeds timeout (in seconds)
+    --xml &lt;string&gt;   filename containing updated XML for the target
 </code></pre>
 
 

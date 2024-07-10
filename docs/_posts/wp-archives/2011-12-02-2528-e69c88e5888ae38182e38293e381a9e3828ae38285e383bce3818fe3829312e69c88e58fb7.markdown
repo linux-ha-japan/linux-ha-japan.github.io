@@ -147,7 +147,7 @@ CorosyncまたはHeartbeatをインストールした後に、自動起動の設
 [fix colors of buttons in dialogs ](https://github.com/rasto/lcmc/commit/509975e187f381ccaa1929570e1c83230d4534a5)
 ダイアログの色とボタンを修正しました。
 
-[fix cleanup of resources with failcount < INFINITY ](https://github.com/rasto/lcmc/commit/74d077dc2f6eea528d5f6c80c60a0c044ffaa93e)
+[fix cleanup of resources with failcount &lt; INFINITY ](https://github.com/rasto/lcmc/commit/74d077dc2f6eea528d5f6c80c60a0c044ffaa93e)
 INFINITYよりも小さなフェイルカウントの削除する際の動作を修正しました。
 
 [add --cluster (and company) options to define clusters](https://github.com/rasto/lcmc/commit/72d3b97faa3b1333deb2da063e8b71b789448805)
@@ -316,7 +316,7 @@ crmコマンドを使って、IPaddr2 RAの設定方法を表示してみます�
 <span style="font-family: verdana,geneva;"> If unspecified, the script will also try to determine this from the</span>
 <span style="font-family: verdana,geneva;"> routing table.</span>
 
-<span style="font-family: verdana,geneva;"><省略></span></pre>
+<span style="font-family: verdana,geneva;">&lt;省略&gt;</span></pre>
 
 
 では、クラスタにcrm設定ファイルを反映してみましょう。
@@ -351,21 +351,21 @@ node01で仮想IPが起動しました。
 
 node01のeth1に仮想IPアドレス「192.168.200.200」が割り当てられています。
 <pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ip addr show</span>
-<span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
+<span style="font-family: verdana,geneva;">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue</span>
 <span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
 <span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
-<span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:00 brd ff:ff:ff:ff:ff:ff</span>
 <span style="font-family: verdana,geneva;"> inet 192.168.28.121/24 brd 192.168.28.255 scope global eth0</span>
-<span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:01 brd ff:ff:ff:ff:ff:ff</span>
 <span style="font-family: verdana,geneva;"> inet 192.168.200.121/24 brd 192.168.200.255 scope global eth1</span>
 <span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global secondary eth1</span>
-<span style="font-family: verdana,geneva;">4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">4: eth2: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:02 brd ff:ff:ff:ff:ff:ff</span>
-<span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">5: eth3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:03 brd ff:ff:ff:ff:ff:ff</span>
-<span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">6: eth4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:04 brd ff:ff:ff:ff:ff:ff</span></pre>
 
 
@@ -399,21 +399,21 @@ node01のeth1に仮想IPアドレス「192.168.200.200」が割り当てられ�
 
 node02のeth2に仮想IPアドレス「192.168.200.200」が割り当てられています。
 <pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ip addr show</span>
-<span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
+<span style="font-family: verdana,geneva;">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue</span>
 <span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
 <span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
-<span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:00 brd ff:ff:ff:ff:ff:ff</span>
 <span style="font-family: verdana,geneva;"> inet 192.168.28.122/24 brd 192.168.28.255 scope global eth0</span>
-<span style="font-family: verdana,geneva;">3: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">3: eth1: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:01 brd ff:ff:ff:ff:ff:ff</span>
-<span style="font-family: verdana,geneva;">4: <strong><span style="color: #ff00ff;">eth2</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;">4: <strong><span style="color: #ff00ff;">eth2</span></strong>: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:02 brd ff:ff:ff:ff:ff:ff</span>
 <span style="font-family: verdana,geneva;"> inet 192.168.200.122/24 brd 192.168.200.255 scope global eth2</span>
 <span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global secondary eth2</span>
-<span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">5: eth3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:03 brd ff:ff:ff:ff:ff:ff</span>
-<span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">6: eth4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:04 brd ff:ff:ff:ff:ff:ff</span></pre>
 
 
@@ -539,20 +539,20 @@ node01にIPアドレス「192.168.200.200」が設定されました。
 
 
 <pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node01</span></strong> ~]# ip addr show</span>
-<span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
+<span style="font-family: verdana,geneva;">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue</span>
 <span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
 <span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
-<span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:00 brd ff:ff:ff:ff:ff:ff</span>
 <span style="font-family: verdana,geneva;"> inet 192.168.28.121/24 brd 192.168.28.255 scope global eth0</span>
-<span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:01 brd ff:ff:ff:ff:ff:ff</span>
 <span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global eth1</span>
-<span style="font-family: verdana,geneva;">4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">4: eth2: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:02 brd ff:ff:ff:ff:ff:ff</span>
-<span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">5: eth3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:03 brd ff:ff:ff:ff:ff:ff</span>
-<span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">6: eth4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:91:04 brd ff:ff:ff:ff:ff:ff</span></pre>
 
 
@@ -619,20 +619,20 @@ IPアドレス「192.168.200.200」はnode02にフェイルオーバしました
 
 
 <pre><span style="font-family: verdana,geneva;">[root@<strong><span style="color: #ff00ff;">node02</span></strong> ~]# ip addr show</span>
-<span style="font-family: verdana,geneva;">1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue</span>
+<span style="font-family: verdana,geneva;">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue</span>
 <span style="font-family: verdana,geneva;"> link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
 <span style="font-family: verdana,geneva;"> inet 127.0.0.1/8 scope host lo</span>
-<span style="font-family: verdana,geneva;">2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:00 brd ff:ff:ff:ff:ff:ff</span>
 <span style="font-family: verdana,geneva;"> inet 192.168.28.122/24 brd 192.168.28.255 scope global eth0</span>
-<span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000</span>
+<span style="font-family: verdana,geneva;">3: <strong><span style="color: #ff00ff;">eth1</span></strong>: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:01 brd ff:ff:ff:ff:ff:ff</span>
 <span style="font-family: verdana,geneva;"> inet <strong><span style="color: #ff00ff;">192.168.200.200/24</span></strong> brd 192.168.200.255 scope global eth1</span>
-<span style="font-family: verdana,geneva;">4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">4: eth2: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:02 brd ff:ff:ff:ff:ff:ff</span>
-<span style="font-family: verdana,geneva;">5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">5: eth3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:03 brd ff:ff:ff:ff:ff:ff</span>
-<span style="font-family: verdana,geneva;">6: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000</span>
+<span style="font-family: verdana,geneva;">6: eth4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop qlen 1000</span>
 <span style="font-family: verdana,geneva;"> link/ether 00:16:3e:39:92:04 brd ff:ff:ff:ff:ff:ff</span></pre>
 
 
@@ -665,13 +665,13 @@ IPアドレス「192.168.200.200」はnode02にフェイルオーバしました
 さて、pingはどうなったかというと…
 <pre><span style="font-family: verdana,geneva;">[root@node03 ~]# ping 192.168.200.200</span>
 
-<span style="font-family: verdana,geneva;"><省略></span>
+<span style="font-family: verdana,geneva;">&lt;省略&gt;</span>
 <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=14 ttl=64 time=0.159 ms</span>
 <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=15 ttl=64 time=0.169 ms</span>
 <strong><span style="font-family: verdana,geneva; color: #ff00ff;">64 bytes from 192.168.200.200: icmp_seq=17 ttl=64 time=3.22 ms</span></strong>
 <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=18 ttl=64 time=0.226 ms</span>
 <span style="font-family: verdana,geneva;">64 bytes from 192.168.200.200: icmp_seq=19 ttl=64 time=0.177 ms</span>
-<span style="font-family: verdana,geneva;"><省略></span></pre>
+<span style="font-family: verdana,geneva;">&lt;省略&gt;</span></pre>
 
 
 確かに、一瞬遅延してますね。

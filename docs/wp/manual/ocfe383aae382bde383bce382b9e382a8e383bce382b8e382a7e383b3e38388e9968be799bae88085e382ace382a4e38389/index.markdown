@@ -41,7 +41,7 @@ OCF準拠リソースエージェントは _どのような_ プログラミン�
 
 リソースエージェントは、環境変数を通じて、それが管理するリソースのすべての設定情報を受け取ります。これらの環境変数の名前は、常に、 OCF_RESKEY_ という接頭語が付いたリソースパラメータの名前となります。たとえば、リソースが、 192.168.1.1 に設定されている ip パラメータを持っている場合、リソースエージェントは、その値を保持する OCF_RESKEY_ip 環境変数にアクセスできます。ユーザによって設定される必要のないリソースパラメータに対しては、つまり、リソースエージェントメタデータでのそのパラメータ定義は required="true" を指定しませんが、リソースエージェントは以下を行う必要があります。
 
-  * 適切なデフォルトを提供する。これは、メタデータで宣言される必要があります。慣例により、リソースエージェントは、このデフォルトを保持する OCF_RESKEY_<parametername>_default と名付けられた変数を使います。 
+  * 適切なデフォルトを提供する。これは、メタデータで宣言される必要があります。慣例により、リソースエージェントは、このデフォルトを保持する OCF_RESKEY_&lt;parametername&gt;_default と名付けられた変数を使います。 
   * あるいは、空値に対して正しく対処する。 
 
 さらに、クラスタマネージャは、 _meta_ リソースパラメータもサポートします。これらは、リソース設定には直接適用されませんが、クラスタリソースマネージャが _どのように_ リソースを管理するかが指定されます。たとえば、Pacemakerクラスタマネージャは、リソースが起動されるべきか停止されるべきかを指定するために、 target-role metaパラメータを使います。
@@ -71,51 +71,51 @@ metaパラメータは OCF_RESKEY_CRM_meta_ 名前空間でリソースエージ
 
 それぞれのリソースエージェントは、一連のXML メタデータで自分自身の目的とサポートされているパラメータを記述しなければなりません。このメタデータは、オンラインヘルプに対して、クラスタ管理アプリケーションによって使われ、リソースエージェントのmanページもそれから生成されます。以下は、架空のリソースエージェントからの一連の仮想メタデータです。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000080"><?xml</font></b> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"1.0"</font><b><font color="#000080">?></font></b>
-<b><font color="#000080"><!DOCTYPE</font></b> <font color="#009900">resource</font>-<font color="#009900">agent</font> <font color="#009900">SYSTEM</font> <font color="#FF0000">"ra-api-1.dtd"</font><b><font color="#000080">></font></b>
-<b><font color="#0000FF"><resource-agent</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"foobar"</font> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"0.1"</font><b><font color="#0000FF">></font></b>
-  <b><font color="#0000FF"><version></font></b>0.1<b><font color="#0000FF"></version></font></b>
-  <b><font color="#0000FF"><longdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">></font></b>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt><b><font color="#000080">&lt;?xml</font></b> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"1.0"</font><b><font color="#000080">?&gt;</font></b>
+<b><font color="#000080">&lt;!DOCTYPE</font></b> <font color="#009900">resource</font>-<font color="#009900">agent</font> <font color="#009900">SYSTEM</font> <font color="#FF0000">"ra-api-1.dtd"</font><b><font color="#000080">&gt;</font></b>
+<b><font color="#0000FF">&lt;resource-agent</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"foobar"</font> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"0.1"</font><b><font color="#0000FF">&gt;</font></b>
+  <b><font color="#0000FF">&lt;version&gt;</font></b>0.1<b><font color="#0000FF">&lt;/version&gt;</font></b>
+  <b><font color="#0000FF">&lt;longdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">&gt;</font></b>
 This is a fictitious example resource agent written for the
 OCF Resource Agent Developers Guide.
-  <b><font color="#0000FF"></longdesc></font></b>
-  <b><font color="#0000FF"><shortdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">></font></b>Example resource agent
-  for budding OCF RA developers<b><font color="#0000FF"></shortdesc></font></b>
-  <b><font color="#0000FF"><parameters></font></b>
-    <b><font color="#0000FF"><parameter</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"eggs"</font> <font color="#009900">unique</font><font color="#990000">=</font><font color="#FF0000">"0"</font> <font color="#009900">required</font><font color="#990000">=</font><font color="#FF0000">"1"</font><b><font color="#0000FF">></font></b>
-      <b><font color="#0000FF"><longdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">></font></b>
+  <b><font color="#0000FF">&lt;/longdesc&gt;</font></b>
+  <b><font color="#0000FF">&lt;shortdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">&gt;</font></b>Example resource agent
+  for budding OCF RA developers<b><font color="#0000FF">&lt;/shortdesc&gt;</font></b>
+  <b><font color="#0000FF">&lt;parameters&gt;</font></b>
+    <b><font color="#0000FF">&lt;parameter</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"eggs"</font> <font color="#009900">unique</font><font color="#990000">=</font><font color="#FF0000">"0"</font> <font color="#009900">required</font><font color="#990000">=</font><font color="#FF0000">"1"</font><b><font color="#0000FF">&gt;</font></b>
+      <b><font color="#0000FF">&lt;longdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">&gt;</font></b>
       Number of eggs, an example numeric parameter
-      <b><font color="#0000FF"></longdesc></font></b>
-      <b><font color="#0000FF"><shortdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">></font></b>Number of eggs<b><font color="#0000FF"></shortdesc></font></b>
-      <b><font color="#0000FF"><content</font></b> <font color="#009900">type</font><font color="#990000">=</font><font color="#FF0000">"integer"</font><b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"></parameter></font></b>
-    <b><font color="#0000FF"><parameter</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"superfrobnicate"</font> <font color="#009900">unique</font><font color="#990000">=</font><font color="#FF0000">"0"</font> <font color="#009900">required</font><font color="#990000">=</font><font color="#FF0000">"0"</font><b><font color="#0000FF">></font></b>
-      <b><font color="#0000FF"><longdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">></font></b>
+      <b><font color="#0000FF">&lt;/longdesc&gt;</font></b>
+      <b><font color="#0000FF">&lt;shortdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">&gt;</font></b>Number of eggs<b><font color="#0000FF">&lt;/shortdesc&gt;</font></b>
+      <b><font color="#0000FF">&lt;content</font></b> <font color="#009900">type</font><font color="#990000">=</font><font color="#FF0000">"integer"</font><b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;/parameter&gt;</font></b>
+    <b><font color="#0000FF">&lt;parameter</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"superfrobnicate"</font> <font color="#009900">unique</font><font color="#990000">=</font><font color="#FF0000">"0"</font> <font color="#009900">required</font><font color="#990000">=</font><font color="#FF0000">"0"</font><b><font color="#0000FF">&gt;</font></b>
+      <b><font color="#0000FF">&lt;longdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">&gt;</font></b>
       Enable superfrobnication, an example boolean parameter
-      <b><font color="#0000FF"></longdesc></font></b>
-      <b><font color="#0000FF"><shortdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">></font></b>Enable superfrobnication<b><font color="#0000FF"></shortdesc></font></b>
-      <b><font color="#0000FF"><content</font></b> <font color="#009900">type</font><font color="#990000">=</font><font color="#FF0000">"boolean"</font> <font color="#009900">default</font><font color="#990000">=</font><font color="#FF0000">"false"</font><b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"></parameter></font></b>
-    <b><font color="#0000FF"><parameter</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"datadir"</font> <font color="#009900">unique</font><font color="#990000">=</font><font color="#FF0000">"0"</font> <font color="#009900">required</font><font color="#990000">=</font><font color="#FF0000">"1"</font><b><font color="#0000FF">></font></b>
-      <b><font color="#0000FF"><longdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">></font></b>
+      <b><font color="#0000FF">&lt;/longdesc&gt;</font></b>
+      <b><font color="#0000FF">&lt;shortdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">&gt;</font></b>Enable superfrobnication<b><font color="#0000FF">&lt;/shortdesc&gt;</font></b>
+      <b><font color="#0000FF">&lt;content</font></b> <font color="#009900">type</font><font color="#990000">=</font><font color="#FF0000">"boolean"</font> <font color="#009900">default</font><font color="#990000">=</font><font color="#FF0000">"false"</font><b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;/parameter&gt;</font></b>
+    <b><font color="#0000FF">&lt;parameter</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"datadir"</font> <font color="#009900">unique</font><font color="#990000">=</font><font color="#FF0000">"0"</font> <font color="#009900">required</font><font color="#990000">=</font><font color="#FF0000">"1"</font><b><font color="#0000FF">&gt;</font></b>
+      <b><font color="#0000FF">&lt;longdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">&gt;</font></b>
       Data directory, an example string parameter
-      <b><font color="#0000FF"></longdesc></font></b>
-      <b><font color="#0000FF"><shortdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">></font></b>Data directory<b><font color="#0000FF"></shortdesc></font></b>
-      <b><font color="#0000FF"><content</font></b> <font color="#009900">type</font><font color="#990000">=</font><font color="#FF0000">"string"</font><b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"></parameter></font></b>
-  <b><font color="#0000FF"></parameters></font></b>
-  <b><font color="#0000FF"><actions></font></b>
-    <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"start"</font>        <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"stop"</font>         <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"monitor"</font>      <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font>
-                                <font color="#009900">interval</font><font color="#990000">=</font><font color="#FF0000">"10"</font> <font color="#009900">depth</font><font color="#990000">=</font><font color="#FF0000">"0"</font> <b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"reload"</font>       <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"migrate_to"</font>   <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"migrate_from"</font> <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"meta-data"</font>    <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"5"</font> <b><font color="#0000FF">/></font></b>
-    <b><font color="#0000FF"><action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"validate-all"</font>   <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/></font></b>
-  <b><font color="#0000FF"></actions></font></b>
-<b><font color="#0000FF"></resource-agent></font></b></tt></pre></td></tr></table>
+      <b><font color="#0000FF">&lt;/longdesc&gt;</font></b>
+      <b><font color="#0000FF">&lt;shortdesc</font></b> <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><b><font color="#0000FF">&gt;</font></b>Data directory<b><font color="#0000FF">&lt;/shortdesc&gt;</font></b>
+      <b><font color="#0000FF">&lt;content</font></b> <font color="#009900">type</font><font color="#990000">=</font><font color="#FF0000">"string"</font><b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;/parameter&gt;</font></b>
+  <b><font color="#0000FF">&lt;/parameters&gt;</font></b>
+  <b><font color="#0000FF">&lt;actions&gt;</font></b>
+    <b><font color="#0000FF">&lt;action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"start"</font>        <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"stop"</font>         <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"monitor"</font>      <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font>
+                                <font color="#009900">interval</font><font color="#990000">=</font><font color="#FF0000">"10"</font> <font color="#009900">depth</font><font color="#990000">=</font><font color="#FF0000">"0"</font> <b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"reload"</font>       <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"migrate_to"</font>   <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"migrate_from"</font> <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"meta-data"</font>    <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"5"</font> <b><font color="#0000FF">/&gt;</font></b>
+    <b><font color="#0000FF">&lt;action</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"validate-all"</font>   <font color="#009900">timeout</font><font color="#990000">=</font><font color="#FF0000">"20"</font> <b><font color="#0000FF">/&gt;</font></b>
+  <b><font color="#0000FF">&lt;/actions&gt;</font></b>
+<b><font color="#0000FF">&lt;/resource-agent&gt;</font></b></tt></pre></td></tr></table>
  
 
 resource-agent 要素はリソースエージェント毎に1つだけ設定される必要があり、リソースエージェントの name と version を定義します。
@@ -306,7 +306,7 @@ ocf_log debug <font color="#FF0000">"${OCF_RESOURCE_INSTANCE} $__OCF_ACTION retu
 
 ## リソースエージェントアクション
 
-それぞれのアクションは、通常、リソースエージェントの別々の関数やメソッドで実装されています。規定では、これらは、通常、 <agent>_<action> というように名前が付けられています。したがって、 foobar に start アクションを実装する関数は、 foobar_start() というような名前が付けられます。
+それぞれのアクションは、通常、リソースエージェントの別々の関数やメソッドで実装されています。規定では、これらは、通常、 &lt;agent&gt;_&lt;action&gt; というように名前が付けられています。したがって、 foobar に start アクションを実装する関数は、 foobar_start() というような名前が付けられます。
 
 原則として、 リソースエージェントが致命的なエラーに遭遇した場合、ただちに終了し、例外を出力したり、そうでなければ停止することが許可されています。この例としては設定問題、バイナリのないこと、アクセス権限に関する問題などがあります。また、これらのエラーはコールスタックに渡す必要はありません。
 
@@ -482,12 +482,12 @@ Probesは、検証にあらたな問題を提議します。probe中（クラス
 meta-data アクションは、リソースエージェントメタデータを標準出力にダンプします。出力は、メタデータで指定されているようにメタデータフォーマットに準拠する必要があります。
 
 <table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt>foobar_meta_data {
-    cat <font color="#990000"><<</font>EOF
-<font color="#990000"><?</font>xml <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"1.0"</font><font color="#990000">?></font>
-<font color="#990000"><!</font>DOCTYPE resource-agent SYSTEM <font color="#FF0000">"ra-api-1.dtd"</font><font color="#990000">></font>
-<font color="#990000"><</font>resource-agent <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"foobar"</font> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"0.1"</font><font color="#990000">></font>
-  <font color="#990000"><</font>version<font color="#990000">></font><font color="#993399">0.1</font><font color="#990000"><</font>/version<font color="#990000">></font>
-  <font color="#990000"><</font>longdesc <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><font color="#990000">></font>
+    cat <font color="#990000">&lt;&lt;</font>EOF
+<font color="#990000">&lt;?</font>xml <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"1.0"</font><font color="#990000">?&gt;</font>
+<font color="#990000">&lt;!</font>DOCTYPE resource-agent SYSTEM <font color="#FF0000">"ra-api-1.dtd"</font><font color="#990000">&gt;</font>
+<font color="#990000">&lt;</font>resource-agent <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"foobar"</font> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"0.1"</font><font color="#990000">&gt;</font>
+  <font color="#990000">&lt;</font>version<font color="#990000">&gt;</font><font color="#993399">0.1</font><font color="#990000">&lt;</font>/version<font color="#990000">&gt;</font>
+  <font color="#990000">&lt;</font>longdesc <font color="#009900">lang</font><font color="#990000">=</font><font color="#FF0000">"en"</font><font color="#990000">&gt;</font>
 <font color="#990000">...</font>
 EOF
 }</tt></pre></td></tr></table>
@@ -799,7 +799,7 @@ OCFリソースエージェントのディレクトリ階層のルート。こ�
 
 リソースエージェントは、ロギングに対して ocf_log 関数を使います。この簡易ロギングラッパーは以下のように起動されます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt>ocf_log <font color="#990000"><</font>severity<font color="#990000">></font> <font color="#FF0000">"Log message</font></tt></pre></td></tr></table>
+<table border="0" bgcolor="#e8e8e8" width="100%" cellpadding="10"><tr><td><pre><tt>ocf_log <font color="#990000">&lt;</font>severity<font color="#990000">&gt;</font> <font color="#FF0000">"Log message</font></tt></pre></td></tr></table>
  
 
 これは、以下のseverityをサポートします。
@@ -1032,12 +1032,12 @@ Statefulリソースエージェントは、通常、 monitorやnotifyアクシ�
 
 リソースエージェントリポジトリ（したがって、インストールされたいずれのリソースエージェントパッケージ）は、 ocf-tester と名付けられたユーティリティを含んでいます。このshellスクリプトは、リソースエージェントの機能を効率的に簡単にテストできるようにします。通常、 ocf-tester は、以下で示されているように root として起動されます。
 
-<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">ocf-tester -n <name> [-o <param>=<value> ... ] <resource agent></pre>
+<table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">ocf-tester -n &lt;name&gt; [-o &lt;param&gt;=&lt;value&gt; ... ] &lt;resource agent&gt;</pre>
  </td></tr> </table>
 
-  * <name> は、任意のリソース名です。 
-  * <param>=<value> は、 -o オプションで、テスト用に設定したいリソースパラメータに応じていくつでも設定できます。 
-  * <resource agent> がリソースエージェントへの完全パスです。 
+  * &lt;name&gt; は、任意のリソース名です。 
+  * &lt;param&gt;=&lt;value&gt; は、 -o オプションで、テスト用に設定したいリソースパラメータに応じていくつでも設定できます。 
+  * &lt;resource agent&gt; がリソースエージェントへの完全パスです。 
 
 ocf-tester は、起動されると、すべての必須アクションを実行し、リソースエージェントアクションで説明されているようにアクションを強制実行します。
 
@@ -1056,7 +1056,7 @@ Beginning tests for /home/johndoe/ra-dev/foobar...
 
 ### リソースエージェントをインストールする
 
-リソースエージェントを自分自身のプロジェクトに含めたい場合、正しい場所にそれをインストールしてください。リソースエージェントは、 /usr/lib/ocf/resource.d/<provider> ディレクトリにインストールにインストールしてください。この場合、 <provider> はプロジェクトの名前、または、リソースエージェントを識別したいなんらかの名前を入れてください。
+リソースエージェントを自分自身のプロジェクトに含めたい場合、正しい場所にそれをインストールしてください。リソースエージェントは、 /usr/lib/ocf/resource.d/&lt;provider&gt; ディレクトリにインストールにインストールしてください。この場合、 &lt;provider&gt; はプロジェクトの名前、または、リソースエージェントを識別したいなんらかの名前を入れてください。
 
 たとえば、 foobar リソースエージェントが、 fortytwo という名前のプロジェクトの一部としてパッケージされている場合、そのリソースエージェントへの正しい完全パスは /usr/lib/ocf/resource.d/fortytwo/foobar となります。この場合、リソースエージェントは、 0755 ( -rwxr-xr-x )アクセス権限ビットでインストールしてください。
 
@@ -1070,7 +1070,7 @@ Beginning tests for /home/johndoe/ra-dev/foobar...
 
 #### RPMパッケージング
 
-OCFリソースエージェントは 、<toppackage>-resource-agents という名前でRPMサブパッケージに入れてください。この場合、パッケージがそのプロバイダディレクトリを所有しており、上位 resource-agents パッケージ（ディレクトリ階層を設定し簡易shell関数を提供する）に依存していることを確認してください。以下にRPM仕様スニペットが示されています。
+OCFリソースエージェントは 、&lt;toppackage&gt;-resource-agents という名前でRPMサブパッケージに入れてください。この場合、パッケージがそのプロバイダディレクトリを所有しており、上位 resource-agents パッケージ（ディレクトリ階層を設定し簡易shell関数を提供する）に依存していることを確認してください。以下にRPM仕様スニペットが示されています。
 
 <table border="0" bgcolor="#e8e8e8" width="100%" style="margin:0.2em 0;"> <tr><td style="padding:0.5em;"><pre style="margin:0; padding:0;">%package resource-agents
 Summary: OCF resource agent for Foobar
@@ -1138,7 +1138,7 @@ hg add foobar
 cd ..</pre>
  </td></tr> </table>
 
-次に、 resource-agents/heartbeat で Makefile.am ファイルを編集し、新規リソースエージェントを ocf_SCRIPTS リストに追加してください。これにより、エージェントが正しくインストールされるようにします。最後に resource-agents/doc でMakefile.amを開き 、ocf_heartbeat_<name>.7 を man_MANS 変数に追加してください。これにより、リソースエージェントのマニュアルページが、そのメタデータから自動的に作成され、そのマニュアルページが正しい場所にインストールされます。
+次に、 resource-agents/heartbeat で Makefile.am ファイルを編集し、新規リソースエージェントを ocf_SCRIPTS リストに追加してください。これにより、エージェントが正しくインストールされるようにします。最後に resource-agents/doc でMakefile.amを開き 、ocf_heartbeat_&lt;name&gt;.7 を man_MANS 変数に追加してください。これにより、リソースエージェントのマニュアルページが、そのメタデータから自動的に作成され、そのマニュアルページが正しい場所にインストールされます。
 
 この作業が行われたら、パッチセットを更新することができます。
 

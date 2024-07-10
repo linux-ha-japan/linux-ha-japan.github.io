@@ -170,7 +170,7 @@ Pacemakerにはhb_reportというログ収集ツールが付属しています�
 -t ログ収集の終了時間を指定します。
 -u ユーザ名を指定します。デフォルトはrootです。
 -D レポートを作成する際にコメントをつけることができるのですが、この機能を無効にします。
--C 収集したログは、<dest>.tar.bz2に圧縮されますが、収集処理の途中に作成された一時ディレクトリを削除します。
+-C 収集したログは、&lt;dest&gt;.tar.bz2に圧縮されますが、収集処理の途中に作成された一時ディレクトリを削除します。
 
 例えば、13時20分から13時40分までのログを集めたい場合は、次にようなオプションをつけてhb_reportを実行します。
 <pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">hb_report -f 13:20:00 -t 13:40:00 -u root -D -C /tmp/hb_report</span></strong></span>
@@ -201,7 +201,7 @@ Pacemakerが停止している状態でもログを収集することができ�
 <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root      6538 2011-10-04 13:35:32 hb_report/description.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root       552 2011-10-04 13:35:26 hb_report/crm_mon.txt</span>
 <span style="font-family: verdana,geneva;"> drwxr-xr-x root/root         0 2011-10-04 13:35:32 hb_report/node01/</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx root/root         0 2011-10-04 13:35:31 hb_report/node01/ha.cf -> ../ha.cf</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx root/root         0 2011-10-04 13:35:31 hb_report/node01/ha.cf -&gt; ../ha.cf</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root     30561 2011-10-04 13:35:24 hb_report/node01/ha-log.txt</span>
 <span style="font-family: verdana,geneva;"> -rw------- root/root     18884 2011-10-04 13:35:27 hb_report/node01/<strong><span style="color: #ff00ff;">cib.xml</span></strong></span>
 <span style="font-family: verdana,geneva;">
@@ -327,7 +327,7 @@ crm_mon.txtをみるとhb_reportを実行したときのクラスタの状態が
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 <strong><span style="color: #ff00ff;">RUNNING</span></strong></span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1942 10月  4 13:35 cib.txt</span>
 <span style="font-family: verdana,geneva;"> -rw------- 1 root root 18884 10月  4 13:35 cib.xml</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 crm_mon.txt -> ../crm_mon.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 crm_mon.txt -&gt; ../crm_mon.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    96 10月  4 13:35 crm_verify.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 dlm_dump.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1770  9月  9 22:00 drbd.conf</span>
@@ -335,14 +335,14 @@ crm_mon.txtをみるとhb_reportを実行したときのクラスタの状態が
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   455 10月  4 13:35 events.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 30561 10月  4 13:35 ha-log.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    24 10月  4 13:35 ha-log.txt.info</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root     8 10月  4 13:36 ha.cf -> ../ha.cf</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root     8 10月  4 13:36 ha.cf -&gt; ../ha.cf</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    37 10月  4 13:35 hb_uuid.txt</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    12 10月  4 13:36 hostcache -> ../hostcache</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 members.txt -> ../members.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    12 10月  4 13:36 hostcache -&gt; ../hostcache</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 members.txt -&gt; ../members.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  3631 10月  4 13:35 messages</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    23 10月  4 13:35 messages.info</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    51 10月  4 13:35 permissions.txt</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 sysinfo.txt -> ../sysinfo.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 sysinfo.txt -&gt; ../sysinfo.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 43916 10月  4 13:35 sysstats.txt</span>
 <span style="font-family: verdana,geneva;">
  [root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node02</span></strong></span>
@@ -352,7 +352,7 @@ crm_mon.txtをみるとhb_reportを実行したときのクラスタの状態が
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 <span style="color: #ff00ff;"><strong>RUNNING</strong></span></span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1968 10月  4 13:35 cib.txt</span>
 <span style="font-family: verdana,geneva;"> -rw------- 1 root root 18960 10月  4 13:35 cib.xml</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 crm_mon.txt -> ../crm_mon.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 crm_mon.txt -&gt; ../crm_mon.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    97 10月  4 13:35 crm_verify.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 dlm_dump.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  1770  9月  9 22:00 drbd.conf</span>
@@ -360,15 +360,15 @@ crm_mon.txtをみるとhb_reportを実行したときのクラスタの状態が
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root   812 10月  4 13:35 events.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 94964 10月  4 13:35 ha-log.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    24 10月  4 13:35 ha-log.txt.info</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root     8 10月  4 13:36 ha.cf -> ../ha.cf</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root     8 10月  4 13:36 ha.cf -&gt; ../ha.cf</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    37 10月  4 13:35 hb_uuid.txt</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    12 10月  4 13:36 hostcache -> ../hostcache</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 members.txt -> ../members.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    12 10月  4 13:36 hostcache -&gt; ../hostcache</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 members.txt -&gt; ../members.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root  3255 10月  4 13:35 messages</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    23 10月  4 13:35 messages.info</span>
 <span style="font-family: verdana,geneva;"> drwxr-xr-x 2 root root  4096 10月  4 13:35 pengine</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root    51 10月  4 13:35 permissions.txt</span>
-<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 sysinfo.txt -> ../sysinfo.txt</span>
+<span style="font-family: verdana,geneva;"> lrwxrwxrwx 1 root root    14 10月  4 13:36 sysinfo.txt -&gt; ../sysinfo.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root 43138 10月  4 13:35 sysstats.txt</span></pre>
 
 

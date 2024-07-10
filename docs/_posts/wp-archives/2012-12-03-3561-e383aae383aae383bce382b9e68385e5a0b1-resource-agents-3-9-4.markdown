@@ -166,7 +166,7 @@ rgmanager RAにも<a href="https://github.com/ClusterLabs/resource-agents/commit
 
 sample_start() {
         ocf_log debug start
-        echo `date` > ${OCF_RESKEY_state}
+        echo `date` &gt; ${OCF_RESKEY_state}
         return $OCF_SUCCESS
 }
 

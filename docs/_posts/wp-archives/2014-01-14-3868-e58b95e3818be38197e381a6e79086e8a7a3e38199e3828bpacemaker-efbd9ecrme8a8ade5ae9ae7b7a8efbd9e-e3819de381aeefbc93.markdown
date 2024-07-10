@@ -119,7 +119,7 @@ Pacemakerは算出したスコア値を比較し、最も大きな値のノー�
 算出したスコア値が負の値場合、そのノードでそのリソースを起動することはできません。
 
 スコア値は以下の範囲のいずれかになります。
-**-INFINITY < 負の値 < 0 < 正の値 < INFINITY**
+**-INFINITY &lt; 負の値 &lt; 0 &lt; 正の値 &lt; INFINITY**
 
 「-INFINITY(マイナス無限大)」と「INFINITY(無限大)」は特殊な値で、前者は「禁止」、後者は「強制」を示します。
 それぞれ他の値との演算結果は以下のように[定義されています](http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/ch-constraints.html#s-scores-infinity)。
@@ -170,8 +170,8 @@ locationの概要と代表的な書式は以下のようになります。
 <tr>
 	<th>書式</th>
 	<td colspan="2">
-	location <制約のID> <リソースID> \
-	  rule <スコア値>: <ノード状態の評価式> [and|or <ノード状態の評価式>...] [\]
+	location &lt;制約のID&gt; &lt;リソースID&gt; \
+	  rule &lt;スコア値&gt;: &lt;ノード状態の評価式&gt; [and|or &lt;ノード状態の評価式&gt;...] [\]
 	  [rule ...]
 	</td>
 </tr>
@@ -195,21 +195,21 @@ locationの概要と代表的な書式は以下のようになります。
 	記法はそれぞれ以下のような形です。
 
 	<dl>
-	<dt><strong>#uname <演算子> <値></strong></dt>
-	<dd>ノード名と<値>を、<演算子>で比較・評価します。
+	<dt><strong>#uname &lt;演算子&gt; &lt;値&gt;</strong></dt>
+	<dd>ノード名と&lt;値&gt;を、&lt;演算子&gt;で比較・評価します。
 	「#uname」という記述はそのノードのノード名に展開され評価されます。
-	<値>には任意の英数字を比較対象として指定することができます。
+	&lt;値&gt;には任意の英数字を比較対象として指定することができます。
 	</dd>
-	<dt><strong><属性値名> <演算子> <値></strong></dt>
-	<dd><属性値名>で指定した属性値と<値>を、<演算子>で比較・評価します。
-	<値>には任意の英数字を比較対象として指定することができます。</dd>
-	<dt><strong>defined|not_defined <属性値名></strong></dt>
-	<dd><属性値名>で指定した属性値が定義されているかどうかを評価します。
+	<dt><strong>&lt;属性値名&gt; &lt;演算子&gt; &lt;値&gt;</strong></dt>
+	<dd>&lt;属性値名&gt;で指定した属性値と&lt;値&gt;を、&lt;演算子&gt;で比較・評価します。
+	&lt;値&gt;には任意の英数字を比較対象として指定することができます。</dd>
+	<dt><strong>defined|not_defined &lt;属性値名&gt;</strong></dt>
+	<dd>&lt;属性値名&gt;で指定した属性値が定義されているかどうかを評価します。
 	definedは当該属性値が定義されているときに真、not_definedは定義されていないときに真となります。</dd>
 	</dl>
 	<small>※日付も評価することができますが、ここでは説明を省略します。知りたい方は<a href="{{ site.lhajp_resources_url }}/wp-content/crm_cli.html#cmdhelp_configure_location">CRM-CLI公式マニュアル(日本語版)</a>参照をしてください。</small>
 
-	<strong><演算子></strong>には以下を使用することができます。
+	<strong>&lt;演算子&gt;</strong>には以下を使用することができます。
 	<ul>
 	<li>lt : 左辺が右辺より小さい場合に真となる</li>
 	<li>gt : 左辺が右辺より大きい場合に真となる</li>
@@ -275,7 +275,7 @@ colocationの概要と代表的な書式は以下のようになります。
 <tr>
 	<th>書式</th>
 	<td colspan="2">
-	colocation <制約のID> <スコア値>: <リソースID>[:<ロール>] <リソースID>[:<ロール>] [<リソースID>[:<ロール>]] ...
+	colocation &lt;制約のID&gt; &lt;スコア値&gt;: &lt;リソースID&gt;[:&lt;ロール&gt;] &lt;リソースID&gt;[:&lt;ロール&gt;] [&lt;リソースID&gt;[:&lt;ロール&gt;]] ...
 	</td>
 </tr>
 <tr>
@@ -293,7 +293,7 @@ colocationの概要と代表的な書式は以下のようになります。
 	<td>制約の対象となるリソースをリソースIDで指定します。
 	左側のリソース起動時に右側のリソースが同一ノードに存在することに対しスコア値を設定します。
 	リソースIDを記述する順序で意味合いが若干変わることに注意してください。
-	<small>なお、「:<ロール>」とロールを記述することもできます。ロールはmsコマンドでリソースを定義した場合に必要となる概念です。MasterやSlave等のリソース状態を指します。msコマンドについては今回の記事では対象としていないため詳細説明は省略します。</small></td>
+	<small>なお、「:&lt;ロール&gt;」とロールを記述することもできます。ロールはmsコマンドでリソースを定義した場合に必要となる概念です。MasterやSlave等のリソース状態を指します。msコマンドについては今回の記事では対象としていないため詳細説明は省略します。</small></td>
 </tr>
 </tbody>
 </table>
@@ -339,7 +339,7 @@ orderの概要と代表的な書式は以下のようになります。
 <tr>
 	<th>書式</th>
 	<td colspan="2">
-	order <制約のID> <スコア値>: <リソースID>[:<アクション>] <リソースID>[:<アクション>] ...
+	order &lt;制約のID&gt; &lt;スコア値&gt;: &lt;リソースID&gt;[:&lt;アクション&gt;] &lt;リソースID&gt;[:&lt;アクション&gt;] ...
       [symmetrical=true|false]
 	</td>
 </tr>
@@ -355,8 +355,8 @@ orderの概要と代表的な書式は以下のようになります。
 	0を指定すると、左側のリソースのアクション実行時以外の状態変化が右側のリソースに影響しません。(<a href="http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/ch06s03s02.html">Advisory Ordering</a>)
 	ちょっと難しい言い回しになりましたが、0とINFINITYを設定した場合、以下のようなイメージになると理解すればよいでしょう。
 	<ul>
-		<li>0       :<strong>なるべく</strong>、左→右の順に<アクション>する</li>
-		<li>INFINITY:<strong>絶対に</strong>、左→右の順に<アクション>しなければならない</li>
+		<li>0       :<strong>なるべく</strong>、左→右の順に&lt;アクション&gt;する</li>
+		<li>INFINITY:<strong>絶対に</strong>、左→右の順に&lt;アクション&gt;しなければならない</li>
 	</ul>
 	</td>
 </tr>
@@ -782,7 +782,7 @@ Mar 24 10:33:15 pm02 crmd[6453]:  notice: process_lrm_event: Operation resource1
 というものだったため、故障による状態変化に伴い、resource2およびresource3を一旦停止→起動という挙動になったためです。
 
 一方スコア値が0の場合のorder制約は
-「なるべく(=0)**resource1→resource2→resource3の順に起動/停止する」
+「**なるべく(=0)**resource1→resource2→resource3の順に起動/停止する」
 というものであり、故障による状態変化はresource2およびresource3には影響しませんでした。
 
 

@@ -287,21 +287,21 @@ man がインストールされていないときは、pengine の metadata か�
 
 
 **# /usr/lib64/heartbeat/pengine metadata **
-<parameter name="pe-error-series-max" unique="0">
-<shortdesc lang="en">The number of PE inputs resulting in ERRORs to save</shortdesc>
-<content type="integer" default="-1"/>
-<longdesc lang="en">Zero to disable, -1 to store unlimited.</longdesc>
-</parameter>
-<parameter name="pe-warn-series-max" unique="0">
-<shortdesc lang="en">The number of PE inputs resulting in WARNINGs to save</shortdesc>
-<content type="integer" default="-1"/>
-<longdesc lang="en">Zero to disable, -1 to store unlimited.</longdesc>
-</parameter>
-<parameter name="pe-input-series-max" unique="0">
-<shortdesc lang="en">The number of other PE inputs to save</shortdesc>
-<content type="integer" default="-1"/>
-<longdesc lang="en">Zero to disable, -1 to store unlimited.</longdesc>
-</parameter>
+&lt;parameter name="pe-error-series-max" unique="0"&gt;
+&lt;shortdesc lang="en"&gt;The number of PE inputs resulting in ERRORs to save&lt;/shortdesc&gt;
+&lt;content type="integer" default="-1"/&gt;
+&lt;longdesc lang="en"&gt;Zero to disable, -1 to store unlimited.&lt;/longdesc&gt;
+&lt;/parameter&gt;
+&lt;parameter name="pe-warn-series-max" unique="0"&gt;
+&lt;shortdesc lang="en"&gt;The number of PE inputs resulting in WARNINGs to save&lt;/shortdesc&gt;
+&lt;content type="integer" default="-1"/&gt;
+&lt;longdesc lang="en"&gt;Zero to disable, -1 to store unlimited.&lt;/longdesc&gt;
+&lt;/parameter&gt;
+&lt;parameter name="pe-input-series-max" unique="0"&gt;
+&lt;shortdesc lang="en"&gt;The number of other PE inputs to save&lt;/shortdesc&gt;
+&lt;content type="integer" default="-1"/&gt;
+&lt;longdesc lang="en"&gt;Zero to disable, -1 to store unlimited.&lt;/longdesc&gt;
+&lt;/parameter&gt;
 
 
 デフォルトは -1 なので、無制限にファイルがぼこぼこできちゃいます。

@@ -50,23 +50,23 @@ tags:
 
 設定例)
 <pre>
-<resources>
- <primitive class="ocf" id="A" provider="pacemaker" type="Dummy"/>
- <primitive class="ocf" id="B" provider="pacemaker" type="Dummy">
- <primitive class="ocf" id="C" provider="pacemaker" type="Dummy"/>
-</resources>
+&lt;resources&gt;
+ &lt;primitive class="ocf" id="A" provider="pacemaker" type="Dummy"/&gt;
+ &lt;primitive class="ocf" id="B" provider="pacemaker" type="Dummy"&gt;
+ &lt;primitive class="ocf" id="C" provider="pacemaker" type="Dummy"/&gt;
+&lt;/resources&gt;
 
-<constraints>
- <rsc_order id="order01">
-   <resource_set id="require-all-set-1" sequential="false" require-all="false">
-     <resource_ref id="A"/>
-     <resource_ref id="B"/>
-   </resource_set>
-   <resource_set id="require-all-set-2">
-     <resource_ref id="C"/>
-   </resource_set>
-  </rsc_order>
-</constraints>
+&lt;constraints&gt;
+ &lt;rsc_order id="order01"&gt;
+   &lt;resource_set id="require-all-set-1" sequential="false" require-all="false"&gt;
+     &lt;resource_ref id="A"/&gt;
+     &lt;resource_ref id="B"/&gt;
+   &lt;/resource_set&gt;
+   &lt;resource_set id="require-all-set-2"&gt;
+     &lt;resource_ref id="C"/&gt;
+   &lt;/resource_set&gt;
+  &lt;/rsc_order&gt;
+&lt;/constraints&gt;
 </pre>
 
 
@@ -83,49 +83,49 @@ STONITHの設定にfencing-topologyというパラメータが追加されまし
 
 設定例）
 <pre>
-<resources>
- <primitive class="stonith" id="ssh01" type="external/ssh">
-  <instance_attributes id="attr01">
-   <nvpair id="hostlist01" name="hostlist" value="node-a"/>
-  </instance_attributes>
-  <operations>
-   <op id="ssh01-start-0s" interval="0s" name="start" timeout="60s"/>
-   <op id="ssh01-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/>
-   <op id="ssh01-stop-0s" interval="0s" name="stop" timeout="60s"/>
-  </operations>
- </primitive>
+&lt;resources&gt;
+ &lt;primitive class="stonith" id="ssh01" type="external/ssh"&gt;
+  &lt;instance_attributes id="attr01"&gt;
+   &lt;nvpair id="hostlist01" name="hostlist" value="node-a"/&gt;
+  &lt;/instance_attributes&gt;
+  &lt;operations&gt;
+   &lt;op id="ssh01-start-0s" interval="0s" name="start" timeout="60s"/&gt;
+   &lt;op id="ssh01-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/&gt;
+   &lt;op id="ssh01-stop-0s" interval="0s" name="stop" timeout="60s"/&gt;
+  &lt;/operations&gt;
+ &lt;/primitive&gt;
 
- <primitive class="stonith" id="ssh02" type="external/ssh">
-  <instance_attributes id="attr02">
-   <nvpair id="hostlist02" name="hostlist" value="node-b"/>
-  </instance_attributes>
-  <operations>
-   <op id="ssh02-start-0s" interval="0s" name="start" timeout="60s"/>
-   <op id="ssh02-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/>
-   <op id="ssh02-stop-0s" interval="0s" name="stop" timeout="60s"/>
-  </operations>
- </primitive>
+ &lt;primitive class="stonith" id="ssh02" type="external/ssh"&gt;
+  &lt;instance_attributes id="attr02"&gt;
+   &lt;nvpair id="hostlist02" name="hostlist" value="node-b"/&gt;
+  &lt;/instance_attributes&gt;
+  &lt;operations&gt;
+   &lt;op id="ssh02-start-0s" interval="0s" name="start" timeout="60s"/&gt;
+   &lt;op id="ssh02-monitor-3600s" interval="3600s" name="monitor" timeout="60s"/&gt;
+   &lt;op id="ssh02-stop-0s" interval="0s" name="stop" timeout="60s"/&gt;
+  &lt;/operations&gt;
+ &lt;/primitive&gt;
 
-</resources>
+&lt;/resources&gt;
 
-<constraints>
- <rsc_location id="loc01" rsc="ssh01">
-  <rule id="loc01-rule" score="-INFINITY">
-   <expression attribute="#uname" id="loc01-expression" operation="eq" value="node-a"/>
-  </rule>
- </rsc_location>
+&lt;constraints&gt;
+ &lt;rsc_location id="loc01" rsc="ssh01"&gt;
+  &lt;rule id="loc01-rule" score="-INFINITY"&gt;
+   &lt;expression attribute="#uname" id="loc01-expression" operation="eq" value="node-a"/&gt;
+  &lt;/rule&gt;
+ &lt;/rsc_location&gt;
 
- <rsc_location id="loc02" rsc="ssh02">
-  <rule id="loc02-rule" score="-INFINITY">
-   <expression attribute="#uname" id="loc02-expression" operation="eq" value="node-b"/>
-  </rule>
- </rsc_location>
-</constraints>
+ &lt;rsc_location id="loc02" rsc="ssh02"&gt;
+  &lt;rule id="loc02-rule" score="-INFINITY"&gt;
+   &lt;expression attribute="#uname" id="loc02-expression" operation="eq" value="node-b"/&gt;
+  &lt;/rule&gt;
+ &lt;/rsc_location&gt;
+&lt;/constraints&gt;
 
-<fencing-topology>
- <fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/>
- <fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/>
-</fencing-topology>
+&lt;fencing-topology&gt;
+ &lt;fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/&gt;
+ &lt;fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/&gt;
+&lt;/fencing-topology&gt;
 </pre>
 
 
@@ -157,12 +157,12 @@ fencing-topologyタグには、さらにfencing-levelタグを追加して、id�
 
 今回はsshプラグインしか設定しませんでしたが、sshとipmiを設定する場合はこんな感じになります。
 <pre>
-<fencing-topology>
- <fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/>
- <fencing-level id="stonith01-2" target="node-a" index="2" devices="ipmi01"/>
- <fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/>
- <fencing-level id="stonith02-2" target="node-b" index="2" devices="ipmi02"/>
-</fencing-topology>
+&lt;fencing-topology&gt;
+ &lt;fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/&gt;
+ &lt;fencing-level id="stonith01-2" target="node-a" index="2" devices="ipmi01"/&gt;
+ &lt;fencing-level id="stonith02-1" target="node-b" index="1" devices="ssh02"/&gt;
+ &lt;fencing-level id="stonith02-2" target="node-b" index="2" devices="ipmi02"/&gt;
+&lt;/fencing-topology&gt;
 </pre>
 
 
