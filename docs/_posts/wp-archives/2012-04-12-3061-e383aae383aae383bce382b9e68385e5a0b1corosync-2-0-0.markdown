@@ -22,19 +22,19 @@ tags:
 
 
 <blockquote>
-[corosync] Announcing Corosync 2.0.0
-
-I am pleased to announce Corosync (Needle) 2.0.0 availability.
-A tarball is available immediately from our website at
-http://www.corosync.org.
+[corosync] Announcing Corosync 2.0.0<br>
+<br>
+I am pleased to announce Corosync (Needle) 2.0.0 availability.<br>
+A tarball is available immediately from our website at<br>
+http://www.corosync.org.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Corosync (Needle) 2.0.0がリリースされました。
-ソースコードは　Corosync のサイトからダウンロードすることができます。
+Corosync (Needle) 2.0.0がリリースされました。<br>
+ソースコードは　Corosync のサイトからダウンロードすることができます。<br>
 <a href="http://www.corosync.org" target="_blank">http://www.corosync.org</a>
 </blockquote>
 
@@ -43,17 +43,17 @@ Corosync (Needle) 2.0.0がリリースされました。
 
 
 <blockquote>
-The overall objective for the needle series is to simplify and refine 
-the code base to provide an enhanced user experience.  As part of this 
-objective, the Corosync team has decided to focus on a smaller amount of 
-well tested features.
+The overall objective for the needle series is to simplify and refine <br>
+the code base to provide an enhanced user experience.  As part of this <br>
+objective, the Corosync team has decided to focus on a smaller amount of <br>
+well tested features.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Corosync 2.x系をリリースするにあたり、ユーザからのフィードバックを反映して、シンプルかつ洗練されたコードへ改良することを大きな目標としました。また、開発チームが厳選し、十分にテストを実施した新機能もいくつか取り込まれています。
+Corosync 2.x系をリリースするにあたり、ユーザからのフィードバックを反映して、シンプルかつ洗練されたコードへ改良することを大きな目標としました。また、開発チームが厳選し、十分にテストを実施した新機能もいくつか取り込まれています。<br>
 </blockquote>
 
 
@@ -61,14 +61,14 @@ Corosync 2.x系をリリースするにあたり、ユーザからのフィー�
 
 
 <blockquote>
-Major changes and improvements:
+Major changes and improvements:<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-主な変更点と改良点は以下のとおりです。
+主な変更点と改良点は以下のとおりです。<br>
 </blockquote>
 
 
@@ -130,18 +130,18 @@ Major changes and improvements:
 
 
 <blockquote>
-On-wire Compatibility
----------------------
-Corosync 2.x is NOT compatible with previous versions of Corosync (1.3/1.4).
-Please make sure to upgrade all nodes at once.
+On-wire Compatibility<br>
+---------------------<br>
+Corosync 2.x is NOT compatible with previous versions of Corosync (1.3/1.4).<br>
+Please make sure to upgrade all nodes at once.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Corosync 2.x系は、Corosync 1.3/1.4系と互換性がありません。
-バージョンアップをする場合は、クラスタに含まれる全てのノードをアップデートしてください。
+Corosync 2.x系は、Corosync 1.3/1.4系と互換性がありません。<br>
+バージョンアップをする場合は、クラスタに含まれる全てのノードをアップデートしてください。<br>
 </blockquote>
 
 
@@ -149,16 +149,16 @@ Corosync 2.x系は、Corosync 1.3/1.4系と互換性がありません。
 
 
 <blockquote>
-If need arise to run multiple Corosync cluster (in different versions) 
-on the same network, please make sure to tweak multicast address and 
-ports (or use udpu) to avoid overlaps.
+If need arise to run multiple Corosync cluster (in different versions) <br>
+on the same network, please make sure to tweak multicast address and <br>
+ports (or use udpu) to avoid overlaps.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-例えば、Corosync 1.3系のノードを二つ含むクラスタA、Corosync 2.x系のノードを二つ含むクラスタB、これら二つのクラスタを同一ネットワーク内で起動させたい場合は、クラスタ内の通信にはマルチキャストアドレスと特定ポート(もしくはUDPユニキャスト)を設定してクラスタ間で通信が混乱しないように注意してください。
+例えば、Corosync 1.3系のノードを二つ含むクラスタA、Corosync 2.x系のノードを二つ含むクラスタB、これら二つのクラスタを同一ネットワーク内で起動させたい場合は、クラスタ内の通信にはマルチキャストアドレスと特定ポート(もしくはUDPユニキャスト)を設定してクラスタ間で通信が混乱しないように注意してください。<br>
 </blockquote>
 
 
@@ -166,20 +166,20 @@ ports (or use udpu) to avoid overlaps.
 
 
 <blockquote>
-General
--------
-- Nearly all man pages have been updated.
-- Integrate test suite into code base.
-- Improved code portability to different platforms such as Solaris and BSD.
+General<br>
+-------<br>
+- Nearly all man pages have been updated.<br>
+- Integrate test suite into code base.<br>
+- Improved code portability to different platforms such as Solaris and BSD.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-- <a href="https://github.com/corosync/corosync/tree/master/man" target="_blank">manページ</a>が大幅に更新されています。
-- テストツールが統合されました。
-- SolarisやBSDへの移植性を考慮してコードを改良しました。
+- <a href="https://github.com/corosync/corosync/tree/master/man" target="_blank">manページ</a>が大幅に更新されています。<br>
+- テストツールが統合されました。<br>
+- SolarisやBSDへの移植性を考慮してコードを改良しました。<br>
 </blockquote>
 
 
@@ -187,21 +187,21 @@ General
 
 
 <blockquote>
-Encyrption & Authentication rework
-----------------------------------
-- Consolidate the crypto infrastructure around nss library.
-This has the advantage of a large user base of FIPS certified encrytpion 
-and authentication but requires a hard b build requirement on the NSS 
-library if security is required in the deployment.
+Encyrption & Authentication rework<br>
+----------------------------------<br>
+- Consolidate the crypto infrastructure around nss library.<br>
+This has the advantage of a large user base of FIPS certified encrytpion <br>
+and authentication but requires a hard b build requirement on the NSS <br>
+library if security is required in the deployment.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-暗号化と認証の仕組みを改良しました。
-nssライブラリ関連の暗号機構を強化しています。
-FIPS(Federal Information Processing Standardization)に準拠した暗号化と認証の仕組みを利用しているユーザには利点がありますが、実行環境でnssライブラリが必須となります。
+暗号化と認証の仕組みを改良しました。<br>
+nssライブラリ関連の暗号機構を強化しています。<br>
+FIPS(Federal Information Processing Standardization)に準拠した暗号化と認証の仕組みを利用しているユーザには利点がありますが、実行環境でnssライブラリが必須となります。<br>
 </blockquote>
 
 
@@ -209,28 +209,28 @@ FIPS(Federal Information Processing Standardization)に準拠した暗号化と�
 
 
 <blockquote>
-New quorum infrastructure
--------------------------
-- Votequorum has been significantly reworked to match the functionality
-   of its predecessor (CMAN) and to add new features such as
-   auto_tie_breaker, wait_for_all and last_man_standing.
-- See votequorum.5 man page for details.
+New quorum infrastructure<br>
+-------------------------<br>
+- Votequorum has been significantly reworked to match the functionality<br>
+   of its predecessor (CMAN) and to add new features such as<br>
+   auto_tie_breaker, wait_for_all and last_man_standing.<br>
+- See votequorum.5 man page for details.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-votequorum関連のコードを大幅に改良しました。
-votequorumは、以前のバージョンで使用していたCMANと同様のクォーラム機能を提供します。
-
-さらに、次の機能が新たに追加されました。
- 
- - auto_tie_breaker
- - wait_for_all
- - last_man_standing
-
-詳細は<a href="https://github.com/corosync/corosync/blob/master/man/votequorum.5" target="_blank">manページ(votequorum.5)</a>を参照してください。
+votequorum関連のコードを大幅に改良しました。<br>
+votequorumは、以前のバージョンで使用していたCMANと同様のクォーラム機能を提供します。<br>
+<br>
+さらに、次の機能が新たに追加されました。<br>
+ <br>
+ - auto_tie_breaker<br>
+ - wait_for_all<br>
+ - last_man_standing<br>
+<br>
+詳細は<a href="https://github.com/corosync/corosync/blob/master/man/votequorum.5" target="_blank">manページ(votequorum.5)</a>を参照してください。<br>
 </blockquote>
 
 
@@ -247,21 +247,21 @@ votequorumは、以前のバージョンで使用していたCMANと同様のク
 
 
 <blockquote>
-Migrate to libqb (https://github.com/asalkeld/libqb/wiki)
----------------------------------------------------------
-libqb provides a common framework for IPC/logging and other 
-server/client oriented functionalities The libqb library provides a well 
-tested poll/ipc/logging library that is also used by other parts of the 
-cluster stack. One nice advantage of libqb is its extensive built-in 
-test suite which Corosync was lacking previously for these features.
+Migrate to libqb (https://github.com/asalkeld/libqb/wiki)<br>
+---------------------------------------------------------<br>
+libqb provides a common framework for IPC/logging and other <br>
+server/client oriented functionalities The libqb library provides a well <br>
+tested poll/ipc/logging library that is also used by other parts of the <br>
+cluster stack. One nice advantage of libqb is its extensive built-in <br>
+test suite which Corosync was lacking previously for these features.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-ポーリング機能や、IPC(プロセス間通信)、ロギングなどの実装にあたり、libqbというライブラリを採用しました。
-libqbは豊富なテストツールを備えており、Corosyncの品質向上にもつながるはずです。
+ポーリング機能や、IPC(プロセス間通信)、ロギングなどの実装にあたり、libqbというライブラリを採用しました。<br>
+libqbは豊富なテストツールを備えており、Corosyncの品質向上にもつながるはずです。<br>
 </blockquote>
 
 
@@ -269,19 +269,19 @@ libqbは豊富なテストツールを備えており、Corosyncの品質向上�
 
 
 <blockquote>
-Plugins infrastructure removed
-------------------------------
-The plugin infrastructure was problematic and has been removed. If a 
-community user previously had a proprietary plugin, the Corosync 
-developers suggest porting that plugin to CPG.
+Plugins infrastructure removed<br>
+------------------------------<br>
+The plugin infrastructure was problematic and has been removed. If a <br>
+community user previously had a proprietary plugin, the Corosync <br>
+developers suggest porting that plugin to CPG.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-プラグイン機能は削除しました。
-以前のバージョンで独自のプラグインを使用していた場合はCPGへ移行することをお勧めします。
+プラグイン機能は削除しました。<br>
+以前のバージョンで独自のプラグインを使用していた場合はCPGへ移行することをお勧めします。<br>
 </blockquote>
 
 
@@ -289,18 +289,18 @@ developers suggest porting that plugin to CPG.
 
 
 <blockquote>
-OBJDB/CONFDB replaced by ICMAP/CMAP
------------------------------------
-The new cmap provides a high performance in-memory map for applications. 
-The map also provides configuration data for Corosync.
+OBJDB/CONFDB replaced by ICMAP/CMAP<br>
+-----------------------------------<br>
+The new cmap provides a high performance in-memory map for applications. <br>
+The map also provides configuration data for Corosync.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-OBJDB/CONFDBがICMAP/CMAPへ置き換えられました。
-CMAPを使用することによってパフォーマンスが向上しています。
+OBJDB/CONFDBがICMAP/CMAPへ置き換えられました。<br>
+CMAPを使用することによってパフォーマンスが向上しています。<br>
 </blockquote>
 
 
@@ -325,17 +325,17 @@ CMAPは設定ファイルのパラメータとか実行時のステータスと�
 
 
 <blockquote>
-Service cleanup
----------------
-Our simplification objective results in the removal or rework of a few 
-unused services.
+Service cleanup<br>
+---------------<br>
+Our simplification objective results in the removal or rework of a few <br>
+unused services.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-使用されていないサービスを削除しました。
+使用されていないサービスを削除しました。<br>
 </blockquote>
 
 
@@ -343,18 +343,18 @@ unused services.
 
 
 <blockquote>
-- EVS (removed)
-
-The  EVS service did not have significant user base and was only 
-partially implemented.  Users of EVS are advised to use CPG instead.
+- EVS (removed)<br>
+<br>
+The  EVS service did not have significant user base and was only <br>
+partially implemented.  Users of EVS are advised to use CPG instead.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-EVSを削除しました。
-プラグイン機能と同様、CPGへ移行することをお勧めします。
+EVSを削除しました。<br>
+プラグイン機能と同様、CPGへ移行することをお勧めします。<br>
 </blockquote>
 
 
@@ -367,18 +367,18 @@ EVSを削除しました。
 
 
 <blockquote>
-- PLOAD (major cleanup)
-
-PLOAD is a test-only service. It is now loaded only on demand and 
-treated as test service.
+- PLOAD (major cleanup)<br>
+<br>
+PLOAD is a test-only service. It is now loaded only on demand and <br>
+treated as test service.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-PLOADの大幅な見直しを行いました。
-PLOADはテスト用のトラフィックを生成するためのツールです。
+PLOADの大幅な見直しを行いました。<br>
+PLOADはテスト用のトラフィックを生成するためのツールです。<br>
 </blockquote>
 
 
@@ -387,8 +387,8 @@ PLOADはテスト用のトラフィックを生成するためのツールです
 
 
 <blockquote>
-This is used as a test tool to generate traffic. 
-All nodes will begin transmitting messages and they will stop when 1500000 messages have been received per node.
+This is used as a test tool to generate traffic. <br>
+All nodes will begin transmitting messages and they will stop when 1500000 messages have been received per node.<br>
 </blockquote>
 
 
@@ -405,15 +405,15 @@ All nodes will begin transmitting messages and they will stop when 1500000 messa
 
 
 <blockquote>
-My sincere thanks and congratulations to all those that contributed to
-the release of Corosync 2.0.
+My sincere thanks and congratulations to all those that contributed to<br>
+the release of Corosync 2.0.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Corosync 2.0のリリースに際しご協力いただいた皆様、ありがとうございました。
+Corosync 2.0のリリースに際しご協力いただいた皆様、ありがとうございました。<br>
 </blockquote>
 
 
@@ -433,40 +433,40 @@ Heartbeat 3.0系は送信可能なメッセージサイズの上限があるの�
 
 
 <blockquote>
-Corosync 1.0.0がリリースされた数週間後、開発チームは Corosync 2.0.0のリリースに向けて打合せを行ったのですが、その打合せで「Corosync の実装は複雑すぎる」という点が議論されました。
-つまり、スレッドやらセマフォやらミューテックスやらプロトコルやらプラグインやら、他にも使ってないサービスがあれこれあるし、互換性の問題とか暗号化の仕組みとか、もういろいろあって、なんじゃこりゃ！というのが正直な気持ちなわけです。
-開発チームは、総力をあげて実装を進めてきたつもりだし、開発に協力してくれたコミュニティのメンバもたくさんいたんですけどね。
-打ち合わせの結果、OpenAISからCorosyncへ移行したときと同じように、いいところは今のまま残しつつ、イマイチなところは思い切って切り捨てることにしました。
-
-つまり、
-
-マルチスレッドはもうやめちゃおう！
-互換性なんて気にしない！
-プラグインもいらないや！
-サポートされてない暗号化エンジンも捨てちゃえ！
-使ってないゴミみたいなコードも消しちゃおう！
-
-ということです。
-
-そして、Corosync 2.0.0の開発がはじまってすぐ後に、Angus Salkeldが素敵なアイデアを持ってきてくれました。
-それは、IPC、ロギング、タイマー、ポーリング、共有メモリ、その他いろいろな実装に関連するライブラリのアイデアだったのですが、そのライブラリはlibqbという新しいプロジェクトで開発されることになり、Corosyncもlibqbを使用することになりました。
-libqbの素晴らしいところは、テストツールも同梱しているところです。
-libqbのテストを十分に行うことによって、Corosyncの品質も保証されることになります。
-コードもかなりシンプルになりました。
-Coorsync本体のコードでは、プロトコル関連のAPIをかなり改良しています。
-
-Corosync 2.0.0は、開発チーム、そしてユーザの協力なしにはリリースできなかったことでしょう。
-特に、リリース関連の作業で素晴らしいリーダーシップを発揮してくれた Jan Friesse、
-libqbの開発を通してCorosyncの品質向上に貢献してくれた Angus Salkeld、
-Corosync本体のコードを見直してくれた Fabio Di Nitto
-(Fabioは、クォーラム周りのコードもかなり改良してくれています)、
-この三人がいなければ、今回のリリースは難しかったかもしれません。
-他にもたくさんの人たちの協力によって 無事Corosync 2.0.0をリリースすることができました。
-皆さん、本当にありがとう。
-
-そして、開発者の皆さん、お疲れ様でした！
-18ヶ月前の打ち合わせで設定した目標どおり、シンプルで高品質のパッケージをリリースすることができました。
-
-Corosync 2.0.0は Corosync の<a href="http://www.corosync.org" target="_blank">サイト</a>からダウンロードすることができます。
-各ディストリビューションのリリースにあわせて、それぞれのリポジトリにも最新版のパッケージが取り込まれる予定です。
+Corosync 1.0.0がリリースされた数週間後、開発チームは Corosync 2.0.0のリリースに向けて打合せを行ったのですが、その打合せで「Corosync の実装は複雑すぎる」という点が議論されました。<br>
+つまり、スレッドやらセマフォやらミューテックスやらプロトコルやらプラグインやら、他にも使ってないサービスがあれこれあるし、互換性の問題とか暗号化の仕組みとか、もういろいろあって、なんじゃこりゃ！というのが正直な気持ちなわけです。<br>
+開発チームは、総力をあげて実装を進めてきたつもりだし、開発に協力してくれたコミュニティのメンバもたくさんいたんですけどね。<br>
+打ち合わせの結果、OpenAISからCorosyncへ移行したときと同じように、いいところは今のまま残しつつ、イマイチなところは思い切って切り捨てることにしました。<br>
+<br>
+つまり、<br>
+<br>
+マルチスレッドはもうやめちゃおう！<br>
+互換性なんて気にしない！<br>
+プラグインもいらないや！<br>
+サポートされてない暗号化エンジンも捨てちゃえ！<br>
+使ってないゴミみたいなコードも消しちゃおう！<br>
+<br>
+ということです。<br>
+<br>
+そして、Corosync 2.0.0の開発がはじまってすぐ後に、Angus Salkeldが素敵なアイデアを持ってきてくれました。<br>
+それは、IPC、ロギング、タイマー、ポーリング、共有メモリ、その他いろいろな実装に関連するライブラリのアイデアだったのですが、そのライブラリはlibqbという新しいプロジェクトで開発されることになり、Corosyncもlibqbを使用することになりました。<br>
+libqbの素晴らしいところは、テストツールも同梱しているところです。<br>
+libqbのテストを十分に行うことによって、Corosyncの品質も保証されることになります。<br>
+コードもかなりシンプルになりました。<br>
+Coorsync本体のコードでは、プロトコル関連のAPIをかなり改良しています。<br>
+<br>
+Corosync 2.0.0は、開発チーム、そしてユーザの協力なしにはリリースできなかったことでしょう。<br>
+特に、リリース関連の作業で素晴らしいリーダーシップを発揮してくれた Jan Friesse、<br>
+libqbの開発を通してCorosyncの品質向上に貢献してくれた Angus Salkeld、<br>
+Corosync本体のコードを見直してくれた Fabio Di Nitto<br>
+(Fabioは、クォーラム周りのコードもかなり改良してくれています)、<br>
+この三人がいなければ、今回のリリースは難しかったかもしれません。<br>
+他にもたくさんの人たちの協力によって 無事Corosync 2.0.0をリリースすることができました。<br>
+皆さん、本当にありがとう。<br>
+<br>
+そして、開発者の皆さん、お疲れ様でした！<br>
+18ヶ月前の打ち合わせで設定した目標どおり、シンプルで高品質のパッケージをリリースすることができました。<br>
+<br>
+Corosync 2.0.0は Corosync の<a href="http://www.corosync.org" target="_blank">サイト</a>からダウンロードすることができます。<br>
+各ディストリビューションのリリースにあわせて、それぞれのリポジトリにも最新版のパッケージが取り込まれる予定です。<br>
 </blockquote>

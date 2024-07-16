@@ -17,65 +17,65 @@ tags:
 
 
 <blockquote>
-Hi,
-LCMC (Linux Cluster Management Console) 1.4.0 is out now.
-Lately we get two of everything around Pacemaker, but there's still only one Java client GUI and this is what people actually need, I think.
+Hi,<br>
+LCMC (Linux Cluster Management Console) 1.4.0 is out now.<br>
+Lately we get two of everything around Pacemaker, but there's still only one Java client GUI and this is what people actually need, I think.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-LCMC (Linux Cluster Management Console) 1.4.0 がリリースされました。
-Pacemakerの設定管理ツールは他にもいくつか開発が進められていますが、LCMCは唯一のJavaクライアントGUIであり、きっとこれを必要としている人達がいるはず、と私は信じています。
+LCMC (Linux Cluster Management Console) 1.4.0 がリリースされました。<br>
+Pacemakerの設定管理ツールは他にもいくつか開発が進められていますが、LCMCは唯一のJavaクライアントGUIであり、きっとこれを必要としている人達がいるはず、と私は信じています。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-You are going to need this update if you're using/going to use Pacemaker 1.1.8.
+You are going to need this update if you're using/going to use Pacemaker 1.1.8.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Pacemaker 1.1.8を使用している場合、もしくは1.1.8にアップデートしようとしている場合は、LCMCも最新版にアップデートしてください。
+Pacemaker 1.1.8を使用している場合、もしくは1.1.8にアップデートしようとしている場合は、LCMCも最新版にアップデートしてください。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-One nice new feature is that now you can copy and paste configured services with ctrl-c and ctrl-v, which makes it easier to configure many similar services. You can even copy configurations between clusters, (without constraints at the moment).
-There are some noticeable performance improvements as well.
+One nice new feature is that now you can copy and paste configured services with ctrl-c and ctrl-v, which makes it easier to configure many similar services. You can even copy configurations between clusters, (without constraints at the moment).<br>
+There are some noticeable performance improvements as well.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-今回のリリースには、「ctrl-c」「ctrl-v」によって、設定をコピー＆ペーストする新機能が追加されました。似たような設定項目がたくさんある環境ではとても便利です。クラスタ間で設定をコピーすることもできます。(ただし制約関連の設定はコピーできません)
-また、パフォーマンスも大きく改善されました。
+今回のリリースには、「ctrl-c」「ctrl-v」によって、設定をコピー＆ペーストする新機能が追加されました。似たような設定項目がたくさんある環境ではとても便利です。クラスタ間で設定をコピーすることもできます。(ただし制約関連の設定はコピーできません)<br>
+また、パフォーマンスも大きく改善されました。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-LCMC web page:http://lcmc.sf.net
-What is LCMC:
-The Linux Cluster Management Console allows you to configure and manage HA clusters with Pacemaker and popular cluster software like DRBD or libvirt and their interconnectivity from your computer using SSH.
+LCMC web page:http://lcmc.sf.net<br>
+What is LCMC:<br>
+The Linux Cluster Management Console allows you to configure and manage HA clusters with Pacemaker and popular cluster software like DRBD or libvirt and their interconnectivity from your computer using SSH.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-LCMC(Linux Cluster Management Console)とは      (<a href="http://lcmc.sf.net" target="_blank">ウェブサイト</a>)
-
-LCMCはPacemakerによって構築されたクラスタ環境へsshで接続し、クラスタの設定や管理を行うためのGUIです。PacemakerだけではなくDRBDやlibvirtなど、関連するソフトウェアの設定や管理を行う事もできます。
+LCMC(Linux Cluster Management Console)とは      (<a href="http://lcmc.sf.net" target="_blank">ウェブサイト</a>)<br>
+<br>
+LCMCはPacemakerによって構築されたクラスタ環境へsshで接続し、クラスタの設定や管理を行うためのGUIです。PacemakerだけではなくDRBDやlibvirtなど、関連するソフトウェアの設定や管理を行う事もできます。<br>
 </blockquote>
 
 

@@ -18,20 +18,20 @@ tags:
 
 
 <blockquote>
-Hello,
-The CRM shell v1.2.1 is released.
-The highlights of the release:
+Hello,<br>
+The CRM shell v1.2.1 is released.<br>
+The highlights of the release:<br>
 <ul>
-<li>history: add the exclude (log messages) command
+<li>history: add the exclude (log messages) command<br>
 </li>
-<li>pacemaker 1.1.8 compatibility code
+<li>pacemaker 1.1.8 compatibility code<br>
 </li>
 </ul>
-There are two important bug fixes:
+There are two important bug fixes:<br>
 <ul>
-<li>cibconfig: repair edit for non-vi users
+<li>cibconfig: repair edit for non-vi users<br>
 </li>
-<li>cibconfig: update schema separately (don't remove the status section)
+<li>cibconfig: update schema separately (don't remove the status section)<br>
 </li>
 </ul>
 </blockquote>
@@ -40,20 +40,20 @@ There are two important bug fixes:
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-
-CRM shell の最新版である v1.2.1 をリリースします。
-今回のリリースに含まれる大きな変更点は下記二点です。
+<br>
+CRM shell の最新版である v1.2.1 をリリースします。<br>
+今回のリリースに含まれる大きな変更点は下記二点です。<br>
 <ul>
-<li>exclude コマンドが追加されました。ログを出力する際に、Pythonの正規表現を適用させて不要なログを排除することができます。
+<li>exclude コマンドが追加されました。ログを出力する際に、Pythonの正規表現を適用させて不要なログを排除することができます。<br>
 </li>
-<li>Pacemaker 1.1.8に対応しました。
+<li>Pacemaker 1.1.8に対応しました。<br>
 </li>
 </ul>
-またバグもいくつか修正しました。
+またバグもいくつか修正しました。<br>
 <ul>
-<li>cibconfig の edit コマンドj実行時に vi 以外のエディタを使用していた場合の不具合を修正しました。
+<li>cibconfig の edit コマンドj実行時に vi 以外のエディタを使用していた場合の不具合を修正しました。<br>
 </li>
-<li>cibconfig の schema コマンド実行時に status セクションが削除されないよう修正しました。
+<li>cibconfig の schema コマンド実行時に status セクションが削除されないよう修正しました。<br>
 </li>
 </ul>
 </blockquote>
@@ -63,14 +63,14 @@ CRM shell の最新版である v1.2.1 をリリースします。
 
 
 <blockquote>
-For the full set of changes, take a look at the changelog: http://hg.savannah.gnu.org/hgweb/crmsh/file/b6bb311c7bd3/ChangeLog
+For the full set of changes, take a look at the changelog: http://hg.savannah.gnu.org/hgweb/crmsh/file/b6bb311c7bd3/ChangeLog<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-全ての変更履歴については<a href="http://hg.savannah.gnu.org/hgweb/crmsh/file/b6bb311c7bd3/ChangeLog" target="_blank">チェンジログ</a>を参照してください。
+全ての変更履歴については<a href="http://hg.savannah.gnu.org/hgweb/crmsh/file/b6bb311c7bd3/ChangeLog" target="_blank">チェンジログ</a>を参照してください。<br>
 </blockquote>
 
 
@@ -78,17 +78,17 @@ For the full set of changes, take a look at the changelog: http://hg.savannah.gn
 
 
 <blockquote>
-== Note about Pacemaker versions ==
-CRM shell 1.2.1 supports all Pacemaker 1.1 versions. The history feature is unfortunately not as well supported with version 1.1.8.
+== Note about Pacemaker versions ==<br>
+CRM shell 1.2.1 supports all Pacemaker 1.1 versions. The history feature is unfortunately not as well supported with version 1.1.8.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-== Pacemaker との互換性について ==
-CRM shell 1.2.1 は Pacemaker 1.1系をサポートしています。
-ただし、history コマンドは Pacemaker 1.1.8 に対応していません。
+== Pacemaker との互換性について ==<br>
+CRM shell 1.2.1 は Pacemaker 1.1系をサポートしています。<br>
+ただし、history コマンドは Pacemaker 1.1.8 に対応していません。<br>
 </blockquote>
 
 
@@ -96,18 +96,18 @@ CRM shell 1.2.1 は Pacemaker 1.1系をサポートしています。
 
 
 <blockquote>
-== Installing ==
-Installing the CRM shell along with Pacemaker 1.1 versions &lt;=v1.1.7 is possible, but it will result in file conflicts. 
-You need to enforce file overwriting when installing packages.
+== Installing ==<br>
+Installing the CRM shell along with Pacemaker 1.1 versions &lt;=v1.1.7 is possible, but it will result in file conflicts. <br>
+You need to enforce file overwriting when installing packages.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-== インストール ==
-CRM shell 1.2.1 は Pacemaker 1.1.7以前のバージョンに対しても互換性を維持しています。
-ただし、Pacemaker 1.1.7以前のバージョンには、CRM shellの旧バージョンが同梱されていますので、旧バージョンとの競合を避けるために、インストール時に既存のファイルが新しいファイルに上書きされていることを確認してください。
+== インストール ==<br>
+CRM shell 1.2.1 は Pacemaker 1.1.7以前のバージョンに対しても互換性を維持しています。<br>
+ただし、Pacemaker 1.1.7以前のバージョンには、CRM shellの旧バージョンが同梱されていますので、旧バージョンとの競合を避けるために、インストール時に既存のファイルが新しいファイルに上書きされていることを確認してください。<br>
 </blockquote>
 
 
@@ -115,33 +115,33 @@ CRM shell 1.2.1 は Pacemaker 1.1.7以前のバージョンに対しても互換
 
 
 <blockquote>
-== Resources ==
-The CRM shell project web page at GNU savannah:
-https://savannah.nongnu.org/projects/crmsh/
-
-The sources repository is available at:
-http://hg.savannah.gnu.org/hgweb/crmsh
-
-Packages for several popular Linux distributions:
-http://download.opensuse.org/repositories/network:/ha-clustering/
-
-The man page:
-http://crmsh.nongnu.org/crm.8.html
-
-Support and bug reporting:
-http://lists.linux-ha.org/mailman/listinfo/linux-ha
-https://savannah.nongnu.org/bugs/?group=crmsh
-
-Enjoy!
-
-Dejan
+== Resources ==<br>
+The CRM shell project web page at GNU savannah:<br>
+https://savannah.nongnu.org/projects/crmsh/<br>
+<br>
+The sources repository is available at:<br>
+http://hg.savannah.gnu.org/hgweb/crmsh<br>
+<br>
+Packages for several popular Linux distributions:<br>
+http://download.opensuse.org/repositories/network:/ha-clustering/<br>
+<br>
+The man page:<br>
+http://crmsh.nongnu.org/crm.8.html<br>
+<br>
+Support and bug reporting:<br>
+http://lists.linux-ha.org/mailman/listinfo/linux-ha<br>
+https://savannah.nongnu.org/bugs/?group=crmsh<br>
+<br>
+Enjoy!<br>
+<br>
+Dejan<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-== 参考情報リンク一覧 ==
+== 参考情報リンク一覧 ==<br>
 <ul>
 <li><a href="https://savannah.nongnu.org/projects/crmsh/" target="_blank">プロジェクトページ</a>
 </li>

@@ -226,7 +226,7 @@ PacemakerのCRM設定は以下です。
 
 
 このCRM設定で、クラスタを構成した場合の「crm_mon -rfA」の表示は以下のようになります。
-<pre><code>Last updated: Wed Mar  2 13:04:40 2016
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">Last updated: Wed Mar  2 13:04:40 2016
 Last change: Tue Mar  1 13:39:21 2016 by root via crm_attribute on pm01
 Stack: corosync
 Current DC: pm01 - partition with quorum
@@ -303,7 +303,7 @@ STONITHに関連する設定項目は以下箇所です。それぞれ意味を�
 #### 3行目：STONITH有効化設定
 
 
-<pre><code>	stonith-enabled="true" \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">	stonith-enabled="true" \
 </code></pre>
 
 
@@ -314,7 +314,7 @@ STONITHを使用しない場合"false"を設定します。
 #### 45～51行目：STONITHリソースのグループ化
 
 
-<pre><code>group grpStonith1 \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">group grpStonith1 \
 	prmStonith1-1 \
 	prmStonith1-2
 
@@ -330,7 +330,7 @@ STONITHリソースとして155～201行目で定義するprmStonithX-Xリソー
 #### 54～56行目：fencing_topology設定
 
 
-<pre><code>fencing_topology \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">fencing_topology \
 	pm01: prmStonith1-1 prmStonith1-2 \
 	pm02: prmStonith2-1 prmStonith2-2
 </code></pre>
@@ -347,7 +347,7 @@ fencing_topologyは、Pacemaker-1.1系から追加された設定項目です。
 #### 155～201行目：STONITHリソース定義
 
 
-<pre><code>primitive prmStonith1-1 stonith:external/stonith-helper \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">primitive prmStonith1-1 stonith:external/stonith-helper \
 	params \
 		pcmk_reboot_retries="1" \
 		pcmk_reboot_timeout="40s" \
@@ -438,7 +438,7 @@ meatwareは、ipmi等によるSTONITHが何らかの原因で失敗し、保守�
 #### 210～213行目：STONITHリソースの配置制約
 
 
-<pre><code>location rsc_location-grpStonith1-3 grpStonith1 \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">location rsc_location-grpStonith1-3 grpStonith1 \
 	rule -INFINITY: #uname eq pm01
 location rsc_location-grpStonith2-4 grpStonith2 \
 	rule -INFINITY: #uname eq pm02
@@ -481,7 +481,7 @@ Pacemakerは基本的には、自分自身をSTONITHすることはできない�
 
 
 以下、その設定箇所の抜粋です。
-<pre><code>primitive vip-master ocf:heartbeat:IPaddr2 \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">primitive vip-master ocf:heartbeat:IPaddr2 \
 ～中略～
 	op stop interval="0s" timeout="60s" on-fail="fence"
 
@@ -528,7 +528,7 @@ primitive prmDiskd1 ocf:pacemaker:diskd \
 Master/Slaveリソースの概念については[Pacemakerで扱えるリソースの種類](/wp/archives/576)をご覧ください。
 
 18～35行目：
-<pre><code>ms msPostgresql \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">ms msPostgresql \
 	pgsql \
 	meta \
 		master-max="1" \
@@ -581,7 +581,7 @@ metaで設定しているパラメータは、それぞれ以下の意味です�
 master-groupグループを定義しているのは、以下の箇所です。
 
 11～15行目：
-<pre><code>group master-group \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">group master-group \
 	filesystem \
 	apache \
 	vip-master \
@@ -601,7 +601,7 @@ groupリソースおよびそのメンバとなっている各primitiveリソー
 diskdリソースの定義箇所は以下です。/dev/sda を監視しています。
 
 144～153行目：
-<pre><code>primitive prmDiskd1 ocf:pacemaker:diskd \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">primitive prmDiskd1 ocf:pacemaker:diskd \
 	params \
 		name="diskcheck_status_internal" \
 		device="/dev/sda" \
@@ -642,7 +642,7 @@ diskdリソースの定義箇所は以下です。/dev/sda を監視していま
 pingリソースの定義箇所は以下です。サービスLANを監視するため、サービスLAN側の上位スイッチのIPアドレス(192.168.0.101)に対しpingを発行します。
 
 144～153行目：
-<pre><code>primitive prmPing ocf:pacemaker:ping \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">primitive prmPing ocf:pacemaker:ping \
 	params \
 		name="default_ping_set" \
 		host_list="192.168.0.101" \
@@ -691,7 +691,7 @@ pingリソースの定義箇所は以下です。サービスLANを監視する�
 #### 204～213行目：配置制約
 
 
-<pre><code>location rsc_location-msPostgresql-1 msPostgresql \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">location rsc_location-msPostgresql-1 msPostgresql \
 	rule -INFINITY: not_defined default_ping_set or default_ping_set lt 100 \
 	rule -INFINITY: not_defined diskcheck_status_internal or diskcheck_status_internal eq ERROR
 location rsc_location-msDrbd-2 msDrbd \
@@ -747,7 +747,7 @@ location rsc_location-grpStonith2-4 grpStonith2 \
 #### 216～222行目：同居制約
 
 
-<pre><code>colocation rsc_colocation-msPostgresql-clnPing-1      INFINITY: msPostgresql  clnPing
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">colocation rsc_colocation-msPostgresql-clnPing-1      INFINITY: msPostgresql  clnPing
 colocation rsc_colocation-msPostgresql-clnDiskd1-2    INFINITY: msPostgresql  clnDiskd1
 colocation rsc_colocation-msDrbd-clnPing-3            INFINITY: msDrbd        clnPing
 colocation rsc_colocation-msDrbd-clnDiskd1-4          INFINITY: msDrbd        clnDiskd1
@@ -791,7 +791,7 @@ colocation rsc_colocation-msDrbd-msPostgresql-7       INFINITY: msDrbd:Master ms
 #### 225～232行目：順序制約
 
 
-<pre><code>order rsc_order-clnPing-msPostgresql-1      0:        clnPing              msPostgresql       symmetrical=false
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">order rsc_order-clnPing-msPostgresql-1      0:        clnPing              msPostgresql       symmetrical=false
 order rsc_order-clnDiskd1-msPostgresql-2    0:        clnDiskd1            msPostgresql       symmetrical=false
 order rsc_order-clnPing-msDrbd-3            0:        clnPing              msDrbd             symmetrical=false
 order rsc_order-clnDiskd1-msDrbd-4          0:        clnDiskd1            msDrbd             symmetrical=false
@@ -848,7 +848,7 @@ PostgreSQLのdemote(≒停止)の前に、PostgreSQLがリッスンしている�
 以下の箇所でPostgreSQLのprimitiveリソースを定義しています。
 
 96～120行目：
-<pre><code>primitive pgsql ocf:heartbeat:pgsql \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">primitive pgsql ocf:heartbeat:pgsql \
 	params \
 		pgctl="/usr/pgsql-9.4/bin/pg_ctl" \
 		start_opt="-p 5432" \

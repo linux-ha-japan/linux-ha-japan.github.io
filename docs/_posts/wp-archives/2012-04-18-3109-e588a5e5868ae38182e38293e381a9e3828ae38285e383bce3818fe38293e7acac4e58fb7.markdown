@@ -49,7 +49,7 @@ tags:
   
 
 設定例)
-<pre>
+<pre style="background-color: aliceblue">
 &lt;resources&gt;
  &lt;primitive class="ocf" id="A" provider="pacemaker" type="Dummy"/&gt;
  &lt;primitive class="ocf" id="B" provider="pacemaker" type="Dummy"&gt;
@@ -82,7 +82,7 @@ STONITHの設定にfencing-topologyというパラメータが追加されまし
   
 
 設定例）
-<pre>
+<pre style="background-color: aliceblue">
 &lt;resources&gt;
  &lt;primitive class="stonith" id="ssh01" type="external/ssh"&gt;
   &lt;instance_attributes id="attr01"&gt;
@@ -156,7 +156,7 @@ fencing-topologyタグには、さらにfencing-levelタグを追加して、id�
   
 
 今回はsshプラグインしか設定しませんでしたが、sshとipmiを設定する場合はこんな感じになります。
-<pre>
+<pre style="background-color: aliceblue">
 &lt;fencing-topology&gt;
  &lt;fencing-level id="stonith01-1" target="node-a" index="1" devices="ssh01"/&gt;
  &lt;fencing-level id="stonith01-2" target="node-a" index="2" devices="ipmi01"/&gt;
@@ -172,7 +172,7 @@ fencing-topologyタグには、さらにfencing-levelタグを追加して、id�
   
 
 使用可能なプラグインを表示する方法
-<pre>
+<pre style="background-color: aliceblue">
 <span style="color: #ff00ff;"># crm ra list stonith</span>
 
 ** INFO: Cannot get rhcs plugin subplugins                     apcmaster

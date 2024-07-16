@@ -71,7 +71,7 @@ _※2013.1.22 リソース名をCRM設定とは異なる「dummyN」などと記
 
 今回注目するのは以下の部分です。
 
-<pre><code>### Group Configuration ###
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">### Group Configuration ###
 group grp \
     resource1 \
     resource2
@@ -166,7 +166,7 @@ primitiveコマンドの概要と書式を以下に示します。
 	Dummy RAのように、動作にパラメータを必要としないRAの場合、記述は必要ありません。
 
 	crmコマンドに"ra info RA名"と引数を付与すると、当該RAのパラメータを含む、簡単なマニュアルが表示されます。この表示も参考にしてください。
-	<pre style="background-color: lightgray;"><code> # crm ra info ocf:heartbeat:Filesystem
+	<pre style="background-color: lightgray;"><code style="background-color: inherit"> # crm ra info ocf:heartbeat:Filesystem
  RAの簡易説明...</code></pre>
 </td>
 </tr>
@@ -200,7 +200,7 @@ primitiveコマンドの概要と書式を以下に示します。
 以下の部分は、リソースIDがresource1で、/usr/lib/ocf/resource.d/heartbeat/Dummy をRAとするリソースを定義していることになります。
 開始・停止のタイムアウトは300秒、監視のタイムアウトは60秒です。
 開始および監視に失敗したときはリソース再起動、停止に失敗したときはクラスタのそれ以後の動作を中止します。
-<pre><code>primitive resource1 ocf:heartbeat:Dummy \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">primitive resource1 ocf:heartbeat:Dummy \
     op start interval="0s" timeout="300s" on-fail="restart" \
     op monitor interval="10s" timeout="60s" on-fail="restart" \
     op stop interval="0s" timeout="300s" on-fail="block"
@@ -258,7 +258,7 @@ groupコマンドの書式は以下です。
 
 以下部分は、リソースID resource1およびresource2をグループ化しています。グループIDはgrpです。
 
-<pre><code>### Group Configuration ###
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">### Group Configuration ###
 group grp \
     resource1 \
     resource2
@@ -317,7 +317,7 @@ cloneコマンドの書式は以下です。
 以下の部分は、リソースID resource3をクローン化しています。クローンリソースIDはclnResourceです。
 clone-max, clone-node-maxは指定していないため、全ノード(pm01,pm02)で1つずつresource3リソースが起動します。
 
-<pre><code>### Clone Configuration ###
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">### Clone Configuration ###
 clone clnResource \
     resource3
 </code></pre>
@@ -360,7 +360,7 @@ clone clnResource \
 
 
 
-<pre>
+<pre style="background-color: lightyellow;line-height:1">
 <span style="font-size: medium;"></br><strong>コラム LSBって？</strong></span>
 <a href="http://refspecs.linuxbase.org/LSB_3.1.1/LSB-Core-generic/LSB-Core-generic/iniscrptact.html">LSB</a>はLinux Standard Baseと呼ばれる、Linuxの内部構造の仕様です。
 PacemakerがinitスクリプトをRAとする場合、このLSBに準拠していることを前提に制御をおこないます。
@@ -400,7 +400,7 @@ PacemakerがinitスクリプトをRAとする場合、このLSBに準拠して�
 
 例のCRMに以下の設定を加えて、リソース(resource4)を追加します。
 
-<pre><code>primitive resource4 ocf:heartbeat:Dummy \
+<pre style="background-color: lightgray;"><code style="background-color: inherit">primitive resource4 ocf:heartbeat:Dummy \
     op start interval="0s" timeout="300s" on-fail="restart" \
     op monitor interval="10s" timeout="60s" on-fail="restart" \
     op stop interval="0s" timeout="300s" on-fail="block"
@@ -410,7 +410,7 @@ PacemakerがinitスクリプトをRAとする場合、このLSBに準拠して�
 
 またgroupコマンドを以下のように書き換え、resource4をgrpに追加します。
 
-<pre><code>group grp \
+<pre style="background-color: lightgray;"><code style="background-color: inherit">group grp \
     resource4 \
     resource1 \
     resource2</code></pre>
@@ -426,7 +426,7 @@ PacemakerがinitスクリプトをRAとする場合、このLSBに準拠して�
 前回記事2ページ目の手順2～4を実行します。
 
 crm_mon -rfAの実行結果が以下のようになればOKです。
-<pre><code>～略～
+<pre style="background-color: lightgray;"><code style="background-color: inherit">～略～
 Online: [ pm01 pm02 ]
 
 Full list of resources:
@@ -467,7 +467,7 @@ pm01のha-logを以下のようにgrepすると、pm01でのリソースの起�
 Pacemaker-1.0系と1.1系でログの形式が異なるため、それぞれの場合を示します。
 
 **Pacemaker-1.0系の場合**
-<pre><code># grep -e "lrmd.*rsc:.*start" /var/log/ha-log
+<pre style="background-color: lightgray;"><code style="background-color: inherit"># grep -e "lrmd.*rsc:.*start" /var/log/ha-log
 Oct  7 11:51:04 pm01 lrmd: [2400]: info: rsc:resource3:1 start[6] (pid 2483)
 Oct  7 11:51:14 pm01 lrmd: [2400]: info: rsc:resource4 start[8] (pid 2495)  ★1
 Oct  7 11:51:21 pm01 lrmd: [2400]: info: rsc:resource1 start[10] (pid 2505) ★2
@@ -477,7 +477,7 @@ Oct  7 11:51:29 pm01 lrmd: [2400]: info: rsc:resource2 start[12] (pid 2522) ★3
 
 
 **Pacemaker-1.1系の場合**
-<pre><code># grep -e "Operation .*_start_" /var/log/ha-log
+<pre style="background-color: lightgray;"><code style="background-color: inherit"># grep -e "Operation .*_start_" /var/log/ha-log
 Mar 23 14:35:35 pm01 crmd[21705]:  notice: process_lrm_event: Operation resource3_start_0: ok ～略～
 Mar 23 14:35:37 pm01 crmd[21705]:  notice: process_lrm_event: Operation resource4_start_0: ok ～略～ ★1
 Mar 23 14:35:39 pm01 crmd[21705]:  notice: process_lrm_event: Operation resource1_start_0: ok ～略～ ★2
@@ -514,13 +514,13 @@ CRMファイルは実験1のものを使用します。
 
 pm01(resource1が稼働しているノード)で以下コマンドを実行し、resource1を故障させます。
 
-<pre><code>[root@pm01 ~]# rm -f /var/run/resource-agents/Dummy-resource1.state
+<pre style="background-color: lightgray;"><code style="background-color: inherit">[root@pm01 ~]# rm -f /var/run/resource-agents/Dummy-resource1.state
 </code></pre>
 
 
 
 crm_mon -rfAの実行結果が以下のように落ち着けばOKです。
-<pre><code>～略～
+<pre style="background-color: lightgray;"><code style="background-color: inherit">～略～
 Online: [ pm01 pm02 ]
 
 Full list of resources:
@@ -562,7 +562,7 @@ crm_mon -rfAコマンドの表示が落ち着いたら、F/Oのためにpm01側�
 pm01のha-logを以下のようにgrepし、リソースの停止・監視(故障検知)のみをフィルタリングします。
 
 **Pacemaker-1.0系の場合**
-<pre><code># grep -e "lrmd.*rsc:.*stop" /var/log/ha-log
+<pre style="background-color: lightgray;"><code style="background-color: inherit"># grep -e "lrmd.*rsc:.*stop" /var/log/ha-log
 Oct  7 12:34:53 pm01 lrmd: [5211]: info: rsc:resource2 stop[14] (pid 5409)　★1
 Oct  7 12:34:56 pm01 lrmd: [5211]: info: rsc:resource1 stop[15] (pid 5418)　★2
 Oct  7 12:35:00 pm01 lrmd: [5211]: info: rsc:resource4 stop[16] (pid 5425)　★3
@@ -571,7 +571,7 @@ Oct  7 12:35:00 pm01 lrmd: [5211]: info: rsc:resource4 stop[16] (pid 5425)　★
 
 
 **Pacemaker-1.1系の場合**
-<pre><code># grep -e "Operation .*_stop_" /var/log/ha-log
+<pre style="background-color: lightgray;"><code style="background-color: inherit"># grep -e "Operation .*_stop_" /var/log/ha-log
 Mar 23 14:39:32 pm01 crmd[21705]:  notice: process_lrm_event: Operation resource2_stop_0: ok ～略～ ★1
 Mar 23 14:39:34 pm01 crmd[21705]:  notice: process_lrm_event: Operation resource1_stop_0: ok ～略～ ★2
 Mar 23 14:39:36 pm01 crmd[21705]:  notice: process_lrm_event: Operation resource4_stop_0: ok ～略～ ★3
@@ -597,7 +597,7 @@ op要素のmonitorのintervalを「0s」と変更し、故障させてみます�
 先ほど修正したCRMファイルのprimitive resource1部分を以下のように修正します。
 (「op monitor～」のintervalを「0s」と変更します。)
 
-<pre><code>primitive resource1 ocf:heartbeat:Dummy \
+<pre style="background-color: lightgray;"><code style="background-color: inherit">primitive resource1 ocf:heartbeat:Dummy \
     op start interval="0s" timeout="300s" on-fail="restart" \
     op monitor interval="<strong>0s</strong>" timeout="60s" on-fail="restart" \
     op stop interval="0s" timeout="300s" on-fail="block"
@@ -621,12 +621,12 @@ op要素のmonitorのintervalを「0s」と変更し、故障させてみます�
 
 pm01で以下コマンドを実行し、resource1を故障させます。
 
-<pre><code>[root@pm01 ~]# rm -f /var/run/resource-agents/Dummy-resource1.state
+<pre style="background-color: lightgray;"><code style="background-color: inherit">[root@pm01 ~]# rm -f /var/run/resource-agents/Dummy-resource1.state
 </code></pre>
 
 
 
-<pre><code>～略～
+<pre style="background-color: lightgray;"><code style="background-color: inherit">～略～
 Online: [ pm01 pm02 ]
 
 Full list of resources:

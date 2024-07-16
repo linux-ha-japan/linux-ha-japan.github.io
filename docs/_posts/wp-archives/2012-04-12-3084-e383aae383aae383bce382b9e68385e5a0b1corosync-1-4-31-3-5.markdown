@@ -22,19 +22,19 @@ tags:
 
 
 <blockquote>
-[corosync] Corosync 1.4.3 and 1.3.5 available at ftp.corosync.org!
-
-I am pleased to announce the latest maintenance release of Corosync
-1.4.3 and 1.3.5 available immediately from our website at
-http://www.corosync.org.
+[corosync] Corosync 1.4.3 and 1.3.5 available at ftp.corosync.org!<br>
+<br>
+I am pleased to announce the latest maintenance release of Corosync<br>
+1.4.3 and 1.3.5 available immediately from our website at<br>
+http://www.corosync.org.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Corosync 1.4.3 および 1.3.5 がリリースされました。
-ソースコードは　Corosync のサイトからダウンロードすることができます。
+Corosync 1.4.3 および 1.3.5 がリリースされました。<br>
+ソースコードは　Corosync のサイトからダウンロードすることができます。<br>
 <a href="http://www.corosync.org" target="_blank">http://www.corosync.org</a>
 </blockquote>
 
@@ -43,19 +43,19 @@ Corosync 1.4.3 および 1.3.5 がリリースされました。
 
 
 <blockquote>
-This releases fixes many critical bugs and 1.4.3 enhances support for 
-BSD systems. Corosync 1.3.5 is last release of 1.3 branch. If you are 
-still using this version, please consider upgrade to 1.4.3.
+This releases fixes many critical bugs and 1.4.3 enhances support for <br>
+BSD systems. Corosync 1.3.5 is last release of 1.3 branch. If you are <br>
+still using this version, please consider upgrade to 1.4.3.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-今回のリリースはバグフィックスがメインですが、深刻なバグもいくつか含まれています。
-1.4.3は、サポートするプラットフォームにBSDも追加されました。
-1.3.5は、1.3系の最後のリリースとなります。
-1.3系、1.4系のいずれのユーザも最新版(1.4.3)にアップグレードすることをおすすめします。
+今回のリリースはバグフィックスがメインですが、深刻なバグもいくつか含まれています。<br>
+1.4.3は、サポートするプラットフォームにBSDも追加されました。<br>
+1.3.5は、1.3系の最後のリリースとなります。<br>
+1.3系、1.4系のいずれのユーザも最新版(1.4.3)にアップグレードすることをおすすめします。<br>
 </blockquote>
 
 
@@ -116,16 +116,16 @@ still using this version, please consider upgrade to 1.4.3.
 
 
 <blockquote>
-Upgrade is (as usually) highly recommended.
-
-Thanks/congratulations to all people that contributed to achieve this
-great milestone.
+Upgrade is (as usually) highly recommended.<br>
+<br>
+Thanks/congratulations to all people that contributed to achieve this<br>
+great milestone.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-(いつもと同じく)古いバージョンを使っているユーザにはアップグレードをおすすめします。
-リリースにご協力いただいた皆さん、ありがとうございました。
+(いつもと同じく)古いバージョンを使っているユーザにはアップグレードをおすすめします。<br>
+リリースにご協力いただいた皆さん、ありがとうございました。<br>
 </blockquote>

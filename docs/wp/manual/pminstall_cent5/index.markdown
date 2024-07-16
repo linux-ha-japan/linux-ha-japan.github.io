@@ -111,7 +111,7 @@ CentOS5.5 x86_64 にPacemakerをインストールする方法は、主に以下
   * 足りないライブラリのインストールPacemakerのインストールには、rpmパッケージ依存の関係上、libesmtpのインストールが必要です。CentOS5.5にはlibesmtpは同梱されて無いため、Fedoraプロジェクトで提供されているepelのパッケージのリポジトリも使用させて頂きます。
 
 
-<pre>[root@pm01 ~]# <strong>wget http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</strong>
+<pre class="wp-caption" style="text-align: left;">[root@pm01 ~]# <strong>wget http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</strong>
 [root@pm01 ~]# <strong>rpm -ivh epel-release-5-4.noarch.rpm</strong></pre>
 
 
@@ -124,7 +124,7 @@ CentOS5.5 x86_64 にPacemakerをインストールする方法は、主に以下
   * yumリポジトリを設定 clusterlabs.org からrepoファイルをダウンロードして、yumリポジトリを設定します。
 
 
-<pre>[root@pm01 ~]# <strong>cd /etc/yum.repo.d</strong>
+<pre class="wp-caption" style="text-align: left;">[root@pm01 ~]# <strong>cd /etc/yum.repo.d</strong>
 [root@pm01 ~]# <strong>wget http://clusterlabs.org/rpm/epel-5/clusterlabs.repo</strong></pre>
 
 
@@ -137,13 +137,13 @@ CentOS5.5 x86_64 にPacemakerをインストールする方法は、主に以下
   * yumでインストールyumコマンドによりインストールを実行します。
 
 
-<pre>[root@pm01 ~]# <strong>yum install corosync.x86_64 heartbeat.x86_64 pacemaker.x86_64</strong></pre>
+<pre class="wp-caption" style="text-align: left;">[root@pm01 ~]# <strong>yum install corosync.x86_64 heartbeat.x86_64 pacemaker.x86_64</strong></pre>
 
 
-<pre>rpmの依存関係で以下のパッケージも自動的にインストールされます。</pre>
+<pre style="padding-left: 30px;">rpmの依存関係で以下のパッケージも自動的にインストールされます。</pre>
 
 
-<pre>pacemaker-libs
+<pre class="wp-caption" style="text-align: left;">pacemaker-libs
 corosynclib
 cluster-glue
 cluster-glue-libs
@@ -170,7 +170,7 @@ Linux-HA Japanでは、ネットワーク接続環境がない場合にも手軽
   * ダウンロードしたローカルリポジトリを/tmp に展開
 
 
-<pre>[root@pm01 ~]# mv pacemaker-1.0.9.1-1.15.1.el5.x86_64.repo.tar.gz /tmp
+<pre class="wp-caption" style="text-align: left;">[root@pm01 ~]# mv pacemaker-1.0.9.1-1.15.1.el5.x86_64.repo.tar.gz /tmp
 [root@pm01 ~]# cd /tmp
 [root@pm01 ~]# tar zxvf pacemaker-1.0.9.1-1.15.1.el5.x86_64.repo.tar.gz</pre>
 
@@ -182,7 +182,7 @@ Linux-HA Japanでは、ネットワーク接続環境がない場合にも手軽
   * インストール依存しているOS付属のRPMは、ネットワークからダウンロードされます。ネットワーク環境がない場合は、下記の"ネットワークに繋がらない場合は”を事前に設定しておきます。
 
 
-<pre>[root@pm01 ~]# cd pacemaker-1.0.9.1-1.15.1.el5.x86_64.repo
+<pre class="wp-caption" style="text-align: left;">[root@pm01 ~]# cd pacemaker-1.0.9.1-1.15.1.el5.x86_64.repo
 [root@pm01 ~]# yum -c pacemaker.repo install corosync.x86_64 heartbeat.x86_64 pacemaker.x86_64</pre>
 
 
@@ -196,11 +196,11 @@ Linux-HA Japanでは、ネットワーク接続環境がない場合にも手軽
 
 CentOS 6やScientific Linux 6を使用する場合、異なるバージョンのPacemakerがOSに同梱されていますので、インストールする場合はまずはこれらを削除するか、バージョンを指定して
 インストールを行ってください。 
-<pre>[root@pm01 ~]# yum -c pacemaker.repo install pacemaker-1.0.11・・・</pre>
+<pre class="wp-caption" style="text-align: justify;">[root@pm01 ~]# yum -c pacemaker.repo install pacemaker-1.0.11・・・</pre>
 
 
 また、yum update を実行するとOS同梱版にアップデートされてしまいますので、対象のリポジトリ設定ファイル (/etc/yum.repo.d/****.repo) に以下のような記述を追記しておくと便利です。
-<pre>exclude=pacemaker pacemaker-libs corosync cluster-glue heartbeat resource-agents</pre>
+<pre class="wp-caption" style="text-align: left;">exclude=pacemaker pacemaker-libs corosync cluster-glue heartbeat resource-agents</pre>
 
 
 
@@ -332,7 +332,7 @@ Cluster_Administration-de-DE.noarch        5.2-1.el5.centos       
   * /etc/corosync/corosync.conf ファイルを以下のように設定します。
 
 
-<pre>aisexec {
+<pre class="wp-caption" style="text-align: left;">aisexec {
     user: root
     group: root
 }
@@ -388,7 +388,7 @@ logging {
   * /etc/ha.d/ha.cf ファイルを以下のように編集します
 
 
-<pre>pacemaker on
+<pre class="wp-caption" style="text-align: left;">pacemaker on
 logfacility local1
 
 debug 0
@@ -415,7 +415,7 @@ node pm02         <span style="color: #ff0000;">← Heartbeat3で使用する2�
   * 以下の内容の認証キーファイルを/etc/ha.d/authkeys に配置
 
 
-<pre>auth 1
+<pre class="wp-caption" style="text-align: left;">auth 1
 1 sha1 abcdefg   <span style="color: #ff0000;">← "abcdefg" は任意の文字列だが、全てのサーバで同じ文字列を設定すること</span></pre>
 
 
@@ -426,7 +426,7 @@ node pm02         <span style="color: #ff0000;">← Heartbeat3で使用する2�
   * 認証キーのパーミッション、所有ユーザ・グループを設定
 
 
-<pre>[root@pm01 ~]# chown root:root /etc/ha.d/authkeys
+<pre class="wp-caption" style="text-align: left;">[root@pm01 ~]# chown root:root /etc/ha.d/authkeys
 [root@pm01 ~]# chmod 600 /etc/ha.d/authkeys</pre>
 
 
@@ -447,7 +447,7 @@ Pacemakerは大量のログをsyslogを使用して、/var/log/messages に出�
   * /etc/syslog.conf を設定ここでは、/var/log/ha-log にログを出力するように設定します。また、同内容のログを /var/log/messages に2重出力しないように、「local1.none」の追記も行います。
 
 
-<pre>*.info;mail.none;authpriv.none;cron.none;<span style="color: #ff0000;">local1.none</span>	    /var/log/messages
+<pre class="wp-caption" style="text-align: left;">*.info;mail.none;authpriv.none;cron.none;<span style="color: #ff0000;">local1.none</span>	    /var/log/messages
 	  ：
 	（省略）
 	  ：
@@ -466,7 +466,7 @@ Pacemakerは大量のログをsyslogを使用して、/var/log/messages に出�
   * Pacemakerの起動 (Corosync使用時の場合)
 
 
-<pre>[root@pm01 ~]# <strong>service corosync start</strong>
+<pre class="wp-caption" style="text-align: left;">[root@pm01 ~]# <strong>service corosync start</strong>
 Starting Corosync Cluster Engine (corosync):       [  OK  ]
 
 [root@pm02 ~]# <strong>service corosync start</strong>
@@ -482,7 +482,7 @@ Starting Corosync Cluster Engine (corosync):       [  OK  ]</pre>
   * Pacemakerの起動 (Heartbeat3使用時の場合)
 
 
-<pre>[root@pm01 ~]# <strong>service heartbeat start</strong>
+<pre class="wp-caption" style="text-align: left;">[root@pm01 ~]# <strong>service heartbeat start</strong>
 Starting High-Availability services:               [  OK  ]
 
 [root@pm02 ~]# <strong>service heartbeat start</strong>
@@ -498,7 +498,7 @@ Starting High-Availability services:               [  OK  ]</pre
 Pacemakerの起動の確認は、状態表示コマンドのcrm_monコマンドを使用します。設定したサーバがOnlineになることを確認します。なお、Onlineになるまで1分程度要します。以下はHeartbaet3 を使用した場合の表示例ですが、Corosyncもほぼ同等の表示です。
 
 
-<pre>[root@pm01 ~]# <strong>crm_mon</strong>
+<pre class="wp-caption" style="text-align: left;">[root@pm01 ~]# <strong>crm_mon</strong>
 ============
 Last updated: Mon Sep  6 07:07:07 2010
 Stack: Heartbeat

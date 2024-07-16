@@ -20,28 +20,28 @@ tags:
 
 
 <blockquote>
-Hello,
-
-The current glue repository has been tagged as 1.0.10.
-Please upgrade at the earliest possible opportunity.
-
-The highlights:
-
-- compression modules included and compression handling improved in clplumbing
-- one memory leak fixed in clplumbing
-- support for asynchronous I/O in sbd
-- hb_report performance improvement
-
-You can get the 1.0.10 tarball here:
-
-	http://hg.linux-ha.org/glue/archive/glue-1.0.10.tar.bz2
-
-Many thanks to all contributors.
-
-Enjoy!
-
-Lars Ellenberg
-Dejan Muhamedagic
+Hello,<br>
+<br>
+The current glue repository has been tagged as 1.0.10.<br>
+Please upgrade at the earliest possible opportunity.<br>
+<br>
+The highlights:<br>
+<br>
+- compression modules included and compression handling improved in clplumbing<br>
+- one memory leak fixed in clplumbing<br>
+- support for asynchronous I/O in sbd<br>
+- hb_report performance improvement<br>
+<br>
+You can get the 1.0.10 tarball here:<br>
+<br>
+	http://hg.linux-ha.org/glue/archive/glue-1.0.10.tar.bz2<br>
+<br>
+Many thanks to all contributors.<br>
+<br>
+Enjoy!<br>
+<br>
+Lars Ellenberg<br>
+Dejan Muhamedagic<br>
 </blockquote>
 
 
@@ -58,7 +58,7 @@ Dejan Muhamedagic
 
 
 <blockquote>
-- compression modules included and compression handling improved in clplumbing
+- compression modules included and compression handling improved in clplumbing<br>
 </blockquote>
 
 
@@ -66,11 +66,11 @@ Dejan Muhamedagic
 
 
 <blockquote>
-clplumbing: ipc: fix message size checks (bnc#752231)
-clplumbing: load bz2 compression module by default
-clplumbing: cl_msg: try compressing message before rejecting it
-clplumbing: cl_msg: don't use traditional compression by default
-clplumbing: cl_msg: increase compression threshold
+clplumbing: ipc: fix message size checks (bnc#752231)<br>
+clplumbing: load bz2 compression module by default<br>
+clplumbing: cl_msg: try compressing message before rejecting it<br>
+clplumbing: cl_msg: don't use traditional compression by default<br>
+clplumbing: cl_msg: increase compression threshold<br>
 </blockquote>
 
 
@@ -89,7 +89,7 @@ Heartbeatは、ノードの生死やリソースの状態を確認するため�
 
 
 <blockquote>
-- one memory leak fixed in clplumbing
+- one memory leak fixed in clplumbing<br>
 </blockquote>
 
 
@@ -105,7 +105,7 @@ Heartbeatは、ノードの生死やリソースの状態を確認するため�
 
 
 <blockquote>
-- support for asynchronous I/O in sbd
+- support for asynchronous I/O in sbd<br>
 </blockquote>
 
 
@@ -119,9 +119,9 @@ sbdは、共有ストレージを監視するデーモンと、STONITHを実行�
 
 
 <blockquote>
-sbd: Use async IO for disk reads to increase resilience against
-sbd: Handle IO errors during slot allocation properly (bnc#753559)
-sbd: Debug mode added (bnc#753559, bnc#738295)
+sbd: Use async IO for disk reads to increase resilience against<br>
+sbd: Handle IO errors during slot allocation properly (bnc#753559)<br>
+sbd: Debug mode added (bnc#753559, bnc#738295)<br>
 </blockquote>
 
 
@@ -139,7 +139,7 @@ sbdはSUSEの中の人が開発しているのですが、glueとはべつのリ
 
 
 <blockquote>
-- hb_report performance improvement
+- hb_report performance improvement<br>
 </blockquote>
 
 
@@ -147,9 +147,9 @@ sbdはSUSEの中の人が開発しているのですが、glueとはべつのリ
 
 
 <blockquote>
-hb_report: improve performance
-hb_report: get corosync blackbox records if available
-hb_report: add node time information
+hb_report: improve performance<br>
+hb_report: get corosync blackbox records if available<br>
+hb_report: add node time information<br>
 </blockquote>
 
 
@@ -175,12 +175,12 @@ hb_reportを使うと、とりあえずそのへんにあるログやら設定�
 
 
 <blockquote>
-stonith: add CRM stonith resource name to log messages (bnc#728579)
-stonith: adjust timeouts in the meta-data template (bnc#733337)
-stonith: external/vcenter: return list of configured hosts on
-stonith: external/libvirt: add more search strings for domain
-stonith: rhcs: pass the action via stdin too
-stonith: rhcs: avoid false error if parameter isn't set
+stonith: add CRM stonith resource name to log messages (bnc#728579)<br>
+stonith: adjust timeouts in the meta-data template (bnc#733337)<br>
+stonith: external/vcenter: return list of configured hosts on<br>
+stonith: external/libvirt: add more search strings for domain<br>
+stonith: rhcs: pass the action via stdin too<br>
+stonith: rhcs: avoid false error if parameter isn't set<br>
 </blockquote>
 
 
@@ -189,5 +189,5 @@ stonith: rhcs: avoid false error if parameter isn't set
 
 
 <blockquote>
-LRM: lrmd: if set, get max-children from the LRMD_MAX_CHILDREN
+LRM: lrmd: if set, get max-children from the LRMD_MAX_CHILDREN<br>
 </blockquote>

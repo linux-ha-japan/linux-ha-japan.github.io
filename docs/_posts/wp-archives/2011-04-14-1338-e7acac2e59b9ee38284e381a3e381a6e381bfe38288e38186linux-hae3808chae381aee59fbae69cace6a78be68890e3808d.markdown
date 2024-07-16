@@ -141,10 +141,10 @@ drbdについては、比較的新しいバージョンがextrasのリポジト�
 ▼コマンドライン
 
 
-<blockquote>#cd /tmp
-#tar xzf pacemaker-1.0.10-1.4.1.el5.x86_64.repo.tar.gz
-# cp pacemaker-1.0.10-1.4.1.el5.x86_64.repo/pacemaker.repo /etc/yum.repo.d/
-# yum clean all
+<blockquote>#cd /tmp<br>
+#tar xzf pacemaker-1.0.10-1.4.1.el5.x86_64.repo.tar.gz<br>
+# cp pacemaker-1.0.10-1.4.1.el5.x86_64.repo/pacemaker.repo /etc/yum.repo.d/<br>
+# yum clean all<br>
 # yum install pacemaker heartbeat kmod-drbd83 drbd83</blockquote>
 
 
@@ -180,8 +180,8 @@ ha.cf は、インストール直後は所定の場所にインストールさ�
 authkeysファイルについては、パーミッションが600でないとエラーになるため、chmodを使用してパーミッションの変更を行います。
 
 
-<blockquote># cp /usr/share/doc/heartbeat-3.0.4/ha.cf /etc/ha.d/
-# cp /usr/share/doc/heartbeat-3.0.4/authkeys /etc/ha.d/
+<blockquote># cp /usr/share/doc/heartbeat-3.0.4/ha.cf /etc/ha.d/<br>
+# cp /usr/share/doc/heartbeat-3.0.4/authkeys /etc/ha.d/<br>
 # chmod 600 /etc/ha.d/authkeys</blockquote>
 
 
@@ -190,22 +190,22 @@ authkeysファイルについては、パーミッションが600でないとエ
 authkeysは、今回直結回線なので、最も簡易的なcrcを使用します。authパターンに1を設定し、「1 crc」のコメントアウトを外して終了
 
 
-<blockquote>auth 1
-1 crc
-#2 sha1 HI!
+<blockquote>auth 1<br>
+1 crc<br>
+#2 sha1 HI!<br>
 #3 md5 Hello!</blockquote>
 
 
 ▼ha.cf の中身
 
 
-<blockquote>crm yes
-logfile /var/log/ha-log
-logfacility local0
-keepalive 2
-udpport 694
-bcast eth1 eth2
-node srv1
+<blockquote>crm yes<br>
+logfile /var/log/ha-log<br>
+logfacility local0<br>
+keepalive 2<br>
+udpport 694<br>
+bcast eth1 eth2<br>
+node srv1<br>
 node srv2</blockquote>
 
 
@@ -245,19 +245,19 @@ DRBDの設定も予めポリシーを決める必要があります。今回は�
 ▼global_common.conf の中身
 
 
-<blockquote>global {
-usage-count no;
-}
-
-common {
-protocol C;
-
-handlers {
-local-io-error "/usr/lib/drbd/notify-io-error.sh; /usr/lib/drbd/notify-emergency-shutdown.sh; echo o &gt; /proc/sysrq-trigger ; halt -f";
-}
-syncer {
-rate 200M;
-}
+<blockquote>global {<br>
+usage-count no;<br>
+}<br>
+<br>
+common {<br>
+protocol C;<br>
+<br>
+handlers {<br>
+local-io-error "/usr/lib/drbd/notify-io-error.sh; /usr/lib/drbd/notify-emergency-shutdown.sh; echo o &gt; /proc/sysrq-trigger ; halt -f";<br>
+}<br>
+syncer {<br>
+rate 200M;<br>
+}<br>
 }</blockquote>
 
 
@@ -267,19 +267,19 @@ global_common.confだけでは、DRBDは動作しないので、リソース設�
 ▼r0.res の中身
 
 
-<blockquote>resource r0 {
-protocol C;
-device /dev/drbd0;
-disk /dev/sdb1;
-meta-disk internal;
-
-on srv1 {
-address 10.1.0.1:7801;
-}
-on srv2 {
-address 10.1.0.2:7801;
-}
-
+<blockquote>resource r0 {<br>
+protocol C;<br>
+device /dev/drbd0;<br>
+disk /dev/sdb1;<br>
+meta-disk internal;<br>
+<br>
+on srv1 {<br>
+address 10.1.0.1:7801;<br>
+}<br>
+on srv2 {<br>
+address 10.1.0.2:7801;<br>
+}<br>
+<br>
 }</blockquote>
 
 
@@ -290,15 +290,15 @@ address 10.1.0.2:7801;
 ▼初期同期までの流れ
 
 
-<blockquote># drbdadm create-md r0 # 両ノードで
-# /etc/init.d/drbd start # 両ノードで
-# drbdadm -- --o primary r0
-# cat /proc/drbd
-version: 8.3.8 (api:88/proto:86-94)
-GIT-hash: d78846e52224fd00562f7c225bcc25b2d422321d build by ***@***.org, 2010-06-04 08:04:16
-0: cs:SyncSource ro:Primary/Secondary ds:UpToDate/Inconsistent C r----
-ns:400544 nr:0 dw:0 dr:400544 al:0 bm:24 lo:0 pe:0 ua:0 ap:0 ep:1 wo:b oos:2539220
-[=&gt;..................] sync'ed: 13.8% (2539220/2939764)K delay_probe: 48
+<blockquote># drbdadm create-md r0 # 両ノードで<br>
+# /etc/init.d/drbd start # 両ノードで<br>
+# drbdadm -- --o primary r0<br>
+# cat /proc/drbd<br>
+version: 8.3.8 (api:88/proto:86-94)<br>
+GIT-hash: d78846e52224fd00562f7c225bcc25b2d422321d build by ***@***.org, 2010-06-04 08:04:16<br>
+0: cs:SyncSource ro:Primary/Secondary ds:UpToDate/Inconsistent C r----<br>
+ns:400544 nr:0 dw:0 dr:400544 al:0 bm:24 lo:0 pe:0 ua:0 ap:0 ep:1 wo:b oos:2539220<br>
+[=&gt;..................] sync'ed: 13.8% (2539220/2939764)K delay_probe: 48<br>
 finish: 0:04:04 speed: 10,080 (19,072) K/sec</blockquote>
 
 
@@ -306,7 +306,7 @@ finish: 0:04:04 speed: 10,080 (19,072) K/sec</blockquote>
 また、今回はWebサーバ「Apache」を冗長化するHA環境を構築してみるので、Apacheのインストールをしましょう。
 
 
-<blockquote># mkfs.ext3 /dev/drbd0
+<blockquote># mkfs.ext3 /dev/drbd0<br>
 # yum install httpd</blockquote>
 
 
@@ -345,18 +345,18 @@ finish: 0:04:04 speed: 10,080 (19,072) K/sec</blockquote>
 index.htmlは適当な内容で作ってください。
 
 
-<blockquote># mount /dev/drbd0 /var/www/html
-# ifconfig eth0:0 192.168.0.200
-# vi /var/www/html/index.html
+<blockquote># mount /dev/drbd0 /var/www/html<br>
+# ifconfig eth0:0 192.168.0.200<br>
+# vi /var/www/html/index.html<br>
 # /etc/init.d/httpd start</blockquote>
 
 
 192.168.0.200という仮想IPアドレスをつけたので、ブラウザからアクセスしてみましょう。作成したindex.htmlの内容が表示されたら成功です。確認ができたら、手動でやった作業をすべて解除して元の状態に戻します。
 
 
-<blockquote># /etc/init.d/httpd stop
-# umount /var/www/html
-# ifconfig eth0:0 down
+<blockquote># /etc/init.d/httpd stop<br>
+# umount /var/www/html<br>
+# ifconfig eth0:0 down<br>
 # /etc/init.d/drbd stop # 両ノードで実行</blockquote>
 
 
@@ -369,11 +369,11 @@ Pacemakerの設定はcrmコマンドラインインターフェースの上で�
 ※Heartbeatが起動していない場合は両ノードでHeartbeatを起動してください。
 
 
-<blockquote># crm
-crm(live)# configure
-crm(live)configure# property stonith-enabled="false"
-crm(live)configure# property no-quorum-policy="Ignore"
-crm(live)configure# property default-action-timeout="240"
+<blockquote># crm<br>
+crm(live)# configure<br>
+crm(live)configure# property stonith-enabled="false"<br>
+crm(live)configure# property no-quorum-policy="Ignore"<br>
+crm(live)configure# property default-action-timeout="240"<br>
 crm(live)configure# property default-resource-stickiness="200"</blockquote>
 
 
@@ -387,7 +387,7 @@ crm(live)configure# property default-resource-stickiness="200"</blockquote>
 DRBDリソースは、DRBDのリソースをさらにマスター／スレーブというリソースで制御します。
 
 
-<blockquote>crm(live)configure# primitive res_drbd0 ocf:linbit:drbd params drbd_resource="r0" drbdconf="/etc/drbd.conf" op monitor interval="20s"
+<blockquote>crm(live)configure# primitive res_drbd0 ocf:linbit:drbd params drbd_resource="r0" drbdconf="/etc/drbd.conf" op monitor interval="20s"<br>
 crm(live)configure# ms ms_drbd0 res_drbd0 meta master-max="1" master-node-max="1" clone-max="2" clone-node-max="1" notify="true"</blockquote>
 
 
@@ -408,12 +408,12 @@ crm(live)configure# ms ms_drbd0 res_drbd0 meta master-max="1" master-node-max="1
 Apacheだけ、リソース監視にserver-statusというApacheの仕組みを使用するため、httpd.confにかかれているserver-statusの部分のコメントアウトを解除します。
 
 
-<blockquote>ServerName web.example.com:80
-&lt;Location /server-status&gt;
-SetHandler server-status
-Order deny,allow
-Deny from all
-Allow from 127.0.0.1
+<blockquote>ServerName web.example.com:80<br>
+&lt;Location /server-status&gt;<br>
+SetHandler server-status<br>
+Order deny,allow<br>
+Deny from all<br>
+Allow from 127.0.0.1<br>
 &lt;/Location&gt;</blockquote>
 
 
@@ -427,10 +427,10 @@ Allow from 127.0.0.1
 Pacemakerは、リソースの起動順序や関連性について指定されなければ同時に起動しようとしてしまいます。ですので、リソースグループへの登録や、colocation（関連性）の設定によって起動順序や起動するノードを設定します。
 
 
-<blockquote>crm(live)configure# group rg_httpd res_ip res_fs_drbd0 res_httpd
-crm(live)configure# colocation c_rg_httpd_on_drbd0 inf: rg_httpd ms_drbd0:Master
-crm(live)configure# order o_drbd0_befor_rg_httpd inf: ms_drbd0:promote rg_httpd:start
-crm(live)configure# commit
+<blockquote>crm(live)configure# group rg_httpd res_ip res_fs_drbd0 res_httpd<br>
+crm(live)configure# colocation c_rg_httpd_on_drbd0 inf: rg_httpd ms_drbd0:Master<br>
+crm(live)configure# order o_drbd0_befor_rg_httpd inf: ms_drbd0:promote rg_httpd:start<br>
+crm(live)configure# commit<br>
 crm(live)configure# exit</blockquote>
 
 
@@ -446,33 +446,33 @@ crm(live)configure# exit</blockquote>
 ▼クラスタ環境の確認
 
 
-<blockquote># crm_mon -1
-Connection to the CIB terminated
-Reconnecting...[root@iw-ha-test2 ~]# crm_mon -1
-============
-Last updated: Thu Apr 14 18:44:32 2011
-Stack: Heartbeat
-Current DC: srv2 (fd18b1e7-7892-408a-977e-ff5f60eb382f) - partition with quorum
-Version: 1.0.10-da7075976b5ff0bee71074385f8fd02f296ec8a3
-2 Nodes configured, unknown expected votes
-2 Resources configured.
-============
-
-Online: [ srv1 srv2 ]
-
-Master/Slave Set: ms_drbd0
-Masters: [ srv2 ]
-Slaves: [ srv1 ]
-Resource Group: rg_httpd
-res_ip (ocf::heartbeat:IPaddr2): Started srv2
-res_fs_drbd0 (ocf::heartbeat:Filesystem): Started srv2
+<blockquote># crm_mon -1<br>
+Connection to the CIB terminated<br>
+Reconnecting...[root@iw-ha-test2 ~]# crm_mon -1<br>
+============<br>
+Last updated: Thu Apr 14 18:44:32 2011<br>
+Stack: Heartbeat<br>
+Current DC: srv2 (fd18b1e7-7892-408a-977e-ff5f60eb382f) - partition with quorum<br>
+Version: 1.0.10-da7075976b5ff0bee71074385f8fd02f296ec8a3<br>
+2 Nodes configured, unknown expected votes<br>
+2 Resources configured.<br>
+============<br>
+<br>
+Online: [ srv1 srv2 ]<br>
+<br>
+Master/Slave Set: ms_drbd0<br>
+Masters: [ srv2 ]<br>
+Slaves: [ srv1 ]<br>
+Resource Group: rg_httpd<br>
+res_ip (ocf::heartbeat:IPaddr2): Started srv2<br>
+res_fs_drbd0 (ocf::heartbeat:Filesystem): Started srv2<br>
 res_httpd (ocf::heartbeat:apache): Started srv2</blockquote>
 
 
 ▼マイグレート方法
 
 
-<blockquote># crm
-crm(live)# resource
-crm(live)resource# migrate rg_httpd
+<blockquote># crm<br>
+crm(live)# resource<br>
+crm(live)resource# migrate rg_httpd<br>
 crm(live)resource# unmigrate rg_httpd</blockquote>

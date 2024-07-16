@@ -20,18 +20,18 @@ tags:
 
 
 <blockquote>
-Hello, 
-The CRM shell v1.2.0 is released. 
-The most important new features compared to Pacemaker v1.1.6 (and v1.1.7): 
+Hello, <br>
+The CRM shell v1.2.0 is released. <br>
+The most important new features compared to Pacemaker v1.1.6 (and v1.1.7): <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-
-CRM shell v1.2.0 をリリースしました。
-Pacemaker 1.1.6(および 1.1.7)に同梱されてている CRM shell からの変更点は次の通りです(注1)。
+<br>
+CRM shell v1.2.0 をリリースしました。<br>
+Pacemaker 1.1.6(および 1.1.7)に同梱されてている CRM shell からの変更点は次の通りです(注1)。<br>
 </blockquote>
 
 
@@ -51,15 +51,15 @@ Pacemaker 1.1.6(および 1.1.7)に同梱されてている CRM shell からの�
 
 <blockquote>
 <ul>
-<li>history: support for troubleshooting and reporting, log browsing, examining transitions, etc 
+<li>history: support for troubleshooting and reporting, log browsing, examining transitions, etc <br>
 </li>
-<li>resource testing: test if the resources can be started, stopped, and monitored on all nodes 
+<li>resource testing: test if the resources can be started, stopped, and monitored on all nodes <br>
 </li>
-<li>support for the latest Pacemaker features, including fencing-topology 
+<li>support for the latest Pacemaker features, including fencing-topology <br>
 </li>
-<li>geo-cluster configuration and management 
+<li>geo-cluster configuration and management <br>
 </li>
-<li>support for LRM secrets at resource level 
+<li>support for LRM secrets at resource level <br>
 </li>
 </ul>
 </blockquote>
@@ -69,15 +69,15 @@ Pacemaker 1.1.6(および 1.1.7)に同梱されてている CRM shell からの�
 
 <blockquote style="background-color:white;border-color:white;color:black;">
 <ul>
-<li>トラブルシューティングやログの収集、閲覧および状態遷移を解析するための機能が追加されました。
+<li>トラブルシューティングやログの収集、閲覧および状態遷移を解析するための機能が追加されました。<br>
 </li>
-<li>リソースの起動、停止、監視処理をテスト(= シミュレート)することができます。
+<li>リソースの起動、停止、監視処理をテスト(= シミュレート)することができます。<br>
 </li>
 <li>fencing-topologyを含むPacemakerの最新機能に対応しています。<a href="/wp/archives/2994" target="_blank">(参考)</a>
 </li>
-<li>geo-cluster(注2)の設定および管理に対応しています。
+<li>geo-cluster(注2)の設定および管理に対応しています。<br>
 </li>
-<li>secretパラメータが追加されました(注3)。
+<li>secretパラメータが追加されました(注3)。<br>
 </li>
 </ul>
 </blockquote>
@@ -109,35 +109,35 @@ Pacemaker 1.1.6(および 1.1.7)に同梱されてている CRM shell からの�
 
 
 <blockquote>
-doc/crm.8.txt
-
-   872 [[cmdhelp_resource_secret,manage sensitive parameters]]
-   873 ==== `secret`
-   874 
-   875 Sensitive parameters can be kept in local files rather than CIB
-   876 in order to prevent accidental data exposure. Use the `secret`
-   877 command to manage such parameters. `stash` and `unstash` move the
-   878 value from the CIB and back to the CIB respectively. The `set`
-   879 subcommand sets the parameter to the provided value. `delete`
-   880 removes the parameter completely. `show` displays the value of
-   881 the parameter from the local file. Use `check` to verify if the
-   882 local file content is valid.
-   883 
-   884 Usage:
-   885 ...............
-   886         secret &lt;rsc&gt; set &lt;param&gt; &lt;value&gt;
-   887         secret &lt;rsc&gt; stash &lt;param&gt;
-   888         secret &lt;rsc&gt; unstash &lt;param&gt;
-   889         secret &lt;rsc&gt; delete &lt;param&gt;
-   890         secret &lt;rsc&gt; show &lt;param&gt;
-   891         secret &lt;rsc&gt; check &lt;param&gt;
-   892 ...............
-   893 Example:
-   894 ...............
-   895         secret fence_1 show password
-   896         secret fence_1 stash password
-   897         secret fence_1 set password secret_value
-   898 ...............
+doc/crm.8.txt<br>
+<br>
+   872 [[cmdhelp_resource_secret,manage sensitive parameters]]<br>
+   873 ==== `secret`<br>
+   874 <br>
+   875 Sensitive parameters can be kept in local files rather than CIB<br>
+   876 in order to prevent accidental data exposure. Use the `secret`<br>
+   877 command to manage such parameters. `stash` and `unstash` move the<br>
+   878 value from the CIB and back to the CIB respectively. The `set`<br>
+   879 subcommand sets the parameter to the provided value. `delete`<br>
+   880 removes the parameter completely. `show` displays the value of<br>
+   881 the parameter from the local file. Use `check` to verify if the<br>
+   882 local file content is valid.<br>
+   883 <br>
+   884 Usage:<br>
+   885 ...............<br>
+   886         secret &lt;rsc&gt; set &lt;param&gt; &lt;value&gt;<br>
+   887         secret &lt;rsc&gt; stash &lt;param&gt;<br>
+   888         secret &lt;rsc&gt; unstash &lt;param&gt;<br>
+   889         secret &lt;rsc&gt; delete &lt;param&gt;<br>
+   890         secret &lt;rsc&gt; show &lt;param&gt;<br>
+   891         secret &lt;rsc&gt; check &lt;param&gt;<br>
+   892 ...............<br>
+   893 Example:<br>
+   894 ...............<br>
+   895         secret fence_1 show password<br>
+   896         secret fence_1 stash password<br>
+   897         secret fence_1 set password secret_value<br>
+   898 ...............<br>
 </blockquote>
 
 
@@ -152,15 +152,15 @@ SOTNITH用の遷移グラフをつくるときに、パスワードをファイ�
 
 
 <blockquote>
-There are also numerous bug fixes and enhancements. For the full set of changes, take a look at the changelog: 
+There are also numerous bug fixes and enhancements. For the full set of changes, take a look at the changelog: <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-その他にも多くのバグフィックスや機能追加が取り込まれています。
-全ての変更履歴については<a href="http://hg.savannah.gnu.org/hgweb/crmsh/file/df0b30262868/ChangeLog" target="_blank">チェンジログ</a>を参照してください。
+その他にも多くのバグフィックスや機能追加が取り込まれています。<br>
+全ての変更履歴については<a href="http://hg.savannah.gnu.org/hgweb/crmsh/file/df0b30262868/ChangeLog" target="_blank">チェンジログ</a>を参照してください。<br>
 </blockquote>
 
 
@@ -168,19 +168,19 @@ There are also numerous bug fixes and enhancements. For the full set of changes,
 
 
 <blockquote>
-== Note about Pacemaker versions == 
-
-CRM shell 1.2.0 supports all Pacemaker 1.1 versions &lt;= v1.1.7. 
-The latter versions should work for the most part, but due to the number of changes post 1.1.7 there are no guarantees. 
+== Note about Pacemaker versions == <br>
+<br>
+CRM shell 1.2.0 supports all Pacemaker 1.1 versions &lt;= v1.1.7. <br>
+The latter versions should work for the most part, but due to the number of changes post 1.1.7 there are no guarantees. <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-== 互換性 == 
-CRM shell 1.2.0 は Pacemaker 1.1.7以前のバージョンで使用可能です。
-最新版(Pacemaker 1.1.8)でも動作するとは思いますが、Pacemaker 1.1.7のリリースより後に追加された新機能には対応していません。
+== 互換性 == <br>
+CRM shell 1.2.0 は Pacemaker 1.1.7以前のバージョンで使用可能です。<br>
+最新版(Pacemaker 1.1.8)でも動作するとは思いますが、Pacemaker 1.1.7のリリースより後に追加された新機能には対応していません。<br>
 </blockquote>
 
 
@@ -188,19 +188,19 @@ CRM shell 1.2.0 は Pacemaker 1.1.7以前のバージョンで使用可能です
 
 
 <blockquote>
-== Installing == 
-
-Installing the CRM shell along with Pacemaker 1.1 versions &lt;= v1.1.7 is possible, but it will result in file conflicts. 
-You need to enforce file overwriting when installing packages. 
+== Installing == <br>
+<br>
+Installing the CRM shell along with Pacemaker 1.1 versions &lt;= v1.1.7 is possible, but it will result in file conflicts. <br>
+You need to enforce file overwriting when installing packages. <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-== インストール ==
-Pacemaker 1.1.7以前のバージョンには、CRM shellの旧バージョンが同梱されています。
-旧バージョンとの競合を避けるために、インストール時に既存のファイルが上書きされていることを確認してください。
+== インストール ==<br>
+Pacemaker 1.1.7以前のバージョンには、CRM shellの旧バージョンが同梱されています。<br>
+旧バージョンとの競合を避けるために、インストール時に既存のファイルが上書きされていることを確認してください。<br>
 </blockquote>
 
 
@@ -208,30 +208,30 @@ Pacemaker 1.1.7以前のバージョンには、CRM shellの旧バージョン�
 
 
 <blockquote>
-== Resources == 
-
-The CRM shell project web page at GNU savannah:
-https://savannah.nongnu.org/projects/crmsh/
-
-The sources repository is available at:
-http://hg.savannah.gnu.org/hgweb/crmsh
-
-Packages for several popular Linux distributions:
-http://download.opensuse.org/repositories/network:/ha-clustering/
-
-The man page:
-http://crmsh.nongnu.org/crm.8.html
-
-Support and bug reporting:
-http://lists.linux-ha.org/mailman/listinfo/linux-ha
-https://savannah.nongnu.org/bugs/?group=crmsh
+== Resources == <br>
+<br>
+The CRM shell project web page at GNU savannah:<br>
+https://savannah.nongnu.org/projects/crmsh/<br>
+<br>
+The sources repository is available at:<br>
+http://hg.savannah.gnu.org/hgweb/crmsh<br>
+<br>
+Packages for several popular Linux distributions:<br>
+http://download.opensuse.org/repositories/network:/ha-clustering/<br>
+<br>
+The man page:<br>
+http://crmsh.nongnu.org/crm.8.html<br>
+<br>
+Support and bug reporting:<br>
+http://lists.linux-ha.org/mailman/listinfo/linux-ha<br>
+https://savannah.nongnu.org/bugs/?group=crmsh<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-参考情報リンク一覧
+参考情報リンク一覧<br>
 <ul>
      <ul>
 	<li><a href="https://savannah.nongnu.org/projects/crmsh/" target="_blank">プロジェクトページ</a>

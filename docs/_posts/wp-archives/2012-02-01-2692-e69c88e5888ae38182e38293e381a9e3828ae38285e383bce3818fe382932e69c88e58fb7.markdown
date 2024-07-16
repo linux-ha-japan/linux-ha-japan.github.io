@@ -135,15 +135,15 @@ Pacemaker Cloudのversion 0.6.0が1月25日に[リリース](http://oss-us-1.clu
 Pacemaker Cloudはaeolus, libvirt, openstack, ovirtとの連携を目指しているのですが
 ぞれぞれのパッケージに依存するコンポーネントは別々にインストールできるようにしたいというのが提案の主旨です。
 上記の提案がいよいよv0.6.0に取り込まれたようなので、Fedora 16でRPMをつくってみました。
-<pre><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong><span style="font-size: small;"># cat /etc/fedora-release</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong><span style="font-size: small;"># cat /etc/fedora-release</span></strong></span>
 <span style="font-size: small;">Fedora release 16 (Verne)</span></span></pre>
 
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># uname -a</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># uname -a</span></strong>
 <span style="font-size: small;">Linux fedora16 3.1.9-1.fc16.x86_64 #1 SMP Fri Jan 13 16:37:42 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux</span></span></pre>
 
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># yum-builddep pacemaker-cloud</span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># yum-builddep pacemaker-cloud</span>
 <span style="font-size: small;"># git clone http://github.com/pacemaker-cloud/pacemaker-cloud</span>
 <span style="font-size: small;"># git checkout v0.6.0</span>
 <span style="font-size: small;"># ./autogen.sh</span>
@@ -160,7 +160,7 @@ Pacemaker Cloudはaeolus, libvirt, openstack, ovirtとの連携を目指して�
 
 あ、ほんとだ。なんか増えてる。
 ちなみにv0.5.0はこんな感じです。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># git checkout v0.5.0</span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># git checkout v0.5.0</span>
 <span style="font-size: small;"># ./autogen.sh</span>
 <span style="font-size: small;"># ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc</span>
 <span style="font-size: small;"># make rpm</span>
@@ -171,7 +171,7 @@ Pacemaker Cloudはaeolus, libvirt, openstack, ovirtとの連携を目指して�
 
 
 せっかくRPMをつくったのでv0.6.0をインストールしてみました。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># cd /home/ikedaj/pacemaker-cloud/x86_64</span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># cd /home/ikedaj/pacemaker-cloud/x86_64</span>
 <span style="font-size: small;"># rpm -ihv pacemaker-cloud-0.6.0-1.fc16.x86_64.rpm</span></span></strong>
 <span style="font-size: small;">error: Failed dependencies:</span>
 <span style="font-size: small;"> pacemaker-cloud-core = 0.6.0-1.fc16 is needed by pacemaker-cloud-0.6.0-1.fc16.x86_64</span>
@@ -182,7 +182,7 @@ Pacemaker Cloudはaeolus, libvirt, openstack, ovirtとの連携を目指して�
 おい。結局、openstackとの依存関係はあるんかい。
 そういやaeolusとかovirtはどこいったんだ。
 依存関係、えらいっこちゃです。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># grep Requires pacemaker-cloud-0.6.0/pacemaker-cloud.spec.in</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># grep Requires pacemaker-cloud-0.6.0/pacemaker-cloud.spec.in</span></strong>
 <span style="font-size: small;">Requires: %{name}-core = %{version}-%{release}</span>
 <span style="font-size: small;">Requires: %{name}-libvirt = %{version}-%{release}</span>
 <span style="font-size: small;">Requires: %{name}-openstack = %{version}-%{release}</span>
@@ -214,12 +214,12 @@ Pacemaker Cloudはaeolus, libvirt, openstack, ovirtとの連携を目指して�
 
 
 しょうがないのでopenstackナントカたちもインストールしました。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># yum install openstack-glance</span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"><span style="font-size: small;"># yum install openstack-glance</span>
 <span style="font-size: small;"># yum install openstack-nova</span></span></strong></span></pre>
 
 
 めんどくさくなってきたので、とりあえず全部インストールしました。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># rpm -ihv pacemaker-cloud-*</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># rpm -ihv pacemaker-cloud-*</span></strong>
 <span style="font-size: small;">Preparing...                ########################################### [100%]</span>
 <span style="font-size: small;"> 1:pacemaker-cloud-core   ########################################### [ 20%]</span>
 <span style="font-size: small;"> 2:pacemaker-cloud-libvirt########################################### [ 40%]</span>
@@ -229,11 +229,11 @@ Pacemaker Cloudはaeolus, libvirt, openstack, ovirtとの連携を目指して�
 
 
 ブローカーを起動させます。
-<pre><span style="font-family: verdana,geneva; color: #008000;"><strong><span style="font-size: small;"># systemctl start pcloud-cped.service</span></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva; color: #008000;"><strong><span style="font-size: small;"># systemctl start pcloud-cped.service</span></strong></span></pre>
 
 
 v0.5.0でつくったデモが動くかなー。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># pcloudsh deployable_start dep01</span></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># pcloudsh deployable_start dep01</span></strong></span></pre>
 
 
 ゲストの起動は成功しましたが、ゲストに定義したリソースが起動しませんでした。
@@ -270,7 +270,7 @@ corosyncやpacemaker 1.1系, pacemaker-cloudもlibqbを採用しています。
 **4. Upcoming schedule for Needle 2.0.0 release**
 
 リリース情報ではありませんが、Corosync 2.0.0に向けたスケジュールが[公開](http://lists.corosync.org/pipermail/discuss/2012-January/000622.html)されています。
-<pre><span style="font-family: verdana,geneva;"><span style="font-size: small;">Alpha        　　　　 January 17, 2012    　  version 1.99.0</span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><span style="font-size: small;">Alpha        　　　　 January 17, 2012    　  version 1.99.0</span>
 <span style="font-size: small;">Beta        　　　　　 January 31, 2012    　  version 1.99.1</span>
 <span style="font-size: small;">RC1        　　　　　  February 7, 2012    　  version 1.99.2</span>
 <span style="font-size: small;">RC2        　　　　　  February 14, 2012      version 1.99.3</span>
@@ -332,7 +332,7 @@ IPaddr2 RAのunique_clone_addressパラメータの使い方です。
 複数のIPアドレスを自動的に割り振れちゃうっぽいです。
 
 作成したcrmの設定ファイルはこちら。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># cat unique_clone_address.crm</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># cat unique_clone_address.crm</span></strong>
 <span style="font-size: small;">
 property \</span>
 <span style="font-size: small;">    no-quorum-policy="ignore" \</span>
@@ -366,11 +366,11 @@ clone-node-maxとclone-maxの「33」という数字には深い意味はない�
 IPaddr2の**unique_clone_address**パラメータ、cloneの**globally-unique**パラメータが今回のポイントです。
 
 では、設定ファイルをクラスタに反映します。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm configure load update unique_clone_address.crm</span></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm configure load update unique_clone_address.crm</span></strong></span></pre>
 
 
 どれどれ…。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm_mon -1</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm_mon -1</span></strong></span>
 <span style="font-family: verdana,geneva;">
 <span style="font-size: small;">============</span>
 <span style="font-size: small;">Last updated: Mon Jan 30 18:11:48 2012</span>
@@ -420,7 +420,7 @@ IPaddr2の**unique_clone_address**パラメータ、cloneの**globally-unique**�
 
 
 だっはっは！なんぞこれｗｗｗうけるｗｗｗ
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># ip addr show | grep bond0</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># ip addr show | grep bond0</span></strong></span>
 <span style="font-family: verdana,geneva;">
 <span style="font-size: small;">2: eth2: &lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast master bond0 qlen 1000</span>
 <span style="font-size: small;">3: eth3: &lt;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast master bond0 qlen 1000</span>
@@ -449,10 +449,10 @@ ipパラメータに設定した「192.168.200.10」の第四オクテットに
 cloneのID(コロンのあとの数字)が加算されたIPアドレスが割り当てられていますね！
 
 じゃあ、ちょっと一個ぶっこわしてみましょう。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># ip addr del 192.168.200.18 dev bond0</span></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># ip addr del 192.168.200.18 dev bond0</span></strong></span></pre>
 
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm_mon -1</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm_mon -1</span></strong></span>
 <span style="font-family: verdana,geneva;">
 <span style="font-size: small;">============</span>
 <span style="font-size: small;">Last updated: Mon Jan 30 18:13:01 2012</span>
@@ -507,10 +507,10 @@ cloneのID(コロンのあとの数字)が加算されたIPアドレスが割り
 お。ClusterIP:8さん、ちゃんとフェイルオーバした。
 
 では、node01のクラスタを停止します。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># service heartbeat stop</span></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># service heartbeat stop</span></strong></span></pre>
 
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm_mon -1</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="font-size: small; color: #008000;"># crm_mon -1</span></strong></span>
 <span style="font-family: verdana,geneva;">
 <span style="font-size: small;">============</span>
 <span style="font-size: small;">Last updated: Mon Jan 30 18:14:17 2012</span>

@@ -161,7 +161,7 @@ diskセクションに「read-balancing」パラメータが追加されまし�
 ちょっと最後の二つ(least-pending, when-congested-remote)の違いがわかりません。
 
 
-<pre>
+<pre class="wp-caption" style="text-align: left;">
 <div><span style="font-family: verdana, geneva;">--- a/documentation/drbdsetup.xml
 +++ b/documentation/drbdsetup.xml
 @@ -481,6 +481,23 @@
@@ -190,7 +190,7 @@ diskセクションに「read-balancing」パラメータが追加されまし�
 
 
 
-<pre>
+<pre class="wp-caption" style="text-align: left;">
 <div><span style="font-family: verdana, geneva;">--- a/drbd/linux/drbd.h
 +++ b/drbd/linux/drbd.h
 @@ -96,6 +96,14 @@ enum drbd_on_congestion {

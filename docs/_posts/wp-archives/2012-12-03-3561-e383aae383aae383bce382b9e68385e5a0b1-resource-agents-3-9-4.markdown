@@ -61,7 +61,7 @@ ocf-rarunについては次のページで使い方をご紹介します。
 
 
 <blockquote>
-very connection as sysdba is logged in an audit log. This can result in a large number of new files created. A new user named OCFMON is created (if it doesn't exist) in the start action and subsequently used in monitor. It has very limited rights.
+very connection as sysdba is logged in an audit log. This can result in a large number of new files created. A new user named OCFMON is created (if it doesn't exist) in the start action and subsequently used in monitor. It has very limited rights.<br>
 </blockquote>
 
 
@@ -92,31 +92,31 @@ very connection as sysdba is logged in an audit log. This can result in a large 
 
 
 <blockquote>
-The full list of changes for the linux-ha RA set is available in ChangeLog
-(https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog)
+The full list of changes for the linux-ha RA set is available in ChangeLog<br>
+(https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog)<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-今回のリリースに含まれるすべてのチェンジログはこちらを<a href="https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog" target="_blank">参照</a>してください。
+今回のリリースに含まれるすべてのチェンジログはこちらを<a href="https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog" target="_blank">参照</a>してください。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-The rgmanager resource agents set received mainly bug fixes.
-Please upgrade at the earliest opportunity.
+The rgmanager resource agents set received mainly bug fixes.<br>
+Please upgrade at the earliest opportunity.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-resource-agentsのパッケージには、Pacemaker/Heartbeat用のリソースエージェント(Resource Agent:RA)だけではなく、Red Hat Cluster Suiteに含まれるrgmanager用のRAも含まれています。
-rgmanager RAにも<a href="https://github.com/ClusterLabs/resource-agents/commits/master/rgmanager/src/resources" target="_blank">いくつか修正</a>が取り込まれていますので、できるだけ早くアップグレードすることをおすすめします。
+resource-agentsのパッケージには、Pacemaker/Heartbeat用のリソースエージェント(Resource Agent:RA)だけではなく、Red Hat Cluster Suiteに含まれるrgmanager用のRAも含まれています。<br>
+rgmanager RAにも<a href="https://github.com/ClusterLabs/resource-agents/commits/master/rgmanager/src/resources" target="_blank">いくつか修正</a>が取り込まれていますので、できるだけ早くアップグレードすることをおすすめします。<br>
 </blockquote>
 
 
@@ -132,8 +132,8 @@ rgmanager RAにも<a href="https://github.com/ClusterLabs/resource-agents/commit
 
 
 とりあえずパッケージをインストールしちゃいます。
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # git clone http://github.com/ClusterLabs/resource-agents.git
 # cd resource-agents/
 # ./autogen.sh
@@ -143,14 +143,14 @@ rgmanager RAにも<a href="https://github.com/ClusterLabs/resource-agents/commit
 
 
 そして、いよいよocf-rarunの出番。今回は、sample RAという動作確認用のRAを作成してみます。
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # cd /usr/lib/ocf/resource.d/pacemaker/
 # vim sample</code></pre>
 
 
-<pre>
-<code>
+<pre style="background-color: #FFFFCC">
+<code style="background-color: inherit">
 #!/bin/sh
 #
 #
@@ -258,14 +258,14 @@ sample RAがなにやってるかっていうと、実はなにもやってま�
 
 まあ他にもイロイロありまして、「startが呼び出されたとき、すでにリソースが実行中だった場合はなにもしない」とかそのへんもちゃんと作りこんであげる必要がありますが、今回はそのへんすっとばかしてます。実際にRAを作成する場合は既存のRAにどのような処理が実装されているのかを調べてみてください。
 では、いよいよsample RAに実行権限をば！
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # chmod +x sample</code></pre>
 
 
 よし！実行！
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # ./sample
 ./sample: line 10: /lib/heartbeat/ocf-shellfuncs: No such file or directory</code></pre>
 
@@ -273,22 +273,22 @@ sample RAがなにやってるかっていうと、実はなにもやってま�
 おこられた。。。
 Pacemakerから実行するときはちゃんと環境変数が設定されてるんですけどね、手動実行だとココよくおこられます。
 というわけで、環境変数も設定してあげましょう。
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # export OCF_ROOT=/usr/lib/ocf</code></pre>
 
 
 よっしゃーやるでー
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # ./sample
 ERROR: : action not supported</code></pre>
 
 
 またおこられた。。。と思ったけど、これはocf-rarunが吐いてるログ！キタコレ！
 ocf-rarunの御神託に従って、ちゃんと action(処理名というか関数名というか) を引数に与えてみます！
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # ./sample start
 DEBUG: validate_all
 DEBUG: start</code></pre>
@@ -298,8 +298,8 @@ DEBUG: start</code></pre>
 sample RAのstart処理が実行されました！
 validate_all処理も実行されてますけど、これはいつも呼び出されるやつ(環境変数とかチェックしてるとこだから)なので、問題なし、というか期待通りの動作です。
 ステータスファイルもちゃんと作成されてますね。
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # ls -l /var/run/sample-default.state
 -rw-r--r-- 1 root root 28 Dec  3 10:33 /var/run/sample-default.state
 
@@ -308,8 +308,8 @@ Mon Dec 3 10:33:20 JST 2012</code></pre>
 
 
 今度はmonitor処理を実行してみましょう。
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # ./sample monitor
 DEBUG: validate_all
 DEBUG: Mon Dec 3 10:33:20 JST 2012</code></pre>
@@ -317,8 +317,8 @@ DEBUG: Mon Dec 3 10:33:20 JST 2012</code></pre>
 
 ふむふむ。ステータスファイルの中身が出力されましたね。
 では、最後にstop処理を実行します。
-<pre>
-<code>
+<pre style="background-color: aliceblue">
+<code style="background-color: inherit">
 # ./sample stop
 DEBUG: validate_all
 DEBUG: stop
@@ -332,8 +332,8 @@ ls: cannot access /var/run/sample-default.state: No such file or directory</code
 
 今回、かなりの簡易版でしたが、ocf-rarunの使い方はなんとなく雰囲気わかっていただけたでしょうか。
 例えば、既存のDummy RAを見てみると、スクリプトのお尻のほう、こんな感じですよね。
-<pre>
-<code>
+<pre style="background-color: #FFFFCC">
+<code style="background-color: inherit">
 case $__OCF_ACTION in
 meta-data)      meta_data
                 exit $OCF_SUCCESS

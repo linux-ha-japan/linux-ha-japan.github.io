@@ -448,7 +448,7 @@ crmのnodeモードではホスト名が一緒で消せないので注意して�
 
 
 
-<pre>============
+<pre style="background-color: #f0f0f0; padding: 0.4em; border: 1px solid #3c78b5;">============
 Last updated: Tue Feb  1 14:31:00 2011
 Stack: Heartbeat
 Current DC: ha2 (174fdb94-a218-42b4-b3bf-3971d5658a50) - partition with quorum
@@ -487,7 +487,7 @@ Migration summary:
 
 
 
-<pre>node $id="174fdb94-a218-42b4-b3bf-3971d5658a50" ha2
+<pre style="background-color: #f0f0f0; padding: 0.4em; border: 1px solid #3c78b5;">node $id="174fdb94-a218-42b4-b3bf-3971d5658a50" ha2
 node $id="3b0f1423-f2dd-4a6e-b16c-766f76301d96" ha1
 node $id="95030479-e34d-4ed8-954e-3d4398cc10af" ha1
 property $id="cib-bootstrap-options" \
@@ -503,7 +503,7 @@ property $id="cib-bootstrap-options" \
 
 
 
-<pre>node $id="174fdb94-a218-42b4-b3bf-3971d5658a50" ha2
+<pre style="background-color: #f0f0f0; padding: 0.4em; border: 1px solid #3c78b5;">node $id="174fdb94-a218-42b4-b3bf-3971d5658a50" ha2
 node $id="3b0f1423-f2dd-4a6e-b16c-766f76301d96" ha1
 property $id="cib-bootstrap-options" \
         dc-version="1.0.9-74392a28b7f31d7ddc86689598bd23114f58978b" \

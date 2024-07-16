@@ -50,15 +50,15 @@ Corosync v2に向けたベータ版がほぼ[スケジュール](http://lists.co
 
 
 <blockquote>
-The schedule:
-Alpha          January 17, 2012     version 1.99.0
-Beta          January 31, 2012     version 1.99.1
-RC1          February 7, 2012     version 1.99.2
-RC2          February 14, 2012     version 1.99.3
-RC3          February 20, 2012     version 1.99.4
-RC4          February 27, 2012     version 1.99.5
-RC5          March 6, 2012          version 1.99.6
-Release 2.0.0     March 13, 2012          version 2.0.0
+The schedule:<br>
+Alpha          January 17, 2012     version 1.99.0<br>
+Beta          January 31, 2012     version 1.99.1<br>
+RC1          February 7, 2012     version 1.99.2<br>
+RC2          February 14, 2012     version 1.99.3<br>
+RC3          February 20, 2012     version 1.99.4<br>
+RC4          February 27, 2012     version 1.99.5<br>
+RC5          March 6, 2012          version 1.99.6<br>
+Release 2.0.0     March 13, 2012          version 2.0.0<br>
 </blockquote>
 
 
@@ -67,13 +67,13 @@ Release 2.0.0     March 13, 2012          version 2.0.0
 
 
 <blockquote>
-Migrate to libqb (https://github.com/asalkeld/libqb/wiki)
----------------------------------------------------------
-- Common features like IPC is now shared between Corosync and other
-projects, so it's probably better tested.
-- Corosync is now single threaded (with exception of logging), so no
-longer problems with deadlock, race conditions, ... Also IPC speed
-should be better
+Migrate to libqb (https://github.com/asalkeld/libqb/wiki)<br>
+---------------------------------------------------------<br>
+- Common features like IPC is now shared between Corosync and other<br>
+projects, so it's probably better tested.<br>
+- Corosync is now single threaded (with exception of logging), so no<br>
+longer problems with deadlock, race conditions, ... Also IPC speed<br>
+should be better<br>
 </blockquote>
 
 
@@ -95,9 +95,9 @@ should be better
 
 
 <blockquote>
-OBJDB/CONFDB replaced by ICMAP/CMAP
------------------------------------
-- Significantly simplified API
+OBJDB/CONFDB replaced by ICMAP/CMAP<br>
+-----------------------------------<br>
+- Significantly simplified API<br>
 </blockquote>
 
 
@@ -115,9 +115,9 @@ OBJDB/CONFDB replaced by ICMAP/CMAP
 
 
 <blockquote>
-Plugins are gone
-----------------
-- For creators of plugins it means, that code need to be built on top of CPG.
+Plugins are gone<br>
+----------------<br>
+- For creators of plugins it means, that code need to be built on top of CPG.<br>
 </blockquote>
 
 
@@ -135,10 +135,10 @@ Plugins are gone
 
 
 <blockquote>
-Votequorum improved
--------------------
-- Votequorum now contains almost all functionality of CMAN quorum
-- Many new features implemented (auto_tie_breaker, wait_for_all, ...)
+Votequorum improved<br>
+-------------------<br>
+- Votequorum now contains almost all functionality of CMAN quorum<br>
+- Many new features implemented (auto_tie_breaker, wait_for_all, ...)<br>
 </blockquote>
 
 
@@ -198,16 +198,16 @@ LCMC version 1.3.0が[リリース](http://www.gossamer-threads.com/lists/linuxh
 
 
 <blockquote>
-changelog:
-* implement quick-connect-to-the-cluster box
-* implement a ignore-defaults resource agent list
-* workaround for iSCSITarget RA
-* enable sudo checkbox if user is not root automatically
-* disable one-host cluster by default
-* add --one-host-cluster option
-* rewrite code that collects info from the cluster
-* fixes a null pointer exception while clicking on the host
-* implement multi selection
+changelog:<br>
+* implement quick-connect-to-the-cluster box<br>
+* implement a ignore-defaults resource agent list<br>
+* workaround for iSCSITarget RA<br>
+* enable sudo checkbox if user is not root automatically<br>
+* disable one-host cluster by default<br>
+* add --one-host-cluster option<br>
+* rewrite code that collects info from the cluster<br>
+* fixes a null pointer exception while clicking on the host<br>
+* implement multi selection<br>
 </blockquote>
 
 
@@ -289,12 +289,12 @@ fence-virtはRed Hatの中の人(Lonさん)がごりごり開発しているの�
 
 
 <blockquote>
-- Serial listener now can handle multiple domain starts/stops
-- Libvirt-qpid replaced with libvirt-qmf - QMFv2 management
-- A pacemaker backend is now available
-- Systemd integration
-- Deprecated cman/checkpoint plugin.
-- Easier to deploy on Fedora systems.
+- Serial listener now can handle multiple domain starts/stops<br>
+- Libvirt-qpid replaced with libvirt-qmf - QMFv2 management<br>
+- A pacemaker backend is now available<br>
+- Systemd integration<br>
+- Deprecated cman/checkpoint plugin.<br>
+- Easier to deploy on Fedora systems.<br>
 </blockquote>
 
 
@@ -338,9 +338,9 @@ BACKENDは今後、pacemaker, libvirt-qpidd, ovirt, rhev対応のものをつく
 
 
 <blockquote>
-Contributors:
-  Zane Bitter    - QMFv2 backend & Misc Fixes
-  Kazunori INOUE - Serial listener enhancements for multiple machine start/stops Pacemaker backend
+Contributors:<br>
+  Zane Bitter    - QMFv2 backend & Misc Fixes<br>
+  Kazunori INOUE - Serial listener enhancements for multiple machine start/stops Pacemaker backend<br>
 </blockquote>
 
 
@@ -364,7 +364,7 @@ fence-virtそのものの説明や設定方法をご紹介する機会がなか�
   
 
 まず、ha.cfにはnode-10, node-11の順にホスト名が記述されています。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # cat /etc/ha.d/ha.cf | grep node
 
 node node-10
@@ -374,7 +374,7 @@ node node-11
 
 この状態で、node-10, node-11のHeartbeat/Pacemakerをほぼ同時に起動させます。
 crm_monコマンドを実行すると、ha.cfに記述された順序どおりにホスト名が表示されています。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # crm_mon -1
 ============
 Last updated: Fri Mar  2 18:48:18 2012
@@ -390,7 +390,7 @@ Online: [ node-10 node-11 ]
 
 
 で、ホスト名をちょっと変更してみた。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # cat /etc/ha.d/ha.cf | grep node
 
 node 10-node
@@ -399,7 +399,7 @@ node 11-node
 
 
 すると、crm_monの表示結果がこんな感じになります。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # crm_mon -1
 ============
 Last updated: Fri Mar  2 18:50:54 2012
@@ -468,7 +468,7 @@ Pacemakerは差分情報をもとに状態遷移グラフを作成し、クラ�
 「電文からノード名を取り出してディスクに書き込む」
 「ディスクに書き込まれた情報を構造体に保持する」
 という処理をを簡略化した"Hello glib world!"を作ってみました。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 #include &lt;stdio.h&gt;
 #include &lt;glib.h&gt;
 
@@ -501,7 +501,7 @@ int main(int argc, char *argv[])
 
 
 コンパイルします。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # gcc -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -lglib-2.0 -o hello_glib hello_glib.c
 </code></pre>
 
@@ -511,7 +511,7 @@ int main(int argc, char *argv[])
 引数の並び順は、ノードがクラスタに参加する順序を擬似しています。
 実環境では数字だけのノード名はありえないかもしれませんが
 動作をわかりやすくするために二桁の数字を引数として与えてみました。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # ./hello_glib 00 01 02 10 11 12
 
 11, 12, 00, 01, 02, 10,
@@ -530,7 +530,7 @@ glib、ムズカシーネー。
 で、あんどりゅーくん曰く、
 「g_list_append()じゃなくて、g_list_insert_sorted()にしとく？」
 ということなので、そっちも試してみました。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 #include &lt;stdio.h&gt;
 #include &lt;glib.h&gt;
 
@@ -572,12 +572,12 @@ int main(int argc, char *argv[])
 </code></pre>
 
 
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # gcc -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -lglib-2.0 -o hello_glib hello_glib.c
 </code></pre>
 
 
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # ./hello_glib 00 01 02 10 11 12
 
 00, 01, 02, 10, 11, 12,

@@ -61,7 +61,7 @@ monitorのstart-delayを5分以上に設定すると、リソースが停止し�
 これ以外の完全な修正点のリストは[Pacemaker-1.0.11リリースアナウンス](http://theclusterguy.clusterlabs.org/post/5129499003/pacemaker-1-0-11-released)を参照してください。
 
 リリースアナウンスの本文にもあるように、今回のリリースにおいてもLinux-HA Japan コミュニティからもリリースに協力しています。
-<pre>Thanks once again to the efforts of Keisuke MORI and NTT,
+<pre style="padding-left: 30px;">Thanks once again to the efforts of Keisuke MORI and NTT,
 the latest bug fixes have been back-ported from 1.1</pre>
 
 

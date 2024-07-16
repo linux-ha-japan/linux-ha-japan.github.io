@@ -621,7 +621,7 @@ matahari-serviceを起動します。自動起動の設定をONとします。
 ホストで「pcloudsh」を実行します。
 pcloudshは、Pacemaker Cloudのコンポーネントであるcpedとかdpedとかのフロントとなる
 Pythonのスクリプトです。
-<pre><span style="font-family: verdana,geneva;"> # pcloudsh</span>
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> # pcloudsh</span>
 <span style="font-family: verdana,geneva;"> Welcome to pcloudsh, the Pacemaker Cloud Interface terminal type "help" for help and quit to exit. </span> 
 
 <span style="font-family: verdana,geneva;">pcloudsh# <strong>help</strong></span><span style="font-family: verdana,geneva;">Documented commands (type help ):</span>
@@ -647,7 +647,7 @@ openstackとかozとかの設定ファイルをいろいろ調べるのは
 なんだかちょっとめんどくさいのですよ。
 
 というわけで、pcloudshは一旦終了します。
-<pre><span style="font-family: verdana,geneva;"> pcloudsh# <strong>quit</strong>
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> pcloudsh# <strong>quit</strong>
 </span></pre>
 
 
@@ -686,16 +686,16 @@ infrastructureのデフォルトはlibvirtです。
 
 では、ここから正規の手順に戻ります。
 pcloudshを起動します。
-<pre><span style="font-family: verdana,geneva;"> # pcloudsh
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> # pcloudsh
 </span></pre>
 
 
 deployableを作成します。dep01という名前にしました。
-<pre><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_create   dep01</strong></span></pre>
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_create   dep01</strong></span></pre>
 
 
 作成したdeployableを表示してみます。
-<pre><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_list</strong> 
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_list</strong> 
 
 Name
 <span style="font-family: verdana,geneva;"> --------------</span>
@@ -707,7 +707,7 @@ Name
 
 
 assemblyを表示します。さっき力技でつくった設定ファイルの中身がみれます。
-<pre><span style="font-family: verdana,geneva;"> pcloudsh# <strong>assembly_list</strong> </span><span style="font-family: verdana,geneva;"> 
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> pcloudsh# <strong>assembly_list</strong> </span><span style="font-family: verdana,geneva;"> 
 
 Name         　　　  UUID
 <span style="font-family: verdana,geneva;"> ------------------------------------------------</span>
@@ -719,12 +719,12 @@ Name         　　　  UUID
 
 
 deployableにassemblyを登録します。
-<pre><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_assembly_add   dep01   node01</strong></span></pre>
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_assembly_add   dep01   node01</strong></span></pre>
 
 
 assemblyにリソースを追加します。
 「res01」という名前の「httpd」サービスをリソースとして追加しました。
-<pre><span style="font-family: verdana,geneva;"> pcloudsh# <strong>assembly_resource_add    res01    httpd    node01</strong> </span><span style="font-family: verdana,geneva;"> 
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> pcloudsh# <strong>assembly_resource_add    res01    httpd    node01</strong> </span><span style="font-family: verdana,geneva;"> 
 
 assembly_resource_add ['res01', 'httpd', 'node01']
 
@@ -735,7 +735,7 @@ assembly_resource_add ['res01', 'httpd', 'node01']
 
 作成したリソースの情報を表示します。
 監視間隔はデフォルトで60秒です。
-<pre><span style="font-family: verdana,geneva;"> pcloudsh# <strong>assembly_resource_list    node01</strong> </span><span style="font-family: verdana,geneva;"> 
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> pcloudsh# <strong>assembly_resource_list    node01</strong> </span><span style="font-family: verdana,geneva;"> 
 
 Name            Type       Class    Monitor interval
 <span style="font-family: verdana,geneva;"> ----------------------------------------------</span>
@@ -808,7 +808,7 @@ deployableとassemblyの設定が追加されていることがわかります�
 では！
 ではでは！
 いよいよdeployableを起動しますよー！！！
-<pre><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_start  dep01</strong><strong> </strong><strong>Starting Deployable dep01</strong>
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_start  dep01</strong><strong> </strong><strong>Starting Deployable dep01</strong>
 
  
 
@@ -816,7 +816,7 @@ deployableとassemblyの設定が追加されていることがわかります�
 
 
 ちょっと待つ。
-<pre><span style="font-family: verdana,geneva;"> Event: {'reason': 'All good', 'assembly': 'node01', 'state': 'running', 'deployable': 'dep01'}</span>
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> Event: {'reason': 'All good', 'assembly': 'node01', 'state': 'running', 'deployable': 'dep01'}</span>
 <span style="font-family: verdana,geneva;"> Event: {'reason': '<strong>Started OK</strong>', 'assembly': '<strong>node01</strong>', 'state': '<strong>running</strong>', 'service': '<strong>httpd</strong>', 'deployable': 'dep01'}</span></pre>
 
 
@@ -853,7 +853,7 @@ httpdも起動したっぽい！
 
 
 pcloudshのターミナルをじっと見ていると
-<pre><span style="font-family: verdana,geneva;"> Event: {'reason': '<strong>monitor failed'</strong>, 'assembly': 'node01', 'state': 'failed', 'service': 'httpd', 'deployable': 'dep01'}</span>
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> Event: {'reason': '<strong>monitor failed'</strong>, 'assembly': 'node01', 'state': 'failed', 'service': 'httpd', 'deployable': 'dep01'}</span>
 <span style="font-family: verdana,geneva;"> Event: {'reason': '<strong>Started OK</strong>', 'assembly': 'node01', 'state': 'running', 'service': 'httpd', 'deployable': 'dep01'}</span></pre>
 
 
@@ -887,7 +887,7 @@ pcloudshのターミナルをじっと見ていると
 
 
 pcloudshのターミナルをじっと見ていると
-<pre><span style="font-family: verdana,geneva;"> Event: {'reason': '<strong>Not reachable</strong>', 'assembly': 'node01', 'state': 'failed', 'deployable': 'dep01'}</span>
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> Event: {'reason': '<strong>Not reachable</strong>', 'assembly': 'node01', 'state': 'failed', 'deployable': 'dep01'}</span>
 <span style="font-family: verdana,geneva;"> Event: {'reason': '<strong>All good</strong>', 'assembly': 'node01', 'state': 'running', 'deployable': 'dep01'}</span></pre>
 
 
@@ -930,7 +930,7 @@ dpedが二つあるのはよくわかりません。
 pythonはpcloudshなのかなあ？
 
 このへんはあまり深追いせず、deployableを停止します。
-<pre><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_stop   dep01</strong></span></pre>
+<pre style="background-color: aliceblue;"><span style="font-family: verdana,geneva;"> pcloudsh# <strong>deployable_stop   dep01</strong></span></pre>
 
 
 ゲストも停止しました。

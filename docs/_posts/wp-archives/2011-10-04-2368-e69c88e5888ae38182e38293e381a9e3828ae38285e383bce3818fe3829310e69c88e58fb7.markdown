@@ -125,11 +125,11 @@ Linux-HA Japanの[メーリングリスト](/wp/ml)や本家の[メーリング�
 なんかたくさんあって大変そう、と思うかもしれませんが
 Pacemakerにはhb_reportというログ収集ツールが付属しています。
 (正確にいうと、cluster-glueのパッケージに含まれています)
-<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <span style="color: #008000;"><strong>which hb_report</strong></span></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 ~]# <span style="color: #008000;"><strong>which hb_report</strong></span></span>
 <span style="font-family: verdana,geneva;">/usr/sbin/hb_report</span></pre>
 
 
-<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">hb_report</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">hb_report</span></strong></span>
 
 <span style="font-family: verdana,geneva;">usage: hb_report -f {time|"cts:"testnum} [-t time] [-u user] [-l file]</span>
 <span style="font-family: verdana,geneva;"> [-n nodes] [-E files] [-p patt] [-L patt] [-e prog] [-MSDCZAVsvhd] [dest]</span>
@@ -173,7 +173,7 @@ Pacemakerにはhb_reportというログ収集ツールが付属しています�
 -C 収集したログは、&lt;dest&gt;.tar.bz2に圧縮されますが、収集処理の途中に作成された一時ディレクトリを削除します。
 
 例えば、13時20分から13時40分までのログを集めたい場合は、次にようなオプションをつけてhb_reportを実行します。
-<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">hb_report -f 13:20:00 -t 13:40:00 -u root -D -C /tmp/hb_report</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">hb_report -f 13:20:00 -t 13:40:00 -u root -D -C /tmp/hb_report</span></strong></span>
 
 <span style="font-family: verdana,geneva;"> node01: INFO: found log /var/log/ha-debug</span>
 <span style="font-family: verdana,geneva;"> node02: INFO: found log /var/log/ha-debug</span>
@@ -193,7 +193,7 @@ hb_reportはクラスタ内のどのノードで実行してもかまいませ�
 Pacemakerが停止している状態でもログを収集することができます。
 
 では、どんなログが収集されたのかtar.bz2の中身を見てみましょう。
-<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">tar tjfv /tmp/hb_report.tar.bz2</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">tar tjfv /tmp/hb_report.tar.bz2</span></strong></span>
 
 <span style="font-family: verdana,geneva;"> drwxr-xr-x root/root         0 2011-10-04 13:35:32 hb_report/</span>
 <span style="font-family: verdana,geneva;"> -rw------- root/root       253 2011-09-30 14:35:08 hb_report/<span style="color: #ff00ff;"><strong>ha.cf</strong></span></span>
@@ -218,7 +218,7 @@ Pacemakerが停止している状態でもログを収集することができ�
 ha-logとか(ha-log.txtに名前がかわってるけど)遷移グラフ(pengine/pe-*)とかがちゃんと収集されていますね！
 
 解凍して、もうちょっと詳しく見てみましょう。
-<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">cd /tmp/</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">cd /tmp/</span></strong></span>
 <span style="font-family: verdana,geneva;"> [root@node01 tmp]# <strong><span style="color: #008000;">tar xfj hb_report.tar.bz2</span></strong></span>
 <span style="font-family: verdana,geneva;"> [root@node01 tmp]# <strong><span style="color: #008000;">cd hb_report</span></strong></span>
 <span style="font-family: verdana,geneva;"> [root@node01 hb_report]# <strong><span style="color: #008000;">ls -l</span></strong></span>
@@ -239,7 +239,7 @@ ha-logとか(ha-log.txtに名前がかわってるけど)遷移グラフ(pengine
 
 
 description.txtやsysinfo.txtを見ると、パッケージやOSのバージョンがわかるようになっています。
-<pre><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">cat description.txt</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">cat description.txt</span></strong></span>
 
 <span style="font-family: verdana,geneva;"> Please edit this template and describe the issue/problem you</span>
 <span style="font-family: verdana,geneva;"> encountered. Then, post to</span>
@@ -298,7 +298,7 @@ description.txtやsysinfo.txtを見ると、パッケージやOSのバージョ�
 
 
 crm_mon.txtをみるとhb_reportを実行したときのクラスタの状態がわかります。
-<pre><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">cat crm_mon.txt</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">cat crm_mon.txt</span></strong></span>
 
 <span style="font-family: verdana,geneva;"> ============</span>
 <span style="font-family: verdana,geneva;"> Stack: Heartbeat</span>
@@ -321,7 +321,7 @@ crm_mon.txtをみるとhb_reportを実行したときのクラスタの状態が
 
 また、ノード名でディレクトリが作成されていますが、各ノードのログファイルだけではなく
 実行状況(RUNNING)、DCノード(DC)を判断するためのファイルが作成されています。
-<pre><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node01</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node01</span></strong></span>
 
 <span style="font-family: verdana,geneva;"> 合計 136</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- 1 root root     0 10月  4 13:35 <strong><span style="color: #ff00ff;">RUNNING</span></strong></span>
@@ -374,7 +374,7 @@ crm_mon.txtをみるとhb_reportを実行したときのクラスタの状態が
 
 遷移グラフはDCノードで出力されます。
 遷移グラフの解析方法はまた別の回で紹介します。
-<pre><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node02/pengine/</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 hb_report]# <strong><span style="color: #008000;">ls -l node02/pengine/</span></strong></span>
 
 <span style="font-family: verdana,geneva;"> 合計 72</span>
 <span style="font-family: verdana,geneva;"> -rw------- 1 hacluster haclient   600 10月  4 13:29 pe-input-0.bz2</span>
@@ -394,7 +394,7 @@ crm_mon.txtをみるとhb_reportを実行したときのクラスタの状態が
 
 
 コミュニティにログを投稿する場合は、とりあえずha-logと遷移グラフが空ファイルでないことを確認しておいてください。
-<pre><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">tar tjfv /tmp/hb_report.tar.bz2 | grep ha-log</span></strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 ~]# <strong><span style="color: #008000;">tar tjfv /tmp/hb_report.tar.bz2 | grep ha-log</span></strong></span>
 
 <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root    125468 2011-10-04 13:35:32 hb_report/ha-log.txt</span>
 <span style="font-family: verdana,geneva;"> -rw-r--r-- root/root     30561 2011-10-04 13:35:24 hb_report/node01/ha-log.txt</span>
@@ -427,7 +427,7 @@ Pacemaker 1.1系ではcrm_reportコマンドがpacemakerのパッケージに含
 Pacemaker 1.0.11にもバックポートされているので一応使えます。
 
 使い方はhb_reportとほとんど同じです。
-<pre><span style="font-family: verdana,geneva;">[root@node01 ~]#<strong><span style="color: #008000;"> crm_report -f "2011-10-4 13:20:00" -t "2011-10-4 13:40:00" \
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">[root@node01 ~]#<strong><span style="color: #008000;"> crm_report -f "2011-10-4 13:20:00" -t "2011-10-4 13:40:00" \
                                 -H -u root --dest /tmp/crm_report</span></strong></span>
 
 <span style="font-family: verdana,geneva;"> node01:  WARNING: The tarball produced by this program may contain</span>

@@ -493,7 +493,7 @@ Dummy RAは、かなりまるめて説明すると
 **dummy00.crm**
 
 
-<pre><span style="font-family: verdana,geneva;">### Cluster Option ###
+<pre class="wp-caption" style="text-align: justify;"><span style="font-family: verdana,geneva;">### Cluster Option ###
 property no-quorum-policy="ignore" \
 stonith-enabled="false" \
 startup-fencing="false"

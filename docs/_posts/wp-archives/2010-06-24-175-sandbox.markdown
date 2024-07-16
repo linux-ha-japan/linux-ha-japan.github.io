@@ -62,7 +62,7 @@ categories:
 
 
 
-<pre># ls -la /etc
+<pre class="wp-caption" style="text-align: left;"># ls -la /etc
 合計 3832
 -rw-r--r--  1 root root    2562  1月 15  2008 a2ps-site.cfg
 -rw-r--r--  1 root root   15288  1月 15  2008 a2ps.cfg
@@ -85,7 +85,7 @@ WP-Syntax プラグインを導入しました。ソースコードやxmlなど�
 
 
 
-<pre>
+<pre lang="xml" line="10">
 &lt;xml&gt;
 &lt;foo&gt;
 &lt;hoge a="aaaa"&gt;hoge&lt;/hoge&gt;
@@ -95,7 +95,7 @@ WP-Syntax プラグインを導入しました。ソースコードやxmlなど�
 
 
 
-<pre>
+<pre lang="c">
 #include &lt;stdio.h&gt;
 int main() {
     return 0

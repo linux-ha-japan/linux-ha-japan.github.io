@@ -18,14 +18,14 @@ tags:
 
 
 <blockquote>
-Hello,
-
-The current glue repository has been tagged as 1.0.11.
-The highlights:
+Hello,<br>
+<br>
+The current glue repository has been tagged as 1.0.11.<br>
+The highlights:<br>
 <ul>
-<li>lrmd sets max number of children depending on the number of processors
+<li>lrmd sets max number of children depending on the number of processors<br>
 </li>
-<li>compatibility for stonith agents and hb_report for pacemaker v1.1.8
+<li>compatibility for stonith agents and hb_report for pacemaker v1.1.8<br>
 </li>
 </ul>
 </blockquote>
@@ -34,11 +34,11 @@ The highlights:
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-今回のリリースに含まれる変更点：
+今回のリリースに含まれる変更点：<br>
 <ul>
-<li>リソースエージェント(Resource Agent:RA)を実行する際にlrmdからforkされる子プロセスの数が、実行環境のプロセッサ数に応じて調整されるようになりました。
+<li>リソースエージェント(Resource Agent:RA)を実行する際にlrmdからforkされる子プロセスの数が、実行環境のプロセッサ数に応じて調整されるようになりました。<br>
 </li>
-<li>STONITHエージェントおよびhb_reportツールがPacemaker 1.1.8 に対応しました。
+<li>STONITHエージェントおよびhb_reportツールがPacemaker 1.1.8 に対応しました。<br>
 </li>
 </ul>
 </blockquote>
@@ -48,20 +48,20 @@ The highlights:
 
 
 <blockquote>
-You can get the 1.0.11 tarball here: http://hg.linux-ha.org/glue/archive/glue-1.0.11.tar.bz2
-
-Many thanks to all contributors!
-Enjoy!
-
-Lars Ellenberg
-Dejan Muhamedagic
+You can get the 1.0.11 tarball here: http://hg.linux-ha.org/glue/archive/glue-1.0.11.tar.bz2<br>
+<br>
+Many thanks to all contributors!<br>
+Enjoy!<br>
+<br>
+Lars Ellenberg<br>
+Dejan Muhamedagic<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-最新版のソースコードは<a href="http://hg.linux-ha.org/glue/archive/glue-1.0.11.tar.bz2" target="_blank">こちら</a>からダウンロードすることができます。
+最新版のソースコードは<a href="http://hg.linux-ha.org/glue/archive/glue-1.0.11.tar.bz2" target="_blank">こちら</a>からダウンロードすることができます。<br>
 </blockquote>
 
 
@@ -92,7 +92,7 @@ Dejan Muhamedagic
 今回のリリースでは、LRMD_MAX_CHILDRENのデフォルト値が、実行環境のプロセッサ数に応じて調整されるようになりました。
 
 [calc_max_children()](http://hg.linux-ha.org/glue/file/1f36e9cdcc13/lrm/lrmd/lrmd.c#l1082)という関数が新しく追加されており、実行環境のプロセッサ数の1/2がLRMD_MAX_CHILDRENに設定されます。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
    124 static int max_child_count		= 4;
 
   1082 static void
@@ -118,7 +118,7 @@ Dejan Muhamedagic
 
 ちなみに、LRMD_MAX_CHILDRENの最少値は4なので、実行環境のプロセッサ数が4以下の場合、LRMD_MAX_CHILDREN=4となります。
 手元の環境で試してみたらこんな感じでした。
-<pre><code>
+<pre style="background-color: lightgray"><code style="background-color: inherit">
 <span style="color: #008000;"><strong># cat /proc/cpuinfo | grep processor</strong></span> (プロセッサ数=4)
 
 processor       : 0
@@ -128,7 +128,7 @@ processor       : 3
 </code></pre>
 
 
-<pre><code>
+<pre style="background-color: lightgray"><code style="background-color: inherit">
 <span style="color: #008000;"><strong># grep max-children /var/log/ha-log</strong></span> (LRMD_MAX_CHILDREN=4)
 
 Oct 17 14:07:53 dl380g5d lrmd: [5545]: info: max-children set to 4 (4 processors online)
@@ -139,14 +139,14 @@ Oct 17 14:07:53 dl380g5d lrmd: [5545]: info: max-children set to 4 (4 processors
 ちなみに、LRMD_MAX_CHILDRENはオンラインでも変更できます。
 
 現在のLRMD_MAX_CHILDRENを表示
-<pre><code>
+<pre style="background-color: lightgray"><code style="background-color: inherit">
 <span style="color: #008000;"><strong># lrmadmin -g max-children</strong></span>
 max-children: 4
 </code></pre>
 
 
 LRMD_MAX_CHILDRENを変更
-<pre><code>
+<pre style="background-color: lightgray"><code style="background-color: inherit">
 <span style="color: #008000;"><strong># lrmadmin -p max-children 10</strong></span>
 
 <span style="color: #008000;"><strong># lrmadmin -g max-children</strong></span>

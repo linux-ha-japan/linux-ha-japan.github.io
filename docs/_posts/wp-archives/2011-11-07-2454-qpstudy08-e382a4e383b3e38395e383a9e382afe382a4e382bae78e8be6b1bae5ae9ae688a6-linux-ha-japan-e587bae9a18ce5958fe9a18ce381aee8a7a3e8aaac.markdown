@@ -41,7 +41,7 @@ Pacemakerうんぬんよりも国語の問題でした。
 各ノードで1つずつcloneが起動します。
 
 clone.crm
-<pre><span style="font-family: verdana,geneva;">property \
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">property \
  no-quorum-policy="ignore" \
  stonith-enabled="false" \
  startup-fencing="false" \
@@ -64,7 +64,7 @@ primitive dummy01 ocf:pacemaker:Dummy \
 
 
 crm_monコマンドでリソースの起動状態を確認してみましょう。
-<pre><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1</strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1</strong></span>
 ============
 Last updated: Mon Nov  7 15:32:19 2011
 Stack: Heartbeat
@@ -82,7 +82,7 @@ Online: [ node01 node02 ]
 
 crm_monコマンドに-nオプションをつけてみます。
 node01でdummy01:0、node02でdummy01:1が起動していることがわかりますね。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n</span></strong>
 ============
 Last updated: Mon Nov  7 15:32:37 2011
 Stack: Heartbeat
@@ -104,7 +104,7 @@ cloneは&lt;リソース名&gt;:(コロン)&lt;インスタンス番号&gt;で�
 
 DCノードでha-logを検索すると、次の順序でdummy01:1、dummy01:0が起動したことがわかります。
 ※ match_graph_event関数のログはDCノードにしか出力されません。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># grep -R match_graph_event /var/log/ha-log</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># grep -R match_graph_event /var/log/ha-log</span></strong>
 Nov  7 15:32:15 node02 crmd: [15471]: info: match_graph_event: Action dummy01:1_monitor_0 (6) confirmed on node02 (rc=0)
 Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action dummy01:0_monitor_0 (4) confirmed on node01 (rc=0)
 Nov  7 15:32:16 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:1_start_0</span></strong> (9) confirmed on <strong><span style="color: #ff00ff;">node02</span></strong> (rc=0)
@@ -114,11 +114,11 @@ Nov  7 15:32:18 node02 crmd: [15471]: info: match_graph_event: Action dummy01:0
 
 
 node01のclone(dummy01:0)を故障させます。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01:0 set node01 1</span></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01:0 set node01 1</span></strong></span></pre>
 
 
 node01のclone(dummy01:0)が停止したことを確認します。
-<pre><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1 -n -f</strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># crm_mon -1 -n -f</strong></span>
 ============
 Last updated: Mon Nov  7 15:36:38 2011
 Stack: Heartbeat
@@ -139,7 +139,7 @@ Migration summary:
 
 
 DCノードでha-logを検索すると、dummy01:0が停止したことがわかります。
-<pre><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># grep -R match_graph_event /var/log/ha-log</strong></span>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># grep -R match_graph_event /var/log/ha-log</strong></span>
 Nov  7 15:36:19 node02 crmd: [15471]: info: match_graph_event: Action <strong><span style="color: #ff00ff;">dummy01:0_stop_0</span></strong> (7) confirmed on <strong><span style="color: #ff00ff;">node01 </span></strong>(rc=0)</span></pre>
 
 
@@ -193,7 +193,7 @@ Master/Slaveリソースには、promote/demote/**notify**オペレーション�
 pacemakerdというプロセスは存在しません。
 
 HeartbeatとPacemakerを組み合わせた構成でpgrepコマンドを実行してみます。
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># pgrep -lf heartbeat</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># pgrep -lf heartbeat</span></strong>
 15458 heartbeat: master control process    ← Heartbeatの親プロセス(通称MCP)
 15461 heartbeat: FIFO reader        ← FIFOプロセス
 15462 heartbeat: write: bcast eth1    ← ハートビート通信用のプロセス

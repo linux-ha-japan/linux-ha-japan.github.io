@@ -18,28 +18,28 @@ tags:
 
 
 <blockquote>
-Good news, everyone!
-The Heat developers are pleased to announce a new version (v7) of Heat.
-
-This version adds an OpenStack-native ReST API, so you'll never need to deal with RPC again. 
-But rest assured (uh, no pun intended) that we intend to continue to maintain and support the existing CloudFormation-compatible API indefinitely.
-
-Download Heat:https://github.com/heat-api/heat/downloads
-Try it out on Fedora 17:
-https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme
-Or Ubuntu 12.04:
-https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu
+Good news, everyone!<br>
+The Heat developers are pleased to announce a new version (v7) of Heat.<br>
+<br>
+This version adds an OpenStack-native ReST API, so you'll never need to deal with RPC again. <br>
+But rest assured (uh, no pun intended) that we intend to continue to maintain and support the existing CloudFormation-compatible API indefinitely.<br>
+<br>
+Download Heat:https://github.com/heat-api/heat/downloads<br>
+Try it out on Fedora 17:<br>
+https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme<br>
+Or Ubuntu 12.04:<br>
+https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-みなさん、いよいよ Heat v7 がリリースされました！
-今回のリリースでは、OpenStack の ReST APIに対するサポートが追加されているので、もう RPC で苦労する必要はありません。
-既存の CloudFormation 互換の API も無期限にサポートする予定なので安心してください。
-( rest assured that の rest を ReST にひっかけてるのか…。日本語には訳せない微妙なおやじギャク？ )
-
+みなさん、いよいよ Heat v7 がリリースされました！<br>
+今回のリリースでは、OpenStack の ReST APIに対するサポートが追加されているので、もう RPC で苦労する必要はありません。<br>
+既存の CloudFormation 互換の API も無期限にサポートする予定なので安心してください。<br>
+( rest assured that の rest を ReST にひっかけてるのか…。日本語には訳せない微妙なおやじギャク？ )<br>
+<br>
 - <a href="https://github.com/heat-api/heat/downloads" target="_blank">ダウンロードサイト</a>
 - <a href="https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme" target="_blank">Fedora 17 向けドキュメント</a>
 - <a href="https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu" target="_blank">Ubuntu 12.04 向けドキュメント</a>
@@ -50,50 +50,50 @@ https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-
 
 
 <blockquote>
-What's new in version 7:
-
-* An OpenStack-native ReST API
-- A platform for future innovation, unique to OpenStack.
-- Currently, support is limited to stack operations - support for Resources and Events is coming soon
-- Documentation at https://github.com/heat-api/heat/blob/master/docs/api.md#readme
-
-* CloudWatch-compatible Metric Collection
-- Running instances now report their metrics via Heat's 
-* CloudWatch-compatible API
-- Metric collection is now secure (authenticated/signed)
-
-* Fixes for integration with the Folsom versions of Keystone and Glance
-* A CLI option for fetching templates from Swift
-* Unit tests
-- More! Better! Faster!
-
-* heat-keystone-setup handles upgrades
-* Numerous bug fixes and enhancements
+What's new in version 7:<br>
+<br>
+* An OpenStack-native ReST API<br>
+- A platform for future innovation, unique to OpenStack.<br>
+- Currently, support is limited to stack operations - support for Resources and Events is coming soon<br>
+- Documentation at https://github.com/heat-api/heat/blob/master/docs/api.md#readme<br>
+<br>
+* CloudWatch-compatible Metric Collection<br>
+- Running instances now report their metrics via Heat's <br>
+* CloudWatch-compatible API<br>
+- Metric collection is now secure (authenticated/signed)<br>
+<br>
+* Fixes for integration with the Folsom versions of Keystone and Glance<br>
+* A CLI option for fetching templates from Swift<br>
+* Unit tests<br>
+- More! Better! Faster!<br>
+<br>
+* heat-keystone-setup handles upgrades<br>
+* Numerous bug fixes and enhancements<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-version 7の新機能
-
-* OpenStack の ReST API に対応しました。
-- OpenStack に特化した革新的な技術基盤です。
-- 今回のリリースではスタック操作にのみ対応しています。リソースやイベントの操作も間もなく対応する予定です。
+version 7の新機能<br>
+<br>
+* OpenStack の ReST API に対応しました。<br>
+- OpenStack に特化した革新的な技術基盤です。<br>
+- 今回のリリースではスタック操作にのみ対応しています。リソースやイベントの操作も間もなく対応する予定です。<br>
 - ドキュメントは<a href="https://github.com/heat-api/heat/blob/master/docs/api.md#readme" target="_blank">こちら</a>
-
-* CloudWatch 互換のメトリックを取得できます。
-- 稼働中のインスタンスからHeat経由でメトリックを取り出すことができます。
-* CloudWatch 互換のAPIに対応しました。
-- メトリックの取得は認証機能も利用可能です。
-
-* Folsomに取り込まれたKeystoneおよびGlanceの新機能に対応しました。
-* Swiftからテンプレートを取得するためのCLIオプションを追加しました。
-* 単体テストを強化しました。
-- More! Better! Faster! (なんかいろいろ頑張った雰囲気は伝わってくる…)
-
-* heat-keystone-setup ツールを追加しました。
-* その他、たくさんのバグ修正および機能強化が取り込まれました。
+<br>
+* CloudWatch 互換のメトリックを取得できます。<br>
+- 稼働中のインスタンスからHeat経由でメトリックを取り出すことができます。<br>
+* CloudWatch 互換のAPIに対応しました。<br>
+- メトリックの取得は認証機能も利用可能です。<br>
+<br>
+* Folsomに取り込まれたKeystoneおよびGlanceの新機能に対応しました。<br>
+* Swiftからテンプレートを取得するためのCLIオプションを追加しました。<br>
+* 単体テストを強化しました。<br>
+- More! Better! Faster! (なんかいろいろ頑張った雰囲気は伝わってくる…)<br>
+<br>
+* heat-keystone-setup ツールを追加しました。<br>
+* その他、たくさんのバグ修正および機能強化が取り込まれました。<br>
 </blockquote>
 
 
@@ -101,50 +101,50 @@ version 7の新機能
 
 
 <blockquote>
-Upgrade Notes:
-
-Note that the implementation of cfn-push-stats has changed in this version, so you will need to rebuild your JEOS images using the latest 
-version of heat-jeos. Prebuilt images will be available as soon as we find somebody with write access to that repo.
+Upgrade Notes:<br>
+<br>
+Note that the implementation of cfn-push-stats has changed in this version, so you will need to rebuild your JEOS images using the latest <br>
+version of heat-jeos. Prebuilt images will be available as soon as we find somebody with write access to that repo.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-更新情報:
-
-今回のリリースでは、cfn-push-stats ツールの実装が変更されています。
-このため、最新の heat-jeos ツールを使用して、JEOSイメージを再作成する必要があります。
-ビルド済のイメージもまもなくリポジトリで公開する予定です。
+更新情報:<br>
+<br>
+今回のリリースでは、cfn-push-stats ツールの実装が変更されています。<br>
+このため、最新の heat-jeos ツールを使用して、JEOSイメージを再作成する必要があります。<br>
+ビルド済のイメージもまもなくリポジトリで公開する予定です。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Also note that if you wish to use the features of the CloudWatch-compatible API (this means any templates that use HA or Autoscaling), you will need a firewall rule to allow instances access to that API (previously only access to heat-metadata was required). See the Getting Started guide for details.
+Also note that if you wish to use the features of the CloudWatch-compatible API (this means any templates that use HA or Autoscaling), you will need a firewall rule to allow instances access to that API (previously only access to heat-metadata was required). See the Getting Started guide for details.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-CloudWatch 互換の API を使用する場合、つまりHAまたはオートスケール機能を使用する場合は、ファイアウォールの設定に注意してください(heat-metadata のみがインスタンスにアクセスできるように設定してください)。
-詳細はドキュメント(上記の Fedora版、Ubuntu版)を参照してください。
+CloudWatch 互換の API を使用する場合、つまりHAまたはオートスケール機能を使用する場合は、ファイアウォールの設定に注意してください(heat-metadata のみがインスタンスにアクセスできるように設定してください)。<br>
+詳細はドキュメント(上記の Fedora版、Ubuntu版)を参照してください。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Keystone endpoints have also changed, so if you are upgrading from an existing version of heat, be sure to re-run the bin/heat-keystone-setup script.
+Keystone endpoints have also changed, so if you are upgrading from an existing version of heat, be sure to re-run the bin/heat-keystone-setup script.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Keystoneのエンドポイントを変更しました。既存のHeatからバージョンアップを行う場合は、bin/heat-keystone-setup スクリプトを実行してください。
+Keystoneのエンドポイントを変更しました。既存のHeatからバージョンアップを行う場合は、bin/heat-keystone-setup スクリプトを実行してください。<br>
 </blockquote>
 
 
@@ -180,6 +180,6 @@ Keystoneのエンドポイントを変更しました。既存のHeatからバ�
  * * *
  
  
-そろそろ OpenStack 関連の用語わからなさ度合いがMAX  ＼(^o^)／ ぃぇー
-とりあえず Fedora 17 のインストールからやってみっか ＼(^o^)／ ぃぇー
+そろそろ OpenStack 関連の用語わからなさ度合いがMAX  ＼(^o^)／ ぃぇー<br>
+とりあえず Fedora 17 のインストールからやってみっか ＼(^o^)／ ぃぇー<br>
 自社の同じフロアにおぷすたな人達がきゃっきゃうふふしてるはずなんだがこの温度差は一体…

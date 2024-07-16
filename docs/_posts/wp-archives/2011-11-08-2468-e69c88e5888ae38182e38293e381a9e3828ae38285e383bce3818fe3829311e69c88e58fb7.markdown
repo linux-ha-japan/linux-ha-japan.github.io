@@ -31,7 +31,7 @@ tags:
 
 Clustre-glueは、lrmdやSTONITH、その他各種ライブラリを含むコンポーネントです。
 
-<pre><span style="font-family: verdana,geneva;">The highlights: 
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">The highlights: 
 
 <strong>新しい STONITH プラグイン(libvirt, vcenter, hetzner)が追加されました。</strong>
 - new <span style="color: #000000;">external/libvirt</span> stonith plugin (thanks to Holger Teutsch)
@@ -57,7 +57,7 @@ LCMC 1.0.2のリリース](http://www.gossamer-threads.com/lists/linuxha/users/7
 
 今回のリリースはバグフィックスがメインなので大きな機能追加はありません。
 ちなみに[ロゴ](http://lcmc.sourceforge.net/)はむりやりピンクになってます。
-<pre><span style="font-family: verdana,geneva;">The most important changes:
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">The most important changes:
 
 <strong>Mavenのpom.xmlを追加しました。</strong>
 * add maven pom.xml file 
@@ -105,7 +105,7 @@ Ubuntu 10.04向けに下記のパッケージがアップデートされまし�
 どのパッケージも現行の最新版ですね。
 ところで、Ubuntu 11.10向けは一体…？
 
-<pre><span style="font-family: verdana,geneva;">This update includes:
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">This update includes:
 » Corosync 1.4.2
 » Heartbeat 3.0.5
 » cluster-glue 1.0.8
@@ -120,7 +120,7 @@ DRBD 8.3.12のリリース
 今回のリリースはバグフィックスがメインなので、大きな機能追加はありませんでした。
 ただし、PacemakerからDRBDを制御する際に利用する drbd RAに修正が入っているため、この点は別途ご紹介したいと思います。
 
-<pre><span style="font-family: verdana,geneva;">8.3.12 (api:88/proto:86-96)
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">8.3.12 (api:88/proto:86-96)
 --------
 <strong>DRBD 8.3.7以前のバージョンとの互換性に関する修正</strong>
  * Fixed a rare compatibility issue with DRBD's older than 8.3.7
@@ -149,7 +149,7 @@ DRBD 8.3.12のリリース
 **「DRBDの複数リソースをPacemakerのgroupで管理する場合の不具合修正」について**
 DRBDに複数のリソースを設定する場合、drbd.confに複数のresourceセクションを作成します。
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">resource r0</span></strong> {
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #ff00ff;">resource r0</span></strong> {
         device        minor 0;
         meta-disk    internal;
         disk            /dev/cciss/c0d1p1;
@@ -191,7 +191,7 @@ handersセクションとdiskセクションに以下の行を追加して、設
 drbd.confの変更を反映するためには、「# drbdadm adjust all」コマンドを実行します。
 
 設定例(drbd.conf 一部抜粋)
-<pre><span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
  fence-peer                "/usr/lib/drbd/crm-fence-peer.sh";
  after-resync-target     "/usr/lib/drbd/crm-unfence-peer.sh";
  ...
@@ -210,11 +210,11 @@ drbd.confの変更を反映するためには、「# drbdadm adjust all」コマ
 この場合、もともとのhandlersセクションの設定ではなく、resourceセクションの設定が優先して使用されます。
 また、crm-fence-peer.sh および crm-unfence-peer.sh には、--id-prefixを指定します。
 
-<pre><span style="font-family: verdana,geneva;"><strong><strong>--id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">&lt;リソース名&gt;</span></strong></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><strong>--id-prefix=drbd-fence-by-handler-<span style="color: #ff00ff;">&lt;リソース名&gt;</span></strong></strong></span></pre>
 
 
 設定例(drbd.conf 一部抜粋)
-<pre><span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><span style="color: #ff00ff;"><strong>handlers</strong></span>{
  fence-peer                "/usr/lib/drbd/crm-fence-peer.sh";
  after-resync-target     "/usr/lib/drbd/crm-unfence-peer.sh";
  ...
@@ -271,7 +271,7 @@ Master/Slaveリソースのフェイルオーバが失敗します。**
 となります。
 
 ms-group.crm
-<pre><span style="font-family: verdana,geneva;">### Cluster Option ###
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">### Cluster Option ###
 property \
  no-quorum-policy="ignore" \
  stonith-enabled="false" \
@@ -333,7 +333,7 @@ order rsc_order-1 0: msDRBD:promote grpDRBD:start</span></pre>
 node01でMasterリソースとgroup(dummy01+dummy02+dummy03)が起動しています。
 node02ではSlaveリソースが起動しています。
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n -f</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n -f</span></strong>
 ============
 Last updated: Wed Nov  2 16:29:21 2011
 Stack: Heartbeat
@@ -361,13 +361,13 @@ dummy01が故障したら、groupリソースも停止するはずですよね�
 さらに、Masterリソースとgroupリソースには同居制約が設定されているのでMasterリソースとgroupリソースは
 node02へフェイルオーバするはずです。
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01 set node01 1</span></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm resource failcount dummy01 set node01 1</span></strong></span></pre>
 
 
 だがしかし！
 groupリソースは停止しましたが、Masterリソースはフェイルオーバせずにnode01に居残ってしまいました。
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n -f</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># crm_mon -1 -n -f</span></strong>
 ============
 Last updated: Wed Nov  2 16:30:24 2011
 Stack: Heartbeat
@@ -391,7 +391,7 @@ Migration summary:
 結論から言ってしまうと、この動作はバグなわけです。
 ということで、ちょっと遷移グラフでも見てみますか。遷移グラフはDCノードに出力されています。
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># ls -l /var/lib/pengine/</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># ls -l /var/lib/pengine/</span></strong>
 合計 32
 -rw------- 1 hacluster haclient  611 11月  2 16:16 pe-input-0.bz2
 -rw------- 1 hacluster haclient  741 11月  2 16:16 pe-input-1.bz2
@@ -404,7 +404,7 @@ Migration summary:
 
 
 DCノードのha-logを検索すると、次のようなメッセージが出力されています。
-<pre><span style="font-family: verdana,geneva;">info: process_pe_message: Transition 6: PEngine Input stored in: <strong><span style="color: #ff00ff;">/var/lib/pengine/pe-input-6.bz2</span></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">info: process_pe_message: Transition 6: PEngine Input stored in: <strong><span style="color: #ff00ff;">/var/lib/pengine/pe-input-6.bz2</span></strong></span></pre>
 
 
 Master/Slaveリソースが変な感じで居残っちゃったあたりのログをみると、
@@ -412,7 +412,7 @@ Master/Slaveリソースが変な感じで居残っちゃったあたりのロ�
 ということで、遷移グラフの中身をのぞいてみましょう。
 遷移グラフの解析には**ptest**というコマンドを使うのですが、ptestはcrmシェルから呼び出すこともできます。
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># cd /var/lib/pengine/
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># cd /var/lib/pengine/
 # crm
 crm(live)# cib import pe-input-6.bz2
 crm(pe-input-6)# configure ptest vvv nograph
@@ -444,7 +444,7 @@ ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Leave   resource prmDRBD:1 
 
 とりあえず、Pacemaker 1.0.12のリポジトリから最新版のソースコードを持ってきます。
 クラスタを作りこむのはめんどくさいので、makeだけしておきます。
-<pre><span style="font-family: verdana,geneva;"># hg clone <strong><span style="color: #ff00ff;">http://hg.clusterlabs.org/pacemaker/stable-1.0</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"># hg clone <strong><span style="color: #ff00ff;">http://hg.clusterlabs.org/pacemaker/stable-1.0</span></strong>
 # cd stable-1.0
 # hg update -C stable-1.0
 # ./autogen.sh
@@ -454,7 +454,7 @@ ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Leave   resource prmDRBD:1 
 
 そして、新しいcrmシェルを探して…
 
-<pre><span style="font-family: verdana,geneva;"># find . -name crm
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"># find . -name crm
 ./shell/crm
 ./include/crm
 ./.hg/store/data/crm
@@ -465,13 +465,13 @@ ptest[2343]: 2011/11/02_16:31:39 notice: LogActions: Leave   resource prmDRBD:1 
 
 実行権限を追加します。
 
-<pre><span style="font-family: verdana,geneva;"># cd ./shell/crm
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"># cd ./shell/crm
 # chmod +x crm</span></pre>
 
 
 いよいよ、Pacemaker 1.0.12(もどき)でptestを実行！
 
-<pre><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># ./crm
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><span style="color: #008000;"><strong># ./crm
 crm(live)# cib import /tmp/pe-input-6.bz2
 crm(pe-input-6)# configure ptest vvv nograph</strong></span>
 ptest[19529]: 2011/11/02_17:09:29 notice: unpack_config: On loss of CCM Quorum: Ignore
@@ -509,21 +509,21 @@ Pacemaker 1.0系へのバックポートはなかなか難しいようなので�
 将来的にcrm_simulateコマンドを使って解析したほうが便利になるかもしれません。
 
 ちなみにPacemaker 1.1系の最新版はhgからGitHubへお引っ越ししました。
-<pre><span style="font-family: verdana,geneva;"># <span style="color: #000000;">git</span> clone <strong><span style="color: #ff00ff;">http://github.com/ClusterLabs/pacemaker</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"># <span style="color: #000000;">git</span> clone <strong><span style="color: #ff00ff;">http://github.com/ClusterLabs/pacemaker</span></strong>
 # cd pacemaker/
 # ./autogen.sh
 # ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc  --with-lcrso-dir=/usr/libexec/lcrso
 # make</span></pre>
 
 
-<pre><span style="font-family: verdana,geneva;"># find . -name crm_simulate
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"># find . -name crm_simulate
 ./tools/.libs/crm_simulate
 ./tools/crm_simulate</span></pre>
 
 
 コマンドに喰わせるのは、さっきと同じ遷移グラフです。
 
-<pre><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># ./crm_simulate -S -x /tmp/pe-input-6.bz2</span></strong>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><strong><span style="color: #008000;"># ./crm_simulate -S -x /tmp/pe-input-6.bz2</span></strong>
 
 Current cluster status:
 Online: [ node01 node02 ]
@@ -582,7 +582,7 @@ Online: [ node01 node02 ]
 
 crm_simulateに-Vオプションを追加すると、さらに詳細なデバッグ情報を出力されます。
 
-<pre><span style="font-family: verdana,geneva;"># ./crm_simulate -S -x /tmp/pe-input-6.bz2 <strong><span style="color: #008000;">-VVV</span></strong></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"># ./crm_simulate -S -x /tmp/pe-input-6.bz2 <strong><span style="color: #008000;">-VVV</span></strong></span></pre>
 
 
 crm_simulateは、今回のようなレグレッションテストだけではなく、擬似故障の発生にも使用できます。
@@ -597,7 +597,7 @@ Pacemaker 1.0系では使えないコマンドなんですが、次期バージ�
 追加する行は、groupに含まれる全てのリソース分、必要です。
 -inf: defined のあとに、**fail-count-&lt;groupに含まれるリソース名&gt;**を指定してください。
 この例では、groupに含まれる全てのリソース(dummy01, dummy02, dummy03)に制約が設定されています。
-<pre><span style="font-family: verdana,geneva;">### Resource Location ###
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;">### Resource Location ###
 location rsc_location-1 msDRBD \
  rule role=master  -inf: defined fail-count-dummy01 \
  rule role=master  -inf: defined fail-count-dummy02 \
@@ -610,25 +610,25 @@ location rsc_location-1 msDRBD \
 つまり、groupリソース名(今回の例ではgrpDRBD)をmoveコマンドのオプションに指定しても
 Master/Slaveリソースおよびgroupリソースはnode01からnode02へ移動してくれないのです。
 この動作も、さっきのバグと原因は同じなのでPacemaker 1.0.12では修正されています。
-<pre><span style="font-family: verdana,geneva;"># crm resource <strong><span style="color: #ff00ff;">move </span></strong><strong><span style="color: #ff00ff;">grpDRBD </span></strong>node02 force　→ groupリソースは停止するが、Master/Slaveが元のまま</span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"># crm resource <strong><span style="color: #ff00ff;">move </span></strong><strong><span style="color: #ff00ff;">grpDRBD </span></strong>node02 force　→ groupリソースは停止するが、Master/Slaveが元のまま</span></pre>
 
 
 というわけで、Pacemaker 1.0.11で、リソースの移動を実行する場合は
 groupリソースではなく、groupリソースに含まれる最終のprimitiveリソースを
 moveコマンドのオプションに指定してください。
 今回の例では、dummy03を指定します。
-<pre><span style="font-family: verdana,geneva;"># crm resource <strong><span style="color: #ff00ff;">move dummy03</span></strong> node02 force
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"># crm resource <strong><span style="color: #ff00ff;">move dummy03</span></strong> node02 force
 </span></pre>
 
 
 moveコマンドを実行したあとは、unmoveコマンドを忘れずに！
-<pre><span style="font-family: verdana,geneva;"># crm resource unmove dummy03</span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"># crm resource unmove dummy03</span></pre>
 
 
 
 
 
-<pre><span style="font-family: verdana,geneva;"><span style="color: #000000;">libvirtli</span></span></pre>
+<pre class="wp-caption" style="text-align: left;"><span style="font-family: verdana,geneva;"><span style="color: #000000;">libvirtli</span></span></pre>
 
 
 

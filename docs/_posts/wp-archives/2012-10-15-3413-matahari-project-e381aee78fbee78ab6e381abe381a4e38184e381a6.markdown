@@ -20,14 +20,14 @@ tags:
 
 
 <blockquote>
-As will be evident to those of you who have been subscribed to this list for a while, I am not working on Matahari and nor is anybody else at Red Hat. There are no plans to put any more work into the project.
+As will be evident to those of you who have been subscribed to this list for a while, I am not working on Matahari and nor is anybody else at Red Hat. There are no plans to put any more work into the project.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-このメーリングリストを購読しているみなさんはもう気付いていることかもしれませんが、私を含め、Red Hatの関係者はMatahariの開発に携わってはいません。そしてプロジェクトの今後についてはまだ何も決まっていません。
+このメーリングリストを購読しているみなさんはもう気付いていることかもしれませんが、私を含め、Red Hatの関係者はMatahariの開発に携わってはいません。そしてプロジェクトの今後についてはまだ何も決まっていません。<br>
 </blockquote>
 
 
@@ -35,15 +35,15 @@ As will be evident to those of you who have been subscribed to this list for a w
 
 
 <blockquote>
-The primary reason for this is the lack of end-to-end authentication in the Matahari architecture. Conversations with colleagues and potential users alike have repeatedly shown that the access control and auditing capabilities that this would allow are essential to adoption. 
-However, the effort required to retrofit it into QMF is prohibitive.
+The primary reason for this is the lack of end-to-end authentication in the Matahari architecture. Conversations with colleagues and potential users alike have repeatedly shown that the access control and auditing capabilities that this would allow are essential to adoption. <br>
+However, the effort required to retrofit it into QMF is prohibitive.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-プロジェクトがこのような状態に陥ってしまった一番の原因は、Matahariのアーキテクチャに認証機能が不足していたためです。アクセス制御と監査機能について、同僚やユーザと繰り返し議論してきましたが、これらの機能をQMFへ組み込むことは極めて困難です
+プロジェクトがこのような状態に陥ってしまった一番の原因は、Matahariのアーキテクチャに認証機能が不足していたためです。アクセス制御と監査機能について、同僚やユーザと繰り返し議論してきましたが、これらの機能をQMFへ組み込むことは極めて困難です<br>
 </blockquote>
 
 
@@ -51,16 +51,16 @@ However, the effort required to retrofit it into QMF is prohibitive.
 
 
 <blockquote>
-As I understand it (this was well before my time), the project began as a proof-of-concept for an RPC messaging system, presumably with the idea that a security model could be bolted on later. 
-Based on lessons learned from Matahari, I would recommend that anybody undertaking a similar endeavour begin with a proof-of-concept of a security model that is easy to configure and bolt on RPC later. Security is the _core_ problem in a remote management system.
+As I understand it (this was well before my time), the project began as a proof-of-concept for an RPC messaging system, presumably with the idea that a security model could be bolted on later. <br>
+Based on lessons learned from Matahari, I would recommend that anybody undertaking a similar endeavour begin with a proof-of-concept of a security model that is easy to configure and bolt on RPC later. Security is the _core_ problem in a remote management system.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-このプロジェクトは信頼性のあるRPCメッセージングシステムを実現するためにはじめられた、というのが私の理解であり、セキュリティに関連する議論は、おそらく後から追加されたのだと思います。
-Matahariと似たようなリモート管理システムに取り組もうとする開発者はまず、セキュリティモデルの簡易版を完成させてから、RPCの設計を行うことをお勧めします。セキュリティはリモート管理システムの、まさに「核」となる問題なのです。
+このプロジェクトは信頼性のあるRPCメッセージングシステムを実現するためにはじめられた、というのが私の理解であり、セキュリティに関連する議論は、おそらく後から追加されたのだと思います。<br>
+Matahariと似たようなリモート管理システムに取り組もうとする開発者はまず、セキュリティモデルの簡易版を完成させてから、RPCの設計を行うことをお勧めします。セキュリティはリモート管理システムの、まさに「核」となる問題なのです。<br>
 </blockquote>
 
 
@@ -68,18 +68,18 @@ Matahariと似たようなリモート管理システムに取り組もうとす
 
 
 <blockquote>
-Sadly, I am not aware of any remote management frameworks that replicate the bus architecture of Matahari. 
-Thanks largely to the Web, we live in very much a client-server world, and it may be some years before the pendulum begins to swing back. 
-In the meantime, I expect that system configuration tools (such as Puppet and Chef) that rely on pull rather than push will continue to be prominent.
+Sadly, I am not aware of any remote management frameworks that replicate the bus architecture of Matahari. <br>
+Thanks largely to the Web, we live in very much a client-server world, and it may be some years before the pendulum begins to swing back. <br>
+In the meantime, I expect that system configuration tools (such as Puppet and Chef) that rely on pull rather than push will continue to be prominent.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-残念ながら、Matahariのバスアーキテクチャと同じようなリモート管理フレームワークが他に存在するのかどうかはわかりません。
-インターネットを通じて、私たちはクライアントサーバシステムの恩恵を受けていますがこのようなシステムの動向は何年かごとに振り子がめぐってくるようなものなのかもしれませんし、push型ではなくpull型のシステム構成ツール(例えば、PuppetやChefなど)も注目されるのかもしれません。
-(注：すいません、なんかこの文節ちょっと意味不明…？)
+残念ながら、Matahariのバスアーキテクチャと同じようなリモート管理フレームワークが他に存在するのかどうかはわかりません。<br>
+インターネットを通じて、私たちはクライアントサーバシステムの恩恵を受けていますがこのようなシステムの動向は何年かごとに振り子がめぐってくるようなものなのかもしれませんし、push型ではなくpull型のシステム構成ツール(例えば、PuppetやChefなど)も注目されるのかもしれません。<br>
+(注：すいません、なんかこの文節ちょっと意味不明…？)<br>
 </blockquote>
 
 
@@ -87,15 +87,15 @@ In the meantime, I expect that system configuration tools (such as Puppet and Ch
 
 
 <blockquote>
-Fedora users may wish to checkout cura: https://fedorahosted.org/cura/
+Fedora users may wish to checkout cura: https://fedorahosted.org/cura/<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Fedoraを使用している人は<a href="https://lists.fedorahosted.org/pipermail/matahari/2012-September/002331.html" target="_blank">Cura Prohec</a>もチェックしてみてください。
-（注：Matahariと似た子なのかなあと思いきや、んーまあなんかいまさら的な？）
+Fedoraを使用している人は<a href="https://lists.fedorahosted.org/pipermail/matahari/2012-September/002331.html" target="_blank">Cura Prohec</a>もチェックしてみてください。<br>
+（注：Matahariと似た子なのかなあと思いきや、んーまあなんかいまさら的な？）<br>
 </blockquote>
 
 
@@ -103,19 +103,19 @@ Fedoraを使用している人は<a href="https://lists.fedorahosted.org/piperma
 
 
 <blockquote>
-If anybody wishes to continue development on Matahari they are, of course, quite welcome to do so (subject to the existing GPLv2+ licence), 
-and I will be happy to assist with the transition. The mailing list will remain available until I get sick of dealing with the daily spam filtering ;)
-
-regards,
-Zane.
+If anybody wishes to continue development on Matahari they are, of course, quite welcome to do so (subject to the existing GPLv2+ licence), <br>
+and I will be happy to assist with the transition. The mailing list will remain available until I get sick of dealing with the daily spam filtering ;)<br>
+<br>
+regards,<br>
+Zane.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Matahariの開発を引き継ぎたいという方がいらっしゃるのであればもちろん大歓迎です(ライセンスはGPLv2+です)。喜んで引き継ぎのお手伝いもします。
-このメーリングリストもスパム攻撃でうざくなるまでは、このまま使えるようにしておきますね ;)
+Matahariの開発を引き継ぎたいという方がいらっしゃるのであればもちろん大歓迎です(ライセンスはGPLv2+です)。喜んで引き継ぎのお手伝いもします。<br>
+このメーリングリストもスパム攻撃でうざくなるまでは、このまま使えるようにしておきますね ;)<br>
 </blockquote>
 
 

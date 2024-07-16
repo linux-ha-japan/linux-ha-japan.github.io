@@ -20,30 +20,30 @@ tags:
 
 
 <blockquote>
-The Heat developers are happy to announce the release of a new version of Heat. 
-The focus of this release has been on quality and testing, in addition to major improvements to CloudWatch.
-
-Heat is a project designed for OpenStack that implements AWS CloudFormation.
-CloudFormation is a programmable interface and templating system for orchestrating multiple cloud applications.
-
-Try it out on Fedora 17:
-https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme
-
-Or Ubuntu 12.04:
-https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu
+The Heat developers are happy to announce the release of a new version of Heat. <br>
+The focus of this release has been on quality and testing, in addition to major improvements to CloudWatch.<br>
+<br>
+Heat is a project designed for OpenStack that implements AWS CloudFormation.<br>
+CloudFormation is a programmable interface and templating system for orchestrating multiple cloud applications.<br>
+<br>
+Try it out on Fedora 17:<br>
+https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme<br>
+<br>
+Or Ubuntu 12.04:<br>
+https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Heatの最新版をリリースすることができてうれしく思います。
-今回のリリースでは、品質とテスト項目の強化に注力しました。
-また、AWSのCloudWatchにも対応しています。
-
-HeatはOpenStack版のAWS CloudFormationを開発するプロジェクトです。
-CloudFormationはクラウドアプリケーションを制御するためのプログラマブルなインターフェースとテンプレートを提供します。
-<a href="https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme" target="_blank">Fedora 17</a> または <a href="https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu" target="_blank">Or Ubuntu 12.04</a>で動作を確認してみてください。
+Heatの最新版をリリースすることができてうれしく思います。<br>
+今回のリリースでは、品質とテスト項目の強化に注力しました。<br>
+また、AWSのCloudWatchにも対応しています。<br>
+<br>
+HeatはOpenStack版のAWS CloudFormationを開発するプロジェクトです。<br>
+CloudFormationはクラウドアプリケーションを制御するためのプログラマブルなインターフェースとテンプレートを提供します。<br>
+<a href="https://github.com/heat-api/heat/blob/master/docs/GettingStarted.rst#readme" target="_blank">Fedora 17</a> または <a href="https://github.com/heat-api/heat/wiki/Getting-Started-with-Heat-using-Master-on-Ubuntu" target="_blank">Or Ubuntu 12.04</a>で動作を確認してみてください。<br>
 </blockquote>
 
 
@@ -51,16 +51,16 @@ CloudFormationはクラウドアプリケーションを制御するためのプ
 
 
 <blockquote>
-What's new in version 6:
-* 127 commits containing general bug fixes and template additions
+What's new in version 6:<br>
+* 127 commits containing general bug fixes and template additions<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-version 6の新機能について
-* バグフィックス、新規テンプレートなどを含めて127のコミットが取り込まれています。
+version 6の新機能について<br>
+* バグフィックス、新規テンプレートなどを含めて127のコミットが取り込まれています。<br>
 </blockquote>
 
 
@@ -68,7 +68,7 @@ version 6の新機能について
 
 
 <blockquote>
-* New tests
+* New tests<br>
 <ul>
 	<ul>15 new functional tests, 7 new unit tests</ul>
 	<ul>Many test infrastructure improvements</ul>
@@ -79,7 +79,7 @@ version 6の新機能について
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-* 新規テスト項目について
+* 新規テスト項目について<br>
 <ul>
 	<ul>15個の機能テストおよび7個の単体テストを追加しました。</ul>
 	<ul>そのほかのテストも改良されています。</ul>
@@ -91,7 +91,7 @@ version 6の新機能について
 
 
 <blockquote>
-* User facing changes
+* User facing changes<br>
 <ul>
 	<ul>Heat describe now shows user parameter values</ul>
 	<ul>Make physical resource names unique based upon stack name</ul>
@@ -106,7 +106,7 @@ version 6の新機能について
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-* ユーザインタフェースの変更について
+* ユーザインタフェースの変更について<br>
 <ul>
 	<ul>heatコマンドのdescribeオプションを使用してユーザの設定したパラメータ値を表示できるようになりました。</ul>
 	<ul>リソース名が重複しないよう修正されました。</ul>
@@ -122,7 +122,7 @@ version 6の新機能について
 
 
 <blockquote>
-* RPC changes
+* RPC changes<br>
 <ul>
 	<ul>Implement client side engine RPC API</ul>
 	<ul>Add identify_stack RPC call</ul>
@@ -136,27 +136,27 @@ version 6の新機能について
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-* RPCの変更について
+* RPCの変更について<br>
 <ul>
 	<ul>クライアントサイドのRPC APIを実装しました。</ul>
 	<ul>identify_stack RPC callを追加しました。<ul>
-		スタックの名前をIDに変換します。スタックをいったん削除した後に同じ名前でスタックを再作成した場合、別のIDで管理することができます。
+		スタックの名前をIDに変換します。スタックをいったん削除した後に同じ名前でスタックを再作成した場合、別のIDで管理することができます。<br>
 		</ul>
 	</ul>
 	<ul>set_watch_state engine RPC actionを追加しました。<ul>
-		後述するCloudWatch関連の変更ですが、watch/alarmの状態が一時的に上書き可能となります。
+		後述するCloudWatch関連の変更ですが、watch/alarmの状態が一時的に上書き可能となります。<br>
 		</ul>
 	</ul>
 	<ul>show_watch_metric RPC actionを追加しました。<ul>
-		こちらもCloudWatch関連の変更で、watch/alarmの状態を検索します。
+		こちらもCloudWatch関連の変更で、watch/alarmの状態を検索します。<br>
 		</ul>
 	</ul>
 	<ul>new show_watch RPC methodを追加しました。<ul>
-		またまたCloudWatch関連の変更で、watchの情報を検索します。
+		またまたCloudWatch関連の変更で、watchの情報を検索します。<br>
 		</ul>
 	</ul>
 </ul>
-
+<br>
 </blockquote>
 
 
@@ -164,17 +164,17 @@ version 6の新機能について
 
 
 <blockquote>
-* Implement the AWS::S3::Bucket resource type - (not working yet on Fedora)
-    https://github.com/heat-api/heat/wiki/Roadmap-Feature:-simple-storage-service
+* Implement the AWS::S3::Bucket resource type - (not working yet on Fedora)<br>
+    https://github.com/heat-api/heat/wiki/Roadmap-Feature:-simple-storage-service<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-* AWS::S3::Bucket の実装について(Fedoraではまだ動作しません)
-
-注：<a href="https://github.com/heat-api/heat/wiki/Roadmap-Feature:-simple-storage-service" target="_blank">リンク先</a>もみてみたんですが、まだちゃんとできてなさそうな雰囲気。
+* AWS::S3::Bucket の実装について(Fedoraではまだ動作しません)<br>
+<br>
+注：<a href="https://github.com/heat-api/heat/wiki/Roadmap-Feature:-simple-storage-service" target="_blank">リンク先</a>もみてみたんですが、まだちゃんとできてなさそうな雰囲気。<br>
 </blockquote>
 
 
@@ -182,18 +182,18 @@ version 6の新機能について
 
 
 <blockquote>
-* CLI tools
-    Add a tool to register prebuilt JEOS images into glance from github
+* CLI tools<br>
+    Add a tool to register prebuilt JEOS images into glance from github<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-コマンドラインツールにglance-jeos-add-from-github.shというスクリプトが追加されました。
-
-注：リポジトリからJEOS imageをダウンロードしてくれるスクリプトなのか…。
-現在ダウンロードできるimageは<a href="https://github.com/heat-api/prebuilt-jeos-images/downloads" target="_blank">こんな感じ</a>。
+コマンドラインツールにglance-jeos-add-from-github.shというスクリプトが追加されました。<br>
+<br>
+注：リポジトリからJEOS imageをダウンロードしてくれるスクリプトなのか…。<br>
+現在ダウンロードできるimageは<a href="https://github.com/heat-api/prebuilt-jeos-images/downloads" target="_blank">こんな感じ</a>。<br>
 </blockquote>
 
 
@@ -201,16 +201,16 @@ version 6の新機能について
 
 
 <blockquote>
-* Improved CloudWatch API implementation
-    https://github.com/heat-api/heat/wiki/Using-CloudWatch
+* Improved CloudWatch API implementation<br>
+    https://github.com/heat-api/heat/wiki/Using-CloudWatch<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-AWSのCloudWatch APIへ対応しました。
-今のところ、Restartアクションのみが実装されています。
+AWSのCloudWatch APIへ対応しました。<br>
+今のところ、Restartアクションのみが実装されています。<br>
 </blockquote>
 
 
@@ -218,15 +218,15 @@ AWSのCloudWatch APIへ対応しました。
 
 
 <blockquote>
-Heat website:      http://heat-api.org/
-Download Heat API: https://github.com/heat-api/heat/downloads
+Heat website:      http://heat-api.org/<br>
+Download Heat API: https://github.com/heat-api/heat/downloads<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-参考情報リンク一覧
+参考情報リンク一覧<br>
 <ul>
      <ul>
 	<li><a href="http://heat-api.org/" target="_blank">プロジェクトページ</a>

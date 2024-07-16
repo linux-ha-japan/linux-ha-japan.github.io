@@ -22,14 +22,14 @@ tags:
 
 
 <blockquote>
-Compared to 8.3.12 this release has only bug fixes, no new features. 
+Compared to 8.3.12 this release has only bug fixes, no new features. <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-今回のリリースはバグフィックスのみです。新規機能の追加はありません。
+今回のリリースはバグフィックスのみです。新規機能の追加はありません。<br>
 </blockquote>
 
 
@@ -37,25 +37,25 @@ Compared to 8.3.12 this release has only bug fixes, no new features.
 
 
 <blockquote>
-It is worth noting that all previous DRBD-releases did not enforce correct ordering of (some) write operations on a resync-target node. 
-
-This can be triggered with the 'cfq' (and possible other) linux disk schedulers. -- It is known that when you stay with an DRBD release before 8.3.13 and switch the scheduler to 'noop', then it is no longer to reproduce the issue. 
-
-It is a rare condition, which is hard to trigger, it may causes corruption in the sense that it looks like if a single block write was not executed on the secondary. 
-(actually it was overwritten with the previous version of the data, this second write originates from the resync process.) 
+It is worth noting that all previous DRBD-releases did not enforce correct ordering of (some) write operations on a resync-target node. <br>
+<br>
+This can be triggered with the 'cfq' (and possible other) linux disk schedulers. -- It is known that when you stay with an DRBD release before 8.3.13 and switch the scheduler to 'noop', then it is no longer to reproduce the issue. <br>
+<br>
+It is a rare condition, which is hard to trigger, it may causes corruption in the sense that it looks like if a single block write was not executed on the secondary. <br>
+(actually it was overwritten with the previous version of the data, this second write originates from the resync process.) <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-8.3.12以前のリリースでは「再同期処理の書込み順序に不整合が発生する」という症状が報告されていました。
-
-この症状は、LinuxカーネルのI/Oスケジューラを「cfq」に設定した環境で発生することが確認されています。
-8.3.12以前のリリースを使用する場合はI/Oスケジューラを「noop」に設定してください。
-
-この症状の発生条件は非常に限られていますが、セカンダリでデータの破損が発生する可能性があります
-(本来同期されるべき正しいデータではなく、再同期待ちをしていた古いデータが書き込まれる可能性があります。)
+8.3.12以前のリリースでは「再同期処理の書込み順序に不整合が発生する」という症状が報告されていました。<br>
+<br>
+この症状は、LinuxカーネルのI/Oスケジューラを「cfq」に設定した環境で発生することが確認されています。<br>
+8.3.12以前のリリースを使用する場合はI/Oスケジューラを「noop」に設定してください。<br>
+<br>
+この症状の発生条件は非常に限られていますが、セカンダリでデータの破損が発生する可能性があります<br>
+(本来同期されるべき正しいデータではなく、再同期待ちをしていた古いデータが書き込まれる可能性があります。)<br>
 </blockquote>
 
 
@@ -70,16 +70,16 @@ It is a rare condition, which is hard to trigger, it may causes corruption in th
 
 
 <blockquote>
- * Fixed a write ordering problem on SyncTarget nodes for a write to a block that gets resynced at the same time. 
-   The bug can only be triggered with a device that has a firmware that actually reorders writes to the same block 
+ * Fixed a write ordering problem on SyncTarget nodes for a write to a block that gets resynced at the same time. <br>
+   The bug can only be triggered with a device that has a firmware that actually reorders writes to the same block <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-「再同期処理の書込み順序に不整合が発生する」という症状が報告が報告されていましたが、これを修正しました。
-このバグは特定のファームウェアを搭載したデバイスで発生することが報告されています。
+「再同期処理の書込み順序に不整合が発生する」という症状が報告が報告されていましたが、これを修正しました。<br>
+このバグは特定のファームウェアを搭載したデバイスで発生することが報告されています。<br>
 </blockquote>
 
 
@@ -101,14 +101,14 @@ DRBDは、プライマリに書き込まれたデータをセカンダリに同�
 
 
 <blockquote>
- * Fixed a race between disconnect and receive_state, that could cause a IO lockup 
+ * Fixed a race between disconnect and receive_state, that could cause a IO lockup <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-IO処理の競合が報告されていましたが、今回のリリースで修正されました。
+IO処理の競合が報告されていましたが、今回のリリースで修正されました。<br>
 </blockquote>
 
 
@@ -120,14 +120,14 @@ IO処理の競合が報告されていましたが、今回のリリースで修
 
 
 <blockquote>
- * Fixed resend/resubmit for requests with disk or network timeout 
+ * Fixed resend/resubmit for requests with disk or network timeout <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-ディスクまたはネットワークが再接続されて、同期処理が再開するときの動作を修正しました。
+ディスクまたはネットワークが再接続されて、同期処理が再開するときの動作を修正しました。<br>
 </blockquote>
 
 
@@ -152,16 +152,16 @@ IO処理の競合が報告されていましたが、今回のリリースで修
 
 
 <blockquote>
- * Make sure that hard state changed do not disturb the connection establishing process (I.e. detach due to an IO error). 
-   When the bug was triggered it caused a retry in the connect process 
+ * Make sure that hard state changed do not disturb the connection establishing process (I.e. detach due to an IO error). <br>
+   When the bug was triggered it caused a retry in the connect process <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-IOエラーに起因するdetach処理実行時に、ノード間の接続処理が妨げられるという症状を修正しました。
-このバグが発生すると、不要な接続処理が再試行される可能性があります。
+IOエラーに起因するdetach処理実行時に、ノード間の接続処理が妨げられるという症状を修正しました。<br>
+このバグが発生すると、不要な接続処理が再試行される可能性があります。<br>
 </blockquote>
 
 
@@ -173,16 +173,16 @@ IOエラーに起因するdetach処理実行時に、ノード間の接続処理
 
 
 <blockquote>
- * Postpone soft state changes to no disturb the connection establishing process (I.e. becoming primary). 
-   When the bug was triggered it could cause both nodes going into SyncSource state 
+ * Postpone soft state changes to no disturb the connection establishing process (I.e. becoming primary). <br>
+   When the bug was triggered it could cause both nodes going into SyncSource state <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-プライマリへ昇格する際に、ノード間の接続処理が妨げられるという症状を修正しました。
-このバグが発生すると、両ノードがSyncSource(同期元)状態となる可能性があります。
+プライマリへ昇格する際に、ノード間の接続処理が妨げられるという症状を修正しました。<br>
+このバグが発生すると、両ノードがSyncSource(同期元)状態となる可能性があります。<br>
 </blockquote>
 
 
@@ -194,7 +194,7 @@ IOエラーに起因するdetach処理実行時に、ノード間の接続処理
 
 
 <blockquote>
- * Fixed a refcount leak that could cause failures when trying to unload a protocol family modules, that was used by DRBD 
+ * Fixed a refcount leak that could cause failures when trying to unload a protocol family modules, that was used by DRBD <br>
 </blockquote>
 
 
@@ -220,14 +220,14 @@ DRBDのリソースを停止してもモジュールのアンロードができ�
 
 
 <blockquote>
- * Dedicated page pool for meta data IOs 
+ * Dedicated page pool for meta data IOs <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-メタデータ専用のページプールを確保します。
+メタデータ専用のページプールを確保します。<br>
 </blockquote>
 
 
@@ -246,11 +246,11 @@ drbd_int.hに追加されたコメントを抜粋します。
 
 
 <blockquote>
-+/* We also need a standard (emergency-reserve backed) page pool
-+ * for meta data IO (activity log, bitmap).
-+ * We can keep it global, as long as it is used as "N pages at a time".
-+ * 128 should be plenty, currently we probably can get away with as few as 1.
-+ */
++/* We also need a standard (emergency-reserve backed) page pool<br>
++ * for meta data IO (activity log, bitmap).<br>
++ * We can keep it global, as long as it is used as "N pages at a time".<br>
++ * 128 should be plenty, currently we probably can get away with as few as 1.<br>
++ */<br>
 </blockquote>
 
 
@@ -265,14 +265,14 @@ drbd_int.hに追加されたコメントを抜粋します。
 
 
 <blockquote>
- * Deny normal detach (as opposed to --forced) if the user tries to detach from the last UpToDate disk in the resource 
+ * Deny normal detach (as opposed to --forced) if the user tries to detach from the last UpToDate disk in the resource <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-UpToDate状態のディスクに対して、detach処理を実行できないようにしました。
+UpToDate状態のディスクに対して、detach処理を実行できないようにしました。<br>
 </blockquote>
 
 
@@ -284,14 +284,14 @@ UpToDate状態のディスクに対して、detach処理を実行できないよ
 
 
 <blockquote>
- * Fixed a possible protocol error that could be caused by "unusual" BIOs. 
+ * Fixed a possible protocol error that could be caused by "unusual" BIOs. <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-異常なブロックIOに起因してプロトコルエラーが発生する可能性がありましたが、修正されました。
+異常なブロックIOに起因してプロトコルエラーが発生する可能性がありましたが、修正されました。<br>
 </blockquote>
 
 
@@ -303,14 +303,14 @@ UpToDate状態のディスクに対して、detach処理を実行できないよ
 
 
 <blockquote>
- * Enforce the disk-timeout option also on meta-data IO operations 
+ * Enforce the disk-timeout option also on meta-data IO operations <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-メタデータ領域に対しても disk-timeoutオプションによるタイムアウトの設定が可能となりました。
+メタデータ領域に対しても disk-timeoutオプションによるタイムアウトの設定が可能となりました。<br>
 </blockquote>
 
 
@@ -322,7 +322,7 @@ UpToDate状態のディスクに対して、detach処理を実行できないよ
 
 
 <blockquote>
- * Implemented stable bitmap pages when we do a full write out of the bitmap 
+ * Implemented stable bitmap pages when we do a full write out of the bitmap <br>
 </blockquote>
 
 
@@ -341,7 +341,7 @@ Google先生に教えを請うたところ
 
 
 <blockquote>
-mempoolは、初期化時に指定したバックエンドアロケータ（従来のslabアロケータやalloc_pageなど）を使用し、指定した数のメモリオブジェクトを常に保持しておくことによってある分量のメモリが常に確保できることを保証する。これにより、高負荷時の安定性の向上が期待される。
+mempoolは、初期化時に指定したバックエンドアロケータ（従来のslabアロケータやalloc_pageなど）を使用し、指定した数のメモリオブジェクトを常に保持しておくことによってある分量のメモリが常に確保できることを保証する。これにより、高負荷時の安定性の向上が期待される。<br>
 </blockquote>
 
 

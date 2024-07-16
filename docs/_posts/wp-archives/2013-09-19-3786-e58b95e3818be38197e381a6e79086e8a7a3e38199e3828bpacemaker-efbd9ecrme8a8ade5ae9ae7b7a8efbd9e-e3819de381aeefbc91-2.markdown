@@ -140,7 +140,7 @@ _※2 以後フェイルオーバを「F/O」と略記します。_
 Pacemaker-1.1系の場合、上記に加え fencing_topology というコマンドも使用します。詳細は[OSCデモ機の設定を公開します](/wp/archives/4377)をご覧ください。
 
 早速、９コマンドの解説を、、と言いたいところですが、ここで１つCRM設定ファイルの例を示します。
-<pre><code>### Cluster Option ###
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">### Cluster Option ###
 property no-quorum-policy="ignore" \
     stonith-enabled="false" \
     crmd-transition-delay="2s"
@@ -247,7 +247,7 @@ CRM設定ファイルを編集した場合なども含め、次回以降は、�
 
 
 
-<pre><code># rm -f /var/lib/heartbeat/crm/*</code></pre>
+<pre style="background-color: lightgray; padding-left: 30px;"><code style="background-color: inherit"># rm -f /var/lib/heartbeat/crm/*</code></pre>
 
 
 
@@ -256,7 +256,7 @@ CRM設定ファイルを編集した場合なども含め、次回以降は、�
 
 
 
-<pre><code># rm -f /var/lib/pacemaker/cib/*</code></pre>
+<pre style="background-color: lightgray; padding-left: 30px;"><code style="background-color: inherit"># rm -f /var/lib/pacemaker/cib/*</code></pre>
 
 
 この手順は、以前に設定したCRM設定ファイルの情報をクリアします。
@@ -276,7 +276,7 @@ pm01から順番に両系サーバで実施します。
 
 
 
-<pre><code># /etc/init.d/heartbeat start</code></pre>
+<pre style="background-color: lightgray; padding-left: 30px;"><code style="background-color: inherit"># /etc/init.d/heartbeat start</code></pre>
 
 
 
@@ -285,7 +285,7 @@ pm01から順番に両系サーバで実施します。
 
 
 
-<pre><code># initctl start pacemaker.combined</code></pre>
+<pre style="background-color: lightgray; padding-left: 30px;"><code style="background-color: inherit"># initctl start pacemaker.combined</code></pre>
 
 
 
@@ -294,13 +294,13 @@ pm01から順番に両系サーバで実施します。
 
 
 
-<pre><code># systemctl start pacemaker</code></pre>
+<pre style="background-color: lightgray; padding-left: 30px;"><code style="background-color: inherit"># systemctl start pacemaker</code></pre>
 
 
 crm_mon -rfA コマンドで、正常に起動したことを確認します。
 
 以下のように表示されればOKです。こうなるのに数分ぐらいかかるかもしれません。
-<pre><code># crm_mon -rfA
+<pre style="background-color: lightgray;"><code style="background-color: inherit"># crm_mon -rfA
  ～略～
  Online: [ pm01 pm02 ]
 
@@ -327,13 +327,13 @@ crm_mon -rfA コマンドで、正常に起動したことを確認します。
 
 
 以下コマンドをrootユーザで実行し、[例のCRM設定ファイル]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)をPacemakerに反映します。どちらのノードで実行してもかまいません。（例のCRM設定ファイルをexample01.crmという名前のファイルにコピペ・保存したと仮定します。）
-<pre><code># crm configure load update example01.crm</code></pre>
+<pre style="background-color: lightgray;"><code style="background-color: inherit"># crm configure load update example01.crm</code></pre>
 
 
 crm_mon -rfA コマンドで、CRM設定ファイルが正常に反映されたことを確認します。以下のように表示されればOKです。
 
 **Pacemaker-1.0系の場合**
-<pre><code># crm_mon -rfA
+<pre style="background-color: lightgray;"><code style="background-color: inherit"># crm_mon -rfA
 ============
 Last updated: Thu May 2 11:01:03 2013
 Stack: Heartbeat
@@ -368,7 +368,7 @@ Migration summary:
 
 
 **Pacemaker-1.1系の場合**
-<pre><code># crm_mon -rfA
+<pre style="background-color: lightgray;"><code style="background-color: inherit"># crm_mon -rfA
 Last updated: Wed Mar 23 13:33:19 2016
 Last change: Wed Mar 23 13:33:03 2016 by root via cibadmin on pm01
 Stack: corosync
@@ -414,15 +414,15 @@ Migration summary:
 どちらのサーバから実行してもよいですが、現在リソースが稼働しているサーバを先に停止すると、無駄にF/Oをしてしまうので、リソースが稼働していない方("Started xxx"のxxxでない方)を先に停止すると良いでしょう。上記例の場合pm02から先に停止します。
 
 **Pacemaker-1.0系の場合**
-<pre><code># /etc/init.d/heartbeat stop</code></pre>
+<pre style="background-color: lightgray; padding-left: 30px;"><code style="background-color: inherit"># /etc/init.d/heartbeat stop</code></pre>
 
 
 **Pacemaker-1.1系,RHEL6の場合**
-<pre><code># initctl stop pacemaker.combined</code></pre>
+<pre style="background-color: lightgray; padding-left: 30px;"><code style="background-color: inherit"># initctl stop pacemaker.combined</code></pre>
 
 
 **Pacemaker-1.1系,RHEL7の場合**
-<pre><code># systemctl stop pacemaker</code></pre>
+<pre style="background-color: lightgray; padding-left: 30px;"><code style="background-color: inherit"># systemctl stop pacemaker</code></pre>
 
 
 さぁ、動いたでしょうか？
@@ -468,7 +468,7 @@ _※2013.1.22 リソース名をCRM設定とは異なる「dummyN」などと記
 とりあえず、あの短いCRM設定ファイルでもこんなに多くの制御をしていることを理解いただければ結構です。
 
 以降でCRM設定ファイルを上から読みながら、順次種明かしをしていきます。
-<pre><span style="font-size: medium;"><strong>コラム Dummyって？</strong></span>
+<pre style="background-color: lightyellow;"><span style="font-size: medium;"><strong>コラム Dummyって？</strong></span>
 例のCRM設定ファイルにDummyというキーワードが出てきます。怪しいですね。
 <strong>primitive resource1 ocf:heartbeat:Dummy</strong>
 
@@ -485,7 +485,7 @@ Apache等のリソースを設定することなく手軽に使用できるの�
 
 
 早速、例のCRM設定を上から順に読んでいきます。まず冒頭は以下のようになっています。
-<pre><code>### Cluster Option ###
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">### Cluster Option ###
 property no-quorum-policy="ignore" \
         stonith-enabled="false" \
         crmd-transition-delay="2s"
@@ -605,7 +605,7 @@ migration-thresholdは何回故障したらフェイルオーバするかを指�
 Dummyリソースは/var/run/resource-agents/に空のファイルを作成し、それが存在するかどうかでリソースの稼働をmonitorしています。
 
 このファイルを削除するとわざと故障を発生させることができます。ここではresource1リソースを故障させてみます。
-<pre><code>[root@pm01 ~]# ls /var/run/resource-agents/
+<pre style="background-color: lightgray;"><code style="background-color: inherit">[root@pm01 ~]# ls /var/run/resource-agents/
 Dummy-resource1.state  Dummy-resource2.state  Dummy-resource3:0.state
 [root@pm01 ~]# rm /var/run/resource-agents/Dummy-resource1.state
 rm: remove regular empty file `/var/run/resource-agents/Dummy-resource1.state'? y
@@ -620,7 +620,7 @@ crm_mon -rfAを別のコンソールに表示させながら行うと、故障�
 
 
 crm_monの表示が以下のようになればF/Oは完了です。
-<pre><code>～略～
+<pre style="background-color: lightgray;"><code style="background-color: inherit">～略～
 Online: [ pm01 pm02 ]
 
 Full list of resources:
@@ -661,7 +661,7 @@ Failed actions:
 書き換え後、前述のインストール手順5でPacemakerを一旦停止し、インストール手順2～4をもう一度実施し、新たなCRM設定ファイルを有効にしてください。
 
 その後、上記手順1をもう一度実行してください。いろいろごにょごにょPacemakerが反応したのちcrm_mon表示が以下のように落ち着くはずです。
-<pre><code>～略～
+<pre style="background-color: lightgray;"><code style="background-color: inherit">～略～
 Online: [ pm01 pm02 ]
 
 Full list of resources:
@@ -697,7 +697,7 @@ crm_mon表示をじっと見ていた方は気づいたかもしれませんが�
 
 この状態でさらにもう一度resource1を故障させます。上記手順1をもう一度行ってください。
 crm_mon -rfA表示が以下のように落ち着くはずです。
-<pre><code>～略～
+<pre style="background-color: lightgray;"><code style="background-color: inherit">～略～
 Online: [ pm01 pm02 ]
 
 Full list of resources:

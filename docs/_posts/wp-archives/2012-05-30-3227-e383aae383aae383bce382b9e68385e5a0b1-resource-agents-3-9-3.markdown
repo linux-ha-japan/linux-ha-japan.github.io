@@ -18,50 +18,50 @@ tags:
 
 
 <blockquote>
-We've tagged on May 25th a new stable resource-agents release (3.9.3) in the upstream repository. 
-Big thanks go to all contributors! Needless to say, without you this release would not be possible. 
+We've tagged on May 25th a new stable resource-agents release (3.9.3) in the upstream repository. <br>
+Big thanks go to all contributors! Needless to say, without you this release would not be possible. <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-5月25日にresource-agents 3.9.3をリリースしました。
-バグの報告やパッチの作成などにご協力いただいたみなさん、本当にありがとうございました！
+5月25日にresource-agents 3.9.3をリリースしました。<br>
+バグの報告やパッチの作成などにご協力いただいたみなさん、本当にありがとうございました！<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Some highlights: 
+Some highlights: <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-今回のリリースで注目すべき大きな変更点は下記のとおりです。
+今回のリリースで注目すべき大きな変更点は下記のとおりです。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-- rgmanager/vm.sh: Added support for doing tunneled migrations 
+- rgmanager/vm.sh: Added support for doing tunneled migrations <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-rgmanagerにvm.shスクリプトが追加されました。libvirtの「トンネルマイグレーション」をサポートしています。
+rgmanagerにvm.shスクリプトが追加されました。libvirtの「トンネルマイグレーション」をサポートしています。<br>
 </blockquote>
 
 
 vm.shで「--tunnelled」オプションも使えるようになったみたいですね。
 virshコマンドのヘルプはこんな感じでした。これみてもよくわかんないな…。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # virsh help migrate
   名前
     migrate - 他のホストにドメインを移動させる
@@ -97,15 +97,15 @@ virshコマンドのヘルプはこんな感じでした。これみてもよく
 
 
 <blockquote>
-- new resource agents: 
- asterisk, dhcpd, named, pound, rsyslog, slapd, varnish 
+- new resource agents: <br>
+ asterisk, dhcpd, named, pound, rsyslog, slapd, varnish <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-新しいRAがいくつか追加されました。
+新しいRAがいくつか追加されました。<br>
 </blockquote>
 
 
@@ -114,74 +114,74 @@ RAの名前は、そのRAが起動/監視/停止処理を担当するサービ�
 
 
 <blockquote>
-- mysql: improve replication support 
+- mysql: improve replication support <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-mysql RAの修正です。
-レプリケーション機能のサポートが一部改良されています。
+mysql RAの修正です。<br>
+レプリケーション機能のサポートが一部改良されています。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-- pgsql: support for replication 
+- pgsql: support for replication <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-pgsql RAの修正です、
-レプリケーション機能のサポートが追加されました。
+pgsql RAの修正です、<br>
+レプリケーション機能のサポートが追加されました。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-- Raid1: support for multiple MD arrays 
+- Raid1: support for multiple MD arrays <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Raid1 RAの修正です。
-複数のmdデバイスで構成されたアレイに対するサポートが追加されました。
+Raid1 RAの修正です。<br>
+複数のmdデバイスで構成されたアレイに対するサポートが追加されました。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-- SAPInstance/SAPDatabase: use saphostagent and support for more databases 
+- SAPInstance/SAPDatabase: use saphostagent and support for more databases <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-SAPInstance RAおよびSAPDatabase RAの修正です。
-すいません、SAP、みたことすらないのでアレなんですが、saphostagentというツール？コマンド？を使って複数のデータベースを操作することができるようになったような感じです。
+SAPInstance RAおよびSAPDatabase RAの修正です。<br>
+すいません、SAP、みたことすらないのでアレなんですが、saphostagentというツール？コマンド？を使って複数のデータベースを操作することができるようになったような感じです。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-- several new ocft test cases 
+- several new ocft test cases <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-ocftのテストケースを追加しました。
+ocftのテストケースを追加しました。<br>
 </blockquote>
 
 
@@ -191,25 +191,25 @@ ocf-testerというツールがあるのですが、これを使うとRAの単�
 
 
 <blockquote>
-The full list of changes for the linux-ha RA set is available in ChangeLog. 
-Please upgrade at the earliest opportunity. 
-
-Best,
+The full list of changes for the linux-ha RA set is available in ChangeLog. <br>
+Please upgrade at the earliest opportunity. <br>
+<br>
+Best,<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-チェンジログは<a href="https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog" target="_blank">GitHub</a>で参照することができます。
-可能であれば、早い時期にバージョンアップすることをお勧めします。
+チェンジログは<a href="https://github.com/ClusterLabs/resource-agents/blob/master/ChangeLog" target="_blank">GitHub</a>で参照することができます。<br>
+可能であれば、早い時期にバージョンアップすることをお勧めします。<br>
 </blockquote>
 
 
 
 では、バージョンアップの方法をご紹介します。
 試した環境はRHEL6.2です。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 $ uname -a
 Linux dl380g5c 2.6.32-220.el6.x86_64 #1 SMP Wed Nov 9 08:03:13 EST 2011 x86_64 x86_64 x86_64 GNU/Linux
 
@@ -219,13 +219,13 @@ Red Hat Enterprise Linux Server release 6.2 (Santiago)
 
 
 まず、GitHubからソースコードをダウンロードします。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 $ git clone http://github.com/ClusterLabs/resource-agents.git
 </code></pre>
 
 
 タグを確認して…
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 $ cd resource-agents
 $ git describe --tags
 <span style="color: #ff00ff;">v3.9.3</span>
@@ -233,14 +233,14 @@ $ git describe --tags
 
 
 ビルドの準備をにょろにょろと実行して…
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 $ ./autogen.sh
 $ ./configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc
 </code></pre>
 
 
 依存関係を確認します。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 $ grep BuildRequires resource-agents.spec
 BuildRequires: automake autoconf pkgconfig
 BuildRequires: perl python-devel
@@ -259,7 +259,7 @@ BuildRequires:  libxslt docbook_4 docbook-xsl-stylesheets
 cluster-glue-libs-develあたりが罠です。
 Linux-HA Japanの[ダウンロードサイト](/wp/link/packages)からPacemakerリポジトリパッケージをダウンロードしてcluster-glue-libs-develもインストールしてください。
 では、RPMを作成してみましょう。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # su - root
 # make rpm
 
@@ -273,20 +273,20 @@ Processing files: resource-agents-debuginfo-3.9.3-1.el6.x86_64
 
 
 出来上がったRPMをインストールしてください。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # rpm -ihv x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
 </code></pre>
 
 
 または
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # rpm -Uhv x86_64/resource-agents-3.9.3-1.el6.x86_64.rpm
 </code></pre>
 
 
 RPMが必要ない場合は、make installでインストールしてください。
 この場合も当然、cluster-glue-libs-develとかそのへんの依存関係には注意してください。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # make install
 </code></pre>
 
@@ -295,7 +295,7 @@ gitとかmakeとかめんどくさいなあ、特定のRAだけアップデー�
 という場合は、コピペでも大丈夫！
 [GitHub](https://github.com/ClusterLabs/resource-agents)の「ZIP」というアイコンをぽちっとしてソースコードをダウンロードしましょう。
 zipファイルをunzipコマンドで解凍してあげると、RAはheartbeatという名前のディレクトリの下にもりっといます。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # ls heartbeat
 AoEtarget     LVM          SendArp             apache            ids                 ocf-shellfuncs     sapdb.sh
 AudibleAlarm  LinuxSCSI    ServeRAID           apache-conf.sh    iscsi               ocf-shellfuncs.in  scsi2reservation
@@ -317,7 +317,7 @@ IPv6addr.c    SAPInstance  anything            iSCSITarget       ocf-returncodes
 では、使いたいRAを所定のディレクトリにコピー！
 この例ではpgsql RAをアップデートしています。
 コピーする前に一応バックアップもとっておいてくださいね。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # cp -p heartbeat/pgsql /usr/lib/ocf/resource.d/heartbeat/pgsql
 </code></pre>
 
@@ -325,7 +325,7 @@ IPv6addr.c    SAPInstance  anything            iSCSITarget       ocf-returncodes
 configureのオプションによって配布先は異なるかもしれませんが、前のバージョンのresrouce-agentsをインストールしているのであれば、ocfとかresource.dとかで検索してそれっぽいディレクトリを探してください。
 
 実行権限もちゃんとついてると思いますが、一応確認してください。
-<pre><code>
+<pre style="background-color: aliceblue"><code style="background-color: inherit">
 # ls -l /usr/lib/ocf/resource.d/heartbeat/pgsql
 </code></pre>
 

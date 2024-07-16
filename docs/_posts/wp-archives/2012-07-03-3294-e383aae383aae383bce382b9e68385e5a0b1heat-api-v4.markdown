@@ -24,60 +24,60 @@ tags:
 
 
 <blockquote>
-As some may know, Angus and I were working previously on a project called pacemaker-cloud, with the intention of adding high availbility to guests in cloud environments. We stopped developing that project in March 2012 and took our experiences to a new project called Heat. For more details of why that decision was made, have a look at: 
+As some may know, Angus and I were working previously on a project called pacemaker-cloud, with the intention of adding high availbility to guests in cloud environments. We stopped developing that project in March 2012 and took our experiences to a new project called Heat. For more details of why that decision was made, have a look at: <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-すでにご存じの方もいらっしゃるとは思いますが、Angusと私は「Pacemaker Cloud」というプロジェクトでクラウド環境における高可用性について検討を重ねてきましたが、このプロジェクトは2012年3月に終了し、新しいプロジェクトを開始することになりました。
-新しいプロジェクトの名前は「Heat」です。
-「Heat」の詳細についてはこちらの<a href="http://sdake.wordpress.com/2012/04/24/the-heat-api-a-template-based-orchestration-framework/" target="_blank">ブログエントリ</a>を参照してください。
+すでにご存じの方もいらっしゃるとは思いますが、Angusと私は「Pacemaker Cloud」というプロジェクトでクラウド環境における高可用性について検討を重ねてきましたが、このプロジェクトは2012年3月に終了し、新しいプロジェクトを開始することになりました。<br>
+新しいプロジェクトの名前は「Heat」です。<br>
+「Heat」の詳細についてはこちらの<a href="http://sdake.wordpress.com/2012/04/24/the-heat-api-a-template-based-orchestration-framework/" target="_blank">ブログエントリ</a>を参照してください。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-We have just released Heat API (v4) which has a really nice HA feature for users moving work to OpenStack cloud environments. Heat API uses templates that describe a cloud application. Our goal is to provide parity with Amazon's AWS CloudFormation API and template specification and we are closing in.
+We have just released Heat API (v4) which has a really nice HA feature for users moving work to OpenStack cloud environments. Heat API uses templates that describe a cloud application. Our goal is to provide parity with Amazon's AWS CloudFormation API and template specification and we are closing in.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Heat API (v4)はOpenStackで構築されたクラウド環境に高可用性機能を提供します。
-Heatはクラウド上で実行されるアプリケーションを定義したテンプレートを使用しますが、最終的に、Amazon AWS CloudFormationと同等のAPIとテンプレートの提供を目標としており、かなり近いところまで完成しています。
+Heat API (v4)はOpenStackで構築されたクラウド環境に高可用性機能を提供します。<br>
+Heatはクラウド上で実行されるアプリケーションを定義したテンプレートを使用しますが、最終的に、Amazon AWS CloudFormationと同等のAPIとテンプレートの提供を目標としており、かなり近いところまで完成しています。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Heat's High Availability feature set will restart failed applications and escalate repeated failures by restarting the entire VM. All of this is defined in one template file with the rest of the application definition, and can be launched via our AWS CloudFormation API implementation.
+Heat's High Availability feature set will restart failed applications and escalate repeated failures by restarting the entire VM. All of this is defined in one template file with the rest of the application definition, and can be launched via our AWS CloudFormation API implementation.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Heatの高可用性機能を利用して、故障したアプリケーションの再起動を実行したり、故障回数が敷居値を超えた場合には、アプリケーションではなく仮想マシンそのものの再起動を実行したりすることができます。
-これらの動作はテンプレートに定義され、API経由で実行されます。
+Heatの高可用性機能を利用して、故障したアプリケーションの再起動を実行したり、故障回数が敷居値を超えた場合には、アプリケーションではなく仮想マシンそのものの再起動を実行したりすることができます。<br>
+これらの動作はテンプレートに定義され、API経由で実行されます。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Heat does a ton of great things, which is why I ask you to give it a spin, especially if you are evaluating OpenStack.
+Heat does a ton of great things, which is why I ask you to give it a spin, especially if you are evaluating OpenStack.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-OpenStack環境で様々な検証作業、評価作業を行っているみなさん、Heatへの質問やフィードバックをお待ちしています！
+OpenStack環境で様々な検証作業、評価作業を行っているみなさん、Heatへの質問やフィードバックをお待ちしています！<br>
 </blockquote>
 
 
@@ -107,18 +107,18 @@ OpenStack環境で様々な検証作業、評価作業を行っているみな�
 
 
 <blockquote>
-Even if your not immediately able to try out the software, follow our project on github by using the github Watch feature. If you have other feedback, feel free to send to this list or join the heat-api mailing list and respond there.
-
-Thanks!
--steve
+Even if your not immediately able to try out the software, follow our project on github by using the github Watch feature. If you have other feedback, feel free to send to this list or join the heat-api mailing list and respond there.<br>
+<br>
+Thanks!<br>
+-steve<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-今すぐHeatを試してみたいという方は、githubでプロジェクトをフォローしてください。
-pacemaker-cloud、もしくはheat-apiのメーリングリストでもフィードバックをお待ちしています。
+今すぐHeatを試してみたいという方は、githubでプロジェクトをフォローしてください。<br>
+pacemaker-cloud、もしくはheat-apiのメーリングリストでもフィードバックをお待ちしています。<br>
 </blockquote>
 
 
@@ -133,7 +133,7 @@ pacemaker-cloud、もしくはheat-apiのメーリングリストでもフィー
 
 
 <blockquote>
-AWS CloudFormation は、関連する AWS リソースの集約を整った予測可能な方法でプロビジョニングおよび更新し、開発者やシステム管理者が容易にそれらを作成・管理できるようにします。
+AWS CloudFormation は、関連する AWS リソースの集約を整った予測可能な方法でプロビジョニングおよび更新し、開発者やシステム管理者が容易にそれらを作成・管理できるようにします。<br>
 </blockquote>
 
 
@@ -141,7 +141,7 @@ AWS CloudFormation は、関連する AWS リソースの集約を整った予�
 
 
 <blockquote>
-お客様は、AWS CloudFormation のサンプルテンプレートを使用したり、独自のテンプレートを作成したりして、AWS リソースおよびそのアプリケーションを実行するために必要な関連するすべての依存関係や実行時のパラメータを記述することができます。どの順序で AWS サービスをプロビジョニングする必要があるか、またはそれらの依存関係をどのようにうまく働かせるかの微妙な点を理解する必要はありません。
+お客様は、AWS CloudFormation のサンプルテンプレートを使用したり、独自のテンプレートを作成したりして、AWS リソースおよびそのアプリケーションを実行するために必要な関連するすべての依存関係や実行時のパラメータを記述することができます。どの順序で AWS サービスをプロビジョニングする必要があるか、またはそれらの依存関係をどのようにうまく働かせるかの微妙な点を理解する必要はありません。<br>
 </blockquote>
 
 
@@ -158,68 +158,68 @@ Heatはテンプレートの便利機能に加えてアプリケーションの�
 
 
 <blockquote>
-The Heat API – A template based orchestration framework
-Posted on April 24, 2012
-
-Over the last year, Angus Salkeld and I have been developing a IAAS high availability service called Pacemaker Cloud. We learned that the problem we were really solving was orchestration. Another dev group was also looking at this problem inside Red Hat from the launching side. We decided to take two weeks off from our existing work and see if we could join together to create a proof of concept implementation from scratch of AWS CloudFormation for OpenStack. The result of that work was a proof of concept project which provided launching of a WordPress template, as had been done in our previous project. 
+The Heat API – A template based orchestration framework<br>
+Posted on April 24, 2012<br>
+<br>
+Over the last year, Angus Salkeld and I have been developing a IAAS high availability service called Pacemaker Cloud. We learned that the problem we were really solving was orchestration. Another dev group was also looking at this problem inside Red Hat from the launching side. We decided to take two weeks off from our existing work and see if we could join together to create a proof of concept implementation from scratch of AWS CloudFormation for OpenStack. The result of that work was a proof of concept project which provided launching of a WordPress template, as had been done in our previous project. <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Angusと私は昨年までPacemaker CloudプロジェクトでIAASの高可用性について検討してきましたが、高可用なクラウド環境を実現するためにはorchestration、つまり様々なコンポーネントが調和した状態で機能することが必要であるということがわかりました。
-Red Hatの別プロジェクトで働いている開発者たちも同じ問題をかかえていました。
-私たちは二週間ほどPacemaker Cloudプロジェクトの仕事から離れて、別プロジェクトとの協働について、つまり、AWS CloudFormationのようなテンプレートを使用したシステム構築をOpenStackでも実現することができるかどうかという点について検討しました。
-Pacemaker Cloudプロジェクトも、ある典型的なシステム、例えばWordPressのサービスを提供するための独自のテンプレートを用意していましたし、この考え方は実現可能だと思います。
+Angusと私は昨年までPacemaker CloudプロジェクトでIAASの高可用性について検討してきましたが、高可用なクラウド環境を実現するためにはorchestration、つまり様々なコンポーネントが調和した状態で機能することが必要であるということがわかりました。<br>
+Red Hatの別プロジェクトで働いている開発者たちも同じ問題をかかえていました。<br>
+私たちは二週間ほどPacemaker Cloudプロジェクトの仕事から離れて、別プロジェクトとの協働について、つまり、AWS CloudFormationのようなテンプレートを使用したシステム構築をOpenStackでも実現することができるかどうかという点について検討しました。<br>
+Pacemaker Cloudプロジェクトも、ある典型的なシステム、例えばWordPressのサービスを提供するための独自のテンプレートを用意していましたし、この考え方は実現可能だと思います。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-The developers decided to take another couple weeks to determine if we could get a more functional system that would handle composite virtual machines. Today, we released that version, our second iteration of  the Heat API. Since we have many more developers, and a project that exceeded our previous functionality of Pacemaker Cloud, the Heat Development Community has decided to cease work on our previous orchestration projects and focus our efforts on Heat.
+The developers decided to take another couple weeks to determine if we could get a more functional system that would handle composite virtual machines. Today, we released that version, our second iteration of  the Heat API. Since we have many more developers, and a project that exceeded our previous functionality of Pacemaker Cloud, the Heat Development Community has decided to cease work on our previous orchestration projects and focus our efforts on Heat.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-開発者たちはさらに何週間か議論を重ね、複数の仮想マシンを制御するための様々な機能について検討しました。そしていよいよ、Heat APIのリリースが実現したのです。
-たくさんの開発者が参加してくれたおかげで、HeatはPacemaker Cloudよりも機能面でかなり上回っています。
-このため、Pacemaker Cloudは開発を中止し、Heatの開発に注力することになりました。
+開発者たちはさらに何週間か議論を重ね、複数の仮想マシンを制御するための様々な機能について検討しました。そしていよいよ、Heat APIのリリースが実現したのです。<br>
+たくさんの開発者が参加してくれたおかげで、HeatはPacemaker Cloudよりも機能面でかなり上回っています。<br>
+このため、Pacemaker Cloudは開発を中止し、Heatの開発に注力することになりました。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-A bit about Heat:  The Heat API implements the AWS Cloud Formations API. This API provides a rest interface for creating composite VMs called Stacks from template files. The goal of the software is to be able to accurately launch AWS CloudFormation Stacks on OpenStack. We will also enable good quality high availability based upon the technologies we created in Pacemaker Cloud including escalation. 
+A bit about Heat:  The Heat API implements the AWS Cloud Formations API. This API provides a rest interface for creating composite VMs called Stacks from template files. The goal of the software is to be able to accurately launch AWS CloudFormation Stacks on OpenStack. We will also enable good quality high availability based upon the technologies we created in Pacemaker Cloud including escalation. <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Heatについて:
-Heat APIはAWS Cloud Formation APIと同じような実装です。テンプレートを使用して複数の仮想マシンスタックを作成することができます。
-将来的には、OpenStack環境でAWS CloudFormationのスタックを起動させることを目標としています。
-また、Pacemaker Cloudで実装を試みていたエスカレーション機能も含めて、高品質の高可用性機能も提供します。
+Heatについて:<br>
+Heat APIはAWS Cloud Formation APIと同じような実装です。テンプレートを使用して複数の仮想マシンスタックを作成することができます。<br>
+将来的には、OpenStack環境でAWS CloudFormationのスタックを起動させることを目標としています。<br>
+また、Pacemaker Cloudで実装を試みていたエスカレーション機能も含めて、高品質の高可用性機能も提供します。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Given that C was a poor choice of implementation language for making REST based cloud services, Heat is implemented in Python which is fantastic for REST services. The Heat API also follows OpenStack design principles. Our initial design after our POC shows the basics of our architecture and our quickstart guide can be used with our second iteration release. 
+Given that C was a poor choice of implementation language for making REST based cloud services, Heat is implemented in Python which is fantastic for REST services. The Heat API also follows OpenStack design principles. Our initial design after our POC shows the basics of our architecture and our quickstart guide can be used with our second iteration release. <br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-RESTベースのクラウドサービスを想定して、HeatはCではなくPythonで実装されています。また、HeatはOpenStackの設計方針にも追従しています。
-Heatという新しいプロジェクトの実現可能性を検討している段階での初期デザインはまさにそのアーキテクチャの基本となるものであり、関連するドキュメント(※)はsecond iteration releaseで実現可能な動作を前提に記述されています。
+RESTベースのクラウドサービスを想定して、HeatはCではなくPythonで実装されています。また、HeatはOpenStackの設計方針にも追従しています。<br>
+Heatという新しいプロジェクトの実現可能性を検討している段階での初期デザインはまさにそのアーキテクチャの基本となるものであり、関連するドキュメント(※)はsecond iteration releaseで実現可能な動作を前提に記述されています。<br>
 </blockquote>
 
 
@@ -229,14 +229,14 @@ Heatという新しいプロジェクトの実現可能性を検討している�
 
 
 <blockquote>
-A mailing list is available for developer and user discussion. We track milestones and issues using github’s issue tracker. Things are moving fast – come join our project on github or chat with the devs on #heat on freenode!
+A mailing list is available for developer and user discussion. We track milestones and issues using github’s issue tracker. Things are moving fast – come join our project on github or chat with the devs on #heat on freenode!<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-開発者用、ユーザ用のメーリングリストもすでに利用可能です。githubでマイルストーンや議論の管理も行っています。開発はかなりはやいスピードで進行しています。興味のある方はgithubやIRCのチャット(#heat on freenode)に参加してください！
+開発者用、ユーザ用のメーリングリストもすでに利用可能です。githubでマイルストーンや議論の管理も行っています。開発はかなりはやいスピードで進行しています。興味のある方はgithubやIRCのチャット(#heat on freenode)に参加してください！<br>
 </blockquote>
 
 

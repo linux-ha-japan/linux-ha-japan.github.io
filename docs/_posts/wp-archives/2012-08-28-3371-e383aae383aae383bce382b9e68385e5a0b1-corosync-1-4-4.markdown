@@ -19,98 +19,98 @@ tags:
 
 
 <blockquote>
-I am pleased to announce the latest maintenance release of Corosync 1.4.4 available immediately from our website at http://www.corosync.org.
-This releases fixes many critical bugs especially in confdb.
-
-Complete changelog for 1.4.4:
+I am pleased to announce the latest maintenance release of Corosync 1.4.4 available immediately from our website at http://www.corosync.org.<br>
+This releases fixes many critical bugs especially in confdb.<br>
+<br>
+Complete changelog for 1.4.4:<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Corosync 1.4系の最新版、1.4.4をリリースしました。
+Corosync 1.4系の最新版、1.4.4をリリースしました。<br>
 こちらのサイトからダウンロードしてください。 <a href="http://www.corosync.org" target="_blank">http://www.corosync.org</a>
-今回のリリースではconfdb関連の重要なバグ修正が取り込まれています。
-
-1.4.4の変更点
+今回のリリースではconfdb関連の重要なバグ修正が取り込まれています。<br>
+<br>
+1.4.4の変更点<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Christine Caulfield (2):
-
-       confdb: Fix crash with long values and add API calls to get them
-       confdb: Fix crash with long values
+Christine Caulfield (2):<br>
+<br>
+       confdb: Fix crash with long values and add API calls to get them<br>
+       confdb: Fix crash with long values<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Corosyncのconfdb APIは返り値が256バイト以内という制限があり、この値を超えるとクラスタがクラッシュしてたらしいのですが修正されました。この修正によって返り値のサイズ制限はなくなりました。
+Corosyncのconfdb APIは返り値が256バイト以内という制限があり、この値を超えるとクラスタがクラッシュしてたらしいのですが修正されました。この修正によって返り値のサイズ制限はなくなりました。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Fabio M. Di Nitto (1):
-       objctl: add missing calls to dispatch notifications and fix memory corruption
+Fabio M. Di Nitto (1):<br>
+       objctl: add missing calls to dispatch notifications and fix memory corruption<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-objctlコマンドを使用してobjdbを操作する際、文字化けしたような表示結果が得られる場合がありましたが修正されました。
+objctlコマンドを使用してobjdbを操作する際、文字化けしたような表示結果が得られる場合がありましたが修正されました。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Jan Friesse (10):
-
-       Correctly handle point-to-point IP
-       totemip: Support bind to exact address
-       Add man page with Confdb keys created by corosync
-       Register reload callback only once
-       cpg: Be more verbose for procjoin message
-       confdb_keys: Document few more runtime statistics
-       totemudpu: Bind sending sockets to bindto address
-       cpg: Check input param name_t length
-       example conf: Remove Duplicate "debug" statement
-       example conf: Remove unused amf sectio
+Jan Friesse (10):<br>
+<br>
+       Correctly handle point-to-point IP<br>
+       totemip: Support bind to exact address<br>
+       Add man page with Confdb keys created by corosync<br>
+       Register reload callback only once<br>
+       cpg: Be more verbose for procjoin message<br>
+       confdb_keys: Document few more runtime statistics<br>
+       totemudpu: Bind sending sockets to bindto address<br>
+       cpg: Check input param name_t length<br>
+       example conf: Remove Duplicate "debug" statement<br>
+       example conf: Remove unused amf sectio<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-
+<br>
 <ul>
-<li>ポイント・ツー・ポイント通信時にローカルアドレスを正しく処理するため、IFA_ADDRESSではなくIFA_LOCALを使用するよう変更しました。
+<li>ポイント・ツー・ポイント通信時にローカルアドレスを正しく処理するため、IFA_ADDRESSではなくIFA_LOCALを使用するよう変更しました。<br>
 </li>
-<li>totemip: 同一ネットワーク上に二つのIPアドレスが設定されている場合も正しい値を取得できるよう修正しました。
+<li>totemip: 同一ネットワーク上に二つのIPアドレスが設定されている場合も正しい値を取得できるよう修正しました。<br>
 </li>
-<li>corosyncからconfdbのキーを作成する手順についてman pageを追加しました。
+<li>corosyncからconfdbのキーを作成する手順についてman pageを追加しました。<br>
 </li>
-<li>confdbが変更されるたびにvotequorumを登録するのではなく、votequorumの更新時にのみ登録するよう変更しました。
+<li>confdbが変更されるたびにvotequorumを登録するのではなく、votequorumの更新時にのみ登録するよう変更しました。<br>
 </li>
-<li>cpg: プロセスが参加する際のログメッセージを詳細化しました。
+<li>cpg: プロセスが参加する際のログメッセージを詳細化しました。<br>
 </li>
-<li>confdb_keys: 実行環境の統計情報を取得するパラメータ(mtt_rx_token,avg_token_workload,avg_backlog_calc)の説明をman pageに追加しました。
+<li>confdb_keys: 実行環境の統計情報を取得するパラメータ(mtt_rx_token,avg_token_workload,avg_backlog_calc)の説明をman pageに追加しました。<br>
 </li>
-<li>totemudpu: Corosync 2.0からのバックポートです。ソケットにアドレスをバインドします。
+<li>totemudpu: Corosync 2.0からのバックポートです。ソケットにアドレスをバインドします。<br>
 </li>
-<li>cpg: name_tパラメータに含まれる文字列のチェックを追加しました。
+<li>cpg: name_tパラメータに含まれる文字列のチェックを追加しました。<br>
 </li>
-<li>corosync.confのサンプル :重複していたdebugステートメントを削除しました。
+<li>corosync.confのサンプル :重複していたdebugステートメントを削除しました。<br>
 </li>
-<li>corosync.confのサンプル :未使用のamfセクションを削除しました。
+<li>corosync.confのサンプル :未使用のamfセクションを削除しました。<br>
 </li>
 </ul>
 </blockquote>
@@ -119,30 +119,30 @@ Jan Friesse (10):
 
 
 <blockquote>
-Jerome FLESCH (1):
-
-       When flushing, discard only memb_join messages
+Jerome FLESCH (1):<br>
+<br>
+       When flushing, discard only memb_join messages<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-Corosyn 1.3.4/1.4.2のリリースで、CPGメッセージの受信時にリングが切断と再接続を繰り返す動作に対する修正がとりこまれています。以前のリリースでは、何種類かのパケットを破棄する動作となっていますが、今回のリリースでは、memb_joinメッセージのみを破棄するよう変更されました。
+Corosyn 1.3.4/1.4.2のリリースで、CPGメッセージの受信時にリングが切断と再接続を繰り返す動作に対する修正がとりこまれています。以前のリリースでは、何種類かのパケットを破棄する動作となっていますが、今回のリリースでは、memb_joinメッセージのみを破棄するよう変更されました。<br>
 </blockquote>
 
 
 
 
 <blockquote>
-Upgrade is (as usually) highly recommended.
-Thanks/congratulations to all people that contributed to achieve this great milestone.
+Upgrade is (as usually) highly recommended.<br>
+Thanks/congratulations to all people that contributed to achieve this great milestone.<br>
 </blockquote>
 
 
 
 
 <blockquote style="background-color:white;border-color:white;color:black;">
-1.4系のユーザは最新版にアップデートすることをおすすめします。
-リリースにご協力いただいたみなさん、本当にありがとうございました。
+1.4系のユーザは最新版にアップデートすることをおすすめします。<br>
+リリースにご協力いただいたみなさん、本当にありがとうございました。<br>
 </blockquote>
