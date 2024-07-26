@@ -69,6 +69,7 @@ Dejan Muhamedagic<br>
 
 * * *
 
+  
 
 リリースノートがあっさりしすぎているのでちょっと補足。
 リポジトリの[更新状況](http://hg.linux-ha.org/glue/shortlog)を確認してみたんですが気になるのはこの二点。
@@ -86,10 +87,12 @@ Dejan Muhamedagic<br>
 
      
 
+  
 
 一つ目の「Medium: LRM: set max-children depending on the number of processors」ですが、lrmdはRAを実行する際にRA実行用のプロセスをforkします。forkされる子プロセスの最大値は「LRMD_MAX_CHILDREN」という環境変数で定義されているのですが、デフォルト値は4でした。
 管理するリソース数がたくさんある環境、つまりRAをたくさん設定する環境では、この値をもそっと大きくしてあげるとパフォーマンスが改善される場合もあります。
 今回のリリースでは、LRMD_MAX_CHILDRENのデフォルト値が、実行環境のプロセッサ数に応じて調整されるようになりました。
+  
 
 [calc_max_children()](http://hg.linux-ha.org/glue/file/1f36e9cdcc13/lrm/lrmd/lrmd.c#l1082)という関数が新しく追加されており、実行環境のプロセッサ数の1/2がLRMD_MAX_CHILDRENに設定されます。
 <pre style="background-color: aliceblue"><code style="background-color: inherit">
@@ -157,6 +160,7 @@ max-children: 10
 lrmadminコマンドは実行したノードのLRMD_MAX_CHILDRENを変更します。
 クラスタ全体のLRMD_MAX_CHILDRENを変更したい場合は、全ノードでlrmadminコマンドを実行する必要があります。
 また、Pacemakerを再起動した場合は、デフォルト値に戻ってしまいますので注意してください。
+  
 
 そして、二つ目の「Medium: LRM: lrmd: don't send parameters from ops back to crmd」ですが、これは日本語のメーリングリストで[話題](http://sourceforge.jp/projects/linux-ha/lists/archive/japan/2012-October/001217.html)になっていたやつですな。
 startオペレーションにinstance_attributesが設定されている場合(例：prereq属性など。ちなみにPaceamaker 1.0系ではprereqではなくrequiresに変更になっています)に、同じ症状が発生する可能性があります。

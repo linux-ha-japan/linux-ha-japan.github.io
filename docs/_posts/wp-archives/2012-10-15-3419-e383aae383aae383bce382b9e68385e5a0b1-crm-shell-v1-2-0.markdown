@@ -246,6 +246,6 @@ https://savannah.nongnu.org/bugs/?group=crmsh<br>
 	</li>
 	<li><a href="https://savannah.nongnu.org/bugs/?group=crmsh" target="_blank">バグレポート</a>
 	</li>
-     <ul>
+     </ul>
 </ul>
 </blockquote>

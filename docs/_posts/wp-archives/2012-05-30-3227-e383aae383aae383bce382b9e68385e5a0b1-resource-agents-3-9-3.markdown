@@ -93,6 +93,7 @@ virshコマンドのヘルプはこんな感じでした。これみてもよく
 </code></pre>
 
 
+  
 
 
 
@@ -110,6 +111,7 @@ virshコマンドのヘルプはこんな感じでした。これみてもよく
 
 
 RAの名前は、そのRAが起動/監視/停止処理を担当するサービスやデーモンなどの名前そのままなので解説は省略します。新規RAは asterisk, dhcpd, named, pound, rsyslog, slapd, varnish です。
+  
 
 
 
@@ -187,6 +189,7 @@ ocftのテストケースを追加しました。<br>
 
 ocf-testerというツールがあるのですが、これを使うとRAの単体試験ができます。
 [The OCF Resource Agent Developer’s Guide](http://www.linux-ha.org/doc/dev-guides/_testing_resource_agents.html)に使い方が紹介されているので、興味のある方は試してみてください。
+  
 
 
 

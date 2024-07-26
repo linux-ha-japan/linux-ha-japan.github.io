@@ -31,11 +31,14 @@ tags:
   * リソース定義：[osc2014.crm]({{ site.lhajp_resources_url }}/wp-content/osc2014_crm.txt)
 
 
+  
 
+  
 
 また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
 アンケート結果を以下に公開します。 
 (回答者計49名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+  
 
 [![OSC2014TokyoFall_Q1](/assets/images/wp-content/OSC2014TokyoFall_Q1.png)](/assets/images/wp-content/OSC2014TokyoFall_Q1.png)
 [![OSC2014TokyoFall_Q2](/assets/images/wp-content/OSC2014TokyoFall_Q2.png)](/assets/images/wp-content/OSC2014TokyoFall_Q2.png)

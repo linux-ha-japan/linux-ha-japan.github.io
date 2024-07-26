@@ -124,6 +124,7 @@ rgmanager RAにも<a href="https://github.com/ClusterLabs/resource-agents/commit
 
 では次のページでocf-rarunスクリプトの使い方をご紹介します。
 
+  
 
 
 

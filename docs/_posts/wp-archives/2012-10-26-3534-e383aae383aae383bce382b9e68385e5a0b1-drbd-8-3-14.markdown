@@ -242,6 +242,6 @@ meta-data: need apply-al
 	</li>
 	<li><a href="http://git.drbd.org/gitweb.cgi?p=drbd-8.3.git;a=tag;h=refs/tags/drbd-8.3.14" target="_blank">リポジトリ</a>
 	</li>
-     <ul>
+     </ul>
 </ul>
 </blockquote>

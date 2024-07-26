@@ -83,7 +83,7 @@ version 6の新機能について<br>
 <ul>
 	<ul>15個の機能テストおよび7個の単体テストを追加しました。</ul>
 	<ul>そのほかのテストも改良されています。</ul>
-<ul>
+</ul>
 </blockquote>
 
 
@@ -233,7 +233,7 @@ Download Heat API: https://github.com/heat-api/heat/downloads<br>
 	</li>
 	<li><a href="https://github.com/heat-api/heat/downloads" target="_blank">リポジトリ</a>
 	</li>
-     <ul>
+     </ul>
 </ul>
 </blockquote>
 

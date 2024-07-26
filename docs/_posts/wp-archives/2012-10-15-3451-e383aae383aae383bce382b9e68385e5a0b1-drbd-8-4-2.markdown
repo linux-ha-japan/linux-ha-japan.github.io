@@ -191,6 +191,6 @@ DRBD 8.4よりもDRBD 8.3のほうがパフォーマンスがよいのか？と�
 	</li>
 	<li><a href="http://git.drbd.org/gitweb.cgi?p=drbd-8.4.git;a=tag;h=refs/tags/drbd-8.4.2" target="_blank">リポジトリ</a>
 	</li>
-     <ul>
+     </ul>
 </ul>
 </blockquote>

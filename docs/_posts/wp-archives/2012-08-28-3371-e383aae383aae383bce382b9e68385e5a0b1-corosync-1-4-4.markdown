@@ -15,6 +15,7 @@ tags:
 
 2012年8月14日にCorosync 1.4.4がリリースされました！
 ということでいつものごとく、メーリングリストに投稿された[リリースノート](http://lists.corosync.org/pipermail/discuss/2012-August/001857.html)の意訳です。
+  
 
 
 

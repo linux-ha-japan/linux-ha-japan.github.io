@@ -149,37 +149,31 @@ Keystoneのエンドポイントを変更しました。既存のHeatからバ�
 
 
 
-参考情報リンク一覧
 
-
-
-     
-	
-    * [Heat Website](http://heat-api.org/)
-	
-
-	
-    * [GitHub](https://github.com/heat-api/heat#readme)
-	
-
-	
-    * IRC - #heat on FreeNode
-	
-
-     
-
+<blockquote style="background-color:white;border-color:white;color:black;">
+参考情報リンク一覧<br>
+<ul>
+     <ul>
+	<li><a href="http://heat-api.org/" target="_blank">Heat Website</a>
+	</li>
+	<li><a href="https://github.com/heat-api/heat#readme" target="_blank">GitHub</a>
+	</li>
+	<li>IRC - #heat on FreeNode<br>
+	</li>
+     </ul>
+</ul>
 </blockquote>
- 
- 
+
+
   
 
   
 
 
- 
- * * *
- 
- 
-そろそろ OpenStack 関連の用語わからなさ度合いがMAX  ＼(^o^)／ ぃぇー<br>
-とりあえず Fedora 17 のインストールからやってみっか ＼(^o^)／ ぃぇー<br>
+
+* * *
+
+
+そろそろ OpenStack 関連の用語わからなさ度合いがMAX  ＼(^o^)／ ぃぇー
+とりあえず Fedora 17 のインストールからやってみっか ＼(^o^)／ ぃぇー
 自社の同じフロアにおぷすたな人達がきゃっきゃうふふしてるはずなんだがこの温度差は一体…

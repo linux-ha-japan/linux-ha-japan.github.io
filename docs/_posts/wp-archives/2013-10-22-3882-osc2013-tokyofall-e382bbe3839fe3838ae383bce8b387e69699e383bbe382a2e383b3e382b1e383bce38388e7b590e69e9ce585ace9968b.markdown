@@ -34,6 +34,7 @@ tags:
   * 設定ファイル（雷構成)：[demo01-thunder.crm]({{ site.lhajp_resources_url }}/wp-content/demo01-thunder.crm_.txt)
 
 
+  
 
 また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
 アンケート結果を以下に公開します。 (回答者39名, 円グラフ中の数値は「回答者数,割合(%)」です。)

@@ -234,7 +234,9 @@ locationの概要と代表的な書式は以下のようになります。
 
 なお、crm_monコマンドに-Aオプションをつけると、属性値を表示させることができます。
 
+  
 
+  
 
 以下の部分は、グループgrpに対し、ノードpm01での起動にはスコア200を、ノードpm02での起動にはスコア100を指定しています。
 つまり、grpの起動ノードとしてpm01を優先するよう制約しています。
@@ -317,6 +319,7 @@ colocationの概要と代表的な書式は以下のようになります。
 
 
 
+  
 
 
 
@@ -404,12 +407,15 @@ order rsc_order-1 0: clnResource grp symmetrical=false
 
 
 
+  
+  
 
 お気づきの方もいるかもしれませんが、前回ご紹介したgroupコマンドも、同居と順序を指定するものでした。
 例えば、「group grp1 resource1 resource2」は「resource1と2は必ず同居し」、「resource1→resource2の順序で起動」を定義します。
 
 groupは、colocationとorderを組み合わせて再現することができます。
 
+  
 
 次頁で、今回わかったことを応用した実験をしてみましょう。
 
@@ -689,6 +695,7 @@ Mar 24 10:29:51 pm02 crmd[6357]:  notice: process_lrm_event: Operation resource1
 故障したresource1がpm01で停止後、pm02で起動し、F/Oが成功したことがログでも確認できました。
 
 
+  
 
 次に、orderのスコア値をINFINITYと変更し、さきほどと同じようにresource1を故障させます。
 
@@ -845,7 +852,7 @@ Migration summary:
 
 
 これはCRM設定の中の以下の部分で、「my_attribute」という属性値が存在しない場合または100以下の場合は起動できないと制約しているためです。
-<pre style="background-color: aliceblue;">location rsc_location-1 resource1 \
+<pre style="background-color: aliceblue;"><code style="background-color: inherit">location rsc_location-1 resource1 \
     rule -INFINITY: not_defined my_attribute or my_attribute lt 100
 </code></pre>
 
@@ -923,7 +930,9 @@ Migration summary:
 
 なお、実際には、本実験のように属性値を手動で設定、変更することは滅多になく、NW監視(ocf:pacemaker:pingd)やディスク監視(ocf:pacemaker:diskd)が内部的に使用しています。
 
+  
 
+  
 
 
 
@@ -933,6 +942,7 @@ Migration summary:
 3回に渡った「動かして理解するPacemaker ～CRM設定編～」は今回で終わりです。
 
 最後まで読んでいただいた方は、[例の設定ファイル]({{ site.lhajp_resources_url }}/wp-content/example01.crm_.txt)はもちろん、[デモ環境のCRM設定ファイル]({{ site.lhajp_resources_url }}/wp-content/osc2011fukuoka.zip)も読めるようになっていると思います。
+  
 
 まだまだ紹介しきれていない機能やトピックもあるので、今後も皆様のお役に立てるような情報提供を心がけていきます。
 質問、リクエスト等あれば、[Linux-HA Japan ML](/wp/ml)へご連絡ください。

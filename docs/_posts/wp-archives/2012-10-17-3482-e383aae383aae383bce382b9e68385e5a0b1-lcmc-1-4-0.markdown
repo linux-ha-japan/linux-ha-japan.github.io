@@ -79,24 +79,22 @@ LCMCはPacemakerによって構築されたクラスタ環境へsshで接続し�
 </blockquote>
 
 
-参考情報リンク一覧
 
 
+<blockquote style="background-color:white;border-color:white;color:black;">
+参考情報リンク一覧<br>
+<ul>
+     <ul>
+	<li><a href="http://sourceforge.net/apps/gallery/lcmc/" target="_blank">スクリーンショット</a>
+	</li>
+	<li><a href="https://github.com/rasto/lcmc" target="_blank">ソースコード</a>
+	</li>
+	<li><a href="http://lcmc.sourceforge.net/changelog" target="_blank">変更履歴</a>
+	</li>
+     </ul>
+</ul>
+</blockquote>
 
-     
-	
-    * [スクリーンショット](http://sourceforge.net/apps/gallery/lcmc/)
-	
-
-	
-    * [ソースコード](https://github.com/rasto/lcmc)
-	
-
-	
-    * [変更履歴](http://lcmc.sourceforge.net/changelog)
-	
-
-     
-
+  
 
 あらぶった[ユーザガイド](http://lcmc.sourceforge.net/lcmc-user-guide/lcmc-guide.html)も健在でござる。

@@ -21,15 +21,19 @@ Linux-HA Japanでは、ここ数年間Pacemakerの普及に努めてまいりま
 **1位　Paacemaker(パースメーカー)**
 ![paacemaker](/assets/images/wp-content/paacemaker.jpg)
 ・・・aを2回打つタイポがそのまま広まってしまったようです。語呂もいいですね。
+  
 
 **2位　Peacemaker(ピースメーカー)**
 ![peacemaker-log](/assets/images/wp-content/peacemaker-log.png)
 ・・・昨年注意したやつ。相変わらず多いです。平和を愛する心は、世界共通です。国内外共に安定してミスってます。
+  
 
 **3位　Coursemaker(コースメーカー)**
 ![cource](/assets/images/wp-content/cource.jpg)
 ・・・もはや原型をとどめていませんね。カーレース愛好家がよくこういう間違いをするようです。
+  
 
+  
 
 ・・・あれ、頭文字がパとピとコ・・なんかおいしそう・・
 そうか！だからあのアイスは冗長化構成になっているのか！

@@ -17,10 +17,7 @@ tags:
 
 ということで、今月はDRBDのリリースノートを一生懸命読んでみました。  
 
-リリースといってもまだ rc なので、正式版が出た段階で改めてご紹介したいと思います。
-
-
-
+リリースといってもまだ rc なので、正式版が出た段階で改めてご紹介したいと思います。  
 
 今月のお題はこちらのお二つ。 
 
@@ -42,27 +39,15 @@ tags:
 
 
 
-**1.リリース情報**
+**1.リリース情報**  
 
-
-
-
-[drbd-8.4.0rc1のリリース](http://www.gossamer-threads.com/lists/drbd/announce/21358)
-
-
-
+[drbd-8.4.0rc1のリリース](http://www.gossamer-threads.com/lists/drbd/announce/21358)  
 
 DRBD 8.4.0rc1がリリースされました。  
 
-8.3系からの大きな変更点は、こちら。
+8.3系からの大きな変更点は、こちら。  
 
-
-
-
-The most noticeable change is the support for multiple replicated volumes in a single DRBD connection.
-
-
-
+The most noticeable change is the support for multiple replicated volumes in a single DRBD connection.  
 
 8.3系では、一本の同期LANで複数のリソース（ブロックデバイス）を同期させたい場合  
 
@@ -74,10 +59,7 @@ The most noticeable change is the support for multiple replicated volumes in a s
 
 「プロトコルAを使用して遠隔地への同期処理を実行しているユーザにとってもこの機能は重要である（直訳）」  
 
-とも書いてありました。
-
-
-
+とも書いてありました。  
 
 volumesの設定方法は[こんな感じ](http://git.drbd.org/?p=drbd-8.4.git;a=blobdiff;f=scripts/drbd.conf.example;h=e7269181e480920705a35699bd9c0350c669ea39;hp=69fab127a63825cc53440c40d2caa85b888f33cf;hb=77afde6f644387b3c9274bce5c22271e3b2b87e7;hpb=75b8f9864b1147196ee8a892fa360e5d949518e1)。  
 
@@ -91,38 +73,25 @@ drbd.confを見慣れてる人は「なるほど！」ですね。
 
 
 
+  
 
-
-
-[drbd-8.4.0rc2のリリース](http://www.gossamer-threads.com/lists/drbd/announce/21491)
-
-
-
+[drbd-8.4.0rc2のリリース](http://www.gossamer-threads.com/lists/drbd/announce/21491)  
 
 間をおかず、rc2もリリースされました。  
 
-rc2のアナウンスではサポートするカーネルのバージョンが2.6.18となっています。
-
-
-
+rc2のアナウンスではサポートするカーネルのバージョンが2.6.18となっています。  
 
 With this rc we have the compatibility code in place.  
 
 It is expected to work on kernels 2.6.18 and newer. I.e. RHEL5.  
 
-* Compatibility code down to at least kernel 2.6.18
-
-
-
+* Compatibility code down to at least kernel 2.6.18  
 
 私が検証用OSとしてRHELしか使っていないので、RHELのバージョンに限って話をさせていただくと  
 
 RHEL5 → OK、RHEL6 → NGということになります。  
 
-なんでRHEL6がだめかっていうバックグラウンドは[こちら](http://www.gossamer-threads.com/lists/drbd/users/21484#21484)。
-
-
-
+なんでRHEL6がだめかっていうバックグラウンドは[こちら](http://www.gossamer-threads.com/lists/drbd/users/21484#21484)。  
 
 Background: the bio-&gt;bi_rw flags have been changed a few times  
 
@@ -130,10 +99,7 @@ in the upstream kernel, and RHEL 6.1 changed it again in yet some
 
 different way, so the compat wrappers and ifdefs in DRBD don't get it  
 
-right yet, leading to a compile error.
-
-
-
+right yet, leading to a compile error.  
 
 RHEL 6.1ではbio-&gt;bi_rwフラグの取り扱いが変更されており、DRBDはそれに対応できていないとのこと。  
 
@@ -153,43 +119,25 @@ RHEL 6.0はこんなとこではみだしてて大丈夫なのか。
 
 8.4.0の正式リリースでRHEL 6.1も対応してくれるのかなあ。  
 
-でも、がっつり修正が入っちゃうようだと、.0はちょっと人柱すぎるという気がしないでもない。
-
-
-
+でも、がっつり修正が入っちゃうようだと、.0はちょっと人柱すぎるという気がしないでもない。  
 
 [  
 
-drbd-8.3.11rc1のリリース](http://www.gossamer-threads.com/lists/drbd/announce/21472)
-
-
-
+drbd-8.3.11rc1のリリース](http://www.gossamer-threads.com/lists/drbd/announce/21472)  
 
 こちらは、8.3系のバグフィックスです。  
 
-大きな変更点は、こちら。
+大きな変更点は、こちら。  
 
-
-
-
-The most subtlety bug fixed with this release is in the area of the max_bio_size negotiation:
-
-
-
+The most subtlety bug fixed with this release is in the area of the max_bio_size negotiation:  
 
 DRBDがローカルのブロックデバイスをプライマリ化して対向ノードと接続した後に  
 
 ローカルのディスクを「attach」すると、プライマリのmax_bio_sizeがちっさくなっちゃってたらしいです。  
 
-想像するに、絶好調で同期処理をしてる最中に、プライマリで
+想像するに、絶好調で同期処理をしてる最中に、プライマリで  
 
-
-
-
-**# drbdadm attach all**
-
-
-
+**# drbdadm attach all**  
 
 を実行したというような状況なんですかね。  
 
@@ -203,20 +151,13 @@ DRBDがローカルのブロックデバイスをプライマリ化して対向�
 
 という気もしますが、8.3.11ではこのへんも修正されているようです。  
 
-あとちょっと気になったのはこの一行。
+あとちょっと気になったのはこの一行。  
 
-
-
-
-* Fixed the behaviour in case ping-timeout and ping-int are set to the same value
-
-
-
+* Fixed the behaviour in case ping-timeout and ping-int are set to the same value  
 
 ping-timeoutとping-intの値を同じに設定していると、何がおこるんだ…。  
 
-それぞれのデフォルト値は
-
+それぞれのデフォルト値は  
 
 
 
@@ -243,19 +184,13 @@ ping-timeoutとping-intの値を同じに設定していると、何がおこる
 
 
 
-[Hawk (HA Web Konsole) 0.4.1のリリース](http://www.gossamer-threads.com/lists/linuxha/users/72323)
-
-
-
+[Hawk (HA Web Konsole) 0.4.1のリリース](http://www.gossamer-threads.com/lists/linuxha/users/72323)  
 
 Hawk、地味に（失礼）進化を続けています。  
 
 が、まだ0.4。  
 
-1.0になるのはいつのことやら。
-
-
-
+1.0になるのはいつのことやら。  
 
 今、Hawkにできることはこちら。
 
@@ -284,13 +219,9 @@ Hawk、地味に（失礼）進化を続けています。
 
 
 
+  
 
-
-
-**２．知恵袋[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**
-
-
-
+**２．知恵袋[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**  
 
 日本語コミュニティのメーリングリストで、故障契機の話題がでていましたが  
 
@@ -314,10 +245,7 @@ Pacemakerは、故障回数が「migration-threshold」で設定した値に達�
 
 ということで、知恵袋では「migration-threshold」の設定方法をご紹介します。  
 
-Pacemakerのドキュメントで該当する箇所は[こちら](http://www.clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/s-resource-options.html)。
-
-
-
+Pacemakerのドキュメントで該当する箇所は[こちら](http://www.clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/s-resource-options.html)。  
 
 今回は「Dummy RA」を使用して動作を確認してみます。  
 
@@ -336,20 +264,11 @@ start処理とはいいつつ、とりあえずmonitor処理を実行。
 
 monitor OKであれば、もう自分起動済みじゃんということで　return $OCF_SUCCES  
 
-monitor NGであれば、なんだ自分まだ起動できてないじゃんということで　touch ${OCF_RESKEY_state}  
+monitor NGであれば、なんだ自分まだ起動できてないじゃんということで　touch ${OCF_RESKEY_state}   
 
+ここで作ってる${OCF_RESKEY_state}は  
 
-
-
-ここで作ってる${OCF_RESKEY_state}は
-
-
-
-
-${HA_VARRUN}/Dummy-{OCF_RESOURCE_INSTANCE}.state"
-
-
-
+${HA_VARRUN}/Dummy-{OCF_RESOURCE_INSTANCE}.state"  
 
 です。 
 
@@ -436,13 +355,9 @@ Dummy RAで擬似故障を発生させる場合は、${OCF_RESKEY_state}を削�
 
 108     return $OCF_SUCCESS  
 
-109 }
+109 }  
 
-
-
-
-Dummy RAは、かなりまるめて説明すると
-
+Dummy RAは、かなりまるめて説明すると  
 
 
 
@@ -466,15 +381,9 @@ Dummy RAは、かなりまるめて説明すると
 
 他のRAの代替として動作確認に使用することも可能ですが、  
 
-単純すぎるがためにはまる罠というのもたまにありますのでご注意ください。
+単純すぎるがためにはまる罠というのもたまにありますのでご注意ください。  
 
-
-
-
-では、Dummy RAを起動させてみましょう。
-
-
-
+では、Dummy RAを起動させてみましょう。  
 
 **(1) Dummy RAの起動**
 
@@ -576,29 +485,17 @@ dummy01: migration-threshold=1000000**
 
 + (3) start: rc=0 (ok)  
 
-+ (4) monitor: interval=10000ms rc=0 (ok)
-
-
-
++ (4) monitor: interval=10000ms rc=0 (ok)  
 
 なんと、migration-threshold=1000000！  
 
 1000000回目の故障でやっとフェイルオーバ！ということになります。  
 
-なんかいろいろムリですが、とりあえずノード**xen01**で起動している**dummy01**を故障させてみましょう。
+なんかいろいろムリですが、とりあえずノード**xen01**で起動している**dummy01**を故障させてみましょう。  
 
+xen01でdummy01のステータスファイルを削除します。  
 
-
-
-xen01でdummy01のステータスファイルを削除します。
-
-
-
-
-**# rm -f /var/run/Dummy-dummy01.state**
-
-
-
+**# rm -f /var/run/Dummy-dummy01.state**  
 
 しばらく crm_mon -i1 -fo を眺めていると。。。
 
@@ -637,10 +534,7 @@ dummy01**: migration-threshold=1000000 **fail-count=1**
 
 + (6) start: rc=0 (ok)  
 
-+ (7) monitor: interval=10000ms rc=0 (ok)
-
-
-
++ (7) monitor: interval=10000ms rc=0 (ok)  
 
 dummy01のfail-countが「1」にあがりましたね！  
 
@@ -654,10 +548,7 @@ dummy01のfail-countが「1」にあがりましたね！
 
 dummy01は、再びxen01で動いているというわけです。  
 
-DCノード（この例ではxen02）でha-logを検索してみると、こんな感じになります。
-
-
-
+DCノード（この例ではxen02）でha-logを検索してみると、こんな感じになります。  
 
 **# grep match_graph_event /var/log/ha-log**
 
@@ -676,15 +567,9 @@ May 30 13:09:38 xen02 crmd: []: info: match_graph_event: Action **dummy01_stop_0
 
 May 30 13:09:40 xen02 crmd: []: info: match_graph_event: Action **dummy01_start_0 (5) confirmed on xen01 (rc=0)**  
 
-May 30 13:09:42 xen02 crmd: []: info: match_graph_event: Action dummy01_monitor_10000 (6) confirmed on xen01 (rc=0)
+May 30 13:09:42 xen02 crmd: []: info: match_graph_event: Action dummy01_monitor_10000 (6) confirmed on xen01 (rc=0)  
 
-
-
-
-**(2) migration-threshold の設定[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**
-
-
-
+**(2) migration-threshold の設定[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**  
 
 では、migration-thresholdを設定してみましょう  
 
@@ -692,16 +577,11 @@ Dummy RA用のcrmファイルを作成します。
 
 今回は、migration-thresholdの設定に注目してください。  
 
-migration-thresholdは、rsc_defaultsセクションに設定します。
+migration-thresholdは、rsc_defaultsセクションに設定します。  
 
+  
 
-
-
-
-
-
-
-
+  
 
 **dummy01.crm**
 
@@ -730,17 +610,13 @@ op start interval="0s" timeout="100s" on-fail="restart" \
 
 op monitor interval="10s" timeout="100s" on-fail="restart" \  
 
-op stop interval="0s" timeout="100s" on-fail="stop"
-
-
-
+op stop interval="0s" timeout="100s" on-fail="stop"  
 
 migration-thresholdは、rsc_defaultsセクションだけでなく  
 
 リソースそれぞれに設定することもできます。  
 
-この場合、「meta」キーワードが必要となります。
-
+この場合、「meta」キーワードが必要となります。  
 
 
 
@@ -779,10 +655,7 @@ op start interval="0s" timeout="100s" on-fail="restart" \
 
 op monitor interval="10s" timeout="100s" on-fail="restart" \  
 
-op stop interval="0s" timeout="100s" on-fail="stop"
-
-
-
+op stop interval="0s" timeout="100s" on-fail="stop"  
 
 rsc_defaultsセクションに設定したmigration-thresholdが全体のデフォルト値となります。  
 
@@ -793,10 +666,7 @@ dummy01にはmigration-thresholdを設定していませんが、rsc_defaultsセ
 
 
 
-dummy01 : migration-threshold=1 となります。
-
-
-
+dummy01 : migration-threshold=1 となります。  
 
 dummy02には、meta属性として、migration-threshold=3が設定されています。  
 
@@ -805,20 +675,11 @@ dummy02には、meta属性として、migration-threshold=3が設定されてい
 
 
 
-dummy02 : migration-threshold=3 となります。
+dummy02 : migration-threshold=3 となります。  
 
+では、(1)と同じようにDummy RAを起動してみましょう。  
 
-
-
-では、(1)と同じようにDummy RAを起動してみましょう。
-
-
-
-
-dummy01.crmをクラスタに反映させてみます。
-
-
-
+dummy01.crmをクラスタに反映させてみます。  
 
 **# crm_mon -i1 -fo**
 
@@ -855,10 +716,7 @@ dummy01: migration-threshold=1**
 
 + (3) start: rc=0 (ok)  
 
-+ (4) monitor: interval=10000ms rc=0 (ok)
-
-
-
++ (4) monitor: interval=10000ms rc=0 (ok)  
 
 お！今回はdummy01のmigration-thresholdが「1」となっていますね！（前「1000000」だったとこ）  
 
@@ -919,10 +777,7 @@ dummy01: migration-threshold=1 fail-count=1**
 
 Failed actions:**  
 
-dummy01_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running**
-
-
-
+dummy01_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running**  
 
 おお！フィルオーバしました！（xen01 → xen02）  
 
@@ -930,15 +785,9 @@ dummy01_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running**
 
 慣れていない間は、「migration-threshold」の設定を忘れてしまうことが多いので  
 
-とりあえずrsc_defaultsセクションにがつっと書いちゃってたほうが安心です。 
+とりあえずrsc_defaultsセクションにがつっと書いちゃってたほうが安心です。   
 
-
-
-
-**(3) failure-timeout の設定[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**
-
-
-
+**(3) failure-timeout の設定[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)**  
 
 ちなみに、さっき紹介した[ドキュメント](http://www.clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/s-resource-options.html)には「failure-timeout」という  
 
@@ -952,10 +801,7 @@ dummy01_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running**
 
 というか表示系がとってくる値と、状態遷移でごにょごにょした値が一致していないので  
 
-1.0系では使えないです。
-
-
-
+1.0系では使えないです。  
 
 failure-timeoutはその名の通り（？）、過去の失敗をなかったことにしてくれる  
 
@@ -969,15 +815,9 @@ failure-timeoutはその名の通り（？）、過去の失敗をなかった�
 
 自動でゼロに戻してくれるというなんたる魔法使い。  
 
-あ、でも故障原因を自動的に取り除いてくれるわけではないですよ！
+あ、でも故障原因を自動的に取り除いてくれるわけではないですよ！  
 
-
-
-
-というわけで、Pacemaker 1.1で動作を確認してみました。
-
-
-
+というわけで、Pacemaker 1.1で動作を確認してみました。  
 
 **設定ファイルの例**
 
@@ -1010,24 +850,15 @@ op start interval="0s" timeout="100s" on-fail="restart" \
 
 op monitor interval="10s" timeout="100s" on-fail="restart" \  
 
-op stop interval="0s" timeout="100s" on-fail="stop"
-
-
-
+op stop interval="0s" timeout="100s" on-fail="stop"  
 
 failure-timeoutだけでなく、cluster-recheck-intervalも設定する必要があります。  
 
 failure-timeoutはmigration-thresholdと同様、リソースのmeta属性として設定することもできます。  
 
-cluster-recheck-intervalは、クラスタ全体のオプションなのでリソース個別に設定することはできません。
+cluster-recheck-intervalは、クラスタ全体のオプションなのでリソース個別に設定することはできません。  
 
-
-
-
-では、リソースを起動してみましょう。
-
-
-
+では、リソースを起動してみましょう。  
 
 **# crm_mon -i1 -fo**
 
@@ -1064,10 +895,7 @@ dummy01: migration-threshold=1
 
 + (4) monitor: interval=10000ms rc=0 (ok)  
 
-* Node xen02:
-
-
-
+* Node xen02:  
 
 リソースを故障させます。
 
@@ -1121,10 +949,7 @@ dummy01: migration-threshold=1
 
 Failed actions:  
 
-dummy01_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running
-
-
-
+dummy01_monitor_10000 (node=xen01, call=4, rc=7, status=complete): not running  
 
 今までとは違って、「last-failure」という表示が追加されていますね！  
 
@@ -1171,10 +996,7 @@ dummy01: migration-threshold=1
 
 + (3) start: rc=0 (ok)  
 
-+ (4) monitor: interval=10000ms rc=0 (ok)
-
-
-
++ (4) monitor: interval=10000ms rc=0 (ok)  
 
 おおおおお。fail-countとlast-failureの表示が消えた！  
 
@@ -1185,24 +1007,15 @@ dummy01: migration-threshold=1
 
 **# crm resource failcount dummy01 show xen01****  
 
-scope=status  name=fail-count-dummy01 value=0**
+scope=status  name=fail-count-dummy01 value=0**  
 
-
-
-
-Pacemaker 1.1になるまで出番はオアズケですが、なにかいい使い道を考えておかなくては。
-
-
-
+Pacemaker 1.1になるまで出番はオアズケですが、なにかいい使い道を考えておかなくては。  
 
 今回、あんどりゅーくんの出番があまりなかったので、お引っ越し情報など。[![](/assets/images/wp-content/de42f2642d5f2ad6230cda441238ecc6-150x150.png)](/wp/archives/1097/%e3%81%82%e3%82%93%e3%81%a9%e3%82%8a%e3%82%85%e3%83%bc%e5%90%9b)  
 
 こういうのって個人情報的にどうなんですかね。  
 
-でも、あんどりゅーくんのブログにも書いてあるし、いいのかな…。
-
-
-
+でも、あんどりゅーくんのブログにも書いてあるし、いいのかな…。  
 
 ある日、あんどりゅーくんがこんな[Tweet](http://twitter.com/#!/beekhof/status/72612592983621632)をしていました。  
 
@@ -1212,10 +1025,7 @@ Pacemaker 1.1になるまで出番はオアズケですが、なにかいい使�
 
 今、流行の（もう古いのか？）断捨離とかそういうの？？  
 
-と思っていたら、どうやら[お引っ越し](http://twitter.com/#!/beekhof/status/72975039049371648)らしい。
-
-
-
+と思っていたら、どうやら[お引っ越し](http://twitter.com/#!/beekhof/status/72975039049371648)らしい。  
 
 そういや、5月の第二週にブダペストでUbuntu祭りが開催されたらしく  
 
@@ -1223,33 +1033,21 @@ Pacemaker 1.1になるまで出番はオアズケですが、なにかいい使�
 
 で、ふろーりあんくんが、あんどりゅーくんに「オマエも来いよー」と誘っていたのですが  
 
-あんどりゅーくんは「むーりー」と断ってました。
-
-
-
+あんどりゅーくんは「むーりー」と断ってました。  
 
 ふろーりあんくん  
 
-Andrew, interested in making a day trip to Budapest while you're still on this continent?
-
-
-
+Andrew, interested in making a day trip to Budapest while you're still on this continent?  
 
 あんどりゅーくん  
 
-With under 4 weeks to go - not a chance :-)
-
-
-
+With under 4 weeks to go - not a chance :-)  
 
 "you're still on this continent"ってそゆこと！  
 
 あんどりゅーくん、ヨーロッパからオーストラリアにお引っ越しかー。  
 
-オーストラリアといえば有袋類の楽園。いいなあ。
-
-
-
+オーストラリアといえば有袋類の楽園。いいなあ。  
 
 最近、オフィスの節電で窓を開け放して仕事をしているのですが  
 
@@ -1263,23 +1061,16 @@ With under 4 weeks to go - not a chance :-)
 
 うちらは蚊取り線香買いにいかんとー。  
 
+  
 
+  
 
-
-
-
-
-
-
-
-
+  
 
 **では、今月はこれにてどろん！εεεεεヾ(*´ー`)ﾉ**  
 
-夏休みーはまーだかな
+夏休みーはまーだかな  
 
-
-
-
+  
 
 

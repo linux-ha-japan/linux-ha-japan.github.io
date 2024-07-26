@@ -34,6 +34,7 @@ After much hard work, the latest installment of the Pacemaker 1.1 release series
 後述の「変更点」にも挙げられていますが、Corosync 2.0への対応が大変だったようです。
 なお、2012年4月6日の時点ではCorosyncはv1.99.9がリリースされています。
 3月中に2.0がリリースされる予定でしたが、ちょっと遅れているみたいですね。
+  
 
 
 
@@ -113,6 +114,7 @@ this new release brings:<br>
 
 
 
+  
 
 
 
@@ -218,6 +220,7 @@ compression_thresholdの設定値は各環境で調整する必要がありま�
 参考情報
 [compression with heartbeat doesn't seem to work](http://www.gossamer-threads.com/lists/linuxha/pacemaker/74438)
 [traditional_compression - controls compression mode](http://linux-ha.org/wiki/Ha.cf#traditional_compression_-_controls_compression_mode)
+  
 
 
 
@@ -251,6 +254,7 @@ Pacemaker はちょっとアレなくらいログを吐くので、出力量が�
 なお、ロギング処理には[libqb](https://github.com/asalkeld/libqb/wiki)が採用されていますが、Pacemaker 1.1.7のビルド時にlibqpは必須ではありません。
 Pacemaker 1.1.8以降はIPC(プロセス間通信)にもlibqpを採用しており、ビルド時の前提条件にも追加されるようです。
 [参考情報](http://www.gossamer-threads.com/lists/linuxha/pacemaker/79158#79158)
+  
 
 
 
@@ -323,6 +327,7 @@ fencing-topologyはそれにかわるものなのか！？
 &lt;/grammar&gt;</code></pre>
 
 
+  
 
 
 
@@ -356,6 +361,7 @@ boothは「チケット」と呼ばれる属性をサイトに発行します。
 crm_simulateコマンドもチケットに対応したようです。
 
 booth のソースコードは[こちら](https://github.com/ClusterLabs/booth)からダウンロードできます。
+  
 
 
 

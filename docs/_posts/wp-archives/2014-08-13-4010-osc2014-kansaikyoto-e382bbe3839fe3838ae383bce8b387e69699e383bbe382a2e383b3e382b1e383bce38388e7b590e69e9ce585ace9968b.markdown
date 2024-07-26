@@ -28,12 +28,15 @@ tags:
   * セミナー資料：[Pacemaker + PostgreSQLレプリケーション構成(PG-REX)のフェイルオーバー高速化](http://www.slideshare.net/kazuhcurry/osc2014-kyoto)
 
 
+  
 
+  
 
 また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
 アンケート結果を以下に公開します。 
 訳あって、6月13日、14日に開催のOSC2014 Hokkaidoでのアンケートと合算しています。
 (回答者計51名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+  
 
 [![osc2014hokkaido+kyoto-qa01](/assets/images/wp-content/a58ba46e7d955ab8d6e7788c0d7a00c0.png)](/assets/images/wp-content/a58ba46e7d955ab8d6e7788c0d7a00c0.png)
 [![osc2014hokkaido+kyoto-qa02](/assets/images/wp-content/40e837984ca5c248b701f863104eaf5a.png)](/assets/images/wp-content/40e837984ca5c248b701f863104eaf5a.png)

@@ -131,7 +131,7 @@ primitiveコマンドの概要と書式を以下に示します。
 <tr>
 	<th rowspan="6">設定項目</th>
 	<td>リソースID</td>
-	<td>リソースの名前を任意の英数字で定義します。クラスタ内で一意でなければなりません。</br>CRMファイルの他の箇所でこのリソースを示す場合やcrm_monコマンドでの表示等にも使用します。</td>
+	<td>リソースの名前を任意の英数字で定義します。クラスタ内で一意でなければなりません。<br>CRMファイルの他の箇所でこのリソースを示す場合やcrm_monコマンドでの表示等にも使用します。</td>
 </tr>
 <tr>
 	<td>RA名</td>
@@ -191,10 +191,12 @@ primitiveコマンドの概要と書式を以下に示します。
 	<li>stop   ：このリソースの停止を試みます。他のノードへの再配置はされません。停止に失敗した場合、停止を繰り返し試みます。</li>
 	</ul>
 	</dd>
+	</dl>
 	</td>
 </tr>
 </tbody>
 </table>
+  
 
 
 以下の部分は、リソースIDがresource1で、/usr/lib/ocf/resource.d/heartbeat/Dummy をRAとするリソースを定義していることになります。
@@ -254,6 +256,7 @@ groupコマンドの書式は以下です。
 		</tr>
 	</tbody>
 </table>
+  
 
 
 以下部分は、リソースID resource1およびresource2をグループ化しています。グループIDはgrpです。
@@ -312,6 +315,7 @@ cloneコマンドの書式は以下です。
 		</tr>
 	</tbody>
 </table>
+  
 
 
 以下の部分は、リソースID resource3をクローン化しています。クローンリソースIDはclnResourceです。
@@ -355,13 +359,14 @@ clone clnResource \
 
 
 次ページでこれらの動作を実験で確認します。
+  
 
 
 
 
 
 <pre style="background-color: lightyellow;line-height:1">
-<span style="font-size: medium;"></br><strong>コラム LSBって？</strong></span>
+<span style="font-size: medium;"><br><strong>コラム LSBって？</strong></span>
 <a href="http://refspecs.linuxbase.org/LSB_3.1.1/LSB-Core-generic/LSB-Core-generic/iniscrptact.html">LSB</a>はLinux Standard Baseと呼ばれる、Linuxの内部構造の仕様です。
 PacemakerがinitスクリプトをRAとする場合、このLSBに準拠していることを前提に制御をおこないます。
 具体的には以下を前提としています。

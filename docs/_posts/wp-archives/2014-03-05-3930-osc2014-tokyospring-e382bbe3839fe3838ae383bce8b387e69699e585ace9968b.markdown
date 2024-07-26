@@ -28,10 +28,13 @@ tags:
 
 
 
+  
 
+  
 
 また、当日はブースで多くの方にアンケート協力して頂きありがとうございました。
 アンケート結果を以下に公開します。 (回答者43名, 円グラフ中の数値は「回答者数,割合(%)」です。)
+  
 
 [![osc2014tokyospring-qa01](/assets/images/wp-content/osc2014tokyospring-qa01.png)](/assets/images/wp-content/osc2014tokyospring-qa01.png)
 [![osc2014tokyospring-qa02](/assets/images/wp-content/osc2014tokyospring-qa02.png)](/assets/images/wp-content/osc2014tokyospring-qa02.png)
