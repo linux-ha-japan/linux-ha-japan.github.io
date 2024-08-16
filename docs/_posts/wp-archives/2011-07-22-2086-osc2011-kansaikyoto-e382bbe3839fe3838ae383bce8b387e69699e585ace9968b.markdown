@@ -29,7 +29,7 @@ tags:
 
 
 	
-  * セミナー資料：  [Pacemakerでかんたんクラスタリング体験してみよう～仮想環境で運用デモしますよ編～](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2011Kyoto_20110716/ja/1/Pacemaker_OSC2011Kyoto_20110716.pdf)
+  * セミナー資料：  [Pacemakerでかんたんクラスタリング体験してみよう～仮想環境で運用デモしますよ編～]({{ site.lhajp_resources_url }}/sf-docs/Pacemaker_OSC2011Kyoto_20110716.pdf)
 
 	
   * 設定例：  [リソース設定デモ用 crmテンプレートExcelファイル（pm_crmgen環境定義書サンプル）]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo3.xls)

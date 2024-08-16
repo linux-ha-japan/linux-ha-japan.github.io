@@ -29,7 +29,7 @@ Linux-HA Japan は、Pacemakerによる全国での講演が2年目（2順目）
 
 
 	
-  * セミナー資料：  [Pacemakerでかんたんクラスタリング体験してみよう～仮想環境で構築デモしますよ編～](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2011Hokkaido_20110611/ja/1/Pacemaker_OSC2011Hokkaido_20110611.pdf)
+  * セミナー資料：  [Pacemakerでかんたんクラスタリング体験してみよう～仮想環境で構築デモしますよ編～]({{ site.lhajp_resources_url }}/sf-docs/Pacemaker_OSC2011Hokkaido_20110611.pdf)
 
 	
   * 設定例：  [pm_crmgen環境定義書デモサンプル]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo.xls)

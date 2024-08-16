@@ -32,7 +32,7 @@ tags:
 
 
 	
-  * セミナー資料：  [HAクラスタをフェイルオーバ失敗から救おう！](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2013Kyoto_20130803/ja/1/Pacemaker_OSC2013Kyoto_20130803.pdf)
+  * セミナー資料：  [HAクラスタをフェイルオーバ失敗から救おう！]({{ site.lhajp_resources_url }}/sf-docs/Pacemaker_OSC2013Kyoto_20130803.pdf)
 
 	
   * 設定例：  [[デモ用サンプルファイル(pm_crmgen環境定義書Excelテンプレート)]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo_osc2013kyoto.xls)]({{ site.lhajp_resources_url }}/wp-content/osc2011fukuoka.zip)

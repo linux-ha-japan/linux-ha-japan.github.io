@@ -28,7 +28,7 @@ tags:
 
 
 	
-  * [Pacemaker + KVMで仮想化クラスタリング ～仮想化連携機能のご紹介～](http://sourceforge.jp/projects/linux-ha/docs/OSC2011Tokyo_Fall_20111120/ja/2/OSC2011Tokyo_Fall_20111120.pdf)
+  * [Pacemaker + KVMで仮想化クラスタリング ～仮想化連携機能のご紹介～]({{ site.lhajp_resources_url }}/sf-docs/OSC2011Tokyo_Fall_20111120.pdf)
 
 
 次は、2011年12月3日(土)に開催される[オープンソースカンファレンス2011 FUKUOKA](http://www.ospn.jp/osc2011-fukuoka/)に参加致しますので、ぜひぜひ興味のある方は足を運んでください！

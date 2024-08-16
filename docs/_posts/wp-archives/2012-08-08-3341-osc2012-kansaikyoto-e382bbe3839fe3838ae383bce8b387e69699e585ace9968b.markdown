@@ -31,7 +31,7 @@ Linux-HA Japanでは、2日間に渡りブースでの展示で PostgreSQL-9.1�
 
 
 	
-  * [HAクラスタサポートの日々 ～Pacemaker導入･運用の勘所～](http://sourceforge.jp/projects/linux-ha/docs/OSC2012_kansaiKyoto_20120804/ja/2/OSC2012_kansaiKyoto_20120804.pdf)
+  * [HAクラスタサポートの日々 ～Pacemaker導入･運用の勘所～]({{ site.lhajp_resources_url }}/sf-docs/OSC2012_kansaiKyoto_20120804.pdf)
 
 
 次は、オープンソースカンファレンス2012 Tokyo/Fall に参加します。

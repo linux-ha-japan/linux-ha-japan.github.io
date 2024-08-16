@@ -61,6 +61,6 @@ Linux-HA Japanプロジェクトでは、展示ブースの開設と [「Pacemak
 	
   * [「Pacemaker で簡単・気軽にクラスタリングしてみよう！」 (osc2010-do)  
 
- ](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2010Hokkaido_20100626/ja/1/Pacemaker_OSC2010Hokkaido_20100626.pdf)
+ ]({{ site.lhajp_resources_url }}/sf-docs/Pacemaker_OSC2010Hokkaido_20100626.pdf)
 
 

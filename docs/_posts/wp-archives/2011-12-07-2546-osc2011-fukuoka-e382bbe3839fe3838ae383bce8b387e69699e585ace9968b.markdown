@@ -29,7 +29,7 @@ tags:
 
 
 	
-  * セミナー資料：  [Pacemakerでかんたんクラスタリング体験してみよう～HAクラスタ運用デモしますよ編～](http://sourceforge.jp/projects/linux-ha/document/Pacemaker_OSC2011Fukuoka_20111203/ja/1/Pacemaker_OSC2011Fukuoka_20111203.pdf)
+  * セミナー資料：  [Pacemakerでかんたんクラスタリング体験してみよう～HAクラスタ運用デモしますよ編～]({{ site.lhajp_resources_url }}/sf-docs/Pacemaker_OSC2011Fukuoka_20111203.pdf)
 
 	
   * 設定例：  [デモ用サンプルファイル一式（pm_crmgen環境定義書Excelテンプレート、demo4.crm、ha.cf）]({{ site.lhajp_resources_url }}/wp-content/osc2011fukuoka.zip)

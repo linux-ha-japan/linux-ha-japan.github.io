@@ -31,7 +31,7 @@ Linux-HA Japan では、いつもの如く展示ブースの開設と [「](http
 
 
 	
-  * セミナー資料：  [実演！Pacemakerで楽々クラスタリング](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2011TokyoSpring_20110305/ja/1/Pacemaker_OSC2011TokyoSpring_20110305.pdf)
+  * セミナー資料：  [実演！Pacemakerで楽々クラスタリング]({{ site.lhajp_resources_url }}/sf-docs/Pacemaker_OSC2011TokyoSpring_20110305.pdf)
 
 	
   * 設定例：  [pm_crmgen環境定義書デモサンプル]({{ site.lhajp_resources_url }}/wp-content/pm_crmgen_demo.xls)

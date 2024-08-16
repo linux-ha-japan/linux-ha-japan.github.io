@@ -51,7 +51,7 @@ tags:
 
 
 	
-  * 2010/09/11  [挑戦！Pacemakerで自由自在にHAクラスタリング(田中 崇幸)](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2010TokyoFall_20100911/ja/1/Pacemaker_OSC2010TokyoFall_20100911.pdf)
+  * 2010/09/11  [挑戦！Pacemakerで自由自在にHAクラスタリング(田中 崇幸)]({{ site.lhajp_resources_url }}/sf-docs/Pacemaker_OSC2010TokyoFall_20100911.pdf)
 
 
 

@@ -52,6 +52,6 @@ tags:
 
 
 	
-  * [「Pacemakerで簡単・手軽にクラスタリングしてみよう！」（田中崇幸）](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2010Kyoto_20100710/ja/2/Pacemaker_OSC2010Kyoto_20100710.pdf)
+  * [「Pacemakerで簡単・手軽にクラスタリングしてみよう！」（田中崇幸）]({{ site.lhajp_resources_url }}/sf-docs/Pacemaker_OSC2010Kyoto_20100710.pdf)
 
 

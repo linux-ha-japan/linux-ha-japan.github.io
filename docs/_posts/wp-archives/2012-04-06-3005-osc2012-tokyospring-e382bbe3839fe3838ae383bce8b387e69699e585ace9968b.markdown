@@ -30,7 +30,7 @@ tags:
 
 
 	
-  * [HAクラスタサポートの日々 ～Pacemaker導入･運用の勘所～](http://sourceforge.jp/projects/linux-ha/docs/OSC2012_Tokyo_20120317/ja/3/OSC2012_Tokyo_20120317.pdf)
+  * [HAクラスタサポートの日々 ～Pacemaker導入･運用の勘所～]({{ site.lhajp_resources_url }}/sf-docs/OSC2012_Tokyo_20120317.pdf)
 
 
 次回もどうぞご期待下さい！

@@ -29,7 +29,7 @@ CentOS5.6によるXen仮想化環境上でPacemakerのデモをさせていた�
 
 
 	
-  * セミナー資料：  [実演！Pacemakerで楽々クラスタリング](http://sourceforge.jp/projects/linux-ha/docs/Pacemaker_OSC2011Kobe_20110416/ja/1/Pacemaker_OSC2011Kobe_20110416.pdf)
+  * セミナー資料：  [実演！Pacemakerで楽々クラスタリング]({{ site.lhajp_resources_url }}/sf-docs/Pacemaker_OSC2011Kobe_20110416.pdf)
 
 	
   * 設定例：  [pm_crmgen環境定義書デモサンプル
