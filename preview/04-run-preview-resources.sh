@@ -20,4 +20,4 @@ create_resources_symlink() {
 trap "kill 0" EXIT
 create_resources_symlink &
 
-podman run -it --rm -v .:/srv/jekyll:Z -v ../resources:/srv/resources:Z -p 4000:4000 localhost/jekyll-local:1.1 bundle exec jekyll serve --force_polling --host 0.0.0.0 --config _config.yml,_config_preview.yml
+podman run -it --rm -v .:/srv/jekyll:Z -v ../resources:/srv/resources:Z -e GEM_HOME=/srv/jekyll/vendor -e JEKYLL_ROOTLESS=1 -p 4000:4000 docker.io/jekyll/jekyll:4.2.2 bundle exec jekyll serve --force_polling --host 0.0.0.0 --config _config.yml,_config_preview.yml
