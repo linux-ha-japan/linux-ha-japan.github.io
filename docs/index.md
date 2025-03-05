@@ -11,7 +11,5 @@ Linux上で高可用(HA)クラスタシステムを構築するための部品�
 
 技術的な質問や議論などがあれば、ぜひ[メーリングリスト](/mailinglist/)に登録いただき、活発に議論いたしましょう！
 
-<font color="red">※お知らせ(2024/05/30): </font>
-
- * 旧Webサイト[http://linux-ha.osdn.jp/](http://linux-ha.osdn.jp/) (現在停止中) のコンテンツを復旧しました。
-   * 詳しくはこちら → [旧Webサイトのコンテンツを復旧しました](/posts/2024-05-30-web-contents-migration.html)
+<font color="red">※重要なお知らせ(2025/03/05): </font>
+ * [メーリングリストは現在一時中断しています](/posts/2025-03-05-mailinglist-suspended.html)

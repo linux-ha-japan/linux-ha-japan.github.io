@@ -16,7 +16,8 @@ Linux-HA全般に関する話題を日本語で情報交換するためのメー
 
 Pacemaker、Corosync、Heartbeat、DRBD、PG-REX など、HAクラスタに関連する話題は全て歓迎します！Linux-HAに興味のある方は、ぜひとも登録して活発な意見を交わしましょう。
 
-※ご注意: メーリングリストは今後移転する可能性があります。(2023/11/23)
+<font color="red">※重要なお知らせ(2025/03/05): </font>
+ * [メーリングリストは現在一時中断しています](/posts/2025-03-05-mailinglist-suspended.html)
 
 ## メーリングリストアドレス
  * [linux-ha-japan@lists.osdn.me](mailto:linux-ha-japan@lists.osdn.me) (登録アドレスからのみ投稿可能)
