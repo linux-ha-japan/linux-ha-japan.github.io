@@ -33,7 +33,7 @@ lhajp_resources_url: https://github.com/linux-ha-japan/linux-ha-japan.github.io/
 header_pages:
  - index.md
  - download.md
- - mailinglist.md
+ - discussions.md
  - documents.md
  - contents.md
  - posts.md
