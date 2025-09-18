@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Linux-HA Japan
-email: linux-ha-japan@lists.osdn.me
+#email: linux-ha-japan@lists.osdn.me
 description: High-Availability Clustering on Linux
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://linux-ha-japan.github.io" # the base hostname & protocol for your site, e.g. http://example.com
