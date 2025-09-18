@@ -5,13 +5,13 @@ permalink: /download/
 ---
 # ダウンロード
 
-## pm_extra_tools Pacemaker-2系追加パッケージ
+## pm_extra_tools Pacemaker用追加パッケージ
 
 
-RHEL 8/9 High Availability Add-On および互換OS 同梱版の Pacemaker-2系 と組み合わせて利用できる追加ツールです。以下のリリースページからダウンロードできます。
+RHEL 8/9/10 High Availability Add-On および互換OS 同梱版の Pacemaker と組み合わせて利用できる追加ツールです。以下のリリースページからダウンロードできます。
 
- * [pm_extra_tools (Pacemaker-2系追加パッケージ) リリースページ](https://github.com/linux-ha-japan/pm_extra_tools/releases)
-   * 現在の最新版は pm_extra_tools-1.6 です(2024/06時点)
+ * [pm_extra_tools (Pacemaker用追加パッケージ) リリースページ](https://github.com/linux-ha-japan/pm_extra_tools/releases)
+   * 現在の最新版は pm_extra_tools-1.7 です(2025/09時点)
    * 過去のリリースもこのページからダウンロードできます。
 
 
